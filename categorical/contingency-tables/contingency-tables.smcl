@@ -1,35 +1,47 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}16 Apr 2020, 21:29:16
+ {txt}opened on:  {res}17 Apr 2020, 12:37:47
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}16 Apr 2020
+{res}17 Apr 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}21:29:16
+{res}12:37:47
 {txt}
 {com}. //_3
 . clear all
 {res}{txt}
 {com}. //_4
-. set obs 100 // 100 observations
-{txt}{p}
-number of observations (_N)  was 0,
-now 100
-{p_end}
-
+. set seed 3846
+{txt}
 {com}. //_5
-. generate nickel = rbinomial(1, .75) // unfair nickel
+. label define coin 1 "heads" 0 "tails" // define value label
 {txt}
 {com}. //_6
+. set obs 1000 // 1000 observations
+{txt}{p}
+number of observations (_N)  was 0,
+now 1,000
+{p_end}
+
+{com}. //_7
+. * curiously it takes around 1000 obs for the proportions
+. * below to "take hold"
+. //_8
+. generate nickel = rbinomial(1, .75) // unfair nickel
+{txt}
+{com}. //_9
 . generate quarter = rbinomial(1, .5) // fair quarter
 {txt}
-{com}. //_7
+{com}. //_10
+. label values nickel quarter coin // assign value label
+{txt}
+{com}. //_11
 . tabulate nickel quarter, row col
 {txt}
 {c TLC}{hline 19}{c TRC}
@@ -41,36 +53,40 @@ now 100
 {c BLC}{hline 19}{c BRC}
 
            {c |}        quarter
-    nickel {c |}         0          1 {c |}     Total
+    nickel {c |}     tails      heads {c |}     Total
 {hline 11}{c +}{hline 22}{c +}{hline 10}
-         0 {c |}{res}        15         18 {txt}{c |}{res}        33 
-           {txt}{c |}{res}     45.45      54.55 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}     29.41      36.73 {txt}{c |}{res}     33.00 
+     tails {c |}{res}       104        140 {txt}{c |}{res}       244 
+           {txt}{c |}{res}     42.62      57.38 {txt}{c |}{res}    100.00 
+           {txt}{c |}{res}     21.62      26.97 {txt}{c |}{res}     24.40 
 {txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
-         1 {c |}{res}        36         31 {txt}{c |}{res}        67 
-           {txt}{c |}{res}     53.73      46.27 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}     70.59      63.27 {txt}{c |}{res}     67.00 
+     heads {c |}{res}       377        379 {txt}{c |}{res}       756 
+           {txt}{c |}{res}     49.87      50.13 {txt}{c |}{res}    100.00 
+           {txt}{c |}{res}     78.38      73.03 {txt}{c |}{res}     75.60 
 {txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
-     Total {c |}{res}        51         49 {txt}{c |}{res}       100 
-           {txt}{c |}{res}     51.00      49.00 {txt}{c |}{res}    100.00 
+     Total {c |}{res}       481        519 {txt}{c |}{res}     1,000 
+           {txt}{c |}{res}     48.10      51.90 {txt}{c |}{res}    100.00 
            {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
 {txt}
-{com}. //_8
+{com}. //_12
 . * ssc install spineplot // mosaicplots (spineplots)
-. //_9
+. //_13
 . * ssc install scheme-burd, replace // BuRd graph scheme
-. //_10
+. //_14
 . spineplot nickel quarter, scheme(michigan)
 {res}{txt}
-{com}. //_11
+{com}. //_15
 . spineplot nickel quarter, scheme(burd)
 {res}{txt}
+{com}. //_16
+. graph export nickel-quarter.png, width(1000) replace
+{txt}(file nickel-quarter.png written in PNG format)
+
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}16 Apr 2020, 21:29:20
+ {txt}closed on:  {res}17 Apr 2020, 12:37:50
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -1,18 +1,27 @@
 % Contingency Tables
 % Andy Grogan-Kaylor
 % `s c(current_date)` `s c(current_time)`
-
+	
 # Key Concepts and Commands
 
 # Flipping Two Coins
 
     clear all
+	
+	set seed 3846
+	
+	label define coin 1 "heads" 0 "tails" // define value label
 
-    set obs 100 // 100 observations
+    set obs 1000 // 1000 observations
+	
+	* curiously it takes around 1000 obs for the proportions
+	* below to "take hold"
 	
 	generate nickel = rbinomial(1, .75) // unfair nickel
 	
 	generate quarter = rbinomial(1, .5) // fair quarter
+	
+	label values nickel quarter coin // assign value label
 	
 	tabulate nickel quarter, row col
 	
@@ -25,4 +34,9 @@
 	spineplot nickel quarter, scheme(michigan)
 	
 	spineplot nickel quarter, scheme(burd)
+	
+	graph export nickel-quarter.png, width(1000) replace
+	
+![Nickel and Quarter](nickel-quarter.png)
+
 	

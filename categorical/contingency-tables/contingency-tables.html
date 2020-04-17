@@ -57,18 +57,27 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Contingency Tables</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">16 Apr 2020 21:29:16</p>
+<p class="date">17 Apr 2020 12:37:33</p>
 </header>
 <h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
 <h1 id="flipping-two-coins">Flipping Two Coins</h1>
 <pre class='stata'>. clear all
 </pre>
-<pre class='stata'>. set obs 100 // 100 observations
-number of observations (_N) was 0, now 100
+<pre class='stata'>. set seed 3846
+</pre>
+<pre class='stata'>. label define coin 1 "heads" 0 "tails" // define value label
+</pre>
+<pre class='stata'>. set obs 1000 // 1000 observations
+number of observations (_N) was 0, now 1,000
+</pre>
+<pre class='stata'>. * curiously it takes around 1000 obs for the proportions
+. * below to "take hold"
 </pre>
 <pre class='stata'>. generate nickel = rbinomial(1, .75) // unfair nickel
 </pre>
 <pre class='stata'>. generate quarter = rbinomial(1, .5) // fair quarter
+</pre>
+<pre class='stata'>. label values nickel quarter coin // assign value label
 </pre>
 <pre class='stata'>. tabulate nickel quarter, row col
 
@@ -81,18 +90,18 @@ number of observations (_N) was 0, now 100
 └───────────────────┘
 
            │        quarter
-    nickel │         0          1 │     Total
+    nickel │     tails      heads │     Total
 ───────────┼──────────────────────┼──────────
-         0 │        15         18 │        33 
-           │     45.45      54.55 │    100.00 
-           │     29.41      36.73 │     33.00 
+     tails │       104        140 │       244 
+           │     42.62      57.38 │    100.00 
+           │     21.62      26.97 │     24.40 
 ───────────┼──────────────────────┼──────────
-         1 │        36         31 │        67 
-           │     53.73      46.27 │    100.00 
-           │     70.59      63.27 │     67.00 
+     heads │       377        379 │       756 
+           │     49.87      50.13 │    100.00 
+           │     78.38      73.03 │     75.60 
 ───────────┼──────────────────────┼──────────
-     Total │        51         49 │       100 
-           │     51.00      49.00 │    100.00 
+     Total │       481        519 │     1,000 
+           │     48.10      51.90 │    100.00 
            │    100.00     100.00 │    100.00 
 </pre>
 <h1 id="graphing">Graphing</h1>
@@ -104,5 +113,11 @@ number of observations (_N) was 0, now 100
 </pre>
 <pre class='stata'>. spineplot nickel quarter, scheme(burd)
 </pre>
+<pre class='stata'>. graph export nickel-quarter.png, width(1000) replace
+(file nickel-quarter.png written in PNG format)
+</pre>
+<figure>
+<img src="nickel-quarter.png" alt="Nickel and Quarter" /><figcaption>Nickel and Quarter</figcaption>
+</figure>
 </body>
 </html>

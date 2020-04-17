@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Contingency Tables</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../UMslidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Contingency Tables</h1>
+  <p class="author">
+Andy Grogan-Kaylor
+  </p>
+</div>
+<div class="slide section level1">
+
+<p>Andy Grogan-Kaylor</p>
+<p>17 Apr 2020 12:37:33</p>
+</div>
+<div id="key-concepts-and-commands" class="slide section level1">
+<h1>Key Concepts and Commands</h1>
+</div>
+<div id="flipping-two-coins" class="slide section level1">
+<h1>Flipping Two Coins</h1>
+<pre class="stata"><code>. clear all</code></pre>
+<pre class="stata"><code>. set seed 3846</code></pre>
+<pre class="stata"><code>. label define coin 1 &quot;heads&quot; 0 &quot;tails&quot; // define value label</code></pre>
+<pre class="stata"><code>. set obs 1000 // 1000 observations
+number of observations (_N) was 0, now 1,000</code></pre>
+<pre class="stata"><code>. * curiously it takes around 1000 obs for the proportions
+. * below to &quot;take hold&quot;</code></pre>
+<pre class="stata"><code>. generate nickel = rbinomial(1, .75) // unfair nickel</code></pre>
+<pre class="stata"><code>. generate quarter = rbinomial(1, .5) // fair quarter</code></pre>
+<pre class="stata"><code>. label values nickel quarter coin // assign value label</code></pre>
+<pre class="stata"><code>. tabulate nickel quarter, row col
+
+┌───────────────────┐
+│ Key               │
+├───────────────────┤
+│     frequency     │
+│  row percentage   │
+│ column percentage │
+└───────────────────┘
+
+           │        quarter
+    nickel │     tails      heads │     Total
+───────────┼──────────────────────┼──────────
+     tails │       104        140 │       244 
+           │     42.62      57.38 │    100.00 
+           │     21.62      26.97 │     24.40 
+───────────┼──────────────────────┼──────────
+     heads │       377        379 │       756 
+           │     49.87      50.13 │    100.00 
+           │     78.38      73.03 │     75.60 
+───────────┼──────────────────────┼──────────
+     Total │       481        519 │     1,000 
+           │     48.10      51.90 │    100.00 
+           │    100.00     100.00 │    100.00 </code></pre>
+</div>
+<div id="graphing" class="slide section level1">
+<h1>Graphing</h1>
+<pre class="stata"><code>. * ssc install spineplot // mosaicplots (spineplots)</code></pre>
+<pre class="stata"><code>. * ssc install scheme-burd, replace // BuRd graph scheme</code></pre>
+<pre class="stata"><code>. spineplot nickel quarter, scheme(michigan)</code></pre>
+<pre class="stata"><code>. spineplot nickel quarter, scheme(burd)</code></pre>
+<pre class="stata"><code>. graph export nickel-quarter.png, width(1000) replace
+(file nickel-quarter.png written in PNG format)</code></pre>
+<div class="figure">
+<img src="nickel-quarter.png" alt="Nickel and Quarter" />
+<p class="caption">Nickel and Quarter</p>
+</div>
+</div>
+</body>
+</html>
