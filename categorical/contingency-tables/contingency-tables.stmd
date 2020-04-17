@@ -1,0 +1,28 @@
+% Contingency Tables
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+# Key Concepts and Commands
+
+# Flipping Two Coins
+
+    clear all
+
+    set obs 100 // 100 observations
+	
+	generate nickel = rbinomial(1, .75) // unfair nickel
+	
+	generate quarter = rbinomial(1, .5) // fair quarter
+	
+	tabulate nickel quarter, row col
+	
+# Graphing
+
+    * ssc install spineplot // mosaicplots (spineplots)
+	
+	* ssc install scheme-burd, replace // BuRd graph scheme
+	
+	spineplot nickel quarter, scheme(michigan)
+	
+	spineplot nickel quarter, scheme(burd)
+	
