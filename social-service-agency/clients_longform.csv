@@ -1,0 +1,991 @@
+"ID","age","gender","program","latitude","longitude","timepoint","mental_health"
+1002,19,"Other Identity","Program C",42.2835227825457,-83.6650802757032,"mental_health_T1",81.05
+1002,19,"Other Identity","Program C",42.2835227825457,-83.6650802757032,"mental_health_T2",88.8
+1016,19,"Male","Program C",42.2994002573486,-83.6201977241511,"mental_health_T1",84.02
+1016,19,"Male","Program C",42.2994002573486,-83.6201977241511,"mental_health_T2",88.49
+1027,23,"Female","Program C",42.2451575198779,-83.8033423312048,"mental_health_T1",88.6
+1027,23,"Female","Program C",42.2451575198779,-83.8033423312048,"mental_health_T2",101.68
+1032,29,"Female","Program C",42.3622508495685,-83.7125689422267,"mental_health_T1",77.38
+1032,29,"Female","Program C",42.3622508495685,-83.7125689422267,"mental_health_T2",86.57
+1037,29,"Female","Program C",42.2469034676871,-83.6178459749811,"mental_health_T1",83.98
+1037,29,"Female","Program C",42.2469034676871,-83.6178459749811,"mental_health_T2",94.35
+1038,25,"Female","Program B",42.0435174734545,-83.8944220885965,"mental_health_T1",92.08
+1038,25,"Female","Program B",42.0435174734545,-83.8944220885965,"mental_health_T2",107.46
+1045,19,"Female","Program C",42.2051499542345,-83.5805994174316,"mental_health_T1",79.37
+1045,19,"Female","Program C",42.2051499542345,-83.5805994174316,"mental_health_T2",95.24
+1055,26,"Female","Program B",42.3173033891151,-83.6605271576463,"mental_health_T1",95.92
+1055,26,"Female","Program B",42.3173033891151,-83.6605271576463,"mental_health_T2",106.75
+1056,21,"Female","Program C",42.2203758399196,-83.7486828080152,"mental_health_T1",74.74
+1056,21,"Female","Program C",42.2203758399196,-83.7486828080152,"mental_health_T2",85.93
+1064,30,"Female","Program C",42.3010879274791,-83.9947802248551,"mental_health_T1",85.93
+1064,33,"Other Identity","Program D",42.1992492273996,-83.8291681329195,"mental_health_T1",96.12
+1064,30,"Female","Program C",42.3010879274791,-83.9947802248551,"mental_health_T2",100.67
+1064,33,"Other Identity","Program D",42.1992492273996,-83.8291681329195,"mental_health_T2",98.57
+1065,30,"Female","Program C",42.3903997220319,-83.6807152956421,"mental_health_T1",81.62
+1065,30,"Female","Program C",42.3903997220319,-83.6807152956421,"mental_health_T2",97.69
+1076,33,"Male","Program C",42.1992929810686,-83.8885166258333,"mental_health_T1",80.63
+1076,33,"Male","Program C",42.1992929810686,-83.8885166258333,"mental_health_T2",95.63
+1089,20,"Male","Program A",42.241302495643,-83.5654270744302,"mental_health_T1",101.28
+1089,20,"Male","Program A",42.241302495643,-83.5654270744302,"mental_health_T2",94.62
+1091,28,"Other Identity","Program B",42.3578465174057,-83.7692123214513,"mental_health_T1",97.14
+1091,28,"Other Identity","Program B",42.3578465174057,-83.7692123214513,"mental_health_T2",108.13
+1105,19,"Male","Program B",42.2758358379565,-83.9898008427133,"mental_health_T1",92.65
+1105,19,"Male","Program B",42.2758358379565,-83.9898008427133,"mental_health_T2",103.87
+1108,21,"Male","Program B",42.3112391956625,-83.7361974674559,"mental_health_T1",100.76
+1108,21,"Male","Program B",42.3112391956625,-83.7361974674559,"mental_health_T2",97.2
+1113,22,"Male","Program B",42.33497351668,-83.6972553324951,"mental_health_T1",96.71
+1113,22,"Male","Program B",42.33497351668,-83.6972553324951,"mental_health_T2",108.13
+1114,20,"Male","Program A",42.2000183551564,-83.7903890763487,"mental_health_T1",101.65
+1114,20,"Male","Program A",42.2000183551564,-83.7903890763487,"mental_health_T2",88.58
+1115,34,"Other Identity","Program B",42.1742460655664,-83.9017088620139,"mental_health_T1",88.13
+1115,24,"Female","Program C",42.3620024618496,-83.806056658246,"mental_health_T1",82.44
+1115,34,"Other Identity","Program B",42.1742460655664,-83.9017088620139,"mental_health_T2",98
+1115,24,"Female","Program C",42.3620024618496,-83.806056658246,"mental_health_T2",98
+1135,20,"Female","Program A",42.292282300744,-83.6699591453834,"mental_health_T1",88.54
+1135,20,"Female","Program A",42.292282300744,-83.6699591453834,"mental_health_T2",90.3
+1142,19,"Male","Program C",42.0744013846238,-83.7021730864282,"mental_health_T1",84.73
+1142,19,"Male","Program C",42.0744013846238,-83.7021730864282,"mental_health_T2",96.52
+1143,38,"Female","Program B",42.1719920644421,-83.8993131522394,"mental_health_T1",101.4
+1143,38,"Female","Program B",42.1719920644421,-83.8993131522394,"mental_health_T2",93.67
+1146,18,"Other Identity","Program C",42.3435723934355,-83.7828527012655,"mental_health_T1",82.73
+1146,18,"Other Identity","Program C",42.3435723934355,-83.7828527012655,"mental_health_T2",85.96
+1164,29,"Female","Program A",42.4145778732837,-83.6207316215199,"mental_health_T1",96.82
+1164,29,"Female","Program A",42.4145778732837,-83.6207316215199,"mental_health_T2",89.34
+1166,20,"Male","Program C",42.1897673281902,-83.7173570039509,"mental_health_T1",82
+1166,20,"Male","Program C",42.1897673281902,-83.7173570039509,"mental_health_T2",107.07
+1167,28,"Male","Program C",42.3349311121237,-83.6608887424989,"mental_health_T1",79.42
+1167,28,"Female","Program C",42.190603544968,-83.759424499001,"mental_health_T1",87.01
+1167,28,"Male","Program C",42.3349311121237,-83.6608887424989,"mental_health_T2",99.87
+1167,28,"Female","Program C",42.190603544968,-83.759424499001,"mental_health_T2",104.92
+1179,21,"Male","Program A",42.3428533862065,-83.7930010630268,"mental_health_T1",95.42
+1179,21,"Male","Program A",42.3428533862065,-83.7930010630268,"mental_health_T2",97.83
+1181,23,"Other Identity","Program A",42.2582104515056,-83.6695008469175,"mental_health_T1",96.49
+1181,23,"Other Identity","Program A",42.2582104515056,-83.6695008469175,"mental_health_T2",91.07
+1203,38,"Male","Program D",42.1162308171972,-83.8464381240538,"mental_health_T1",89.37
+1203,38,"Male","Program D",42.1162308171972,-83.8464381240538,"mental_health_T2",88.32
+1204,26,"Other Identity","Program A",42.2021382273279,-83.7381015483582,"mental_health_T1",96.39
+1204,26,"Other Identity","Program A",42.2021382273279,-83.7381015483582,"mental_health_T2",88.3
+1205,23,"Male","Program B",42.3337519286,-83.7710314239071,"mental_health_T1",102.52
+1205,23,"Male","Program B",42.3337519286,-83.7710314239071,"mental_health_T2",112.77
+1216,18,"Male","Program B",42.3067222242749,-83.7204610467682,"mental_health_T1",106.51
+1216,20,"Male","Program A",42.2976719583474,-83.8270497218096,"mental_health_T1",100.7
+1216,28,"Male","Program C",42.1952133795281,-83.6979917530689,"mental_health_T1",91.1
+1216,18,"Male","Program B",42.3067222242749,-83.7204610467682,"mental_health_T2",108.78
+1216,20,"Male","Program A",42.2976719583474,-83.8270497218096,"mental_health_T2",96.76
+1216,28,"Male","Program C",42.1952133795281,-83.6979917530689,"mental_health_T2",94.09
+1219,45,"Female","Program B",42.2273042521328,-83.6209570561429,"mental_health_T1",93.06
+1219,45,"Female","Program B",42.2273042521328,-83.6209570561429,"mental_health_T2",118.56
+1225,40,"Female","Program B",42.1679615882081,-83.609652990499,"mental_health_T1",98.44
+1225,40,"Female","Program B",42.1679615882081,-83.609652990499,"mental_health_T2",106.09
+1232,34,"Male","Program C",42.1517846188683,-83.6271469340137,"mental_health_T1",88.53
+1232,29,"Male","Program A",42.2592511880356,-83.7377516554093,"mental_health_T1",93.28
+1232,34,"Male","Program C",42.1517846188683,-83.6271469340137,"mental_health_T2",93.74
+1232,29,"Male","Program A",42.2592511880356,-83.7377516554093,"mental_health_T2",104.17
+1234,21,"Other Identity","Program B",42.3573822047553,-83.5315100639651,"mental_health_T1",101.5
+1234,21,"Other Identity","Program B",42.3573822047553,-83.5315100639651,"mental_health_T2",95.91
+1242,26,"Female","Program B",42.2910278760831,-83.8632570438218,"mental_health_T1",89.46
+1242,22,"Female","Program C",42.3807565971851,-83.8057479969635,"mental_health_T1",73.34
+1242,26,"Female","Program B",42.2910278760831,-83.8632570438218,"mental_health_T2",98.71
+1242,22,"Female","Program C",42.3807565971851,-83.8057479969635,"mental_health_T2",105.84
+1271,20,"Male","Program C",42.2859717012646,-83.8433433355979,"mental_health_T1",91.35
+1271,20,"Male","Program C",42.2859717012646,-83.8433433355979,"mental_health_T2",95.88
+1276,21,"Female","Program C",42.2330982027415,-83.7525789949042,"mental_health_T1",94.22
+1276,21,"Female","Program C",42.2330982027415,-83.7525789949042,"mental_health_T2",88.03
+1279,33,"Female","Program B",42.2266099762578,-83.7866183904925,"mental_health_T1",90.52
+1279,33,"Female","Program B",42.2266099762578,-83.7866183904925,"mental_health_T2",106.24
+1281,21,"Male","Program B",42.4587207758055,-83.8345348644546,"mental_health_T1",90.43
+1281,21,"Male","Program B",42.4587207758055,-83.8345348644546,"mental_health_T2",96.03
+1284,18,"Female","Program B",42.2065816873241,-83.6288641750479,"mental_health_T1",97.78
+1284,18,"Female","Program B",42.2065816873241,-83.6288641750479,"mental_health_T2",106.86
+1293,34,"Male","Program B",42.1204683462732,-83.799531835236,"mental_health_T1",94.47
+1293,34,"Male","Program B",42.1204683462732,-83.799531835236,"mental_health_T2",111.46
+1295,41,"Female","Program B",42.1323030414416,-83.814783292185,"mental_health_T1",95.27
+1295,41,"Female","Program B",42.1323030414416,-83.814783292185,"mental_health_T2",109.81
+1296,34,"Female","Program B",42.2815220291105,-83.746481231709,"mental_health_T1",96.53
+1296,34,"Female","Program B",42.2815220291105,-83.746481231709,"mental_health_T2",94.36
+1323,26,"Male","Program B",42.2127595752699,-83.8338324257004,"mental_health_T1",90.66
+1323,26,"Male","Program B",42.2127595752699,-83.8338324257004,"mental_health_T2",106.76
+1327,19,"Male","Program B",42.236634942029,-83.6606602622105,"mental_health_T1",97.01
+1327,19,"Male","Program B",42.236634942029,-83.6606602622105,"mental_health_T2",100.32
+1336,21,"Male","Program A",42.1517926197803,-83.6767950761434,"mental_health_T1",100.4
+1336,21,"Male","Program A",42.1517926197803,-83.6767950761434,"mental_health_T2",86.14
+1340,28,"Male","Program A",42.2298735029324,-83.7257187679898,"mental_health_T1",99.22
+1340,28,"Male","Program A",42.2298735029324,-83.7257187679898,"mental_health_T2",96.97
+1342,27,"Male","Program B",42.2872962458675,-83.743528328165,"mental_health_T1",91.86
+1342,27,"Male","Program B",42.2872962458675,-83.743528328165,"mental_health_T2",103.83
+1344,22,"Male","Program D",42.345206557093,-83.7647259487196,"mental_health_T1",89.99
+1344,22,"Male","Program D",42.345206557093,-83.7647259487196,"mental_health_T2",94.99
+1366,27,"Female","Program B",42.3244043666925,-83.7855614006458,"mental_health_T1",98.52
+1366,27,"Female","Program B",42.3244043666925,-83.7855614006458,"mental_health_T2",105.63
+1367,41,"Male","Program B",42.4165091921691,-83.7576505350579,"mental_health_T1",96.98
+1367,41,"Male","Program B",42.4165091921691,-83.7576505350579,"mental_health_T2",110.27
+1373,19,"Male","Program A",42.3350953315127,-83.6903363532872,"mental_health_T1",91.58
+1373,19,"Male","Program A",42.3350953315127,-83.6903363532872,"mental_health_T2",92.18
+1402,36,"Female","Program C",42.2814415351148,-83.8156664301164,"mental_health_T1",85.84
+1402,36,"Female","Program C",42.2814415351148,-83.8156664301164,"mental_health_T2",88.97
+1410,21,"Male","Program C",42.1939414605392,-83.7512698774496,"mental_health_T1",88.26
+1410,21,"Male","Program C",42.1939414605392,-83.7512698774496,"mental_health_T2",90.62
+1427,44,"Other Identity","Program B",42.1803345714191,-83.6986441983147,"mental_health_T1",97.1
+1427,44,"Other Identity","Program B",42.1803345714191,-83.6986441983147,"mental_health_T2",98.94
+1432,22,"Female","Program A",42.2098362017704,-83.524320002086,"mental_health_T1",93.08
+1432,22,"Female","Program A",42.2098362017704,-83.524320002086,"mental_health_T2",91.19
+1435,18,"Female","Program A",42.131381926145,-83.9086977556635,"mental_health_T1",94.74
+1435,18,"Female","Program A",42.131381926145,-83.9086977556635,"mental_health_T2",88.67
+1460,32,"Male","Program B",42.3379595752617,-83.6890894644582,"mental_health_T1",90.85
+1460,32,"Male","Program B",42.3379595752617,-83.6890894644582,"mental_health_T2",108.1
+1468,29,"Female","Program C",42.1459365674506,-83.6808590913472,"mental_health_T1",82.45
+1468,29,"Female","Program C",42.1459365674506,-83.6808590913472,"mental_health_T2",91.51
+1479,18,"Male","Program A",42.2941118488156,-83.6254512497642,"mental_health_T1",88.29
+1479,18,"Male","Program A",42.2941118488156,-83.6254512497642,"mental_health_T2",88.6
+1497,30,"Male","Program C",42.3121974858481,-83.9255207023125,"mental_health_T1",91.12
+1497,30,"Male","Program C",42.3121974858481,-83.9255207023125,"mental_health_T2",91.56
+1510,18,"Male","Program C",42.15705378566,-83.5711120798907,"mental_health_T1",87.5
+1510,18,"Male","Program C",42.15705378566,-83.5711120798907,"mental_health_T2",99.3
+1511,30,"Other Identity","Program C",42.2067589122649,-83.693750806364,"mental_health_T1",83.16
+1511,30,"Other Identity","Program C",42.2067589122649,-83.693750806364,"mental_health_T2",98.63
+1523,26,"Other Identity","Program B",42.4473506652539,-83.7593451864655,"mental_health_T1",102.24
+1523,26,"Other Identity","Program B",42.4473506652539,-83.7593451864655,"mental_health_T2",102.67
+1539,29,"Female","Program B",42.4554336880026,-83.8747652872218,"mental_health_T1",94.28
+1539,29,"Female","Program B",42.4554336880026,-83.8747652872218,"mental_health_T2",102.11
+1543,28,"Female","Program C",42.31927472108,-83.6441380370434,"mental_health_T1",89.42
+1543,28,"Female","Program C",42.31927472108,-83.6441380370434,"mental_health_T2",88.08
+1548,23,"Female","Program A",42.2147366701528,-83.9122932230945,"mental_health_T1",92.13
+1548,23,"Female","Program A",42.2147366701528,-83.9122932230945,"mental_health_T2",98.2
+1555,26,"Male","Program B",42.1517116391516,-83.6548211020287,"mental_health_T1",100.03
+1555,26,"Male","Program B",42.1517116391516,-83.6548211020287,"mental_health_T2",104.27
+1557,31,"Male","Program C",42.2907444038978,-83.9821788263745,"mental_health_T1",85.76
+1557,25,"Female","Program D",42.3088851714174,-83.7178140347612,"mental_health_T1",85.09
+1557,31,"Male","Program C",42.2907444038978,-83.9821788263745,"mental_health_T2",93.81
+1557,25,"Female","Program D",42.3088851714174,-83.7178140347612,"mental_health_T2",98.16
+1566,32,"Female","Program C",42.0841591482789,-83.6283677840778,"mental_health_T1",82.82
+1566,32,"Female","Program C",42.0841591482789,-83.6283677840778,"mental_health_T2",94.19
+1584,22,"Male","Program D",42.3659278711489,-83.6434406486061,"mental_health_T1",94.77
+1584,22,"Male","Program D",42.3659278711489,-83.6434406486061,"mental_health_T2",90.34
+1597,21,"Female","Program A",42.272365596537,-83.7386511832409,"mental_health_T1",98.37
+1597,21,"Female","Program A",42.272365596537,-83.7386511832409,"mental_health_T2",103.94
+1599,26,"Female","Program C",42.3184312738042,-83.7067363845155,"mental_health_T1",81.72
+1599,29,"Male","Program A",42.1031310347772,-83.9468495765137,"mental_health_T1",97.85
+1599,26,"Female","Program C",42.3184312738042,-83.7067363845155,"mental_health_T2",88.14
+1599,29,"Male","Program A",42.1031310347772,-83.9468495765137,"mental_health_T2",94.78
+1604,46,"Female","Program B",42.0488082204923,-83.7371627323298,"mental_health_T1",91.21
+1604,46,"Female","Program B",42.0488082204923,-83.7371627323298,"mental_health_T2",96.13
+1605,19,"Male","Program C",42.285715282295,-83.7881028114075,"mental_health_T1",84.84
+1605,19,"Male","Program C",42.285715282295,-83.7881028114075,"mental_health_T2",94.59
+1612,25,"Other Identity","Program B",42.1769722321823,-83.6430008363941,"mental_health_T1",98.13
+1612,25,"Other Identity","Program B",42.1769722321823,-83.6430008363941,"mental_health_T2",99.73
+1634,23,"Male","Program B",42.2963940247776,-83.6603039259234,"mental_health_T1",97.15
+1634,43,"Female","Program C",42.166895740666,-83.6324344223283,"mental_health_T1",86.69
+1634,23,"Male","Program B",42.2963940247776,-83.6603039259234,"mental_health_T2",105.82
+1634,43,"Female","Program C",42.166895740666,-83.6324344223283,"mental_health_T2",95.95
+1650,27,"Female","Program A",42.3715717558805,-83.6450377073496,"mental_health_T1",94.73
+1650,27,"Female","Program A",42.3715717558805,-83.6450377073496,"mental_health_T2",90.6
+1660,26,"Male","Program A",42.425800887565,-83.5920699567898,"mental_health_T1",96.9
+1660,26,"Male","Program A",42.425800887565,-83.5920699567898,"mental_health_T2",96
+1664,28,"Female","Program B",42.1284474286669,-83.7248346704492,"mental_health_T1",95.01
+1664,28,"Female","Program B",42.1284474286669,-83.7248346704492,"mental_health_T2",107.73
+1694,33,"Male","Program C",42.2926742625773,-83.8904270983751,"mental_health_T1",88.11
+1694,33,"Male","Program C",42.2926742625773,-83.8904270983751,"mental_health_T2",98.99
+1695,24,"Other Identity","Program C",42.2326765742307,-83.7426615466787,"mental_health_T1",87.87
+1695,24,"Other Identity","Program C",42.2326765742307,-83.7426615466787,"mental_health_T2",88.68
+1696,27,"Male","Program A",42.100420195794,-83.7445540577549,"mental_health_T1",90.39
+1696,27,"Male","Program A",42.100420195794,-83.7445540577549,"mental_health_T2",85.48
+1705,21,"Female","Program C",42.281258917972,-83.6528136291857,"mental_health_T1",92.25
+1705,21,"Female","Program C",42.281258917972,-83.6528136291857,"mental_health_T2",90.24
+1712,26,"Female","Program C",42.225875860611,-83.9693607727362,"mental_health_T1",76.92
+1712,20,"Male","Program C",42.2640621601256,-83.7786643995655,"mental_health_T1",87.98
+1712,26,"Female","Program C",42.225875860611,-83.9693607727362,"mental_health_T2",98.93
+1712,20,"Male","Program C",42.2640621601256,-83.7786643995655,"mental_health_T2",93.05
+1718,36,"Female","Program C",42.2187404629931,-83.7664428070559,"mental_health_T1",85.74
+1718,36,"Female","Program C",42.2187404629931,-83.7664428070559,"mental_health_T2",95.61
+1723,19,"Male","Program C",42.2721269557753,-83.7747992075224,"mental_health_T1",80.4
+1723,19,"Male","Program C",42.2721269557753,-83.7747992075224,"mental_health_T2",93.65
+1761,36,"Other Identity","Program C",42.3081319841905,-83.7157242637372,"mental_health_T1",83.91
+1761,36,"Other Identity","Program C",42.3081319841905,-83.7157242637372,"mental_health_T2",100.27
+1764,25,"Female","Program B",42.3327169684202,-83.7239704794793,"mental_health_T1",98.24
+1764,25,"Female","Program B",42.3327169684202,-83.7239704794793,"mental_health_T2",103.14
+1767,32,"Female","Program B",42.1680675131593,-83.6698239467002,"mental_health_T1",97.37
+1767,32,"Female","Program B",42.1680675131593,-83.6698239467002,"mental_health_T2",104.99
+1773,29,"Female","Program A",42.2865552248839,-83.7924856306538,"mental_health_T1",97.25
+1773,29,"Female","Program A",42.2865552248839,-83.7924856306538,"mental_health_T2",96.3
+1778,20,"Female","Program C",42.165072410664,-83.6989080387899,"mental_health_T1",88.45
+1778,20,"Female","Program C",42.165072410664,-83.6989080387899,"mental_health_T2",90.03
+1794,28,"Male","Program C",42.2195655249163,-83.7870720355661,"mental_health_T1",80.1
+1794,23,"Other Identity","Program D",42.3773387196063,-83.8200570441635,"mental_health_T1",96.77
+1794,28,"Male","Program C",42.2195655249163,-83.7870720355661,"mental_health_T2",91.99
+1794,23,"Other Identity","Program D",42.3773387196063,-83.8200570441635,"mental_health_T2",95.39
+1804,21,"Female","Program C",42.5173421403792,-83.7113067662224,"mental_health_T1",90.75
+1804,41,"Other Identity","Program B",42.3213350790972,-83.9626087443541,"mental_health_T1",91.37
+1804,21,"Female","Program C",42.5173421403792,-83.7113067662224,"mental_health_T2",92.67
+1804,41,"Other Identity","Program B",42.3213350790972,-83.9626087443541,"mental_health_T2",101.13
+1830,23,"Other Identity","Program B",42.2339718136682,-83.8813314740356,"mental_health_T1",102.29
+1830,23,"Other Identity","Program B",42.2339718136682,-83.8813314740356,"mental_health_T2",99.64
+1854,31,"Other Identity","Program B",42.5298365436683,-83.7122400087192,"mental_health_T1",106
+1854,31,"Other Identity","Program B",42.5298365436683,-83.7122400087192,"mental_health_T2",117.67
+1862,25,"Other Identity","Program A",42.2725987162674,-83.6026868163338,"mental_health_T1",92.07
+1862,25,"Other Identity","Program A",42.2725987162674,-83.6026868163338,"mental_health_T2",95.66
+1863,32,"Female","Program C",42.2972231207455,-83.6287849513149,"mental_health_T1",83.24
+1863,31,"Female","Program C",42.2768117183602,-83.5291488258508,"mental_health_T1",77.1
+1863,32,"Female","Program C",42.2972231207455,-83.6287849513149,"mental_health_T2",90.12
+1863,31,"Female","Program C",42.2768117183602,-83.5291488258508,"mental_health_T2",97.87
+1867,37,"Female","Program A",42.183685536665,-83.677881908712,"mental_health_T1",94.99
+1867,37,"Female","Program A",42.183685536665,-83.677881908712,"mental_health_T2",100.48
+1869,27,"Other Identity","Program C",42.1709603918762,-83.7277766021131,"mental_health_T1",89.79
+1869,27,"Other Identity","Program C",42.1709603918762,-83.7277766021131,"mental_health_T2",94.69
+1887,41,"Female","Program B",42.335794422779,-83.5911765421663,"mental_health_T1",100.05
+1887,41,"Female","Program B",42.335794422779,-83.5911765421663,"mental_health_T2",110.55
+1892,31,"Female","Program A",42.194007272075,-83.8377951620739,"mental_health_T1",110.11
+1892,31,"Female","Program A",42.194007272075,-83.8377951620739,"mental_health_T2",92.88
+1897,25,"Other Identity","Program B",42.336715836943,-83.5980916784891,"mental_health_T1",91.26
+1897,25,"Other Identity","Program B",42.336715836943,-83.5980916784891,"mental_health_T2",101.79
+1898,35,"Female","Program B",42.2446458252834,-83.7667319331302,"mental_health_T1",94.3
+1898,35,"Female","Program B",42.2446458252834,-83.7667319331302,"mental_health_T2",102.03
+1901,23,"Other Identity","Program C",42.2999391729965,-83.7275615176924,"mental_health_T1",80.1
+1901,23,"Other Identity","Program C",42.2999391729965,-83.7275615176924,"mental_health_T2",109.15
+1909,44,"Male","Program C",42.1748971950526,-83.6935609645887,"mental_health_T1",86.99
+1909,44,"Male","Program C",42.1748971950526,-83.6935609645887,"mental_health_T2",92.38
+1910,22,"Female","Program B",42.1528445195417,-83.7428694901912,"mental_health_T1",90.32
+1910,22,"Female","Program B",42.1528445195417,-83.7428694901912,"mental_health_T2",106.32
+1915,20,"Male","Program B",42.4238364358836,-83.6047753755086,"mental_health_T1",98.84
+1915,20,"Male","Program B",42.4238364358836,-83.6047753755086,"mental_health_T2",106.58
+1919,40,"Male","Program D",42.2935284776338,-83.7222673505327,"mental_health_T1",100.35
+1919,40,"Male","Program D",42.2935284776338,-83.7222673505327,"mental_health_T2",94.14
+1934,27,"Male","Program A",42.288528728242,-83.9202110649288,"mental_health_T1",92.44
+1934,27,"Male","Program A",42.288528728242,-83.9202110649288,"mental_health_T2",95.32
+1941,36,"Male","Program C",42.3548099147869,-83.754532016772,"mental_health_T1",82.93
+1941,36,"Male","Program C",42.3548099147869,-83.754532016772,"mental_health_T2",99.6
+1948,26,"Other Identity","Program A",42.1602499254503,-83.7984897241657,"mental_health_T1",92.42
+1948,30,"Male","Program B",42.3205795488496,-83.7211425640751,"mental_health_T1",87.55
+1948,26,"Other Identity","Program A",42.1602499254503,-83.7984897241657,"mental_health_T2",95.04
+1948,30,"Male","Program B",42.3205795488496,-83.7211425640751,"mental_health_T2",112.37
+1953,44,"Other Identity","Program B",42.2116676156814,-83.5575699814649,"mental_health_T1",92.4
+1953,44,"Other Identity","Program B",42.2116676156814,-83.5575699814649,"mental_health_T2",100.33
+1965,20,"Male","Program A",42.2705231169992,-83.7371504821253,"mental_health_T1",98.68
+1965,20,"Male","Program A",42.2705231169992,-83.7371504821253,"mental_health_T2",86.66
+1982,41,"Other Identity","Program A",42.1340427558318,-83.6910248499944,"mental_health_T1",92.47
+1982,41,"Other Identity","Program A",42.1340427558318,-83.6910248499944,"mental_health_T2",90.78
+1986,26,"Other Identity","Program A",42.3111028557065,-83.7759031870272,"mental_health_T1",87.76
+1986,26,"Other Identity","Program A",42.3111028557065,-83.7759031870272,"mental_health_T2",90.24
+1992,30,"Female","Program A",42.1003090096994,-83.9445565589675,"mental_health_T1",99.69
+1992,30,"Female","Program A",42.1003090096994,-83.9445565589675,"mental_health_T2",97.33
+1994,25,"Other Identity","Program C",42.07475162764,-83.6538952579971,"mental_health_T1",87.72
+1994,25,"Other Identity","Program C",42.07475162764,-83.6538952579971,"mental_health_T2",88.12
+2009,22,"Female","Program C",42.1612594927635,-83.7872762405885,"mental_health_T1",81.07
+2009,22,"Female","Program C",42.1612594927635,-83.7872762405885,"mental_health_T2",96
+2012,20,"Male","Program A",42.2036588337888,-83.7838278336792,"mental_health_T1",98.73
+2012,46,"Female","Program B",42.2476825143868,-83.7552633611293,"mental_health_T1",87.76
+2012,20,"Male","Program A",42.2036588337888,-83.7838278336792,"mental_health_T2",99.99
+2012,46,"Female","Program B",42.2476825143868,-83.7552633611293,"mental_health_T2",103.74
+2013,40,"Male","Program B",42.3733587724498,-83.7833718933843,"mental_health_T1",97.91
+2013,40,"Male","Program B",42.3733587724498,-83.7833718933843,"mental_health_T2",103.24
+2017,28,"Other Identity","Program D",42.2521249928436,-83.7294049211848,"mental_health_T1",93.73
+2017,28,"Other Identity","Program D",42.2521249928436,-83.7294049211848,"mental_health_T2",100.23
+2022,26,"Female","Program C",42.2698255877046,-83.8261260041,"mental_health_T1",80.14
+2022,26,"Female","Program C",42.2698255877046,-83.8261260041,"mental_health_T2",92.47
+2027,19,"Female","Program A",42.2444093527171,-83.6497769406152,"mental_health_T1",96.16
+2027,19,"Female","Program A",42.2444093527171,-83.6497769406152,"mental_health_T2",100.29
+2033,31,"Other Identity","Program C",42.1267475911192,-83.828709405166,"mental_health_T1",91.21
+2033,31,"Other Identity","Program C",42.1267475911192,-83.828709405166,"mental_health_T2",98.55
+2035,23,"Female","Program C",42.2663752867391,-83.8129708228312,"mental_health_T1",87.91
+2035,23,"Female","Program C",42.2663752867391,-83.8129708228312,"mental_health_T2",92.18
+2036,29,"Other Identity","Program B",42.2232765072326,-83.6673287926027,"mental_health_T1",99.8
+2036,29,"Other Identity","Program B",42.2232765072326,-83.6673287926027,"mental_health_T2",113.34
+2040,36,"Male","Program A",42.3233251960405,-83.8817294722864,"mental_health_T1",104.07
+2040,36,"Male","Program A",42.3233251960405,-83.8817294722864,"mental_health_T2",88.45
+2067,42,"Other Identity","Program A",42.2952228124663,-83.5917611306089,"mental_health_T1",96.45
+2067,42,"Other Identity","Program A",42.2952228124663,-83.5917611306089,"mental_health_T2",96.99
+2077,20,"Female","Program B",42.2307631687768,-83.6475841817375,"mental_health_T1",97.97
+2077,20,"Female","Program B",42.2307631687768,-83.6475841817375,"mental_health_T2",101.42
+2086,28,"Male","Program B",42.1865558722133,-83.7288013150332,"mental_health_T1",91.61
+2086,19,"Female","Program B",42.0903083282599,-83.6624119957842,"mental_health_T1",89.72
+2086,28,"Other Identity","Program C",42.2724126513722,-83.7657968847378,"mental_health_T1",86.12
+2086,28,"Male","Program B",42.1865558722133,-83.7288013150332,"mental_health_T2",107.34
+2086,19,"Female","Program B",42.0903083282599,-83.6624119957842,"mental_health_T2",102.32
+2086,28,"Other Identity","Program C",42.2724126513722,-83.7657968847378,"mental_health_T2",97.35
+2090,36,"Female","Program A",42.0689787876769,-83.7584328323353,"mental_health_T1",94.25
+2090,22,"Male","Program B",42.2766102430358,-83.8162849696669,"mental_health_T1",96.09
+2090,36,"Female","Program A",42.0689787876769,-83.7584328323353,"mental_health_T2",93.3
+2090,22,"Male","Program B",42.2766102430358,-83.8162849696669,"mental_health_T2",105.67
+2092,25,"Male","Program C",42.2063912707443,-83.8839061027319,"mental_health_T1",83.74
+2092,25,"Male","Program C",42.2063912707443,-83.8839061027319,"mental_health_T2",95.31
+2096,18,"Female","Program B",42.1543281702125,-83.816157948192,"mental_health_T1",100.87
+2096,18,"Female","Program B",42.1543281702125,-83.816157948192,"mental_health_T2",105.5
+2097,19,"Other Identity","Program C",42.2088283856282,-83.8790014179725,"mental_health_T1",77.3
+2097,19,"Other Identity","Program C",42.2088283856282,-83.8790014179725,"mental_health_T2",99.7
+2101,29,"Female","Program B",42.162574041124,-83.5943534858199,"mental_health_T1",90.33
+2101,20,"Female","Program C",42.3379388855995,-83.6150375881783,"mental_health_T1",88.69
+2101,29,"Female","Program B",42.162574041124,-83.5943534858199,"mental_health_T2",104.28
+2101,20,"Female","Program C",42.3379388855995,-83.6150375881783,"mental_health_T2",95.44
+2102,39,"Female","Program B",42.1516176980425,-83.7874135987335,"mental_health_T1",96.19
+2102,39,"Female","Program B",42.1516176980425,-83.7874135987335,"mental_health_T2",103.69
+2107,34,"Other Identity","Program B",42.1968040797642,-83.6333619626841,"mental_health_T1",89.86
+2107,34,"Other Identity","Program B",42.1968040797642,-83.6333619626841,"mental_health_T2",102.99
+2108,20,"Other Identity","Program A",42.3140833949968,-83.8221107737915,"mental_health_T1",90.98
+2108,20,"Other Identity","Program A",42.3140833949968,-83.8221107737915,"mental_health_T2",95.11
+2114,38,"Male","Program B",42.0716426848822,-83.575581083825,"mental_health_T1",87.86
+2114,38,"Male","Program B",42.0716426848822,-83.575581083825,"mental_health_T2",102.2
+2133,19,"Other Identity","Program B",42.2438710461886,-83.8048512852936,"mental_health_T1",102.65
+2133,19,"Other Identity","Program B",42.2438710461886,-83.8048512852936,"mental_health_T2",106.96
+2137,30,"Male","Program C",42.2255183750868,-83.8079834954688,"mental_health_T1",85.49
+2137,30,"Male","Program C",42.2255183750868,-83.8079834954688,"mental_health_T2",98.99
+2143,23,"Female","Program C",42.2464566982968,-83.6826014353728,"mental_health_T1",90.79
+2143,23,"Female","Program C",42.2464566982968,-83.6826014353728,"mental_health_T2",103.55
+2151,36,"Female","Program B",42.4083322281099,-83.7858757691926,"mental_health_T1",100.16
+2151,36,"Female","Program B",42.4083322281099,-83.7858757691926,"mental_health_T2",104.19
+2154,35,"Female","Program B",42.1874896279032,-83.6752528921868,"mental_health_T1",98.52
+2154,35,"Female","Program B",42.1874896279032,-83.6752528921868,"mental_health_T2",102.1
+2156,19,"Other Identity","Program B",42.1654744220062,-83.7860559325317,"mental_health_T1",104.18
+2156,19,"Other Identity","Program B",42.1654744220062,-83.7860559325317,"mental_health_T2",108.16
+2160,38,"Female","Program C",42.3628874944764,-83.7753448969473,"mental_health_T1",86.01
+2160,38,"Female","Program C",42.3628874944764,-83.7753448969473,"mental_health_T2",105.17
+2164,21,"Female","Program A",42.051658275986,-83.5631699313322,"mental_health_T1",93.2
+2164,21,"Female","Program A",42.051658275986,-83.5631699313322,"mental_health_T2",99.5
+2167,23,"Female","Program B",42.222046550365,-83.8037277236118,"mental_health_T1",107.03
+2167,23,"Female","Program B",42.222046550365,-83.8037277236118,"mental_health_T2",98.42
+2174,37,"Male","Program B",42.4959133372625,-83.63871625218,"mental_health_T1",92.27
+2174,37,"Male","Program B",42.4959133372625,-83.63871625218,"mental_health_T2",114.24
+2178,29,"Male","Program A",42.1929509111171,-83.6993474257153,"mental_health_T1",92.77
+2178,29,"Male","Program A",42.1929509111171,-83.6993474257153,"mental_health_T2",90.04
+2183,32,"Female","Program B",42.3180213623393,-83.6736336412018,"mental_health_T1",104.67
+2183,32,"Female","Program B",42.3180213623393,-83.6736336412018,"mental_health_T2",106.48
+2194,21,"Male","Program C",42.2062243041231,-83.6182711379265,"mental_health_T1",85.53
+2194,21,"Male","Program C",42.2062243041231,-83.6182711379265,"mental_health_T2",90.46
+2205,18,"Male","Program C",42.3337463266174,-83.6296284963255,"mental_health_T1",86.07
+2205,18,"Male","Program C",42.3337463266174,-83.6296284963255,"mental_health_T2",98.64
+2216,27,"Male","Program C",42.1433863782888,-83.6646828868094,"mental_health_T1",83.5
+2216,27,"Male","Program C",42.1433863782888,-83.6646828868094,"mental_health_T2",93.83
+2227,19,"Female","Program C",42.2222455669256,-83.6016122086031,"mental_health_T1",85.32
+2227,19,"Female","Program C",42.2222455669256,-83.6016122086031,"mental_health_T2",90.78
+2234,37,"Male","Program C",42.2400138673673,-83.5851632498587,"mental_health_T1",86.52
+2234,37,"Male","Program C",42.2400138673673,-83.5851632498587,"mental_health_T2",106.53
+2241,26,"Other Identity","Program B",42.2193755682837,-83.8079847594423,"mental_health_T1",96.45
+2241,26,"Other Identity","Program B",42.2193755682837,-83.8079847594423,"mental_health_T2",108.19
+2243,20,"Male","Program C",42.3612265807592,-83.6704019982401,"mental_health_T1",91.11
+2243,20,"Male","Program C",42.3612265807592,-83.6704019982401,"mental_health_T2",101.42
+2248,25,"Female","Program B",42.0850760308626,-83.6548494976625,"mental_health_T1",102.56
+2248,25,"Female","Program B",42.0850760308626,-83.6548494976625,"mental_health_T2",99.87
+2256,20,"Male","Program C",42.2588744968267,-83.7960153729578,"mental_health_T1",92.15
+2256,20,"Male","Program C",42.2588744968267,-83.7960153729578,"mental_health_T2",91.71
+2258,18,"Other Identity","Program C",42.1754431750504,-83.6958721010198,"mental_health_T1",81.11
+2258,18,"Other Identity","Program C",42.1754431750504,-83.6958721010198,"mental_health_T2",92.94
+2269,20,"Other Identity","Program A",42.5583903209855,-83.8038181148184,"mental_health_T1",87.36
+2269,20,"Other Identity","Program A",42.5583903209855,-83.8038181148184,"mental_health_T2",102.98
+2276,30,"Male","Program C",42.0711943176,-83.9842233659816,"mental_health_T1",72.57
+2276,30,"Male","Program C",42.0711943176,-83.9842233659816,"mental_health_T2",95.37
+2278,26,"Male","Program C",42.1742397219546,-83.8497241290314,"mental_health_T1",83.08
+2278,26,"Male","Program C",42.1742397219546,-83.8497241290314,"mental_health_T2",95.74
+2314,40,"Other Identity","Program C",42.2214036010981,-83.6016973309993,"mental_health_T1",84.34
+2314,40,"Other Identity","Program C",42.2214036010981,-83.6016973309993,"mental_health_T2",95.51
+2320,21,"Male","Program C",42.3772074098374,-83.731432502722,"mental_health_T1",82.63
+2320,21,"Male","Program C",42.3772074098374,-83.731432502722,"mental_health_T2",94.52
+2323,43,"Female","Program C",42.0956799080302,-83.7998001146464,"mental_health_T1",74.75
+2323,43,"Female","Program C",42.0956799080302,-83.7998001146464,"mental_health_T2",105.47
+2337,30,"Male","Program C",42.2877363190001,-83.9411092108134,"mental_health_T1",84.26
+2337,30,"Male","Program C",42.2877363190001,-83.9411092108134,"mental_health_T2",97.71
+2352,26,"Female","Program A",42.3054794205454,-83.5954153301752,"mental_health_T1",97.27
+2352,26,"Female","Program A",42.3054794205454,-83.5954153301752,"mental_health_T2",100.39
+2356,33,"Female","Program C",42.1260930508794,-83.7380099332215,"mental_health_T1",88.27
+2356,33,"Female","Program C",42.1260930508794,-83.7380099332215,"mental_health_T2",89.09
+2382,34,"Male","Program B",42.0432381876957,-83.888456883755,"mental_health_T1",99.03
+2382,34,"Male","Program B",42.0432381876957,-83.888456883755,"mental_health_T2",109.75
+2384,30,"Other Identity","Program C",42.2942655546005,-83.536911030684,"mental_health_T1",81.86
+2384,30,"Other Identity","Program C",42.2942655546005,-83.536911030684,"mental_health_T2",102.9
+2402,23,"Male","Program B",42.153122357922,-83.8811030759952,"mental_health_T1",100.36
+2402,23,"Male","Program B",42.153122357922,-83.8811030759952,"mental_health_T2",103.81
+2406,18,"Female","Program B",42.3813659303128,-83.6836690767946,"mental_health_T1",96.41
+2406,18,"Female","Program B",42.3813659303128,-83.6836690767946,"mental_health_T2",108.18
+2416,22,"Male","Program C",42.316340031527,-83.6304853941258,"mental_health_T1",98.23
+2416,22,"Male","Program C",42.316340031527,-83.6304853941258,"mental_health_T2",89.27
+2419,20,"Female","Program B",42.2354848417643,-83.8506818902202,"mental_health_T1",95.16
+2419,20,"Female","Program B",42.2354848417643,-83.8506818902202,"mental_health_T2",100.74
+2420,36,"Other Identity","Program A",42.3682425732894,-83.7724908566585,"mental_health_T1",92.78
+2420,36,"Other Identity","Program A",42.3682425732894,-83.7724908566585,"mental_health_T2",97.89
+2433,31,"Female","Program B",42.0744719464754,-83.8211357971485,"mental_health_T1",99.85
+2433,31,"Female","Program B",42.0744719464754,-83.8211357971485,"mental_health_T2",103.56
+2436,25,"Female","Program B",42.2732164419484,-83.7273819566572,"mental_health_T1",94.95
+2436,25,"Female","Program B",42.2732164419484,-83.7273819566572,"mental_health_T2",106.72
+2464,33,"Male","Program B",42.2490305594412,-83.8208509599559,"mental_health_T1",101.95
+2464,33,"Male","Program B",42.2490305594412,-83.8208509599559,"mental_health_T2",106.88
+2465,19,"Male","Program C",42.2208776062547,-83.7205526899466,"mental_health_T1",96.36
+2465,19,"Male","Program C",42.2208776062547,-83.7205526899466,"mental_health_T2",94.96
+2469,29,"Female","Program A",42.3933944495752,-83.7399313162797,"mental_health_T1",97.33
+2469,29,"Female","Program A",42.3933944495752,-83.7399313162797,"mental_health_T2",88.98
+2473,35,"Female","Program B",42.1090104483858,-83.8051937372686,"mental_health_T1",104.39
+2473,35,"Female","Program B",42.1090104483858,-83.8051937372686,"mental_health_T2",110.61
+2474,30,"Female","Program C",42.1651519487274,-83.491761845727,"mental_health_T1",87.55
+2474,30,"Female","Program C",42.1651519487274,-83.491761845727,"mental_health_T2",95.73
+2485,21,"Female","Program C",42.2741156514634,-83.802283324462,"mental_health_T1",96.53
+2485,21,"Female","Program C",42.2741156514634,-83.802283324462,"mental_health_T2",85.69
+2497,27,"Male","Program C",42.3017076973376,-83.6939674635368,"mental_health_T1",84.93
+2497,27,"Male","Program C",42.3017076973376,-83.6939674635368,"mental_health_T2",98.84
+2503,20,"Female","Program B",42.1771904107036,-83.7499247127074,"mental_health_T1",96.97
+2503,20,"Female","Program B",42.1771904107036,-83.7499247127074,"mental_health_T2",108.64
+2506,39,"Male","Program C",42.1229722863371,-83.6228165093944,"mental_health_T1",95.01
+2506,39,"Male","Program C",42.1229722863371,-83.6228165093944,"mental_health_T2",93.2
+2510,22,"Other Identity","Program B",42.2317571831495,-83.8290035703115,"mental_health_T1",98.54
+2510,22,"Other Identity","Program B",42.2317571831495,-83.8290035703115,"mental_health_T2",109.19
+2519,27,"Male","Program B",42.2783521135356,-83.6950065956331,"mental_health_T1",103.27
+2519,27,"Male","Program B",42.2783521135356,-83.6950065956331,"mental_health_T2",109.17
+2520,33,"Other Identity","Program B",42.1174332071453,-83.6415835935321,"mental_health_T1",96.34
+2520,33,"Other Identity","Program B",42.1174332071453,-83.6415835935321,"mental_health_T2",109.89
+2523,25,"Female","Program B",42.232790757982,-83.74277994561,"mental_health_T1",97.26
+2523,25,"Female","Program B",42.232790757982,-83.74277994561,"mental_health_T2",105.73
+2535,30,"Female","Program B",42.2040802849922,-83.9120160687855,"mental_health_T1",91.02
+2535,43,"Female","Program A",42.2599321344194,-83.7663833781049,"mental_health_T1",92.14
+2535,30,"Female","Program B",42.2040802849922,-83.9120160687855,"mental_health_T2",99.9
+2535,43,"Female","Program A",42.2599321344194,-83.7663833781049,"mental_health_T2",97.38
+2539,24,"Male","Program C",42.2172082082208,-83.8239208340382,"mental_health_T1",84.51
+2539,24,"Male","Program C",42.2172082082208,-83.8239208340382,"mental_health_T2",99.72
+2540,21,"Male","Program B",42.1028242763239,-83.83634091222,"mental_health_T1",96.81
+2540,21,"Male","Program B",42.1028242763239,-83.83634091222,"mental_health_T2",106.06
+2549,29,"Female","Program A",42.3785953579149,-83.6390518914893,"mental_health_T1",90.21
+2549,29,"Female","Program A",42.3785953579149,-83.6390518914893,"mental_health_T2",91.58
+2553,38,"Other Identity","Program C",42.5494589496551,-83.6185093916148,"mental_health_T1",93.37
+2553,38,"Other Identity","Program C",42.5494589496551,-83.6185093916148,"mental_health_T2",97.98
+2555,45,"Male","Program B",42.1908619794944,-83.8255266796469,"mental_health_T1",103.64
+2555,45,"Male","Program B",42.1908619794944,-83.8255266796469,"mental_health_T2",106.48
+2560,19,"Female","Program B",42.3165833141266,-83.7458390170077,"mental_health_T1",94.81
+2560,19,"Female","Program B",42.3165833141266,-83.7458390170077,"mental_health_T2",105.67
+2563,27,"Female","Program C",42.2511281266147,-83.8559108169318,"mental_health_T1",87.02
+2563,27,"Female","Program C",42.2511281266147,-83.8559108169318,"mental_health_T2",89.01
+2570,29,"Female","Program A",42.3787183945774,-83.7280199665458,"mental_health_T1",97.07
+2570,29,"Female","Program A",42.3787183945774,-83.7280199665458,"mental_health_T2",94.7
+2582,38,"Male","Program A",42.1013750387795,-83.8717772839794,"mental_health_T1",101.68
+2582,38,"Male","Program A",42.1013750387795,-83.8717772839794,"mental_health_T2",94.22
+2607,31,"Female","Program A",42.4560384709058,-83.6746923378117,"mental_health_T1",98.99
+2607,31,"Female","Program A",42.4560384709058,-83.6746923378117,"mental_health_T2",91.28
+2635,19,"Other Identity","Program A",42.1708445678203,-83.8391316885519,"mental_health_T1",98.51
+2635,19,"Other Identity","Program A",42.1708445678203,-83.8391316885519,"mental_health_T2",88.83
+2639,19,"Male","Program C",42.2646337479718,-83.7473704622802,"mental_health_T1",77.32
+2639,19,"Male","Program C",42.2646337479718,-83.7473704622802,"mental_health_T2",98.92
+2648,24,"Other Identity","Program B",42.1980266442492,-83.816402558201,"mental_health_T1",96.93
+2648,24,"Other Identity","Program B",42.1980266442492,-83.816402558201,"mental_health_T2",111.71
+2679,24,"Male","Program B",42.2578009556385,-83.7541854821265,"mental_health_T1",93.52
+2679,24,"Male","Program B",42.2578009556385,-83.7541854821265,"mental_health_T2",103.23
+2681,44,"Male","Program C",42.1916809174557,-83.8241817540887,"mental_health_T1",79.82
+2681,44,"Male","Program C",42.1916809174557,-83.8241817540887,"mental_health_T2",100.75
+2683,27,"Female","Program C",42.1986731864436,-83.714093013881,"mental_health_T1",83.31
+2683,27,"Female","Program C",42.1986731864436,-83.714093013881,"mental_health_T2",87.33
+2689,42,"Male","Program B",42.3519306737086,-83.9056184581347,"mental_health_T1",87.41
+2689,42,"Male","Program B",42.3519306737086,-83.9056184581347,"mental_health_T2",95.63
+2703,18,"Male","Program B",42.3679139612178,-83.6257112668714,"mental_health_T1",94.66
+2703,18,"Male","Program B",42.3679139612178,-83.6257112668714,"mental_health_T2",102.99
+2704,39,"Female","Program A",42.2992479638643,-83.6620285667248,"mental_health_T1",99.4
+2704,39,"Female","Program A",42.2992479638643,-83.6620285667248,"mental_health_T2",81.56
+2709,39,"Female","Program B",42.250629234717,-83.6701617199602,"mental_health_T1",95.17
+2709,39,"Female","Program B",42.250629234717,-83.6701617199602,"mental_health_T2",102.17
+2733,35,"Female","Program B",42.3412245902807,-83.6712597448135,"mental_health_T1",97.57
+2733,35,"Female","Program B",42.3412245902807,-83.6712597448135,"mental_health_T2",106.35
+2743,38,"Male","Program C",42.2802778353058,-83.7057737716593,"mental_health_T1",87.74
+2743,38,"Male","Program C",42.2802778353058,-83.7057737716593,"mental_health_T2",97.36
+2746,32,"Female","Program B",42.044666225695,-83.8311326053726,"mental_health_T1",98.73
+2746,32,"Female","Program B",42.044666225695,-83.8311326053726,"mental_health_T2",97.65
+2747,21,"Female","Program C",42.4508798560308,-83.7590212428276,"mental_health_T1",74.45
+2747,21,"Female","Program C",42.4508798560308,-83.7590212428276,"mental_health_T2",102.28
+2756,31,"Male","Program A",42.3078501041968,-83.6439833197684,"mental_health_T1",90.85
+2756,31,"Male","Program A",42.3078501041968,-83.6439833197684,"mental_health_T2",103.08
+2787,34,"Male","Program C",42.354101355661,-83.7343548006346,"mental_health_T1",82.34
+2787,34,"Male","Program C",42.354101355661,-83.7343548006346,"mental_health_T2",89.67
+2793,36,"Female","Program C",42.2634740830607,-83.6605372526114,"mental_health_T1",75.55
+2793,36,"Female","Program C",42.2634740830607,-83.6605372526114,"mental_health_T2",91.32
+2797,41,"Female","Program C",42.3465796746504,-83.7616453384149,"mental_health_T1",88.88
+2797,41,"Female","Program C",42.3465796746504,-83.7616453384149,"mental_health_T2",95.05
+2798,26,"Male","Program B",42.4197349843942,-83.6717380471905,"mental_health_T1",94.41
+2798,26,"Male","Program B",42.4197349843942,-83.6717380471905,"mental_health_T2",100.22
+2800,18,"Other Identity","Program C",42.2460757155068,-83.7314057139953,"mental_health_T1",87.96
+2800,18,"Other Identity","Program C",42.2460757155068,-83.7314057139953,"mental_health_T2",98.77
+2802,26,"Female","Program C",42.3247686570623,-84.0065890106531,"mental_health_T1",96.29
+2802,26,"Female","Program C",42.3247686570623,-84.0065890106531,"mental_health_T2",93.84
+2834,32,"Female","Program C",42.3800568852002,-83.9056777471484,"mental_health_T1",82.75
+2834,32,"Female","Program C",42.3800568852002,-83.9056777471484,"mental_health_T2",93.11
+2837,39,"Male","Program B",42.2692070958994,-83.833407610711,"mental_health_T1",97.82
+2837,39,"Male","Program B",42.2692070958994,-83.833407610711,"mental_health_T2",100.09
+2840,34,"Female","Program B",42.0692462329944,-83.7427205975506,"mental_health_T1",97.69
+2840,34,"Female","Program B",42.0692462329944,-83.7427205975506,"mental_health_T2",101.87
+2848,21,"Female","Program A",42.2702228906563,-83.631031190218,"mental_health_T1",89.47
+2848,21,"Female","Program A",42.2702228906563,-83.631031190218,"mental_health_T2",98.38
+2910,30,"Other Identity","Program C",42.0552954836453,-83.8336835249709,"mental_health_T1",86.02
+2910,30,"Other Identity","Program C",42.0552954836453,-83.8336835249709,"mental_health_T2",103.83
+2915,27,"Female","Program C",42.1897331943427,-83.6081952393659,"mental_health_T1",92.9
+2915,27,"Female","Program C",42.1897331943427,-83.6081952393659,"mental_health_T2",103.78
+2922,31,"Female","Program B",42.2043498920643,-83.6820104264241,"mental_health_T1",94.29
+2922,31,"Female","Program B",42.2043498920643,-83.6820104264241,"mental_health_T2",110.29
+2926,30,"Female","Program A",42.3477281736592,-83.6792583033054,"mental_health_T1",95.49
+2926,30,"Female","Program A",42.3477281736592,-83.6792583033054,"mental_health_T2",85.95
+2956,18,"Other Identity","Program C",42.2352788065834,-83.8574262515773,"mental_health_T1",80.36
+2956,18,"Other Identity","Program C",42.2352788065834,-83.8574262515773,"mental_health_T2",96.32
+2959,25,"Other Identity","Program A",42.1348097626087,-83.7057230523648,"mental_health_T1",95.72
+2959,25,"Other Identity","Program A",42.1348097626087,-83.7057230523648,"mental_health_T2",93.27
+2970,21,"Female","Program A",42.4135502336822,-83.7089979197796,"mental_health_T1",83.11
+2970,21,"Female","Program A",42.4135502336822,-83.7089979197796,"mental_health_T2",96.91
+2971,24,"Male","Program B",42.2515632856781,-83.5789631452872,"mental_health_T1",88.81
+2971,24,"Male","Program B",42.2515632856781,-83.5789631452872,"mental_health_T2",100.56
+2976,39,"Female","Program A",42.2601229040421,-83.7873553227029,"mental_health_T1",90.54
+2976,39,"Female","Program A",42.2601229040421,-83.7873553227029,"mental_health_T2",94.47
+2984,21,"Other Identity","Program A",42.3482260008858,-83.9687890929082,"mental_health_T1",89.67
+2984,21,"Other Identity","Program A",42.3482260008858,-83.9687890929082,"mental_health_T2",95.37
+2986,21,"Female","Program C",42.2009711328922,-83.7786845915167,"mental_health_T1",77.19
+2986,21,"Female","Program C",42.2009711328922,-83.7786845915167,"mental_health_T2",96.62
+2992,34,"Female","Program C",42.2770255331606,-83.6799030030174,"mental_health_T1",85.91
+2992,34,"Female","Program C",42.2770255331606,-83.6799030030174,"mental_health_T2",98.14
+2996,36,"Female","Program A",42.2640071490071,-83.5877377977706,"mental_health_T1",96.95
+2996,36,"Female","Program A",42.2640071490071,-83.5877377977706,"mental_health_T2",98.24
+3013,19,"Other Identity","Program A",42.3753311324897,-83.6696881674776,"mental_health_T1",95.04
+3013,19,"Other Identity","Program A",42.3753311324897,-83.6696881674776,"mental_health_T2",103.88
+3024,21,"Other Identity","Program C",42.3208936789446,-83.5419861512631,"mental_health_T1",80.52
+3024,21,"Other Identity","Program C",42.3208936789446,-83.5419861512631,"mental_health_T2",97.51
+3030,25,"Male","Program A",42.4143369459336,-83.8029499308742,"mental_health_T1",100.74
+3030,25,"Male","Program A",42.4143369459336,-83.8029499308742,"mental_health_T2",96.52
+3040,22,"Male","Program C",42.253916579877,-83.5691925558763,"mental_health_T1",80.47
+3040,22,"Male","Program C",42.253916579877,-83.5691925558763,"mental_health_T2",96.69
+3043,25,"Female","Program A",42.2817635463204,-83.6045670788727,"mental_health_T1",91.93
+3043,25,"Female","Program A",42.2817635463204,-83.6045670788727,"mental_health_T2",91.94
+3044,24,"Male","Program B",42.365706433703,-83.7470847961652,"mental_health_T1",93.23
+3044,24,"Male","Program B",42.365706433703,-83.7470847961652,"mental_health_T2",109.08
+3047,44,"Other Identity","Program B",42.2275865047319,-83.7346230681356,"mental_health_T1",83.16
+3047,44,"Other Identity","Program B",42.2275865047319,-83.7346230681356,"mental_health_T2",108.3
+3049,29,"Male","Program A",42.1785475436716,-83.6665911162162,"mental_health_T1",97.46
+3049,29,"Male","Program A",42.1785475436716,-83.6665911162162,"mental_health_T2",99.17
+3056,23,"Other Identity","Program C",42.1707362955461,-83.7687020185241,"mental_health_T1",81.07
+3056,23,"Other Identity","Program C",42.1707362955461,-83.7687020185241,"mental_health_T2",98.22
+3060,27,"Female","Program C",42.1237510841201,-83.7316998839126,"mental_health_T1",84.19
+3060,27,"Female","Program C",42.1237510841201,-83.7316998839126,"mental_health_T2",97.11
+3063,43,"Male","Program C",42.4169813336904,-83.8180379674745,"mental_health_T1",84.86
+3063,43,"Male","Program C",42.4169813336904,-83.8180379674745,"mental_health_T2",105.85
+3080,45,"Male","Program C",42.2727123028207,-83.5592725518132,"mental_health_T1",89.28
+3080,45,"Male","Program C",42.2727123028207,-83.5592725518132,"mental_health_T2",105.07
+3099,20,"Other Identity","Program C",42.2946937597401,-83.7737476515392,"mental_health_T1",74.73
+3099,20,"Other Identity","Program C",42.2946937597401,-83.7737476515392,"mental_health_T2",94.33
+3102,26,"Female","Program C",42.275937510986,-83.6995610908131,"mental_health_T1",76.9
+3102,26,"Female","Program C",42.275937510986,-83.6995610908131,"mental_health_T2",92.01
+3105,28,"Female","Program D",42.1514358139564,-83.6959004557831,"mental_health_T1",87.72
+3105,28,"Female","Program D",42.1514358139564,-83.6959004557831,"mental_health_T2",92.06
+3106,32,"Male","Program B",42.377069862995,-83.8584328459949,"mental_health_T1",91.15
+3106,32,"Male","Program B",42.377069862995,-83.8584328459949,"mental_health_T2",102.14
+3131,21,"Male","Program A",42.0785839430456,-83.8209271957848,"mental_health_T1",94.05
+3131,21,"Male","Program A",42.0785839430456,-83.8209271957848,"mental_health_T2",93.06
+3132,33,"Female","Program C",42.3006460199522,-83.5849444358829,"mental_health_T1",84.75
+3132,33,"Female","Program C",42.3006460199522,-83.5849444358829,"mental_health_T2",95.76
+3143,36,"Female","Program A",42.1106315416918,-83.735387402033,"mental_health_T1",96.6
+3143,36,"Female","Program A",42.1106315416918,-83.735387402033,"mental_health_T2",99.26
+3145,27,"Male","Program B",42.2523489557909,-83.6060047716705,"mental_health_T1",91.11
+3145,28,"Other Identity","Program B",42.1391395605097,-83.8458978827577,"mental_health_T1",95.11
+3145,27,"Male","Program B",42.2523489557909,-83.6060047716705,"mental_health_T2",105.38
+3145,28,"Other Identity","Program B",42.1391395605097,-83.8458978827577,"mental_health_T2",105.54
+3166,24,"Other Identity","Program A",42.4609109460329,-83.6768868818639,"mental_health_T1",96.25
+3166,24,"Other Identity","Program A",42.4609109460329,-83.6768868818639,"mental_health_T2",94.09
+3168,28,"Female","Program C",42.1657017055977,-83.7919801667329,"mental_health_T1",83.22
+3168,28,"Female","Program C",42.1657017055977,-83.7919801667329,"mental_health_T2",101.54
+3170,22,"Male","Program B",42.268652907489,-83.7765508277156,"mental_health_T1",87.9
+3170,22,"Male","Program B",42.268652907489,-83.7765508277156,"mental_health_T2",106.64
+3173,23,"Female","Program B",42.2720306006582,-83.8285122147621,"mental_health_T1",97.25
+3173,23,"Female","Program B",42.2720306006582,-83.8285122147621,"mental_health_T2",104.82
+3174,20,"Female","Program B",42.2621659332943,-83.7242450763108,"mental_health_T1",94.12
+3174,20,"Female","Program B",42.2621659332943,-83.7242450763108,"mental_health_T2",114.28
+3177,37,"Female","Program B",42.2926199941441,-83.6162256557222,"mental_health_T1",104.67
+3177,37,"Female","Program B",42.2926199941441,-83.6162256557222,"mental_health_T2",107.12
+3184,19,"Male","Program B",42.3734189500485,-83.8306573674613,"mental_health_T1",91.09
+3184,19,"Male","Program B",42.3734189500485,-83.8306573674613,"mental_health_T2",107.57
+3186,19,"Other Identity","Program A",42.3658426944741,-83.5891659646975,"mental_health_T1",95.75
+3186,19,"Other Identity","Program A",42.3658426944741,-83.5891659646975,"mental_health_T2",100.92
+3188,43,"Male","Program C",42.253738947809,-83.9149465930769,"mental_health_T1",84.25
+3188,43,"Male","Program C",42.253738947809,-83.9149465930769,"mental_health_T2",88.88
+3211,20,"Female","Program A",42.3599975686171,-83.851101594841,"mental_health_T1",100.02
+3211,20,"Female","Program A",42.3599975686171,-83.851101594841,"mental_health_T2",104.1
+3213,31,"Male","Program B",42.3773653477681,-83.4384155625463,"mental_health_T1",95.46
+3213,31,"Male","Program B",42.3773653477681,-83.4384155625463,"mental_health_T2",101.73
+3229,25,"Female","Program B",42.2405538164644,-83.8449754947486,"mental_health_T1",93.66
+3229,25,"Female","Program B",42.2405538164644,-83.8449754947486,"mental_health_T2",106.01
+3233,20,"Male","Program B",42.1590027627261,-83.6406418173615,"mental_health_T1",89.08
+3233,20,"Male","Program B",42.1590027627261,-83.6406418173615,"mental_health_T2",117.57
+3237,19,"Male","Program A",42.3081500197233,-83.5497796936636,"mental_health_T1",89.93
+3237,19,"Male","Program A",42.3081500197233,-83.5497796936636,"mental_health_T2",103.88
+3263,22,"Other Identity","Program A",42.2741812247671,-83.8007013499584,"mental_health_T1",99.38
+3263,22,"Other Identity","Program A",42.2741812247671,-83.8007013499584,"mental_health_T2",92.56
+3274,25,"Male","Program B",42.1521387146435,-83.8781678576765,"mental_health_T1",89.31
+3274,25,"Male","Program B",42.1521387146435,-83.8781678576765,"mental_health_T2",99.87
+3278,29,"Male","Program D",42.2383996103346,-83.668864743653,"mental_health_T1",105.1
+3278,29,"Male","Program D",42.2383996103346,-83.668864743653,"mental_health_T2",93.03
+3311,24,"Male","Program D",42.1582109468927,-83.7920887445665,"mental_health_T1",92.91
+3311,24,"Male","Program D",42.1582109468927,-83.7920887445665,"mental_health_T2",91.99
+3314,28,"Female","Program A",42.3992407401877,-83.802846283091,"mental_health_T1",97.78
+3314,28,"Female","Program A",42.3992407401877,-83.802846283091,"mental_health_T2",99.81
+3346,41,"Female","Program B",42.0726736754804,-83.5682905003772,"mental_health_T1",97.64
+3346,41,"Female","Program B",42.0726736754804,-83.5682905003772,"mental_health_T2",106.36
+3364,25,"Other Identity","Program C",42.2439494400344,-83.8561485792631,"mental_health_T1",79.61
+3364,30,"Other Identity","Program B",42.2526457296249,-83.7372097617721,"mental_health_T1",95.53
+3364,25,"Other Identity","Program C",42.2439494400344,-83.8561485792631,"mental_health_T2",96.01
+3364,30,"Other Identity","Program B",42.2526457296249,-83.7372097617721,"mental_health_T2",98.55
+3369,23,"Female","Program C",42.3864118080116,-83.7720759115424,"mental_health_T1",88.04
+3369,23,"Female","Program C",42.3864118080116,-83.7720759115424,"mental_health_T2",94.66
+3388,40,"Female","Program A",42.2579409840643,-83.6652464637703,"mental_health_T1",94.3
+3388,40,"Female","Program A",42.2579409840643,-83.6652464637703,"mental_health_T2",100.4
+3390,18,"Female","Program B",42.0507826063104,-83.7761886255961,"mental_health_T1",93.05
+3390,18,"Female","Program B",42.0507826063104,-83.7761886255961,"mental_health_T2",99.07
+3406,33,"Female","Program C",42.2886678074626,-83.7637145075801,"mental_health_T1",80.73
+3406,33,"Female","Program C",42.2886678074626,-83.7637145075801,"mental_health_T2",96.97
+3407,32,"Other Identity","Program B",42.3736197711035,-83.6853630329751,"mental_health_T1",96.77
+3407,32,"Other Identity","Program B",42.3736197711035,-83.6853630329751,"mental_health_T2",112.66
+3414,23,"Male","Program B",42.0850352402934,-83.7730434974593,"mental_health_T1",96.88
+3414,23,"Male","Program B",42.0850352402934,-83.7730434974593,"mental_health_T2",93.82
+3424,44,"Male","Program A",42.233185529761,-83.9584144524514,"mental_health_T1",88.84
+3424,44,"Male","Program A",42.233185529761,-83.9584144524514,"mental_health_T2",96.88
+3429,42,"Other Identity","Program B",42.2792534142581,-83.7534289916009,"mental_health_T1",93.42
+3429,42,"Other Identity","Program B",42.2792534142581,-83.7534289916009,"mental_health_T2",108.95
+3437,21,"Other Identity","Program A",42.1874400326169,-83.7057781760404,"mental_health_T1",93.31
+3437,31,"Female","Program A",42.2297228416565,-83.5711225490066,"mental_health_T1",93.72
+3437,21,"Other Identity","Program A",42.1874400326169,-83.7057781760404,"mental_health_T2",100.03
+3437,31,"Female","Program A",42.2297228416565,-83.5711225490066,"mental_health_T2",98.71
+3447,26,"Other Identity","Program A",42.1894170191302,-83.7998013557312,"mental_health_T1",90.11
+3447,26,"Other Identity","Program A",42.1894170191302,-83.7998013557312,"mental_health_T2",102.64
+3453,27,"Other Identity","Program A",42.2836476678015,-83.7167647361559,"mental_health_T1",93.81
+3453,27,"Other Identity","Program A",42.2836476678015,-83.7167647361559,"mental_health_T2",97.27
+3459,26,"Other Identity","Program A",42.3240453521442,-83.7626696655902,"mental_health_T1",100.41
+3459,26,"Other Identity","Program A",42.3240453521442,-83.7626696655902,"mental_health_T2",95.03
+3479,44,"Female","Program B",42.3126835318197,-83.6321539260102,"mental_health_T1",100.22
+3479,44,"Female","Program B",42.3126835318197,-83.6321539260102,"mental_health_T2",107.37
+3500,43,"Other Identity","Program B",42.1073670681255,-83.7699954991675,"mental_health_T1",102.66
+3500,43,"Other Identity","Program B",42.1073670681255,-83.7699954991675,"mental_health_T2",104.56
+3501,22,"Female","Program C",42.203767255345,-83.6870198995866,"mental_health_T1",85.22
+3501,22,"Female","Program C",42.203767255345,-83.6870198995866,"mental_health_T2",92.93
+3508,21,"Female","Program A",42.2147682783047,-83.9249605577087,"mental_health_T1",103.61
+3508,21,"Female","Program A",42.2147682783047,-83.9249605577087,"mental_health_T2",99.94
+3510,33,"Female","Program C",42.3456072660413,-83.9901620701165,"mental_health_T1",89.06
+3510,33,"Female","Program C",42.3456072660413,-83.9901620701165,"mental_health_T2",93.2
+3522,21,"Male","Program B",42.268540559898,-83.7305850905737,"mental_health_T1",90.86
+3522,21,"Male","Program B",42.268540559898,-83.7305850905737,"mental_health_T2",97.92
+3545,37,"Male","Program C",42.2332483594326,-83.9061300839666,"mental_health_T1",86.32
+3545,29,"Female","Program B",42.1718990847721,-83.8909396443354,"mental_health_T1",89.07
+3545,37,"Male","Program C",42.2332483594326,-83.9061300839666,"mental_health_T2",97.47
+3545,29,"Female","Program B",42.1718990847721,-83.8909396443354,"mental_health_T2",105.27
+3552,19,"Male","Program C",42.2275789765564,-83.7064587962224,"mental_health_T1",83.59
+3552,19,"Male","Program C",42.2275789765564,-83.7064587962224,"mental_health_T2",88.93
+3568,27,"Female","Program B",42.3542883591085,-83.7112791295513,"mental_health_T1",100.49
+3568,27,"Female","Program B",42.3542883591085,-83.7112791295513,"mental_health_T2",103.77
+3581,29,"Other Identity","Program C",42.1230727431005,-83.8314898536125,"mental_health_T1",82.2
+3581,29,"Other Identity","Program C",42.1230727431005,-83.8314898536125,"mental_health_T2",89.93
+3586,33,"Female","Program B",42.3584061902078,-83.7533658120387,"mental_health_T1",99.25
+3586,33,"Female","Program B",42.3584061902078,-83.7533658120387,"mental_health_T2",102.27
+3587,21,"Male","Program C",42.1015609935675,-83.6561924868196,"mental_health_T1",85.04
+3587,21,"Male","Program C",42.1015609935675,-83.6561924868196,"mental_health_T2",91.42
+3595,19,"Male","Program C",42.2884483016002,-83.5855808664298,"mental_health_T1",92.33
+3595,19,"Male","Program C",42.2884483016002,-83.5855808664298,"mental_health_T2",90.21
+3605,41,"Male","Program B",42.17082254938,-83.5672463105098,"mental_health_T1",99.2
+3605,41,"Male","Program B",42.17082254938,-83.5672463105098,"mental_health_T2",111.38
+3607,20,"Other Identity","Program B",42.1838006931761,-83.7701392756466,"mental_health_T1",87.75
+3607,20,"Other Identity","Program B",42.1838006931761,-83.7701392756466,"mental_health_T2",111.21
+3628,24,"Male","Program A",42.1495862487169,-83.4939829259161,"mental_health_T1",87.44
+3628,24,"Male","Program A",42.1495862487169,-83.4939829259161,"mental_health_T2",103.5
+3637,21,"Female","Program B",42.1965246264786,-83.7389981742593,"mental_health_T1",94.04
+3637,21,"Female","Program B",42.1965246264786,-83.7389981742593,"mental_health_T2",108.05
+3644,20,"Female","Program B",42.2867659495464,-83.6553159099597,"mental_health_T1",89.76
+3644,20,"Female","Program B",42.2867659495464,-83.6553159099597,"mental_health_T2",104.85
+3659,23,"Male","Program B",42.1697010161725,-83.6672676791273,"mental_health_T1",86.64
+3659,23,"Male","Program B",42.1697010161725,-83.6672676791273,"mental_health_T2",108.49
+3666,31,"Female","Program C",42.498412558199,-83.596081204445,"mental_health_T1",73.5
+3666,31,"Female","Program C",42.498412558199,-83.596081204445,"mental_health_T2",92.63
+3673,23,"Other Identity","Program B",42.1489063232825,-83.6634872020094,"mental_health_T1",99.66
+3673,23,"Other Identity","Program B",42.1489063232825,-83.6634872020094,"mental_health_T2",109
+3675,21,"Other Identity","Program A",42.1412215876302,-83.7785952563165,"mental_health_T1",89.47
+3675,21,"Other Identity","Program A",42.1412215876302,-83.7785952563165,"mental_health_T2",97.88
+3676,39,"Other Identity","Program A",42.243510582371,-83.8315004042355,"mental_health_T1",96.95
+3676,39,"Other Identity","Program A",42.243510582371,-83.8315004042355,"mental_health_T2",97.95
+3682,32,"Female","Program B",42.3768730211522,-83.5780969738363,"mental_health_T1",96.46
+3682,32,"Female","Program B",42.3768730211522,-83.5780969738363,"mental_health_T2",97.55
+3684,24,"Female","Program A",42.3524697400209,-83.727943564567,"mental_health_T1",101.34
+3684,24,"Female","Program A",42.3524697400209,-83.727943564567,"mental_health_T2",90.41
+3696,19,"Male","Program B",42.1801285113258,-83.6854489190817,"mental_health_T1",91.08
+3696,19,"Male","Program B",42.1801285113258,-83.6854489190817,"mental_health_T2",96.25
+3699,19,"Male","Program C",42.2880751532537,-83.7457817269816,"mental_health_T1",82.81
+3699,19,"Male","Program C",42.2880751532537,-83.7457817269816,"mental_health_T2",94.08
+3707,28,"Male","Program C",42.3039407897805,-83.9160184610712,"mental_health_T1",87.71
+3707,28,"Male","Program C",42.3039407897805,-83.9160184610712,"mental_health_T2",97.41
+3708,24,"Male","Program B",42.338662947759,-83.5628736139619,"mental_health_T1",89.44
+3708,24,"Male","Program B",42.338662947759,-83.5628736139619,"mental_health_T2",102.99
+3735,20,"Male","Program C",42.2859479910915,-83.7474433940728,"mental_health_T1",81.46
+3735,20,"Male","Program C",42.2859479910915,-83.7474433940728,"mental_health_T2",97.32
+3737,25,"Female","Program B",42.4260570467448,-83.9477074099828,"mental_health_T1",100.7
+3737,25,"Female","Program B",42.4260570467448,-83.9477074099828,"mental_health_T2",112.45
+3738,27,"Other Identity","Program C",42.0585553157099,-83.7956986743023,"mental_health_T1",82.64
+3738,27,"Other Identity","Program C",42.0585553157099,-83.7956986743023,"mental_health_T2",102.25
+3772,20,"Female","Program B",42.2658866187874,-83.5302828454941,"mental_health_T1",98.13
+3772,20,"Female","Program B",42.2658866187874,-83.5302828454941,"mental_health_T2",117.02
+3774,19,"Female","Program B",42.2634045337168,-83.7985640443574,"mental_health_T1",89.06
+3774,19,"Female","Program B",42.2634045337168,-83.7985640443574,"mental_health_T2",107.47
+3775,23,"Female","Program C",42.1593058000341,-83.8442577579604,"mental_health_T1",81.72
+3775,23,"Female","Program C",42.1593058000341,-83.8442577579604,"mental_health_T2",101.67
+3781,18,"Other Identity","Program B",42.4907979310516,-83.9356114352674,"mental_health_T1",96.75
+3781,18,"Other Identity","Program B",42.4907979310516,-83.9356114352674,"mental_health_T2",108.31
+3783,26,"Male","Program B",42.3092289131214,-83.6464611448,"mental_health_T1",90.5
+3783,26,"Male","Program B",42.3092289131214,-83.6464611448,"mental_health_T2",104.22
+3786,30,"Other Identity","Program A",42.2242590834814,-83.8383326886525,"mental_health_T1",100.62
+3786,30,"Other Identity","Program A",42.2242590834814,-83.8383326886525,"mental_health_T2",94.48
+3798,45,"Other Identity","Program B",42.4348010922146,-83.6955435190088,"mental_health_T1",95.83
+3798,45,"Other Identity","Program B",42.4348010922146,-83.6955435190088,"mental_health_T2",111.48
+3803,21,"Other Identity","Program B",42.1962336822829,-83.664972373626,"mental_health_T1",98.83
+3803,21,"Other Identity","Program B",42.1962336822829,-83.664972373626,"mental_health_T2",108.98
+3816,45,"Female","Program C",42.1722704812935,-83.7246976119418,"mental_health_T1",84.46
+3816,29,"Male","Program B",42.2144460259313,-83.7655771299888,"mental_health_T1",89.58
+3816,45,"Female","Program C",42.1722704812935,-83.7246976119418,"mental_health_T2",94.05
+3816,29,"Male","Program B",42.2144460259313,-83.7655771299888,"mental_health_T2",106.02
+3819,22,"Female","Program B",42.1478278681155,-83.6186996190524,"mental_health_T1",93.6
+3819,22,"Female","Program B",42.1478278681155,-83.6186996190524,"mental_health_T2",107.64
+3825,39,"Female","Program C",42.1800640261801,-83.6322639280922,"mental_health_T1",90.73
+3825,39,"Female","Program C",42.1800640261801,-83.6322639280922,"mental_health_T2",97.54
+3830,40,"Female","Program C",42.4198317941078,-83.6536997324318,"mental_health_T1",82.7
+3830,40,"Female","Program C",42.4198317941078,-83.6536997324318,"mental_health_T2",106.51
+3833,22,"Male","Program C",42.2428798147055,-83.5363468143876,"mental_health_T1",85.39
+3833,22,"Male","Program C",42.2428798147055,-83.5363468143876,"mental_health_T2",91.41
+3835,22,"Female","Program B",42.3412599742753,-83.7416732437893,"mental_health_T1",96.08
+3835,22,"Female","Program B",42.3412599742753,-83.7416732437893,"mental_health_T2",108.63
+3843,40,"Female","Program C",41.9977193374719,-83.7628754818608,"mental_health_T1",87.5
+3843,40,"Female","Program C",41.9977193374719,-83.7628754818608,"mental_health_T2",89.54
+3845,33,"Female","Program B",42.424284202755,-83.7372871013466,"mental_health_T1",105.44
+3845,33,"Female","Program B",42.424284202755,-83.7372871013466,"mental_health_T2",108
+3846,27,"Female","Program A",42.1032849661297,-83.7094458611315,"mental_health_T1",88.58
+3846,27,"Female","Program A",42.1032849661297,-83.7094458611315,"mental_health_T2",95.37
+3848,45,"Female","Program C",42.3350751931149,-83.7277581406542,"mental_health_T1",93
+3848,45,"Female","Program C",42.3350751931149,-83.7277581406542,"mental_health_T2",89.96
+3849,45,"Male","Program C",42.3677442221376,-83.846184727412,"mental_health_T1",80.35
+3849,45,"Male","Program C",42.3677442221376,-83.846184727412,"mental_health_T2",88.37
+3851,33,"Female","Program C",42.242864911163,-83.7043974819616,"mental_health_T1",79.39
+3851,33,"Female","Program C",42.242864911163,-83.7043974819616,"mental_health_T2",93.42
+3852,35,"Female","Program B",42.3248688005752,-83.7464162291684,"mental_health_T1",85.17
+3852,35,"Female","Program B",42.3248688005752,-83.7464162291684,"mental_health_T2",106.43
+3858,41,"Female","Program C",42.2605219329154,-83.9101636930422,"mental_health_T1",79.85
+3858,41,"Female","Program C",42.2605219329154,-83.9101636930422,"mental_health_T2",82.61
+3861,20,"Male","Program A",42.1351113978418,-83.6115271059963,"mental_health_T1",97.49
+3861,20,"Male","Program A",42.1351113978418,-83.6115271059963,"mental_health_T2",99.55
+3862,22,"Other Identity","Program C",42.0763581605561,-83.862381191933,"mental_health_T1",81.2
+3862,22,"Other Identity","Program C",42.0763581605561,-83.862381191933,"mental_health_T2",94.26
+3863,24,"Female","Program C",41.9725750057293,-83.7650261482374,"mental_health_T1",87.82
+3863,24,"Female","Program C",41.9725750057293,-83.7650261482374,"mental_health_T2",92.01
+3880,23,"Female","Program B",42.3089591052092,-83.5443385426662,"mental_health_T1",97.71
+3880,23,"Female","Program B",42.3089591052092,-83.5443385426662,"mental_health_T2",107.19
+3911,31,"Male","Program B",42.2609586769444,-83.8797801417638,"mental_health_T1",85.97
+3911,31,"Male","Program B",42.2609586769444,-83.8797801417638,"mental_health_T2",101.92
+3913,28,"Female","Program C",42.3745339963805,-83.6037794279981,"mental_health_T1",85.01
+3913,28,"Female","Program C",42.3745339963805,-83.6037794279981,"mental_health_T2",94.33
+3923,25,"Male","Program B",42.1774876907773,-83.8220497821458,"mental_health_T1",97.11
+3923,25,"Male","Program B",42.1774876907773,-83.8220497821458,"mental_health_T2",92.77
+3954,28,"Male","Program C",42.2400607554456,-83.7812862402487,"mental_health_T1",88.33
+3954,28,"Male","Program C",42.2400607554456,-83.7812862402487,"mental_health_T2",92.75
+3981,35,"Female","Program B",42.4072964104487,-83.687719615086,"mental_health_T1",99.06
+3981,35,"Female","Program B",42.4072964104487,-83.687719615086,"mental_health_T2",105.59
+3995,35,"Male","Program B",42.1541434423893,-83.6309958855078,"mental_health_T1",88.93
+3995,35,"Male","Program B",42.1541434423893,-83.6309958855078,"mental_health_T2",109.33
+3998,25,"Other Identity","Program B",42.3164105501614,-83.6900012230697,"mental_health_T1",93.34
+3998,25,"Other Identity","Program B",42.3164105501614,-83.6900012230697,"mental_health_T2",105.73
+4011,27,"Female","Program C",42.1571898298255,-83.7839851219168,"mental_health_T1",88.89
+4011,27,"Female","Program C",42.1571898298255,-83.7839851219168,"mental_health_T2",98.6
+4023,40,"Other Identity","Program B",42.4159122996891,-83.8816524825842,"mental_health_T1",100.16
+4023,40,"Other Identity","Program B",42.4159122996891,-83.8816524825842,"mental_health_T2",102.94
+4031,32,"Female","Program C",42.3976303987466,-83.6856585793395,"mental_health_T1",87.28
+4031,32,"Female","Program C",42.3976303987466,-83.6856585793395,"mental_health_T2",90.55
+4054,28,"Male","Program B",42.1368526835783,-83.6058250409208,"mental_health_T1",87.13
+4054,28,"Male","Program B",42.1368526835783,-83.6058250409208,"mental_health_T2",101.09
+4063,27,"Other Identity","Program D",42.3031679309314,-83.7445971184661,"mental_health_T1",93.07
+4063,27,"Other Identity","Program D",42.3031679309314,-83.7445971184661,"mental_health_T2",97.12
+4069,28,"Other Identity","Program C",42.2654771183762,-83.6582253037598,"mental_health_T1",79.14
+4069,28,"Other Identity","Program C",42.2654771183762,-83.6582253037598,"mental_health_T2",98.03
+4071,24,"Female","Program C",42.1845544740248,-83.6440342685053,"mental_health_T1",81.07
+4071,24,"Female","Program C",42.1845544740248,-83.6440342685053,"mental_health_T2",94.79
+4073,22,"Female","Program B",42.208693644819,-83.7411790952331,"mental_health_T1",90.94
+4073,22,"Female","Program B",42.208693644819,-83.7411790952331,"mental_health_T2",103.42
+4083,21,"Male","Program B",42.2693689408494,-83.706091375945,"mental_health_T1",93.62
+4083,21,"Male","Program B",42.2693689408494,-83.706091375945,"mental_health_T2",106.16
+4104,21,"Other Identity","Program B",42.216640475722,-83.7315602406685,"mental_health_T1",91.57
+4104,21,"Other Identity","Program B",42.216640475722,-83.7315602406685,"mental_health_T2",103.68
+4106,32,"Other Identity","Program D",42.4155483839335,-83.8969942274316,"mental_health_T1",91.07
+4106,22,"Female","Program C",42.1406944280101,-83.8761426175132,"mental_health_T1",83.94
+4106,32,"Other Identity","Program D",42.4155483839335,-83.8969942274316,"mental_health_T2",105.83
+4106,22,"Female","Program C",42.1406944280101,-83.8761426175132,"mental_health_T2",84.67
+4115,22,"Female","Program A",42.2778269395882,-83.5993846789124,"mental_health_T1",99.76
+4115,22,"Female","Program A",42.2778269395882,-83.5993846789124,"mental_health_T2",91.21
+4117,38,"Female","Program C",42.3167029862702,-83.658632091735,"mental_health_T1",88.36
+4117,38,"Female","Program C",42.3167029862702,-83.658632091735,"mental_health_T2",91.79
+4120,36,"Male","Program A",42.2554363388626,-83.6836160232912,"mental_health_T1",108.91
+4120,36,"Male","Program A",42.2554363388626,-83.6836160232912,"mental_health_T2",97.65
+4122,29,"Male","Program C",42.3026798006748,-83.6990536051921,"mental_health_T1",80.64
+4122,29,"Male","Program C",42.3026798006748,-83.6990536051921,"mental_health_T2",92.64
+4124,35,"Male","Program A",42.2188861864174,-83.8011527846997,"mental_health_T1",101.14
+4124,35,"Male","Program A",42.2188861864174,-83.8011527846997,"mental_health_T2",81.13
+4131,21,"Female","Program B",42.3339329414904,-83.729944317062,"mental_health_T1",90.55
+4131,21,"Female","Program B",42.3339329414904,-83.729944317062,"mental_health_T2",107.75
+4146,26,"Female","Program C",42.4054852955765,-83.7656212798123,"mental_health_T1",87.54
+4146,26,"Female","Program C",42.4054852955765,-83.7656212798123,"mental_health_T2",89.84
+4181,22,"Female","Program B",42.3911847856282,-83.8423201149226,"mental_health_T1",92.95
+4181,22,"Female","Program B",42.3911847856282,-83.8423201149226,"mental_health_T2",110.75
+4188,18,"Male","Program B",42.2050674609609,-83.8118974084692,"mental_health_T1",92.64
+4188,18,"Male","Program B",42.2050674609609,-83.8118974084692,"mental_health_T2",104.2
+4198,27,"Female","Program B",42.1555178801396,-83.5877826039853,"mental_health_T1",92.77
+4198,27,"Female","Program B",42.1555178801396,-83.5877826039853,"mental_health_T2",103.25
+4209,46,"Male","Program C",42.4815604786422,-83.7074419186856,"mental_health_T1",85
+4209,46,"Male","Program C",42.4815604786422,-83.7074419186856,"mental_health_T2",96.91
+4211,19,"Other Identity","Program B",42.3787000968793,-83.789982245193,"mental_health_T1",96.69
+4211,19,"Other Identity","Program B",42.3787000968793,-83.789982245193,"mental_health_T2",109.55
+4227,18,"Male","Program A",42.2210633783697,-83.7355237055746,"mental_health_T1",99.73
+4227,18,"Male","Program A",42.2210633783697,-83.7355237055746,"mental_health_T2",101
+4229,24,"Female","Program B",42.2084560641698,-83.7560909287789,"mental_health_T1",80.82
+4229,24,"Female","Program B",42.2084560641698,-83.7560909287789,"mental_health_T2",106.27
+4265,28,"Female","Program B",42.1114312109226,-83.745397442212,"mental_health_T1",98.99
+4265,28,"Female","Program B",42.1114312109226,-83.745397442212,"mental_health_T2",113.18
+4266,26,"Male","Program C",42.1256661027953,-83.8623682232476,"mental_health_T1",80.74
+4266,26,"Male","Program C",42.1256661027953,-83.8623682232476,"mental_health_T2",96.32
+4279,31,"Male","Program C",42.0810718034839,-83.7389754476773,"mental_health_T1",90.6
+4279,31,"Male","Program C",42.0810718034839,-83.7389754476773,"mental_health_T2",96.65
+4282,34,"Male","Program C",42.3005270209734,-83.7249077061431,"mental_health_T1",89.44
+4282,34,"Male","Program C",42.3005270209734,-83.7249077061431,"mental_health_T2",88
+4301,31,"Male","Program A",42.3248884467914,-83.7600413464838,"mental_health_T1",97.69
+4301,20,"Female","Program C",42.4045001521743,-83.7521685041921,"mental_health_T1",85.02
+4301,31,"Male","Program A",42.3248884467914,-83.7600413464838,"mental_health_T2",101.13
+4301,20,"Female","Program C",42.4045001521743,-83.7521685041921,"mental_health_T2",94.59
+4306,32,"Other Identity","Program B",42.3347433330447,-83.587400402857,"mental_health_T1",92.3
+4306,32,"Other Identity","Program B",42.3347433330447,-83.587400402857,"mental_health_T2",101.64
+4328,24,"Male","Program A",42.1511439751797,-83.7437886066545,"mental_health_T1",90.04
+4328,24,"Male","Program A",42.1511439751797,-83.7437886066545,"mental_health_T2",87.38
+4332,29,"Female","Program C",42.2768713199125,-83.796892521442,"mental_health_T1",82.98
+4332,29,"Female","Program C",42.2768713199125,-83.796892521442,"mental_health_T2",92.86
+4339,19,"Other Identity","Program B",42.0534790816711,-83.7307306640967,"mental_health_T1",90.98
+4339,19,"Other Identity","Program B",42.0534790816711,-83.7307306640967,"mental_health_T2",101.14
+4356,29,"Male","Program D",42.2596023883078,-83.5098656675839,"mental_health_T1",89.14
+4356,29,"Male","Program D",42.2596023883078,-83.5098656675839,"mental_health_T2",103.9
+4380,22,"Male","Program B",42.2224105386707,-83.8295176971132,"mental_health_T1",98.16
+4380,19,"Female","Program B",42.177391760075,-83.7525347910862,"mental_health_T1",96.68
+4380,22,"Male","Program B",42.2224105386707,-83.8295176971132,"mental_health_T2",108.13
+4380,19,"Female","Program B",42.177391760075,-83.7525347910862,"mental_health_T2",107.16
+4381,30,"Female","Program C",42.218362598286,-83.7249679766691,"mental_health_T1",87.15
+4381,30,"Female","Program C",42.218362598286,-83.7249679766691,"mental_health_T2",98.56
+4384,31,"Female","Program C",42.2364397433203,-83.8519369533502,"mental_health_T1",78.86
+4384,31,"Female","Program C",42.2364397433203,-83.8519369533502,"mental_health_T2",89.99
+4385,22,"Female","Program C",42.2473975258661,-83.5856230089157,"mental_health_T1",80.36
+4385,22,"Female","Program C",42.2473975258661,-83.5856230089157,"mental_health_T2",95.98
+4387,19,"Female","Program B",42.2919914819285,-83.79698381149,"mental_health_T1",89.76
+4387,19,"Female","Program B",42.2919914819285,-83.79698381149,"mental_health_T2",96.38
+4395,23,"Female","Program B",42.34261653416,-83.648234876841,"mental_health_T1",91.9
+4395,23,"Female","Program B",42.34261653416,-83.648234876841,"mental_health_T2",101.29
+4397,26,"Male","Program C",42.2331906076051,-83.6127245262595,"mental_health_T1",96.96
+4397,26,"Male","Program C",42.2331906076051,-83.6127245262595,"mental_health_T2",94.16
+4401,26,"Male","Program C",42.2255890388007,-83.701443192371,"mental_health_T1",78.44
+4401,26,"Male","Program C",42.2255890388007,-83.701443192371,"mental_health_T2",90.47
+4408,30,"Male","Program B",42.3027642086236,-83.7124650080351,"mental_health_T1",90.21
+4408,30,"Male","Program B",42.3027642086236,-83.7124650080351,"mental_health_T2",112.58
+4424,40,"Male","Program B",42.3049794171865,-83.7752190316841,"mental_health_T1",94.9
+4424,40,"Male","Program B",42.3049794171865,-83.7752190316841,"mental_health_T2",109.11
+4433,30,"Other Identity","Program C",42.256666872379,-83.7315622701432,"mental_health_T1",87.53
+4433,30,"Other Identity","Program C",42.256666872379,-83.7315622701432,"mental_health_T2",102.47
+4456,30,"Male","Program B",42.1753143783395,-83.7865112505851,"mental_health_T1",95.29
+4456,30,"Male","Program B",42.1753143783395,-83.7865112505851,"mental_health_T2",104.83
+4460,20,"Other Identity","Program C",42.2432202752146,-83.6034663366015,"mental_health_T1",81.21
+4460,20,"Other Identity","Program C",42.2432202752146,-83.6034663366015,"mental_health_T2",87.41
+4462,22,"Other Identity","Program C",42.0938673767304,-83.7215121733657,"mental_health_T1",87.07
+4462,22,"Other Identity","Program C",42.0938673767304,-83.7215121733657,"mental_health_T2",98
+4470,33,"Female","Program C",42.1960521187178,-83.7129792935419,"mental_health_T1",87.13
+4470,33,"Female","Program C",42.1960521187178,-83.7129792935419,"mental_health_T2",88.39
+4480,18,"Male","Program A",42.2786671677684,-83.8005512403805,"mental_health_T1",89.71
+4480,18,"Male","Program A",42.2786671677684,-83.8005512403805,"mental_health_T2",98.36
+4484,23,"Male","Program C",42.1373034310309,-83.684751947586,"mental_health_T1",91.11
+4484,23,"Male","Program C",42.1373034310309,-83.684751947586,"mental_health_T2",84.63
+4490,36,"Female","Program C",42.4542600719009,-83.6717204692804,"mental_health_T1",83.05
+4490,36,"Female","Program C",42.4542600719009,-83.6717204692804,"mental_health_T2",96.8
+4502,27,"Female","Program A",42.1082116521006,-83.6999759172207,"mental_health_T1",94.34
+4502,27,"Female","Program A",42.1082116521006,-83.6999759172207,"mental_health_T2",99.49
+4503,37,"Female","Program A",42.038222646853,-83.7855626058553,"mental_health_T1",95.07
+4503,37,"Female","Program A",42.038222646853,-83.7855626058553,"mental_health_T2",94.87
+4505,25,"Male","Program A",42.1811231921812,-83.6774873811137,"mental_health_T1",99.99
+4505,25,"Male","Program A",42.1811231921812,-83.6774873811137,"mental_health_T2",96.78
+4512,20,"Female","Program C",42.2611054130944,-83.6761360694096,"mental_health_T1",86.65
+4512,20,"Female","Program C",42.2611054130944,-83.6761360694096,"mental_health_T2",101.59
+4537,23,"Male","Program A",42.3707106904279,-83.5137938272367,"mental_health_T1",95.48
+4537,23,"Male","Program A",42.3707106904279,-83.5137938272367,"mental_health_T2",97.02
+4543,37,"Female","Program B",42.149370882656,-83.64137046615,"mental_health_T1",98.09
+4543,37,"Female","Program B",42.149370882656,-83.64137046615,"mental_health_T2",106.82
+4544,24,"Female","Program B",42.2231422070164,-83.7399645492299,"mental_health_T1",104.7
+4544,24,"Female","Program B",42.2231422070164,-83.7399645492299,"mental_health_T2",104.65
+4550,31,"Female","Program C",42.0396068843031,-83.79296113642,"mental_health_T1",77.77
+4550,31,"Female","Program C",42.0396068843031,-83.79296113642,"mental_health_T2",94.75
+4558,23,"Male","Program A",42.3000802558057,-83.565971458262,"mental_health_T1",99.84
+4558,23,"Male","Program A",42.3000802558057,-83.565971458262,"mental_health_T2",99.22
+4559,26,"Female","Program C",42.3560244237669,-83.7952591674083,"mental_health_T1",89.28
+4559,26,"Female","Program C",42.3560244237669,-83.7952591674083,"mental_health_T2",92.16
+4571,22,"Female","Program B",42.4150978624175,-83.7952757277598,"mental_health_T1",89.2
+4571,22,"Female","Program B",42.4150978624175,-83.7952757277598,"mental_health_T2",111.62
+4572,37,"Other Identity","Program C",42.1512721671467,-83.5991148748757,"mental_health_T1",80.65
+4572,37,"Other Identity","Program C",42.1512721671467,-83.5991148748757,"mental_health_T2",94.32
+4574,21,"Male","Program C",42.1662916607294,-83.6895645668503,"mental_health_T1",82.81
+4574,21,"Male","Program C",42.1662916607294,-83.6895645668503,"mental_health_T2",97.35
+4582,35,"Male","Program A",42.1127466563994,-83.7160493250567,"mental_health_T1",98.75
+4582,35,"Male","Program A",42.1127466563994,-83.7160493250567,"mental_health_T2",98.69
+4594,28,"Male","Program C",42.2018661253603,-83.7675381187673,"mental_health_T1",94.89
+4594,28,"Male","Program C",42.2018661253603,-83.7675381187673,"mental_health_T2",100.64
+4595,27,"Female","Program B",42.2961827243335,-83.8451422379983,"mental_health_T1",99.82
+4595,27,"Female","Program B",42.2961827243335,-83.8451422379983,"mental_health_T2",96.26
+4625,26,"Other Identity","Program B",42.2079085940359,-83.7149305809849,"mental_health_T1",96.15
+4625,26,"Other Identity","Program B",42.2079085940359,-83.7149305809849,"mental_health_T2",105.62
+4659,19,"Other Identity","Program C",42.2809913641759,-83.613390199882,"mental_health_T1",90.95
+4659,19,"Other Identity","Program C",42.2809913641759,-83.613390199882,"mental_health_T2",96.99
+4680,20,"Male","Program B",42.1276405767774,-83.6757980620896,"mental_health_T1",106.09
+4680,20,"Male","Program B",42.1276405767774,-83.6757980620896,"mental_health_T2",104.44
+4685,25,"Male","Program B",42.2818872269943,-83.7214456971751,"mental_health_T1",101.28
+4685,25,"Male","Program B",42.2818872269943,-83.7214456971751,"mental_health_T2",104.09
+4713,30,"Other Identity","Program C",42.2414563155405,-83.7698763590482,"mental_health_T1",88.16
+4713,30,"Other Identity","Program C",42.2414563155405,-83.7698763590482,"mental_health_T2",88.97
+4722,35,"Other Identity","Program B",42.3205694494843,-83.761210529804,"mental_health_T1",90.24
+4722,35,"Other Identity","Program B",42.3205694494843,-83.761210529804,"mental_health_T2",105.65
+4738,26,"Male","Program C",42.094417760025,-83.730089515781,"mental_health_T1",78.39
+4738,26,"Male","Program C",42.094417760025,-83.730089515781,"mental_health_T2",84.28
+4740,23,"Female","Program C",42.3069208816051,-83.8422674654912,"mental_health_T1",81.39
+4740,23,"Female","Program C",42.3069208816051,-83.8422674654912,"mental_health_T2",97.52
+4757,20,"Other Identity","Program C",42.2124530355745,-83.8888737558445,"mental_health_T1",83.82
+4757,20,"Other Identity","Program C",42.2124530355745,-83.8888737558445,"mental_health_T2",94.19
+4766,30,"Male","Program C",42.1120150303443,-83.5125632304805,"mental_health_T1",88.34
+4766,30,"Male","Program C",42.1120150303443,-83.5125632304805,"mental_health_T2",84.89
+4769,18,"Other Identity","Program C",42.2049802836374,-83.6751189430868,"mental_health_T1",81.73
+4769,18,"Other Identity","Program C",42.2049802836374,-83.6751189430868,"mental_health_T2",104.95
+4784,22,"Female","Program A",42.1897556418952,-83.6218154221681,"mental_health_T1",95.1
+4784,22,"Female","Program A",42.1897556418952,-83.6218154221681,"mental_health_T2",102.67
+4797,41,"Other Identity","Program A",42.1497830584785,-83.7957940226732,"mental_health_T1",97.73
+4797,41,"Other Identity","Program A",42.1497830584785,-83.7957940226732,"mental_health_T2",92.95
+4798,40,"Male","Program C",42.145125244468,-83.6310855256678,"mental_health_T1",90.15
+4798,40,"Male","Program C",42.145125244468,-83.6310855256678,"mental_health_T2",96.56
+4823,26,"Male","Program B",42.1098874041147,-83.6908525128934,"mental_health_T1",94.48
+4823,26,"Male","Program B",42.1098874041147,-83.6908525128934,"mental_health_T2",112.48
+4828,35,"Female","Program B",42.3181436821585,-83.4468313540259,"mental_health_T1",104.75
+4828,35,"Female","Program B",42.3181436821585,-83.4468313540259,"mental_health_T2",106.49
+4831,32,"Female","Program B",42.3619907185191,-83.768642233621,"mental_health_T1",99.17
+4831,32,"Female","Program B",42.3619907185191,-83.768642233621,"mental_health_T2",106.95
+4854,18,"Other Identity","Program B",42.2519262616394,-83.719112205517,"mental_health_T1",87.97
+4854,18,"Other Identity","Program B",42.2519262616394,-83.719112205517,"mental_health_T2",107.83
+4860,34,"Female","Program B",42.4314395140534,-83.7495750918167,"mental_health_T1",97.92
+4860,34,"Female","Program B",42.4314395140534,-83.7495750918167,"mental_health_T2",112.49
+4865,27,"Female","Program D",42.2204906250331,-83.6093342070355,"mental_health_T1",99.11
+4865,27,"Female","Program D",42.2204906250331,-83.6093342070355,"mental_health_T2",105.15
+4869,19,"Male","Program C",42.1914113739882,-83.869883005408,"mental_health_T1",80.07
+4869,19,"Male","Program C",42.1914113739882,-83.869883005408,"mental_health_T2",92.53
+4876,20,"Male","Program B",42.3761074659991,-83.7666994231418,"mental_health_T1",95.76
+4876,20,"Male","Program B",42.3761074659991,-83.7666994231418,"mental_health_T2",100.67
+4917,27,"Female","Program B",42.4004828528899,-83.8428448996239,"mental_health_T1",106.56
+4917,27,"Female","Program B",42.4004828528899,-83.8428448996239,"mental_health_T2",100.78
+4918,29,"Other Identity","Program B",41.9780303882309,-83.8172530749576,"mental_health_T1",93
+4918,29,"Other Identity","Program B",41.9780303882309,-83.8172530749576,"mental_health_T2",111.36
+4920,38,"Male","Program C",42.3303734082417,-83.8023310505058,"mental_health_T1",86.65
+4920,38,"Male","Program C",42.3303734082417,-83.8023310505058,"mental_health_T2",99.41
+4925,40,"Male","Program C",42.1140876770496,-83.6683142280371,"mental_health_T1",83.62
+4925,40,"Male","Program C",42.1140876770496,-83.6683142280371,"mental_health_T2",95.62
+4931,23,"Male","Program B",42.2201449289604,-83.6544728168741,"mental_health_T1",92.56
+4931,23,"Male","Program B",42.2201449289604,-83.6544728168741,"mental_health_T2",105.62
+4956,32,"Female","Program C",42.1144167878831,-83.6252366894158,"mental_health_T1",83.99
+4956,32,"Female","Program C",42.1144167878831,-83.6252366894158,"mental_health_T2",99.07
+4976,28,"Male","Program B",42.3696628949222,-83.8798551707969,"mental_health_T1",90.64
+4976,28,"Male","Program B",42.3696628949222,-83.8798551707969,"mental_health_T2",103.46
+4978,22,"Other Identity","Program D",42.3756013130504,-83.8490874462912,"mental_health_T1",95.39
+4978,22,"Other Identity","Program D",42.3756013130504,-83.8490874462912,"mental_health_T2",90.16
+4981,22,"Female","Program B",42.1789921516817,-83.6424997577849,"mental_health_T1",93.9
+4981,22,"Female","Program B",42.1789921516817,-83.6424997577849,"mental_health_T2",105.61
+4987,31,"Male","Program A",42.0814489929878,-83.6155571405118,"mental_health_T1",97.5
+4987,22,"Male","Program B",42.2512832379593,-83.8904155675348,"mental_health_T1",95.59
+4987,31,"Male","Program A",42.0814489929878,-83.6155571405118,"mental_health_T2",93.35
+4987,22,"Male","Program B",42.2512832379593,-83.8904155675348,"mental_health_T2",101.67
+4991,39,"Other Identity","Program A",42.1835588965521,-83.8609906641115,"mental_health_T1",96.26
+4991,39,"Other Identity","Program A",42.1835588965521,-83.8609906641115,"mental_health_T2",91.26
+4993,32,"Female","Program B",42.1998640043692,-83.69827936626,"mental_health_T1",104.03
+4993,32,"Female","Program B",42.1998640043692,-83.69827936626,"mental_health_T2",110.98
