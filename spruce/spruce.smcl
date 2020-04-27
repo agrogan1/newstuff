@@ -1,0 +1,92 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}26 Apr 2020, 13:18:46
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}26 Apr 2020
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}13:18:46
+{txt}
+{com}. //_3
+. 
+. clear all
+{res}{txt}
+{com}. 
+. cd "/Users/agrogan/Desktop/newstuff/spruce"
+{res}/Users/agrogan/Desktop/newstuff/spruce
+{txt}
+{com}.     
+. use spruce.dta, clear
+{txt}
+{com}.     
+. //_4q
+. 
+. label variable Tree "Tree number"
+{txt}
+{com}.     
+. label variable Competition "C (competition), CR (competition removed)"
+{txt}
+{com}.     
+. label variable Fertilizer "F (fertilized), NF (not fertilized)"
+{txt}
+{com}.     
+. label variable Height0 "Height (cm) of seedling at planting"
+{txt}
+{com}.     
+. label variable Height5 "Height (cm) of seedling at year 5"
+{txt}
+{com}.     
+. label variable Diameter0 "Diameter (cm) of seedling at planting"
+{txt}
+{com}.         
+. label variable Diameter5 "Diameter (cm) of seedling at year 5"
+{txt}
+{com}.     
+. label variable Ht_change "Change (cm) in height"
+{txt}
+{com}.     
+. label variable Di_change "Change (cm) in diameter"
+{txt}
+{com}.     
+. //_5
+. 
+. describe
+
+{txt}Contains data from {res}spruce.dta
+{txt}  obs:{res}            72                          
+{txt} vars:{res}             9                          26 Apr 2020 12:18
+{txt} size:{res}         4,320                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:Tree           }{txt}{bind: long    }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Tree number{p_end}
+{p 0 48}{bind:Competition    }{txt}{bind: long    }{bind:{txt}%12.0g    }{space 1}{txt}Competition{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}C (competition), CR (competition removed){p_end}
+{p 0 48}{bind:Fertilizer     }{txt}{bind: long    }{bind:{txt}%12.0g    }{space 1}{txt}Fertilizer{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}F (fertilized), NF (not fertilized){p_end}
+{p 0 48}{bind:Height0        }{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Height (cm) of seedling at planting{p_end}
+{p 0 48}{bind:Height5        }{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Height (cm) of seedling at year 5{p_end}
+{p 0 48}{bind:Diameter0      }{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Diameter (cm) of seedling at planting{p_end}
+{p 0 48}{bind:Diameter5      }{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Diameter (cm) of seedling at year 5{p_end}
+{p 0 48}{bind:Ht_change      }{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Change (cm) in height{p_end}
+{p 0 48}{bind:Di_change      }{txt}{bind: double  }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Change (cm) in diameter{p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}.     
+. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}26 Apr 2020, 13:18:46
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
