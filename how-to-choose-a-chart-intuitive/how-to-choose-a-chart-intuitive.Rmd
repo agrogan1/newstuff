@@ -3,13 +3,13 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
   html_document:
     fig_width: 10
     highlight: haddock
     code_download: yes
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
 mainfont: Futura
 classoption: landscape
 geometry: margin=.5in
@@ -39,14 +39,14 @@ N <- 1000
 
 predictor <- rbeta(N, 2, 7)
 
-outcome <- predictor + rnorm(N, 0, .10)
+outcome <- rbeta(N, 2, 7)
 
 group <- factor(rbinom(N, 1, .4),
                 levels = c(0, 1),
                 labels = c("Group A", "Group B"))
 
 outcome <- ifelse(group == "Group B",
-                  outcome + .25,
+                  outcome + .3,
                   outcome)
 
 outcomeC <- ifelse(outcome >= quantile(outcome, c(.50)),
