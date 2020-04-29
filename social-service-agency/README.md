@@ -6,4 +6,4 @@ Dataviz exercise with *Simulated* Social Service Agency data.
 
 The data can be used *independently* of the PDF handout and are *free to use and share* for other classes.
 
-For example, you may wish to visualize these data using software like Excel, Google Sheets, or Tableau. See [*How To Choose A Chart: An Intuitive Guide*](../how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.pdf)
+For example, you may wish to visualize these data using software like Excel, Google Sheets, or Tableau. See [*How To Choose A Chart: An Intuitive Guide*](https://agrogan1.github.io/newstuff/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.pdf)
