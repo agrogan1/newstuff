@@ -3,13 +3,13 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
   html_document:
     fig_width: 10
     highlight: haddock
     code_download: yes
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
 mainfont: Futura
 classoption: landscape
 geometry: margin=.5in
@@ -39,14 +39,14 @@ N <- 1000
 
 predictor <- rbeta(N, 2, 7)
 
-outcome <- rbeta(N, 2, 7)
-
 group <- factor(rbinom(N, 1, .4),
                 levels = c(0, 1),
                 labels = c("Group A", "Group B"))
 
+outcome <- predictor + rnorm(N, 0, .5)
+
 outcome <- ifelse(group == "Group B",
-                  outcome + .3,
+                  outcome + 1.5,
                   outcome)
 
 outcomeC <- ifelse(outcome >= quantile(outcome, c(.50)),
@@ -136,7 +136,8 @@ mypie <- ggplot(data = mydata,
   labs(title = "How Many People Are In Each Group?",
        subtitle = "Pie Chart") +
   theme_void() +
-  theme(title = element_text(size = rel(.75)))
+  theme(title = element_text(size = rel(.75)),
+        legend.position = "none")
   
 myscatterplot <- ggplot(mydata,
                         aes(x = predictor,
@@ -155,10 +156,35 @@ myscatterplot <- ggplot(mydata,
 
 ```{r}
 
+# layout <- c(
+#   area(1, 1, 1, 1),
+#   area(1, 2, 1, 2),
+#   area(1, 3, 1, 3), 
+#   area(3, 1, 3, 2)
+# )
+# 
+# plot(layout)
+# 
+# p1 <- myhistogram + 
+#   mycomparison + 
+#   mybeeswarm + 
+#   myscatterplot +
+#   plot_layout(design = layout)
+# 
+# p1
+
 myhistogram + mybeeswarm + myscatterplot + 
   mycomparison + mybar + mycomparisonC 
 
+p0 <- myhistogram + mybeeswarm + myscatterplot + 
+  mycomparison + mybar + mycomparisonC + 
+  plot_annotation(
+  title = 'How To Choose A Chart',
+  subtitle = 'An Intuitive Guide'
+  )
+
 ggsave("intuitive-guide.pdf", 
+       p0,
        width = 10, 
        height = 7.5)
 
