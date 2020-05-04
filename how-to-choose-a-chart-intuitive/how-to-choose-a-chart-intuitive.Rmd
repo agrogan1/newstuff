@@ -3,13 +3,23 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
+  bookdown::epub_book: default  
+  bookdown::gitbook:
+    split_by: none
+    highlight: haddock
+    config:
+      toc:
+        collapse: none
+      download:
+      - how-to-choose-a-chart-intuitive.pdf
+      - how-to-choose-a-chart-intuitive.epub
   html_document:
     fig_width: 10
     highlight: haddock
     code_download: yes
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
 mainfont: Futura
 classoption: landscape
 geometry: margin=.5in
@@ -58,7 +68,18 @@ outcomeC <- factor(outcomeC,
                    labels = c("Below Median", 
                               "At Or Above Median"))
 
-mydata <- data.frame(predictor, group, outcome, outcomeC)
+t <- round(runif(N, 1, 7), 
+           digits = 2)
+
+outcome2 <- log(t) + rnorm(N, 0, 1)
+
+mydata <- data.frame(predictor, 
+                     group, 
+                     outcome, 
+                     outcomeC,
+                     t,
+                     outcome2)
+
 
 ```
 
@@ -94,7 +115,10 @@ mybeeswarm <- myoutcome +
                 color = michigancolors("arboretum blue"),
                 size = .25,
                 groupOnX = FALSE) +
-  labs(subtitle = "Beeswarm Plot")
+  labs(subtitle = "Beeswarm Plot",
+       y = "") +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
 
 mycomparison <- myoutcome + 
   geom_histogram(aes(fill = group, color = group)) + 
@@ -136,7 +160,7 @@ mypie <- ggplot(data = mydata,
   labs(title = "How Many People Are In Each Group?",
        subtitle = "Pie Chart") +
   theme_void() +
-  theme(title = element_text(size = rel(.75)),
+  theme(title = element_text(size = rel(.5)),
         legend.position = "none")
   
 myscatterplot <- ggplot(mydata,
@@ -151,6 +175,21 @@ myscatterplot <- ggplot(mydata,
   theme(legend.position = "none",
         title = element_text(size = rel(.5)))
   
+mylongitudinal <- ggplot(mydata,
+                         aes(x = t,
+                             y = outcome2,
+                             color = factor(1))) +
+  geom_point() +
+  geom_smooth(color = michigancolors("arboretum blue")) +
+  scale_color_manual(values = michigancolors("wave field green")) +
+  labs(title = "Is the Outcome Changing Over Time?",
+       subtitle = "Scatterplot",
+       x = "time",
+       y = "outcome") +
+  theme(legend.position = "none",
+        title = element_text(size = rel(.5)),
+        axis.text.y = element_blank(),
+        axis.ticks.y=element_blank())
 
 ```
 
@@ -173,18 +212,18 @@ myscatterplot <- ggplot(mydata,
 # 
 # p1
 
-myhistogram + mybeeswarm + myscatterplot + 
-  mycomparison + mybar + mycomparisonC 
+p0 <- myhistogram + mycomparison + mybeeswarm +
+  mybar + mycomparisonC + mylongitudinal +
+  plot_layout(ncol = 3, nrow = 2, widths = 1)
 
-p0 <- myhistogram + mybeeswarm + myscatterplot + 
-  mycomparison + mybar + mycomparisonC + 
-  plot_annotation(
-  title = 'How To Choose A Chart',
-  subtitle = 'An Intuitive Guide'
-  )
+p0 # replay
+
+p0A <- p0 + 
+  plot_annotation(title = 'How To Choose A Chart', 
+                  subtitle = 'An Intuitive Guide')
 
 ggsave("intuitive-guide.pdf", 
-       p0,
+       p0A,
        width = 10, 
        height = 7.5)
 
