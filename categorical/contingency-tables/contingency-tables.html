@@ -49,6 +49,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -57,15 +58,24 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Contingency Tables</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">17 Apr 2020 12:37:33</p>
+<p class="date">4 May 2020 14:56:27</p>
 </header>
 <h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
 <h1 id="flipping-two-coins">Flipping Two Coins</h1>
+<h2 id="setup">Setup</h2>
 <pre class='stata'>. clear all
 </pre>
 <pre class='stata'>. set seed 3846
 </pre>
-<pre class='stata'>. label define coin 1 "heads" 0 "tails" // define value label
+<p>Good value labels are <strong>key</strong> here.</p>
+<pre class='stata'>. label define nickel ///
+> 1 "heads for nickel" /// 
+> 0 "tails for nickel" // define value label
+</pre>
+<pre class='stata'>. label define quarter /// 
+> 1 "heads for quarter" /// 
+> 0 "tails for quarter" // define value label
 </pre>
 <pre class='stata'>. set obs 1000 // 1000 observations
 number of observations (_N) was 0, now 1,000
@@ -77,8 +87,11 @@ number of observations (_N) was 0, now 1,000
 </pre>
 <pre class='stata'>. generate quarter = rbinomial(1, .5) // fair quarter
 </pre>
-<pre class='stata'>. label values nickel quarter coin // assign value label
+<pre class='stata'>. label values nickel nickel // assign value label
 </pre>
+<pre class='stata'>. label values quarter quarter // assign value label
+</pre>
+<h2 id="crosstabulation">Crosstabulation</h2>
 <pre class='stata'>. tabulate nickel quarter, row col
 
 ┌───────────────────┐
@@ -89,35 +102,135 @@ number of observations (_N) was 0, now 1,000
 │ column percentage │
 └───────────────────┘
 
-           │        quarter
-    nickel │     tails      heads │     Total
-───────────┼──────────────────────┼──────────
-     tails │       104        140 │       244 
-           │     42.62      57.38 │    100.00 
-           │     21.62      26.97 │     24.40 
-───────────┼──────────────────────┼──────────
-     heads │       377        379 │       756 
-           │     49.87      50.13 │    100.00 
-           │     78.38      73.03 │     75.60 
-───────────┼──────────────────────┼──────────
-     Total │       481        519 │     1,000 
-           │     48.10      51.90 │    100.00 
-           │    100.00     100.00 │    100.00 
+                 │        quarter
+          nickel │ tails for  heads for │     Total
+─────────────────┼──────────────────────┼──────────
+tails for nickel │       104        140 │       244 
+                 │     42.62      57.38 │    100.00 
+                 │     21.62      26.97 │     24.40 
+─────────────────┼──────────────────────┼──────────
+heads for nickel │       377        379 │       756 
+                 │     49.87      50.13 │    100.00 
+                 │     78.38      73.03 │     75.60 
+─────────────────┼──────────────────────┼──────────
+           Total │       481        519 │     1,000 
+                 │     48.10      51.90 │    100.00 
+                 │    100.00     100.00 │    100.00 
 </pre>
-<h1 id="graphing">Graphing</h1>
+<h2 id="graphing-mosaic-plot">Graphing (Mosaic Plot)</h2>
 <pre class='stata'>. * ssc install spineplot // mosaicplots (spineplots)
 </pre>
 <pre class='stata'>. * ssc install scheme-burd, replace // BuRd graph scheme
 </pre>
-<pre class='stata'>. spineplot nickel quarter, scheme(michigan)
-</pre>
 <pre class='stata'>. spineplot nickel quarter, scheme(burd)
 </pre>
-<pre class='stata'>. graph export nickel-quarter.png, width(1000) replace
+<pre class='stata'>. graph export nickel-quarter.png, width(500) replace
 (file nickel-quarter.png written in PNG format)
 </pre>
 <figure>
-<img src="nickel-quarter.png" alt="Nickel and Quarter" /><figcaption>Nickel and Quarter</figcaption>
+<img src="nickel-quarter.png" alt="Mosaic Plot" /><figcaption>Mosaic Plot</figcaption>
 </figure>
+<h2 id="bar-chart">Bar Chart</h2>
+<p>Does a bar chart work to visualize these relationships?</p>
+<pre class='stata'>. graph bar, over(quarter) over(nickel) scheme(burd)
+</pre>
+<pre class='stata'>. graph export nickel-quarter-bar1.png, width(500) replace
+(file nickel-quarter-bar1.png written in PNG format)
+</pre>
+<figure>
+<img src="nickel-quarter-bar1.png" alt="Bar Chart 1" /><figcaption>Bar Chart 1</figcaption>
+</figure>
+<p>Option <code>asyvars</code> adds a crucial color element.</p>
+<pre class='stata'>. graph bar, over(quarter) over(nickel) scheme(burd) asyvars
+</pre>
+<pre class='stata'>. graph export nickel-quarter-bar2.png, width(500) replace
+(file nickel-quarter-bar2.png written in PNG format)
+</pre>
+<figure>
+<img src="nickel-quarter-bar2.png" alt="Bar Chart 2" /><figcaption>Bar Chart 2</figcaption>
+</figure>
+<p>And <code>hbar</code> may improve legibility even more.</p>
+<pre class='stata'>. graph hbar, over(quarter) over(nickel) scheme(burd) asyvars
+</pre>
+<pre class='stata'>. graph export nickel-quarter-bar3.png, width(500) replace
+(file nickel-quarter-bar3.png written in PNG format)
+</pre>
+<figure>
+<img src="nickel-quarter-bar3.png" alt="Bar Chart 3" /><figcaption>Bar Chart 3</figcaption>
+</figure>
+<h1 id="french-skiiers">1961 French Skiiers</h1>
+<pre class='stata'>. clear all
+</pre>
+<h2 id="define-matrix">Define Matrix</h2>
+<pre class='stata'>. matrix input FrenchSkiiers = (31, 109 \ 17, 122)
+</pre>
+<pre class='stata'>. matrix rownames FrenchSkiiers = Placebo AscorbicAcid
+</pre>
+<pre class='stata'>. matrix colnames FrenchSkiiers = Cold NoCold
+</pre>
+<pre class='stata'>. matrix list FrenchSkiiers
+
+FrenchSkiiers[2,2]
+                Cold  NoCold
+     Placebo      31     109
+AscorbicAcid      17     122
+</pre>
+<h2 id="theme-music">Theme Music</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_om0W6xzQd8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<h2 id="try-making-a-data-set-from-matrix">Try Making a Data Set From Matrix</h2>
+<pre class='stata'>. svmat FrenchSkiiers, name(count)
+number of observations will be reset to 2
+Press any key to continue, or Break to abort
+number of observations (_N) was 0, now 2
+</pre>
+<pre class='stata'>. list
+
+     ┌─────────────────┐
+     │ count1   count2 │
+     ├─────────────────┤
+  1. │     31      109 │
+  2. │     17      122 │
+     └─────────────────┘
+</pre>
+<h2 id="enter-data-by-hand">Enter Data By Hand</h2>
+<p>There are many alternative commands to do this, but the easiest way is using <code>edit</code>.</p>
+<p>I have already done this. Note the structure of the data is different from above.</p>
+<pre class='stata'>. use "FrenchSkiiers.dta", clear
+</pre>
+<pre class='stata'>. list // list the data
+
+     ┌─────────────────────────────────┐
+     │            Tx   Outcome   Count │
+     ├─────────────────────────────────┤
+  1. │ Ascorbic Acid      Cold      17 │
+  2. │ Ascorbic Acid   No Cold     122 │
+  3. │       Placebo      Cold      31 │
+  4. │       Placebo   No Cold     109 │
+     └─────────────────────────────────┘
+</pre>
+<h2 id="mosaic-plot">Mosaic Plot</h2>
+<pre class='stata'>. spineplot Tx Outcome, scheme(burd)
+</pre>
+<pre class='stata'>. graph export FrenchSkiiers1.png, width(500) replace
+(file FrenchSkiiers1.png written in PNG format)
+</pre>
+<figure>
+<img src="FrenchSkiiers1.png" alt="Mosaic Plot Attempt 1" /><figcaption>Mosaic Plot Attempt 1</figcaption>
+</figure>
+<p>spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretability</p>
+<p>graph export FrenchSkiiers2.png, width(500) replace</p>
+<figure>
+<img src="FrenchSkiiers2.png" alt="Mosaic Plot Attempt 2" /><figcaption>Mosaic Plot Attempt 2</figcaption>
+</figure>
+<h1 id="definitions-and-notation">Definitions and Notation</h1>
+<h2 id="counts">Counts</h2>
+<p><span class="math inline">\(\begin{matrix} c_{ij} &amp; c_{ij} &amp; c_{i\bullet} \\ c_{ij} &amp; c_{ij} &amp; c_{i\bullet} \\ c_{\bullet j} &amp; c_{\bullet j} &amp; c_{\bullet \bullet} \\ \end{matrix}\)</span></p>
+<h1 id="probabilities">Probabilities</h1>
+<p><span class="math inline">\(\begin{matrix}p_{ij} &amp; p_{ij} &amp; p_{i\bullet} \\ p_{ij} &amp; p_{ij} &amp; p_{i \bullet} \\ p_{\bullet j} &amp; p_{\bullet j} &amp; p_{\bullet \bullet} \\ \end{matrix}\)</span></p>
+<h2 id="terms">Terms</h2>
+<p><span class="math inline">\(p_{ij}\)</span> are <em>joint</em> probabilities.</p>
+<p><span class="math inline">\(p_{i \bullet}\)</span> and <span class="math inline">\(p_{\bullet j}\)</span> are <em>marginal</em> probabilities.</p>
+<p><span class="math inline">\(p_{ij} \mid p_{i \bullet}\)</span> and <span class="math inline">\(p_{ij} \mid p_{\bullet j}\)</span> are <em>conditional</em> probabilities.</p>
 </body>
 </html>

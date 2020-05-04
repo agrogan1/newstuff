@@ -6,9 +6,11 @@ doedit contingency-tables.stmd
 
 * doedit stata.sty
 
-markstat using contingency-tables.stmd // HTML
+markstat using contingency-tables.stmd, mathjax // HTML
 
-* markstat using contingency-tables.stmd, pdf // PDF
+* markstat using contingency-tables.stmd, slides(santiago+) // Slides
+
+markstat using contingency-tables.stmd, pdf // PDF
 
 markstat using contingency-tables.stmd, docx // Word
 

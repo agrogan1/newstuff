@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}17 Apr 2020, 12:37:47
+ {txt}opened on:  {res} 4 May 2020, 14:56:27
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}17 Apr 2020
+{res} 4 May 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}12:37:47
+{res}14:56:27
 {txt}
 {com}. //_3
 . clear all
@@ -20,28 +20,38 @@
 . set seed 3846
 {txt}
 {com}. //_5
-. label define coin 1 "heads" 0 "tails" // define value label
+. label define nickel ///
+> 1 "heads for nickel" /// 
+> 0 "tails for nickel" // define value label
 {txt}
 {com}. //_6
+. label define quarter /// 
+> 1 "heads for quarter" /// 
+> 0 "tails for quarter" // define value label
+{txt}
+{com}. //_7
 . set obs 1000 // 1000 observations
 {txt}{p}
 number of observations (_N)  was 0,
 now 1,000
 {p_end}
 
-{com}. //_7
+{com}. //_8
 . * curiously it takes around 1000 obs for the proportions
 . * below to "take hold"
-. //_8
+. //_9
 . generate nickel = rbinomial(1, .75) // unfair nickel
 {txt}
-{com}. //_9
+{com}. //_10
 . generate quarter = rbinomial(1, .5) // fair quarter
 {txt}
-{com}. //_10
-. label values nickel quarter coin // assign value label
-{txt}
 {com}. //_11
+. label values nickel nickel // assign value label
+{txt}
+{com}. //_12
+. label values quarter quarter // assign value label
+{txt}
+{com}. //_13
 . tabulate nickel quarter, row col
 {txt}
 {c TLC}{hline 19}{c TRC}
@@ -52,41 +62,120 @@ now 1,000
 {c |}{space 1}{it:column percentage}{col 21}{c |}
 {c BLC}{hline 19}{c BRC}
 
-           {c |}        quarter
-    nickel {c |}     tails      heads {c |}     Total
-{hline 11}{c +}{hline 22}{c +}{hline 10}
-     tails {c |}{res}       104        140 {txt}{c |}{res}       244 
-           {txt}{c |}{res}     42.62      57.38 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}     21.62      26.97 {txt}{c |}{res}     24.40 
-{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
-     heads {c |}{res}       377        379 {txt}{c |}{res}       756 
-           {txt}{c |}{res}     49.87      50.13 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}     78.38      73.03 {txt}{c |}{res}     75.60 
-{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
-     Total {c |}{res}       481        519 {txt}{c |}{res}     1,000 
-           {txt}{c |}{res}     48.10      51.90 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
+                 {c |}        quarter
+          nickel {c |} tails for  heads for {c |}     Total
+{hline 17}{c +}{hline 22}{c +}{hline 10}
+tails for nickel {c |}{res}       104        140 {txt}{c |}{res}       244 
+                 {txt}{c |}{res}     42.62      57.38 {txt}{c |}{res}    100.00 
+                 {txt}{c |}{res}     21.62      26.97 {txt}{c |}{res}     24.40 
+{txt}{hline 17}{c +}{hline 22}{c +}{hline 10}
+heads for nickel {c |}{res}       377        379 {txt}{c |}{res}       756 
+                 {txt}{c |}{res}     49.87      50.13 {txt}{c |}{res}    100.00 
+                 {txt}{c |}{res}     78.38      73.03 {txt}{c |}{res}     75.60 
+{txt}{hline 17}{c +}{hline 22}{c +}{hline 10}
+           Total {c |}{res}       481        519 {txt}{c |}{res}     1,000 
+                 {txt}{c |}{res}     48.10      51.90 {txt}{c |}{res}    100.00 
+                 {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
 {txt}
-{com}. //_12
+{com}. //_14
 . * ssc install spineplot // mosaicplots (spineplots)
-. //_13
+. //_15
 . * ssc install scheme-burd, replace // BuRd graph scheme
-. //_14
-. spineplot nickel quarter, scheme(michigan)
-{res}{txt}
-{com}. //_15
+. //_16
 . spineplot nickel quarter, scheme(burd)
 {res}{txt}
-{com}. //_16
-. graph export nickel-quarter.png, width(1000) replace
+{com}. //_17
+. graph export nickel-quarter.png, width(500) replace
 {txt}(file nickel-quarter.png written in PNG format)
+
+{com}. //_18
+. graph bar, over(quarter) over(nickel) scheme(burd)
+{res}{txt}
+{com}. //_19
+. graph export nickel-quarter-bar1.png, width(500) replace
+{txt}(file nickel-quarter-bar1.png written in PNG format)
+
+{com}. //_20
+. graph bar, over(quarter) over(nickel) scheme(burd) asyvars
+{res}{txt}
+{com}. //_21
+. graph export nickel-quarter-bar2.png, width(500) replace
+{txt}(file nickel-quarter-bar2.png written in PNG format)
+
+{com}. //_22
+. graph hbar, over(quarter) over(nickel) scheme(burd) asyvars
+{res}{txt}
+{com}. //_23
+. graph export nickel-quarter-bar3.png, width(500) replace
+{txt}(file nickel-quarter-bar3.png written in PNG format)
+
+{com}. //_24
+. clear all
+{res}{txt}
+{com}. //_25
+. matrix input FrenchSkiiers = (31, 109 \ 17, 122)
+{txt}
+{com}. //_26
+. matrix rownames FrenchSkiiers = Placebo AscorbicAcid
+{txt}
+{com}. //_27
+. matrix colnames FrenchSkiiers = Cold NoCold
+{txt}
+{com}. //_28
+. matrix list FrenchSkiiers
+{res}
+{txt}FrenchSkiiers[2,2]
+                Cold  NoCold
+     Placebo {res}     31     109
+{txt}AscorbicAcid {res}     17     122
+{reset}
+{com}. //_29
+. svmat FrenchSkiiers, name(count)
+{txt}number of observations will be reset to 2
+Press any key to continue, or Break to abort
+{p}
+number of observations (_N)  was 0,
+now 2
+{p_end}
+
+{com}. //_30
+. list
+{txt}
+     {c TLC}{hline 8}{c -}{hline 8}{c TRC}
+     {c |} {res}count1   count2 {txt}{c |}
+     {c LT}{hline 8}{c -}{hline 8}{c RT}
+  1. {c |} {res}    31      109 {txt}{c |}
+  2. {c |} {res}    17      122 {txt}{c |}
+     {c BLC}{hline 8}{c -}{hline 8}{c BRC}
+
+{com}. //_31
+. use "FrenchSkiiers.dta", clear
+{txt}
+{com}. //_32
+. list // list the data
+{txt}
+     {c TLC}{hline 15}{c -}{hline 9}{c -}{hline 7}{c TRC}
+     {c |} {res}           Tx   Outcome   Count {txt}{c |}
+     {c LT}{hline 15}{c -}{hline 9}{c -}{hline 7}{c RT}
+  1. {c |} {res}Ascorbic Acid      Cold      17 {txt}{c |}
+  2. {c |} {res}Ascorbic Acid   No Cold     122 {txt}{c |}
+  3. {c |} {res}      Placebo      Cold      31 {txt}{c |}
+  4. {c |} {res}      Placebo   No Cold     109 {txt}{c |}
+     {c BLC}{hline 15}{c -}{hline 9}{c -}{hline 7}{c BRC}
+
+{com}. //_33
+. spineplot Tx Outcome, scheme(burd)
+{res}{txt}
+{com}. //_34
+. graph export FrenchSkiiers1.png, width(500) replace
+{txt}(file FrenchSkiiers1.png written in PNG format)
 
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}17 Apr 2020, 12:37:50
+ {txt}closed on:  {res} 4 May 2020, 14:56:36
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
