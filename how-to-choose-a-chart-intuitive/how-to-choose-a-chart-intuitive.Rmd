@@ -3,10 +3,6 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
-  bookdown::epub_book: default  
   bookdown::gitbook:
     split_by: none
     highlight: haddock
@@ -16,6 +12,10 @@ output:
       download:
       - how-to-choose-a-chart-intuitive.pdf
       - how-to-choose-a-chart-intuitive.epub
+  bookdown::epub_book: default  
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
   html_document:
     fig_width: 10
     highlight: haddock
