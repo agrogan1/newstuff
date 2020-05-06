@@ -2,6 +2,7 @@
 title: "ggplot flipbook"
 subtitle: "Based Upon *2 Page ggplot*"
 author: "Andy Grogan-Kaylor"
+date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -41,7 +42,23 @@ knitr::opts_chunk$set(fig.width = 6,
                       fig.retina = 3)
 
 library(flipbookr)
+
 library(tidyverse)
+
+```
+
+```{r, load_refs, include=FALSE, cache=FALSE}
+
+library(RefManageR)
+
+BibOptions(check.entries = FALSE,
+           bib.style = "authoryear",
+           cite.style = "alphabetic",
+           style = "markdown",
+           hyperlink = FALSE,
+           dashed = FALSE)
+
+myBib <- ReadBib("./ggplot-flipbook.bib", check = FALSE)
 
 ```
 
@@ -64,6 +81,8 @@ mydata <- data.frame(predictor, outcome, group)
 
 ---
 # Get Started
+
+Use the <span>&#8678;</span> and <span>&#8680;</span> keys to move through the presentation.
 
 Based upon [2 Page ggplot](https://agrogan1.github.io/R/two-page-ggplot2/two-page-ggplot2.pdf)
 
@@ -185,3 +204,21 @@ ggplot(mydata, # data
 
 `r chunk_reveal("graph4", break_type = "auto")`
 
+---
+# References
+
+Reynolds, E. (2020). _flipbookr: Parses code, creates
+partial code builds, delivers code movie_. R package
+version 0.1.0.
+
+Wickham, H. (2016). _ggplot2: Elegant Graphics for Data
+Analysis_. Springer-Verlag New York. ISBN:
+978-3-319-24277-4. URL:
+[https://ggplot2.tidyverse.org](https://ggplot2.tidyverse.org).
+
+```{r refs, echo=FALSE, eval=FALSE, results="asis"}
+
+# Cite(myBib)
+# PrintBibliography(myBib)
+
+```
