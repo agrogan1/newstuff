@@ -1,0 +1,187 @@
+---
+title: "ggplot flipbook"
+subtitle: "Based Upon *2 Page ggplot*"
+author: "Andy Grogan-Kaylor"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, hygge, ninjutsu]
+    nature:
+      ratio: 16:10
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{css, echo=FALSE}
+
+.title-slide { 
+  color: #ffcb05;
+  background-color: #00274C; 
+}
+.title-slide h1 {
+    color: #ffcb05;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+```
+
+```{r setup, include = F}
+
+# This is the recommended set up for flipbooks
+# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scracth can be time consuming
+
+knitr::opts_chunk$set(fig.width = 6, 
+                      message = FALSE, 
+                      warning = FALSE, 
+                      comment = "", 
+                      cache = FALSE, 
+                      fig.retina = 3)
+
+library(flipbookr)
+library(tidyverse)
+
+```
+
+```{r, echo = FALSE}
+
+N <- 100
+
+predictor <- rnorm(N, 100, 10)
+
+e <- rnorm(N, 0, 5)
+
+outcome <- predictor + e
+
+group <- c(rep("A", 30),
+           rep("B", 70))
+
+mydata <- data.frame(predictor, outcome, group)
+
+```
+
+---
+# Get Started
+
+Based upon [2 Page ggplot](https://agrogan1.github.io/R/two-page-ggplot2/two-page-ggplot2.pdf)
+
+```{r graph0, include = FALSE}
+
+library(ggplot2) # beautiful graphs
+
+library(ggthemes) # nice themes 
+
+```
+
+---
+
+```{r, code = knitr::knit_code$get("graph0"), eval = FALSE, echo = FALSE}
+```
+
+`r chunk_reveal("graph0", break_type = "auto")`
+
+---
+# One Continuous Variable
+
+```{r graph1, include = FALSE}
+
+ggplot(mydata, # data
+       aes(x = outcome)) + # variable
+  geom_histogram() # geometry
+
+```
+
+---
+
+```{r, code = knitr::knit_code$get("graph1"), eval = FALSE, echo = FALSE}
+```
+
+`r chunk_reveal("graph1", break_type = "auto")`
+
+---
+# One Categorical Variable
+
+```{r graph2, include=FALSE}
+
+ggplot(mydata, # data 
+       aes(x = group,
+           fill = group)) + # variable
+  geom_bar() # geometry
+
+# notice how the use of 
+# `fill` in the aesthetic
+# generates a legend
+
+```
+
+---
+
+```{r, code = knitr::knit_code$get("graph2"), eval = FALSE, echo = FALSE}
+```
+
+`r chunk_reveal("graph2", break_type = "auto")`
+
+---
+# Continuous by Continuous
+
+```{r graph3, include=FALSE}
+
+ggplot(mydata, # data
+       aes(x = predictor, # variables
+           y = outcome, 
+           color = group)) + 
+  geom_point() + # 1st geometry
+  geom_smooth() # 2nd geometry
+
+# notice how the use of 
+# `color` in the aesthetic 
+# generates a legend
+
+```
+
+---
+
+```{r, code = knitr::knit_code$get("graph3"), eval = FALSE, echo = FALSE}
+```
+
+`r chunk_reveal("graph3", break_type = "auto")`
+
+---
+# Add Some Options
+
+```{r graph4, include=FALSE}
+
+ggplot(mydata, # data
+       aes(x = predictor, # variables
+           y = outcome,
+           color = group)) + 
+  geom_point() + # 1st geometry
+  geom_smooth() + # 2nd geometry
+  labs(title = "My Title", # title
+       x = "Predictor", # x title
+       y = "Outcome") + # y title
+  # manual colors
+  scale_colour_manual(name = "Group", 
+                      values = 
+                        c("#FF0099", 
+                          "#0099FF"),  
+                      labels = 
+                        c("group1", 
+                          "group2")) +
+  theme_minimal() + # theme
+  # add to theme
+  theme(plot.title = 
+          element_text(size = 20, 
+                       color = "#0099FF")) 
+
+```
+
+---
+
+```{r, code = knitr::knit_code$get("graph4"), eval = FALSE, echo = FALSE}
+```
+
+`r chunk_reveal("graph4", break_type = "auto")`
+
