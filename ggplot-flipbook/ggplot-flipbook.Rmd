@@ -47,21 +47,6 @@ library(tidyverse)
 
 ```
 
-```{r, load_refs, include=FALSE, cache=FALSE}
-
-library(RefManageR)
-
-BibOptions(check.entries = FALSE,
-           bib.style = "authoryear",
-           cite.style = "alphabetic",
-           style = "markdown",
-           hyperlink = FALSE,
-           dashed = FALSE)
-
-myBib <- ReadBib("./ggplot-flipbook.bib", check = FALSE)
-
-```
-
 ```{r, echo = FALSE}
 
 N <- 100
@@ -82,7 +67,7 @@ mydata <- data.frame(predictor, outcome, group)
 ---
 # Get Started
 
-Use the <span>&#8678;</span> and <span>&#8680;</span> keys to move through the presentation.
+Use the <span style="font-size:100px">&#8678;</span> and <span style="font-size:100px">&#8680;</span> keys to move through the presentation.
 
 Based upon [2 Page ggplot](https://agrogan1.github.io/R/two-page-ggplot2/two-page-ggplot2.pdf)
 
@@ -216,9 +201,4 @@ Analysis_. Springer-Verlag New York. ISBN:
 978-3-319-24277-4. URL:
 [https://ggplot2.tidyverse.org](https://ggplot2.tidyverse.org).
 
-```{r refs, echo=FALSE, eval=FALSE, results="asis"}
 
-# Cite(myBib)
-# PrintBibliography(myBib)
-
-```
