@@ -224,4 +224,50 @@ $\chi^2 = \Sigma \frac{(O-E)^2}{E}$
 	
 	tabulate Tx Outcome [fweight = Count], row col chi2
 
+# Risk Differences and Risk Ratios (Relative Risk)
 
+Following Viera, 2008:
+
+$\begin{bmatrix}a & b \\ c & d\end{bmatrix}$
+
+
+|             | Develop Outcome   | Do Not Develop Outcome   |
+|-------------|:-----------------:|:------------------------:|
+| Exposed     | a                 | b                        |
+| Not Exposed | c                 | d                        |
+
+
+$R = \frac{a}{a+b}$ (in Exposed)
+
+$RR =\frac{\text{risk in exposed}}{\text{risk in not exposed}} = \frac{a/(a+b)}{c/(c+d)}$ 
+
+# Odds Ratios 
+
+|             | Develop Outcome   | Do Not Develop Outcome   |
+|-------------|:-----------------:|:------------------------:|
+| Exposed     | a                 | b                        |
+| Not Exposed | c                 | d                        |
+
+$OR =$
+
+$\frac{\text{odds that exposed person develops outcome}}{\text{odds that unexposed person develops outcome}}$
+
+$= \frac{\frac{a}{a+b} / \frac{b}{a+b}}{\frac{c}{c+d} / \frac{d}{c+d}} = \frac{a/b}{c/d} = \frac{ad}{bc}$
+
+# Properties of the Odds Ratio (Robert Mare)
+
+> In general for the 2 X 2 Table, 
+
+$0 < OR < 1$ 
+
+> indicates that one row is less likely to make the first response than the other row.
+
+$1 < OR < \infty$
+
+> indicates that one row is more likely to make the first response than the other row.
+
+ 
+ 
+ 
+ 
+ 
