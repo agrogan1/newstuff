@@ -1,14 +1,20 @@
-% Contingency Tables
-% Andy Grogan-Kaylor
-% `s c(current_date)` `s c(current_time)`
-	
+---
+title: Contingency Tables
+author: Andy Grogan-Kaylor
+geometry: margin=1 in
+---
+
+# Last Updated
+
+    display "$S_TIME  $S_DATE"
+
 # Key Concepts and Commands
 
 <style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
 
 # Flipping Two Coins
 
-## Setup
+# Setup
 
     clear all
 	
@@ -37,11 +43,11 @@ Good value labels are **key** here.
 	
 	label values quarter quarter // assign value label
 
-## Crosstabulation
+# Crosstabulation
 	
 	tabulate nickel quarter, row col
 	
-## Graphing (Mosaic Plot)
+# Graphing (Mosaic Plot)
 
     * ssc install spineplot // mosaicplots (spineplots)
 	
@@ -53,29 +59,33 @@ Good value labels are **key** here.
 	
 ![Mosaic Plot](nickel-quarter.png)
 
-## Bar Chart
+# Bar Chart
 
 Does a bar chart work to visualize these relationships?
 
     graph bar, over(quarter) over(nickel) scheme(burd)
 	
-	graph export nickel-quarter-bar1.png, width(500) replace
+	graph export nickel-quarter-bar1.png, width(250) replace
 	
 ![Bar Chart 1](nickel-quarter-bar1.png)
+
+# Bar Chart (2)
 	
 Option `asyvars` adds a crucial color element.
 
     graph bar, over(quarter) over(nickel) scheme(burd) asyvars
 	
-	graph export nickel-quarter-bar2.png, width(500) replace
+	graph export nickel-quarter-bar2.png, width(250) replace
 	
 ![Bar Chart 2](nickel-quarter-bar2.png)
+
+# Horizontal Bar Chart
 
 And `hbar` may improve legibility even more.
 
     graph hbar, over(quarter) over(nickel) scheme(burd) asyvars
 	
-	graph export nickel-quarter-bar3.png, width(500) replace
+	graph export nickel-quarter-bar3.png, width(250) replace
 
 ![Bar Chart 3](nickel-quarter-bar3.png)
 
@@ -83,7 +93,7 @@ And `hbar` may improve legibility even more.
 
     clear all
 
-## Define Matrix
+# Define Matrix
 
     matrix input FrenchSkiiers = (31, 109 \ 17, 122)
 
@@ -93,17 +103,17 @@ And `hbar` may improve legibility even more.
 	
 	matrix list FrenchSkiiers
 	
-## Theme Music
+# Theme Music
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_om0W6xzQd8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Try Making a Data Set From Matrix
+# Try Making a Data Set From Matrix
 	
 	svmat FrenchSkiiers, name(count)
 	
 	list
 	
-## Enter Data By Hand
+# Enter Data By Hand
 
 There are many alternative commands to do this, but the easiest way is using `edit`.
 
@@ -113,7 +123,7 @@ I have already done this. Note the structure of the data is different from above
 	
 	list // list the data
 	
-## Mosaic Plot
+# Mosaic Plot
 
 	spineplot Tx Outcome, scheme(burd)
 	
@@ -121,9 +131,11 @@ I have already done this. Note the structure of the data is different from above
 	
 ![Mosaic Plot Attempt 1](FrenchSkiiers1.png)
 
-   spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretability
+# Mosaic Plot (2)
+
+    spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretability
    
-   graph export FrenchSkiiers2.png, width(500) replace
+    graph export FrenchSkiiers2.png, width(500) replace
 
 ![Mosaic Plot Attempt 2](FrenchSkiiers2.png)
 
@@ -137,7 +149,7 @@ $\begin{matrix} c_{ij} & c_{ij} & c_{i\bullet} \\ c_{ij} & c_{ij} & c_{i\bullet}
 
 $\begin{matrix}p_{ij} & p_{ij} & p_{i\bullet} \\ p_{ij} & p_{ij} & p_{i \bullet} \\ p_{\bullet j} & p_{\bullet j} & p_{\bullet \bullet} \\ \end{matrix}$
 
-## Terms
+# Terms
 
 $p_{ij}$ are *joint* probabilities.
 
@@ -145,7 +157,73 @@ $p_{i \bullet}$ and $p_{\bullet j}$ are *marginal* probabilities.
 
 $p_{ij} \mid p_{i \bullet}$ and $p_{ij} \mid p_{\bullet j}$ are *conditional* probabilities.
 
+# Formulas 
 
+## Counts
 
+$\sum_{1}^{i} \sum_{1}^{j} c_{ij} = N$
+
+## Probabilities
+
+$\sum_{1}^{i} \sum_{1}^{j} p_{ij} = 1.0$
+
+## Expected Probabilities $p$ and Counts $m$ or Frequencies
+
+$p_{ij} = p_{i \bullet} p_{\bullet j}$
+
+$m_{ij} = \frac{m_{i \bullet} m_{\bullet j}}{m_{\bullet \bullet}}$
+
+> Observed counts are represented by $c$ while expected counts are represented by $m$.
+
+# Fundamental Rule
+
+$$\text{conditional = joint / marginal}$$
+
+# Independence (Robert Mare)
+
+> If independence is true, then joint probabilities = products of marginal probabilities.
+
+> That is, under independence, the conditional distribution equals the marginal distribution.
+
+> Under independence, row membership provides no information about the column distribution; and column membership provides no information about the row distribution.
+
+> Independence is a model, which is never exactly true in the real world.
+
+# Observed vs. Expected
+
+    scalar N = 31 + 109 + 17 + 122
+
+	scalar A = ((31 + 17)*(31+109)) / N // expected count
+
+	scalar B = ((31+109)*(109+122)) / N // expected count
+
+	scalar C = ((31 + 17) * (17 + 122)) / N // expected count
+
+	scalar D = ((17 + 122) * (109 + 122)) / N // expected count
+	
+	matrix FS = (A, B \ C, D) // matrix of expected values
+	
+	matrix rownames FS = Placebo AscorbicAcid // rownames
+	
+	matrix colnames FS = Cold NoCold // column names
+	
+	matrix list FS
+
+# Chi-Square Test
+
+$\chi^2 = \Sigma \frac{(O-E)^2}{E}$
+
+    scalar chisquare = (31 - 24.086022)^2 / 24.086022 + /// 
+    (109 - 115.91398)^2 / 115.91398 + ///
+    (17 - 23.913978)^2 / 23.913978 + /// 
+	(122 - 115.08602)^2 / 115.08602
+	
+	scalar list chisquare
+
+# Compare With Tabulate
+
+    use "FrenchSkiiers.dta", clear
+	
+	tabulate Tx Outcome [fweight = Count], row col chi2
 
 
