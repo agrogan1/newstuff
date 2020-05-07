@@ -6,7 +6,7 @@ date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
     lib_dir: libs
-    css: [default, hygge, ninjutsu]
+    css: [default, hygge, ninjutsu, animate.css]
     nature:
       ratio: 16:10
       highlightStyle: github
@@ -65,6 +65,8 @@ mydata <- data.frame(predictor, outcome, group)
 ```
 
 ---
+class: animated, bounceInDown
+
 # Get Started
 
 Use the <span style="font-size:100px">&#8678;</span> and <span style="font-size:100px">&#8680;</span> keys to move through the presentation.
@@ -87,6 +89,8 @@ library(ggthemes) # nice themes
 `r chunk_reveal("graph0", break_type = "auto")`
 
 ---
+class: animated, slideInRight
+
 # One Continuous Variable
 
 ```{r graph1, include = FALSE}
@@ -105,6 +109,8 @@ ggplot(mydata, # data
 `r chunk_reveal("graph1", break_type = "auto")`
 
 ---
+class: animated, slideInRight
+
 # One Categorical Variable
 
 ```{r graph2, include=FALSE}
@@ -128,6 +134,8 @@ ggplot(mydata, # data
 `r chunk_reveal("graph2", break_type = "auto")`
 
 ---
+class: animated, slideInRight
+
 # Continuous by Continuous
 
 ```{r graph3, include=FALSE}
@@ -153,6 +161,8 @@ ggplot(mydata, # data
 `r chunk_reveal("graph3", break_type = "auto")`
 
 ---
+class: animated, slideInRight
+
 # Add Some Options
 
 ```{r graph4, include=FALSE}
@@ -190,6 +200,8 @@ ggplot(mydata, # data
 `r chunk_reveal("graph4", break_type = "auto")`
 
 ---
+class: animated, slideInRight
+
 # References
 
 Reynolds, E. (2020). _flipbookr: Parses code, creates
