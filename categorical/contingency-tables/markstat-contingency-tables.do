@@ -18,6 +18,10 @@ markstat using contingency-tables.stmd, pdf // PDF
 
 graph close _all
 
+markstat using contingency-tables.stmd, beamer keep(tex) // Beamer
+
+graph close _all
+
 markstat using contingency-tables.stmd, docx // Word
 
 graph close _all

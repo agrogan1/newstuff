@@ -1,8 +1,6 @@
----
-title: Contingency Tables
-author: Andy Grogan-Kaylor
-geometry: margin=1 in
----
+% Contingency Tables
+% Andy Grogan-Kaylor
+% `s c(current_date)`
 
 # Last Updated
 
@@ -65,7 +63,7 @@ Does a bar chart work to visualize these relationships?
 
     graph bar, over(quarter) over(nickel) scheme(burd)
 	
-	graph export nickel-quarter-bar1.png, width(250) replace
+	graph export nickel-quarter-bar1.png, width(500) replace
 	
 ![Bar Chart 1](nickel-quarter-bar1.png)
 
@@ -75,7 +73,7 @@ Option `asyvars` adds a crucial color element.
 
     graph bar, over(quarter) over(nickel) scheme(burd) asyvars
 	
-	graph export nickel-quarter-bar2.png, width(250) replace
+	graph export nickel-quarter-bar2.png, width(500) replace
 	
 ![Bar Chart 2](nickel-quarter-bar2.png)
 
@@ -85,7 +83,7 @@ And `hbar` may improve legibility even more.
 
     graph hbar, over(quarter) over(nickel) scheme(burd) asyvars
 	
-	graph export nickel-quarter-bar3.png, width(250) replace
+	graph export nickel-quarter-bar3.png, width(500) replace
 
 ![Bar Chart 3](nickel-quarter-bar3.png)
 
