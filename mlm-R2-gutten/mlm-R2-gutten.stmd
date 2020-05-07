@@ -75,6 +75,6 @@ So our estimate for $R^2$ is `s r(rho)` squared, or `s r(rho)^2`.
 
 # References
 
-Cox, N. J. (n.d.). *Stata FAQ: Do-it-yourself R-squared*. Retrieved May 7, 2020, from https://www.stata.com/support/faqs/statistics/r-squared/
+Cox, N. J. (n.d.). *Stata FAQ: Do-it-yourself R-squared*. Retrieved May 7, 2020, from [https://www.stata.com/support/faqs/statistics/r-squared/](https://www.stata.com/support/faqs/statistics/r-squared/)
 
-Roberts, J. K., Monaco, J. P., Stovall, H., & Foster, V. (2015). Explained Variance in Multilevel Models. In *Handbook of Advanced Multilevel Analysis*. https://doi.org/10.4324/9780203848852.ch12
+Roberts, J. K., Monaco, J. P., Stovall, H., & Foster, V. (2015). Explained Variance in Multilevel Models. In *Handbook of Advanced Multilevel Analysis*. [https://doi.org/10.4324/9780203848852.ch12](https://doi.org/10.4324/9780203848852.ch12)

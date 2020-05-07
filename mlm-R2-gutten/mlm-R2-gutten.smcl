@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/mlm-R2-gutten/mlm-R2-gutten.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 7 May 2020, 15:17:03
+ {txt}opened on:  {res} 7 May 2020, 15:23:50
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -95,7 +95,7 @@ LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}127.8
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/mlm-R2-gutten/mlm-R2-gutten.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 7 May 2020, 15:17:04
+ {txt}closed on:  {res} 7 May 2020, 15:23:52
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
