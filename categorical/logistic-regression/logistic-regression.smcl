@@ -1,0 +1,118 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 9 May 2020, 17:40:45
+{txt}
+{com}. //_1
+. display c(current_date)
+{res} 9 May 2020
+{txt}
+{com}. //_2
+. display "$S_TIME  $S_DATE"
+{res}17:40:45   9 May 2020
+{txt}
+{com}. //_3
+. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w123_R6 - stata.dta", clear 
+{txt}( )
+
+{com}. //_4
+. codebook happy_3 // what does this variable look like?
+
+{txt}{hline}
+{res}happy_3{right:happy_3: GENERAL HAPPINESS}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}byte{txt})
+{ralign 22:label}:  {res:HAPPY_3}
+
+{col 18}range:  [{res}1{txt},{res}3{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}3{col 51}{txt}missing .:  {res}0{txt}/{res}2,044
+{col 8}{txt}unique mv codes:  {res}3{col 50}{txt}missing .*:  {res}742{txt}/{res}2,044
+
+{txt}{col 13}tabulation:  Freq.   Numeric  Label
+{col 21}{res}       391{col 33}       1{col 43}{txt}VERY HAPPY
+{col 21}{res}       758{col 33}       2{col 43}{txt}PRETTY HAPPY
+{col 21}{res}       153{col 33}       3{col 43}{txt}NOT TOO HAPPY
+{col 21}{res}         1{col 33}      .d{col 43}{txt}DK
+{col 21}{res}       740{col 33}      .i{col 43}{txt}IAP
+{col 21}{res}         1{col 33}      .n{col 43}{txt}NA
+
+{com}. //_5
+. recode happy_3 (1/2 = 1)(3=0), generate(happy_3_D)
+{txt}(911 differences between happy_3 and happy_3_D)
+
+{com}. //_6
+. tabulate happy_3 happy_3_D // double check
+
+              {txt}{c |}   RECODE of happy_3
+     happy_3: {c |}   (happy_3: GENERAL
+      GENERAL {c |}      HAPPINESS)
+    HAPPINESS {c |}         0          1 {c |}     Total
+{hline 14}{c +}{hline 22}{c +}{hline 10}
+   VERY HAPPY {c |}{res}         0        391 {txt}{c |}{res}       391 
+{txt} PRETTY HAPPY {c |}{res}         0        758 {txt}{c |}{res}       758 
+{txt}NOT TOO HAPPY {c |}{res}       153          0 {txt}{c |}{res}       153 
+{txt}{hline 14}{c +}{hline 22}{c +}{hline 10}
+        Total {c |}{res}       153      1,149 {txt}{c |}{res}     1,302 
+{txt}
+{com}. //_7
+. twoway scatter happy_3_D coninc_3, scheme(burd) jitter(5)
+{res}{txt}
+{com}. //_8
+. graph export happiness-income.png, width(500) replace
+{txt}(file happiness-income.png written in PNG format)
+
+{com}. //_9
+. regress happy_3_D coninc_3
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,223
+{txt}{hline 13}{c +}{hline 34}   F(1, 1221)      = {res}    22.87
+{txt}       Model {c |} {res} 2.26477708         1  2.26477708   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 120.937185     1,221  .099047654   {txt}R-squared       ={res}    0.0184
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0176
+{txt}       Total {c |} {res} 123.201962     1,222  .100819936   {txt}Root MSE        =   {res} .31472
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   happy_3_D{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}coninc_3 {c |}{col 14}{res}{space 2} 9.69e-07{col 26}{space 2} 2.03e-07{col 37}{space 1}    4.78{col 46}{space 3}0.000{col 54}{space 4} 5.72e-07{col 67}{space 3} 1.37e-06
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .8368664{col 26}{space 2} .0137133{col 37}{space 1}   61.03{col 46}{space 3}0.000{col 54}{space 4} .8099621{col 67}{space 3} .8637706
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_10
+. clear all
+{res}{txt}
+{com}. //_11
+. set obs 100 // 100 observations
+{txt}{p}
+number of observations (_N)  was 0,
+now 100
+{p_end}
+
+{com}. //_12
+. generate z = runiform(-5, 5) // randomly distributed z scores
+{txt}
+{com}. //_13
+. generate mynormaldensities = normalden(z) // normal densities
+{txt}
+{com}. //_14
+. generate myprobabilities = normal(z) // cumulative normal probabilities
+{txt}
+{com}. //_15
+. twoway scatter mynormaldensities myprobabilities z, scheme(michigan)
+{res}{txt}
+{com}. //_16
+. graph export normal.png, width(500) replace
+{txt}(file normal.png written in PNG format)
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 9 May 2020, 17:40:48
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
