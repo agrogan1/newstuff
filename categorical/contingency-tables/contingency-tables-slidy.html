@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Contingency Tables</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../UMslidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Contingency Tables</h1>
+  <p class="author">
+Andy Grogan-Kaylor
+  </p>
+</div>
+<div class="slide section level1">
+
+<p>Andy Grogan-Kaylor</p>
+<p>9 May 2020</p>
+</div>
+<div id="last-updated" class="slide section level1">
+<h1>Last Updated</h1>
+<pre class="stata"><code>. display &quot;$S_TIME  $S_DATE&quot;
+16:12:54   9 May 2020</code></pre>
+</div>
+<div id="key-concepts-and-commands" class="slide section level1">
+<h1>Key Concepts and Commands</h1>
+<ul class="incremental">
+<li>Matrices of data</li>
+<li>Probabilities, risks, and odds</li>
+<li><span class="math inline">\(\chi^2\)</span> Tests</li>
+<li><code>tabulate x y, row col chi2</code></li>
+</ul>
+</div>
+<div id="flipping-two-coins" class="slide section level1">
+<h1>Flipping Two Coins</h1>
+</div>
+<div id="setup" class="slide section level1">
+<h1>Setup</h1>
+<pre class="stata"><code>. clear all</code></pre>
+<pre class="stata"><code>. set seed 3846</code></pre>
+<p>Good value labels are <strong>key</strong> here.</p>
+<pre class="stata"><code>. label define nickel ///
+&gt; 1 &quot;heads for nickel&quot; /// 
+&gt; 0 &quot;tails for nickel&quot; // define value label</code></pre>
+<pre class="stata"><code>. label define quarter /// 
+&gt; 1 &quot;heads for quarter&quot; /// 
+&gt; 0 &quot;tails for quarter&quot; // define value label</code></pre>
+<pre class="stata"><code>. set obs 1000 // 1000 observations
+number of observations (_N) was 0, now 1,000</code></pre>
+<pre class="stata"><code>. * curiously it takes around 1000 obs for the proportions
+. * below to &quot;take hold&quot;</code></pre>
+<pre class="stata"><code>. generate nickel = rbinomial(1, .75) // unfair nickel</code></pre>
+<pre class="stata"><code>. generate quarter = rbinomial(1, .5) // fair quarter</code></pre>
+<pre class="stata"><code>. label values nickel nickel // assign value label</code></pre>
+<pre class="stata"><code>. label values quarter quarter // assign value label</code></pre>
+</div>
+<div id="crosstabulation" class="slide section level1">
+<h1>Crosstabulation</h1>
+<pre class="stata"><code>. tabulate nickel quarter, row col
+
+┌───────────────────┐
+│ Key               │
+├───────────────────┤
+│     frequency     │
+│  row percentage   │
+│ column percentage │
+└───────────────────┘
+
+                 │        quarter
+          nickel │ tails for  heads for │     Total
+─────────────────┼──────────────────────┼──────────
+tails for nickel │       104        140 │       244 
+                 │     42.62      57.38 │    100.00 
+                 │     21.62      26.97 │     24.40 
+─────────────────┼──────────────────────┼──────────
+heads for nickel │       377        379 │       756 
+                 │     49.87      50.13 │    100.00 
+                 │     78.38      73.03 │     75.60 
+─────────────────┼──────────────────────┼──────────
+           Total │       481        519 │     1,000 
+                 │     48.10      51.90 │    100.00 
+                 │    100.00     100.00 │    100.00 </code></pre>
+</div>
+<div id="graphing-mosaic-plot" class="slide section level1">
+<h1>Graphing (Mosaic Plot)</h1>
+<pre class="stata"><code>. * ssc install spineplot // mosaicplots (spineplots)</code></pre>
+<pre class="stata"><code>. * ssc install scheme-burd, replace // BuRd graph scheme</code></pre>
+<pre class="stata"><code>. spineplot nickel quarter, scheme(burd)</code></pre>
+<pre class="stata"><code>. graph export nickel-quarter.png, width(500) replace
+(file nickel-quarter.png written in PNG format)</code></pre>
+<div class="figure">
+<img src="nickel-quarter.png" alt="Mosaic Plot" />
+<p class="caption">Mosaic Plot</p>
+</div>
+</div>
+<div id="bar-chart" class="slide section level1">
+<h1>Bar Chart</h1>
+<p>Does a bar chart work to visualize these relationships?</p>
+<pre class="stata"><code>. graph bar, over(quarter) over(nickel) scheme(burd)</code></pre>
+<pre class="stata"><code>. graph export nickel-quarter-bar1.png, width(500) replace
+(file nickel-quarter-bar1.png written in PNG format)</code></pre>
+<div class="figure">
+<img src="nickel-quarter-bar1.png" alt="Bar Chart 1" />
+<p class="caption">Bar Chart 1</p>
+</div>
+</div>
+<div id="bar-chart-2" class="slide section level1">
+<h1>Bar Chart (2)</h1>
+<p>Option <code>asyvars</code> adds a crucial color element.</p>
+<pre class="stata"><code>. graph bar, over(quarter) over(nickel) scheme(burd) asyvars</code></pre>
+<pre class="stata"><code>. graph export nickel-quarter-bar2.png, width(500) replace
+(file nickel-quarter-bar2.png written in PNG format)</code></pre>
+<div class="figure">
+<img src="nickel-quarter-bar2.png" alt="Bar Chart 2" />
+<p class="caption">Bar Chart 2</p>
+</div>
+</div>
+<div id="horizontal-bar-chart" class="slide section level1">
+<h1>Horizontal Bar Chart</h1>
+<p>And <code>hbar</code> may improve legibility even more.</p>
+<pre class="stata"><code>. graph hbar, over(quarter) over(nickel) scheme(burd) asyvars</code></pre>
+<pre class="stata"><code>. graph export nickel-quarter-bar3.png, width(500) replace
+(file nickel-quarter-bar3.png written in PNG format)</code></pre>
+<div class="figure">
+<img src="nickel-quarter-bar3.png" alt="Bar Chart 3" />
+<p class="caption">Bar Chart 3</p>
+</div>
+</div>
+<div id="french-skiiers" class="slide section level1">
+<h1>1961 French Skiiers</h1>
+<pre class="stata"><code>. clear all</code></pre>
+</div>
+<div id="define-matrix" class="slide section level1">
+<h1>Define Matrix</h1>
+<pre class="stata"><code>. matrix input FrenchSkiiers = (31, 109 \ 17, 122)</code></pre>
+<pre class="stata"><code>. matrix rownames FrenchSkiiers = Placebo AscorbicAcid</code></pre>
+<pre class="stata"><code>. matrix colnames FrenchSkiiers = Cold NoCold</code></pre>
+<pre class="stata"><code>. matrix list FrenchSkiiers
+
+FrenchSkiiers[2,2]
+                Cold  NoCold
+     Placebo      31     109
+AscorbicAcid      17     122</code></pre>
+</div>
+<div id="theme-music" class="slide section level1">
+<h1>Theme Music</h1>
+</div>
+<div id="try-making-a-data-set-from-matrix" class="slide section level1">
+<h1>Try Making a Data Set From Matrix</h1>
+<pre class="stata"><code>. svmat FrenchSkiiers, name(count)
+number of observations will be reset to 2
+Press any key to continue, or Break to abort
+number of observations (_N) was 0, now 2</code></pre>
+<pre class="stata"><code>. list
+
+     ┌─────────────────┐
+     │ count1   count2 │
+     ├─────────────────┤
+  1. │     31      109 │
+  2. │     17      122 │
+     └─────────────────┘</code></pre>
+</div>
+<div id="enter-data-by-hand" class="slide section level1">
+<h1>Enter Data By Hand</h1>
+<p>There are many alternative commands to do this, but the easiest way is using <code>edit</code>.</p>
+<p>I have already done this. Note the structure of the data is different from above.</p>
+<pre class="stata"><code>. use &quot;FrenchSkiiers.dta&quot;, clear</code></pre>
+<pre class="stata"><code>. list // list the data
+
+     ┌─────────────────────────────────┐
+     │            Tx   Outcome   Count │
+     ├─────────────────────────────────┤
+  1. │ Ascorbic Acid      Cold      17 │
+  2. │ Ascorbic Acid   No Cold     122 │
+  3. │       Placebo      Cold      31 │
+  4. │       Placebo   No Cold     109 │
+     └─────────────────────────────────┘</code></pre>
+</div>
+<div id="mosaic-plot" class="slide section level1">
+<h1>Mosaic Plot</h1>
+<pre class="stata"><code>. spineplot Tx Outcome, scheme(burd)</code></pre>
+<pre class="stata"><code>. graph export FrenchSkiiers1.png, width(500) replace
+(file FrenchSkiiers1.png written in PNG format)</code></pre>
+<div class="figure">
+<img src="FrenchSkiiers1.png" alt="Mosaic Plot Attempt 1" />
+<p class="caption">Mosaic Plot Attempt 1</p>
+</div>
+</div>
+<div id="mosaic-plot-2" class="slide section level1">
+<h1>Mosaic Plot (2)</h1>
+<pre class="stata"><code>. spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretability</code></pre>
+<pre class="stata"><code>. graph export FrenchSkiiers2.png, width(500) replace
+(file FrenchSkiiers2.png written in PNG format)</code></pre>
+<div class="figure">
+<img src="FrenchSkiiers2.png" alt="Mosaic Plot Attempt 2" />
+<p class="caption">Mosaic Plot Attempt 2</p>
+</div>
+</div>
+<div id="definitions-and-notation" class="slide section level1">
+<h1>Definitions and Notation</h1>
+<h2 id="counts">Counts</h2>
+<p><span class="math inline">\(\begin{matrix} c_{ij} &amp; c_{ij} &amp; c_{i\bullet} \\ c_{ij} &amp; c_{ij} &amp; c_{i\bullet} \\ c_{\bullet j} &amp; c_{\bullet j} &amp; c_{\bullet \bullet} \\ \end{matrix}\)</span></p>
+<h2 id="probabilities">Probabilities</h2>
+<p><span class="math inline">\(\begin{matrix}p_{ij} &amp; p_{ij} &amp; p_{i\bullet} \\ p_{ij} &amp; p_{ij} &amp; p_{i \bullet} \\ p_{\bullet j} &amp; p_{\bullet j} &amp; p_{\bullet \bullet} \\ \end{matrix}\)</span></p>
+</div>
+<div id="terms" class="slide section level1">
+<h1>Terms</h1>
+<p><span class="math inline">\(p_{ij}\)</span> are <em>joint</em> probabilities.</p>
+<p><span class="math inline">\(p_{i \bullet}\)</span> and <span class="math inline">\(p_{\bullet j}\)</span> are <em>marginal</em> probabilities.</p>
+<p><span class="math inline">\(p_{ij} \mid p_{i \bullet}\)</span> and <span class="math inline">\(p_{ij} \mid p_{\bullet j}\)</span> are <em>conditional</em> probabilities.</p>
+</div>
+<div id="formulas" class="slide section level1">
+<h1>Formulas</h1>
+<h2 id="counts-1">Counts</h2>
+<p><span class="math inline">\(\sum_{1}^{i} \sum_{1}^{j} c_{ij} = N\)</span></p>
+<h2 id="probabilities-1">Probabilities</h2>
+<p><span class="math inline">\(\sum_{1}^{i} \sum_{1}^{j} p_{ij} = 1.0\)</span></p>
+<h2 id="expected-probabilities-p-and-counts-m-or-frequencies">Expected Probabilities <span class="math inline">\(p\)</span> and Counts <span class="math inline">\(m\)</span> or Frequencies</h2>
+<p><span class="math inline">\(p_{ij} = p_{i \bullet} p_{\bullet j}\)</span></p>
+<p><span class="math inline">\(m_{ij} = \frac{m_{i \bullet} m_{\bullet j}}{m_{\bullet \bullet}}\)</span></p>
+<blockquote>
+<p>Observed counts are represented by <span class="math inline">\(c\)</span> while expected counts are represented by <span class="math inline">\(m\)</span>.</p>
+</blockquote>
+</div>
+<div id="fundamental-rule" class="slide section level1">
+<h1>Fundamental Rule</h1>
+<p><span class="math display">\[\text{conditional = joint / marginal}\]</span></p>
+</div>
+<div id="independence-robert-mare" class="slide section level1">
+<h1>Independence (Robert Mare)</h1>
+<blockquote>
+<p>If independence is true, then joint probabilities = products of marginal probabilities.</p>
+</blockquote>
+<blockquote>
+<p>That is, under independence, the conditional distribution equals the marginal distribution.</p>
+</blockquote>
+<blockquote>
+<p>Under independence, row membership provides no information about the column distribution; and column membership provides no information about the row distribution.</p>
+</blockquote>
+<blockquote>
+<p>Independence is a model, which is never exactly true in the real world.</p>
+</blockquote>
+</div>
+<div id="observed-vs.expected" class="slide section level1">
+<h1>Observed vs. Expected</h1>
+<pre class="stata"><code>. scalar N = 31 + 109 + 17 + 122</code></pre>
+<pre class="stata"><code>. scalar A = ((31 + 17)*(31+109)) / N // expected count</code></pre>
+<pre class="stata"><code>. scalar B = ((31+109)*(109+122)) / N // expected count</code></pre>
+<pre class="stata"><code>. scalar C = ((31 + 17) * (17 + 122)) / N // expected count</code></pre>
+<pre class="stata"><code>. scalar D = ((17 + 122) * (109 + 122)) / N // expected count</code></pre>
+<pre class="stata"><code>. matrix FS = (A, B \ C, D) // matrix of expected values</code></pre>
+<pre class="stata"><code>. matrix rownames FS = Placebo AscorbicAcid // rownames</code></pre>
+<pre class="stata"><code>. matrix colnames FS = Cold NoCold // column names</code></pre>
+<pre class="stata"><code>. matrix list FS
+
+FS[2,2]
+                   Cold     NoCold
+     Placebo  24.086022  115.91398
+AscorbicAcid  23.913978  115.08602</code></pre>
+</div>
+<div id="chi-square-test" class="slide section level1">
+<h1>Chi-Square Test</h1>
+<p><span class="math inline">\(\chi^2 = \Sigma \frac{(O-E)^2}{E}\)</span></p>
+<pre class="stata"><code>. scalar chisquare = (31 - 24.086022)^2 / 24.086022 + /// 
+&gt; (109 - 115.91398)^2 / 115.91398 + ///
+&gt; (17 - 23.913978)^2 / 23.913978 + /// 
+&gt; (122 - 115.08602)^2 / 115.08602</code></pre>
+<pre class="stata"><code>. scalar list chisquare
+ chisquare =  4.8114124</code></pre>
+</div>
+<div id="compare-with-tabulate" class="slide section level1">
+<h1>Compare With Tabulate</h1>
+<pre class="stata"><code>. use &quot;FrenchSkiiers.dta&quot;, clear</code></pre>
+<pre class="stata"><code>. tabulate Tx Outcome [fweight = Count], row col chi2
+
+┌───────────────────┐
+│ Key               │
+├───────────────────┤
+│     frequency     │
+│  row percentage   │
+│ column percentage │
+└───────────────────┘
+
+              │        Outcome
+           Tx │   No Cold       Cold │     Total
+──────────────┼──────────────────────┼──────────
+      Placebo │       109         31 │       140 
+              │     77.86      22.14 │    100.00 
+              │     47.19      64.58 │     50.18 
+──────────────┼──────────────────────┼──────────
+Ascorbic Acid │       122         17 │       139 
+              │     87.77      12.23 │    100.00 
+              │     52.81      35.42 │     49.82 
+──────────────┼──────────────────────┼──────────
+        Total │       231         48 │       279 
+              │     82.80      17.20 │    100.00 
+              │    100.00     100.00 │    100.00 
+
+          Pearson chi2(1) =   4.8114   Pr = 0.028</code></pre>
+</div>
+<div id="risk-differences-and-risk-ratios-relative-risk" class="slide section level1">
+<h1>Risk Differences and Risk Ratios (Relative Risk)</h1>
+<p>Following Viera, 2008:</p>
+<p><span class="math inline">\(\begin{bmatrix}a &amp; b \\ c &amp; d\end{bmatrix}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Develop Outcome</th>
+<th align="center">Do Not Develop Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exposed</td>
+<td align="center">a</td>
+<td align="center">b</td>
+</tr>
+<tr class="even">
+<td>Not Exposed</td>
+<td align="center">c</td>
+<td align="center">d</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(R = \frac{a}{a+b}\)</span> (in Exposed)</p>
+<p><span class="math inline">\(RR =\frac{\text{risk in exposed}}{\text{risk in not exposed}} = \frac{a/(a+b)}{c/(c+d)}\)</span></p>
+</div>
+<div id="odds-ratios" class="slide section level1">
+<h1>Odds Ratios</h1>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Develop Outcome</th>
+<th align="center">Do Not Develop Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exposed</td>
+<td align="center">a</td>
+<td align="center">b</td>
+</tr>
+<tr class="even">
+<td>Not Exposed</td>
+<td align="center">c</td>
+<td align="center">d</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(OR =\)</span></p>
+<p><span class="math inline">\(\frac{\text{odds that exposed person develops outcome}}{\text{odds that unexposed person develops outcome}}\)</span></p>
+<p><span class="math inline">\(= \frac{\frac{a}{a+b} / \frac{b}{a+b}}{\frac{c}{c+d} / \frac{d}{c+d}} = \frac{a/b}{c/d} = \frac{ad}{bc}\)</span></p>
+</div>
+<div id="properties-of-the-odds-ratio-robert-mare" class="slide section level1">
+<h1>Properties of the Odds Ratio (Robert Mare)</h1>
+<blockquote>
+<p>In general for the 2 X 2 Table,</p>
+</blockquote>
+<p><span class="math inline">\(0 &lt; OR &lt; 1\)</span></p>
+<blockquote>
+<p>indicates that one row is less likely to make the first response than the other row.</p>
+</blockquote>
+<p><span class="math inline">\(1 &lt; OR &lt; \infty\)</span></p>
+<blockquote>
+<p>indicates that one row is more likely to make the first response than the other row.</p>
+</blockquote>
+</div>
+</body>
+</html>
