@@ -1,6 +1,11 @@
 ## University of Michigan Xaringan Themes
 
-University of Michigan based Xaringan themes.
+### University of Michigan Xaringan themes.
+
+* [michigan.css](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/michigan.css)
+* [michigan-fonts.css](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/michigan-fonts.css)
+
+### Supplemental Materials
 
 * My page on HTML Slides: [https://agrogan1.github.io/myposts/slide-formats.html](https://agrogan1.github.io/myposts/slide-formats.html)
 * [Branding Guidelines from University of Michigan](https://brand.umich.edu/)
