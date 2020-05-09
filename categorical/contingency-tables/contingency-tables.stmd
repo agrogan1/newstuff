@@ -10,6 +10,11 @@
 
 <style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
 
+* Matrices of data
+* Probabilities, risks, and odds
+* $\chi^2$ Tests 
+* `tabulate x y, row col chi2`
+
 # Flipping Two Coins
 
 # Setup
