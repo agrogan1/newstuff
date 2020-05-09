@@ -6,5 +6,5 @@ New stuff that is going to get moved somewhere else at some point.
 * [*ggplot flipbook*](https://agrogan1.github.io/newstuff/ggplot-flipbook/ggplot-flipbook.html#1): a *flipbook* based upon [*2 Page ggplot*](https://agrogan1.github.io/R/two-page-ggplot2/two-page-ggplot2.pdf).
 * [New Materials For A Course On Categorical Data Analysis](https://github.com/agrogan1/newstuff/tree/master/categorical)
 * [Simulated Social Service Agency Data](./social-service-agency)
-* [University of Michigan Xaringan Slide Show Themes](./xaringan-themes)
+* [University of Michigan Xaringan Slide Show Theme](./xaringan-themes)
 

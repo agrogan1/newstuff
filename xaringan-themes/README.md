@@ -1,6 +1,6 @@
-## University of Michigan Xaringan Themes
+## University of Michigan Xaringan Theme
 
-### University of Michigan Xaringan themes.
+### University of Michigan Xaringan Theme
 
 * [michigan.css](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/michigan.css)
 * [michigan-fonts.css](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/michigan-fonts.css)
