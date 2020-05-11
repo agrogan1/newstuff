@@ -1,0 +1,33 @@
+% Complete Separation
+% Andy Grogan-Kaylor
+% `s c(current_date)`
+
+> Adapted from an example at https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faqwhat-is-complete-or-quasi-complete-separation-in-logistic-regression-and-what-are-some-strategies-to-deal-with-the-issue/
+
+    use complete-separation.dta
+	
+	twoway scatter y x1, scheme(michigan)
+	
+	graph export scatter1.png, width(500) replace
+	
+![y by x1](scatter1.png)
+
+    twoway scatter y x2, scheme(michigan)
+	
+	graph export scatter2.png, width(500) replace
+	
+![y by x2](scatter2.png)
+
+From IDRE:
+
+> "What happens when we try to fit a logistic regression model of Y on X1 and X2 using our small sample data shown above? Well, the maximum likelihood estimate on the parameter for X1 does not exist. In particular with this example, the larger the coefficient for X1, the larger the likelihood. In other words, the coefficient for X1 should be as large as it can be, which would be infinity!"
+
+    capture noisily logit y x1 x2
+
+> Stata provides a warning here, and would not estimate the model. We used `capture` to *capture* the error code and keep running the do file despite the error. `noisily` ensured that we saw any error messages.
+
+> R would still estimate the model, but will provide a *somewhat hidden* warning.
+	
+	
+	
+	

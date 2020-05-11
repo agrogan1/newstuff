@@ -1,0 +1,42 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/complete-separation.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}10 May 2020, 22:27:35
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}10 May 2020
+{txt}
+{com}. //_2
+. use complete-separation.dta
+{txt}
+{com}. //_3
+. twoway scatter y x1, scheme(michigan)
+{res}{txt}
+{com}. //_4
+. graph export scatter1.png, width(500) replace
+{txt}(file scatter1.png written in PNG format)
+
+{com}. //_5
+. twoway scatter y x2, scheme(michigan)
+{res}{txt}
+{com}. //_6
+. graph export scatter2.png, width(500) replace
+{txt}(file scatter2.png written in PNG format)
+
+{com}. //_7
+. capture noisily logit y x1 x2
+
+{txt}outcome = x1 > 3 predicts data perfectly
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/complete-separation.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}10 May 2020, 22:27:37
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
