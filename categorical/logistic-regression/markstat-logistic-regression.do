@@ -1,4 +1,6 @@
-* contingency tables
+*************************
+* logistic regression
+*************************
 
 cd "/Users/agrogan/Desktop/newstuff/categorical/logistic-regression"
 
@@ -23,6 +25,14 @@ markstat using logistic-regression.stmd, beamer keep(tex md) // Beamer
 graph close _all
 
 markstat using logistic-regression.stmd, docx // Word
+
+graph close _all
+
+*************************
+* complete separation
+*************************
+
+markstat using complete-separation.stmd, mathjax // HTML
 
 graph close _all
 

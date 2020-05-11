@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}10 May 2020, 21:58:47
+ {txt}opened on:  {res}10 May 2020, 22:28:36
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display "$S_TIME  $S_DATE"
-{res}21:58:47  10 May 2020
+{res}22:28:36  10 May 2020
 {txt}
 {com}. //_3
 . use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w123_R6 - stata.dta", clear 
@@ -217,7 +217,7 @@ Iteration 4:{space 3}log likelihood = {res:-419.28513}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}10 May 2020, 21:58:53
+ {txt}closed on:  {res}10 May 2020, 22:28:41
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
