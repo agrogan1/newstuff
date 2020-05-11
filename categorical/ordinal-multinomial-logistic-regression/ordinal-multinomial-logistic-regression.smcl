@@ -1,0 +1,56 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}11 May 2020, 18:15:52
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}11 May 2020
+{txt}
+{com}. //_2
+. clear all
+{res}{txt}
+{com}. //_3
+. set maxvar 10000 // increase number of allowable variables
+
+{txt}
+{com}. //_4
+. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
+{txt}
+{com}. //_5
+. keep sex maeduc paeduc age degree
+{txt}
+{com}. //_6
+. save GSSsmall.dta, replace
+{txt}file GSSsmall.dta saved
+
+{com}. //_7
+. describe // describe the data
+
+{txt}Contains data from {res}GSSsmall.dta
+{txt}  obs:{res}        64,814                          
+{txt} vars:{res}             5                          11 May 2020 18:15
+{txt} size:{res}       324,070                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:age            }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:AGE      }{bind:  }{res}{res}age of respondent{p_end}
+{p 0 48}{bind:paeduc         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:LABK     }{bind:  }{res}{res}highest year school completed, father{p_end}
+{p 0 48}{bind:maeduc         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:LABK     }{bind:  }{res}{res}highest year school completed, mother{p_end}
+{p 0 48}{bind:degree         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:LABL     }{bind:  }{res}{res}r's highest degree{p_end}
+{p 0 48}{bind:sex            }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:SEX      }{bind:  }{res}{res}respondents sex{p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}11 May 2020, 18:15:52
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

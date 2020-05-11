@@ -1,0 +1,60 @@
+% Ordinal and Multinomial Logistic Regression
+% Andy Grogan-Kaylor
+% `s c(current_date)`
+
+---
+geometry: margin=1 in
+---
+
+# Meta-Background
+
+![Tweet About Ordinal Models](twitter-ordinal-annotated.PNG){ width=20% }
+
+# Key Concepts and Commands
+
+* Implementations differ; formulas are our friends
+* Extensions to logistic model: ordinal and multinomial logit
+
+$$
+    F(y) = \beta_0 + \beta x_1 + \beta x_2 + ...
+$$ 
+
+* Ordinal model
+
+$y(\text{1, 2, 3, etc.}) = \beta_0 + \beta x_1 + \beta x_2 + ...$ 
+
+* Multinomial model
+
+$y(\text{2 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...$ 
+
+$y(\text{3 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...$ 
+
+* Think about OR's, predicted probabilities, non-linearity
+
+# Get The Data (General Social Survey)
+
+    clear all
+	
+	set maxvar 10000 // increase number of allowable variables
+	
+    use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
+	
+	keep sex maeduc paeduc age degree
+	
+	save GSSsmall.dta, replace
+	
+	describe // describe the data
+
+# Thinking About Your Data and Data Wrangling
+
+> It is always good to think about your data and what the values of different variables represent. In Stata, however, there is very little additional data wrangling to prepare the data. In R, there is considerable data wrangling since we have to employ special commands to work with *variable* and *value* labels and to ensure that *numeric* variables are recoded as *factors*. In Stata there are no such issues!!! <span style="font-size:50px">&#128540;</span>
+
+
+
+	
+	
+	
+
+
+
+

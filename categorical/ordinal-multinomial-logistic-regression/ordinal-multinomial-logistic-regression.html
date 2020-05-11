@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Ordinal and Multinomial Logistic Regression</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Ordinal and Multinomial Logistic Regression</h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">11 May 2020</p>
+</header>
+<h1 id="meta-background">Meta-Background</h1>
+<figure>
+<img src="twitter-ordinal-annotated.PNG" alt="Tweet About Ordinal Models" style="width:20.0%" /><figcaption>Tweet About Ordinal Models</figcaption>
+</figure>
+<h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
+<ul>
+<li>Implementations differ; formulas are our friends</li>
+<li>Extensions to logistic model: ordinal and multinomial logit</li>
+</ul>
+<p><span class="math display">\[
+    F(y) = \beta_0 + \beta x_1 + \beta x_2 + ...
+\]</span></p>
+<ul>
+<li>Ordinal model</li>
+</ul>
+<p><span class="math inline">\(y(\text{1, 2, 3, etc.}) = \beta_0 + \beta x_1 + \beta x_2 + ...\)</span></p>
+<ul>
+<li>Multinomial model</li>
+</ul>
+<p><span class="math inline">\(y(\text{2 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...\)</span></p>
+<p><span class="math inline">\(y(\text{3 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...\)</span></p>
+<ul>
+<li>Think about OR’s, predicted probabilities, non-linearity</li>
+</ul>
+<h1 id="get-the-data-general-social-survey">Get The Data (General Social Survey)</h1>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. set maxvar 10000 // increase number of allowable variables
+</pre>
+<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
+</pre>
+<pre class='stata'>. keep sex maeduc paeduc age degree
+</pre>
+<pre class='stata'>. save GSSsmall.dta, replace
+file GSSsmall.dta saved
+</pre>
+<pre class='stata'>. describe // describe the data
+
+Contains data from GSSsmall.dta
+  obs:        64,814                          
+ vars:             5                          11 May 2020 18:14
+ size:       324,070                          
+───────────────────────────────────────────────────────────────────────────────────────────────
+              storage   display    value
+variable name   type    format     label      variable label
+───────────────────────────────────────────────────────────────────────────────────────────────
+age             byte    %8.0g      AGE        age of respondent
+paeduc          byte    %8.0g      LABK       highest year school completed, father
+maeduc          byte    %8.0g      LABK       highest year school completed, mother
+degree          byte    %8.0g      LABL       r's highest degree
+sex             byte    %8.0g      SEX        respondents sex
+───────────────────────────────────────────────────────────────────────────────────────────────
+Sorted by: 
+</pre>
+<h1 id="thinking-about-your-data-and-data-wrangling">Thinking About Your Data and Data Wrangling</h1>
+<blockquote>
+<p>It is always good to think about your data and what the values of different variables represent. In Stata, however, there is very little additional data wrangling to prepare the data. In R, there is considerable data wrangling since we have to employ special commands to work with <em>variable</em> and <em>value</em> labels and to ensure that <em>numeric</em> variables are recoded as <em>factors</em>. In Stata there are no such issues!!! <span style="font-size:50px">😜</span></p>
+</blockquote>
+</body>
+</html>
