@@ -1,6 +1,6 @@
 ## Social Service Agency
 
-Dataviz exercise with *Simulated* Social Service Agency data.
+[Dataviz exercise](https://agrogan1.github.io/newstuff/social-service-agency/social-service-agency.pdf) with *Simulated* Social Service Agency data.
 
 > The Excel formatted version of this data may be the most readily useful: [https://agrogan1.github.io/newstuff/social-service-agency/social-service-agency.xlsx](https://agrogan1.github.io/newstuff/social-service-agency/social-service-agency.xlsx).
 
