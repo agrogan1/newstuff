@@ -58,11 +58,11 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Logistic Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">9 May 2020</p>
+<p class="date">10 May 2020</p>
 </header>
 <h1 id="last-updated">Last Updated</h1>
 <pre class='stata'>. display "$S_TIME  $S_DATE"
-17:40:45   9 May 2020
+21:58:47  10 May 2020
 </pre>
 <h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
@@ -127,6 +127,11 @@ NOT TOO HAPPY │       153          0 │       153
 ──────────────┼──────────────────────┼──────────
         Total │       153      1,149 │     1,302 
 </pre>
+<pre class='stata'>. keep happy_3 happy_3_D coninc_3 // keep only some variables
+</pre>
+<pre class='stata'>. save GSSsmall.dta, replace
+file GSSsmall.dta saved
+</pre>
 <h1 id="visualize">Visualize</h1>
 <pre class='stata'>. twoway scatter happy_3_D coninc_3, scheme(burd) jitter(5)
 </pre>
@@ -173,5 +178,123 @@ number of observations (_N) was 0, now 100
 <figure>
 <img src="normal.png" alt="Standard and Cumulative Normal Curves" /><figcaption>Standard and Cumulative Normal Curves</figcaption>
 </figure>
+<h1 id="the-probit-model">The Probit Model</h1>
+<pre class='stata'>. use GSSsmall.dta, clear
+( )
+</pre>
+<pre class='stata'>. probit happy_3_D coninc_3
+
+Iteration 0:   log likelihood = -433.05123  
+Iteration 1:   log likelihood = -419.92819  
+Iteration 2:   log likelihood = -419.73499  
+Iteration 3:   log likelihood = -419.73484  
+Iteration 4:   log likelihood = -419.73484  
+
+Probit regression                               Number of obs     =      1,223
+                                                LR chi2(1)        =      26.63
+                                                Prob > chi2       =     0.0000
+Log likelihood = -419.73484                     Pseudo R2         =     0.0308
+
+─────────────┬────────────────────────────────────────────────────────────────
+   happy_3_D │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+    coninc_3 │   6.43e-06   1.35e-06     4.76   0.000     3.78e-06    9.08e-06
+       _cons │   .9244086   .0721521    12.81   0.000     .7829931    1.065824
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h1 id="the-logistic-distribution">The Logistic Distribution</h1>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. set obs 100 // 100 observations
+number of observations (_N) was 0, now 100
+</pre>
+<pre class='stata'>. generate z = runiform(-5, 5) // randomly distributed z scores
+</pre>
+<pre class='stata'>. generate mylogisticdensities = logisticden(z) // logistic densities
+</pre>
+<pre class='stata'>. generate mylogisticprobabilities = logistic(z) // cumulative logistic probabilities
+</pre>
+<pre class='stata'>. twoway scatter mylogisticdensities mylogisticprobabilities z, scheme(michigan)
+</pre>
+<pre class='stata'>. graph export logistic.png, width(500) replace
+(file logistic.png written in PNG format)
+</pre>
+<figure>
+<img src="logistic.png" alt="Standard and Cumulative Logistic Curves" /><figcaption>Standard and Cumulative Logistic Curves</figcaption>
+</figure>
+<h1 id="the-logit-logistic-model">The Logit (Logistic) Model</h1>
+<pre class='stata'>. use GSSsmall.dta, clear
+( )
+</pre>
+<pre class='stata'>. logit happy_3_D coninc_3
+
+Iteration 0:   log likelihood = -433.05123  
+Iteration 1:   log likelihood = -420.07608  
+Iteration 2:   log likelihood = -419.28644  
+Iteration 3:   log likelihood = -419.28513  
+Iteration 4:   log likelihood = -419.28513  
+
+Logistic regression                             Number of obs     =      1,223
+                                                LR chi2(1)        =      27.53
+                                                Prob > chi2       =     0.0000
+Log likelihood = -419.28513                     Pseudo R2         =     0.0318
+
+─────────────┬────────────────────────────────────────────────────────────────
+   happy_3_D │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+    coninc_3 │   .0000134   2.93e-06     4.58   0.000     7.68e-06    .0000192
+       _cons │   1.484066   .1381599    10.74   0.000     1.213277    1.754854
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h1 id="comparison-of-lpm-probit-and-logistic-coefficients">Comparison of LPM, Probit and Logistic Coefficients</h1>
+<p>NB: Negative vs. positive <span class="math inline">\(\beta\)</span>.</p>
+<pre class='stata'>. quietly probit happy_3_D coninc_3
+</pre>
+<pre class='stata'>. est store myprobit
+</pre>
+<pre class='stata'>. quietly logit happy_3_D coninc_3
+</pre>
+<pre class='stata'>. est store mylogit
+</pre>
+<pre class='stata'>. est table myprobit mylogit
+
+─────────────┬──────────────────────────
+    Variable │  myprobit     mylogit    
+─────────────┼──────────────────────────
+    coninc_3 │  6.430e-06    .00001343  
+       _cons │  .92440857    1.4840659  
+─────────────┴──────────────────────────
+</pre>
+<h1 id="logistic-model-2">Logistic Model (2)</h1>
+<blockquote>
+<p>Derivation of logistic model from linear probability model. Using instructor notes</p>
+</blockquote>
+<h1 id="interpretation-of-odds-ratios-robert-mare">Interpretation of Odds Ratios (Robert Mare)</h1>
+<p><span class="math display">\[
+    0 &lt; OR &lt; 1    
+\]</span></p>
+<blockquote>
+<p>indicates that an increase in x is associated with a decrease in y.</p>
+</blockquote>
+<p><span class="math display">\[ 
+    1 &lt; OR &lt; \infty 
+\]</span></p>
+<blockquote>
+<p>indicates that an increase in x is associated with an increase in y.</p>
+</blockquote>
+<h1 id="a-poem-about-logistic-regression">A Poem About Logistic Regression</h1>
+<h1 id="complete-determination">Complete Determination</h1>
+<p>See handout</p>
+<h1 id="rare-events">Rare Events</h1>
+<ul>
+<li>Statistical power</li>
+<li>Complete determination</li>
+</ul>
+<h1 id="predicted-probabilities">Predicted Probabilities</h1>
+<p>Discussion</p>
+<h1 id="the-general-linear-model">The General Linear Model</h1>
+<h1 id="interaction-terms">Interaction Terms</h1>
+<p>See interactive demo, or example script.</p>
+<p>https://agrogan1.github.io/multilevel/logistic-interactions/logistic-interactions.html</p>
 </body>
 </html>

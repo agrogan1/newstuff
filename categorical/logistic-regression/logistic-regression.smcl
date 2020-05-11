@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 9 May 2020, 17:40:45
+ {txt}opened on:  {res}10 May 2020, 21:58:47
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 9 May 2020
+{res}10 May 2020
 {txt}
 {com}. //_2
 . display "$S_TIME  $S_DATE"
-{res}17:40:45   9 May 2020
+{res}21:58:47  10 May 2020
 {txt}
 {com}. //_3
 . use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w123_R6 - stata.dta", clear 
@@ -58,13 +58,20 @@
         Total {c |}{res}       153      1,149 {txt}{c |}{res}     1,302 
 {txt}
 {com}. //_7
+. keep happy_3 happy_3_D coninc_3 // keep only some variables
+{txt}
+{com}. //_8
+. save GSSsmall.dta, replace
+{txt}file GSSsmall.dta saved
+
+{com}. //_9
 . twoway scatter happy_3_D coninc_3, scheme(burd) jitter(5)
 {res}{txt}
-{com}. //_8
+{com}. //_10
 . graph export happiness-income.png, width(500) replace
 {txt}(file happiness-income.png written in PNG format)
 
-{com}. //_9
+{com}. //_11
 . regress happy_3_D coninc_3
 
 {txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,223
@@ -81,38 +88,136 @@
 {txt}{space 7}_cons {c |}{col 14}{res}{space 2} .8368664{col 26}{space 2} .0137133{col 37}{space 1}   61.03{col 46}{space 3}0.000{col 54}{space 4} .8099621{col 67}{space 3} .8637706
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
-{com}. //_10
+{com}. //_12
 . clear all
 {res}{txt}
-{com}. //_11
+{com}. //_13
 . set obs 100 // 100 observations
 {txt}{p}
 number of observations (_N)  was 0,
 now 100
 {p_end}
 
-{com}. //_12
+{com}. //_14
 . generate z = runiform(-5, 5) // randomly distributed z scores
 {txt}
-{com}. //_13
+{com}. //_15
 . generate mynormaldensities = normalden(z) // normal densities
 {txt}
-{com}. //_14
+{com}. //_16
 . generate myprobabilities = normal(z) // cumulative normal probabilities
 {txt}
-{com}. //_15
+{com}. //_17
 . twoway scatter mynormaldensities myprobabilities z, scheme(michigan)
 {res}{txt}
-{com}. //_16
+{com}. //_18
 . graph export normal.png, width(500) replace
 {txt}(file normal.png written in PNG format)
 
+{com}. //_19
+. use GSSsmall.dta, clear
+{txt}( )
+
+{com}. //_20
+. probit happy_3_D coninc_3
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-433.05123}  
+Iteration 1:{space 3}log likelihood = {res:-419.92819}  
+Iteration 2:{space 3}log likelihood = {res:-419.73499}  
+Iteration 3:{space 3}log likelihood = {res:-419.73484}  
+Iteration 4:{space 3}log likelihood = {res:-419.73484}  
+{res}
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}     1,223
+{txt}{col 49}LR chi2({res}1{txt}){col 67}= {res}     26.63
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-419.73484{txt}{col 49}Pseudo R2{col 67}= {res}    0.0308
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   happy_3_D{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}coninc_3 {c |}{col 14}{res}{space 2} 6.43e-06{col 26}{space 2} 1.35e-06{col 37}{space 1}    4.76{col 46}{space 3}0.000{col 54}{space 4} 3.78e-06{col 67}{space 3} 9.08e-06
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .9244086{col 26}{space 2} .0721521{col 37}{space 1}   12.81{col 46}{space 3}0.000{col 54}{space 4} .7829931{col 67}{space 3} 1.065824
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_21
+. clear all
+{res}{txt}
+{com}. //_22
+. set obs 100 // 100 observations
+{txt}{p}
+number of observations (_N)  was 0,
+now 100
+{p_end}
+
+{com}. //_23
+. generate z = runiform(-5, 5) // randomly distributed z scores
+{txt}
+{com}. //_24
+. generate mylogisticdensities = logisticden(z) // logistic densities
+{txt}
+{com}. //_25
+. generate mylogisticprobabilities = logistic(z) // cumulative logistic probabilities
+{txt}
+{com}. //_26
+. twoway scatter mylogisticdensities mylogisticprobabilities z, scheme(michigan)
+{res}{txt}
+{com}. //_27
+. graph export logistic.png, width(500) replace
+{txt}(file logistic.png written in PNG format)
+
+{com}. //_28
+. use GSSsmall.dta, clear
+{txt}( )
+
+{com}. //_29
+. logit happy_3_D coninc_3
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-433.05123}  
+Iteration 1:{space 3}log likelihood = {res:-420.07608}  
+Iteration 2:{space 3}log likelihood = {res:-419.28644}  
+Iteration 3:{space 3}log likelihood = {res:-419.28513}  
+Iteration 4:{space 3}log likelihood = {res:-419.28513}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     1,223
+{txt}{col 49}LR chi2({res}1{txt}){col 67}= {res}     27.53
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-419.28513{txt}{col 49}Pseudo R2{col 67}= {res}    0.0318
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   happy_3_D{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}coninc_3 {c |}{col 14}{res}{space 2} .0000134{col 26}{space 2} 2.93e-06{col 37}{space 1}    4.58{col 46}{space 3}0.000{col 54}{space 4} 7.68e-06{col 67}{space 3} .0000192
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.484066{col 26}{space 2} .1381599{col 37}{space 1}   10.74{col 46}{space 3}0.000{col 54}{space 4} 1.213277{col 67}{space 3} 1.754854
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_30
+. quietly probit happy_3_D coninc_3
+{txt}
+{com}. //_31
+. est store myprobit
+{txt}
+{com}. //_32
+. quietly logit happy_3_D coninc_3
+{txt}
+{com}. //_33
+. est store mylogit
+{txt}
+{com}. //_34
+. est table myprobit mylogit
+{res}
+{txt}{hline 12}{c -}{c TT}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{ralign 12:Variable} {c |} {center 10:myprobit} {space 1} {center 10:mylogit} {space 1}
+{hline 12}{c -}{c +}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{res}{txt}{space 4}coninc_3 {c |}{res} {ralign 10:6.430e-06}{txt} {space 1}{res} {ralign 10:.00001343}{txt} {space 1}
+{res}{txt}{space 7}_cons {c |}{res} {ralign 10:.92440857}{txt} {space 1}{res} {ralign 10:1.4840659}{txt} {space 1}
+{res}{txt}{hline 12}{c -}{c BT}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{res}{txt}
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 9 May 2020, 17:40:48
+ {txt}closed on:  {res}10 May 2020, 21:58:53
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

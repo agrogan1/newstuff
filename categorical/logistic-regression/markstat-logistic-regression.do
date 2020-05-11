@@ -18,7 +18,7 @@ markstat using logistic-regression.stmd, pdf // PDF
 
 graph close _all
 
-markstat using logistic-regression.stmd, beamer keep(tex) // Beamer
+markstat using logistic-regression.stmd, beamer keep(tex md) // Beamer
 
 graph close _all
 
@@ -30,4 +30,7 @@ graph close _all
 
 * cd /Applications/RStudio.app/Contents/MacOS/pandoc
 
-* ./pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" "/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.html" -o "/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression-slidy.html" 
+* ./pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" "/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.md" -o "/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression-slidy.html" 
+
+* ./pandoc -t beamer --pdf-engine=xelatex "/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.html" -o "/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression-beamer.pdf"
+

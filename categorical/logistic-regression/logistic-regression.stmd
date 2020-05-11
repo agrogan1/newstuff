@@ -44,6 +44,10 @@
 
 	tabulate happy_3 happy_3_D // double check
 	
+	keep happy_3 happy_3_D coninc_3 // keep only some variables
+	
+	save GSSsmall.dta, replace
+	
 # Visualize	
 
 	twoway scatter happy_3_D coninc_3, scheme(burd) jitter(5)
@@ -51,7 +55,6 @@
     graph export happiness-income.png, width(500) replace
 	
 ![Happiness and Income](happiness-income.png)
-
 
 # Linear Probability Model
 
@@ -75,6 +78,89 @@
 	
 ![Standard and Cumulative Normal Curves](normal.png)
 
+# The Probit Model
+
+    use GSSsmall.dta, clear
+
+    probit happy_3_D coninc_3
 	
+# The Logistic Distribution
+
+    clear all
 	
+	set obs 100 // 100 observations
 	
+	generate z = runiform(-5, 5) // randomly distributed z scores
+
+    generate mylogisticdensities = logisticden(z) // logistic densities
+	
+	generate mylogisticprobabilities = logistic(z) // cumulative logistic probabilities
+	
+	twoway scatter mylogisticdensities mylogisticprobabilities z, scheme(michigan)
+	
+	graph export logistic.png, width(500) replace
+	
+![Standard and Cumulative Logistic Curves](logistic.png)
+
+# The Logit (Logistic) Model
+
+    use GSSsmall.dta, clear
+
+    logit happy_3_D coninc_3
+
+# Comparison of LPM, Probit and Logistic Coefficients
+
+NB: Negative vs. positive $\beta$.
+
+    quietly probit happy_3_D coninc_3
+	
+	est store myprobit
+
+    quietly logit happy_3_D coninc_3
+	
+	est store mylogit
+	
+	est table myprobit mylogit
+
+# Logistic Model (2)
+
+> Derivation of logistic model from linear probability model. Using instructor notes
+	
+# Interpretation of Odds Ratios (Robert Mare)
+
+$$
+    0 < OR < 1	
+$$ 
+
+> indicates that an increase in x is associated with a decrease in y.
+
+$$ 
+    1 < OR < \infty 
+$$
+
+> indicates that an increase in x is associated with an increase in y.
+
+# A Poem About Logistic Regression
+
+# Complete Determination
+
+See handout
+
+# Rare Events
+
+* Statistical power
+* Complete determination
+
+# Predicted Probabilities
+
+Discussion
+
+# The General Linear Model
+
+# Interaction Terms
+
+See interactive demo, or example script.
+
+https://agrogan1.github.io/multilevel/logistic-interactions/logistic-interactions.html
+
+
