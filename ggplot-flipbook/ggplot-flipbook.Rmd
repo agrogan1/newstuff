@@ -1,6 +1,6 @@
 ---
 title: "ggplot flipbook"
-subtitle: "Based Upon *2 Page ggplot*"
+subtitle: "Use <span style='font-size:50px'>&#8678;</span> and <span style='font-size:50px'>&#8680;</span> to navigate."
 author: "Andy Grogan-Kaylor"
 date: '`r Sys.Date()`'
 output:
