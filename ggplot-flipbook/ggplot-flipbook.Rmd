@@ -125,14 +125,12 @@ class: animated, slideInRight
 
 ```{r graph2, include=FALSE}
 
-ggplot(mydata, # data 
-       aes(x = group,
-           fill = group)) + # variable
-  geom_bar() # geometry
-
-# notice how the use of 
-# `fill` in the aesthetic
-# generates a legend
+ggplot(mydata, # data
+       aes(
+         x = group, 
+         fill = group #BREAK2
+       )) + 
+  geom_bar() # geometry  
 
 ```
 
@@ -141,7 +139,7 @@ ggplot(mydata, # data
 ```{r, code = knitr::knit_code$get("graph2"), eval = FALSE, echo = FALSE}
 ```
 
-`r chunk_reveal("graph2", break_type = "auto")`
+`r chunk_reveal("graph2", break_type = "non_seq")`
 
 ---
 class: animated, slideInRight
@@ -151,15 +149,12 @@ class: animated, slideInRight
 ```{r graph3, include=FALSE}
 
 ggplot(mydata, # data
-       aes(x = predictor, # variables
-           y = outcome, 
-           color = group)) + 
-  geom_point() + # 1st geometry
-  geom_smooth() # 2nd geometry
-
-# notice how the use of 
-# `color` in the aesthetic 
-# generates a legend
+       aes(
+         x = predictor, # variables
+         y = outcome, 
+         color = group #BREAK2
+       )) + 
+  geom_point() # geometry
 
 ```
 
@@ -168,12 +163,12 @@ ggplot(mydata, # data
 ```{r, code = knitr::knit_code$get("graph3"), eval = FALSE, echo = FALSE}
 ```
 
-`r chunk_reveal("graph3", break_type = "auto")`
+`r chunk_reveal("graph3", break_type = "non_seq")`
 
 ---
 class: animated, slideInRight
 
-# Add Some Options
+# Build A Graph With Many Parts
 
 ```{r graph4, include=FALSE}
 
@@ -184,9 +179,10 @@ ggplot(mydata, # data
   geom_point() + # 1st geometry
   geom_smooth() + # 2nd geometry
   labs(title = "My Title", # title
+       caption = "Colors Inspired by UNICEF", # subtitle
        x = "Predictor", # x title
        y = "Outcome") + # y title
-  # manual colors
+  # manual colors 
   scale_colour_manual(name = "Group", 
                       values = 
                         c("#FF0099", 

@@ -195,53 +195,35 @@ count: false
 .column[.content[
 
 ```r
-*ggplot(mydata,  # data
-*      aes(x = group,
-*          fill = group))   # variable
-```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph2_auto_1_output-1.png" width="432" /&gt;
-]]
----
-class: split-40
-count: false
- 
-
- 
-.column[.content[
-
-```r
 ggplot(mydata,  # data
-       aes(x = group,  
-           fill = group)) +  # variable
-* geom_bar()  # geometry
-```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph2_auto_2_output-1.png" width="432" /&gt;
-]]
----
-class: split-40
-count: false
- 
-
- 
-.column[.content[
-
-```r
-ggplot(mydata,  # data
-       aes(x = group,  
-           fill = group)) +  # variable
+       aes(  
+         x = group,  
+       )) +  
   geom_bar()  # geometry
-
-# notice how the use of
-# `fill` in the aesthetic
-# generates a legend
 ```
 ]]
 .column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph2_auto_3_output-1.png" width="432" /&gt;
+&lt;img src="ggplot-flipbook_files/figure-html/graph2_non_seq_1_output-1.png" width="432" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+
+ 
+.column[.content[
+
+```r
+ggplot(mydata,  # data
+       aes(  
+         x = group,  
+*        fill = group
+       )) +  
+  geom_bar()  # geometry
+```
+]]
+.column[.content[
+&lt;img src="ggplot-flipbook_files/figure-html/graph2_non_seq_2_output-1.png" width="432" /&gt;
 ]]
 
 ---
@@ -263,14 +245,16 @@ count: false
 .column[.content[
 
 ```r
-*ggplot(mydata,  # data
-*      aes(x = predictor,  # variables
-*          y = outcome,
-*          color = group))
+ggplot(mydata,  # data
+       aes(  
+         x = predictor,  # variables
+         y = outcome,  
+       )) +  
+  geom_point()  # geometry
 ```
 ]]
 .column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph3_auto_1_output-1.png" width="432" /&gt;
+&lt;img src="ggplot-flipbook_files/figure-html/graph3_non_seq_1_output-1.png" width="432" /&gt;
 ]]
 ---
 class: split-40
@@ -282,64 +266,22 @@ count: false
 
 ```r
 ggplot(mydata,  # data
-       aes(x = predictor,  # variables
-           y = outcome,  
-           color = group)) +  
-* geom_point()   # 1st geometry
+       aes(  
+         x = predictor,  # variables
+         y = outcome,  
+*        color = group
+       )) +  
+  geom_point()  # geometry
 ```
 ]]
 .column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph3_auto_2_output-1.png" width="432" /&gt;
-]]
----
-class: split-40
-count: false
- 
-
- 
-.column[.content[
-
-```r
-ggplot(mydata,  # data
-       aes(x = predictor,  # variables
-           y = outcome,  
-           color = group)) +  
-  geom_point() +  # 1st geometry
-* geom_smooth()  # 2nd geometry
-```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph3_auto_3_output-1.png" width="432" /&gt;
-]]
----
-class: split-40
-count: false
- 
-
- 
-.column[.content[
-
-```r
-ggplot(mydata,  # data
-       aes(x = predictor,  # variables
-           y = outcome,  
-           color = group)) +  
-  geom_point() +  # 1st geometry
-  geom_smooth()  # 2nd geometry
-
-# notice how the use of
-# `color` in the aesthetic
-# generates a legend
-```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph3_auto_4_output-1.png" width="432" /&gt;
+&lt;img src="ggplot-flipbook_files/figure-html/graph3_non_seq_2_output-1.png" width="432" /&gt;
 ]]
 
 ---
 class: animated, slideInRight
 
-# Add Some Options
+# Build A Graph With Many Parts
 
 
 
@@ -419,6 +361,7 @@ ggplot(mydata,  # data
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
 * labs(title = "My Title",  # title
+*      caption = "Colors Inspired by UNICEF",  # subtitle
 *      x = "Predictor",  # x title
 *      y = "Outcome")   # y title
 ```
@@ -442,6 +385,7 @@ ggplot(mydata,  # data
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
   labs(title = "My Title",  # title
+       caption = "Colors Inspired by UNICEF",  # subtitle
        x = "Predictor",  # x title
        y = "Outcome") +  # y title
 # manual colors
@@ -473,6 +417,7 @@ ggplot(mydata,  # data
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
   labs(title = "My Title",  # title
+       caption = "Colors Inspired by UNICEF",  # subtitle
        x = "Predictor",  # x title
        y = "Outcome") +  # y title
 # manual colors
@@ -505,6 +450,7 @@ ggplot(mydata,  # data
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
   labs(title = "My Title",  # title
+       caption = "Colors Inspired by UNICEF",  # subtitle
        x = "Predictor",  # x title
        y = "Outcome") +  # y title
 # manual colors
@@ -541,6 +487,7 @@ ggplot(mydata,  # data
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
   labs(title = "My Title",  # title
+       caption = "Colors Inspired by UNICEF",  # subtitle
        x = "Predictor",  # x title
        y = "Outcome") +  # y title
 # manual colors
