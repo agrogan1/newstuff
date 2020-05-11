@@ -2,9 +2,9 @@
 % Andy Grogan-Kaylor
 % `s c(current_date)`
 
-# Last Updated
-
-    display "$S_TIME  $S_DATE"
+---
+geometry: margin=1 in
+---
 
 # Key Concepts and Commands
 

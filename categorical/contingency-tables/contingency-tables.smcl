@@ -3,55 +3,51 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 9 May 2020, 16:12:54
+ {txt}opened on:  {res}11 May 2020, 17:57:40
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 9 May 2020
+{res}11 May 2020
 {txt}
 {com}. //_2
-. display "$S_TIME  $S_DATE"
-{res}16:12:54   9 May 2020
-{txt}
-{com}. //_3
 . clear all
 {res}{txt}
-{com}. //_4
+{com}. //_3
 . set seed 3846
 {txt}
-{com}. //_5
+{com}. //_4
 . label define nickel ///
 > 1 "heads for nickel" /// 
 > 0 "tails for nickel" // define value label
 {txt}
-{com}. //_6
+{com}. //_5
 . label define quarter /// 
 > 1 "heads for quarter" /// 
 > 0 "tails for quarter" // define value label
 {txt}
-{com}. //_7
+{com}. //_6
 . set obs 1000 // 1000 observations
 {txt}{p}
 number of observations (_N)  was 0,
 now 1,000
 {p_end}
 
-{com}. //_8
+{com}. //_7
 . * curiously it takes around 1000 obs for the proportions
 . * below to "take hold"
-. //_9
+. //_8
 . generate nickel = rbinomial(1, .75) // unfair nickel
 {txt}
-{com}. //_10
+{com}. //_9
 . generate quarter = rbinomial(1, .5) // fair quarter
 {txt}
-{com}. //_11
+{com}. //_10
 . label values nickel nickel // assign value label
 {txt}
-{com}. //_12
+{com}. //_11
 . label values quarter quarter // assign value label
 {txt}
-{com}. //_13
+{com}. //_12
 . tabulate nickel quarter, row col
 {txt}
 {c TLC}{hline 19}{c TRC}
@@ -77,51 +73,51 @@ heads for nickel {c |}{res}       377        379 {txt}{c |}{res}       756
                  {txt}{c |}{res}     48.10      51.90 {txt}{c |}{res}    100.00 
                  {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
 {txt}
-{com}. //_14
+{com}. //_13
 . * ssc install spineplot // mosaicplots (spineplots)
-. //_15
+. //_14
 . * ssc install scheme-burd, replace // BuRd graph scheme
-. //_16
+. //_15
 . spineplot nickel quarter, scheme(burd)
 {res}{txt}
-{com}. //_17
+{com}. //_16
 . graph export nickel-quarter.png, width(500) replace
 {txt}(file nickel-quarter.png written in PNG format)
 
-{com}. //_18
+{com}. //_17
 . graph bar, over(quarter) over(nickel) scheme(burd)
 {res}{txt}
-{com}. //_19
+{com}. //_18
 . graph export nickel-quarter-bar1.png, width(500) replace
 {txt}(file nickel-quarter-bar1.png written in PNG format)
 
-{com}. //_20
+{com}. //_19
 . graph bar, over(quarter) over(nickel) scheme(burd) asyvars
 {res}{txt}
-{com}. //_21
+{com}. //_20
 . graph export nickel-quarter-bar2.png, width(500) replace
 {txt}(file nickel-quarter-bar2.png written in PNG format)
 
-{com}. //_22
+{com}. //_21
 . graph hbar, over(quarter) over(nickel) scheme(burd) asyvars
 {res}{txt}
-{com}. //_23
+{com}. //_22
 . graph export nickel-quarter-bar3.png, width(500) replace
 {txt}(file nickel-quarter-bar3.png written in PNG format)
 
-{com}. //_24
+{com}. //_23
 . clear all
 {res}{txt}
-{com}. //_25
+{com}. //_24
 . matrix input FrenchSkiiers = (31, 109 \ 17, 122)
 {txt}
-{com}. //_26
+{com}. //_25
 . matrix rownames FrenchSkiiers = Placebo AscorbicAcid
 {txt}
-{com}. //_27
+{com}. //_26
 . matrix colnames FrenchSkiiers = Cold NoCold
 {txt}
-{com}. //_28
+{com}. //_27
 . matrix list FrenchSkiiers
 {res}
 {txt}FrenchSkiiers[2,2]
@@ -129,7 +125,7 @@ heads for nickel {c |}{res}       377        379 {txt}{c |}{res}       756
      Placebo {res}     31     109
 {txt}AscorbicAcid {res}     17     122
 {reset}
-{com}. //_29
+{com}. //_28
 . svmat FrenchSkiiers, name(count)
 {txt}number of observations will be reset to 2
 Press any key to continue, or Break to abort
@@ -138,7 +134,7 @@ number of observations (_N)  was 0,
 now 2
 {p_end}
 
-{com}. //_30
+{com}. //_29
 . list
 {txt}
      {c TLC}{hline 8}{c -}{hline 8}{c TRC}
@@ -148,10 +144,10 @@ now 2
   2. {c |} {res}    17      122 {txt}{c |}
      {c BLC}{hline 8}{c -}{hline 8}{c BRC}
 
-{com}. //_31
+{com}. //_30
 . use "FrenchSkiiers.dta", clear
 {txt}
-{com}. //_32
+{com}. //_31
 . list // list the data
 {txt}
      {c TLC}{hline 15}{c -}{hline 9}{c -}{hline 7}{c TRC}
@@ -163,45 +159,45 @@ now 2
   4. {c |} {res}      Placebo   No Cold     109 {txt}{c |}
      {c BLC}{hline 15}{c -}{hline 9}{c -}{hline 7}{c BRC}
 
-{com}. //_33
+{com}. //_32
 . spineplot Tx Outcome, scheme(burd)
 {res}{txt}
-{com}. //_34
+{com}. //_33
 . graph export FrenchSkiiers1.png, width(500) replace
 {txt}(file FrenchSkiiers1.png written in PNG format)
 
-{com}. //_35
+{com}. //_34
 . spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretability
 {res}{txt}
-{com}. //_36
+{com}. //_35
 . graph export FrenchSkiiers2.png, width(500) replace
 {txt}(file FrenchSkiiers2.png written in PNG format)
 
-{com}. //_37
+{com}. //_36
 . scalar N = 31 + 109 + 17 + 122
 {txt}
-{com}. //_38
+{com}. //_37
 . scalar A = ((31 + 17)*(31+109)) / N // expected count
 {txt}
-{com}. //_39
+{com}. //_38
 . scalar B = ((31+109)*(109+122)) / N // expected count
 {txt}
-{com}. //_40
+{com}. //_39
 . scalar C = ((31 + 17) * (17 + 122)) / N // expected count
 {txt}
-{com}. //_41
+{com}. //_40
 . scalar D = ((17 + 122) * (109 + 122)) / N // expected count
 {txt}
-{com}. //_42
+{com}. //_41
 . matrix FS = (A, B \ C, D) // matrix of expected values
 {txt}
-{com}. //_43
+{com}. //_42
 . matrix rownames FS = Placebo AscorbicAcid // rownames
 {txt}
-{com}. //_44
+{com}. //_43
 . matrix colnames FS = Cold NoCold // column names
 {txt}
-{com}. //_45
+{com}. //_44
 . matrix list FS
 {res}
 {txt}FS[2,2]
@@ -209,20 +205,20 @@ now 2
      Placebo {res} 24.086022  115.91398
 {txt}AscorbicAcid {res} 23.913978  115.08602
 {reset}
-{com}. //_46
+{com}. //_45
 . scalar chisquare = (31 - 24.086022)^2 / 24.086022 + /// 
 > (109 - 115.91398)^2 / 115.91398 + ///
 > (17 - 23.913978)^2 / 23.913978 + /// 
 > (122 - 115.08602)^2 / 115.08602
 {txt}
-{com}. //_47
+{com}. //_46
 . scalar list chisquare
 {txt} chisquare = {res} 4.8114124
 {txt}
-{com}. //_48
+{com}. //_47
 . use "FrenchSkiiers.dta", clear
 {txt}
-{com}. //_49
+{com}. //_48
 . tabulate Tx Outcome [fweight = Count], row col chi2
 {txt}
 {c TLC}{hline 19}{c TRC}
@@ -255,7 +251,7 @@ Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 9 May 2020, 16:13:05
+ {txt}closed on:  {res}11 May 2020, 17:57:50
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
