@@ -1,13 +1,13 @@
-@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 h1, h2, h3 {
-  font-family: 'Yanone Kaffeesatz';
+  font-family: 'Montserrat', sans-serif;
   font-weight: normal;
 }
 body { 
-  font-family: 'Droid Serif', 'Palatino Linotype', 'Book Antiqua', 'Palatino', 'Microsoft YaHei', 'Songti SC', serif; 
+  font-family: 'Montserrat', sans-serif;
 }
 .author, .date {
-  font-family: 'Yanone Kaffeesatz';
+  font-family: 'Montserrat', sans-serif;
   font-weight: normal;
 }
 slide.title-slide{
