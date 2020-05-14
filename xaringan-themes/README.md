@@ -12,4 +12,8 @@
 * Xaringan: [https://github.com/yihui/xaringan](https://github.com/yihui/xaringan)
 * Xaringan Themes: [https://github.com/yihui/xaringan/wiki/Themes](https://github.com/yihui/xaringan/wiki/Themes)
 
+### Example
+
+* My [ggplot flipbook](../ggplot-flipbook/ggplot-flipbook.html) uses the same CSS as this theme.
+
 > Possibly related, and possibly helpful, may be my R Package for [Michigan Colors in R Graphs](https://agrogan1.github.io/michigancolors/)
