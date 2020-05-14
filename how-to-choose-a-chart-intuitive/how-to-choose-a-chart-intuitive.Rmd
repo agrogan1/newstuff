@@ -195,6 +195,19 @@ mylongitudinal <- ggplot(mydata,
 
 ```{r}
 
+save(myhistogram, 
+     mycomparison,
+     mybar,
+     mycomparisonC,
+     mybeeswarm,
+     myscatterplot,
+     mylongitudinal,
+     file = "how-to-choose-a-chart.RData")
+
+```
+
+```{r}
+
 p0 <- myhistogram + mycomparison + mybeeswarm +
   mybar + mycomparisonC + mylongitudinal +
   plot_layout(ncol = 3, nrow = 2, widths = 1)
