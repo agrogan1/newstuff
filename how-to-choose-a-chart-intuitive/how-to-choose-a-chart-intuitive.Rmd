@@ -3,7 +3,6 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  bookdown::epub_book: default  
   bookdown::gitbook:
     split_by: none
     highlight: haddock
@@ -16,6 +15,7 @@ output:
   pdf_document: 
     fig_width: 10
     latex_engine: xelatex
+  bookdown::epub_book: default  
   html_document:
     fig_width: 10
     highlight: haddock
@@ -128,9 +128,8 @@ mycomparison <- myoutcome +
 mybar <- ggplot(data = mydata,
                 aes(x = group,
                     fill = group)) +
-  geom_bar() +
+  geom_bar(color = michigancolors("angell hall ash")) +
   scale_fill_manual(values = michigancolors()) +
-  scale_color_manual(values = michigancolors("angell hall ash")) +
   labs(title = "How Many People Are In Each Group?",
        subtitle = "Bar Chart") +
   theme(legend.position = "none",
@@ -139,11 +138,10 @@ mybar <- ggplot(data = mydata,
 mycomparisonC <- ggplot(data = mydata,
                         aes(x = outcomeC,
                             fill = group)) +
-  geom_bar() + 
+  geom_bar(color = michigancolors("angell hall ash")) + 
   facet_wrap(~group,
              ncol = 2) +
   scale_fill_manual(values = michigancolors()) +
-  scale_color_manual(values = michigancolors("angell hall ash")) +
   labs(title = "How Many People Experience Each Outcome?",
        subtitle = "Bar Chart With Comparison",
        x = "") +
@@ -196,23 +194,6 @@ mylongitudinal <- ggplot(mydata,
 ```
 
 ```{r}
-
-# layout <- c(
-#   area(1, 1, 1, 1),
-#   area(1, 2, 1, 2),
-#   area(1, 3, 1, 3), 
-#   area(3, 1, 3, 2)
-# )
-# 
-# plot(layout)
-# 
-# p1 <- myhistogram + 
-#   mycomparison + 
-#   mybeeswarm + 
-#   myscatterplot +
-#   plot_layout(design = layout)
-# 
-# p1
 
 p0 <- myhistogram + mycomparison + mybeeswarm +
   mybar + mycomparisonC + mylongitudinal +
