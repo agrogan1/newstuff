@@ -47,14 +47,35 @@ $y(\text{3 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...$
 
 # Thinking About Your Data and Data Wrangling
 
-> It is always good to think about your data and what the values of different variables represent. In Stata, however, there is very little additional data wrangling to prepare the data. In R, there is considerable data wrangling since we have to employ special commands to work with *variable* and *value* labels and to ensure that *numeric* variables are recoded as *factors*. In Stata there are no such issues!!! <span style="font-size:50px">&#128540;</span>
+> It is always good to think about your data and what the values of different variables represent. In Stata, however, there is very little additional data wrangling to prepare the data. In R, there is considerable data wrangling since we have to employ special commands just to get *variable* and *value* labels, and to ensure that *numeric* *dependent* variables are recoded as *factors*. In Stata there are no such issues!!! 
+
+# Descriptive Statistics
+
+	summarize 
+	
+	tabulate degree
+	
+# The Ordinal Model (*k categories*)
+
+$$
+    ln(\frac{p(y \le k)}{p(y > k)}) = \beta_0 + \beta_1 x + ... 
+$$
+	
+# Ordinal Regression
+
+    ologit degree sex age paeduc maeduc
+	
+> Many commands for regression of categorical dependent variables in R do not provide p values, and an extra step has to be taken to get p values. This is *not* a problem in Stata!
+	
+# Exponentiating Coefficients: $e^\beta$
+
+    ologit degree sex age paeduc maeduc, or
+	
+# The Proportional Odds Assumption
 
 
 
 	
 	
-	
-
-
 
 

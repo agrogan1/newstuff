@@ -1,46 +1,11 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<style>
-/* CSS for Markstat 2.0 using Pandoc 2.0 */
-body{padding:14px 28px;}
-body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
-h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
-h1 {font-size: 200%;}
-h2 {font-size: 150%;}
-h3 {font-size: 120%;}
-h4 {font-size: 100%; font-weight:bold}
-img.center {display:block; margin-left:auto; margin-right:auto}
-.small{font-size:8pt;}
-a {color: black;}
-a:visited {color: #808080;}
-a.plain {text-decoration:none;}
-a.plain:hover {text-decoration:underline;}
-.em {font-weight:bold;}
-pre, code {font-family: "lucida console", monospace;}
-pre.stata {font-size:13px; line-height:13px;}
-pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
-code {color:#3366cc; background-color:#fafafa;}
-pre code { color:black; background-color:white}
-/* Added for Pandoc */
-figure > img, div.figure > img {display:block; margin:auto}
-figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
-h1.title {text-align:center; margin-bottom:0}
-p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
-p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
-/* Tables*/
-table { margin:auto; border-collapse:collapse; }
-table caption { margin-bottom:1ex;}
-th, td { padding:4px 6px;}
-thead tr:first-child th {border-top:1px solid black; padding-top:6px}
-thead tr:last-child  th {padding-bottom:6px}
-tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
-tbody tr:last-child  td {padding-bottom:6px;}
-table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
-</style>
-  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>Ordinal and Multinomial Logistic Regression</title>
   <style type="text/css">
@@ -49,54 +14,64 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../UMslidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+    <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 </head>
 <body>
-<header id="title-block-header">
-<h1 class="title">Ordinal and Multinomial Logistic Regression</h1>
-<p class="author">Andy Grogan-Kaylor</p>
-<p class="date">14 May 2020</p>
-</header>
-<h1 id="meta-background">Meta-Background</h1>
-<figure>
-<img src="twitter-ordinal-annotated.PNG" alt="Tweet About Ordinal Models" style="width:20.0%" /><figcaption>Tweet About Ordinal Models</figcaption>
-</figure>
-<h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
-<ul>
+<div class="slide titlepage">
+  <h1 class="title">Ordinal and Multinomial Logistic Regression</h1>
+  <p class="author">
+Andy Grogan-Kaylor
+  </p>
+</div>
+<div class="slide section level1">
+
+<p>Andy Grogan-Kaylor</p>
+<p>14 May 2020</p>
+</div>
+<div id="meta-background" class="slide section level1">
+<h1>Meta-Background</h1>
+<div class="figure">
+<img src="twitter-ordinal-annotated.PNG" alt="Tweet About Ordinal Models" />
+<p class="caption">Tweet About Ordinal Models</p>
+</div>
+</div>
+<div id="key-concepts-and-commands" class="slide section level1">
+<h1>Key Concepts and Commands</h1>
+<ul class="incremental">
 <li>Implementations differ; formulas are our friends</li>
 <li>Extensions to logistic model: ordinal and multinomial logit</li>
 </ul>
-<p><span class="math display">\[
-    F(y) = \beta_0 + \beta x_1 + \beta x_2 + ...
-\]</span></p>
-<ul>
+<p><span class="math display">\[ F(y) = \beta_0 + \beta x_1 + \beta x_2 + ... \]</span></p>
+<ul class="incremental">
 <li>Ordinal model</li>
 </ul>
 <p><span class="math inline">\(y(\text{1, 2, 3, etc.}) = \beta_0 + \beta x_1 + \beta x_2 + ...\)</span></p>
-<ul>
+<ul class="incremental">
 <li>Multinomial model</li>
 </ul>
 <p><span class="math inline">\(y(\text{2 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...\)</span></p>
 <p><span class="math inline">\(y(\text{3 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...\)</span></p>
-<ul>
+<ul class="incremental">
 <li>Think about OR’s, predicted probabilities, non-linearity</li>
 </ul>
-<h1 id="get-the-data-general-social-survey">Get The Data (General Social Survey)</h1>
-<pre class='stata'>. clear all
-</pre>
-<pre class='stata'>. set maxvar 10000 // increase number of allowable variables
-</pre>
-<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
-</pre>
-<pre class='stata'>. keep sex maeduc paeduc age degree
-</pre>
-<pre class='stata'>. save GSSsmall.dta, replace
-file GSSsmall.dta saved
-</pre>
-<pre class='stata'>. describe // describe the data
+</div>
+<div id="get-the-data-general-social-survey" class="slide section level1">
+<h1>Get The Data (General Social Survey)</h1>
+<pre class="stata"><code>. clear all</code></pre>
+<pre class="stata"><code>. set maxvar 10000 // increase number of allowable variables</code></pre>
+<pre class="stata"><code>. use &quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA&quot;, clear</code></pre>
+<pre class="stata"><code>. keep sex maeduc paeduc age degree</code></pre>
+<pre class="stata"><code>. save GSSsmall.dta, replace
+file GSSsmall.dta saved</code></pre>
+<pre class="stata"><code>. describe // describe the data
 
 Contains data from GSSsmall.dta
   obs:        64,814                          
@@ -109,17 +84,20 @@ variable name   type    format     label      variable label
 age             byte    %8.0g      AGE        age of respondent
 paeduc          byte    %8.0g      LABK       highest year school completed, father
 maeduc          byte    %8.0g      LABK       highest year school completed, mother
-degree          byte    %8.0g      LABL       r's highest degree
+degree          byte    %8.0g      LABL       r&#39;s highest degree
 sex             byte    %8.0g      SEX        respondents sex
 ───────────────────────────────────────────────────────────────────────────────────────────────
-Sorted by: 
-</pre>
-<h1 id="thinking-about-your-data-and-data-wrangling">Thinking About Your Data and Data Wrangling</h1>
+Sorted by: </code></pre>
+</div>
+<div id="thinking-about-your-data-and-data-wrangling" class="slide section level1">
+<h1>Thinking About Your Data and Data Wrangling</h1>
 <blockquote>
 <p>It is always good to think about your data and what the values of different variables represent. In Stata, however, there is very little additional data wrangling to prepare the data. In R, there is considerable data wrangling since we have to employ special commands just to get <em>variable</em> and <em>value</em> labels, and to ensure that <em>numeric</em> <em>dependent</em> variables are recoded as <em>factors</em>. In Stata there are no such issues!!!</p>
 </blockquote>
-<h1 id="descriptive-statistics">Descriptive Statistics</h1>
-<pre class='stata'>. summarize 
+</div>
+<div id="descriptive-statistics" class="slide section level1">
+<h1>Descriptive Statistics</h1>
+<pre class="stata"><code>. summarize 
 
     Variable │        Obs        Mean    Std. Dev.       Min        Max
 ─────────────┼─────────────────────────────────────────────────────────
@@ -127,11 +105,10 @@ Sorted by:
       paeduc │     45,837    10.71026    4.342689          0         20
       maeduc │     53,870    10.85365    3.768792          0         20
       degree │     64,641     1.35858    1.175289          0          4
-         sex │     64,814    1.558521    .4965673          1          2
-</pre>
-<pre class='stata'>. tabulate degree
+         sex │     64,814    1.558521    .4965673          1          2</code></pre>
+<pre class="stata"><code>. tabulate degree
 
-   r's highest │
+   r&#39;s highest │
         degree │      Freq.     Percent        Cum.
 ───────────────┼───────────────────────────────────
 lt high school │     13,587       21.02       21.02
@@ -140,14 +117,15 @@ junior college │      3,668        5.67       78.05
       bachelor │      9,475       14.66       92.70
       graduate │      4,716        7.30      100.00
 ───────────────┼───────────────────────────────────
-         Total │     64,641      100.00
-</pre>
-<h1 id="the-ordinal-model-k-categories">The Ordinal Model (<em>k categories</em>)</h1>
-<p><span class="math display">\[
-    ln(\frac{p(y \le k)}{p(y &gt; k)}) = \beta_0 + \beta_1 x + ... 
-\]</span></p>
-<h1 id="ordinal-regression">Ordinal Regression</h1>
-<pre class='stata'>. ologit degree sex age paeduc maeduc
+         Total │     64,641      100.00</code></pre>
+</div>
+<div id="the-ordinal-model-k-categories" class="slide section level1">
+<h1>The Ordinal Model (<em>k categories</em>)</h1>
+<p><span class="math display">\[ ln(\frac{p(y \le k)}{p(y &gt; k)}) = \beta_0 + \beta_1 x + ... \]</span></p>
+</div>
+<div id="ordinal-regression" class="slide section level1">
+<h1>Ordinal Regression</h1>
+<pre class="stata"><code>. ologit degree sex age paeduc maeduc
 
 Iteration 0:   log likelihood = -56160.846  
 Iteration 1:   log likelihood = -50678.236  
@@ -157,11 +135,11 @@ Iteration 4:   log likelihood = -50452.782
 
 Ordered logistic regression                     Number of obs     =     42,583
                                                 LR chi2(4)        =   11416.13
-                                                Prob > chi2       =     0.0000
+                                                Prob &gt; chi2       =     0.0000
 Log likelihood = -50452.782                     Pseudo R2         =     0.1016
 
 ─────────────┬────────────────────────────────────────────────────────────────
-      degree │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+      degree │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
          sex │  -.0756255   .0188243    -4.02   0.000    -.1125204   -.0387307
          age │   .0124686   .0006014    20.73   0.000     .0112899    .0136474
@@ -172,13 +150,14 @@ Log likelihood = -50452.782                     Pseudo R2         =     0.1016
        /cut2 │   4.710994     .06085                       4.59173    4.830258
        /cut3 │   5.061419   .0614286                      4.941021    5.181817
        /cut4 │   6.542017   .0645181                      6.415564     6.66847
-─────────────┴────────────────────────────────────────────────────────────────
-</pre>
+─────────────┴────────────────────────────────────────────────────────────────</code></pre>
 <blockquote>
 <p>Many commands for regression of categorical dependent variables in R do not provide p values, and an extra step has to be taken to get p values. This is <em>not</em> a problem in Stata!</p>
 </blockquote>
-<h1 id="exponentiating-coefficients-ebeta">Exponentiating Coefficients: <span class="math inline">\(e^\beta\)</span></h1>
-<pre class='stata'>. ologit degree sex age paeduc maeduc, or
+</div>
+<div id="exponentiating-coefficients-ebeta" class="slide section level1">
+<h1>Exponentiating Coefficients: <span class="math inline">\(e^\beta\)</span></h1>
+<pre class="stata"><code>. ologit degree sex age paeduc maeduc, or
 
 Iteration 0:   log likelihood = -56160.846  
 Iteration 1:   log likelihood = -50678.236  
@@ -188,11 +167,11 @@ Iteration 4:   log likelihood = -50452.782
 
 Ordered logistic regression                     Number of obs     =     42,583
                                                 LR chi2(4)        =   11416.13
-                                                Prob > chi2       =     0.0000
+                                                Prob &gt; chi2       =     0.0000
 Log likelihood = -50452.782                     Pseudo R2         =     0.1016
 
 ─────────────┬────────────────────────────────────────────────────────────────
-      degree │ Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+      degree │ Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
          sex │   .9271633   .0174532    -4.02   0.000     .8935791    .9620098
          age │   1.012547    .000609    20.73   0.000     1.011354    1.013741
@@ -204,8 +183,10 @@ Log likelihood = -50452.782                     Pseudo R2         =     0.1016
        /cut3 │   5.061419   .0614286                      4.941021    5.181817
        /cut4 │   6.542017   .0645181                      6.415564     6.66847
 ─────────────┴────────────────────────────────────────────────────────────────
-Note: Estimates are transformed only in the first equation.
-</pre>
-<h1 id="the-proportional-odds-assumption">The Proportional Odds Assumption</h1>
+Note: Estimates are transformed only in the first equation.</code></pre>
+</div>
+<div id="the-proportional-odds-assumption" class="slide section level1">
+<h1>The Proportional Odds Assumption</h1>
+</div>
 </body>
 </html>
