@@ -65,7 +65,7 @@ $$
 
     ologit degree sex age paeduc maeduc
 	
-> Many commands for regression of categorical dependent variables in R do not provide p values, and an extra step has to be taken to get p values. This is *not* a problem in Stata!
+> Many commands for regression of categorical dependent variables in R *do not provide p values*, and an extra step has to be taken to get p values. This is *not* a problem in Stata!
 	
 # Exponentiating Coefficients: $e^\beta$
 
@@ -73,9 +73,36 @@ $$
 	
 # The Proportional Odds Assumption
 
+# The Brant Test
 
+# The Multinomial Model
 
+$$
+    ln(\frac{P(y = y_2)}{P(y = y_1)}) = ln(\frac{P(y = \text{something else})}{P(y = \text{something})})
+$$ 
+
+$$
+    = \beta_0 + \beta_1 + ...
+$$
+
+$$
+    ln(\frac{P(y = y_3)}{P(y = y_1)}) = ln(\frac{P(y = \text{something else altogether})}{P(y = \text{something})})
+$$ 
+
+$$
+    = \beta_0 + \beta_1 + ...
+$$
+
+# Estimation
+
+    mlogit degree sex age paeduc maeduc
+
+# Exponentiating Coefficients
+
+    mlogit, rr
 	
+# Predicted Probabilities
+
 	
 
 

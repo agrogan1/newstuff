@@ -34,7 +34,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>14 May 2020</p>
+<p>17 May 2020</p>
 </div>
 <div id="meta-background" class="slide section level1">
 <h1>Meta-Background</h1>
@@ -75,7 +75,7 @@ file GSSsmall.dta saved</code></pre>
 
 Contains data from GSSsmall.dta
   obs:        64,814                          
- vars:             5                          14 May 2020 22:41
+ vars:             5                          17 May 2020 20:45
  size:       324,070                          
 ───────────────────────────────────────────────────────────────────────────────────────────────
               storage   display    value
@@ -152,7 +152,7 @@ Log likelihood = -50452.782                     Pseudo R2         =     0.1016
        /cut4 │   6.542017   .0645181                      6.415564     6.66847
 ─────────────┴────────────────────────────────────────────────────────────────</code></pre>
 <blockquote>
-<p>Many commands for regression of categorical dependent variables in R do not provide p values, and an extra step has to be taken to get p values. This is <em>not</em> a problem in Stata!</p>
+<p>Many commands for regression of categorical dependent variables in R <em>do not provide p values</em>, and an extra step has to be taken to get p values. This is <em>not</em> a problem in Stata!</p>
 </blockquote>
 </div>
 <div id="exponentiating-coefficients-ebeta" class="slide section level1">
@@ -187,6 +187,113 @@ Note: Estimates are transformed only in the first equation.</code></pre>
 </div>
 <div id="the-proportional-odds-assumption" class="slide section level1">
 <h1>The Proportional Odds Assumption</h1>
+</div>
+<div id="the-brant-test" class="slide section level1">
+<h1>The Brant Test</h1>
+</div>
+<div id="the-multinomial-model" class="slide section level1">
+<h1>The Multinomial Model</h1>
+<p><span class="math display">\[ ln(\frac{P(y = y_2)}{P(y = y_1)}) = ln(\frac{P(y = \text{something else})}{P(y = \text{something})}) \]</span></p>
+<p><span class="math display">\[ = \beta_0 + \beta_1 + ... \]</span></p>
+<p><span class="math display">\[ ln(\frac{P(y = y_3)}{P(y = y_1)}) = ln(\frac{P(y = \text{something else altogether})}{P(y = \text{something})}) \]</span></p>
+<p><span class="math display">\[ = \beta_0 + \beta_1 + ... \]</span></p>
+</div>
+<div id="estimation" class="slide section level1">
+<h1>Estimation</h1>
+<pre class="stata"><code>. mlogit degree sex age paeduc maeduc
+
+Iteration 0:   log likelihood = -56160.846  
+Iteration 1:   log likelihood = -50661.077  
+Iteration 2:   log likelihood = -49974.278  
+Iteration 3:   log likelihood = -49965.555  
+Iteration 4:   log likelihood = -49965.546  
+Iteration 5:   log likelihood = -49965.546  
+
+Multinomial logistic regression                 Number of obs     =     42,583
+                                                LR chi2(16)       =   12390.60
+                                                Prob &gt; chi2       =     0.0000
+Log likelihood = -49965.546                     Pseudo R2         =     0.1103
+
+───────────────┬────────────────────────────────────────────────────────────────
+        degree │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+───────────────┼────────────────────────────────────────────────────────────────
+lt_high_school │
+           sex │  -.1565067   .0315659    -4.96   0.000    -.2183747   -.0946388
+           age │   .0086206    .000955     9.03   0.000     .0067488    .0104925
+        paeduc │  -.1118775   .0050541   -22.14   0.000    -.1217833   -.1019718
+        maeduc │  -.1581699    .005415   -29.21   0.000     -.168783   -.1475568
+         _cons │   1.013337    .085875    11.80   0.000     .8450251    1.181649
+───────────────┼────────────────────────────────────────────────────────────────
+high_school    │  (base outcome)
+───────────────┼────────────────────────────────────────────────────────────────
+junior_college │
+           sex │     .10857   .0419854     2.59   0.010     .0262802    .1908597
+           age │   .0027976   .0013664     2.05   0.041     .0001195    .0054756
+        paeduc │   .0671707   .0069222     9.70   0.000     .0536034    .0807381
+        maeduc │   .0537209   .0084844     6.33   0.000     .0370918    .0703501
+         _cons │   -3.78768   .1379641   -27.45   0.000    -4.058084   -3.517275
+───────────────┼────────────────────────────────────────────────────────────────
+bachelor       │
+           sex │  -.1383151   .0276789    -5.00   0.000    -.1925648   -.0840654
+           age │   .0159393   .0008977    17.76   0.000     .0141798    .0176989
+        paeduc │   .1430438   .0046993    30.44   0.000     .1338333    .1522543
+        maeduc │   .1164455   .0058259    19.99   0.000      .105027     .127864
+         _cons │  -4.618421   .0963738   -47.92   0.000    -4.807311   -4.429532
+───────────────┼────────────────────────────────────────────────────────────────
+graduate       │
+           sex │  -.3641641   .0363253   -10.03   0.000    -.4353605   -.2929677
+           age │   .0362201   .0011387    31.81   0.000     .0339882     .038452
+        paeduc │   .1749678   .0061332    28.53   0.000     .1629469    .1869887
+        maeduc │   .1348214   .0076177    17.70   0.000     .1198909    .1497519
+         _cons │  -6.541676    .128908   -50.75   0.000    -6.794331   -6.289021
+───────────────┴────────────────────────────────────────────────────────────────</code></pre>
+</div>
+<div id="exponentiating-coefficients" class="slide section level1">
+<h1>Exponentiating Coefficients</h1>
+<pre class="stata"><code>. mlogit, rr
+
+Multinomial logistic regression                 Number of obs     =     42,583
+                                                LR chi2(16)       =   12390.60
+                                                Prob &gt; chi2       =     0.0000
+Log likelihood = -49965.546                     Pseudo R2         =     0.1103
+
+───────────────┬────────────────────────────────────────────────────────────────
+        degree │        RRR   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+───────────────┼────────────────────────────────────────────────────────────────
+lt_high_school │
+           sex │   .8551258   .0269928    -4.96   0.000     .8038242    .9097015
+           age │   1.008658   .0009633     9.03   0.000     1.006772    1.010548
+        paeduc │   .8941538   .0045191   -22.14   0.000     .8853402     .903055
+        maeduc │   .8537047   .0046228   -29.21   0.000     .8446922    .8628135
+         _cons │   2.754778   .2365665    11.80   0.000     2.328036    3.259744
+───────────────┼────────────────────────────────────────────────────────────────
+high_school    │  (base outcome)
+───────────────┼────────────────────────────────────────────────────────────────
+junior_college │
+           sex │   1.114683   .0468004     2.59   0.010     1.026629     1.21029
+           age │   1.002801   .0013702     2.05   0.041      1.00012    1.005491
+        paeduc │   1.069478   .0074032     9.70   0.000     1.055066    1.084087
+        maeduc │    1.05519   .0089527     6.33   0.000     1.037788    1.072884
+         _cons │   .0226481   .0031246   -27.45   0.000     .0172821    .0296802
+───────────────┼────────────────────────────────────────────────────────────────
+bachelor       │
+           sex │   .8708243   .0241035    -5.00   0.000     .8248409    .9193711
+           age │   1.016067   .0009122    17.76   0.000     1.014281    1.017856
+        paeduc │    1.15378    .005422    30.44   0.000     1.143202    1.164456
+        maeduc │   1.123496   .0065453    19.99   0.000     1.110741    1.136398
+         _cons │   .0098684   .0009511   -47.92   0.000     .0081698    .0119201
+───────────────┼────────────────────────────────────────────────────────────────
+graduate       │
+           sex │   .6947772    .025238   -10.03   0.000     .6470314    .7460462
+           age │   1.036884   .0011807    31.81   0.000     1.034572    1.039201
+        paeduc │   1.191208   .0073059    28.53   0.000     1.176974    1.205614
+        maeduc │   1.144332   .0087172    17.70   0.000     1.127374    1.161546
+         _cons │   .0014421   .0001859   -50.75   0.000     .0011201    .0018566
+───────────────┴────────────────────────────────────────────────────────────────
+Note: _cons estimates baseline relative risk for each outcome.</code></pre>
+</div>
+<div id="predicted-probabilities" class="slide section level1">
+<h1>Predicted Probabilities</h1>
 </div>
 </body>
 </html>

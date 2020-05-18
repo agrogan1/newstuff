@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}14 May 2020, 22:41:22
+ {txt}opened on:  {res}17 May 2020, 20:45:51
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}14 May 2020
+{res}17 May 2020
 {txt}
 {com}. //_2
 . clear all
@@ -31,7 +31,7 @@
 
 {txt}Contains data from {res}GSSsmall.dta
 {txt}  obs:{res}        64,814                          
-{txt} vars:{res}             5                          14 May 2020 22:41
+{txt} vars:{res}             5                          17 May 2020 20:45
 {txt} size:{res}       324,070                          
 {txt}{hline}
               storage   display    value
@@ -127,12 +127,104 @@ Iteration 4:{space 3}log likelihood = {res:-50452.782}
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 2}Note: {help eform_option:Estimates are transformed} only in the first equation.{p_end}
 
+{com}. //_12
+. mlogit degree sex age paeduc maeduc
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-56160.846}  
+Iteration 1:{space 3}log likelihood = {res:-50661.077}  
+Iteration 2:{space 3}log likelihood = {res:-49974.278}  
+Iteration 3:{space 3}log likelihood = {res:-49965.555}  
+Iteration 4:{space 3}log likelihood = {res:-49965.546}  
+Iteration 5:{space 3}log likelihood = {res:-49965.546}  
+{res}
+{txt}Multinomial logistic regression{col 49}Number of obs{col 67}= {res}    42,583
+{txt}{col 49}LR chi2({res}16{txt}){col 67}= {res}  12390.60
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-49965.546{txt}{col 49}Pseudo R2{col 67}= {res}    0.1103
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        degree{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}lt_high_school {txt}{c |}
+{space 11}sex {c |}{col 16}{res}{space 2}-.1565067{col 28}{space 2} .0315659{col 39}{space 1}   -4.96{col 48}{space 3}0.000{col 56}{space 4}-.2183747{col 69}{space 3}-.0946388
+{txt}{space 11}age {c |}{col 16}{res}{space 2} .0086206{col 28}{space 2}  .000955{col 39}{space 1}    9.03{col 48}{space 3}0.000{col 56}{space 4} .0067488{col 69}{space 3} .0104925
+{txt}{space 8}paeduc {c |}{col 16}{res}{space 2}-.1118775{col 28}{space 2} .0050541{col 39}{space 1}  -22.14{col 48}{space 3}0.000{col 56}{space 4}-.1217833{col 69}{space 3}-.1019718
+{txt}{space 8}maeduc {c |}{col 16}{res}{space 2}-.1581699{col 28}{space 2}  .005415{col 39}{space 1}  -29.21{col 48}{space 3}0.000{col 56}{space 4} -.168783{col 69}{space 3}-.1475568
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.013337{col 28}{space 2}  .085875{col 39}{space 1}   11.80{col 48}{space 3}0.000{col 56}{space 4} .8450251{col 69}{space 3} 1.181649
+{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}{res}high_school   {col 16}{txt}{c |}  (base outcome)
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}junior_college {txt}{c |}
+{space 11}sex {c |}{col 16}{res}{space 2}   .10857{col 28}{space 2} .0419854{col 39}{space 1}    2.59{col 48}{space 3}0.010{col 56}{space 4} .0262802{col 69}{space 3} .1908597
+{txt}{space 11}age {c |}{col 16}{res}{space 2} .0027976{col 28}{space 2} .0013664{col 39}{space 1}    2.05{col 48}{space 3}0.041{col 56}{space 4} .0001195{col 69}{space 3} .0054756
+{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} .0671707{col 28}{space 2} .0069222{col 39}{space 1}    9.70{col 48}{space 3}0.000{col 56}{space 4} .0536034{col 69}{space 3} .0807381
+{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} .0537209{col 28}{space 2} .0084844{col 39}{space 1}    6.33{col 48}{space 3}0.000{col 56}{space 4} .0370918{col 69}{space 3} .0703501
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} -3.78768{col 28}{space 2} .1379641{col 39}{space 1}  -27.45{col 48}{space 3}0.000{col 56}{space 4}-4.058084{col 69}{space 3}-3.517275
+{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}bachelor       {txt}{c |}
+{space 11}sex {c |}{col 16}{res}{space 2}-.1383151{col 28}{space 2} .0276789{col 39}{space 1}   -5.00{col 48}{space 3}0.000{col 56}{space 4}-.1925648{col 69}{space 3}-.0840654
+{txt}{space 11}age {c |}{col 16}{res}{space 2} .0159393{col 28}{space 2} .0008977{col 39}{space 1}   17.76{col 48}{space 3}0.000{col 56}{space 4} .0141798{col 69}{space 3} .0176989
+{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} .1430438{col 28}{space 2} .0046993{col 39}{space 1}   30.44{col 48}{space 3}0.000{col 56}{space 4} .1338333{col 69}{space 3} .1522543
+{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} .1164455{col 28}{space 2} .0058259{col 39}{space 1}   19.99{col 48}{space 3}0.000{col 56}{space 4}  .105027{col 69}{space 3}  .127864
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2}-4.618421{col 28}{space 2} .0963738{col 39}{space 1}  -47.92{col 48}{space 3}0.000{col 56}{space 4}-4.807311{col 69}{space 3}-4.429532
+{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}graduate       {txt}{c |}
+{space 11}sex {c |}{col 16}{res}{space 2}-.3641641{col 28}{space 2} .0363253{col 39}{space 1}  -10.03{col 48}{space 3}0.000{col 56}{space 4}-.4353605{col 69}{space 3}-.2929677
+{txt}{space 11}age {c |}{col 16}{res}{space 2} .0362201{col 28}{space 2} .0011387{col 39}{space 1}   31.81{col 48}{space 3}0.000{col 56}{space 4} .0339882{col 69}{space 3}  .038452
+{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} .1749678{col 28}{space 2} .0061332{col 39}{space 1}   28.53{col 48}{space 3}0.000{col 56}{space 4} .1629469{col 69}{space 3} .1869887
+{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} .1348214{col 28}{space 2} .0076177{col 39}{space 1}   17.70{col 48}{space 3}0.000{col 56}{space 4} .1198909{col 69}{space 3} .1497519
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2}-6.541676{col 28}{space 2}  .128908{col 39}{space 1}  -50.75{col 48}{space 3}0.000{col 56}{space 4}-6.794331{col 69}{space 3}-6.289021
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_13
+. mlogit, rr
+
+{txt}Multinomial logistic regression{col 49}Number of obs{col 67}= {res}    42,583
+{txt}{col 49}LR chi2({res}16{txt}){col 67}= {res}  12390.60
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-49965.546{txt}{col 49}Pseudo R2{col 67}= {res}    0.1103
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        degree{col 16}{c |}        RRR{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}lt_high_school {txt}{c |}
+{space 11}sex {c |}{col 16}{res}{space 2} .8551258{col 28}{space 2} .0269928{col 39}{space 1}   -4.96{col 48}{space 3}0.000{col 56}{space 4} .8038242{col 69}{space 3} .9097015
+{txt}{space 11}age {c |}{col 16}{res}{space 2} 1.008658{col 28}{space 2} .0009633{col 39}{space 1}    9.03{col 48}{space 3}0.000{col 56}{space 4} 1.006772{col 69}{space 3} 1.010548
+{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} .8941538{col 28}{space 2} .0045191{col 39}{space 1}  -22.14{col 48}{space 3}0.000{col 56}{space 4} .8853402{col 69}{space 3}  .903055
+{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} .8537047{col 28}{space 2} .0046228{col 39}{space 1}  -29.21{col 48}{space 3}0.000{col 56}{space 4} .8446922{col 69}{space 3} .8628135
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 2.754778{col 28}{space 2} .2365665{col 39}{space 1}   11.80{col 48}{space 3}0.000{col 56}{space 4} 2.328036{col 69}{space 3} 3.259744
+{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}{res}high_school   {col 16}{txt}{c |}  (base outcome)
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}junior_college {txt}{c |}
+{space 11}sex {c |}{col 16}{res}{space 2} 1.114683{col 28}{space 2} .0468004{col 39}{space 1}    2.59{col 48}{space 3}0.010{col 56}{space 4} 1.026629{col 69}{space 3}  1.21029
+{txt}{space 11}age {c |}{col 16}{res}{space 2} 1.002801{col 28}{space 2} .0013702{col 39}{space 1}    2.05{col 48}{space 3}0.041{col 56}{space 4}  1.00012{col 69}{space 3} 1.005491
+{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} 1.069478{col 28}{space 2} .0074032{col 39}{space 1}    9.70{col 48}{space 3}0.000{col 56}{space 4} 1.055066{col 69}{space 3} 1.084087
+{txt}{space 8}maeduc {c |}{col 16}{res}{space 2}  1.05519{col 28}{space 2} .0089527{col 39}{space 1}    6.33{col 48}{space 3}0.000{col 56}{space 4} 1.037788{col 69}{space 3} 1.072884
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} .0226481{col 28}{space 2} .0031246{col 39}{space 1}  -27.45{col 48}{space 3}0.000{col 56}{space 4} .0172821{col 69}{space 3} .0296802
+{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}bachelor       {txt}{c |}
+{space 11}sex {c |}{col 16}{res}{space 2} .8708243{col 28}{space 2} .0241035{col 39}{space 1}   -5.00{col 48}{space 3}0.000{col 56}{space 4} .8248409{col 69}{space 3} .9193711
+{txt}{space 11}age {c |}{col 16}{res}{space 2} 1.016067{col 28}{space 2} .0009122{col 39}{space 1}   17.76{col 48}{space 3}0.000{col 56}{space 4} 1.014281{col 69}{space 3} 1.017856
+{txt}{space 8}paeduc {c |}{col 16}{res}{space 2}  1.15378{col 28}{space 2}  .005422{col 39}{space 1}   30.44{col 48}{space 3}0.000{col 56}{space 4} 1.143202{col 69}{space 3} 1.164456
+{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} 1.123496{col 28}{space 2} .0065453{col 39}{space 1}   19.99{col 48}{space 3}0.000{col 56}{space 4} 1.110741{col 69}{space 3} 1.136398
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} .0098684{col 28}{space 2} .0009511{col 39}{space 1}  -47.92{col 48}{space 3}0.000{col 56}{space 4} .0081698{col 69}{space 3} .0119201
+{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}graduate       {txt}{c |}
+{space 11}sex {c |}{col 16}{res}{space 2} .6947772{col 28}{space 2}  .025238{col 39}{space 1}  -10.03{col 48}{space 3}0.000{col 56}{space 4} .6470314{col 69}{space 3} .7460462
+{txt}{space 11}age {c |}{col 16}{res}{space 2} 1.036884{col 28}{space 2} .0011807{col 39}{space 1}   31.81{col 48}{space 3}0.000{col 56}{space 4} 1.034572{col 69}{space 3} 1.039201
+{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} 1.191208{col 28}{space 2} .0073059{col 39}{space 1}   28.53{col 48}{space 3}0.000{col 56}{space 4} 1.176974{col 69}{space 3} 1.205614
+{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} 1.144332{col 28}{space 2} .0087172{col 39}{space 1}   17.70{col 48}{space 3}0.000{col 56}{space 4} 1.127374{col 69}{space 3} 1.161546
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} .0014421{col 28}{space 2} .0001859{col 39}{space 1}  -50.75{col 48}{space 3}0.000{col 56}{space 4} .0011201{col 69}{space 3} .0018566
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline relative risk{txt} for each outcome{txt}.{p_end}
+
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}14 May 2020, 22:41:24
+ {txt}closed on:  {res}17 May 2020, 20:45:54
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
