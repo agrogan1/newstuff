@@ -22,10 +22,12 @@ output:
       collapsed: yes
       smooth_scroll: yes
   pdf_document: 
-    fig_height: 4
+    fig_height: 3
     latex_engine: xelatex
     number_sections: yes
     toc: yes
+mainfont: Arial
+fontsize: 11pt
 ---
 
 ```{r setup, include=FALSE}
@@ -76,7 +78,7 @@ h1, h2 {
 
 library(readxl)
 
-clients <- read_excel("../social-service-agency/social-service-agency.xlsx", sheet = "clients")
+clients <- read_excel("../../social-service-agency/social-service-agency.xlsx", sheet = "clients")
 
 head(clients) # look at the data
 
@@ -116,7 +118,7 @@ library(ggplot2)
 
 ggplot(clients,
        aes(x = age)) +
-  geom_histogram(fill = "blue")
+  geom_histogram(fill = "blue", color = "grey")
 
 ```
 
