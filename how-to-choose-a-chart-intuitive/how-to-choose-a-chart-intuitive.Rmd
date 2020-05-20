@@ -3,10 +3,6 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  bookdown::epub_book: default  
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
   bookdown::gitbook:
     split_by: none
     highlight: haddock
@@ -16,10 +12,14 @@ output:
       download:
       - how-to-choose-a-chart-intuitive.pdf
       - how-to-choose-a-chart-intuitive.epub
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
   html_document:
     fig_width: 10
     highlight: haddock
     code_download: yes
+  bookdown::epub_book: default  
 mainfont: Futura
 fontsize: 12pt
 classoption: landscape
@@ -32,19 +32,21 @@ knitr::opts_chunk$set(echo = FALSE,
                       message = FALSE,
                       warning = FALSE)
 
-library(ggplot2)
+library(ggplot2) # beautiful graphs
 
-library(ggbeeswarm)
+library(ggbeeswarm) # beeswarm geometry
 
-library(patchwork)
+library(patchwork) # stitch ggplots together
 
-library(michigancolors)
+library(michigancolors) # michigan colors for graphs
 
 ```
 
 A more *intuitive* guide to [*How To Choose A Chart*](https://agrogan1.github.io/dataviz/how-to-choose-a-chart/how-to-choose-a-chart-a-visual-guide.pdf).
 
 ```{r}
+
+# simulated data
 
 N <- 1000
 
@@ -86,6 +88,8 @@ mydata <- data.frame(predictor,
 
 ```{r}
 
+# first plot
+
 myoutcome <- ggplot(data = mydata,
                     aes(x = outcome,
                         fill = factor(1),
@@ -103,6 +107,8 @@ myoutcome <- ggplot(data = mydata,
 ```
 
 ```{r}
+
+# other plots, many of which build upon first plot
 
 mydensity <- myoutcome + geom_density() +
   labs(subtitle = "Density Plot")
@@ -196,6 +202,8 @@ mylongitudinal <- ggplot(mydata,
 
 ```{r}
 
+# save plots in a data file for later use
+
 save(myhistogram, 
      mycomparison,
      mybar,
@@ -209,6 +217,8 @@ save(myhistogram,
 
 ```{r}
 
+# stitch the plots together with patchwork
+
 p0 <- myhistogram + mycomparison + mybeeswarm +
   mybar + mycomparisonC + mylongitudinal +
   plot_layout(ncol = 3, nrow = 2, widths = 1)
@@ -218,6 +228,8 @@ p0 # replay
 p0A <- p0 + 
   plot_annotation(title = 'How To Choose A Chart', 
                   subtitle = 'An Intuitive Guide')
+
+# save an alternative PDF version
 
 ggsave("intuitive-guide.pdf", 
        p0A,
