@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}22 May 2020, 09:10:12
+ {txt}opened on:  {res}22 May 2020, 10:24:58
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -243,7 +243,7 @@ Iteration 5:{space 3}log likelihood = {res:-1068.1394}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}22 May 2020, 09:10:15
+ {txt}closed on:  {res}22 May 2020, 10:25:01
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
