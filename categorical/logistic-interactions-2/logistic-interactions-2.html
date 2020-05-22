@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Interactions in Logistic Regression</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Interactions in Logistic Regression</h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">22 May 2020</p>
+</header>
+<h1 id="background">Background</h1>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<p>The purpose of this tutorial is to illustrate the idea that in <em>logistic regression</em>, the <span class="math inline">\(\beta\)</span> parameter for an interaction term may not accurately characterize the underlying interactive relationships.</p>
+<p>This idea may be easier to describe if we recall the formula for a logistic regression:</p>
+<p><span class="math display">\[
+    ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 * x_2
+\]</span></p>
+<p>In the above formula, the sign, and statistical significance, of <span class="math inline">\(\beta_3\)</span> may not accurately characterize the underlying relationship.</p>
+<h1 id="get-the-data">Get The Data</h1>
+<p>We start by obtaining <em>simulated data</em> from StataCorp.</p>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. graph close _all
+</pre>
+<pre class='stata'>. use http://www.stata-press.com/data/r15/margex, clear
+(Artificial data for margins)
+</pre>
+<h1 id="describe-the-data">Describe The Data</h1>
+<p>The variables are as follows:</p>
+<pre class='stata'>. describe
+
+Contains data from http://www.stata-press.com/data/r15/margex.dta
+  obs:         3,000                          Artificial data for margins
+ vars:            11                          27 Nov 2016 14:27
+ size:        78,000                          
+────────────────────────────────────────────────────────────────────────────────────────
+              storage   display    value
+variable name   type    format     label      variable label
+────────────────────────────────────────────────────────────────────────────────────────
+y               float   %6.1f                 
+outcome         byte    %2.0f                 
+sex             byte    %6.0f      sexlbl     
+group           byte    %2.0f                 
+age             float   %3.0f                 
+distance        float   %6.2f                 
+ycn             float   %6.1f                 
+yc              float   %6.1f                 
+treatment       byte    %2.0f                 
+agegroup        byte    %8.0g      agelab     
+arm             byte    %8.0g                 
+────────────────────────────────────────────────────────────────────────────────────────
+Sorted by: group
+</pre>
+<h1 id="estimate-logistic-regression">Estimate Logistic Regression</h1>
+<p>We then run a logistic regression model in which <code>outcome</code> is the dependent variable. <code>sex</code>, <code>age</code> and <code>group</code> are the independent variables. We estimate an interaction of <code>sex</code> and <code>age</code>.</p>
+<blockquote>
+<p>We note that the regression coefficient for the interaction term is not statistically significant.</p>
+</blockquote>
+<pre class='stata'>. logit outcome sex##c.age group
+
+Iteration 0:   log likelihood = -1366.0718  
+Iteration 1:   log likelihood = -1117.9739  
+Iteration 2:   log likelihood = -1070.4331  
+Iteration 3:   log likelihood = -1068.1463  
+Iteration 4:   log likelihood = -1068.1394  
+Iteration 5:   log likelihood = -1068.1394  
+
+Logistic regression                             Number of obs     =      3,000
+                                                LR chi2(4)        =     595.86
+                                                Prob > chi2       =     0.0000
+Log likelihood = -1068.1394                     Pseudo R2         =     0.2181
+
+─────────────┬────────────────────────────────────────────────────────────────
+     outcome │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+         sex │
+     female  │   .6128018   .6410998     0.96   0.339    -.6437307    1.869334
+         age │   .0919461    .011215     8.20   0.000     .0699652    .1139271
+             │
+   sex#c.age │
+     female  │  -.0023741   .0132292    -0.18   0.858    -.0283028    .0235547
+             │
+       group │  -.6267288   .1119308    -5.60   0.000    -.8461092   -.4073484
+       _cons │  -5.000151   .6104382    -8.19   0.000    -6.196588   -3.803714
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h1 id="margins">Margins</h1>
+<p>We use the <code>margins</code> command to estimate predicted probabilities at different values of <code>sex</code> and <code>age</code>.</p>
+<pre class='stata'>. margins sex, at(age = (20 30 40 50 60))
+
+Predictive margins                              Number of obs     =      3,000
+Model VCE    : OIM
+
+Expression   : Pr(outcome), predict()
+
+1._at        : age             =          20
+
+2._at        : age             =          30
+
+3._at        : age             =          40
+
+4._at        : age             =          50
+
+5._at        : age             =          60
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │            Delta-method
+             │     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+     _at#sex │
+     1#male  │   .0147659   .0046146     3.20   0.001     .0057214    .0238104
+   1#female  │   .0256473   .0055867     4.59   0.000     .0146975    .0365971
+     2#male  │    .036082   .0074358     4.85   0.000     .0215081    .0506559
+   2#female  │   .0601807   .0086289     6.97   0.000     .0432683     .077093
+     3#male  │   .0850702    .009884     8.61   0.000     .0656979    .1044425
+   3#female  │   .1338511   .0108109    12.38   0.000     .1126622    .1550401
+     4#male  │   .1859699   .0163525    11.37   0.000     .1539195    .2180202
+   4#female  │     .26897   .0156965    17.14   0.000     .2382054    .2997346
+     5#male  │   .3558393   .0405971     8.77   0.000     .2762704    .4354082
+   5#female  │   .4632205   .0316107    14.65   0.000     .4012647    .5251762
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h1 id="plotting-margins">Plotting Margins</h1>
+<p><code>margins</code> provides a lot of results, which can be difficult to understand. Therefore, we <em>plot</em> these <code>margins</code> results. We use the <code>noci</code> option, so that a confidence interval is not displayed, to make the graph less cluttered.</p>
+<blockquote>
+<p>There certainly seems to be some kind of interaction of <code>sex</code> and <code>age</code>.</p>
+</blockquote>
+<pre class='stata'>. marginsplot, noci 
+
+  Variables that uniquely identify margins: age sex
+</pre>
+<pre class='stata'>. graph export mymarginsplot.png, width(500) replace
+(file mymarginsplot.png written in PNG format)
+</pre>
+<figure>
+<img src="mymarginsplot.png" alt="Margins Plot" /><figcaption>Margins Plot</figcaption>
+</figure>
+<h1 id="rerun-margins-posting-results">Rerun <code>margins</code>, Posting Results</h1>
+<p>We again employ the <code>margins</code> command, this time using the <code>post</code> option so that the results of the margins command are <em>posted</em> as an estimation result. This will allow us to employ the <code>test</code> command to statistically test different margins against each other.</p>
+<pre class='stata'>. margins sex, at(age = (20 30 40 50 60)) post
+
+Predictive margins                              Number of obs     =      3,000
+Model VCE    : OIM
+
+Expression   : Pr(outcome), predict()
+
+1._at        : age             =          20
+
+2._at        : age             =          30
+
+3._at        : age             =          40
+
+4._at        : age             =          50
+
+5._at        : age             =          60
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │            Delta-method
+             │     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+     _at#sex │
+     1#male  │   .0147659   .0046146     3.20   0.001     .0057214    .0238104
+   1#female  │   .0256473   .0055867     4.59   0.000     .0146975    .0365971
+     2#male  │    .036082   .0074358     4.85   0.000     .0215081    .0506559
+   2#female  │   .0601807   .0086289     6.97   0.000     .0432683     .077093
+     3#male  │   .0850702    .009884     8.61   0.000     .0656979    .1044425
+   3#female  │   .1338511   .0108109    12.38   0.000     .1126622    .1550401
+     4#male  │   .1859699   .0163525    11.37   0.000     .1539195    .2180202
+   4#female  │     .26897   .0156965    17.14   0.000     .2382054    .2997346
+     5#male  │   .3558393   .0405971     8.77   0.000     .2762704    .4354082
+   5#female  │   .4632205   .0316107    14.65   0.000     .4012647    .5251762
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h1 id="margins-with-coeflegend"><code>margins</code> with <code>coeflegend</code></h1>
+<p>We follow up by using the <code>margins</code> command with the <code>coeflegend</code> option to see the way in which Stata has labeled the different margins.</p>
+<pre class='stata'>. margins, coeflegend
+
+Predictive margins                              Number of obs     =      3,000
+Model VCE    : OIM
+
+Expression   : Pr(outcome), predict()
+
+1._at        : age             =          20
+
+2._at        : age             =          30
+
+3._at        : age             =          40
+
+4._at        : age             =          50
+
+5._at        : age             =          60
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │     Margin  Legend
+─────────────┼────────────────────────────────────────────────────────────────
+     _at#sex │
+     1#male  │   .0147659  _b[1bn._at#0bn.sex]
+   1#female  │   .0256473  _b[1bn._at#1.sex]
+     2#male  │    .036082  _b[2._at#0bn.sex]
+   2#female  │   .0601807  _b[2._at#1.sex]
+     3#male  │   .0850702  _b[3._at#0bn.sex]
+   3#female  │   .1338511  _b[3._at#1.sex]
+     4#male  │   .1859699  _b[4._at#0bn.sex]
+   4#female  │     .26897  _b[4._at#1.sex]
+     5#male  │   .3558393  _b[5._at#0bn.sex]
+   5#female  │   .4632205  _b[5._at#1.sex]
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h1 id="testing-margins-against-each-other">Testing Margins Against Each Other</h1>
+<p>Lastly, we test the margins at age 20 for men and women, and again at age 60 for men and women.</p>
+<blockquote>
+<p>We note that the original regression parameter for the interaction term was not statistically significant. Indeed, the margins at age 20 are not statistically significantly different by sex. However, at age 60, there is a statistically significant difference by sex.</p>
+</blockquote>
+<pre class='stata'>. test _b[1bn._at#0bn.sex] = _b[1bn._at#1.sex] // male and female at age 20
+
+ ( 1)  1bn._at#0bn.sex - 1bn._at#1.sex = 0
+
+           chi2(  1) =    2.29
+         Prob > chi2 =    0.1303
+</pre>
+<pre class='stata'>. test  _b[5._at#0bn.sex] =  _b[5._at#1.sex] // male and female at age 60
+
+ ( 1)  5._at#0bn.sex - 5._at#1.sex = 0
+
+           chi2(  1) =    4.91
+         Prob > chi2 =    0.0267
+</pre>
+</body>
+</html>
