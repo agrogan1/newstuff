@@ -34,7 +34,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>14 May 2020</p>
+<p>23 May 2020</p>
 </div>
 <div id="key-concepts-and-commands" class="slide section level1">
 <h1>Key Concepts and Commands</h1>
@@ -61,14 +61,14 @@ Andy Grogan-Kaylor
 </div>
 <div id="general-social-survey" class="slide section level1">
 <h1>General Social Survey</h1>
-<pre class="stata"><code>. use &quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w12
-&gt; 3_R6 - stata.dta&quot;, clear 
+<pre class="stata"><code>. use &quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel
+&gt; 2010w123_R6 - stata.dta&quot;, clear 
 ( )</code></pre>
 <pre class="stata"><code>. codebook happy_3 // what does this variable look like?
 
-───────────────────────────────────────────────────────────────────────────────────────────────
-happy_3                                                              happy_3: GENERAL HAPPINESS
-───────────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────
+happy_3                                                       happy_3: GENERAL HAPPINESS
+────────────────────────────────────────────────────────────────────────────────────────
 
                   type:  numeric (byte)
                  label:  HAPPY_3
@@ -234,6 +234,7 @@ Log likelihood = -419.28513                     Pseudo R2         =     0.0318
 <blockquote>
 <p>Derivation of logistic model from linear probability model. Using instructor notes</p>
 </blockquote>
+<p><span class="math display">\[ \ln \left( \frac{P(y)}{1-P(y)} \right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... \]</span></p>
 </div>
 <div id="interpretation-of-odds-ratios-robert-mare" class="slide section level1">
 <h1>Interpretation of Odds Ratios (Robert Mare)</h1>

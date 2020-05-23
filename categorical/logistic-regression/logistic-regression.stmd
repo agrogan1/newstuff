@@ -125,6 +125,10 @@ NB: Negative vs. positive $\beta$.
 # Logistic Model (2)
 
 > Derivation of logistic model from linear probability model. Using instructor notes
+
+$$
+    \ln \left( \frac{P(y)}{1-P(y)} \right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...
+$$
 	
 # Interpretation of Odds Ratios (Robert Mare)
 

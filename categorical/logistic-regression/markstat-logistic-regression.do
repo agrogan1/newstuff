@@ -12,25 +12,27 @@ markstat using logistic-regression.stmd, mathjax // HTML
 
 graph close _all
 
-markstat using logistic-regression.stmd, mathjax slides(santiago+) // Slides
+* markstat using logistic-regression.stmd, mathjax slides(santiago+) // Slides
 
-graph close _all
+* graph close _all
 
 markstat using logistic-regression.stmd, pdf // PDF
 
 graph close _all
 
-markstat using logistic-regression.stmd, beamer keep(tex md) // Beamer
+* markstat using logistic-regression.stmd, beamer keep(tex md) // Beamer
 
-graph close _all
+* graph close _all
 
-markstat using logistic-regression.stmd, docx // Word
+* markstat using logistic-regression.stmd, docx // Word
 
-graph close _all
+* graph close _all
 
 *************************
 * complete separation
 *************************
+
+doedit complete-separation.stmd
 
 markstat using complete-separation.stmd, mathjax // HTML
 

@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Logistic Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">14 May 2020</p>
+<p class="date">23 May 2020</p>
 </header>
 <h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
@@ -81,15 +81,15 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <li>Limited Dependent Variable</li>
 </ul>
 <h1 id="general-social-survey">General Social Survey</h1>
-<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w12
-> 3_R6 - stata.dta", clear 
+<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel
+> 2010w123_R6 - stata.dta", clear 
 ( )
 </pre>
 <pre class='stata'>. codebook happy_3 // what does this variable look like?
 
-───────────────────────────────────────────────────────────────────────────────────────────────
-happy_3                                                              happy_3: GENERAL HAPPINESS
-───────────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────
+happy_3                                                       happy_3: GENERAL HAPPINESS
+────────────────────────────────────────────────────────────────────────────────────────
 
                   type:  numeric (byte)
                  label:  HAPPY_3
@@ -265,6 +265,9 @@ Log likelihood = -419.28513                     Pseudo R2         =     0.0318
 <blockquote>
 <p>Derivation of logistic model from linear probability model. Using instructor notes</p>
 </blockquote>
+<p><span class="math display">\[
+    \ln \left( \frac{P(y)}{1-P(y)} \right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...
+\]</span></p>
 <h1 id="interpretation-of-odds-ratios-robert-mare">Interpretation of Odds Ratios (Robert Mare)</h1>
 <p><span class="math display">\[
     0 &lt; OR &lt; 1    
