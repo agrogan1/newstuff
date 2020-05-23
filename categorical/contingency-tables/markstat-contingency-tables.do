@@ -10,21 +10,21 @@ markstat using contingency-tables.stmd, mathjax // HTML
 
 graph close _all
 
-markstat using contingency-tables.stmd, mathjax slides(santiago+) // Slides
+* markstat using contingency-tables.stmd, mathjax slides(santiago+) // Slides
 
-graph close _all
+* graph close _all
 
 markstat using contingency-tables.stmd, pdf // PDF
 
 graph close _all
 
-markstat using contingency-tables.stmd, beamer keep(tex) // Beamer
+* markstat using contingency-tables.stmd, beamer keep(tex) // Beamer
 
-graph close _all
+* graph close _all
 
-markstat using contingency-tables.stmd, docx // Word
+* markstat using contingency-tables.stmd, docx // Word
 
-graph close _all
+* graph close _all
 
 * pandoc
 

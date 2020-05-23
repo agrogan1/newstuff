@@ -21,7 +21,8 @@
   <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
     <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 </head>
 <body>
 <div class="slide titlepage">
@@ -33,7 +34,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>11 May 2020</p>
+<p>23 May 2020</p>
 </div>
 <div id="key-concepts-and-commands" class="slide section level1">
 <h1>Key Concepts and Commands</h1>
@@ -46,6 +47,7 @@ Andy Grogan-Kaylor
 </div>
 <div id="flipping-two-coins" class="slide section level1">
 <h1>Flipping Two Coins</h1>
+<p><img src="../images/2006_Quarter_Proof.png" alt="Quarter (Courtesy Wikipedia)" /> <img src="../images/2004_WI_Proof.png" alt="Quarter (Courtesy Wikipedia)" /></p>
 </div>
 <div id="setup" class="slide section level1">
 <h1>Setup</h1>
@@ -201,7 +203,8 @@ number of observations (_N) was 0, now 2</code></pre>
 </div>
 <div id="mosaic-plot-2" class="slide section level1">
 <h1>Mosaic Plot (2)</h1>
-<pre class="stata"><code>. spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretability</code></pre>
+<pre class="stata"><code>. spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretabilit
+&gt; y</code></pre>
 <pre class="stata"><code>. graph export FrenchSkiiers2.png, width(500) replace
 (file FrenchSkiiers2.png written in PNG format)</code></pre>
 <div class="figure">
