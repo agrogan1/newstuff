@@ -13,3 +13,10 @@ markstat using "logistic-interactions-2.stmd", pdf // PDF
 graph close _all
 
 
+* pandoc
+
+* cd /Applications/RStudio.app/Contents/MacOS/pandoc
+
+* ./pandoc -s --mathjax -i -t slidy --css "../UMslidy.css"  "/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.html" -o "/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2-slidy.html" 
+
+
