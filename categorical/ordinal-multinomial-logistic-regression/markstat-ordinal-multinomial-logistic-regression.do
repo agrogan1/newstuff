@@ -12,9 +12,9 @@ markstat using ordinal-multinomial-logistic-regression.stmd, mathjax // HTML
 
 graph close _all
 
-markstat using ordinal-multinomial-logistic-regression.stmd, mathjax slides(santiago+) // Slides
+* markstat using ordinal-multinomial-logistic-regression.stmd, mathjax slides(santiago+) // Slides
 
-graph close _all
+* graph close _all
 
 markstat using ordinal-multinomial-logistic-regression.stmd, pdf // PDF
 
@@ -22,19 +22,13 @@ graph close _all
 
 * markstat using ordinal-multinomial-logistic-regression.stmd, beamer keep(tex md) // Beamer
 
-graph close _all
+* graph close _all
 
-markstat using ordinal-multinomial-logistic-regression.stmd, docx // Word
+* markstat using ordinal-multinomial-logistic-regression.stmd, docx // Word
 
-graph close _all
+* graph close _all
 
-*************************
-* complete separation
-*************************
 
-markstat using complete-separation.stmd, mathjax // HTML
-
-graph close _all
 
 * pandoc
 

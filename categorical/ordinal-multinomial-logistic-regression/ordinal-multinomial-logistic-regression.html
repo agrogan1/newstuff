@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Ordinal and Multinomial Logistic Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">17 May 2020</p>
+<p class="date">23 May 2020</p>
 </header>
 <h1 id="meta-background">Meta-Background</h1>
 <figure>
@@ -89,9 +89,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </pre>
 <pre class='stata'>. set maxvar 10000 // increase number of allowable variables
 </pre>
-<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
+<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", cle
+> ar
 </pre>
-<pre class='stata'>. keep sex maeduc paeduc age degree
+<pre class='stata'>. keep polviews sex maeduc paeduc age degree coninc
 </pre>
 <pre class='stata'>. save GSSsmall.dta, replace
 file GSSsmall.dta saved
@@ -100,18 +101,20 @@ file GSSsmall.dta saved
 
 Contains data from GSSsmall.dta
   obs:        64,814                          
- vars:             5                          17 May 2020 20:45
- size:       324,070                          
-───────────────────────────────────────────────────────────────────────────────────────────────
+ vars:             7                          23 May 2020 20:01
+ size:       907,396                          
+────────────────────────────────────────────────────────────────────────────────────────
               storage   display    value
 variable name   type    format     label      variable label
-───────────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────
 age             byte    %8.0g      AGE        age of respondent
 paeduc          byte    %8.0g      LABK       highest year school completed, father
 maeduc          byte    %8.0g      LABK       highest year school completed, mother
 degree          byte    %8.0g      LABL       r's highest degree
 sex             byte    %8.0g      SEX        respondents sex
-───────────────────────────────────────────────────────────────────────────────────────────────
+polviews        byte    %8.0g      POLVIEWS   think of self as liberal or conservative
+coninc          double  %12.0g     LABIH      family income in constant dollars
+────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
 <h1 id="thinking-about-your-data-and-data-wrangling">Thinking About Your Data and Data Wrangling</h1>
@@ -128,81 +131,89 @@ Sorted by:
       maeduc │     53,870    10.85365    3.768792          0         20
       degree │     64,641     1.35858    1.175289          0          4
          sex │     64,814    1.558521    .4965673          1          2
+─────────────┼─────────────────────────────────────────────────────────
+    polviews │     55,328    4.100528    1.382474          1          7
+      coninc │     58,294    45028.17       36791      350.5     180386
 </pre>
-<pre class='stata'>. tabulate degree
+<pre class='stata'>. tabulate polviews
 
-   r's highest │
-        degree │      Freq.     Percent        Cum.
-───────────────┼───────────────────────────────────
-lt high school │     13,587       21.02       21.02
-   high school │     33,195       51.35       72.37
-junior college │      3,668        5.67       78.05
-      bachelor │      9,475       14.66       92.70
-      graduate │      4,716        7.30      100.00
-───────────────┼───────────────────────────────────
-         Total │     64,641      100.00
+    think of self as │
+          liberal or │
+        conservative │      Freq.     Percent        Cum.
+─────────────────────┼───────────────────────────────────
+   extremely liberal │      1,682        3.04        3.04
+             liberal │      6,514       11.77       14.81
+    slightly liberal │      7,010       12.67       27.48
+            moderate │     21,370       38.62       66.11
+slghtly conservative │      8,690       15.71       81.81
+        conservative │      8,230       14.87       96.69
+extrmly conservative │      1,832        3.31      100.00
+─────────────────────┼───────────────────────────────────
+               Total │     55,328      100.00
 </pre>
 <h1 id="the-ordinal-model-k-categories">The Ordinal Model (<em>k categories</em>)</h1>
 <p><span class="math display">\[
-    ln(\frac{p(y \le k)}{p(y &gt; k)}) = \beta_0 + \beta_1 x + ... 
+    \ln \left( \frac{p(y \le k)}{p(y &gt; k)} \right) = \beta_0 + \beta_1 x_1 + ... 
 \]</span></p>
 <h1 id="ordinal-regression">Ordinal Regression</h1>
-<pre class='stata'>. ologit degree sex age paeduc maeduc
+<pre class='stata'>. ologit polviews sex age degree coninc
 
-Iteration 0:   log likelihood = -56160.846  
-Iteration 1:   log likelihood = -50678.236  
-Iteration 2:   log likelihood = -50453.401  
-Iteration 3:   log likelihood = -50452.782  
-Iteration 4:   log likelihood = -50452.782  
+Iteration 0:   log likelihood = -83895.058  
+Iteration 1:   log likelihood = -83369.429  
+Iteration 2:   log likelihood = -83368.485  
+Iteration 3:   log likelihood = -83368.485  
 
-Ordered logistic regression                     Number of obs     =     42,583
-                                                LR chi2(4)        =   11416.13
+Ordered logistic regression                     Number of obs     =     50,049
+                                                LR chi2(4)        =    1053.15
                                                 Prob > chi2       =     0.0000
-Log likelihood = -50452.782                     Pseudo R2         =     0.1016
+Log likelihood = -83368.485                     Pseudo R2         =     0.0063
 
 ─────────────┬────────────────────────────────────────────────────────────────
-      degree │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+    polviews │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-         sex │  -.0756255   .0188243    -4.02   0.000    -.1125204   -.0387307
-         age │   .0124686   .0006014    20.73   0.000     .0112899    .0136474
-      paeduc │    .151748   .0031156    48.71   0.000     .1456416    .1578545
-      maeduc │    .157931   .0036724    43.00   0.000     .1507332    .1651288
+         sex │   -.129234   .0162348    -7.96   0.000    -.1610536   -.0974144
+         age │   .0116653   .0004737    24.63   0.000     .0107369    .0125937
+      degree │  -.1062661   .0076242   -13.94   0.000    -.1212093    -.091323
+      coninc │   3.99e-06   2.42e-07    16.52   0.000     3.52e-06    4.46e-06
 ─────────────┼────────────────────────────────────────────────────────────────
-       /cut1 │   1.686014   .0565978                      1.575084    1.796944
-       /cut2 │   4.710994     .06085                       4.59173    4.830258
-       /cut3 │   5.061419   .0614286                      4.941021    5.181817
-       /cut4 │   6.542017   .0645181                      6.415564     6.66847
+       /cut1 │  -3.116098   .0440989                     -3.202531   -3.029666
+       /cut2 │  -1.389623   .0379027                     -1.463911   -1.315335
+       /cut3 │  -.5941761   .0372164                     -.6671188   -.5212333
+       /cut4 │   1.050951    .037438                      .9775742    1.124329
+       /cut5 │   1.916652     .03824                      1.841703    1.991601
+       /cut6 │   3.826484   .0447146                      3.738845    3.914123
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <blockquote>
 <p>Many commands for regression of categorical dependent variables in R <em>do not provide p values</em>, and an extra step has to be taken to get p values. This is <em>not</em> a problem in Stata!</p>
 </blockquote>
 <h1 id="exponentiating-coefficients-ebeta">Exponentiating Coefficients: <span class="math inline">\(e^\beta\)</span></h1>
-<pre class='stata'>. ologit degree sex age paeduc maeduc, or
+<pre class='stata'>. ologit polviews sex age degree coninc, or
 
-Iteration 0:   log likelihood = -56160.846  
-Iteration 1:   log likelihood = -50678.236  
-Iteration 2:   log likelihood = -50453.401  
-Iteration 3:   log likelihood = -50452.782  
-Iteration 4:   log likelihood = -50452.782  
+Iteration 0:   log likelihood = -83895.058  
+Iteration 1:   log likelihood = -83369.429  
+Iteration 2:   log likelihood = -83368.485  
+Iteration 3:   log likelihood = -83368.485  
 
-Ordered logistic regression                     Number of obs     =     42,583
-                                                LR chi2(4)        =   11416.13
+Ordered logistic regression                     Number of obs     =     50,049
+                                                LR chi2(4)        =    1053.15
                                                 Prob > chi2       =     0.0000
-Log likelihood = -50452.782                     Pseudo R2         =     0.1016
+Log likelihood = -83368.485                     Pseudo R2         =     0.0063
 
 ─────────────┬────────────────────────────────────────────────────────────────
-      degree │ Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+    polviews │ Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-         sex │   .9271633   .0174532    -4.02   0.000     .8935791    .9620098
-         age │   1.012547    .000609    20.73   0.000     1.011354    1.013741
-      paeduc │   1.163867   .0036261    48.71   0.000     1.156782    1.170996
-      maeduc │   1.171085   .0043007    43.00   0.000     1.162686    1.179545
+         sex │   .8787683   .0142666    -7.96   0.000     .8512464      .90718
+         age │   1.011734   .0004792    24.63   0.000     1.010795    1.012673
+      degree │   .8991853   .0068555   -13.94   0.000     .8858486    .9127228
+      coninc │   1.000004   2.42e-07    16.52   0.000     1.000004    1.000004
 ─────────────┼────────────────────────────────────────────────────────────────
-       /cut1 │   1.686014   .0565978                      1.575084    1.796944
-       /cut2 │   4.710994     .06085                       4.59173    4.830258
-       /cut3 │   5.061419   .0614286                      4.941021    5.181817
-       /cut4 │   6.542017   .0645181                      6.415564     6.66847
+       /cut1 │  -3.116098   .0440989                     -3.202531   -3.029666
+       /cut2 │  -1.389623   .0379027                     -1.463911   -1.315335
+       /cut3 │  -.5941761   .0372164                     -.6671188   -.5212333
+       /cut4 │   1.050951    .037438                      .9775742    1.124329
+       /cut5 │   1.916652     .03824                      1.841703    1.991601
+       /cut6 │   3.826484   .0447146                      3.738845    3.914123
 ─────────────┴────────────────────────────────────────────────────────────────
 Note: Estimates are transformed only in the first equation.
 </pre>
@@ -210,109 +221,163 @@ Note: Estimates are transformed only in the first equation.
 <h1 id="the-brant-test">The Brant Test</h1>
 <h1 id="the-multinomial-model">The Multinomial Model</h1>
 <p><span class="math display">\[
-    ln(\frac{P(y = y_2)}{P(y = y_1)}) = ln(\frac{P(y = \text{something else})}{P(y = \text{something})})
+    \ln \left( \frac{P(y = y_2)}{P(y = y_1)} \right) = \ln \left( \frac{P(y = \text{something else})}{P(y = \text{something})} \right)
 \]</span></p>
 <p><span class="math display">\[
-    = \beta_0 + \beta_1 + ...
+    = \beta_0 + \beta_1 x_1 + ...
 \]</span></p>
 <p><span class="math display">\[
-    ln(\frac{P(y = y_3)}{P(y = y_1)}) = ln(\frac{P(y = \text{something else altogether})}{P(y = \text{something})})
+    \ln \left( \frac{P(y = y_3)}{P(y = y_1)} \right) = \ln \left( \frac{P(y = \text{something else altogether})}{P(y = \text{something})} \right)
 \]</span></p>
 <p><span class="math display">\[
-    = \beta_0 + \beta_1 + ...
+    = \beta_0 + \beta_1 x_1 + ...
 \]</span></p>
 <h1 id="estimation">Estimation</h1>
-<pre class='stata'>. mlogit degree sex age paeduc maeduc
+<pre class='stata'>. mlogit polviews i.sex age degree coninc
 
-Iteration 0:   log likelihood = -56160.846  
-Iteration 1:   log likelihood = -50661.077  
-Iteration 2:   log likelihood = -49974.278  
-Iteration 3:   log likelihood = -49965.555  
-Iteration 4:   log likelihood = -49965.546  
-Iteration 5:   log likelihood = -49965.546  
+Iteration 0:   log likelihood = -83895.058  
+Iteration 1:   log likelihood = -82700.548  
+Iteration 2:   log likelihood = -82694.595  
+Iteration 3:   log likelihood = -82694.594  
 
-Multinomial logistic regression                 Number of obs     =     42,583
-                                                LR chi2(16)       =   12390.60
+Multinomial logistic regression                 Number of obs     =     50,049
+                                                LR chi2(24)       =    2400.93
                                                 Prob > chi2       =     0.0000
-Log likelihood = -49965.546                     Pseudo R2         =     0.1103
+Log likelihood = -82694.594                     Pseudo R2         =     0.0143
 
-───────────────┬────────────────────────────────────────────────────────────────
-        degree │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
-───────────────┼────────────────────────────────────────────────────────────────
-lt_high_school │
-           sex │  -.1565067   .0315659    -4.96   0.000    -.2183747   -.0946388
-           age │   .0086206    .000955     9.03   0.000     .0067488    .0104925
-        paeduc │  -.1118775   .0050541   -22.14   0.000    -.1217833   -.1019718
-        maeduc │  -.1581699    .005415   -29.21   0.000     -.168783   -.1475568
-         _cons │   1.013337    .085875    11.80   0.000     .8450251    1.181649
-───────────────┼────────────────────────────────────────────────────────────────
-high_school    │  (base outcome)
-───────────────┼────────────────────────────────────────────────────────────────
-junior_college │
-           sex │     .10857   .0419854     2.59   0.010     .0262802    .1908597
-           age │   .0027976   .0013664     2.05   0.041     .0001195    .0054756
-        paeduc │   .0671707   .0069222     9.70   0.000     .0536034    .0807381
-        maeduc │   .0537209   .0084844     6.33   0.000     .0370918    .0703501
-         _cons │   -3.78768   .1379641   -27.45   0.000    -4.058084   -3.517275
-───────────────┼────────────────────────────────────────────────────────────────
-bachelor       │
-           sex │  -.1383151   .0276789    -5.00   0.000    -.1925648   -.0840654
-           age │   .0159393   .0008977    17.76   0.000     .0141798    .0176989
-        paeduc │   .1430438   .0046993    30.44   0.000     .1338333    .1522543
-        maeduc │   .1164455   .0058259    19.99   0.000      .105027     .127864
-         _cons │  -4.618421   .0963738   -47.92   0.000    -4.807311   -4.429532
-───────────────┼────────────────────────────────────────────────────────────────
-graduate       │
-           sex │  -.3641641   .0363253   -10.03   0.000    -.4353605   -.2929677
-           age │   .0362201   .0011387    31.81   0.000     .0339882     .038452
-        paeduc │   .1749678   .0061332    28.53   0.000     .1629469    .1869887
-        maeduc │   .1348214   .0076177    17.70   0.000     .1198909    .1497519
-         _cons │  -6.541676    .128908   -50.75   0.000    -6.794331   -6.289021
-───────────────┴────────────────────────────────────────────────────────────────
+─────────────────────┬────────────────────────────────────────────────────────────────
+            polviews │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────────────┼────────────────────────────────────────────────────────────────
+extremely_liberal    │
+                 sex │
+             female  │  -.2153043   .0534275    -4.03   0.000    -.3200202   -.1105883
+                 age │  -.0051601   .0015774    -3.27   0.001    -.0082517   -.0020685
+              degree │   .3607061   .0234865    15.36   0.000     .3146735    .4067387
+              coninc │  -6.68e-06   8.90e-07    -7.51   0.000    -8.43e-06   -4.94e-06
+               _cons │   -2.40105   .0904486   -26.55   0.000    -2.578326   -2.223774
+─────────────────────┼────────────────────────────────────────────────────────────────
+liberal              │
+                 sex │
+             female  │  -.0770042   .0302144    -2.55   0.011    -.1362233   -.0177851
+                 age │  -.0077271   .0009041    -8.55   0.000    -.0094991   -.0059551
+              degree │   .3615385   .0134905    26.80   0.000     .3350977    .3879794
+              coninc │  -2.36e-06   4.59e-07    -5.14   0.000    -3.26e-06   -1.46e-06
+               _cons │  -1.195919   .0513843   -23.27   0.000     -1.29663   -1.095207
+─────────────────────┼────────────────────────────────────────────────────────────────
+slightly_liberal     │
+                 sex │
+             female  │  -.1016619   .0292053    -3.48   0.000    -.1589032   -.0444206
+                 age │  -.0099768   .0008799   -11.34   0.000    -.0117014   -.0082521
+              degree │   .2358701   .0134562    17.53   0.000     .2094964    .2622438
+              coninc │  -1.94e-07   4.37e-07    -0.44   0.658    -1.05e-06    6.63e-07
+               _cons │    -.90455   .0494119   -18.31   0.000    -1.001396   -.8077044
+─────────────────────┼────────────────────────────────────────────────────────────────
+moderate             │  (base outcome)
+─────────────────────┼────────────────────────────────────────────────────────────────
+slghtly_conservative │
+                 sex │
+             female  │  -.2630355   .0270206    -9.73   0.000     -.315995    -.210076
+                 age │   .0012542   .0007943     1.58   0.114    -.0003026     .002811
+              degree │   .1963805    .012493    15.72   0.000     .1718947    .2208663
+              coninc │   3.39e-06   3.86e-07     8.79   0.000     2.63e-06    4.15e-06
+               _cons │  -1.221032   .0467118   -26.14   0.000    -1.312585   -1.129479
+─────────────────────┼────────────────────────────────────────────────────────────────
+conservative         │
+                 sex │
+             female  │  -.2625249   .0278997    -9.41   0.000    -.3172073   -.2078426
+                 age │   .0128524    .000801    16.05   0.000     .0112825    .0144224
+              degree │    .152561   .0129671    11.77   0.000      .127146     .177976
+              coninc │   3.87e-06   3.97e-07     9.75   0.000     3.09e-06    4.65e-06
+               _cons │  -1.813802   .0496044   -36.57   0.000    -1.911025   -1.716579
+─────────────────────┼────────────────────────────────────────────────────────────────
+extrmly_conservative │
+                 sex │
+             female  │  -.3790287   .0530006    -7.15   0.000     -.482908   -.2751493
+                 age │   .0150308   .0014834    10.13   0.000     .0121235    .0179381
+              degree │    .004062   .0262081     0.15   0.877    -.0473049     .055429
+              coninc │   3.35e-07   8.19e-07     0.41   0.682    -1.27e-06    1.94e-06
+               _cons │  -3.040997   .0945989   -32.15   0.000    -3.226407   -2.855587
+─────────────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="exponentiating-coefficients">Exponentiating Coefficients</h1>
 <pre class='stata'>. mlogit, rr
 
-Multinomial logistic regression                 Number of obs     =     42,583
-                                                LR chi2(16)       =   12390.60
+Multinomial logistic regression                 Number of obs     =     50,049
+                                                LR chi2(24)       =    2400.93
                                                 Prob > chi2       =     0.0000
-Log likelihood = -49965.546                     Pseudo R2         =     0.1103
+Log likelihood = -82694.594                     Pseudo R2         =     0.0143
 
-───────────────┬────────────────────────────────────────────────────────────────
-        degree │        RRR   Std. Err.      z    P>|z|     [95% Conf. Interval]
-───────────────┼────────────────────────────────────────────────────────────────
-lt_high_school │
-           sex │   .8551258   .0269928    -4.96   0.000     .8038242    .9097015
-           age │   1.008658   .0009633     9.03   0.000     1.006772    1.010548
-        paeduc │   .8941538   .0045191   -22.14   0.000     .8853402     .903055
-        maeduc │   .8537047   .0046228   -29.21   0.000     .8446922    .8628135
-         _cons │   2.754778   .2365665    11.80   0.000     2.328036    3.259744
-───────────────┼────────────────────────────────────────────────────────────────
-high_school    │  (base outcome)
-───────────────┼────────────────────────────────────────────────────────────────
-junior_college │
-           sex │   1.114683   .0468004     2.59   0.010     1.026629     1.21029
-           age │   1.002801   .0013702     2.05   0.041      1.00012    1.005491
-        paeduc │   1.069478   .0074032     9.70   0.000     1.055066    1.084087
-        maeduc │    1.05519   .0089527     6.33   0.000     1.037788    1.072884
-         _cons │   .0226481   .0031246   -27.45   0.000     .0172821    .0296802
-───────────────┼────────────────────────────────────────────────────────────────
-bachelor       │
-           sex │   .8708243   .0241035    -5.00   0.000     .8248409    .9193711
-           age │   1.016067   .0009122    17.76   0.000     1.014281    1.017856
-        paeduc │    1.15378    .005422    30.44   0.000     1.143202    1.164456
-        maeduc │   1.123496   .0065453    19.99   0.000     1.110741    1.136398
-         _cons │   .0098684   .0009511   -47.92   0.000     .0081698    .0119201
-───────────────┼────────────────────────────────────────────────────────────────
-graduate       │
-           sex │   .6947772    .025238   -10.03   0.000     .6470314    .7460462
-           age │   1.036884   .0011807    31.81   0.000     1.034572    1.039201
-        paeduc │   1.191208   .0073059    28.53   0.000     1.176974    1.205614
-        maeduc │   1.144332   .0087172    17.70   0.000     1.127374    1.161546
-         _cons │   .0014421   .0001859   -50.75   0.000     .0011201    .0018566
-───────────────┴────────────────────────────────────────────────────────────────
+─────────────────────┬────────────────────────────────────────────────────────────────
+            polviews │        RRR   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────────────┼────────────────────────────────────────────────────────────────
+extremely_liberal    │
+                 sex │
+             female  │   .8062961   .0430784    -4.03   0.000     .7261343    .8953073
+                 age │   .9948532   .0015693    -3.27   0.001     .9917823    .9979336
+              degree │   1.434342   .0336876    15.36   0.000     1.369812    1.501912
+              coninc │   .9999933   8.90e-07    -7.51   0.000     .9999916    .9999951
+               _cons │   .0906228   .0081967   -26.55   0.000      .075901       .1082
+─────────────────────┼────────────────────────────────────────────────────────────────
+liberal              │
+                 sex │
+             female  │    .925886   .0279751    -2.55   0.011     .8726477    .9823721
+                 age │   .9923027   .0008971    -8.55   0.000     .9905458    .9940626
+              degree │   1.435536   .0193661    26.80   0.000     1.398077    1.473999
+              coninc │   .9999976   4.59e-07    -5.14   0.000     .9999967    .9999985
+               _cons │   .3024259     .01554   -23.27   0.000     .2734517    .3344702
+─────────────────────┼────────────────────────────────────────────────────────────────
+slightly_liberal     │
+                 sex │
+             female  │   .9033349   .0263822    -3.48   0.000     .8530789    .9565515
+                 age │   .9900729   .0008712   -11.34   0.000     .9883668    .9917818
+              degree │    1.26601   .0170357    17.53   0.000     1.233057    1.299843
+              coninc │   .9999998   4.37e-07    -0.44   0.658     .9999989    1.000001
+               _cons │    .404724   .0199982   -18.31   0.000     .3673664    .4458805
+─────────────────────┼────────────────────────────────────────────────────────────────
+moderate             │  (base outcome)
+─────────────────────┼────────────────────────────────────────────────────────────────
+slghtly_conservative │
+                 sex │
+             female  │   .7687146   .0207712    -9.73   0.000     .7290631    .8105226
+                 age │   1.001255   .0007953     1.58   0.114     .9996975    1.002815
+              degree │    1.21699   .0152038    15.72   0.000     1.187553    1.247157
+              coninc │   1.000003   3.86e-07     8.79   0.000     1.000003    1.000004
+               _cons │   .2949256   .0137765   -26.14   0.000     .2691234    .3232017
+─────────────────────┼────────────────────────────────────────────────────────────────
+conservative         │
+                 sex │
+             female  │   .7691072   .0214578    -9.41   0.000     .7281798    .8123349
+                 age │   1.012935   .0008114    16.05   0.000     1.011346    1.014527
+              degree │   1.164814   .0151042    11.77   0.000     1.135583    1.194797
+              coninc │   1.000004   3.97e-07     9.75   0.000     1.000003    1.000005
+               _cons │   .1630332   .0080872   -36.57   0.000     .1479287    .1796798
+─────────────────────┼────────────────────────────────────────────────────────────────
+extrmly_conservative │
+                 sex │
+             female  │    .684526   .0362803    -7.15   0.000     .6169866    .7594587
+                 age │   1.015144   .0015058    10.13   0.000     1.012197      1.0181
+              degree │    1.00407   .0263148     0.15   0.877     .9537966    1.056994
+              coninc │          1   8.19e-07     0.41   0.682     .9999987    1.000002
+               _cons │   .0477872   .0045206   -32.15   0.000     .0396999    .0575221
+─────────────────────┴────────────────────────────────────────────────────────────────
 Note: _cons estimates baseline relative risk for each outcome.
 </pre>
 <h1 id="predicted-probabilities">Predicted Probabilities</h1>
+<pre class='stata'>. margins sex, predict(outcome(1)) // predicted probabilities by sex; y = 1
+
+Predictive margins                              Number of obs     =     50,049
+Model VCE    : OIM
+
+Expression   : Pr(polviews==extremely_liberal), predict(outcome(1))
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │            Delta-method
+             │     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+         sex │
+       male  │   .0325114    .001187    27.39   0.000     .0301849    .0348378
+     female  │   .0295928   .0010205    29.00   0.000     .0275927     .031593
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
 </body>
 </html>

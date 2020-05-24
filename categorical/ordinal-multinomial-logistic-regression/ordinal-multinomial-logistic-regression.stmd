@@ -39,7 +39,7 @@ $y(\text{3 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...$
 	
     use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
 	
-	keep sex maeduc paeduc age degree
+	keep polviews sex maeduc paeduc age degree coninc
 	
 	save GSSsmall.dta, replace
 	
@@ -53,23 +53,23 @@ $y(\text{3 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...$
 
 	summarize 
 	
-	tabulate degree
+	tabulate polviews
 	
 # The Ordinal Model (*k categories*)
 
 $$
-    ln(\frac{p(y \le k)}{p(y > k)}) = \beta_0 + \beta_1 x + ... 
+    \ln \left( \frac{p(y \le k)}{p(y > k)} \right) = \beta_0 + \beta_1 x_1 + ... 
 $$
 	
 # Ordinal Regression
 
-    ologit degree sex age paeduc maeduc
+    ologit polviews sex age degree coninc
 	
 > Many commands for regression of categorical dependent variables in R *do not provide p values*, and an extra step has to be taken to get p values. This is *not* a problem in Stata!
 	
 # Exponentiating Coefficients: $e^\beta$
 
-    ologit degree sex age paeduc maeduc, or
+    ologit polviews sex age degree coninc, or
 	
 # The Proportional Odds Assumption
 
@@ -78,31 +78,30 @@ $$
 # The Multinomial Model
 
 $$
-    ln(\frac{P(y = y_2)}{P(y = y_1)}) = ln(\frac{P(y = \text{something else})}{P(y = \text{something})})
+    \ln \left( \frac{P(y = y_2)}{P(y = y_1)} \right) = \ln \left( \frac{P(y = \text{something else})}{P(y = \text{something})} \right)
 $$ 
 
 $$
-    = \beta_0 + \beta_1 + ...
+    = \beta_0 + \beta_1 x_1 + ...
 $$
 
 $$
-    ln(\frac{P(y = y_3)}{P(y = y_1)}) = ln(\frac{P(y = \text{something else altogether})}{P(y = \text{something})})
+    \ln \left( \frac{P(y = y_3)}{P(y = y_1)} \right) = \ln \left( \frac{P(y = \text{something else altogether})}{P(y = \text{something})} \right)
 $$ 
 
 $$
-    = \beta_0 + \beta_1 + ...
+    = \beta_0 + \beta_1 x_1 + ...
 $$
 
 # Estimation
 
-    mlogit degree sex age paeduc maeduc
+    mlogit polviews i.sex age degree coninc
 
 # Exponentiating Coefficients
 
     mlogit, rr
 	
 # Predicted Probabilities
-
 	
-
+    margins sex, predict(outcome(1)) // predicted probabilities by sex; y = 1
 

@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}17 May 2020, 20:45:51
+ {txt}opened on:  {res}23 May 2020, 20:02:36
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}17 May 2020
+{res}23 May 2020
 {txt}
 {com}. //_2
 . clear all
@@ -20,7 +20,7 @@
 . use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
 {txt}
 {com}. //_5
-. keep sex maeduc paeduc age degree
+. keep polviews sex maeduc paeduc age degree coninc
 {txt}
 {com}. //_6
 . save GSSsmall.dta, replace
@@ -31,8 +31,8 @@
 
 {txt}Contains data from {res}GSSsmall.dta
 {txt}  obs:{res}        64,814                          
-{txt} vars:{res}             5                          17 May 2020 20:45
-{txt} size:{res}       324,070                          
+{txt} vars:{res}             7                          23 May 2020 20:02
+{txt} size:{res}       907,396                          
 {txt}{hline}
               storage   display    value
 variable name   type    format     label      variable label
@@ -42,6 +42,8 @@ variable name   type    format     label      variable label
 {p 0 48}{bind:maeduc         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:LABK     }{bind:  }{res}{res}highest year school completed, mother{p_end}
 {p 0 48}{bind:degree         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:LABL     }{bind:  }{res}{res}r's highest degree{p_end}
 {p 0 48}{bind:sex            }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:SEX      }{bind:  }{res}{res}respondents sex{p_end}
+{p 0 48}{bind:polviews       }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:POLVIEWS }{bind:  }{res}{res}think of self as liberal or conservative{p_end}
+{p 0 48}{bind:coninc         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:LABIH    }{bind:  }{res}{res}family income in constant dollars{p_end}
 {txt}{hline}
 Sorted by: 
 
@@ -55,176 +57,241 @@ Sorted by:
 {txt}{space 6}maeduc {c |}{res}     53,870    10.85365    3.768792          0         20
 {txt}{space 6}degree {c |}{res}     64,641     1.35858    1.175289          0          4
 {txt}{space 9}sex {c |}{res}     64,814    1.558521    .4965673          1          2
+{txt}{hline 13}{c +}{hline 57}
+{space 4}polviews {c |}{res}     55,328    4.100528    1.382474          1          7
+{txt}{space 6}coninc {c |}{res}     58,294    45028.17       36791      350.5     180386
 {txt}
 {com}. //_9
-. tabulate degree
+. tabulate polviews
 
-   {txt}r's highest {c |}
-        degree {c |}      Freq.     Percent        Cum.
-{hline 15}{c +}{hline 35}
-lt high school {c |}{res}     13,587       21.02       21.02
-{txt}   high school {c |}{res}     33,195       51.35       72.37
-{txt}junior college {c |}{res}      3,668        5.67       78.05
-{txt}      bachelor {c |}{res}      9,475       14.66       92.70
-{txt}      graduate {c |}{res}      4,716        7.30      100.00
-{txt}{hline 15}{c +}{hline 35}
-         Total {c |}{res}     64,641      100.00
+    {txt}think of self as {c |}
+          liberal or {c |}
+        conservative {c |}      Freq.     Percent        Cum.
+{hline 21}{c +}{hline 35}
+   extremely liberal {c |}{res}      1,682        3.04        3.04
+{txt}             liberal {c |}{res}      6,514       11.77       14.81
+{txt}    slightly liberal {c |}{res}      7,010       12.67       27.48
+{txt}            moderate {c |}{res}     21,370       38.62       66.11
+{txt}slghtly conservative {c |}{res}      8,690       15.71       81.81
+{txt}        conservative {c |}{res}      8,230       14.87       96.69
+{txt}extrmly conservative {c |}{res}      1,832        3.31      100.00
+{txt}{hline 21}{c +}{hline 35}
+               Total {c |}{res}     55,328      100.00
 {txt}
 {com}. //_10
-. ologit degree sex age paeduc maeduc
+. ologit polviews sex age degree coninc
 
-{res}{txt}Iteration 0:{space 3}log likelihood = {res:-56160.846}  
-Iteration 1:{space 3}log likelihood = {res:-50678.236}  
-Iteration 2:{space 3}log likelihood = {res:-50453.401}  
-Iteration 3:{space 3}log likelihood = {res:-50452.782}  
-Iteration 4:{space 3}log likelihood = {res:-50452.782}  
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-83895.058}  
+Iteration 1:{space 3}log likelihood = {res:-83369.429}  
+Iteration 2:{space 3}log likelihood = {res:-83368.485}  
+Iteration 3:{space 3}log likelihood = {res:-83368.485}  
 {res}
-{txt}Ordered logistic regression{col 49}Number of obs{col 67}= {res}    42,583
-{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}  11416.13
+{txt}Ordered logistic regression{col 49}Number of obs{col 67}= {res}    50,049
+{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}   1053.15
 {txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-50452.782{txt}{col 49}Pseudo R2{col 67}= {res}    0.1016
+{txt}Log likelihood = {res}-83368.485{txt}{col 49}Pseudo R2{col 67}= {res}    0.0063
 
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      degree{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{col 1}    polviews{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 9}sex {c |}{col 14}{res}{space 2}-.0756255{col 26}{space 2} .0188243{col 37}{space 1}   -4.02{col 46}{space 3}0.000{col 54}{space 4}-.1125204{col 67}{space 3}-.0387307
-{txt}{space 9}age {c |}{col 14}{res}{space 2} .0124686{col 26}{space 2} .0006014{col 37}{space 1}   20.73{col 46}{space 3}0.000{col 54}{space 4} .0112899{col 67}{space 3} .0136474
-{txt}{space 6}paeduc {c |}{col 14}{res}{space 2}  .151748{col 26}{space 2} .0031156{col 37}{space 1}   48.71{col 46}{space 3}0.000{col 54}{space 4} .1456416{col 67}{space 3} .1578545
-{txt}{space 6}maeduc {c |}{col 14}{res}{space 2}  .157931{col 26}{space 2} .0036724{col 37}{space 1}   43.00{col 46}{space 3}0.000{col 54}{space 4} .1507332{col 67}{space 3} .1651288
+{space 9}sex {c |}{col 14}{res}{space 2} -.129234{col 26}{space 2} .0162348{col 37}{space 1}   -7.96{col 46}{space 3}0.000{col 54}{space 4}-.1610536{col 67}{space 3}-.0974144
+{txt}{space 9}age {c |}{col 14}{res}{space 2} .0116653{col 26}{space 2} .0004737{col 37}{space 1}   24.63{col 46}{space 3}0.000{col 54}{space 4} .0107369{col 67}{space 3} .0125937
+{txt}{space 6}degree {c |}{col 14}{res}{space 2}-.1062661{col 26}{space 2} .0076242{col 37}{space 1}  -13.94{col 46}{space 3}0.000{col 54}{space 4}-.1212093{col 67}{space 3} -.091323
+{txt}{space 6}coninc {c |}{col 14}{res}{space 2} 3.99e-06{col 26}{space 2} 2.42e-07{col 37}{space 1}   16.52{col 46}{space 3}0.000{col 54}{space 4} 3.52e-06{col 67}{space 3} 4.46e-06
 {txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-       /cut1 {c |}{col 14}{res}{space 2} 1.686014{col 26}{space 2} .0565978{col 54}{space 4} 1.575084{col 67}{space 3} 1.796944
-{txt}       /cut2 {c |}{col 14}{res}{space 2} 4.710994{col 26}{space 2}   .06085{col 54}{space 4}  4.59173{col 67}{space 3} 4.830258
-{txt}       /cut3 {c |}{col 14}{res}{space 2} 5.061419{col 26}{space 2} .0614286{col 54}{space 4} 4.941021{col 67}{space 3} 5.181817
-{txt}       /cut4 {c |}{col 14}{res}{space 2} 6.542017{col 26}{space 2} .0645181{col 54}{space 4} 6.415564{col 67}{space 3}  6.66847
+       /cut1 {c |}{col 14}{res}{space 2}-3.116098{col 26}{space 2} .0440989{col 54}{space 4}-3.202531{col 67}{space 3}-3.029666
+{txt}       /cut2 {c |}{col 14}{res}{space 2}-1.389623{col 26}{space 2} .0379027{col 54}{space 4}-1.463911{col 67}{space 3}-1.315335
+{txt}       /cut3 {c |}{col 14}{res}{space 2}-.5941761{col 26}{space 2} .0372164{col 54}{space 4}-.6671188{col 67}{space 3}-.5212333
+{txt}       /cut4 {c |}{col 14}{res}{space 2} 1.050951{col 26}{space 2}  .037438{col 54}{space 4} .9775742{col 67}{space 3} 1.124329
+{txt}       /cut5 {c |}{col 14}{res}{space 2} 1.916652{col 26}{space 2}   .03824{col 54}{space 4} 1.841703{col 67}{space 3} 1.991601
+{txt}       /cut6 {c |}{col 14}{res}{space 2} 3.826484{col 26}{space 2} .0447146{col 54}{space 4} 3.738845{col 67}{space 3} 3.914123
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
 {com}. //_11
-. ologit degree sex age paeduc maeduc, or
+. ologit polviews sex age degree coninc, or
 
-{res}{txt}Iteration 0:{space 3}log likelihood = {res:-56160.846}  
-Iteration 1:{space 3}log likelihood = {res:-50678.236}  
-Iteration 2:{space 3}log likelihood = {res:-50453.401}  
-Iteration 3:{space 3}log likelihood = {res:-50452.782}  
-Iteration 4:{space 3}log likelihood = {res:-50452.782}  
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-83895.058}  
+Iteration 1:{space 3}log likelihood = {res:-83369.429}  
+Iteration 2:{space 3}log likelihood = {res:-83368.485}  
+Iteration 3:{space 3}log likelihood = {res:-83368.485}  
 {res}
-{txt}Ordered logistic regression{col 49}Number of obs{col 67}= {res}    42,583
-{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}  11416.13
+{txt}Ordered logistic regression{col 49}Number of obs{col 67}= {res}    50,049
+{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}   1053.15
 {txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-50452.782{txt}{col 49}Pseudo R2{col 67}= {res}    0.1016
+{txt}Log likelihood = {res}-83368.485{txt}{col 49}Pseudo R2{col 67}= {res}    0.0063
 
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}      degree{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{col 1}    polviews{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 9}sex {c |}{col 14}{res}{space 2} .9271633{col 26}{space 2} .0174532{col 37}{space 1}   -4.02{col 46}{space 3}0.000{col 54}{space 4} .8935791{col 67}{space 3} .9620098
-{txt}{space 9}age {c |}{col 14}{res}{space 2} 1.012547{col 26}{space 2}  .000609{col 37}{space 1}   20.73{col 46}{space 3}0.000{col 54}{space 4} 1.011354{col 67}{space 3} 1.013741
-{txt}{space 6}paeduc {c |}{col 14}{res}{space 2} 1.163867{col 26}{space 2} .0036261{col 37}{space 1}   48.71{col 46}{space 3}0.000{col 54}{space 4} 1.156782{col 67}{space 3} 1.170996
-{txt}{space 6}maeduc {c |}{col 14}{res}{space 2} 1.171085{col 26}{space 2} .0043007{col 37}{space 1}   43.00{col 46}{space 3}0.000{col 54}{space 4} 1.162686{col 67}{space 3} 1.179545
+{space 9}sex {c |}{col 14}{res}{space 2} .8787683{col 26}{space 2} .0142666{col 37}{space 1}   -7.96{col 46}{space 3}0.000{col 54}{space 4} .8512464{col 67}{space 3}   .90718
+{txt}{space 9}age {c |}{col 14}{res}{space 2} 1.011734{col 26}{space 2} .0004792{col 37}{space 1}   24.63{col 46}{space 3}0.000{col 54}{space 4} 1.010795{col 67}{space 3} 1.012673
+{txt}{space 6}degree {c |}{col 14}{res}{space 2} .8991853{col 26}{space 2} .0068555{col 37}{space 1}  -13.94{col 46}{space 3}0.000{col 54}{space 4} .8858486{col 67}{space 3} .9127228
+{txt}{space 6}coninc {c |}{col 14}{res}{space 2} 1.000004{col 26}{space 2} 2.42e-07{col 37}{space 1}   16.52{col 46}{space 3}0.000{col 54}{space 4} 1.000004{col 67}{space 3} 1.000004
 {txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-       /cut1 {c |}{col 14}{res}{space 2} 1.686014{col 26}{space 2} .0565978{col 54}{space 4} 1.575084{col 67}{space 3} 1.796944
-{txt}       /cut2 {c |}{col 14}{res}{space 2} 4.710994{col 26}{space 2}   .06085{col 54}{space 4}  4.59173{col 67}{space 3} 4.830258
-{txt}       /cut3 {c |}{col 14}{res}{space 2} 5.061419{col 26}{space 2} .0614286{col 54}{space 4} 4.941021{col 67}{space 3} 5.181817
-{txt}       /cut4 {c |}{col 14}{res}{space 2} 6.542017{col 26}{space 2} .0645181{col 54}{space 4} 6.415564{col 67}{space 3}  6.66847
+       /cut1 {c |}{col 14}{res}{space 2}-3.116098{col 26}{space 2} .0440989{col 54}{space 4}-3.202531{col 67}{space 3}-3.029666
+{txt}       /cut2 {c |}{col 14}{res}{space 2}-1.389623{col 26}{space 2} .0379027{col 54}{space 4}-1.463911{col 67}{space 3}-1.315335
+{txt}       /cut3 {c |}{col 14}{res}{space 2}-.5941761{col 26}{space 2} .0372164{col 54}{space 4}-.6671188{col 67}{space 3}-.5212333
+{txt}       /cut4 {c |}{col 14}{res}{space 2} 1.050951{col 26}{space 2}  .037438{col 54}{space 4} .9775742{col 67}{space 3} 1.124329
+{txt}       /cut5 {c |}{col 14}{res}{space 2} 1.916652{col 26}{space 2}   .03824{col 54}{space 4} 1.841703{col 67}{space 3} 1.991601
+{txt}       /cut6 {c |}{col 14}{res}{space 2} 3.826484{col 26}{space 2} .0447146{col 54}{space 4} 3.738845{col 67}{space 3} 3.914123
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 2}Note: {help eform_option:Estimates are transformed} only in the first equation.{p_end}
 
 {com}. //_12
-. mlogit degree sex age paeduc maeduc
+. mlogit polviews i.sex age degree coninc
 
-{res}{txt}Iteration 0:{space 3}log likelihood = {res:-56160.846}  
-Iteration 1:{space 3}log likelihood = {res:-50661.077}  
-Iteration 2:{space 3}log likelihood = {res:-49974.278}  
-Iteration 3:{space 3}log likelihood = {res:-49965.555}  
-Iteration 4:{space 3}log likelihood = {res:-49965.546}  
-Iteration 5:{space 3}log likelihood = {res:-49965.546}  
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-83895.058}  
+Iteration 1:{space 3}log likelihood = {res:-82700.548}  
+Iteration 2:{space 3}log likelihood = {res:-82694.595}  
+Iteration 3:{space 3}log likelihood = {res:-82694.594}  
 {res}
-{txt}Multinomial logistic regression{col 49}Number of obs{col 67}= {res}    42,583
-{txt}{col 49}LR chi2({res}16{txt}){col 67}= {res}  12390.60
+{txt}Multinomial logistic regression{col 49}Number of obs{col 67}= {res}    50,049
+{txt}{col 49}LR chi2({res}24{txt}){col 67}= {res}   2400.93
 {txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-49965.546{txt}{col 49}Pseudo R2{col 67}= {res}    0.1103
+{txt}Log likelihood = {res}-82694.594{txt}{col 49}Pseudo R2{col 67}= {res}    0.0143
 
-{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}        degree{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
-{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}lt_high_school {txt}{c |}
-{space 11}sex {c |}{col 16}{res}{space 2}-.1565067{col 28}{space 2} .0315659{col 39}{space 1}   -4.96{col 48}{space 3}0.000{col 56}{space 4}-.2183747{col 69}{space 3}-.0946388
-{txt}{space 11}age {c |}{col 16}{res}{space 2} .0086206{col 28}{space 2}  .000955{col 39}{space 1}    9.03{col 48}{space 3}0.000{col 56}{space 4} .0067488{col 69}{space 3} .0104925
-{txt}{space 8}paeduc {c |}{col 16}{res}{space 2}-.1118775{col 28}{space 2} .0050541{col 39}{space 1}  -22.14{col 48}{space 3}0.000{col 56}{space 4}-.1217833{col 69}{space 3}-.1019718
-{txt}{space 8}maeduc {c |}{col 16}{res}{space 2}-.1581699{col 28}{space 2}  .005415{col 39}{space 1}  -29.21{col 48}{space 3}0.000{col 56}{space 4} -.168783{col 69}{space 3}-.1475568
-{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.013337{col 28}{space 2}  .085875{col 39}{space 1}   11.80{col 48}{space 3}0.000{col 56}{space 4} .8450251{col 69}{space 3} 1.181649
-{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}{res}high_school   {col 16}{txt}{c |}  (base outcome)
-{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}junior_college {txt}{c |}
-{space 11}sex {c |}{col 16}{res}{space 2}   .10857{col 28}{space 2} .0419854{col 39}{space 1}    2.59{col 48}{space 3}0.010{col 56}{space 4} .0262802{col 69}{space 3} .1908597
-{txt}{space 11}age {c |}{col 16}{res}{space 2} .0027976{col 28}{space 2} .0013664{col 39}{space 1}    2.05{col 48}{space 3}0.041{col 56}{space 4} .0001195{col 69}{space 3} .0054756
-{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} .0671707{col 28}{space 2} .0069222{col 39}{space 1}    9.70{col 48}{space 3}0.000{col 56}{space 4} .0536034{col 69}{space 3} .0807381
-{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} .0537209{col 28}{space 2} .0084844{col 39}{space 1}    6.33{col 48}{space 3}0.000{col 56}{space 4} .0370918{col 69}{space 3} .0703501
-{txt}{space 9}_cons {c |}{col 16}{res}{space 2} -3.78768{col 28}{space 2} .1379641{col 39}{space 1}  -27.45{col 48}{space 3}0.000{col 56}{space 4}-4.058084{col 69}{space 3}-3.517275
-{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}bachelor       {txt}{c |}
-{space 11}sex {c |}{col 16}{res}{space 2}-.1383151{col 28}{space 2} .0276789{col 39}{space 1}   -5.00{col 48}{space 3}0.000{col 56}{space 4}-.1925648{col 69}{space 3}-.0840654
-{txt}{space 11}age {c |}{col 16}{res}{space 2} .0159393{col 28}{space 2} .0008977{col 39}{space 1}   17.76{col 48}{space 3}0.000{col 56}{space 4} .0141798{col 69}{space 3} .0176989
-{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} .1430438{col 28}{space 2} .0046993{col 39}{space 1}   30.44{col 48}{space 3}0.000{col 56}{space 4} .1338333{col 69}{space 3} .1522543
-{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} .1164455{col 28}{space 2} .0058259{col 39}{space 1}   19.99{col 48}{space 3}0.000{col 56}{space 4}  .105027{col 69}{space 3}  .127864
-{txt}{space 9}_cons {c |}{col 16}{res}{space 2}-4.618421{col 28}{space 2} .0963738{col 39}{space 1}  -47.92{col 48}{space 3}0.000{col 56}{space 4}-4.807311{col 69}{space 3}-4.429532
-{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}graduate       {txt}{c |}
-{space 11}sex {c |}{col 16}{res}{space 2}-.3641641{col 28}{space 2} .0363253{col 39}{space 1}  -10.03{col 48}{space 3}0.000{col 56}{space 4}-.4353605{col 69}{space 3}-.2929677
-{txt}{space 11}age {c |}{col 16}{res}{space 2} .0362201{col 28}{space 2} .0011387{col 39}{space 1}   31.81{col 48}{space 3}0.000{col 56}{space 4} .0339882{col 69}{space 3}  .038452
-{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} .1749678{col 28}{space 2} .0061332{col 39}{space 1}   28.53{col 48}{space 3}0.000{col 56}{space 4} .1629469{col 69}{space 3} .1869887
-{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} .1348214{col 28}{space 2} .0076177{col 39}{space 1}   17.70{col 48}{space 3}0.000{col 56}{space 4} .1198909{col 69}{space 3} .1497519
-{txt}{space 9}_cons {c |}{col 16}{res}{space 2}-6.541676{col 28}{space 2}  .128908{col 39}{space 1}  -50.75{col 48}{space 3}0.000{col 56}{space 4}-6.794331{col 69}{space 3}-6.289021
-{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 21}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}            polviews{col 22}{c |}      Coef.{col 34}   Std. Err.{col 46}      z{col 54}   P>|z|{col 62}     [95% Con{col 75}f. Interval]
+{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}extremely_liberal    {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2}-.2153043{col 34}{space 2} .0534275{col 45}{space 1}   -4.03{col 54}{space 3}0.000{col 62}{space 4}-.3200202{col 75}{space 3}-.1105883
+{txt}{space 17}age {c |}{col 22}{res}{space 2}-.0051601{col 34}{space 2} .0015774{col 45}{space 1}   -3.27{col 54}{space 3}0.001{col 62}{space 4}-.0082517{col 75}{space 3}-.0020685
+{txt}{space 14}degree {c |}{col 22}{res}{space 2} .3607061{col 34}{space 2} .0234865{col 45}{space 1}   15.36{col 54}{space 3}0.000{col 62}{space 4} .3146735{col 75}{space 3} .4067387
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2}-6.68e-06{col 34}{space 2} 8.90e-07{col 45}{space 1}   -7.51{col 54}{space 3}0.000{col 62}{space 4}-8.43e-06{col 75}{space 3}-4.94e-06
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2} -2.40105{col 34}{space 2} .0904486{col 45}{space 1}  -26.55{col 54}{space 3}0.000{col 62}{space 4}-2.578326{col 75}{space 3}-2.223774
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}liberal              {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2}-.0770042{col 34}{space 2} .0302144{col 45}{space 1}   -2.55{col 54}{space 3}0.011{col 62}{space 4}-.1362233{col 75}{space 3}-.0177851
+{txt}{space 17}age {c |}{col 22}{res}{space 2}-.0077271{col 34}{space 2} .0009041{col 45}{space 1}   -8.55{col 54}{space 3}0.000{col 62}{space 4}-.0094991{col 75}{space 3}-.0059551
+{txt}{space 14}degree {c |}{col 22}{res}{space 2} .3615385{col 34}{space 2} .0134905{col 45}{space 1}   26.80{col 54}{space 3}0.000{col 62}{space 4} .3350977{col 75}{space 3} .3879794
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2}-2.36e-06{col 34}{space 2} 4.59e-07{col 45}{space 1}   -5.14{col 54}{space 3}0.000{col 62}{space 4}-3.26e-06{col 75}{space 3}-1.46e-06
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2}-1.195919{col 34}{space 2} .0513843{col 45}{space 1}  -23.27{col 54}{space 3}0.000{col 62}{space 4} -1.29663{col 75}{space 3}-1.095207
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}slightly_liberal     {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2}-.1016619{col 34}{space 2} .0292053{col 45}{space 1}   -3.48{col 54}{space 3}0.000{col 62}{space 4}-.1589032{col 75}{space 3}-.0444206
+{txt}{space 17}age {c |}{col 22}{res}{space 2}-.0099768{col 34}{space 2} .0008799{col 45}{space 1}  -11.34{col 54}{space 3}0.000{col 62}{space 4}-.0117014{col 75}{space 3}-.0082521
+{txt}{space 14}degree {c |}{col 22}{res}{space 2} .2358701{col 34}{space 2} .0134562{col 45}{space 1}   17.53{col 54}{space 3}0.000{col 62}{space 4} .2094964{col 75}{space 3} .2622438
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2}-1.94e-07{col 34}{space 2} 4.37e-07{col 45}{space 1}   -0.44{col 54}{space 3}0.658{col 62}{space 4}-1.05e-06{col 75}{space 3} 6.63e-07
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2}  -.90455{col 34}{space 2} .0494119{col 45}{space 1}  -18.31{col 54}{space 3}0.000{col 62}{space 4}-1.001396{col 75}{space 3}-.8077044
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}{res}moderate            {col 22}{txt}{c |}  (base outcome)
+{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}slghtly_conservative {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2}-.2630355{col 34}{space 2} .0270206{col 45}{space 1}   -9.73{col 54}{space 3}0.000{col 62}{space 4} -.315995{col 75}{space 3} -.210076
+{txt}{space 17}age {c |}{col 22}{res}{space 2} .0012542{col 34}{space 2} .0007943{col 45}{space 1}    1.58{col 54}{space 3}0.114{col 62}{space 4}-.0003026{col 75}{space 3}  .002811
+{txt}{space 14}degree {c |}{col 22}{res}{space 2} .1963805{col 34}{space 2}  .012493{col 45}{space 1}   15.72{col 54}{space 3}0.000{col 62}{space 4} .1718947{col 75}{space 3} .2208663
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2} 3.39e-06{col 34}{space 2} 3.86e-07{col 45}{space 1}    8.79{col 54}{space 3}0.000{col 62}{space 4} 2.63e-06{col 75}{space 3} 4.15e-06
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2}-1.221032{col 34}{space 2} .0467118{col 45}{space 1}  -26.14{col 54}{space 3}0.000{col 62}{space 4}-1.312585{col 75}{space 3}-1.129479
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}conservative         {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2}-.2625249{col 34}{space 2} .0278997{col 45}{space 1}   -9.41{col 54}{space 3}0.000{col 62}{space 4}-.3172073{col 75}{space 3}-.2078426
+{txt}{space 17}age {c |}{col 22}{res}{space 2} .0128524{col 34}{space 2}  .000801{col 45}{space 1}   16.05{col 54}{space 3}0.000{col 62}{space 4} .0112825{col 75}{space 3} .0144224
+{txt}{space 14}degree {c |}{col 22}{res}{space 2}  .152561{col 34}{space 2} .0129671{col 45}{space 1}   11.77{col 54}{space 3}0.000{col 62}{space 4}  .127146{col 75}{space 3}  .177976
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2} 3.87e-06{col 34}{space 2} 3.97e-07{col 45}{space 1}    9.75{col 54}{space 3}0.000{col 62}{space 4} 3.09e-06{col 75}{space 3} 4.65e-06
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2}-1.813802{col 34}{space 2} .0496044{col 45}{space 1}  -36.57{col 54}{space 3}0.000{col 62}{space 4}-1.911025{col 75}{space 3}-1.716579
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}extrmly_conservative {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2}-.3790287{col 34}{space 2} .0530006{col 45}{space 1}   -7.15{col 54}{space 3}0.000{col 62}{space 4} -.482908{col 75}{space 3}-.2751493
+{txt}{space 17}age {c |}{col 22}{res}{space 2} .0150308{col 34}{space 2} .0014834{col 45}{space 1}   10.13{col 54}{space 3}0.000{col 62}{space 4} .0121235{col 75}{space 3} .0179381
+{txt}{space 14}degree {c |}{col 22}{res}{space 2}  .004062{col 34}{space 2} .0262081{col 45}{space 1}    0.15{col 54}{space 3}0.877{col 62}{space 4}-.0473049{col 75}{space 3}  .055429
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2} 3.35e-07{col 34}{space 2} 8.19e-07{col 45}{space 1}    0.41{col 54}{space 3}0.682{col 62}{space 4}-1.27e-06{col 75}{space 3} 1.94e-06
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2}-3.040997{col 34}{space 2} .0945989{col 45}{space 1}  -32.15{col 54}{space 3}0.000{col 62}{space 4}-3.226407{col 75}{space 3}-2.855587
+{txt}{hline 21}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
 {com}. //_13
 . mlogit, rr
 
-{txt}Multinomial logistic regression{col 49}Number of obs{col 67}= {res}    42,583
-{txt}{col 49}LR chi2({res}16{txt}){col 67}= {res}  12390.60
+{txt}Multinomial logistic regression{col 49}Number of obs{col 67}= {res}    50,049
+{txt}{col 49}LR chi2({res}24{txt}){col 67}= {res}   2400.93
 {txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-49965.546{txt}{col 49}Pseudo R2{col 67}= {res}    0.1103
+{txt}Log likelihood = {res}-82694.594{txt}{col 49}Pseudo R2{col 67}= {res}    0.0143
 
-{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}        degree{col 16}{c |}        RRR{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
-{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}lt_high_school {txt}{c |}
-{space 11}sex {c |}{col 16}{res}{space 2} .8551258{col 28}{space 2} .0269928{col 39}{space 1}   -4.96{col 48}{space 3}0.000{col 56}{space 4} .8038242{col 69}{space 3} .9097015
-{txt}{space 11}age {c |}{col 16}{res}{space 2} 1.008658{col 28}{space 2} .0009633{col 39}{space 1}    9.03{col 48}{space 3}0.000{col 56}{space 4} 1.006772{col 69}{space 3} 1.010548
-{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} .8941538{col 28}{space 2} .0045191{col 39}{space 1}  -22.14{col 48}{space 3}0.000{col 56}{space 4} .8853402{col 69}{space 3}  .903055
-{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} .8537047{col 28}{space 2} .0046228{col 39}{space 1}  -29.21{col 48}{space 3}0.000{col 56}{space 4} .8446922{col 69}{space 3} .8628135
-{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 2.754778{col 28}{space 2} .2365665{col 39}{space 1}   11.80{col 48}{space 3}0.000{col 56}{space 4} 2.328036{col 69}{space 3} 3.259744
-{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}{res}high_school   {col 16}{txt}{c |}  (base outcome)
-{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}junior_college {txt}{c |}
-{space 11}sex {c |}{col 16}{res}{space 2} 1.114683{col 28}{space 2} .0468004{col 39}{space 1}    2.59{col 48}{space 3}0.010{col 56}{space 4} 1.026629{col 69}{space 3}  1.21029
-{txt}{space 11}age {c |}{col 16}{res}{space 2} 1.002801{col 28}{space 2} .0013702{col 39}{space 1}    2.05{col 48}{space 3}0.041{col 56}{space 4}  1.00012{col 69}{space 3} 1.005491
-{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} 1.069478{col 28}{space 2} .0074032{col 39}{space 1}    9.70{col 48}{space 3}0.000{col 56}{space 4} 1.055066{col 69}{space 3} 1.084087
-{txt}{space 8}maeduc {c |}{col 16}{res}{space 2}  1.05519{col 28}{space 2} .0089527{col 39}{space 1}    6.33{col 48}{space 3}0.000{col 56}{space 4} 1.037788{col 69}{space 3} 1.072884
-{txt}{space 9}_cons {c |}{col 16}{res}{space 2} .0226481{col 28}{space 2} .0031246{col 39}{space 1}  -27.45{col 48}{space 3}0.000{col 56}{space 4} .0172821{col 69}{space 3} .0296802
-{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}bachelor       {txt}{c |}
-{space 11}sex {c |}{col 16}{res}{space 2} .8708243{col 28}{space 2} .0241035{col 39}{space 1}   -5.00{col 48}{space 3}0.000{col 56}{space 4} .8248409{col 69}{space 3} .9193711
-{txt}{space 11}age {c |}{col 16}{res}{space 2} 1.016067{col 28}{space 2} .0009122{col 39}{space 1}   17.76{col 48}{space 3}0.000{col 56}{space 4} 1.014281{col 69}{space 3} 1.017856
-{txt}{space 8}paeduc {c |}{col 16}{res}{space 2}  1.15378{col 28}{space 2}  .005422{col 39}{space 1}   30.44{col 48}{space 3}0.000{col 56}{space 4} 1.143202{col 69}{space 3} 1.164456
-{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} 1.123496{col 28}{space 2} .0065453{col 39}{space 1}   19.99{col 48}{space 3}0.000{col 56}{space 4} 1.110741{col 69}{space 3} 1.136398
-{txt}{space 9}_cons {c |}{col 16}{res}{space 2} .0098684{col 28}{space 2} .0009511{col 39}{space 1}  -47.92{col 48}{space 3}0.000{col 56}{space 4} .0081698{col 69}{space 3} .0119201
-{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{res}graduate       {txt}{c |}
-{space 11}sex {c |}{col 16}{res}{space 2} .6947772{col 28}{space 2}  .025238{col 39}{space 1}  -10.03{col 48}{space 3}0.000{col 56}{space 4} .6470314{col 69}{space 3} .7460462
-{txt}{space 11}age {c |}{col 16}{res}{space 2} 1.036884{col 28}{space 2} .0011807{col 39}{space 1}   31.81{col 48}{space 3}0.000{col 56}{space 4} 1.034572{col 69}{space 3} 1.039201
-{txt}{space 8}paeduc {c |}{col 16}{res}{space 2} 1.191208{col 28}{space 2} .0073059{col 39}{space 1}   28.53{col 48}{space 3}0.000{col 56}{space 4} 1.176974{col 69}{space 3} 1.205614
-{txt}{space 8}maeduc {c |}{col 16}{res}{space 2} 1.144332{col 28}{space 2} .0087172{col 39}{space 1}   17.70{col 48}{space 3}0.000{col 56}{space 4} 1.127374{col 69}{space 3} 1.161546
-{txt}{space 9}_cons {c |}{col 16}{res}{space 2} .0014421{col 28}{space 2} .0001859{col 39}{space 1}  -50.75{col 48}{space 3}0.000{col 56}{space 4} .0011201{col 69}{space 3} .0018566
-{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 21}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}            polviews{col 22}{c |}        RRR{col 34}   Std. Err.{col 46}      z{col 54}   P>|z|{col 62}     [95% Con{col 75}f. Interval]
+{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}extremely_liberal    {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2} .8062961{col 34}{space 2} .0430784{col 45}{space 1}   -4.03{col 54}{space 3}0.000{col 62}{space 4} .7261343{col 75}{space 3} .8953073
+{txt}{space 17}age {c |}{col 22}{res}{space 2} .9948532{col 34}{space 2} .0015693{col 45}{space 1}   -3.27{col 54}{space 3}0.001{col 62}{space 4} .9917823{col 75}{space 3} .9979336
+{txt}{space 14}degree {c |}{col 22}{res}{space 2} 1.434342{col 34}{space 2} .0336876{col 45}{space 1}   15.36{col 54}{space 3}0.000{col 62}{space 4} 1.369812{col 75}{space 3} 1.501912
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2} .9999933{col 34}{space 2} 8.90e-07{col 45}{space 1}   -7.51{col 54}{space 3}0.000{col 62}{space 4} .9999916{col 75}{space 3} .9999951
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2} .0906228{col 34}{space 2} .0081967{col 45}{space 1}  -26.55{col 54}{space 3}0.000{col 62}{space 4}  .075901{col 75}{space 3}    .1082
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}liberal              {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2}  .925886{col 34}{space 2} .0279751{col 45}{space 1}   -2.55{col 54}{space 3}0.011{col 62}{space 4} .8726477{col 75}{space 3} .9823721
+{txt}{space 17}age {c |}{col 22}{res}{space 2} .9923027{col 34}{space 2} .0008971{col 45}{space 1}   -8.55{col 54}{space 3}0.000{col 62}{space 4} .9905458{col 75}{space 3} .9940626
+{txt}{space 14}degree {c |}{col 22}{res}{space 2} 1.435536{col 34}{space 2} .0193661{col 45}{space 1}   26.80{col 54}{space 3}0.000{col 62}{space 4} 1.398077{col 75}{space 3} 1.473999
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2} .9999976{col 34}{space 2} 4.59e-07{col 45}{space 1}   -5.14{col 54}{space 3}0.000{col 62}{space 4} .9999967{col 75}{space 3} .9999985
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2} .3024259{col 34}{space 2}   .01554{col 45}{space 1}  -23.27{col 54}{space 3}0.000{col 62}{space 4} .2734517{col 75}{space 3} .3344702
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}slightly_liberal     {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2} .9033349{col 34}{space 2} .0263822{col 45}{space 1}   -3.48{col 54}{space 3}0.000{col 62}{space 4} .8530789{col 75}{space 3} .9565515
+{txt}{space 17}age {c |}{col 22}{res}{space 2} .9900729{col 34}{space 2} .0008712{col 45}{space 1}  -11.34{col 54}{space 3}0.000{col 62}{space 4} .9883668{col 75}{space 3} .9917818
+{txt}{space 14}degree {c |}{col 22}{res}{space 2}  1.26601{col 34}{space 2} .0170357{col 45}{space 1}   17.53{col 54}{space 3}0.000{col 62}{space 4} 1.233057{col 75}{space 3} 1.299843
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2} .9999998{col 34}{space 2} 4.37e-07{col 45}{space 1}   -0.44{col 54}{space 3}0.658{col 62}{space 4} .9999989{col 75}{space 3} 1.000001
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2}  .404724{col 34}{space 2} .0199982{col 45}{space 1}  -18.31{col 54}{space 3}0.000{col 62}{space 4} .3673664{col 75}{space 3} .4458805
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}{res}moderate            {col 22}{txt}{c |}  (base outcome)
+{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}slghtly_conservative {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2} .7687146{col 34}{space 2} .0207712{col 45}{space 1}   -9.73{col 54}{space 3}0.000{col 62}{space 4} .7290631{col 75}{space 3} .8105226
+{txt}{space 17}age {c |}{col 22}{res}{space 2} 1.001255{col 34}{space 2} .0007953{col 45}{space 1}    1.58{col 54}{space 3}0.114{col 62}{space 4} .9996975{col 75}{space 3} 1.002815
+{txt}{space 14}degree {c |}{col 22}{res}{space 2}  1.21699{col 34}{space 2} .0152038{col 45}{space 1}   15.72{col 54}{space 3}0.000{col 62}{space 4} 1.187553{col 75}{space 3} 1.247157
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2} 1.000003{col 34}{space 2} 3.86e-07{col 45}{space 1}    8.79{col 54}{space 3}0.000{col 62}{space 4} 1.000003{col 75}{space 3} 1.000004
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2} .2949256{col 34}{space 2} .0137765{col 45}{space 1}  -26.14{col 54}{space 3}0.000{col 62}{space 4} .2691234{col 75}{space 3} .3232017
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}conservative         {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2} .7691072{col 34}{space 2} .0214578{col 45}{space 1}   -9.41{col 54}{space 3}0.000{col 62}{space 4} .7281798{col 75}{space 3} .8123349
+{txt}{space 17}age {c |}{col 22}{res}{space 2} 1.012935{col 34}{space 2} .0008114{col 45}{space 1}   16.05{col 54}{space 3}0.000{col 62}{space 4} 1.011346{col 75}{space 3} 1.014527
+{txt}{space 14}degree {c |}{col 22}{res}{space 2} 1.164814{col 34}{space 2} .0151042{col 45}{space 1}   11.77{col 54}{space 3}0.000{col 62}{space 4} 1.135583{col 75}{space 3} 1.194797
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2} 1.000004{col 34}{space 2} 3.97e-07{col 45}{space 1}    9.75{col 54}{space 3}0.000{col 62}{space 4} 1.000003{col 75}{space 3} 1.000005
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2} .1630332{col 34}{space 2} .0080872{col 45}{space 1}  -36.57{col 54}{space 3}0.000{col 62}{space 4} .1479287{col 75}{space 3} .1796798
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}extrmly_conservative {txt}{c |}
+{space 17}sex {c |}
+{space 13}female  {c |}{col 22}{res}{space 2}  .684526{col 34}{space 2} .0362803{col 45}{space 1}   -7.15{col 54}{space 3}0.000{col 62}{space 4} .6169866{col 75}{space 3} .7594587
+{txt}{space 17}age {c |}{col 22}{res}{space 2} 1.015144{col 34}{space 2} .0015058{col 45}{space 1}   10.13{col 54}{space 3}0.000{col 62}{space 4} 1.012197{col 75}{space 3}   1.0181
+{txt}{space 14}degree {c |}{col 22}{res}{space 2}  1.00407{col 34}{space 2} .0263148{col 45}{space 1}    0.15{col 54}{space 3}0.877{col 62}{space 4} .9537966{col 75}{space 3} 1.056994
+{txt}{space 14}coninc {c |}{col 22}{res}{space 2}        1{col 34}{space 2} 8.19e-07{col 45}{space 1}    0.41{col 54}{space 3}0.682{col 62}{space 4} .9999987{col 75}{space 3} 1.000002
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2} .0477872{col 34}{space 2} .0045206{col 45}{space 1}  -32.15{col 54}{space 3}0.000{col 62}{space 4} .0396999{col 75}{space 3} .0575221
+{txt}{hline 21}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 2}Note: {res:_cons} estimates baseline relative risk{txt} for each outcome{txt}.{p_end}
 
+{com}. //_14
+. margins sex, predict(outcome(1)) // predicted probabilities by sex; y = 1
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}    50,049
+{txt}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(polviews==extremely_liberal), predict(outcome(1))}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}sex {c |}
+{space 7}male  {c |}{col 14}{res}{space 2} .0325114{col 26}{space 2}  .001187{col 37}{space 1}   27.39{col 46}{space 3}0.000{col 54}{space 4} .0301849{col 67}{space 3} .0348378
+{txt}{space 5}female  {c |}{col 14}{res}{space 2} .0295928{col 26}{space 2} .0010205{col 37}{space 1}   29.00{col 46}{space 3}0.000{col 54}{space 4} .0275927{col 67}{space 3}  .031593
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}17 May 2020, 20:45:54
+ {txt}closed on:  {res}23 May 2020, 20:02:47
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
