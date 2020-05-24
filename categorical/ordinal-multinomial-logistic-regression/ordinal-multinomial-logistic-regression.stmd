@@ -8,6 +8,8 @@ geometry: margin=1 in
 
 # Meta-Background
 
+<style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
+
 ![Tweet About Ordinal Models](twitter-ordinal-annotated.PNG){ width=20% }
 
 # Key Concepts and Commands
