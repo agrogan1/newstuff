@@ -1,0 +1,63 @@
+
+R version 3.6.1 (2019-07-05) -- "Action of the Toes"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> #_1
+> emo::ji("horse")
+🐴 
+> #_2
+> emo::ji("phone")
+☎️ 
+> #_3
+> emo::ji("hospital")
+🏥 
+> #_4
+> emo::ji("horse")
+🐴 
+> #_5
+> emo::ji("phone")
+☎️ 
+> #_6
+> emo::ji("hospital")
+🏥 
+> #_7
+> emo::ji("tree")
+🌳 
+> #_8
+> emo::ji("sick")
+🤒 
+> #_9
+> emo::ji("plant")
+🌱 
+> #_10
+> emo::ji("tree")
+🌴 
+> #_11
+> emo::ji("plant")
+🏵 
+> #_12
+> emo::ji("sick")
+🤮 
+> #_13
+> emo::ji("sick")
+🤢 
+> #_14
+> emo::ji("sick")
+🤒 
+> #_^
+> 

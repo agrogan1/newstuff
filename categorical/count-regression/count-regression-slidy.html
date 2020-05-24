@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Count Regression</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../UMslidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Count Regression</h1>
+  <p class="author">
+Andy Grogan-Kaylor
+  </p>
+</div>
+<div class="slide section level1">
+
+<p>Andy Grogan-Kaylor</p>
+<p>24 May 2020</p>
+</div>
+<div id="key-concepts-and-commands" class="slide section level1">
+<h1>Key Concepts and Commands</h1>
+<ul class="incremental">
+<li>formulas are our friends</li>
+</ul>
+<p><span class="math inline">\(F(y) = \beta_0 + \beta_1 x_1 + ...\)</span></p>
+<p><span class="math inline">\(y = \ln(count): 1, 2, 3, \text{etc.}\)</span></p>
+<ul class="incremental">
+<li><p>Think about OR’s, pred. prob., non-linearity</p></li>
+<li><p>So much of categorical data analysis depends upon arguments for “functional form”. When do we think these arguments are valid?</p></li>
+</ul>
+</div>
+<div id="the-count" class="slide section level1">
+<h1>The Count</h1>
+<div class="figure">
+<img src="../images/Sesame-Street-optimize.gif" alt="The Count and Friends" />
+<p class="caption">The Count and Friends</p>
+</div>
+</div>
+<div id="historical-examples-of-count-data-r.1-r.2-r.3" class="slide section level1">
+<h1>Historical Examples of Count Data 🐴 ☎️ 🏥</h1>
+<ul class="incremental">
+<li>🐴 Deaths from horsekicks in the Prussian Army</li>
+<li>☎️ Calls to a call center (business, crisis hotline, etc.)</li>
+<li>🏥 Arrivals at the Emergency Room</li>
+</ul>
+</div>
+<div id="other-canonical-examples-of-count-data-r.7-r.8" class="slide section level1">
+<h1>Other Canonical Examples of Count Data 🌳 🤒</h1>
+<ul class="incremental">
+<li>🌱 🌴 🏵 Plants / trees in a field</li>
+<li>🤮 🤢 🤒 Cases of disease / unit area</li>
+</ul>
+</div>
+</body>
+</html>

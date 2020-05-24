@@ -1,0 +1,39 @@
+% Count Regression
+% Andy Grogan-Kaylor
+% `s c(current_date)`
+
+---
+geometry: margin=1 in
+---
+
+# Key Concepts and Commands
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
+
+* formulas are our friends
+
+$F(y) = \beta_0 + \beta_1 x_1 + ...$
+
+$y = \ln(count): 1, 2, 3, \text{etc.}$
+
+
+* Think about OR's, pred. prob., non-linearity
+
+* So much of categorical data analysis depends upon arguments for "functional form". When do we think these arguments are valid?
+
+# The Count
+
+![The Count and Friends](../images/Sesame-Street-optimize.gif){ width=20% }
+
+# Historical Examples of Count Data `r emo::ji("horse")` `r emo::ji("phone")` `r emo::ji("hospital")`
+
+* `r emo::ji("horse")` Deaths from horsekicks in the Prussian Army
+* `r emo::ji("phone")` Calls to a call center (business, crisis hotline, etc.) 
+*  `r emo::ji("hospital")` Arrivals at the Emergency Room 
+
+# Other Canonical Examples of Count Data `r emo::ji("tree")` `r emo::ji("sick")` 
+
+* `r emo::ji("plant")` `r emo::ji("tree")` `r emo::ji("plant")` Plants / trees in a field
+* `r emo::ji("sick")` `r emo::ji("sick")` `r emo::ji("sick")` Cases of disease / unit area
+
+

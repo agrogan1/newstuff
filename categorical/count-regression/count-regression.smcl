@@ -1,0 +1,20 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}24 May 2020, 15:04:00
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}24 May 2020
+{txt}
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}24 May 2020, 15:04:00
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
