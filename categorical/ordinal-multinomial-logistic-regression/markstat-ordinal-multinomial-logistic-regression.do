@@ -1,6 +1,6 @@
-*************************
-* logistic regression
-*************************
+**************************************************
+* ordinal and multinomial logistic regression
+**************************************************
 
 cd "/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression"
 
