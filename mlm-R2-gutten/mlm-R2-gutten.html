@@ -42,7 +42,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Andy Grogan-Kaylor" />
-  <title>Calculating R2 With Gutten Tree Data</title>
+  <title>Calculating R^2 for MLM With Gutten Tree Data</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -56,14 +56,16 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Calculating R2 With Gutten Tree Data</h1>
+<h1 class="title">Calculating <span class="math inline">\(R^2\)</span> for MLM With Gutten Tree Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">7 May 2020</p>
+<p class="date">26 May 2020</p>
 </header>
 <figure>
-<img src="fotolia-small.jpg" alt="Norway Spruce and Larch Forest in Austrian Alps, https://ec.europa.eu/jrc/en/research-topic/forestry/qr-tree-project/norway-spruce" /><figcaption>Norway Spruce and Larch Forest in Austrian Alps, https://ec.europa.eu/jrc/en/research-topic/forestry/qr-tree-project/norway-spruce</figcaption>
+<img src="fotolia-small.jpg" alt="Norway Spruce and Larch Forest in Austrian Alps" /><figcaption>Norway Spruce and Larch Forest in Austrian Alps</figcaption>
 </figure>
+<p><a href="https://ec.europa.eu/jrc/en/research-topic/forestry/qr-tree-project/norway-spruce">https://ec.europa.eu/jrc/en/research-topic/forestry/qr-tree-project/norway-spruce</a></p>
 <h1 id="data-source">Data Source</h1>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
 <p>The data used in this example are derived from the R package <em>Functions and Datasets for “Forest Analytics with R”</em>.</p>
 <p>According to the documentation, the source of these data are: “von Guttenberg’s Norway spruce (Picea abies [L.] Karst) tree measurement data.”</p>
 <figure>
