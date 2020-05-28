@@ -29,7 +29,6 @@ markstat using count-regression.stmd, docx // Word
 graph close _all
 
 
-
 * pandoc
 
 * cd /Applications/RStudio.app/Contents/MacOS/pandoc

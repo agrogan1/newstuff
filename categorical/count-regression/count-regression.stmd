@@ -8,7 +8,7 @@ geometry: margin=1 in
 
 # Key Concepts and Commands
 
-<style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 
 * formulas are our friends
 
@@ -36,4 +36,98 @@ $y = \ln(count): 1, 2, 3, \text{etc.}$
 * `r emo::ji("plant")` `r emo::ji("tree")` `r emo::ji("plant")` Plants / trees in a field
 * `r emo::ji("sick")` `r emo::ji("sick")` `r emo::ji("sick")` Cases of disease / unit area
 
+# Poisson Distribution
 
+## Theorizing about the Poisson `r emo::ji("fish")` `r emo::ji("fish")` `r emo::ji("fish")` `r emo::ji("palm_tree")` `r emo::ji("evergreen_tree")` `r emo::ji("deciduous_tree")`
+
+> The Poisson distribution is a modified form of the binomial distribution that is useful for the analysis of phenomena characterized by discrete, rare events.  For example, in a study of the distribution of a rare plant among a number of quadrats, a majority of plots may contain no specimens, a smaller number a single plant, and still smaller numbers two, three, or more plants.  If a single plant per quadrat is expected, the mean µ = 1 and the "0" and "1" classes occur at 37% each, the "2" class at 18%, the "3" class at 6%, and larger classes take up the remaining 2%.  The characteristic test for a Poisson is that the variance equals the mean, which in the plant example means that the rare plant is randomly distributed.  Note, that, In the distributions above, as the mean µ increases towards 10, the distribution approaches normality.
+
+> The Poisson may be used to evaluate whether events occur independently in time as well as space.  In a classic example, Bortkiewicz (1898) studied the distribution of 122 men kicked to death by horses among ten Prussian army corps over 20 years. In most years in most corps, no one dies from being kicked; in one corp in one year, four men were kicked to death. Does this mean something was amiss in this particular corp?  Analysis indicates that the observed frequencies conform quite closely to the expected Poisson frequencies, and that the mean and variance are almost identical, as expected.  The corp was just "unlucky" in the sense that it is in the extreme tail of an ordinary run of events.
+
+http://www.mun.ca/biology/scarr/smcPoisson_distributions.html
+
+## Reprise of Normal Distribution
+
+Normal distribution:
+
+$$
+    P(x) = \frac{1}{\sigma \sqrt{2 \pi}} e^{-(x-\mu)^2/(2 \sigma^2)}
+$$
+
+Standardized Normal Distribution:
+
+$$
+    P(z) = \frac{1}{\sqrt{2 \pi}} e^{-z^2/2}
+$$
+
+2 parameters:
+
+$$
+    x \sim N(\mu,\sigma)
+$$
+
+    clear all // clear all for simulated data
+
+    set obs 1000 // number of observations
+	
+	generate x = rnormal() // normally distributed random variable
+	
+	histogram x, title("Normally Distributed Random Variable") scheme(burd)
+	
+	graph export myhistogram.png, width(500) replace
+
+![histogram of random normal variable](myhistogram.png)
+
+## Poisson Distribution
+
+$$
+    P(Y=y) = e^{-\lambda} \frac{\lambda^y}{y!}
+$$
+
+> <span style="background-color: #FFFF00">A Poisson with large lambda looks very similar to a normal distribution.</span>
+
+    generate w = rpoisson(.5)
+	
+	histogram w, title("Poisson Distributed Random Variable") scheme(burd)
+	
+	graph export myhistogram2.png, width(500) replace
+
+![histogram of random Poisson variable](myhistogram2.png)
+
+
+$$ 
+    x \sim Poisson(\lambda)
+$$
+
+> $\lambda$ is both mean and variance.
+
+    clear all
+	 	
+    set obs 20
+
+    generate field = _n // field number
+
+    generate mycount = rpoisson(1)
+
+    expand mycount // create individual observations
+
+    generate x = runiform(1,10) // random x coordinate
+
+    generate y =runiform(1,10) // random y coordinate
+	
+	generate mylabel = "🦆"
+	
+	twoway scatter y x, ///
+	by(field, title("Randomly Located Ducks")) ///
+	mlab(mylabel) mlabsize(vlarge) ///
+	msymbol(none)  ///
+    legend(order(1 "🦆 Duck")) ///
+	scheme(sj)
+
+	graph export ducks.png, width(1000) replace
+
+![Randomly Located Ducks](ducks.png){ width=50% }
+
+
+	
+	
