@@ -40,7 +40,7 @@ $y(\text{3 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...$
 	set maxvar 10000 // increase number of allowable variables
 	
     use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
-	
+		
 	keep polviews sex maeduc paeduc age degree coninc
 	
 	save GSSsmall.dta, replace

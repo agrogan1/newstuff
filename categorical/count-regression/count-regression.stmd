@@ -79,6 +79,7 @@ $$
 ![histogram of random normal variable](myhistogram.png)
 
 ## Poisson Distribution
+ 
 
 $$
     P(Y=y) = e^{-\lambda} \frac{\lambda^y}{y!}
@@ -94,6 +95,7 @@ $$
 
 ![histogram of random Poisson variable](myhistogram2.png)
 
+## Poisson is the Natural Form for Observations Distributed in Time or Space `r emo::ji("building")` `r emo::ji("building")` `r emo::ji("building")` `r emo::ji("time")` `r emo::ji("time")` `r emo::ji("time")`
 
 $$ 
     x \sim Poisson(\lambda)
@@ -128,6 +130,50 @@ $$
 
 ![Randomly Located Ducks](ducks.png){ width=50% }
 
+# Poisson Regression
 
+    clear all
+
+    set maxvar 10000
 	
+	use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
 	
+	codebook numprobs // data from 2002
+	
+	generate coninc_10K = coninc / 10000 // $10K chunks
+	
+	poisson numprobs coninc sex age
+	
+# Incidence Rate Ratios
+	
+	poisson, irr
+	
+# Negative Binomial Distribution
+
+## Over-Dispersion
+
+Due to population heterogeneity (diversity, variation), variance may be $>$ mean. This is often empirically the case.
+
+$$
+    \text{var}(y) > \text{mean}(y)
+$$
+
+$$
+    y \sim Poisson(\mu)
+$$
+
+$$
+    \ln(\mu) = \beta_0 + \beta_1 x + \text{offset} + \text{dispersion} + etc.
+$$
+
+## Regression
+
+    nbreg numprobs coninc sex age
+
+## Predicted Values
+	
+## Exposure
+
+In some data sets, we will have a *years exposed* or *time exposed* variable. It is important to control for this variable.
+
+# Zero-Inflated Models

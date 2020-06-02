@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}27 May 2020, 20:47:53
+ {txt}opened on:  {res} 2 Jun 2020, 18:17:01
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}27 May 2020
+{res} 2 Jun 2020
 {txt}
 {com}. //_2
 . clear all // clear all for simulated data
@@ -24,7 +24,7 @@ now 1,000
 {txt}
 {com}. //_5
 . histogram x, title("Normally Distributed Random Variable") scheme(burd)
-{txt}(bin={res}29{txt}, start={res}-2.7807415{txt}, width={res}.21580977{txt})
+{txt}(bin={res}29{txt}, start={res}-3.0796595{txt}, width={res}.24185289{txt})
 {res}{txt}
 {com}. //_6
 . graph export myhistogram.png, width(500) replace
@@ -59,7 +59,7 @@ now 20
 {txt}
 {com}. //_14
 . expand mycount // create individual observations
-{txt}(7 zero counts ignored; observations not deleted)
+{txt}(11 zero counts ignored; observations not deleted)
 (6 observations created)
 
 {com}. //_15
@@ -83,12 +83,123 @@ now 20
 . graph export ducks.png, width(1000) replace
 {txt}(file ducks.png written in PNG format)
 
+{com}. //_20
+. clear all
+{res}{txt}
+{com}. //_21
+. set maxvar 10000
+
+{txt}
+{com}. //_22
+. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
+{txt}
+{com}. //_23
+. codebook numprobs // data from 2002
+
+{txt}{hline}
+{res}numprobs{right:how many friends close to discuss problems }
+{txt}{hline}
+
+{col 19}type:  numeric ({res}byte{txt})
+{ralign 22:label}:  {res:LABJP}, but {res:33} nonmissing values are not labeled
+
+{col 18}range:  [{res}0{txt},{res}96{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}34{col 51}{txt}missing .:  {res}0{txt}/{res}64,814
+{col 8}{txt}unique mv codes:  {res}3{col 50}{txt}missing .*:  {res}62,141{txt}/{res}64,814
+
+{txt}{ralign 23: examples:}{col 26}{res}.i{col 32}{txt}IAP
+{ralign 23: }{col 26}{res}.i{col 32}{txt}IAP
+{ralign 23: }{col 26}{res}.i{col 32}{txt}IAP
+{ralign 23: }{col 26}{res}.i{col 32}{txt}IAP
+
+{com}. //_24
+. generate coninc_10K = coninc / 10000 // $10K chunks
+{txt}(6,520 missing values generated)
+
+{com}. //_25
+. poisson numprobs coninc sex age
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-14062.177}  
+Iteration 1:{space 3}log likelihood = {res:-14062.176}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     2,406
+{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}    611.55
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-14062.176{txt}{col 49}Pseudo R2{col 67}= {res}    0.0213
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    numprobs{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}coninc {c |}{col 14}{res}{space 2} 3.71e-06{col 26}{space 2} 1.50e-07{col 37}{space 1}   24.66{col 46}{space 3}0.000{col 54}{space 4} 3.41e-06{col 67}{space 3} 4.00e-06
+{txt}{space 9}sex {c |}{col 14}{res}{space 2} .1222805{col 26}{space 2} .0145482{col 37}{space 1}    8.41{col 46}{space 3}0.000{col 54}{space 4} .0937666{col 67}{space 3} .1507943
+{txt}{space 9}age {c |}{col 14}{res}{space 2} .0005445{col 26}{space 2} .0004342{col 37}{space 1}    1.25{col 46}{space 3}0.210{col 54}{space 4}-.0003066{col 67}{space 3} .0013956
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.674127{col 26}{space 2}  .032771{col 37}{space 1}   51.09{col 46}{space 3}0.000{col 54}{space 4} 1.609897{col 67}{space 3} 1.738357
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_26
+. poisson, irr
+
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     2,406
+{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}    611.55
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-14062.176{txt}{col 49}Pseudo R2{col 67}= {res}    0.0213
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    numprobs{col 14}{c |}        IRR{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}coninc {c |}{col 14}{res}{space 2} 1.000004{col 26}{space 2} 1.50e-07{col 37}{space 1}   24.66{col 46}{space 3}0.000{col 54}{space 4} 1.000003{col 67}{space 3} 1.000004
+{txt}{space 9}sex {c |}{col 14}{res}{space 2} 1.130071{col 26}{space 2} .0164405{col 37}{space 1}    8.41{col 46}{space 3}0.000{col 54}{space 4} 1.098303{col 67}{space 3} 1.162757
+{txt}{space 9}age {c |}{col 14}{res}{space 2} 1.000545{col 26}{space 2} .0004345{col 37}{space 1}    1.25{col 46}{space 3}0.210{col 54}{space 4} .9996935{col 67}{space 3} 1.001397
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5.334136{col 26}{space 2} .1748051{col 37}{space 1}   51.09{col 46}{space 3}0.000{col 54}{space 4} 5.002296{col 67}{space 3} 5.687991
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline incidence rate{txt}.{p_end}
+
+{com}. //_27
+. nbreg numprobs coninc sex age
+
+{txt}Fitting Poisson model:
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-14062.177}  
+Iteration 1:{space 3}log likelihood = {res:-14062.176}  
+{res}
+{txt}Fitting constant-only model:
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res: -7577.985}  
+Iteration 1:{space 3}log likelihood = {res:-7561.8388}  
+Iteration 2:{space 3}log likelihood = {res:  -7561.83}  
+Iteration 3:{space 3}log likelihood = {res:  -7561.83}  
+{res}
+{txt}Fitting full model:
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-7526.2732}  
+Iteration 1:{space 3}log likelihood = {res:-7525.4144}  
+Iteration 2:{space 3}log likelihood = {res:-7525.4138}  
+{res}
+{txt}Negative binomial regression{col 49}Number of obs{col 67}= {res}     2,406
+{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}     72.83
+{txt}{col 1}Dispersion{col 16}= {res}mean{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-7525.4138{txt}{col 49}Pseudo R2{col 67}= {res}    0.0048
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    numprobs{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}coninc {c |}{col 14}{res}{space 2} 3.61e-06{col 26}{space 2} 4.50e-07{col 37}{space 1}    8.02{col 46}{space 3}0.000{col 54}{space 4} 2.73e-06{col 67}{space 3} 4.49e-06
+{txt}{space 9}sex {c |}{col 14}{res}{space 2} .1087046{col 26}{space 2} .0397403{col 37}{space 1}    2.74{col 46}{space 3}0.006{col 54}{space 4}  .030815{col 67}{space 3} .1865941
+{txt}{space 9}age {c |}{col 14}{res}{space 2} .0003074{col 26}{space 2} .0011387{col 37}{space 1}    0.27{col 46}{space 3}0.787{col 54}{space 4}-.0019243{col 67}{space 3} .0025392
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.711584{col 26}{space 2} .0856428{col 37}{space 1}   19.99{col 46}{space 3}0.000{col 54}{space 4} 1.543728{col 67}{space 3} 1.879441
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+    /lnalpha {c |}{col 14}{res}{space 2}-.2109088{col 26}{space 2} .0315816{col 54}{space 4}-.2728077{col 67}{space 3}-.1490099
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+       alpha {c |}{col 14}{res}{space 2} .8098479{col 26}{space 2} .0255763{col 54}{space 4} .7612392{col 67}{space 3} .8615606
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+LR test of alpha=0: {help j_chibar##|_new:chibar2(01) = }{res}1.3e+04{col 56}{txt}Prob >= chibar2 = {res}0.000
+{txt}
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}27 May 2020, 20:48:05
+ {txt}closed on:  {res} 2 Jun 2020, 18:17:17
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
