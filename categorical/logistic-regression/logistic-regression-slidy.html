@@ -14,6 +14,71 @@
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
     href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
@@ -34,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>23 May 2020</p>
+<p>2 Jun 2020</p>
 </div>
 <div id="key-concepts-and-commands" class="slide section level1">
 <h1>Key Concepts and Commands</h1>
@@ -61,173 +126,176 @@ Andy Grogan-Kaylor
 </div>
 <div id="general-social-survey" class="slide section level1">
 <h1>General Social Survey</h1>
-<pre class="stata"><code>. use &quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel
-&gt; 2010w123_R6 - stata.dta&quot;, clear 
-( )</code></pre>
-<pre class="stata"><code>. codebook happy_3 // what does this variable look like?
-
-────────────────────────────────────────────────────────────────────────────────────────
-happy_3                                                       happy_3: GENERAL HAPPINESS
-────────────────────────────────────────────────────────────────────────────────────────
-
-                  type:  numeric (byte)
-                 label:  HAPPY_3
-
-                 range:  [1,3]                        units:  1
-         unique values:  3                        missing .:  0/2,044
-       unique mv codes:  3                       missing .*:  742/2,044
-
-            tabulation:  Freq.   Numeric  Label
-                           391         1  VERY HAPPY
-                           758         2  PRETTY HAPPY
-                           153         3  NOT TOO HAPPY
-                             1        .d  DK
-                           740        .i  IAP
-                             1        .n  NA</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">use</span> <span class="st">&quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="st">&gt; 2010w123_R6 - stata.dta&quot;</span>, <span class="kw">clear</span> </span>
+<span id="cb1-3"><a href="#cb1-3"></a>( )</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">codebook</span> happy_3 <span class="co">// what does this variable look like?</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-4"><a href="#cb2-4"></a>happy_3                                                       happy_3: GENERAL HAPPINESS</span>
+<span id="cb2-5"><a href="#cb2-5"></a>────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>                  <span class="dv">type</span>:  <span class="kw">numeric</span> (<span class="kw">byte</span>)</span>
+<span id="cb2-8"><a href="#cb2-8"></a>                 <span class="kw">label</span>:  HAPPY_3</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a>                 <span class="kw">range</span>:  [1,3]                        units:  1</span>
+<span id="cb2-11"><a href="#cb2-11"></a>         <span class="kw">unique</span> <span class="kw">values</span>:  3                        <span class="fu">missing</span> .:  0/2,044</span>
+<span id="cb2-12"><a href="#cb2-12"></a>       <span class="kw">unique</span> mv codes:  3                       <span class="fu">missing</span> .*:  742/2,044</span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a>            tabulation:  Freq.   Numeric  Label</span>
+<span id="cb2-15"><a href="#cb2-15"></a>                           391         1  VERY HAPPY</span>
+<span id="cb2-16"><a href="#cb2-16"></a>                           758         2  PRETTY HAPPY</span>
+<span id="cb2-17"><a href="#cb2-17"></a>                           153         3  NOT TOO HAPPY</span>
+<span id="cb2-18"><a href="#cb2-18"></a>                             1        .<span class="kw">d</span>  DK</span>
+<span id="cb2-19"><a href="#cb2-19"></a>                           740        .i  IAP</span>
+<span id="cb2-20"><a href="#cb2-20"></a>                             1        .n  NA</span></code></pre></div>
 </div>
 <div id="data-management" class="slide section level1">
 <h1>Data Management</h1>
-<pre class="stata"><code>. recode happy_3 (1/2 = 1)(3=0), generate(happy_3_D)
-(911 differences between happy_3 and happy_3_D)</code></pre>
-<pre class="stata"><code>. tabulate happy_3 happy_3_D // double check
-
-              │   RECODE of happy_3
-     happy_3: │   (happy_3: GENERAL
-      GENERAL │      HAPPINESS)
-    HAPPINESS │         0          1 │     Total
-──────────────┼──────────────────────┼──────────
-   VERY HAPPY │         0        391 │       391 
- PRETTY HAPPY │         0        758 │       758 
-NOT TOO HAPPY │       153          0 │       153 
-──────────────┼──────────────────────┼──────────
-        Total │       153      1,149 │     1,302 </code></pre>
-<pre class="stata"><code>. keep happy_3 happy_3_D coninc_3 // keep only some variables</code></pre>
-<pre class="stata"><code>. save GSSsmall.dta, replace
-file GSSsmall.dta saved</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">recode</span> happy_3 (1/2 = 1)(3=0), <span class="kw">generate</span>(happy_3_D)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>(911 differences between happy_3 and happy_3_D)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">tabulate</span> happy_3 happy_3_D <span class="co">// double check</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>              │   RECODE <span class="kw">of</span> happy_3</span>
+<span id="cb4-4"><a href="#cb4-4"></a>     happy_3: │   (happy_3: GENERAL</span>
+<span id="cb4-5"><a href="#cb4-5"></a>      GENERAL │      HAPPINESS)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    HAPPINESS │         0          1 │     Total</span>
+<span id="cb4-7"><a href="#cb4-7"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb4-8"><a href="#cb4-8"></a>   VERY HAPPY │         0        391 │       391 </span>
+<span id="cb4-9"><a href="#cb4-9"></a> PRETTY HAPPY │         0        758 │       758 </span>
+<span id="cb4-10"><a href="#cb4-10"></a>NOT TOO HAPPY │       153          0 │       153 </span>
+<span id="cb4-11"><a href="#cb4-11"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb4-12"><a href="#cb4-12"></a>        Total │       153      1,149 │     1,302 </span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">generate</span> coninc_3_10K = coninc_3 / 10000</span>
+<span id="cb5-2"><a href="#cb5-2"></a>(820 <span class="fu">missing</span> <span class="kw">values</span> generated)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">label</span> <span class="kw">variable</span> coninc_3_10K <span class="st">&quot;Income 10K Chunks&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">keep</span> happy_3 happy_3_D coninc_3 coninc_3_10K <span class="co">// keep only some variables</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">save</span> GSSsmall.dta, <span class="kw">replace</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>file GSSsmall.dta saved</span></code></pre></div>
 </div>
 <div id="visualize" class="slide section level1">
 <h1>Visualize</h1>
-<pre class="stata"><code>. twoway scatter happy_3_D coninc_3, scheme(burd) jitter(5)</code></pre>
-<pre class="stata"><code>. graph export happiness-income.png, width(500) replace
-(file happiness-income.png written in PNG format)</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> happy_3_D coninc_3, <span class="dv">scheme</span>(burd) jitter(5)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> happiness-income.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>(file happiness-income.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
-<img src="happiness-income.png" alt="Happiness and Income" />
+<img src="happiness-income.png" alt="" />
 <p class="caption">Happiness and Income</p>
 </div>
 </div>
 <div id="linear-probability-model" class="slide section level1">
 <h1>Linear Probability Model</h1>
-<pre class="stata"><code>. regress happy_3_D coninc_3
-
-      Source │       SS           df       MS      Number of obs   =     1,223
-─────────────┼──────────────────────────────────   F(1, 1221)      =     22.87
-       Model │  2.26477708         1  2.26477708   Prob &gt; F        =    0.0000
-    Residual │  120.937185     1,221  .099047654   R-squared       =    0.0184
-─────────────┼──────────────────────────────────   Adj R-squared   =    0.0176
-       Total │  123.201962     1,222  .100819936   Root MSE        =    .31472
-
-─────────────┬────────────────────────────────────────────────────────────────
-   happy_3_D │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
-─────────────┼────────────────────────────────────────────────────────────────
-    coninc_3 │   9.69e-07   2.03e-07     4.78   0.000     5.72e-07    1.37e-06
-       _cons │   .8368664   .0137133    61.03   0.000     .8099621    .8637706
-─────────────┴────────────────────────────────────────────────────────────────</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">regress</span> happy_3_D coninc_3_10K</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>      Source │       SS           df       MS      Number <span class="kw">of</span> <span class="kw">obs</span>   =     1,223</span>
+<span id="cb11-4"><a href="#cb11-4"></a>─────────────┼──────────────────────────────────   <span class="fu">F</span>(1, 1221)      =     22.87</span>
+<span id="cb11-5"><a href="#cb11-5"></a>       Model │  2.26477699         1  2.26477699   Prob &gt; <span class="fu">F</span>        =    0.0000</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    Residual │  120.937185     1,221  .099047654   R-squared       =    0.0184</span>
+<span id="cb11-7"><a href="#cb11-7"></a>─────────────┼──────────────────────────────────   Adj R-squared   =    0.0176</span>
+<span id="cb11-8"><a href="#cb11-8"></a>       Total │  123.201962     1,222  .100819936   Root MSE        =    .31472</span>
+<span id="cb11-9"><a href="#cb11-9"></a></span>
+<span id="cb11-10"><a href="#cb11-10"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb11-11"><a href="#cb11-11"></a>   happy_3_D │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
+<span id="cb11-12"><a href="#cb11-12"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb11-13"><a href="#cb11-13"></a>coninc_3_10K │   .0096934   .0020272     4.78   0.000     .0057163    .0136705</span>
+<span id="cb11-14"><a href="#cb11-14"></a>       <span class="dt">_cons</span> │   .8368664   .0137133    61.03   0.000     .8099622    .8637706</span>
+<span id="cb11-15"><a href="#cb11-15"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
 </div>
 <div id="normal-and-cumulative-normal-distribution" class="slide section level1">
 <h1>Normal and Cumulative Normal Distribution</h1>
-<pre class="stata"><code>. clear all</code></pre>
-<pre class="stata"><code>. set obs 100 // 100 observations
-number of observations (_N) was 0, now 100</code></pre>
-<pre class="stata"><code>. generate z = runiform(-5, 5) // randomly distributed z scores</code></pre>
-<pre class="stata"><code>. generate mynormaldensities = normalden(z) // normal densities</code></pre>
-<pre class="stata"><code>. generate myprobabilities = normal(z) // cumulative normal probabilities</code></pre>
-<pre class="stata"><code>. twoway scatter mynormaldensities myprobabilities z, scheme(michigan)</code></pre>
-<pre class="stata"><code>. graph export normal.png, width(500) replace
-(file normal.png written in PNG format)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">set</span> <span class="kw">obs</span> 100 <span class="co">// 100 observations</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>number <span class="kw">of</span> observations (_N) was 0, now 100</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">generate</span> z = runiform(-5, 5) <span class="co">// randomly distributed z scores</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">generate</span> mynormaldensities = <span class="fu">normalden</span>(z) <span class="co">// normal densities</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>. <span class="kw">generate</span> myprobabilities = <span class="fu">normal</span>(z) <span class="co">// cumulative normal probabilities</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> mynormaldensities myprobabilities z, <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> <span class="fu">normal</span>.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>(file <span class="fu">normal</span>.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
-<img src="normal.png" alt="Standard and Cumulative Normal Curves" />
+<img src="normal.png" alt="" />
 <p class="caption">Standard and Cumulative Normal Curves</p>
 </div>
 </div>
 <div id="the-probit-model" class="slide section level1">
 <h1>The Probit Model</h1>
-<pre class="stata"><code>. use GSSsmall.dta, clear
-( )</code></pre>
-<pre class="stata"><code>. probit happy_3_D coninc_3
-
-Iteration 0:   log likelihood = -433.05123  
-Iteration 1:   log likelihood = -419.92819  
-Iteration 2:   log likelihood = -419.73499  
-Iteration 3:   log likelihood = -419.73484  
-Iteration 4:   log likelihood = -419.73484  
-
-Probit regression                               Number of obs     =      1,223
-                                                LR chi2(1)        =      26.63
-                                                Prob &gt; chi2       =     0.0000
-Log likelihood = -419.73484                     Pseudo R2         =     0.0308
-
-─────────────┬────────────────────────────────────────────────────────────────
-   happy_3_D │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
-─────────────┼────────────────────────────────────────────────────────────────
-    coninc_3 │   6.43e-06   1.35e-06     4.76   0.000     3.78e-06    9.08e-06
-       _cons │   .9244086   .0721521    12.81   0.000     .7829931    1.065824
-─────────────┴────────────────────────────────────────────────────────────────</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1"></a>. <span class="kw">use</span> GSSsmall.dta, <span class="kw">clear</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>( )</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1"></a>. <span class="kw">probit</span> happy_3_D coninc_3_10K</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>Iteration 0:   <span class="fu">log</span> likelihood = -433.05123  </span>
+<span id="cb20-4"><a href="#cb20-4"></a>Iteration 1:   <span class="fu">log</span> likelihood = -419.92819  </span>
+<span id="cb20-5"><a href="#cb20-5"></a>Iteration 2:   <span class="fu">log</span> likelihood = -419.73499  </span>
+<span id="cb20-6"><a href="#cb20-6"></a>Iteration 3:   <span class="fu">log</span> likelihood = -419.73484  </span>
+<span id="cb20-7"><a href="#cb20-7"></a>Iteration 4:   <span class="fu">log</span> likelihood = -419.73484  </span>
+<span id="cb20-8"><a href="#cb20-8"></a></span>
+<span id="cb20-9"><a href="#cb20-9"></a>Probit regression                               Number <span class="kw">of</span> <span class="kw">obs</span>     =      1,223</span>
+<span id="cb20-10"><a href="#cb20-10"></a>                                                LR <span class="fu">chi2</span>(1)        =      26.63</span>
+<span id="cb20-11"><a href="#cb20-11"></a>                                                Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
+<span id="cb20-12"><a href="#cb20-12"></a>Log likelihood = -419.73484                     Pseudo R2         =     0.0308</span>
+<span id="cb20-13"><a href="#cb20-13"></a></span>
+<span id="cb20-14"><a href="#cb20-14"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb20-15"><a href="#cb20-15"></a>   happy_3_D │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
+<span id="cb20-16"><a href="#cb20-16"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb20-17"><a href="#cb20-17"></a>coninc_3_10K │   .0643046    .013517     4.76   0.000     .0378119    .0907974</span>
+<span id="cb20-18"><a href="#cb20-18"></a>       <span class="dt">_cons</span> │   .9244086   .0721521    12.81   0.000     .7829931    1.065824</span>
+<span id="cb20-19"><a href="#cb20-19"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
 </div>
 <div id="the-logistic-distribution" class="slide section level1">
 <h1>The Logistic Distribution</h1>
-<pre class="stata"><code>. clear all</code></pre>
-<pre class="stata"><code>. set obs 100 // 100 observations
-number of observations (_N) was 0, now 100</code></pre>
-<pre class="stata"><code>. generate z = runiform(-5, 5) // randomly distributed z scores</code></pre>
-<pre class="stata"><code>. generate mylogisticdensities = logisticden(z) // logistic densities</code></pre>
-<pre class="stata"><code>. generate mylogisticprobabilities = logistic(z) // cumulative logistic probabilities</code></pre>
-<pre class="stata"><code>. twoway scatter mylogisticdensities mylogisticprobabilities z, scheme(michigan)</code></pre>
-<pre class="stata"><code>. graph export logistic.png, width(500) replace
-(file logistic.png written in PNG format)</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1"></a>. <span class="kw">set</span> <span class="kw">obs</span> 100 <span class="co">// 100 observations</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>number <span class="kw">of</span> observations (_N) was 0, now 100</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1"></a>. <span class="kw">generate</span> z = runiform(-5, 5) <span class="co">// randomly distributed z scores</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1"></a>. <span class="kw">generate</span> mylogisticdensities = logisticden(z) <span class="co">// logistic densities</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1"></a>. <span class="kw">generate</span> mylogisticprobabilities = <span class="kw">logistic</span>(z) <span class="co">// cumulative logistic probabilities</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> mylogisticdensities mylogisticprobabilities z, <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> <span class="kw">logistic</span>.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>(file <span class="kw">logistic</span>.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
-<img src="logistic.png" alt="Standard and Cumulative Logistic Curves" />
+<img src="logistic.png" alt="" />
 <p class="caption">Standard and Cumulative Logistic Curves</p>
 </div>
 </div>
 <div id="the-logit-logistic-model" class="slide section level1">
 <h1>The Logit (Logistic) Model</h1>
-<pre class="stata"><code>. use GSSsmall.dta, clear
-( )</code></pre>
-<pre class="stata"><code>. logit happy_3_D coninc_3
-
-Iteration 0:   log likelihood = -433.05123  
-Iteration 1:   log likelihood = -420.07608  
-Iteration 2:   log likelihood = -419.28644  
-Iteration 3:   log likelihood = -419.28513  
-Iteration 4:   log likelihood = -419.28513  
-
-Logistic regression                             Number of obs     =      1,223
-                                                LR chi2(1)        =      27.53
-                                                Prob &gt; chi2       =     0.0000
-Log likelihood = -419.28513                     Pseudo R2         =     0.0318
-
-─────────────┬────────────────────────────────────────────────────────────────
-   happy_3_D │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
-─────────────┼────────────────────────────────────────────────────────────────
-    coninc_3 │   .0000134   2.93e-06     4.58   0.000     7.68e-06    .0000192
-       _cons │   1.484066   .1381599    10.74   0.000     1.213277    1.754854
-─────────────┴────────────────────────────────────────────────────────────────</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1"></a>. <span class="kw">use</span> GSSsmall.dta, <span class="kw">clear</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>( )</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1"></a>. <span class="kw">logit</span> happy_3_D coninc_3_10K</span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a>Iteration 0:   <span class="fu">log</span> likelihood = -433.05123  </span>
+<span id="cb29-4"><a href="#cb29-4"></a>Iteration 1:   <span class="fu">log</span> likelihood = -420.07608  </span>
+<span id="cb29-5"><a href="#cb29-5"></a>Iteration 2:   <span class="fu">log</span> likelihood = -419.28644  </span>
+<span id="cb29-6"><a href="#cb29-6"></a>Iteration 3:   <span class="fu">log</span> likelihood = -419.28513  </span>
+<span id="cb29-7"><a href="#cb29-7"></a>Iteration 4:   <span class="fu">log</span> likelihood = -419.28513  </span>
+<span id="cb29-8"><a href="#cb29-8"></a></span>
+<span id="cb29-9"><a href="#cb29-9"></a>Logistic regression                             Number <span class="kw">of</span> <span class="kw">obs</span>     =      1,223</span>
+<span id="cb29-10"><a href="#cb29-10"></a>                                                LR <span class="fu">chi2</span>(1)        =      27.53</span>
+<span id="cb29-11"><a href="#cb29-11"></a>                                                Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
+<span id="cb29-12"><a href="#cb29-12"></a>Log likelihood = -419.28513                     Pseudo R2         =     0.0318</span>
+<span id="cb29-13"><a href="#cb29-13"></a></span>
+<span id="cb29-14"><a href="#cb29-14"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb29-15"><a href="#cb29-15"></a>   happy_3_D │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
+<span id="cb29-16"><a href="#cb29-16"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb29-17"><a href="#cb29-17"></a>coninc_3_10K │   .1343328   .0293318     4.58   0.000     .0768437     .191822</span>
+<span id="cb29-18"><a href="#cb29-18"></a>       <span class="dt">_cons</span> │   1.484066   .1381599    10.74   0.000     1.213277    1.754854</span>
+<span id="cb29-19"><a href="#cb29-19"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
 </div>
 <div id="comparison-of-lpm-probit-and-logistic-coefficients" class="slide section level1">
 <h1>Comparison of LPM, Probit and Logistic Coefficients</h1>
 <p>NB: Negative vs. positive <span class="math inline">\(\beta\)</span>.</p>
-<pre class="stata"><code>. quietly probit happy_3_D coninc_3</code></pre>
-<pre class="stata"><code>. est store myprobit</code></pre>
-<pre class="stata"><code>. quietly logit happy_3_D coninc_3</code></pre>
-<pre class="stata"><code>. est store mylogit</code></pre>
-<pre class="stata"><code>. est table myprobit mylogit
-
-─────────────┬──────────────────────────
-    Variable │  myprobit     mylogit    
-─────────────┼──────────────────────────
-    coninc_3 │  6.430e-06    .00001343  
-       _cons │  .92440857    1.4840659  
-─────────────┴──────────────────────────</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1"></a>. <span class="kw">quietly</span> <span class="kw">probit</span> happy_3_D coninc_3_10K</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb31-1"><a href="#cb31-1"></a>. <span class="kw">est</span> <span class="kw">store</span> myprobit</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb32-1"><a href="#cb32-1"></a>. <span class="kw">quietly</span> <span class="kw">logit</span> happy_3_D coninc_3_10K</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb33-1"><a href="#cb33-1"></a>. <span class="kw">est</span> <span class="kw">store</span> mylogit</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb34-1"><a href="#cb34-1"></a>. <span class="kw">est</span> <span class="kw">table</span> myprobit mylogit</span>
+<span id="cb34-2"><a href="#cb34-2"></a></span>
+<span id="cb34-3"><a href="#cb34-3"></a>─────────────┬──────────────────────────</span>
+<span id="cb34-4"><a href="#cb34-4"></a>    Variable │  myprobit     mylogit    </span>
+<span id="cb34-5"><a href="#cb34-5"></a>─────────────┼──────────────────────────</span>
+<span id="cb34-6"><a href="#cb34-6"></a>coninc_3_10K │  .06430462    .13433285  </span>
+<span id="cb34-7"><a href="#cb34-7"></a>       <span class="dt">_cons</span> │  .92440858    1.4840659  </span>
+<span id="cb34-8"><a href="#cb34-8"></a>─────────────┴──────────────────────────</span></code></pre></div>
 </div>
 <div id="logistic-model-2" class="slide section level1">
 <h1>Logistic Model (2)</h1>

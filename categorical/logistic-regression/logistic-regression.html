@@ -43,7 +43,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>Logistic Regression</title>
-  <style type="text/css">
+  <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Logistic Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">23 May 2020</p>
+<p class="date">2 Jun 2020</p>
 </header>
 <h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
@@ -123,7 +123,12 @@ NOT TOO HAPPY │       153          0 │       153
 ──────────────┼──────────────────────┼──────────
         Total │       153      1,149 │     1,302 
 </pre>
-<pre class='stata'>. keep happy_3 happy_3_D coninc_3 // keep only some variables
+<pre class='stata'>. generate coninc_3_10K = coninc_3 / 10000
+(820 missing values generated)
+</pre>
+<pre class='stata'>. label variable coninc_3_10K "Income 10K Chunks"
+</pre>
+<pre class='stata'>. keep happy_3 happy_3_D coninc_3 coninc_3_10K // keep only some variables
 </pre>
 <pre class='stata'>. save GSSsmall.dta, replace
 file GSSsmall.dta saved
@@ -135,14 +140,14 @@ file GSSsmall.dta saved
 (file happiness-income.png written in PNG format)
 </pre>
 <figure>
-<img src="happiness-income.png" alt="Happiness and Income" /><figcaption>Happiness and Income</figcaption>
+<img src="happiness-income.png" alt="" /><figcaption>Happiness and Income</figcaption>
 </figure>
 <h1 id="linear-probability-model">Linear Probability Model</h1>
-<pre class='stata'>. regress happy_3_D coninc_3
+<pre class='stata'>. regress happy_3_D coninc_3_10K
 
       Source │       SS           df       MS      Number of obs   =     1,223
 ─────────────┼──────────────────────────────────   F(1, 1221)      =     22.87
-       Model │  2.26477708         1  2.26477708   Prob > F        =    0.0000
+       Model │  2.26477699         1  2.26477699   Prob > F        =    0.0000
     Residual │  120.937185     1,221  .099047654   R-squared       =    0.0184
 ─────────────┼──────────────────────────────────   Adj R-squared   =    0.0176
        Total │  123.201962     1,222  .100819936   Root MSE        =    .31472
@@ -150,8 +155,8 @@ file GSSsmall.dta saved
 ─────────────┬────────────────────────────────────────────────────────────────
    happy_3_D │      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-    coninc_3 │   9.69e-07   2.03e-07     4.78   0.000     5.72e-07    1.37e-06
-       _cons │   .8368664   .0137133    61.03   0.000     .8099621    .8637706
+coninc_3_10K │   .0096934   .0020272     4.78   0.000     .0057163    .0136705
+       _cons │   .8368664   .0137133    61.03   0.000     .8099622    .8637706
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="normal-and-cumulative-normal-distribution">Normal and Cumulative Normal Distribution</h1>
@@ -172,13 +177,13 @@ number of observations (_N) was 0, now 100
 (file normal.png written in PNG format)
 </pre>
 <figure>
-<img src="normal.png" alt="Standard and Cumulative Normal Curves" /><figcaption>Standard and Cumulative Normal Curves</figcaption>
+<img src="normal.png" alt="" /><figcaption>Standard and Cumulative Normal Curves</figcaption>
 </figure>
 <h1 id="the-probit-model">The Probit Model</h1>
 <pre class='stata'>. use GSSsmall.dta, clear
 ( )
 </pre>
-<pre class='stata'>. probit happy_3_D coninc_3
+<pre class='stata'>. probit happy_3_D coninc_3_10K
 
 Iteration 0:   log likelihood = -433.05123  
 Iteration 1:   log likelihood = -419.92819  
@@ -194,7 +199,7 @@ Log likelihood = -419.73484                     Pseudo R2         =     0.0308
 ─────────────┬────────────────────────────────────────────────────────────────
    happy_3_D │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-    coninc_3 │   6.43e-06   1.35e-06     4.76   0.000     3.78e-06    9.08e-06
+coninc_3_10K │   .0643046    .013517     4.76   0.000     .0378119    .0907974
        _cons │   .9244086   .0721521    12.81   0.000     .7829931    1.065824
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
@@ -216,13 +221,13 @@ number of observations (_N) was 0, now 100
 (file logistic.png written in PNG format)
 </pre>
 <figure>
-<img src="logistic.png" alt="Standard and Cumulative Logistic Curves" /><figcaption>Standard and Cumulative Logistic Curves</figcaption>
+<img src="logistic.png" alt="" /><figcaption>Standard and Cumulative Logistic Curves</figcaption>
 </figure>
 <h1 id="the-logit-logistic-model">The Logit (Logistic) Model</h1>
 <pre class='stata'>. use GSSsmall.dta, clear
 ( )
 </pre>
-<pre class='stata'>. logit happy_3_D coninc_3
+<pre class='stata'>. logit happy_3_D coninc_3_10K
 
 Iteration 0:   log likelihood = -433.05123  
 Iteration 1:   log likelihood = -420.07608  
@@ -238,17 +243,17 @@ Log likelihood = -419.28513                     Pseudo R2         =     0.0318
 ─────────────┬────────────────────────────────────────────────────────────────
    happy_3_D │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-    coninc_3 │   .0000134   2.93e-06     4.58   0.000     7.68e-06    .0000192
+coninc_3_10K │   .1343328   .0293318     4.58   0.000     .0768437     .191822
        _cons │   1.484066   .1381599    10.74   0.000     1.213277    1.754854
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="comparison-of-lpm-probit-and-logistic-coefficients">Comparison of LPM, Probit and Logistic Coefficients</h1>
 <p>NB: Negative vs. positive <span class="math inline">\(\beta\)</span>.</p>
-<pre class='stata'>. quietly probit happy_3_D coninc_3
+<pre class='stata'>. quietly probit happy_3_D coninc_3_10K
 </pre>
 <pre class='stata'>. est store myprobit
 </pre>
-<pre class='stata'>. quietly logit happy_3_D coninc_3
+<pre class='stata'>. quietly logit happy_3_D coninc_3_10K
 </pre>
 <pre class='stata'>. est store mylogit
 </pre>
@@ -257,8 +262,8 @@ Log likelihood = -419.28513                     Pseudo R2         =     0.0318
 ─────────────┬──────────────────────────
     Variable │  myprobit     mylogit    
 ─────────────┼──────────────────────────
-    coninc_3 │  6.430e-06    .00001343  
-       _cons │  .92440857    1.4840659  
+coninc_3_10K │  .06430462    .13433285  
+       _cons │  .92440858    1.4840659  
 ─────────────┴──────────────────────────
 </pre>
 <h1 id="logistic-model-2">Logistic Model (2)</h1>

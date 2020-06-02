@@ -44,7 +44,11 @@ geometry: margin=1 in
 
 	tabulate happy_3 happy_3_D // double check
 	
-	keep happy_3 happy_3_D coninc_3 // keep only some variables
+	generate coninc_3_10K = coninc_3 / 10000
+	
+	label variable coninc_3_10K "Income 10K Chunks"
+	
+	keep happy_3 happy_3_D coninc_3 coninc_3_10K // keep only some variables
 	
 	save GSSsmall.dta, replace
 	
@@ -58,7 +62,7 @@ geometry: margin=1 in
 
 # Linear Probability Model
 
-    regress happy_3_D coninc_3
+    regress happy_3_D coninc_3_10K
 	
 # Normal and Cumulative Normal Distribution
 
@@ -82,7 +86,7 @@ geometry: margin=1 in
 
     use GSSsmall.dta, clear
 
-    probit happy_3_D coninc_3
+    probit happy_3_D coninc_3_10K
 	
 # The Logistic Distribution
 
@@ -106,17 +110,17 @@ geometry: margin=1 in
 
     use GSSsmall.dta, clear
 
-    logit happy_3_D coninc_3
+    logit happy_3_D coninc_3_10K
 
 # Comparison of LPM, Probit and Logistic Coefficients
 
 NB: Negative vs. positive $\beta$.
 
-    quietly probit happy_3_D coninc_3
+    quietly probit happy_3_D coninc_3_10K
 	
 	est store myprobit
 
-    quietly logit happy_3_D coninc_3
+    quietly logit happy_3_D coninc_3_10K
 	
 	est store mylogit
 	
