@@ -36,33 +36,42 @@ geometry: margin=1 in
 
     use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w123_R6 - stata.dta", clear 
 	
-    codebook happy_3 // what does this variable look like?
+    codebook polviews_3 // what does this variable look like?
 	
 # Data Management
 
-    recode happy_3 (1/2 = 1)(3=0), generate(happy_3_D)
+    recode happy_3 (1/2 = 1)(3=0), generate(happy_3_D) // dichotomize
 
 	tabulate happy_3 happy_3_D // double check
 	
-	generate coninc_3_10K = coninc_3 / 10000
+	recode polviews_3 (1/3 = 1)(4/7 = 0), generate(liberal_3_D) // dichotomize
+	
+	generate coninc_3_10K = coninc_3 / 10000 // income in $10K chunks
 	
 	label variable coninc_3_10K "Income 10K Chunks"
+		
+	egen income_group_3 = cut(coninc_3), group(3) // divide income into three groups
 	
-	keep happy_3 happy_3_D coninc_3 coninc_3_10K // keep only some variables
+	keep polviews_3 liberal_3_D ///
+	race_3 ///
+	happy_3 happy_3_D ///
+	coninc_3 coninc_3_10K  income_group_3 // keep only some variables
 	
 	save GSSsmall.dta, replace
 	
 # Visualize	
 
-	twoway scatter happy_3_D coninc_3, scheme(burd) jitter(5)
+	twoway (scatter liberal_3_D coninc_3, jitter(5) legend(off)) ///
+	(lowess liberal_3_D coninc_3), scheme(burd) ///
+	title("Liberal Attitudes by Income") 
 	
-    graph export happiness-income.png, width(500) replace
+    graph export liberal-income.png, width(500) replace
 	
-![Happiness and Income](happiness-income.png)
+![Liberal Attitudes and Income](liberal-income.png)
 
 # Linear Probability Model
 
-    regress happy_3_D coninc_3_10K
+    regress liberal_3_D i.race_3 i.income_group_3
 	
 # Normal and Cumulative Normal Distribution
 
@@ -86,7 +95,7 @@ geometry: margin=1 in
 
     use GSSsmall.dta, clear
 
-    probit happy_3_D coninc_3_10K
+    probit liberal_3_D i.race_3 i.income_group_3
 	
 # The Logistic Distribution
 
@@ -110,17 +119,17 @@ geometry: margin=1 in
 
     use GSSsmall.dta, clear
 
-    logit happy_3_D coninc_3_10K
+    logit liberal_3_D i.race_3 i.income_group_3
 
 # Comparison of LPM, Probit and Logistic Coefficients
 
 NB: Negative vs. positive $\beta$.
 
-    quietly probit happy_3_D coninc_3_10K
+    quietly probit liberal_3_D i.race_3 i.income_group_3
 	
 	est store myprobit
 
-    quietly logit happy_3_D coninc_3_10K
+    quietly logit liberal_3_D i.race_3 i.income_group_3
 	
 	est store mylogit
 	
@@ -148,6 +157,10 @@ $$
 
 > indicates that an increase in x is associated with an increase in y.
 
+# Logistic Model With Odds Ratios
+
+    logit liberal_3_D i.race_3 i.income_group_3, or
+
 # A Poem About Logistic Regression
 
 # Complete Determination
@@ -169,6 +182,5 @@ Discussion
 
 See interactive demo, or example script.
 
-https://agrogan1.github.io/multilevel/logistic-interactions/logistic-interactions.html
-
+[https://agrogan1.github.io/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.html](https://agrogan1.github.io/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.html)
 

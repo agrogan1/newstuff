@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 2 Jun 2020, 08:58:10
+ {txt}opened on:  {res} 2 Jun 2020, 14:26:30
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -14,29 +14,33 @@
 {txt}( )
 
 {com}. //_3
-. codebook happy_3 // what does this variable look like?
+. codebook polviews_3 // what does this variable look like?
 
 {txt}{hline}
-{res}happy_3{right:happy_3: GENERAL HAPPINESS}
+{res}polviews_3{right:polviews_3: THINK OF SELF AS LIBERAL OR CONSERVATIVE}
 {txt}{hline}
 
 {col 19}type:  numeric ({res}byte{txt})
-{ralign 22:label}:  {res:HAPPY_3}
+{ralign 22:label}:  {res:V2213_A}
 
-{col 18}range:  [{res}1{txt},{res}3{txt}]{col 55}units:  {res}1
-{col 10}{txt}unique values:  {res}3{col 51}{txt}missing .:  {res}0{txt}/{res}2,044
-{col 8}{txt}unique mv codes:  {res}3{col 50}{txt}missing .*:  {res}742{txt}/{res}2,044
+{col 18}range:  [{res}1{txt},{res}7{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}7{col 51}{txt}missing .:  {res}0{txt}/{res}2,044
+{col 8}{txt}unique mv codes:  {res}3{col 50}{txt}missing .*:  {res}770{txt}/{res}2,044
 
 {txt}{col 13}tabulation:  Freq.   Numeric  Label
-{col 21}{res}       391{col 33}       1{col 43}{txt}VERY HAPPY
-{col 21}{res}       758{col 33}       2{col 43}{txt}PRETTY HAPPY
-{col 21}{res}       153{col 33}       3{col 43}{txt}NOT TOO HAPPY
-{col 21}{res}         1{col 33}      .d{col 43}{txt}DK
+{col 21}{res}        46{col 33}       1{col 43}{txt}EXTREMELY LIBERAL
+{col 21}{res}       180{col 33}       2{col 43}{txt}liberal
+{col 21}{res}       165{col 33}       3{col 43}{txt}SLIGHTLY LIBERAL
+{col 21}{res}       469{col 33}       4{col 43}{txt}moderate
+{col 21}{res}       161{col 33}       5{col 43}{txt}SLGHTLY CONSERVATIVE
+{col 21}{res}       207{col 33}       6{col 43}{txt}conservative
+{col 21}{res}        46{col 33}       7{col 43}{txt}EXTRMLY CONSERVATIVE
+{col 21}{res}        29{col 33}      .d{col 43}{txt}DK
 {col 21}{res}       740{col 33}      .i{col 43}{txt}IAP
 {col 21}{res}         1{col 33}      .n{col 43}{txt}NA
 
 {com}. //_4
-. recode happy_3 (1/2 = 1)(3=0), generate(happy_3_D)
+. recode happy_3 (1/2 = 1)(3=0), generate(happy_3_D) // dichotomize
 {txt}(911 differences between happy_3 and happy_3_D)
 
 {com}. //_5
@@ -54,173 +58,240 @@
         Total {c |}{res}       153      1,149 {txt}{c |}{res}     1,302 
 {txt}
 {com}. //_6
-. generate coninc_3_10K = coninc_3 / 10000
-{txt}(820 missing values generated)
+. recode polviews_3 (1/3 = 1)(4/7 = 0), generate(liberal_3_D) // dichotomize
+{txt}(1228 differences between polviews_3 and liberal_3_D)
 
 {com}. //_7
+. generate coninc_3_10K = coninc_3 / 10000 // income in $10K chunks
+{txt}(820 missing values generated)
+
+{com}. //_8
 . label variable coninc_3_10K "Income 10K Chunks"
 {txt}
-{com}. //_8
-. keep happy_3 happy_3_D coninc_3 coninc_3_10K // keep only some variables
-{txt}
 {com}. //_9
+. egen income_group_3 = cut(coninc_3), group(3) // divide income into three groups
+{txt}(820 missing values generated)
+
+{com}. //_10
+. keep polviews_3 liberal_3_D ///
+> race_3 ///
+> happy_3 happy_3_D ///
+> coninc_3 coninc_3_10K  income_group_3 // keep only some variables
+{txt}
+{com}. //_11
 . save GSSsmall.dta, replace
 {txt}file GSSsmall.dta saved
 
-{com}. //_10
-. twoway scatter happy_3_D coninc_3, scheme(burd) jitter(5)
-{res}{txt}
-{com}. //_11
-. graph export happiness-income.png, width(500) replace
-{txt}(file happiness-income.png written in PNG format)
-
 {com}. //_12
-. regress happy_3_D coninc_3_10K
-
-{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,223
-{txt}{hline 13}{c +}{hline 34}   F(1, 1221)      = {res}    22.87
-{txt}       Model {c |} {res} 2.26477699         1  2.26477699   {txt}Prob > F        ={res}    0.0000
-{txt}    Residual {c |} {res} 120.937185     1,221  .099047654   {txt}R-squared       ={res}    0.0184
-{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0176
-{txt}       Total {c |} {res} 123.201962     1,222  .100819936   {txt}Root MSE        =   {res} .31472
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}   happy_3_D{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-coninc_3_10K {c |}{col 14}{res}{space 2} .0096934{col 26}{space 2} .0020272{col 37}{space 1}    4.78{col 46}{space 3}0.000{col 54}{space 4} .0057163{col 67}{space 3} .0136705
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .8368664{col 26}{space 2} .0137133{col 37}{space 1}   61.03{col 46}{space 3}0.000{col 54}{space 4} .8099622{col 67}{space 3} .8637706
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+. twoway (scatter liberal_3_D coninc_3, jitter(5) legend(off)) ///
+> (lowess liberal_3_D coninc_3), scheme(burd) ///
+> title("Liberal Attitudes by Income") 
 {res}{txt}
 {com}. //_13
+. graph export liberal-income.png, width(500) replace
+{txt}(file liberal-income.png written in PNG format)
+
+{com}. //_14
+. regress liberal_3_D i.race_3 i.income_group_3
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,196
+{txt}{hline 13}{c +}{hline 34}   F(4, 1191)      = {res}     1.92
+{txt}       Model {c |} {res} 1.64862069         4  .412155173   {txt}Prob > F        ={res}    0.1040
+{txt}    Residual {c |} {res} 255.022784     1,191  .214124924   {txt}R-squared       ={res}    0.0064
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0031
+{txt}       Total {c |} {res} 256.671405     1,195  .214787786   {txt}Root MSE        =   {res} .46274
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   liberal_3_D{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}race_3 {c |}
+{space 8}black  {c |}{col 16}{res}{space 2} .0456219{col 28}{space 2} .0380945{col 39}{space 1}    1.20{col 48}{space 3}0.231{col 56}{space 4}-.0291179{col 69}{space 3} .1203618
+{txt}{space 8}other  {c |}{col 16}{res}{space 2} .0361862{col 28}{space 2} .0556281{col 39}{space 1}    0.65{col 48}{space 3}0.515{col 56}{space 4}-.0729538{col 69}{space 3} .1453261
+{txt}{space 14} {c |}
+income_group_3 {c |}
+{space 12}1  {c |}{col 16}{res}{space 2}-.0746485{col 28}{space 2} .0356057{col 39}{space 1}   -2.10{col 48}{space 3}0.036{col 56}{space 4}-.1445053{col 69}{space 3}-.0047916
+{txt}{space 12}2  {c |}{col 16}{res}{space 2}-.0004934{col 28}{space 2} .0323417{col 39}{space 1}   -0.02{col 48}{space 3}0.988{col 56}{space 4}-.0639466{col 69}{space 3} .0629597
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2} .3231964{col 28}{space 2} .0264268{col 39}{space 1}   12.23{col 48}{space 3}0.000{col 56}{space 4} .2713481{col 69}{space 3} .3750446
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_15
 . clear all
 {res}{txt}
-{com}. //_14
+{com}. //_16
 . set obs 100 // 100 observations
 {txt}{p}
 number of observations (_N)  was 0,
 now 100
 {p_end}
 
-{com}. //_15
+{com}. //_17
 . generate z = runiform(-5, 5) // randomly distributed z scores
 {txt}
-{com}. //_16
+{com}. //_18
 . generate mynormaldensities = normalden(z) // normal densities
 {txt}
-{com}. //_17
+{com}. //_19
 . generate myprobabilities = normal(z) // cumulative normal probabilities
 {txt}
-{com}. //_18
+{com}. //_20
 . twoway scatter mynormaldensities myprobabilities z, scheme(michigan)
 {res}{txt}
-{com}. //_19
+{com}. //_21
 . graph export normal.png, width(500) replace
 {txt}(file normal.png written in PNG format)
 
-{com}. //_20
+{com}. //_22
 . use GSSsmall.dta, clear
 {txt}( )
 
-{com}. //_21
-. probit happy_3_D coninc_3_10K
+{com}. //_23
+. probit liberal_3_D i.race_3 i.income_group_3
 
-{res}{txt}Iteration 0:{space 3}log likelihood = {res:-433.05123}  
-Iteration 1:{space 3}log likelihood = {res:-419.92819}  
-Iteration 2:{space 3}log likelihood = {res:-419.73499}  
-Iteration 3:{space 3}log likelihood = {res:-419.73484}  
-Iteration 4:{space 3}log likelihood = {res:-419.73484}  
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-742.22687}  
+Iteration 1:{space 3}log likelihood = {res:-738.31437}  
+Iteration 2:{space 3}log likelihood = {res:-738.31277}  
+Iteration 3:{space 3}log likelihood = {res:-738.31277}  
 {res}
-{txt}Probit regression{col 49}Number of obs{col 67}= {res}     1,223
-{txt}{col 49}LR chi2({res}1{txt}){col 67}= {res}     26.63
-{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-419.73484{txt}{col 49}Pseudo R2{col 67}= {res}    0.0308
+{txt}Probit regression{col 49}Number of obs{col 67}= {res}     1,196
+{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}      7.83
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0981
+{txt}Log likelihood = {res}-738.31277{txt}{col 49}Pseudo R2{col 67}= {res}    0.0053
 
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}   happy_3_D{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-coninc_3_10K {c |}{col 14}{res}{space 2} .0643046{col 26}{space 2}  .013517{col 37}{space 1}    4.76{col 46}{space 3}0.000{col 54}{space 4} .0378119{col 67}{space 3} .0907974
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .9244086{col 26}{space 2} .0721521{col 37}{space 1}   12.81{col 46}{space 3}0.000{col 54}{space 4} .7829931{col 67}{space 3} 1.065824
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   liberal_3_D{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}race_3 {c |}
+{space 8}black  {c |}{col 16}{res}{space 2} .1282501{col 28}{space 2} .1066513{col 39}{space 1}    1.20{col 48}{space 3}0.229{col 56}{space 4}-.0807826{col 69}{space 3} .3372829
+{txt}{space 8}other  {c |}{col 16}{res}{space 2} .1031113{col 28}{space 2} .1562649{col 39}{space 1}    0.66{col 48}{space 3}0.509{col 56}{space 4}-.2031624{col 69}{space 3} .4093849
+{txt}{space 14} {c |}
+income_group_3 {c |}
+{space 12}1  {c |}{col 16}{res}{space 2}-.2173144{col 28}{space 2} .1020685{col 39}{space 1}   -2.13{col 48}{space 3}0.033{col 56}{space 4} -.417365{col 69}{space 3}-.0172637
+{txt}{space 12}2  {c |}{col 16}{res}{space 2} -.000834{col 28}{space 2} .0907004{col 39}{space 1}   -0.01{col 48}{space 3}0.993{col 56}{space 4}-.1786036{col 69}{space 3} .1769355
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2}-.4599612{col 28}{space 2} .0742229{col 39}{space 1}   -6.20{col 48}{space 3}0.000{col 56}{space 4}-.6054354{col 69}{space 3}-.3144871
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_22
+{com}. //_24
 . clear all
 {res}{txt}
-{com}. //_23
+{com}. //_25
 . set obs 100 // 100 observations
 {txt}{p}
 number of observations (_N)  was 0,
 now 100
 {p_end}
 
-{com}. //_24
+{com}. //_26
 . generate z = runiform(-5, 5) // randomly distributed z scores
 {txt}
-{com}. //_25
+{com}. //_27
 . generate mylogisticdensities = logisticden(z) // logistic densities
 {txt}
-{com}. //_26
+{com}. //_28
 . generate mylogisticprobabilities = logistic(z) // cumulative logistic probabilities
 {txt}
-{com}. //_27
+{com}. //_29
 . twoway scatter mylogisticdensities mylogisticprobabilities z, scheme(michigan)
 {res}{txt}
-{com}. //_28
+{com}. //_30
 . graph export logistic.png, width(500) replace
 {txt}(file logistic.png written in PNG format)
 
-{com}. //_29
+{com}. //_31
 . use GSSsmall.dta, clear
 {txt}( )
 
-{com}. //_30
-. logit happy_3_D coninc_3_10K
-
-{res}{txt}Iteration 0:{space 3}log likelihood = {res:-433.05123}  
-Iteration 1:{space 3}log likelihood = {res:-420.07608}  
-Iteration 2:{space 3}log likelihood = {res:-419.28644}  
-Iteration 3:{space 3}log likelihood = {res:-419.28513}  
-Iteration 4:{space 3}log likelihood = {res:-419.28513}  
-{res}
-{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     1,223
-{txt}{col 49}LR chi2({res}1{txt}){col 67}= {res}     27.53
-{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-419.28513{txt}{col 49}Pseudo R2{col 67}= {res}    0.0318
-
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}   happy_3_D{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-coninc_3_10K {c |}{col 14}{res}{space 2} .1343328{col 26}{space 2} .0293318{col 37}{space 1}    4.58{col 46}{space 3}0.000{col 54}{space 4} .0768437{col 67}{space 3}  .191822
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.484066{col 26}{space 2} .1381599{col 37}{space 1}   10.74{col 46}{space 3}0.000{col 54}{space 4} 1.213277{col 67}{space 3} 1.754854
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-
-{com}. //_31
-. quietly probit happy_3_D coninc_3_10K
-{txt}
 {com}. //_32
-. est store myprobit
-{txt}
+. logit liberal_3_D i.race_3 i.income_group_3
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-742.22687}  
+Iteration 1:{space 3}log likelihood = {res:-738.33316}  
+Iteration 2:{space 3}log likelihood = {res:-738.32486}  
+Iteration 3:{space 3}log likelihood = {res:-738.32486}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     1,196
+{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}      7.80
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0990
+{txt}Log likelihood = {res}-738.32486{txt}{col 49}Pseudo R2{col 67}= {res}    0.0053
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   liberal_3_D{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}race_3 {c |}
+{space 8}black  {c |}{col 16}{res}{space 2} .2094235{col 28}{space 2} .1745234{col 39}{space 1}    1.20{col 48}{space 3}0.230{col 56}{space 4}-.1326361{col 69}{space 3} .5514831
+{txt}{space 8}other  {c |}{col 16}{res}{space 2} .1683692{col 28}{space 2} .2563377{col 39}{space 1}    0.66{col 48}{space 3}0.511{col 56}{space 4}-.3340434{col 69}{space 3} .6707818
+{txt}{space 14} {c |}
+income_group_3 {c |}
+{space 12}1  {c |}{col 16}{res}{space 2}-.3598681{col 28}{space 2} .1698329{col 39}{space 1}   -2.12{col 48}{space 3}0.034{col 56}{space 4}-.6927344{col 69}{space 3}-.0270018
+{txt}{space 12}2  {c |}{col 16}{res}{space 2}-.0010393{col 28}{space 2} .1485725{col 39}{space 1}   -0.01{col 48}{space 3}0.994{col 56}{space 4} -.292236{col 69}{space 3} .2901574
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2}-.7414533{col 28}{space 2} .1218581{col 39}{space 1}   -6.08{col 48}{space 3}0.000{col 56}{space 4}-.9802907{col 69}{space 3}-.5026159
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
 {com}. //_33
-. quietly logit happy_3_D coninc_3_10K
+. quietly probit liberal_3_D i.race_3 i.income_group_3
 {txt}
 {com}. //_34
-. est store mylogit
+. est store myprobit
 {txt}
 {com}. //_35
+. quietly logit liberal_3_D i.race_3 i.income_group_3
+{txt}
+{com}. //_36
+. est store mylogit
+{txt}
+{com}. //_37
 . est table myprobit mylogit
 {res}
 {txt}{hline 12}{c -}{c TT}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
 {ralign 12:Variable} {c |} {center 10:myprobit} {space 1} {center 10:mylogit} {space 1}
 {hline 12}{c -}{c +}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
-{res}{txt}coninc_3_10K {c |}{res} {ralign 10:.06430462}{txt} {space 1}{res} {ralign 10:.13433285}{txt} {space 1}
-{res}{txt}{space 7}_cons {c |}{res} {ralign 10:.92440858}{txt} {space 1}{res} {ralign 10:1.4840659}{txt} {space 1}
+{res}{txt}{space 6}race_3 {c |}
+{space 6}black  {c |}{res} {ralign 10:.12825014}{txt} {space 1}{res} {ralign 10:.2094235}{txt} {space 1}
+{res}{txt}{space 6}other  {c |}{res} {ralign 10:.10311128}{txt} {space 1}{res} {ralign 10:.16836918}{txt} {space 1}
+{res}{txt}{space 12} {c |}
+income_gro~3 {c |}
+{space 10}1  {c |}{res} {ralign 10:-.21731439}{txt} {space 1}{res} {ralign 10:-.35986813}{txt} {space 1}
+{res}{txt}{space 10}2  {c |}{res} {ralign 10:-.00083403}{txt} {space 1}{res} {ralign 10:-.00103932}{txt} {space 1}
+{res}{txt}{space 12} {c |}
+{space 7}_cons {c |}{res} {ralign 10:-.45996125}{txt} {space 1}{res} {ralign 10:-.74145328}{txt} {space 1}
 {res}{txt}{hline 12}{c -}{c BT}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
 {res}{txt}
+{com}. //_38
+. logit liberal_3_D i.race_3 i.income_group_3, or
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-742.22687}  
+Iteration 1:{space 3}log likelihood = {res:-738.33316}  
+Iteration 2:{space 3}log likelihood = {res:-738.32486}  
+Iteration 3:{space 3}log likelihood = {res:-738.32486}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     1,196
+{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}      7.80
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0990
+{txt}Log likelihood = {res}-738.32486{txt}{col 49}Pseudo R2{col 67}= {res}    0.0053
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   liberal_3_D{col 16}{c |} Odds Ratio{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}race_3 {c |}
+{space 8}black  {c |}{col 16}{res}{space 2} 1.232967{col 28}{space 2} .2151816{col 39}{space 1}    1.20{col 48}{space 3}0.230{col 56}{space 4} .8757837{col 69}{space 3} 1.735826
+{txt}{space 8}other  {c |}{col 16}{res}{space 2} 1.183373{col 28}{space 2} .3033432{col 39}{space 1}    0.66{col 48}{space 3}0.511{col 56}{space 4} .7160227{col 69}{space 3} 1.955766
+{txt}{space 14} {c |}
+income_group_3 {c |}
+{space 12}1  {c |}{col 16}{res}{space 2} .6977683{col 28}{space 2}  .118504{col 39}{space 1}   -2.12{col 48}{space 3}0.034{col 56}{space 4} .5002064{col 69}{space 3} .9733595
+{txt}{space 12}2  {c |}{col 16}{res}{space 2} .9989612{col 28}{space 2} .1484181{col 39}{space 1}   -0.01{col 48}{space 3}0.994{col 56}{space 4} .7465923{col 69}{space 3} 1.336638
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2}  .476421{col 28}{space 2} .0580557{col 39}{space 1}   -6.08{col 48}{space 3}0.000{col 56}{space 4}  .375202{col 69}{space 3} .6049461
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 2 Jun 2020, 08:58:16
+ {txt}closed on:  {res} 2 Jun 2020, 14:26:37
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
