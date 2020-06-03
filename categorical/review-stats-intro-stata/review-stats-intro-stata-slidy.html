@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>A Review of Descriptive Statistics, OLS and an Introduction to Stata</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../UNICEFslidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">A Review of Descriptive Statistics, OLS and an Introduction to Stata</h1>
+  <p class="author">
+Andy Grogan-Kaylor
+  </p>
+</div>
+<div class="slide section level1">
+
+<p>Andy Grogan-Kaylor</p>
+<p>3 Jun 2020</p>
+</div>
+<div id="social-service-agency-data" class="slide section level1">
+<h1>Social Service Agency Data</h1>
+<blockquote>
+<p>Simulated data on social service clients</p>
+</blockquote>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">use</span> clients.dta, <span class="kw">clear</span> <span class="co">// use (get) the data</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>(Simulated Clients)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">describe</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>Contains <span class="kw">data</span> from clients.dta</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="kw">obs</span>:           521                          Simulated Clients</span>
+<span id="cb2-5"><a href="#cb2-5"></a> vars:             8                          3 Jun 2020 15:14</span>
+<span id="cb2-6"><a href="#cb2-6"></a> <span class="kw">size</span>:        29,176                          </span>
+<span id="cb2-7"><a href="#cb2-7"></a>────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-8"><a href="#cb2-8"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-11"><a href="#cb2-11"></a>ID              <span class="kw">double</span>  %9.0g                 ID</span>
+<span id="cb2-12"><a href="#cb2-12"></a>age             <span class="kw">double</span>  %9.0g                 age</span>
+<span id="cb2-13"><a href="#cb2-13"></a>gender          <span class="kw">long</span>    %9.0g      gender     gender</span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="kw">program</span>         <span class="kw">long</span>    %9.0g      <span class="kw">program</span>    <span class="kw">program</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>mental_health~1 <span class="kw">double</span>  %9.0g                 mental_health_T1</span>
+<span id="cb2-16"><a href="#cb2-16"></a>mental_health~2 <span class="kw">double</span>  %9.0g                 mental_health_T2</span>
+<span id="cb2-17"><a href="#cb2-17"></a>latitude        <span class="kw">double</span>  %9.0g                 latitude</span>
+<span id="cb2-18"><a href="#cb2-18"></a>longitude       <span class="kw">double</span>  %9.0g                 longitude</span>
+<span id="cb2-19"><a href="#cb2-19"></a>────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-20"><a href="#cb2-20"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
+</div>
+<div id="one-line-stata" class="slide section level1">
+<h1>One Line Stata</h1>
+<p><code>do_something to_variable(s), options</code></p>
+<blockquote>
+<p>Quite often the default options are so well chosen that you do not need to specify any options.</p>
+</blockquote>
+<p><code>use mydata.dta</code></p>
+<p><code>summarize</code> // descriptive statistics</p>
+<p><code>keep x1 x2 x3</code> // keep only selected variables</p>
+<p><code>list x1 x2 x3 in 1/10</code> // list cases for selected variables</p>
+<p><code>browse</code> look at data</p>
+<p><code>lookfor [word]</code> look for variables with a particular word</p>
+</div>
+<div id="the-stata-interface" class="slide section level1">
+<h1>The Stata Interface</h1>
+<div class="figure">
+<img src="Slide1.png" alt="" />
+<p class="caption">The Stata Interface</p>
+</div>
+</div>
+<div id="measures-of-central-tendency" class="slide section level1">
+<h1>Measures of Central Tendency</h1>
+<ul class="incremental">
+<li>What are <em>mean</em> and <em>median</em>. Why are they different?</li>
+<li>Where is standard deviation?</li>
+<li>Subsets of variables?</li>
+<li>Finding variables?</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">summarize</span> </span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    Variable │        Obs        Mean    Std. Dev.       Min        Max</span>
+<span id="cb3-4"><a href="#cb3-4"></a>─────────────┼─────────────────────────────────────────────────────────</span>
+<span id="cb3-5"><a href="#cb3-5"></a>          ID │        521    2965.449     1158.32       1005       4989</span>
+<span id="cb3-6"><a href="#cb3-6"></a>         age │        521     28.0438    7.047373   18.05584   45.45653</span>
+<span id="cb3-7"><a href="#cb3-7"></a>      gender │        521    1.821497    .7549825          1          3</span>
+<span id="cb3-8"><a href="#cb3-8"></a>     <span class="kw">program</span> │        521    2.197697    .7973963          1          4</span>
+<span id="cb3-9"><a href="#cb3-9"></a>mental_hea~1 │        521    95.11707    5.161698   80.93709   108.5736</span>
+<span id="cb3-10"><a href="#cb3-10"></a>─────────────┼─────────────────────────────────────────────────────────</span>
+<span id="cb3-11"><a href="#cb3-11"></a>mental_hea~2 │        521    98.87066    7.423767   79.57518   118.2272</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    latitude │        521    42.25321    .1027698   41.99847    42.6237</span>
+<span id="cb3-13"><a href="#cb3-13"></a>   longitude │        521   -83.74921    .0987047  -84.04328  -83.42666</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">summarize</span> age, <span class="kw">detail</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>                             age</span>
+<span id="cb4-4"><a href="#cb4-4"></a>─────────────────────────────────────────────────────────────</span>
+<span id="cb4-5"><a href="#cb4-5"></a>      Percentiles      Smallest</span>
+<span id="cb4-6"><a href="#cb4-6"></a> 1%     18.17739       18.05584</span>
+<span id="cb4-7"><a href="#cb4-7"></a> 5%     18.72159       18.05992</span>
+<span id="cb4-8"><a href="#cb4-8"></a>10%     19.54324       18.10945       Obs                 521</span>
+<span id="cb4-9"><a href="#cb4-9"></a>25%     22.37428       18.13374       Sum <span class="kw">of</span> Wgt.         521</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a>50%     26.61352                      Mean            28.0438</span>
+<span id="cb4-12"><a href="#cb4-12"></a>                        Largest       Std. Dev.      7.047373</span>
+<span id="cb4-13"><a href="#cb4-13"></a>75%     32.88188       44.35607</span>
+<span id="cb4-14"><a href="#cb4-14"></a>90%     38.46387       44.78399       Variance       49.66547</span>
+<span id="cb4-15"><a href="#cb4-15"></a>95%     41.26977       45.30344       Skewness       .5501433</span>
+<span id="cb4-16"><a href="#cb4-16"></a>99%     44.16425       45.45653       Kurtosis       2.317297</span></code></pre></div>
+</div>
+<div id="measures-of-variation" class="slide section level1">
+<h1>Measures of Variation</h1>
+<blockquote>
+<p>Some programs, e.g. <em>R</em> make you search for standard deviation. With Stata, <span class="math inline">\(sd\)</span> is easily accessible with <code>summarize</code>.</p>
+</blockquote>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">histogram</span> mental_health_T1, <span class="fu">normal</span> <span class="dv">scheme</span>(burd)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>(<span class="bn">bin</span>=22, <span class="bn">start</span>=80.937087, <span class="kw">width</span>=1.2562034)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myhistogram.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>(file myhistogram.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="myhistogram.png" alt="" />
+<p class="caption">histogram of mental health</p>
+</div>
+</div>
+<div id="comparing-continuous-variables-across-categorical-variables" class="slide section level1">
+<h1>Comparing Continuous Variables Across Categorical Variables</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> mental_health_T2, <span class="bn">over</span>(<span class="kw">program</span>) <span class="dv">scheme</span>(burd)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybargraph.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>(file mybargraph.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="mybargraph.png" alt="" />
+<p class="caption">bar graph of mental health at time 2</p>
+</div>
+</div>
+<div id="t-test" class="slide section level1">
+<h1>t-test</h1>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">preserve</span> <span class="co">// preserve data set</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">keep</span> <span class="kw">if</span> <span class="kw">program</span> == 1 | <span class="kw">program</span> == 2 <span class="co">// only keep 2 programs for now</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>(201 observations deleted)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">ttest</span> mental_health_T2, <span class="kw">by</span>(<span class="kw">program</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>Two-<span class="kw">sample</span> t <span class="kw">test</span> with equal variances</span>
+<span id="cb11-4"><a href="#cb11-4"></a>─────────┬────────────────────────────────────────────────────────────────────</span>
+<span id="cb11-5"><a href="#cb11-5"></a>   Group │     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]</span>
+<span id="cb11-6"><a href="#cb11-6"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
+<span id="cb11-7"><a href="#cb11-7"></a> Program │     111     94.7963    .4969934     5.23615    93.81138    95.78123</span>
+<span id="cb11-8"><a href="#cb11-8"></a> Program │     209    105.3512    .3562424    5.150136    104.6489    106.0535</span>
+<span id="cb11-9"><a href="#cb11-9"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
+<span id="cb11-10"><a href="#cb11-10"></a>combined │     320      101.69    .4033737    7.215767    100.8964    102.4836</span>
+<span id="cb11-11"><a href="#cb11-11"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
+<span id="cb11-12"><a href="#cb11-12"></a>    <span class="fu">diff</span> │           -10.55491    .6083793               -11.75187   -9.357953</span>
+<span id="cb11-13"><a href="#cb11-13"></a>─────────┴────────────────────────────────────────────────────────────────────</span>
+<span id="cb11-14"><a href="#cb11-14"></a>    <span class="fu">diff</span> = <span class="kw">mean</span>(Program) - <span class="kw">mean</span>(Program)                          t = -17.3492</span>
+<span id="cb11-15"><a href="#cb11-15"></a>Ho: <span class="fu">diff</span> = 0                                     degrees <span class="kw">of</span> freedom =      318</span>
+<span id="cb11-16"><a href="#cb11-16"></a></span>
+<span id="cb11-17"><a href="#cb11-17"></a>    Ha: <span class="fu">diff</span> &lt; 0                 Ha: <span class="fu">diff</span> != 0                 Ha: <span class="fu">diff</span> &gt; 0</span>
+<span id="cb11-18"><a href="#cb11-18"></a> Pr(T &lt; t) = 0.0000         Pr(|T| &gt; |t|) = 0.0000          Pr(T &gt; t) = 1.0000</span></code></pre></div>
+</div>
+<div id="anova" class="slide section level1">
+<h1>ANOVA</h1>
+<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">restore</span> <span class="co">// restore old version of data</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">oneway</span> mental_health_T2 <span class="kw">program</span> <span class="co">// oneway analysis of variance</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>                        Analysis <span class="kw">of</span> Variance</span>
+<span id="cb13-4"><a href="#cb13-4"></a>    Source              SS         df      MS            <span class="fu">F</span>     Prob &gt; <span class="fu">F</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>────────────────────────────────────────────────────────────────────────</span>
+<span id="cb13-6"><a href="#cb13-6"></a>Between groups      14689.6155      3   4896.53849    181.23     0.0000</span>
+<span id="cb13-7"><a href="#cb13-7"></a> Within groups       13968.791    517   27.0189382</span>
+<span id="cb13-8"><a href="#cb13-8"></a>────────────────────────────────────────────────────────────────────────</span>
+<span id="cb13-9"><a href="#cb13-9"></a>    Total           28658.4065    520   55.1123202</span>
+<span id="cb13-10"><a href="#cb13-10"></a></span>
+<span id="cb13-11"><a href="#cb13-11"></a>Bartlett&#39;s <span class="kw">test</span> <span class="kw">for</span> equal variances:  <span class="fu">chi2</span>(3) =   0.1991  Prob&gt;<span class="fu">chi2</span> = 0.978</span></code></pre></div>
+</div>
+<div id="regression" class="slide section level1">
+<h1>Regression</h1>
+<ul class="incremental">
+<li>What is the equation?</li>
+<li>What do the results mean?</li>
+<li>What is substantively or statistically significant?</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">regress</span> mental_health_T2 mental_health_T1 i.<span class="kw">program</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a>      Source │       SS           df       MS      Number <span class="kw">of</span> <span class="kw">obs</span>   =       521</span>
+<span id="cb14-4"><a href="#cb14-4"></a>─────────────┼──────────────────────────────────   <span class="fu">F</span>(4, 516)       =    135.94</span>
+<span id="cb14-5"><a href="#cb14-5"></a>       Model │  14704.3725         4  3676.09313   Prob &gt; <span class="fu">F</span>        =    0.0000</span>
+<span id="cb14-6"><a href="#cb14-6"></a>    Residual │   13954.034       516  27.0427015   R-squared       =    0.5131</span>
+<span id="cb14-7"><a href="#cb14-7"></a>─────────────┼──────────────────────────────────   Adj R-squared   =    0.5093</span>
+<span id="cb14-8"><a href="#cb14-8"></a>       Total │  28658.4065       520  55.1123202   Root MSE        =    5.2003</span>
+<span id="cb14-9"><a href="#cb14-9"></a></span>
+<span id="cb14-10"><a href="#cb14-10"></a>─────────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb14-11"><a href="#cb14-11"></a>mental_health_T2 │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
+<span id="cb14-12"><a href="#cb14-12"></a>─────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb14-13"><a href="#cb14-13"></a>mental_health_T1 │  -.0327405    .044321    -0.74   0.460    -.1198123    .0543314</span>
+<span id="cb14-14"><a href="#cb14-14"></a>                 │</span>
+<span id="cb14-15"><a href="#cb14-15"></a>         <span class="kw">program</span> │</span>
+<span id="cb14-16"><a href="#cb14-16"></a>      Program B  │   10.57171   .6111758    17.30   0.000     9.371008    11.77241</span>
+<span id="cb14-17"><a href="#cb14-17"></a>      Program C  │   -.494409   .6224837    -0.79   0.427    -1.717323     .728505</span>
+<span id="cb14-18"><a href="#cb14-18"></a>      Program D  │   .7226213   1.526873     0.47   0.636     -2.27703    3.722272</span>
+<span id="cb14-19"><a href="#cb14-19"></a>                 │</span>
+<span id="cb14-20"><a href="#cb14-20"></a>           <span class="dt">_cons</span> │   97.90435   4.236239    23.11   0.000     89.58195    106.2267</span>
+<span id="cb14-21"><a href="#cb14-21"></a>─────────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+</div>
+<div id="what-if-we-want-to-allow-for-different-slopes" class="slide section level1">
+<h1>What if We Want to Allow For Different Slopes?</h1>
+<blockquote>
+<p>Instructor will draw this out.</p>
+</blockquote>
+<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">regress</span> mental_health_T2 c.mental_health_T1##i.<span class="kw">program</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a>      Source │       SS           df       MS      Number <span class="kw">of</span> <span class="kw">obs</span>   =       521</span>
+<span id="cb15-4"><a href="#cb15-4"></a>─────────────┼──────────────────────────────────   <span class="fu">F</span>(7, 513)       =     77.65</span>
+<span id="cb15-5"><a href="#cb15-5"></a>       Model │  14743.6327         7  2106.23324   Prob &gt; <span class="fu">F</span>        =    0.0000</span>
+<span id="cb15-6"><a href="#cb15-6"></a>    Residual │  13914.7738       513  27.1243155   R-squared       =    0.5145</span>
+<span id="cb15-7"><a href="#cb15-7"></a>─────────────┼──────────────────────────────────   Adj R-squared   =    0.5078</span>
+<span id="cb15-8"><a href="#cb15-8"></a>       Total │  28658.4065       520  55.1123202   Root MSE        =    5.2081</span>
+<span id="cb15-9"><a href="#cb15-9"></a></span>
+<span id="cb15-10"><a href="#cb15-10"></a>───────────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb15-11"><a href="#cb15-11"></a>  mental_health_T2 │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
+<span id="cb15-12"><a href="#cb15-12"></a>───────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb15-13"><a href="#cb15-13"></a>  mental_health_T1 │   .0038108   .0940124     0.04   0.968    -.1808858    .1885074</span>
+<span id="cb15-14"><a href="#cb15-14"></a>                   │</span>
+<span id="cb15-15"><a href="#cb15-15"></a>           <span class="kw">program</span> │</span>
+<span id="cb15-16"><a href="#cb15-16"></a>        Program B  │   14.13882   11.07298     1.28   0.202    -7.615155    35.89279</span>
+<span id="cb15-17"><a href="#cb15-17"></a>        Program C  │   2.227825    11.6862     0.19   0.849    -20.73087    25.18653</span>
+<span id="cb15-18"><a href="#cb15-18"></a>        Program D  │   27.30439    22.3002     1.22   0.221    -16.50657    71.11535</span>
+<span id="cb15-19"><a href="#cb15-19"></a>                   │</span>
+<span id="cb15-20"><a href="#cb15-20"></a>           program#│</span>
+<span id="cb15-21"><a href="#cb15-21"></a>c.mental_health_T1 │</span>
+<span id="cb15-22"><a href="#cb15-22"></a>        Program B  │  -.0375708   .1162481    -0.32   0.747    -.2659517    .1908101</span>
+<span id="cb15-23"><a href="#cb15-23"></a>        Program C  │  -.0286832   .1228833    -0.23   0.816    -.2700997    .2127332</span>
+<span id="cb15-24"><a href="#cb15-24"></a>        Program D  │  -.2851331   .2385022    -1.20   0.232    -.7536944    .1834281</span>
+<span id="cb15-25"><a href="#cb15-25"></a>                   │</span>
+<span id="cb15-26"><a href="#cb15-26"></a>             <span class="dt">_cons</span> │   94.43455   8.938253    10.57   0.000     76.87446    111.9946</span>
+<span id="cb15-27"><a href="#cb15-27"></a>───────────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+</div>
+<div id="regression-assumptions-and-the-issue-of-normality" class="slide section level1">
+<h1>Regression Assumptions and the Issue of “Normality”</h1>
+</div>
+<div id="questions" class="slide section level1">
+<h1>Questions?</h1>
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+% A Review of Descriptive Statistics, OLS and an Introduction to Stata
+% Andy Grogan-Kaylor
+% `s c(current_date)`
+
+---
+geometry: margin=1 in
+---
+
+# Social Service Agency Data
+
+<style>h1 {color: black;} h2 {color: black} blockquote {border-left: 5px solid #FF0099; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+> Simulated data on social service clients
+
+    use clients.dta, clear // use (get) the data
+	
+	describe
+
+# One Line Stata
+
+`do_something to_variable(s), options`
+
+> Quite often the default options are so well chosen that you do not need to specify any options.
+
+`use mydata.dta`
+
+`summarize` // descriptive statistics
+
+`keep x1 x2 x3` // keep only selected variables
+
+`list x1 x2 x3 in 1/10` // list cases for selected variables
+
+`browse` look at data
+
+`lookfor [word]` look for variables with a particular word
+
+# The Stata Interface
+
+![The Stata Interface](Slide1.png)
+
+# Measures of Central Tendency
+
+* What are *mean* and *median*. Why are they different? 
+* Where is standard deviation? 
+* Subsets of variables?
+* Finding variables?
+
+    summarize 
+	
+	summarize age, detail
+	
+# Measures of Variation
+
+> Some programs, e.g. *R* make you search for standard deviation. With Stata, $sd$ is easily accessible with `summarize`.
+
+    histogram mental_health_T1, normal scheme(burd)
+	
+	graph export myhistogram.png, width(500) replace
+
+![histogram of mental health](myhistogram.png)
+
+# Comparing Continuous Variables Across Categorical Variables
+
+	graph bar mental_health_T2, over(program) scheme(burd)
+
+	graph export mybargraph.png, width(500) replace
+
+![bar graph of mental health at time 2](mybargraph.png)
+
+# t-test
+
+    preserve // preserve data set
+
+    keep if program == 1 | program == 2 // only keep 2 programs for now
+	
+	ttest mental_health_T2, by(program)
+	
+# ANOVA
+
+    restore // restore old version of data
+	
+	oneway mental_health_T2 program // oneway analysis of variance
+	
+# Regression 
+
+* What is the equation?
+* What do the results mean?
+* What is substantively or statistically significant?
+
+    regress mental_health_T2 mental_health_T1 i.program
+	
+# What if We Want to Allow For Different Slopes?
+
+> Instructor will draw this out.
+
+    regress mental_health_T2 c.mental_health_T1##i.program
+
+# Regression Assumptions and the Issue of "Normality"
+
+# Questions?
+
+	

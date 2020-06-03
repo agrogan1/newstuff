@@ -1,0 +1,189 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 3 Jun 2020, 15:56:29
+{txt}
+{com}. //_1
+. display c(current_date)
+{res} 3 Jun 2020
+{txt}
+{com}. //_2
+. use clients.dta, clear // use (get) the data
+{txt}(Simulated Clients)
+
+{com}. //_3
+. describe
+
+{txt}Contains data from {res}clients.dta
+{txt}  obs:{res}           521                          Simulated Clients
+{txt} vars:{res}             8                          3 Jun 2020 15:14
+{txt} size:{res}        29,176                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:ID             }{txt}{bind: double  }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}ID{p_end}
+{p 0 48}{bind:age            }{txt}{bind: double  }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}age{p_end}
+{p 0 48}{bind:gender         }{txt}{bind: long    }{bind:{txt}%9.0g     }{space 1}{bind:gender   }{bind:  }{res}{res}gender{p_end}
+{p 0 48}{bind:program        }{txt}{bind: long    }{bind:{txt}%9.0g     }{space 1}{bind:program  }{bind:  }{res}{res}program{p_end}
+{p 0 48}{bind:mental_health~1}{txt}{bind: double  }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}mental_health_T1{p_end}
+{p 0 48}{bind:mental_health~2}{txt}{bind: double  }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}mental_health_T2{p_end}
+{p 0 48}{bind:latitude       }{txt}{bind: double  }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}latitude{p_end}
+{p 0 48}{bind:longitude      }{txt}{bind: double  }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}longitude{p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. //_4
+. summarize 
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}ID {c |}{res}        521    2965.449     1158.32       1005       4989
+{txt}{space 9}age {c |}{res}        521     28.0438    7.047373   18.05584   45.45653
+{txt}{space 6}gender {c |}{res}        521    1.821497    .7549825          1          3
+{txt}{space 5}program {c |}{res}        521    2.197697    .7973963          1          4
+{txt}mental_hea~1 {c |}{res}        521    95.11707    5.161698   80.93709   108.5736
+{txt}{hline 13}{c +}{hline 57}
+mental_hea~2 {c |}{res}        521    98.87066    7.423767   79.57518   118.2272
+{txt}{space 4}latitude {c |}{res}        521    42.25321    .1027698   41.99847    42.6237
+{txt}{space 3}longitude {c |}{res}        521   -83.74921    .0987047  -84.04328  -83.42666
+{txt}
+{com}. //_5
+. summarize age, detail
+
+                             {txt}age
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 18.17739       18.05584
+{txt} 5%    {res} 18.72159       18.05992
+{txt}10%    {res} 19.54324       18.10945       {txt}Obs         {res}        521
+{txt}25%    {res} 22.37428       18.13374       {txt}Sum of Wgt. {res}        521
+
+{txt}50%    {res} 26.61352                      {txt}Mean          {res}  28.0438
+                        {txt}Largest       Std. Dev.     {res} 7.047373
+{txt}75%    {res} 32.88188       44.35607
+{txt}90%    {res} 38.46387       44.78399       {txt}Variance      {res} 49.66547
+{txt}95%    {res} 41.26977       45.30344       {txt}Skewness      {res} .5501433
+{txt}99%    {res} 44.16425       45.45653       {txt}Kurtosis      {res} 2.317297
+{txt}
+{com}. //_6
+. histogram mental_health_T1, normal scheme(burd)
+{txt}(bin={res}22{txt}, start={res}80.937087{txt}, width={res}1.2562034{txt})
+{res}{txt}
+{com}. //_7
+. graph export myhistogram.png, width(500) replace
+{txt}(file myhistogram.png written in PNG format)
+
+{com}. //_8
+. graph bar mental_health_T2, over(program) scheme(burd)
+{res}{txt}
+{com}. //_9
+. graph export mybargraph.png, width(500) replace
+{txt}(file mybargraph.png written in PNG format)
+
+{com}. //_10
+. preserve // preserve data set
+{txt}
+{com}. //_11
+. keep if program == 1 | program == 2 // only keep 2 programs for now
+{txt}(201 observations deleted)
+
+{com}. //_12
+. ttest mental_health_T2, by(program)
+
+{txt}Two-sample t test with equal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+ Program {c |}{res}{col 12}    111{col 22}  94.7963{col 34} .4969934{col 46}  5.23615{col 58} 93.81138{col 70} 95.78123
+ {txt}Program {c |}{res}{col 12}    209{col 22} 105.3512{col 34} .3562424{col 46} 5.150136{col 58} 104.6489{col 70} 106.0535
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12}    320{col 22}   101.69{col 34} .4033737{col 46} 7.215767{col 58} 100.8964{col 70} 102.4836
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22}-10.55491{col 34} .6083793{col 58}-11.75187{col 70}-9.357953
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}Program{txt}) - mean({res}Program{txt})                          t = {res}-17.3492
+{txt}Ho: diff = 0                                     degrees of freedom = {res}     318
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}1.0000
+{txt}
+{com}. //_13
+. restore // restore old version of data
+{txt}
+{com}. //_14
+. oneway mental_health_T2 program // oneway analysis of variance
+
+                        {txt}Analysis of Variance
+    Source              SS         df      MS            F     Prob > F
+{hline 72}
+Between groups     {res} 14689.6155      3   4896.53849    181.23     0.0000
+{txt} Within groups     {res}  13968.791    517   27.0189382
+{txt}{hline 72}
+    Total          {res} 28658.4065    520   55.1123202
+
+{txt}Bartlett's test for equal variances:  chi2({res}3{txt}) = {res}  0.1991{txt}  Prob>chi2 = {res}0.978
+{txt}
+{com}. //_15
+. regress mental_health_T2 mental_health_T1 i.program
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       521
+{txt}{hline 13}{c +}{hline 34}   F(4, 516)       = {res}   135.94
+{txt}       Model {c |} {res} 14704.3725         4  3676.09313   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}  13954.034       516  27.0427015   {txt}R-squared       ={res}    0.5131
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.5093
+{txt}       Total {c |} {res} 28658.4065       520  55.1123202   {txt}Root MSE        =   {res} 5.2003
+
+{txt}{hline 17}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}mental_health_T2{col 18}{c |}      Coef.{col 30}   Std. Err.{col 42}      t{col 50}   P>|t|{col 58}     [95% Con{col 71}f. Interval]
+{hline 17}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+mental_health_T1 {c |}{col 18}{res}{space 2}-.0327405{col 30}{space 2}  .044321{col 41}{space 1}   -0.74{col 50}{space 3}0.460{col 58}{space 4}-.1198123{col 71}{space 3} .0543314
+{txt}{space 16} {c |}
+{space 9}program {c |}
+{space 6}Program B  {c |}{col 18}{res}{space 2} 10.57171{col 30}{space 2} .6111758{col 41}{space 1}   17.30{col 50}{space 3}0.000{col 58}{space 4} 9.371008{col 71}{space 3} 11.77241
+{txt}{space 6}Program C  {c |}{col 18}{res}{space 2} -.494409{col 30}{space 2} .6224837{col 41}{space 1}   -0.79{col 50}{space 3}0.427{col 58}{space 4}-1.717323{col 71}{space 3}  .728505
+{txt}{space 6}Program D  {c |}{col 18}{res}{space 2} .7226213{col 30}{space 2} 1.526873{col 41}{space 1}    0.47{col 50}{space 3}0.636{col 58}{space 4} -2.27703{col 71}{space 3} 3.722272
+{txt}{space 16} {c |}
+{space 11}_cons {c |}{col 18}{res}{space 2} 97.90435{col 30}{space 2} 4.236239{col 41}{space 1}   23.11{col 50}{space 3}0.000{col 58}{space 4} 89.58195{col 71}{space 3} 106.2267
+{txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_16
+. regress mental_health_T2 c.mental_health_T1##i.program
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       521
+{txt}{hline 13}{c +}{hline 34}   F(7, 513)       = {res}    77.65
+{txt}       Model {c |} {res} 14743.6327         7  2106.23324   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 13914.7738       513  27.1243155   {txt}R-squared       ={res}    0.5145
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.5078
+{txt}       Total {c |} {res} 28658.4065       520  55.1123202   {txt}Root MSE        =   {res} 5.2081
+
+{txt}{hline 19}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  mental_health_T2{col 20}{c |}      Coef.{col 32}   Std. Err.{col 44}      t{col 52}   P>|t|{col 60}     [95% Con{col 73}f. Interval]
+{hline 19}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 2}mental_health_T1 {c |}{col 20}{res}{space 2} .0038108{col 32}{space 2} .0940124{col 43}{space 1}    0.04{col 52}{space 3}0.968{col 60}{space 4}-.1808858{col 73}{space 3} .1885074
+{txt}{space 18} {c |}
+{space 11}program {c |}
+{space 8}Program B  {c |}{col 20}{res}{space 2} 14.13882{col 32}{space 2} 11.07298{col 43}{space 1}    1.28{col 52}{space 3}0.202{col 60}{space 4}-7.615155{col 73}{space 3} 35.89279
+{txt}{space 8}Program C  {c |}{col 20}{res}{space 2} 2.227825{col 32}{space 2}  11.6862{col 43}{space 1}    0.19{col 52}{space 3}0.849{col 60}{space 4}-20.73087{col 73}{space 3} 25.18653
+{txt}{space 8}Program D  {c |}{col 20}{res}{space 2} 27.30439{col 32}{space 2}  22.3002{col 43}{space 1}    1.22{col 52}{space 3}0.221{col 60}{space 4}-16.50657{col 73}{space 3} 71.11535
+{txt}{space 18} {c |}
+{space 11}program#{c |}
+c.mental_health_T1 {c |}
+{space 8}Program B  {c |}{col 20}{res}{space 2}-.0375708{col 32}{space 2} .1162481{col 43}{space 1}   -0.32{col 52}{space 3}0.747{col 60}{space 4}-.2659517{col 73}{space 3} .1908101
+{txt}{space 8}Program C  {c |}{col 20}{res}{space 2}-.0286832{col 32}{space 2} .1228833{col 43}{space 1}   -0.23{col 52}{space 3}0.816{col 60}{space 4}-.2700997{col 73}{space 3} .2127332
+{txt}{space 8}Program D  {c |}{col 20}{res}{space 2}-.2851331{col 32}{space 2} .2385022{col 43}{space 1}   -1.20{col 52}{space 3}0.232{col 60}{space 4}-.7536944{col 73}{space 3} .1834281
+{txt}{space 18} {c |}
+{space 13}_cons {c |}{col 20}{res}{space 2} 94.43455{col 32}{space 2} 8.938253{col 43}{space 1}   10.57{col 52}{space 3}0.000{col 60}{space 4} 76.87446{col 73}{space 3} 111.9946
+{txt}{hline 19}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 3 Jun 2020, 15:56:31
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
