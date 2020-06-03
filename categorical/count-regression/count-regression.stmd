@@ -124,7 +124,7 @@ $$
 	mlab(mylabel) mlabsize(vlarge) ///
 	msymbol(none)  ///
     legend(order(1 "🦆 Duck")) ///
-	scheme(sj)
+	scheme(burd) plotr(fcolor(olive_teal))
 
 	graph export ducks.png, width(1000) replace
 
