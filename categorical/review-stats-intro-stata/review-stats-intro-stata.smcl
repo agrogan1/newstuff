@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 3 Jun 2020, 15:56:29
+ {txt}opened on:  {res} 4 Jun 2020, 12:07:59
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 3 Jun 2020
+{res} 4 Jun 2020
 {txt}
 {com}. //_2
 . use clients.dta, clear // use (get) the data
@@ -77,20 +77,39 @@ mental_hea~2 {c |}{res}        521    98.87066    7.423767   79.57518   118.2272
 {txt}(file myhistogram.png written in PNG format)
 
 {com}. //_8
-. graph bar mental_health_T2, over(program) scheme(burd)
+. twoway scatter mental_health_T1 age, msymbol(o) scheme(burd)
 {res}{txt}
 {com}. //_9
+. graph export myscatter.png, width(500) replace
+{txt}(file myscatter.png written in PNG format)
+
+{com}. //_10
+. pwcorr mental_health_T1 age, sig
+
+             {txt}{c |} mental~1      age
+{hline 13}{c +}{hline 18}
+mental_hea~1 {c |} {res}  1.0000 
+             {txt}{c |}
+             {c |}
+         age {c |} {res} -0.0093   1.0000 
+             {txt}{c |}{res}   0.8329
+             {txt}{c |}
+
+{com}. //_11
+. graph bar mental_health_T2, over(program) scheme(burd)
+{res}{txt}
+{com}. //_12
 . graph export mybargraph.png, width(500) replace
 {txt}(file mybargraph.png written in PNG format)
 
-{com}. //_10
+{com}. //_13
 . preserve // preserve data set
 {txt}
-{com}. //_11
+{com}. //_14
 . keep if program == 1 | program == 2 // only keep 2 programs for now
 {txt}(201 observations deleted)
 
-{com}. //_12
+{com}. //_15
 . ttest mental_health_T2, by(program)
 
 {txt}Two-sample t test with equal variances
@@ -110,11 +129,21 @@ combined {c |}{res}{col 12}    320{col 22}   101.69{col 34} .4033737{col 46} 7.2
     {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = {res}0.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}1.0000
 {txt}
-{com}. //_13
+{com}. //_16
 . restore // restore old version of data
 {txt}
-{com}. //_14
-. oneway mental_health_T2 program // oneway analysis of variance
+{com}. //_17
+. oneway mental_health_T2 program, tabulate // oneway analysis of variance
+
+            {txt}{c |}     Summary of mental_health_T2
+    program {c |}        Mean   Std. Dev.       Freq.
+{hline 12}{c +}{hline 36}
+  Program A {c |}  {res} 94.796305   5.2361502         111
+  {txt}Program B {c |}  {res} 105.35121   5.1501362         209
+  {txt}Program C {c |}  {res} 94.299149   5.2002254         188
+  {txt}Program D {c |}  {res} 95.582917   5.6199143          13
+{txt}{hline 12}{c +}{hline 36}
+      Total {c |}  {res} 98.870656   7.4237673         521
 
                         {txt}Analysis of Variance
     Source              SS         df      MS            F     Prob > F
@@ -126,7 +155,7 @@ Between groups     {res} 14689.6155      3   4896.53849    181.23     0.0000
 
 {txt}Bartlett's test for equal variances:  chi2({res}3{txt}) = {res}  0.1991{txt}  Prob>chi2 = {res}0.978
 {txt}
-{com}. //_15
+{com}. //_18
 . regress mental_health_T2 mental_health_T1 i.program
 
 {txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       521
@@ -149,7 +178,7 @@ mental_health_T1 {c |}{col 18}{res}{space 2}-.0327405{col 30}{space 2}  .044321{
 {space 11}_cons {c |}{col 18}{res}{space 2} 97.90435{col 30}{space 2} 4.236239{col 41}{space 1}   23.11{col 50}{space 3}0.000{col 58}{space 4} 89.58195{col 71}{space 3} 106.2267
 {txt}{hline 17}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
-{com}. //_16
+{com}. //_19
 . regress mental_health_T2 c.mental_health_T1##i.program
 
 {txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       521
@@ -183,7 +212,7 @@ c.mental_health_T1 {c |}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 3 Jun 2020, 15:56:31
+ {txt}closed on:  {res} 4 Jun 2020, 12:08:02
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

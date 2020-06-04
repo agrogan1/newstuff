@@ -8,7 +8,7 @@ geometry: margin=1 in
 
 # Social Service Agency Data
 
-<style>h1 {color: black;} h2 {color: black} blockquote {border-left: 5px solid #FF0099; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>h1 {color: black;} h2 {color: #FF0099} blockquote {border-left: 5px solid #FF0099; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 
 > Simulated data on social service clients
 
@@ -51,13 +51,25 @@ geometry: margin=1 in
 	
 # Measures of Variation
 
-> Some programs, e.g. *R* make you search for standard deviation. With Stata, $sd$ is easily accessible with `summarize`.
+> Some programs, e.g. *R* make you search for standard deviation. With Stata, *sd* is easily accessible with `summarize`.
 
     histogram mental_health_T1, normal scheme(burd)
 	
 	graph export myhistogram.png, width(500) replace
 
 ![histogram of mental health](myhistogram.png)
+
+# Comparing Continuous and Continuous Variables
+
+    twoway scatter mental_health_T1 age, msymbol(o) scheme(burd)
+	
+	graph export myscatter.png, width(500) replace
+
+![scatterplot of age and mental health](myscatter.png)
+
+## Correlation
+
+    pwcorr mental_health_T1 age, sig
 
 # Comparing Continuous Variables Across Categorical Variables
 
@@ -67,7 +79,7 @@ geometry: margin=1 in
 
 ![bar graph of mental health at time 2](mybargraph.png)
 
-# t-test
+## t-test
 
     preserve // preserve data set
 
@@ -75,11 +87,13 @@ geometry: margin=1 in
 	
 	ttest mental_health_T2, by(program)
 	
-# ANOVA
+## ANOVA
 
     restore // restore old version of data
 	
-	oneway mental_health_T2 program // oneway analysis of variance
+	oneway mental_health_T2 program, tabulate // oneway analysis of variance
+	
+> Importantly, `,tabulate` gives us a table of results.
 	
 # Regression 
 

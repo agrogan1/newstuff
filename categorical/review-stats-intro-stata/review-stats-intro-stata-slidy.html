@@ -96,7 +96,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>3 Jun 2020</p>
+<p>4 Jun 2020</p>
 </div>
 <div id="social-service-agency-data" class="slide section level1">
 <h1>Social Service Agency Data</h1>
@@ -187,7 +187,7 @@ Andy Grogan-Kaylor
 <div id="measures-of-variation" class="slide section level1">
 <h1>Measures of Variation</h1>
 <blockquote>
-<p>Some programs, e.g. <em>R</em> make you search for standard deviation. With Stata, <span class="math inline">\(sd\)</span> is easily accessible with <code>summarize</code>.</p>
+<p>Some programs, e.g. <em>R</em> make you search for standard deviation. With Stata, <em>sd</em> is easily accessible with <code>summarize</code>.</p>
 </blockquote>
 <div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">histogram</span> mental_health_T1, <span class="fu">normal</span> <span class="dv">scheme</span>(burd)</span>
 <span id="cb5-2"><a href="#cb5-2"></a>(<span class="bn">bin</span>=22, <span class="bn">start</span>=80.937087, <span class="kw">width</span>=1.2562034)</span></code></pre></div>
@@ -198,54 +198,84 @@ Andy Grogan-Kaylor
 <p class="caption">histogram of mental health</p>
 </div>
 </div>
+<div id="comparing-continuous-and-continuous-variables" class="slide section level1">
+<h1>Comparing Continuous and Continuous Variables</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> mental_health_T1 age, <span class="bn">msymbol</span>(o) <span class="dv">scheme</span>(burd)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myscatter.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>(file myscatter.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="myscatter.png" alt="" />
+<p class="caption">scatterplot of age and mental health</p>
+</div>
+<h2 id="correlation">Correlation</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">pwcorr</span> mental_health_T1 age, sig</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a>             │ mental~1      age</span>
+<span id="cb9-4"><a href="#cb9-4"></a>─────────────┼──────────────────</span>
+<span id="cb9-5"><a href="#cb9-5"></a>mental_hea~1 │   1.0000 </span>
+<span id="cb9-6"><a href="#cb9-6"></a>             │</span>
+<span id="cb9-7"><a href="#cb9-7"></a>             │</span>
+<span id="cb9-8"><a href="#cb9-8"></a>         age │  -0.0093   1.0000 </span>
+<span id="cb9-9"><a href="#cb9-9"></a>             │   0.8329</span>
+<span id="cb9-10"><a href="#cb9-10"></a>             │</span></code></pre></div>
+</div>
 <div id="comparing-continuous-variables-across-categorical-variables" class="slide section level1">
 <h1>Comparing Continuous Variables Across Categorical Variables</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> mental_health_T2, <span class="bn">over</span>(<span class="kw">program</span>) <span class="dv">scheme</span>(burd)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybargraph.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>(file mybargraph.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> mental_health_T2, <span class="bn">over</span>(<span class="kw">program</span>) <span class="dv">scheme</span>(burd)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybargraph.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>(file mybargraph.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="mybargraph.png" alt="" />
 <p class="caption">bar graph of mental health at time 2</p>
 </div>
-</div>
-<div id="t-test" class="slide section level1">
-<h1>t-test</h1>
-<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">preserve</span> <span class="co">// preserve data set</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">keep</span> <span class="kw">if</span> <span class="kw">program</span> == 1 | <span class="kw">program</span> == 2 <span class="co">// only keep 2 programs for now</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>(201 observations deleted)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">ttest</span> mental_health_T2, <span class="kw">by</span>(<span class="kw">program</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a>Two-<span class="kw">sample</span> t <span class="kw">test</span> with equal variances</span>
-<span id="cb11-4"><a href="#cb11-4"></a>─────────┬────────────────────────────────────────────────────────────────────</span>
-<span id="cb11-5"><a href="#cb11-5"></a>   Group │     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]</span>
-<span id="cb11-6"><a href="#cb11-6"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
-<span id="cb11-7"><a href="#cb11-7"></a> Program │     111     94.7963    .4969934     5.23615    93.81138    95.78123</span>
-<span id="cb11-8"><a href="#cb11-8"></a> Program │     209    105.3512    .3562424    5.150136    104.6489    106.0535</span>
-<span id="cb11-9"><a href="#cb11-9"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
-<span id="cb11-10"><a href="#cb11-10"></a>combined │     320      101.69    .4033737    7.215767    100.8964    102.4836</span>
-<span id="cb11-11"><a href="#cb11-11"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
-<span id="cb11-12"><a href="#cb11-12"></a>    <span class="fu">diff</span> │           -10.55491    .6083793               -11.75187   -9.357953</span>
-<span id="cb11-13"><a href="#cb11-13"></a>─────────┴────────────────────────────────────────────────────────────────────</span>
-<span id="cb11-14"><a href="#cb11-14"></a>    <span class="fu">diff</span> = <span class="kw">mean</span>(Program) - <span class="kw">mean</span>(Program)                          t = -17.3492</span>
-<span id="cb11-15"><a href="#cb11-15"></a>Ho: <span class="fu">diff</span> = 0                                     degrees <span class="kw">of</span> freedom =      318</span>
-<span id="cb11-16"><a href="#cb11-16"></a></span>
-<span id="cb11-17"><a href="#cb11-17"></a>    Ha: <span class="fu">diff</span> &lt; 0                 Ha: <span class="fu">diff</span> != 0                 Ha: <span class="fu">diff</span> &gt; 0</span>
-<span id="cb11-18"><a href="#cb11-18"></a> Pr(T &lt; t) = 0.0000         Pr(|T| &gt; |t|) = 0.0000          Pr(T &gt; t) = 1.0000</span></code></pre></div>
-</div>
-<div id="anova" class="slide section level1">
-<h1>ANOVA</h1>
-<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">restore</span> <span class="co">// restore old version of data</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">oneway</span> mental_health_T2 <span class="kw">program</span> <span class="co">// oneway analysis of variance</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>                        Analysis <span class="kw">of</span> Variance</span>
-<span id="cb13-4"><a href="#cb13-4"></a>    Source              SS         df      MS            <span class="fu">F</span>     Prob &gt; <span class="fu">F</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>────────────────────────────────────────────────────────────────────────</span>
-<span id="cb13-6"><a href="#cb13-6"></a>Between groups      14689.6155      3   4896.53849    181.23     0.0000</span>
-<span id="cb13-7"><a href="#cb13-7"></a> Within groups       13968.791    517   27.0189382</span>
-<span id="cb13-8"><a href="#cb13-8"></a>────────────────────────────────────────────────────────────────────────</span>
-<span id="cb13-9"><a href="#cb13-9"></a>    Total           28658.4065    520   55.1123202</span>
-<span id="cb13-10"><a href="#cb13-10"></a></span>
-<span id="cb13-11"><a href="#cb13-11"></a>Bartlett&#39;s <span class="kw">test</span> <span class="kw">for</span> equal variances:  <span class="fu">chi2</span>(3) =   0.1991  Prob&gt;<span class="fu">chi2</span> = 0.978</span></code></pre></div>
+<h2 id="t-test">t-test</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">preserve</span> <span class="co">// preserve data set</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">keep</span> <span class="kw">if</span> <span class="kw">program</span> == 1 | <span class="kw">program</span> == 2 <span class="co">// only keep 2 programs for now</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>(201 observations deleted)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">ttest</span> mental_health_T2, <span class="kw">by</span>(<span class="kw">program</span>)</span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a>Two-<span class="kw">sample</span> t <span class="kw">test</span> with equal variances</span>
+<span id="cb14-4"><a href="#cb14-4"></a>─────────┬────────────────────────────────────────────────────────────────────</span>
+<span id="cb14-5"><a href="#cb14-5"></a>   Group │     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]</span>
+<span id="cb14-6"><a href="#cb14-6"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
+<span id="cb14-7"><a href="#cb14-7"></a> Program │     111     94.7963    .4969934     5.23615    93.81138    95.78123</span>
+<span id="cb14-8"><a href="#cb14-8"></a> Program │     209    105.3512    .3562424    5.150136    104.6489    106.0535</span>
+<span id="cb14-9"><a href="#cb14-9"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
+<span id="cb14-10"><a href="#cb14-10"></a>combined │     320      101.69    .4033737    7.215767    100.8964    102.4836</span>
+<span id="cb14-11"><a href="#cb14-11"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
+<span id="cb14-12"><a href="#cb14-12"></a>    <span class="fu">diff</span> │           -10.55491    .6083793               -11.75187   -9.357953</span>
+<span id="cb14-13"><a href="#cb14-13"></a>─────────┴────────────────────────────────────────────────────────────────────</span>
+<span id="cb14-14"><a href="#cb14-14"></a>    <span class="fu">diff</span> = <span class="kw">mean</span>(Program) - <span class="kw">mean</span>(Program)                          t = -17.3492</span>
+<span id="cb14-15"><a href="#cb14-15"></a>Ho: <span class="fu">diff</span> = 0                                     degrees <span class="kw">of</span> freedom =      318</span>
+<span id="cb14-16"><a href="#cb14-16"></a></span>
+<span id="cb14-17"><a href="#cb14-17"></a>    Ha: <span class="fu">diff</span> &lt; 0                 Ha: <span class="fu">diff</span> != 0                 Ha: <span class="fu">diff</span> &gt; 0</span>
+<span id="cb14-18"><a href="#cb14-18"></a> Pr(T &lt; t) = 0.0000         Pr(|T| &gt; |t|) = 0.0000          Pr(T &gt; t) = 1.0000</span></code></pre></div>
+<h2 id="anova">ANOVA</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">restore</span> <span class="co">// restore old version of data</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>. <span class="kw">oneway</span> mental_health_T2 <span class="kw">program</span>, <span class="kw">tabulate</span> <span class="co">// oneway analysis of variance</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a>            │     Summary <span class="kw">of</span> mental_health_T2</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    <span class="kw">program</span> │        Mean   Std. Dev.       Freq.</span>
+<span id="cb16-5"><a href="#cb16-5"></a>────────────┼────────────────────────────────────</span>
+<span id="cb16-6"><a href="#cb16-6"></a>  Program A │   94.796305   5.2361502         111</span>
+<span id="cb16-7"><a href="#cb16-7"></a>  Program B │   105.35121   5.1501362         209</span>
+<span id="cb16-8"><a href="#cb16-8"></a>  Program C │   94.299149   5.2002254         188</span>
+<span id="cb16-9"><a href="#cb16-9"></a>  Program D │   95.582917   5.6199143          13</span>
+<span id="cb16-10"><a href="#cb16-10"></a>────────────┼────────────────────────────────────</span>
+<span id="cb16-11"><a href="#cb16-11"></a>      Total │   98.870656   7.4237673         521</span>
+<span id="cb16-12"><a href="#cb16-12"></a></span>
+<span id="cb16-13"><a href="#cb16-13"></a>                        Analysis <span class="kw">of</span> Variance</span>
+<span id="cb16-14"><a href="#cb16-14"></a>    Source              SS         df      MS            <span class="fu">F</span>     Prob &gt; <span class="fu">F</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a>────────────────────────────────────────────────────────────────────────</span>
+<span id="cb16-16"><a href="#cb16-16"></a>Between groups      14689.6155      3   4896.53849    181.23     0.0000</span>
+<span id="cb16-17"><a href="#cb16-17"></a> Within groups       13968.791    517   27.0189382</span>
+<span id="cb16-18"><a href="#cb16-18"></a>────────────────────────────────────────────────────────────────────────</span>
+<span id="cb16-19"><a href="#cb16-19"></a>    Total           28658.4065    520   55.1123202</span>
+<span id="cb16-20"><a href="#cb16-20"></a></span>
+<span id="cb16-21"><a href="#cb16-21"></a>Bartlett&#39;s <span class="kw">test</span> <span class="kw">for</span> equal variances:  <span class="fu">chi2</span>(3) =   0.1991  Prob&gt;<span class="fu">chi2</span> = 0.978</span></code></pre></div>
+<blockquote>
+<p>Importantly, <code>,tabulate</code> gives us a table of results.</p>
+</blockquote>
 </div>
 <div id="regression" class="slide section level1">
 <h1>Regression</h1>
@@ -254,60 +284,60 @@ Andy Grogan-Kaylor
 <li>What do the results mean?</li>
 <li>What is substantively or statistically significant?</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">regress</span> mental_health_T2 mental_health_T1 i.<span class="kw">program</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a></span>
-<span id="cb14-3"><a href="#cb14-3"></a>      Source │       SS           df       MS      Number <span class="kw">of</span> <span class="kw">obs</span>   =       521</span>
-<span id="cb14-4"><a href="#cb14-4"></a>─────────────┼──────────────────────────────────   <span class="fu">F</span>(4, 516)       =    135.94</span>
-<span id="cb14-5"><a href="#cb14-5"></a>       Model │  14704.3725         4  3676.09313   Prob &gt; <span class="fu">F</span>        =    0.0000</span>
-<span id="cb14-6"><a href="#cb14-6"></a>    Residual │   13954.034       516  27.0427015   R-squared       =    0.5131</span>
-<span id="cb14-7"><a href="#cb14-7"></a>─────────────┼──────────────────────────────────   Adj R-squared   =    0.5093</span>
-<span id="cb14-8"><a href="#cb14-8"></a>       Total │  28658.4065       520  55.1123202   Root MSE        =    5.2003</span>
-<span id="cb14-9"><a href="#cb14-9"></a></span>
-<span id="cb14-10"><a href="#cb14-10"></a>─────────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb14-11"><a href="#cb14-11"></a>mental_health_T2 │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
-<span id="cb14-12"><a href="#cb14-12"></a>─────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb14-13"><a href="#cb14-13"></a>mental_health_T1 │  -.0327405    .044321    -0.74   0.460    -.1198123    .0543314</span>
-<span id="cb14-14"><a href="#cb14-14"></a>                 │</span>
-<span id="cb14-15"><a href="#cb14-15"></a>         <span class="kw">program</span> │</span>
-<span id="cb14-16"><a href="#cb14-16"></a>      Program B  │   10.57171   .6111758    17.30   0.000     9.371008    11.77241</span>
-<span id="cb14-17"><a href="#cb14-17"></a>      Program C  │   -.494409   .6224837    -0.79   0.427    -1.717323     .728505</span>
-<span id="cb14-18"><a href="#cb14-18"></a>      Program D  │   .7226213   1.526873     0.47   0.636     -2.27703    3.722272</span>
-<span id="cb14-19"><a href="#cb14-19"></a>                 │</span>
-<span id="cb14-20"><a href="#cb14-20"></a>           <span class="dt">_cons</span> │   97.90435   4.236239    23.11   0.000     89.58195    106.2267</span>
-<span id="cb14-21"><a href="#cb14-21"></a>─────────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1"></a>. <span class="kw">regress</span> mental_health_T2 mental_health_T1 i.<span class="kw">program</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>      Source │       SS           df       MS      Number <span class="kw">of</span> <span class="kw">obs</span>   =       521</span>
+<span id="cb17-4"><a href="#cb17-4"></a>─────────────┼──────────────────────────────────   <span class="fu">F</span>(4, 516)       =    135.94</span>
+<span id="cb17-5"><a href="#cb17-5"></a>       Model │  14704.3725         4  3676.09313   Prob &gt; <span class="fu">F</span>        =    0.0000</span>
+<span id="cb17-6"><a href="#cb17-6"></a>    Residual │   13954.034       516  27.0427015   R-squared       =    0.5131</span>
+<span id="cb17-7"><a href="#cb17-7"></a>─────────────┼──────────────────────────────────   Adj R-squared   =    0.5093</span>
+<span id="cb17-8"><a href="#cb17-8"></a>       Total │  28658.4065       520  55.1123202   Root MSE        =    5.2003</span>
+<span id="cb17-9"><a href="#cb17-9"></a></span>
+<span id="cb17-10"><a href="#cb17-10"></a>─────────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb17-11"><a href="#cb17-11"></a>mental_health_T2 │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
+<span id="cb17-12"><a href="#cb17-12"></a>─────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb17-13"><a href="#cb17-13"></a>mental_health_T1 │  -.0327405    .044321    -0.74   0.460    -.1198123    .0543314</span>
+<span id="cb17-14"><a href="#cb17-14"></a>                 │</span>
+<span id="cb17-15"><a href="#cb17-15"></a>         <span class="kw">program</span> │</span>
+<span id="cb17-16"><a href="#cb17-16"></a>      Program B  │   10.57171   .6111758    17.30   0.000     9.371008    11.77241</span>
+<span id="cb17-17"><a href="#cb17-17"></a>      Program C  │   -.494409   .6224837    -0.79   0.427    -1.717323     .728505</span>
+<span id="cb17-18"><a href="#cb17-18"></a>      Program D  │   .7226213   1.526873     0.47   0.636     -2.27703    3.722272</span>
+<span id="cb17-19"><a href="#cb17-19"></a>                 │</span>
+<span id="cb17-20"><a href="#cb17-20"></a>           <span class="dt">_cons</span> │   97.90435   4.236239    23.11   0.000     89.58195    106.2267</span>
+<span id="cb17-21"><a href="#cb17-21"></a>─────────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
 </div>
 <div id="what-if-we-want-to-allow-for-different-slopes" class="slide section level1">
 <h1>What if We Want to Allow For Different Slopes?</h1>
 <blockquote>
 <p>Instructor will draw this out.</p>
 </blockquote>
-<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">regress</span> mental_health_T2 c.mental_health_T1##i.<span class="kw">program</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a>      Source │       SS           df       MS      Number <span class="kw">of</span> <span class="kw">obs</span>   =       521</span>
-<span id="cb15-4"><a href="#cb15-4"></a>─────────────┼──────────────────────────────────   <span class="fu">F</span>(7, 513)       =     77.65</span>
-<span id="cb15-5"><a href="#cb15-5"></a>       Model │  14743.6327         7  2106.23324   Prob &gt; <span class="fu">F</span>        =    0.0000</span>
-<span id="cb15-6"><a href="#cb15-6"></a>    Residual │  13914.7738       513  27.1243155   R-squared       =    0.5145</span>
-<span id="cb15-7"><a href="#cb15-7"></a>─────────────┼──────────────────────────────────   Adj R-squared   =    0.5078</span>
-<span id="cb15-8"><a href="#cb15-8"></a>       Total │  28658.4065       520  55.1123202   Root MSE        =    5.2081</span>
-<span id="cb15-9"><a href="#cb15-9"></a></span>
-<span id="cb15-10"><a href="#cb15-10"></a>───────────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb15-11"><a href="#cb15-11"></a>  mental_health_T2 │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
-<span id="cb15-12"><a href="#cb15-12"></a>───────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb15-13"><a href="#cb15-13"></a>  mental_health_T1 │   .0038108   .0940124     0.04   0.968    -.1808858    .1885074</span>
-<span id="cb15-14"><a href="#cb15-14"></a>                   │</span>
-<span id="cb15-15"><a href="#cb15-15"></a>           <span class="kw">program</span> │</span>
-<span id="cb15-16"><a href="#cb15-16"></a>        Program B  │   14.13882   11.07298     1.28   0.202    -7.615155    35.89279</span>
-<span id="cb15-17"><a href="#cb15-17"></a>        Program C  │   2.227825    11.6862     0.19   0.849    -20.73087    25.18653</span>
-<span id="cb15-18"><a href="#cb15-18"></a>        Program D  │   27.30439    22.3002     1.22   0.221    -16.50657    71.11535</span>
-<span id="cb15-19"><a href="#cb15-19"></a>                   │</span>
-<span id="cb15-20"><a href="#cb15-20"></a>           program#│</span>
-<span id="cb15-21"><a href="#cb15-21"></a>c.mental_health_T1 │</span>
-<span id="cb15-22"><a href="#cb15-22"></a>        Program B  │  -.0375708   .1162481    -0.32   0.747    -.2659517    .1908101</span>
-<span id="cb15-23"><a href="#cb15-23"></a>        Program C  │  -.0286832   .1228833    -0.23   0.816    -.2700997    .2127332</span>
-<span id="cb15-24"><a href="#cb15-24"></a>        Program D  │  -.2851331   .2385022    -1.20   0.232    -.7536944    .1834281</span>
-<span id="cb15-25"><a href="#cb15-25"></a>                   │</span>
-<span id="cb15-26"><a href="#cb15-26"></a>             <span class="dt">_cons</span> │   94.43455   8.938253    10.57   0.000     76.87446    111.9946</span>
-<span id="cb15-27"><a href="#cb15-27"></a>───────────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>. <span class="kw">regress</span> mental_health_T2 c.mental_health_T1##i.<span class="kw">program</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>      Source │       SS           df       MS      Number <span class="kw">of</span> <span class="kw">obs</span>   =       521</span>
+<span id="cb18-4"><a href="#cb18-4"></a>─────────────┼──────────────────────────────────   <span class="fu">F</span>(7, 513)       =     77.65</span>
+<span id="cb18-5"><a href="#cb18-5"></a>       Model │  14743.6327         7  2106.23324   Prob &gt; <span class="fu">F</span>        =    0.0000</span>
+<span id="cb18-6"><a href="#cb18-6"></a>    Residual │  13914.7738       513  27.1243155   R-squared       =    0.5145</span>
+<span id="cb18-7"><a href="#cb18-7"></a>─────────────┼──────────────────────────────────   Adj R-squared   =    0.5078</span>
+<span id="cb18-8"><a href="#cb18-8"></a>       Total │  28658.4065       520  55.1123202   Root MSE        =    5.2081</span>
+<span id="cb18-9"><a href="#cb18-9"></a></span>
+<span id="cb18-10"><a href="#cb18-10"></a>───────────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb18-11"><a href="#cb18-11"></a>  mental_health_T2 │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
+<span id="cb18-12"><a href="#cb18-12"></a>───────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb18-13"><a href="#cb18-13"></a>  mental_health_T1 │   .0038108   .0940124     0.04   0.968    -.1808858    .1885074</span>
+<span id="cb18-14"><a href="#cb18-14"></a>                   │</span>
+<span id="cb18-15"><a href="#cb18-15"></a>           <span class="kw">program</span> │</span>
+<span id="cb18-16"><a href="#cb18-16"></a>        Program B  │   14.13882   11.07298     1.28   0.202    -7.615155    35.89279</span>
+<span id="cb18-17"><a href="#cb18-17"></a>        Program C  │   2.227825    11.6862     0.19   0.849    -20.73087    25.18653</span>
+<span id="cb18-18"><a href="#cb18-18"></a>        Program D  │   27.30439    22.3002     1.22   0.221    -16.50657    71.11535</span>
+<span id="cb18-19"><a href="#cb18-19"></a>                   │</span>
+<span id="cb18-20"><a href="#cb18-20"></a>           program#│</span>
+<span id="cb18-21"><a href="#cb18-21"></a>c.mental_health_T1 │</span>
+<span id="cb18-22"><a href="#cb18-22"></a>        Program B  │  -.0375708   .1162481    -0.32   0.747    -.2659517    .1908101</span>
+<span id="cb18-23"><a href="#cb18-23"></a>        Program C  │  -.0286832   .1228833    -0.23   0.816    -.2700997    .2127332</span>
+<span id="cb18-24"><a href="#cb18-24"></a>        Program D  │  -.2851331   .2385022    -1.20   0.232    -.7536944    .1834281</span>
+<span id="cb18-25"><a href="#cb18-25"></a>                   │</span>
+<span id="cb18-26"><a href="#cb18-26"></a>             <span class="dt">_cons</span> │   94.43455   8.938253    10.57   0.000     76.87446    111.9946</span>
+<span id="cb18-27"><a href="#cb18-27"></a>───────────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
 </div>
 <div id="regression-assumptions-and-the-issue-of-normality" class="slide section level1">
 <h1>Regression Assumptions and the Issue of “Normality”</h1>
