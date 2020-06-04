@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 4 Jun 2020, 12:32:23
+ {txt}opened on:  {res} 4 Jun 2020, 14:26:30
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -212,7 +212,7 @@ c.mental_health_T1 {c |}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 4 Jun 2020, 12:32:27
+ {txt}closed on:  {res} 4 Jun 2020, 14:26:34
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
