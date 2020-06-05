@@ -27,3 +27,13 @@ fig(datafy(values,
 
 ```
 
+```{r}
+
+fig(datafy(values, 
+           "Categorical Data Analysis",
+           ignore_space=F), 
+    size=50)
+
+```
+
+
