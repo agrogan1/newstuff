@@ -1,0 +1,57 @@
+---
+title: "Image Test"
+author: "Andy Grogan-Kaylor"
+date: "`r Sys.Date()`"
+output: 
+  html_document: 
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+    number_sections: yes
+    highlight: haddock
+    theme: default
+  distill::distill_article:
+    highlight: haddock
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+Placing images in RMarkdown documents can be *difficult*. Here are two approaches.
+
+# Method 1
+
+> Easiest if image is in same directory as your RMarkdown file.
+
+Here I use the code:
+
+`![The Count and Friends](Sesame-Street-optimize.gif)`
+
+![The Count and Friends](Sesame-Street-optimize.gif)
+
+## Method 1A (add width)
+
+`![The Count and Friends](Sesame-Street-optimize.gif){ width=20% }`
+
+> Note the space before and after the `{` and `}`.
+
+![The Count and Friends](Sesame-Street-optimize.gif){ width=20% }
+
+# Method 2
+
+This method uses code in an R chunk. You could set `echo = FALSE` to hide this chunk in the final RMarkdown document.
+
+I use the `outwidth =` option to set the size of the image: `{r out.width = "20%"}`
+
+```{r out.width = "20%"}
+
+knitr::include_graphics("Sesame-Street-optimize.gif")
+
+```
+
+
