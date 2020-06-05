@@ -48,6 +48,7 @@ p1 <- ggplot(data = NULL,
   
 ```
 
+
 ```{r}
 
 library(knitr)
@@ -62,6 +63,9 @@ rglwidget()
  
 ```
 
+<aside>
+The currently available drafts of slides for the course can be found [here](https://agrogan1.github.io/newstuff/categorical/README.html)
+</aside>
 
 > <span style="background-color:cyan">Instruction will be conducted in Stata, so basic knowledge of descriptive statistics and OLS in Stata is a prerequisite.</span>
 
