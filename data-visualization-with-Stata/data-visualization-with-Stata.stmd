@@ -12,7 +12,7 @@ geometry: margin=1 in
 
 * Stata is a powerful and intuitive data analysis program. 
 * Learning how to graph in Stata is an important part of learning how to use Stata. Yet, the default graphs in Stata can sometimes be less than optimal. 
-* This document is an introduction to (a) basic graphing ideas in Stata; and (b) some simple ways to make your Stata graphs look more professional.
+* This document is an introduction to (a) basic graphing ideas in Stata; and (b) a quick note on the use of schemes to make your Stata graphs look more professional.
 
 # What are Variables?
 
@@ -26,7 +26,7 @@ geometry: margin=1 in
 
 # A Data Visualization Strategy
 
-Once we have discerned the type of variable that have, there are two followup questions we may ask before deciding upon a chart strategy:
+Once we have discerned the type of variable that have, there are two followup questions we may ask before deciding upon a graphing strategy:
 
 * Is our graph about **one thing at a time**?
   + How much of *x* is there? 
@@ -52,11 +52,7 @@ The documentation goes on to further note that:
 
 > "The data are measures from 107 trees. The trees were selected as being of average size from healthy and well stocked stands in the Alps."
 
-```{s}
-
-        use gutten.dta, clear
-
-```
+    use gutten.dta, clear
 		
 # Variables
 
@@ -66,24 +62,83 @@ The documentation goes on to further note that:
 
 `tree` An identifier for the tree within location.
 
-`age.base` The tree age taken at ground level.
+`age_base` The tree age taken at ground level.
 
-> It might be best to use a centered age variable, centered at the grand mean of tree age: 
-
-```{s}
+> For some purposes, it might be best to use a centered age variable, centered at the grand mean of tree age: 
 
     egen ageMEAN = mean(age_base)
 	
 	generate ageCENTERED = age_base - ageMEAN
 	
-```
-
 `height` Tree height, m.
 
-`dbh.cm` Tree diameter, cm.
+`dbh_cm` Tree diameter, cm.
 
 `volume` Tree volume.
 
-`age.bh` Tree age taken at 1.3 m.
+`age_bh` Tree age taken at 1.3 m.
 
 `tree.ID` A factor uniquely identifying the tree.
+
+# One Continuous Thing At A Time
+
+    histogram height, title("Tree Height")
+	
+    graph export myhistogram.png, width(500) replace
+
+![histogram of tree height](myhistogram.png)
+
+
+# One Categorical Thing At A Time
+
+    graph bar, over(location) title("Tree Location")
+	
+	graph export mybargraph.png, width(500) replace
+
+![bar graph of tree location](mybargraph.png)
+
+# Continuous by Continous
+
+    twoway scatter height age_base, title("Tree Height by Age")
+	
+	graph export myscatter.png, width(500) replace
+
+![scatterplot of tree height by age](myscatter.png)
+
+# Categorical by Categorical
+
+    graph bar, over(site) over(location) title("Tree Site Growth Quality by Location")
+	
+	graph export mybargraph2.png, width(500) replace
+
+![bar graph of tree site by location](mybargraph2.png)
+
+# Continuous by Categorical
+
+    graph bar height, over(location) title("Tree Height by Location")
+	
+	graph export mybargraph3.png, width(500) replace
+
+![bar graph of mean tree height by location](mybargraph3.png)
+
+# Schemes
+
+Stata *graph schemes* can substantially improve the look of a graph. Built in graph schemes include `sj` and `economist`. `lean2` is a user written scheme that is helpful when preparing graphics for publication. I have written a [Stata Michigan graph scheme](https://agrogan1.github.io/Stata/) that can be installed.
+
+    twoway scatter height age_base, title("Tree Height by Age") scheme(michigan)
+	
+	graph export myscatterM.png, width(500) replace
+	
+	graph bar height, over(location) asyvars title("Tree Height by Location") scheme(michigan)
+	
+	graph export mybarM.png, width(500) replace
+
+![scatterplot of tree height by age](myscatterM.png)
+
+![bar graph of mean tree height by location](mybarM.png)
+
+
+
+
+
+
