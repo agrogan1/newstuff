@@ -1,0 +1,85 @@
+---
+title: "Remove NA's from ggplot"
+author: "Andy Grogan-Kaylor"
+date: "6/8/2020"
+output: 
+  html_document: 
+    toc: yes
+    highlight: haddock
+    css: UM.css
+    number_sections: yes
+    fig_height: 3
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+
+```
+
+# Demonstration Data
+
+```{r}
+
+neighborhood <- c("Neighborhood A", 
+                  "Neighborhood B", 
+                  "Neighborhood C",
+                  "Neighborhood A",
+                  "Neighborhood B",
+                  "Neighborhood B",
+                  NA)
+
+mydata <- data.frame(neighborhood)
+
+```
+
+```{r}
+
+mydata # list out the dataframe
+
+```
+
+# Call Libraries
+
+```{r}
+
+library(ggplot2) # graphs
+
+library(dplyr) # data wrangling
+
+```
+
+# Make a Graph
+
+```{r}
+
+ggplot(mydata,
+       aes(x = neighborhood,
+           fill = neighborhood)) +
+  geom_bar()
+
+```
+# Filter Out Missing To Remove From Graph
+
+Here we use [`dplyr`](https://agrogan1.github.io/R/multi-page-dplyr/multi-page-dplyr.html#drop-missing-values-filter) to remove missing values from the graph.
+
+The `is.na()` operator detects whether a value is missing. `!` means *not*, so our `dplyr` call ends up being `filter(!is.na(neighborhood))`.
+
+```{r}
+
+mydata %>%
+  filter(!is.na(neighborhood)) %>%
+  ggplot(aes(x = neighborhood,
+             fill = neighborhood)) +
+  geom_bar()
+
+```
+
+
+
+
+
+
+
