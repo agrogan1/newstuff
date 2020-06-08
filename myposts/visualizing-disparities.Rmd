@@ -3,13 +3,6 @@ title: 'Telling Stories With Data: Visualizing Disparities in a Continuous Risk 
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: 
-    fig_height: 3
-    highlight: haddock
-    latex_engine: xelatex
-    number_sections: yes
-    toc: yes
-    extra_dependencies: ["float"]
   html_document:
     code_folding: hide
     css: UM.css
@@ -20,6 +13,13 @@ output:
     toc_float:
       collapsed: no
       smooth_scroll: yes
+  pdf_document: 
+    fig_height: 3
+    highlight: haddock
+    latex_engine: xelatex
+    number_sections: yes
+    toc: yes
+    extra_dependencies: ["float"]
 geometry: margin=1.0in
 mainfont: Futura
 fontsize: 12pt
@@ -117,8 +117,9 @@ myplot0 <- ggplot(data = mydata,
   stat_summary(fun.y = mean, 
                geom = "bar") +
   labs(title = "Risk by Group",
-       subtitle = "Minimalist Philosophy")  # labels
-  
+       subtitle = "Minimalist Philosophy") + # labels
+  theme_minimal()
+
 myplot1 <- ggplot(data = mydata,
        aes(x = group, # x is the group
            fill = group, # fill is the group
@@ -130,6 +131,7 @@ myplot1 <- ggplot(data = mydata,
        subtitle = "Color Added For Visual Interest") + # labels
   scale_fill_viridis_d() +
   scale_color_viridis_d() +
+  theme_minimal() +
   theme(legend.position = "none")
 
 # plot_grid(myplot0, myplot1)
@@ -144,11 +146,11 @@ So, this philosophy would say that, as we outlined above, *group* goes on the x 
 
 An alternative philosophy, represented on the right hand side, might say that for *visual interest* we can add extra detail, like *color* even if it doesn't necessarily add extra information to the graph.
 
-> In this document, I'm going err on the side of making my graphs more visually interesting, although I certainly understand the *minimalist* philosophy.
+> In this document, I'm going err on the side of making my graphs more visually interesting, and hopefully more informative, although I certainly understand the *minimalist* philosophy.
 
-# A More Visually Interesting Grammatical Statement
+# A Grammatical Statement
 
-In the graphs below, *group* will again go on the x axis.  *Risk* will go on the y axis.  In drawing this information in various ways--employing various geometries--I am going use colors (the *Viridis* color palette) for fill and color. 
+In the graphs below, *group* will go on the x axis.  *Risk* will go on the y axis.  In drawing this information in various ways--employing various geometries--I am going use colors (the *Viridis* color palette) for fill and color. 
 
 These decisions are echoed in the (admittedly complicated) `ggplot` code below which sets up the graphs to follow.  Again, however, it's not necessary to follow the code to follow the discussion.
 
