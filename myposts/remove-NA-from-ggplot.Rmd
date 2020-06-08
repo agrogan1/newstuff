@@ -28,8 +28,9 @@ neighborhood <- c("Neighborhood A",
                   "Neighborhood C",
                   "Neighborhood A",
                   "Neighborhood B",
+                  NA, # missing data
                   "Neighborhood B",
-                  NA)
+                  NA) # missing data
 
 mydata <- data.frame(neighborhood)
 
@@ -56,8 +57,8 @@ library(dplyr) # data wrangling
 ```{r}
 
 ggplot(mydata,
-       aes(x = neighborhood,
-           fill = neighborhood)) +
+       aes(x = neighborhood, # x is neighborhood
+           fill = neighborhood)) + # fill is neighborhood
   geom_bar()
 
 ```
@@ -70,9 +71,9 @@ The `is.na()` operator detects whether a value is missing. `!` means *not*, so o
 ```{r}
 
 mydata %>%
-  filter(!is.na(neighborhood)) %>%
-  ggplot(aes(x = neighborhood,
-             fill = neighborhood)) +
+  filter(!is.na(neighborhood)) %>% # filter on non-missing values
+  ggplot(aes(x = neighborhood, # x is neighborhood
+             fill = neighborhood)) + # fill is neighborhood
   geom_bar()
 
 ```
