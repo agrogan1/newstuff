@@ -20,6 +20,21 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+```{r}
+
+library(ggplot2)
+
+library(plotly)
+
+library(knitr)
+
+library(rgl)
+
+library(rayshader)
+
+```
+
+
 ```{r, layout="l-screen", fig.height=3}
 
 x <- seq(-10, 10, by = 0.25)
@@ -27,10 +42,6 @@ x <- seq(-10, 10, by = 0.25)
 y <- exp(x)/(1 + exp(x))
 
 myprobability <- round(y, digits = 5)
-
-library(ggplot2)
-
-library(plotly)
 
 p1 <- ggplot(data = NULL,
              aes(x = x,
@@ -51,13 +62,9 @@ p1 <- ggplot(data = NULL,
 
 ```{r}
 
-library(knitr)
-
-library(rgl)
-
 knit_hooks$set(webgl = hook_webgl)
 
-rayshader::plot_gg(p1)
+rayshader::plot_gg(p1, zoom = .8)
 
 rglwidget()
  
