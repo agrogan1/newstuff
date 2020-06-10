@@ -28,9 +28,9 @@ markstat using "spruce.stmd", docx // Word
 
 graph close _all
 
-markstat using "spruce.stmd", pdf // PDF
+* markstat using "spruce.stmd", pdf // PDF
 
-graph close _all
+* graph close _all
 
 * pandoc
 
