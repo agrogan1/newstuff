@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}10 Jun 2020, 18:01:36
+ {txt}opened on:  {res}10 Jun 2020, 18:05:12
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}18:01:36
+{res}18:05:12
 {txt}
 {com}. //_3
 . clear all
@@ -149,7 +149,7 @@ combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}10 Jun 2020, 18:01:37
+ {txt}closed on:  {res}10 Jun 2020, 18:05:13
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

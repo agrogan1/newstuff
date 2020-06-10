@@ -16,9 +16,11 @@ Chihara and Hesterberg (2018) provide a data set concerning the growth of Black 
 
 > We are going to consider the *potentially causal* estimate of the effect of *fertilizer* on *tree height at year 5*. Along the way we will give brief attention to the advantages and disadvantages of each approach.
 
+> A secondary purpose of this document is to demonstrate that Stata syntax makes it easy 
+
 # Causality `r emo::ji("evergreen_tree")`
 
-![](causality.PNG){width=25%}
+![](causality.png){width=25%}
 
 A variable $x$ can only be considered to have *causal* association with $y$ if the following conditions are met:
 
