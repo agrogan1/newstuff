@@ -9,5 +9,6 @@ New stuff that is going to get moved somewhere else at some point.
 * [Simulated Social Service Agency Data](./social-service-agency)
 * [Can Mapping in R Really Be This Easy?](https://agrogan1.github.io/newstuff/can-mapping-in-R-be-this-easy/can-mapping-in-R-be-this-easy.html)
 * [University of Michigan Xaringan Slide Show Theme](./xaringan-themes)
+* [Blog-ish Posts](https://agrogan1.github.io/newstuff/myposts)
 
 
