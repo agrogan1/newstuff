@@ -96,7 +96,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>10 Jun 2020 17:42:45</p>
+<p>10 Jun 2020 18:05:12</p>
 </div>
 <div id="background-r.1" class="slide section level1">
 <h1>Background 🌲</h1>
@@ -108,12 +108,15 @@ Andy Grogan-Kaylor
 <div id="the-research-question-r.2" class="slide section level1">
 <h1>The Research Question 🌲</h1>
 <blockquote>
-<p>We are going to consider the <em>potentially causal</em> estimate of the effect of <em>fertilizer</em> on <em>tree height at year 5</em>.</p>
+<p>We are going to consider the <em>potentially causal</em> estimate of the effect of <em>fertilizer</em> on <em>tree height at year 5</em>. Along the way we will give brief attention to the advantages and disadvantages of each approach.</p>
+</blockquote>
+<blockquote>
+<p>A secondary purpose of this document is to demonstrate that Stata syntax makes it easy</p>
 </blockquote>
 </div>
 <div id="causality-r.3" class="slide section level1">
 <h1>Causality 🌲</h1>
-<p><img src="causality.PNG" /></p>
+<p><img src="causality.png" /></p>
 <p>A variable <span class="math inline">\(x\)</span> can only be considered to have <em>causal</em> association with <span class="math inline">\(y\)</span> if the following conditions are met:</p>
 <ol class="incremental" style="list-style-type: decimal">
 <li><span class="math inline">\(x\)</span> is correlated with <span class="math inline">\(y\)</span>.</li>
@@ -157,12 +160,11 @@ Andy Grogan-Kaylor
 </div>
 <div id="analyses-r.5" class="slide section level1">
 <h1>Analyses 🌲</h1>
-<p>We will be exploring the <em>potentially causal</em> effect of <em>fertilizer</em> on tree height at year 5.</p>
 <h2 id="t-test">t Test</h2>
 <p>A t test compares the difference between the means of two groups in terms of the standard error to the standard error difference.</p>
 <p>Formally, <span class="math inline">\(t = \frac{\bar{x}_2 - \bar{x}_1}{s}\)</span> where s is the standard error of the estimate of the mean.</p>
 <p>More colloquially, the t test compares the differences between the two groups in standard error units.</p>
-<p>A t test does <em>not</em> control for any third variable(s).</p>
+<p>A t test does <em>not</em> control for any additional variable(s).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">ttest</span> Height5, <span class="kw">by</span>(Fertilizer)</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a>Two-<span class="kw">sample</span> t <span class="kw">test</span> with equal variances</span>
@@ -186,6 +188,7 @@ Andy Grogan-Kaylor
 </blockquote>
 <h2 id="ols-regression">OLS Regression</h2>
 <p>A regression estimates the association of a 1 unit change in each of the independent variables with change in the dependent variable, while accounting for all of the other independent variables in the model.</p>
+<p>A regression controls for the additional observed variables that are included in the model.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">regress</span> Height5 Fertilizer Height0 Competition</span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3"></a>      Source │       SS           df       MS      Number <span class="kw">of</span> <span class="kw">obs</span>   =        72</span>
@@ -208,6 +211,7 @@ Andy Grogan-Kaylor
 </blockquote>
 <h2 id="propensity-scores">Propensity Scores</h2>
 <p>The propensity score estimates the probability of being administered the treatment, in this example, <em>fertilizer</em>. Treatment observations are matched to the most similar comparison group observation in terms of this probability, and an average difference is calculated.</p>
+<p>A propensity score analysis controls for the additional observed variables that are included in the model.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. teffects psmatch (Height5) (Fertilizer Height0 Competition)</span>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
 <span id="cb5-3"><a href="#cb5-3"></a>Treatment-<span class="kw">effects</span> estimation                   Number <span class="kw">of</span> <span class="kw">obs</span>      =         72</span>
