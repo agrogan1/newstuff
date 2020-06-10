@@ -107,7 +107,7 @@ class: animated, slideInRight
 
 ggplot(mydata, # data
        aes(x = outcome)) + # variable
-  geom_histogram() # geometry
+  geom_histogram() #BREAK2
 
 ```
 
