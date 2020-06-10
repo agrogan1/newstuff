@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 <style>
 /* CSS for Markstat 2.0 using Pandoc 2.0 */
@@ -43,12 +43,13 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>Multiple Approaches to Causal Modeling Using Black Spruce Data</title>
-  <style type="text/css">
+  <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -57,40 +58,47 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Multiple Approaches to Causal Modeling Using Black Spruce Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">26 Apr 2020 13:18:46</p>
+<p class="date">10 Jun 2020 18:01:36</p>
 </header>
-<h1 id="background">Background</h1>
+<h1 id="background-r.1">Background 🌲</h1>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <p>Chihara and Hesterberg (2018) provide a data set concerning the growth of Black Spruce Trees. According to these authors:</p>
 <blockquote>
-<p>“Black spruce (Picea mariana) is a species of a slow-growing coniferous tree found across the northern part of North America. It is commonly found on wet organic soils. In a study conducted in the 1990s, a biologist interested in factors affecting the growth of the black spruce planted its seedlings on sites located in boreal peatlands in northern Manitoba, Canada (Camil et al. (2010)). The data set Spruce contains a part of the data from the study (Table 1.8). Seventy-two black spruce seedlings were planted in four plots under varying conditions (fertilizer–no fertilizer, competition–no competition), and their heights and diameters were measured over the course of 5 years. The researcher wanted to see whether the addition of fertilizer or the removal of competition from other plants (by weeding) affected the growth of these seedlings.”</p>
+<p>“Black spruce (Picea mariana) is a species of a slow-growing coniferous tree found across the northern part of North America. It is commonly found on wet organic soils. In a study conducted in the 1990s, a biologist interested in factors affecting the growth of the black spruce planted its seedlings on sites located in boreal peatlands in northern Manitoba, Canada (Camil et al. (2010)). The data set Spruce contains a part of the data from the study (Table 1.8). Seventy-two black spruce seedlings were planted in four plots under varying conditions (fertilizer–no fertilizer, competition–no competition), and their heights and diameters were measured over the course of 5 years. The researcher wanted to see whether the addition of fertilizer or the removal of competition from other plants (by weeding) affected the growth of these seedlings.”</p>
 </blockquote>
-<h1 id="setup">Setup</h1>
+<h1 id="the-research-question-r.2">The Research Question 🌲</h1>
+<blockquote>
+<p>We are going to consider the <em>potentially causal</em> estimate of the effect of <em>fertilizer</em> on <em>tree height at year 5</em>. Along the way we will give brief attention to the advantages and disadvantages of each approach.</p>
+</blockquote>
+<h1 id="causality-r.3">Causality 🌲</h1>
+<p><img src="causality.PNG" style="width:25.0%" /></p>
+<p>A variable <span class="math inline">\(x\)</span> can only be considered to have <em>causal</em> association with <span class="math inline">\(y\)</span> if the following conditions are met:</p>
+<ol type="1">
+<li><span class="math inline">\(x\)</span> is correlated with <span class="math inline">\(y\)</span>.</li>
+<li><span class="math inline">\(x\)</span> precedes <span class="math inline">\(y\)</span> in time order.</li>
+<li>The association between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> can not be accounted for by any third variable <span class="math inline">\(z\)</span>.</li>
+</ol>
+<p>(For more interactive exploration of these ideas, see <a href="https://agrogan.shinyapps.io/causality/">this demo</a>).</p>
+<h1 id="setup-r.4">Setup 🌲</h1>
 <h2 id="get-data">Get Data</h2>
-<pre class='stata'>. 
-. clear all
+<pre class='stata'>. clear all
 
-. 
-. cd "/Users/agrogan/Desktop/newstuff/spruce"
-/Users/agrogan/Desktop/newstuff/spruce
+. quietly: cd "/Users/agrogan/Desktop/newstuff/spruce"
 
-.     
 . use spruce.dta, clear
-
-.     
 </pre>
-<h2 id="codebook">Codebook</h2>
+<h2 id="dataset-description">Dataset Description</h2>
 
-<pre class='stata'>. 
-. describe
+<pre class='stata'>. describe    
 
 Contains data from spruce.dta
   obs:            72                          
  vars:             9                          26 Apr 2020 12:18
  size:         4,320                          
-───────────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────────
               storage   display    value
 variable name   type    format     label      variable label
-───────────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────────
 Tree            long    %12.0g                Tree number
 Competition     long    %12.0g     Competition
                                               C (competition), CR (competition removed)
@@ -102,12 +110,86 @@ Diameter0       double  %10.0g                Diameter (cm) of seedling at plant
 Diameter5       double  %10.0g                Diameter (cm) of seedling at year 5
 Ht_change       double  %10.0g                Change (cm) in height
 Di_change       double  %10.0g                Change (cm) in diameter
-───────────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
-
-.     
 </pre>
-<h1 id="references">References</h1>
+<h1 id="analyses-r.5">Analyses 🌲</h1>
+<h2 id="t-test">t Test</h2>
+<p>A t test compares the difference between the means of two groups in terms of the standard error to the standard error difference.</p>
+<p>Formally, <span class="math inline">\(t = \frac{\bar{x}_2 - \bar{x}_1}{s}\)</span> where s is the standard error of the estimate of the mean.</p>
+<p>More colloquially, the t test compares the differences between the two groups in standard error units.</p>
+<p>A t test does <em>not</em> control for any additional variable(s).</p>
+<pre class='stata'>. ttest Height5, by(Fertilizer)
+
+Two-sample t test with equal variances
+─────────┬────────────────────────────────────────────────────────────────────
+Variable │     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]
+─────────┼────────────────────────────────────────────────────────────────────
+       F │      36    52.89167    1.396079    8.376476    50.05747    55.72586
+      NF │      36    38.11944    1.465226    8.791354    35.14488    41.09401
+─────────┼────────────────────────────────────────────────────────────────────
+combined │      72    45.50556    1.333392    11.31421    42.84685    48.16426
+─────────┼────────────────────────────────────────────────────────────────────
+    diff │            14.77222    2.023839                 10.7358    18.80864
+─────────┴────────────────────────────────────────────────────────────────────
+    diff = mean(F) - mean(NF)                                     t =   7.2991
+Ho: diff = 0                                     degrees of freedom =       70
+
+    Ha: diff &lt; 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T &lt; t) = 1.0000         Pr(|T| > |t|) = 0.0000          Pr(T > t) = 0.0000
+</pre>
+<blockquote>
+<p>The association of fertilizer with tree height is -14.77.</p>
+</blockquote>
+<h2 id="ols-regression">OLS Regression</h2>
+<p>A regression estimates the association of a 1 unit change in each of the independent variables with change in the dependent variable, while accounting for all of the other independent variables in the model.</p>
+<p>A regression controls for the additional observed variables that are included in the model.</p>
+<pre class='stata'>. regress Height5 Fertilizer Height0 Competition
+
+      Source │       SS           df       MS      Number of obs   =        72
+─────────────┼──────────────────────────────────   F(3, 68)        =     50.97
+       Model │  6291.23189         3   2097.0773   Prob > F        =    0.0000
+    Residual │  2797.56589        68  41.1406748   R-squared       =    0.6922
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.6786
+       Total │  9088.79778        71  128.011236   Root MSE        =    6.4141
+
+─────────────┬────────────────────────────────────────────────────────────────
+     Height5 │      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+  Fertilizer │  -14.71947   1.511991    -9.74   0.000    -17.73661   -11.70234
+     Height0 │   .8631456    .374817     2.30   0.024       .11521    1.611081
+ Competition │   10.52346    1.52143     6.92   0.000      7.48749    13.55942
+       _cons │   39.22163   6.189971     6.34   0.000     26.86974    51.57353
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<blockquote>
+<p>The association of fertilizer with tree height is -14.72.</p>
+</blockquote>
+<h2 id="propensity-scores">Propensity Scores</h2>
+<p>The propensity score estimates the probability of being administered the treatment, in this example, <em>fertilizer</em>. Treatment observations are matched to the most similar comparison group observation in terms of this probability, and an average difference is calculated.</p>
+<p>A propensity score analysis controls for the additional observed variables that are included in the model.</p>
+<pre class='stata'>. teffects psmatch (Height5) (Fertilizer Height0 Competition)
+
+Treatment-effects estimation                   Number of obs      =         72
+Estimator      : propensity-score matching     Matches: requested =          1
+Outcome model  : matching                                     min =          1
+Treatment model: logit                                        max =          3
+─────────────┬────────────────────────────────────────────────────────────────
+             │              AI Robust
+     Height5 │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+ATE          │
+  Fertilizer │
+  (NF vs F)  │  -12.71019   1.988531    -6.39   0.000    -16.60763   -8.812737
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+
+<blockquote>
+<p>The association of fertilizer with tree height is -12.71.</p>
+</blockquote>
+<h2 id="multilevel-longitudinal-model">Multilevel Longitudinal Model</h2>
+<h2 id="fixed-effects-regression">Fixed Effects Regression</h2>
+<h1 id="references-r.6">References 🌲</h1>
 <p>Camill, P., Chihara, L., Adams, B., Andreassi, C., Barry, A. N. N., Kalim, S., … Rafert, G. (2010). Early life history transitions and recruitment of Picea mariana in thawed boreal permafrost peatlands. <em>Ecology</em>. https://doi.org/10.1890/08-1839.1</p>
 <p>Chihara, L. M., &amp; Hesterberg, T. C. (2018). <em>Mathematical Statistics with Resampling and R</em>. https://doi.org/10.1002/9781119505969</p>
 </body>
