@@ -1,0 +1,79 @@
+---
+title: "Table Demo"
+author: "Andy Grogan-Kaylor"
+date: "6/11/2020"
+output:
+  pdf_document: 
+    toc: yes
+    fig_height: 3
+    number_sections: yes
+  html_document: 
+    highlight: haddock
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
+    number_sections: yes
+    fig_height: 3
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Get Data
+
+```{r}
+
+data("mtcars")
+
+```
+
+# Replay The Data Set (May Not Look So Great)
+
+```{r}
+
+mtcars
+
+```
+
+# Descriptive Statistics
+
+```{r}
+
+# summary(mtcars)
+
+psych::describe(mtcars)
+
+```
+
+# Use Pander To Format Our Summary Results
+
+```{r}
+
+library(pander)
+
+pander(psych::describe(mtcars))
+
+```
+
+# Only Look At A Subset of Variables
+
+```{r}
+
+mynewdata <- subset(mtcars, select = c(mpg, hp))
+
+pander(psych::describe(mynewdata))
+
+```
+# "Hand Built" Table
+
+-------------------------------------
+Things   Outcome
+------   -------
+Thing 1   A
+
+Thing 2   B
+-------------------------------------
