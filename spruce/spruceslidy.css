@@ -10,17 +10,11 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: normal;
 }
-slide.title-slide{
-    background-color: #00274C; 
-}
-.title-slide {
-  background-color: #006400; 
-}
 .slide.titlepage {
-  color: #FFFFFF;
+  color: #000000;
   font-size: 200%;
   font-weight: bold;
-  background-color: #006400; 
+  background-color: #A5A508; 
 }
 blockquote {
   background: #FFFFFF;
