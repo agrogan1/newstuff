@@ -3,10 +3,6 @@ title: "Calculating and Graphing Correlations in R"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: 
-    toc: yes
-    fig_height: 3
-    number_sections: yes
   html_document:
     toc: yes
     toc_float:
@@ -58,7 +54,7 @@ cor(penguins$body_mass_g,
 ```
 > There is some indication that penguins with higher body mass have longer flippers.
 
-To get a more nicely formatted correlation value, we can read this correlation into a variable, and then print out this correlation as part of a sentence in inline code. See this RMarkdown document for how this is done, or take a look at [this page from RStudio](https://rmarkdown.rstudio.com/authoring_quick_tour.html#Inline_R_Code).
+To get a more nicely formatted correlation value, we can read this correlation into a variable, and then print out this correlation as part of a sentence in inline code. See [this RMarkdown document](https://github.com/agrogan1/newstuff/blob/master/myposts/calculating-and-graphing-correlations-in-R.Rmd) for how this is done, or take a look at [this page from RStudio](https://rmarkdown.rstudio.com/authoring_quick_tour.html#Inline_R_Code).
 
 ```{r}
 
