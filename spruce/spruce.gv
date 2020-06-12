@@ -9,12 +9,12 @@ digraph boxes_and_circles {
 
   node [shape = circle,
         fontname = Helvetica
-        fixedsize = true] // sets as circles
+        fixedsize = false] // sets as circles
         
-  x; y; z
+  Fertilizer; Height; z
 
   # several 'edge' statements
  
-  x -> y
-  z -> {x y}
+  Fertilizer -> Height
+  z -> {Fertilizer Height}
 }

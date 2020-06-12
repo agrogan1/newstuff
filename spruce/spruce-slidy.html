@@ -85,6 +85,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    href="spruceslidy.css" />
   <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
+    <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 </head>
 <body>
 <div class="slide titlepage">
@@ -96,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>10 Jun 2020 18:05:12</p>
+<p>12 Jun 2020 15:37:43</p>
 </div>
 <div id="background-r.1" class="slide section level1">
 <h1>Background 🌲</h1>
@@ -108,21 +111,26 @@ Andy Grogan-Kaylor
 <div id="the-research-question-r.2" class="slide section level1">
 <h1>The Research Question 🌲</h1>
 <blockquote>
-<p>We are going to consider the <em>potentially causal</em> estimate of the effect of <em>fertilizer</em> on <em>tree height at year 5</em>. Along the way we will give brief attention to the advantages and disadvantages of each approach.</p>
+<p>We are going to consider the <em>potentially causal</em> estimate of the effect of <em>fertilizer</em> on <em>tree height at year 5</em>. Along the way we will give brief attention to the advantages and disadvantages of each approach. Because of the research design, we have strong reasons to consider <em>fertilizer</em> as having a causal effect on <em>tree height</em> but we will nonetheless explore this question using a variety of statistical models.</p>
 </blockquote>
 <blockquote>
-<p>A secondary purpose of this document is to demonstrate that Stata syntax makes it easy</p>
+<p>A secondary purpose of this document is to demonstrate that Stata syntax makes it easy to test and compare multiple statistical models because of the uniform Stata syntax, which is almost always: <code>command variable(s), options</code>.</p>
 </blockquote>
 </div>
 <div id="causality-r.3" class="slide section level1">
 <h1>Causality 🌲</h1>
 <p><img src="causality.png" /></p>
-<p>A variable <span class="math inline">\(x\)</span> can only be considered to have <em>causal</em> association with <span class="math inline">\(y\)</span> if the following conditions are met:</p>
+<p>A variable <span class="math inline">\(x\)</span> can only be considered to have <em>causal</em> association with <span class="math inline">\(y\)</span> if the following conditions are met (Holland, 1986):</p>
 <ol class="incremental" style="list-style-type: decimal">
 <li><span class="math inline">\(x\)</span> is correlated with <span class="math inline">\(y\)</span>.</li>
 <li><span class="math inline">\(x\)</span> precedes <span class="math inline">\(y\)</span> in time order.</li>
 <li>The association between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> can not be accounted for by any third variable <span class="math inline">\(z\)</span>.</li>
 </ol>
+<p>Hence, for this particular data, we are exploring:</p>
+<p><img src="spruce.png" /></p>
+<blockquote>
+<p>What happens to the association of <em>fertilizer</em> and <em>tree height</em> when we control for possible confounding variables <span class="math inline">\(z\)</span> using various statistical strategies?</p>
+</blockquote>
 <p>(For more interactive exploration of these ideas, see <a href="https://agrogan.shinyapps.io/causality/">this demo</a>).</p>
 </div>
 <div id="setup-r.4" class="slide section level1">
@@ -161,7 +169,7 @@ Andy Grogan-Kaylor
 <div id="analyses-r.5" class="slide section level1">
 <h1>Analyses 🌲</h1>
 <h2 id="t-test">t Test</h2>
-<p>A t test compares the difference between the means of two groups in terms of the standard error to the standard error difference.</p>
+<p>A t test compares the difference between the means of two groups to the standard error of the difference between means.</p>
 <p>Formally, <span class="math inline">\(t = \frac{\bar{x}_2 - \bar{x}_1}{s}\)</span> where s is the standard error of the estimate of the mean.</p>
 <p>More colloquially, the t test compares the differences between the two groups in standard error units.</p>
 <p>A t test does <em>not</em> control for any additional variable(s).</p>
@@ -236,6 +244,7 @@ Andy Grogan-Kaylor
 <h1>References 🌲</h1>
 <p>Camill, P., Chihara, L., Adams, B., Andreassi, C., Barry, A. N. N., Kalim, S., … Rafert, G. (2010). Early life history transitions and recruitment of Picea mariana in thawed boreal permafrost peatlands. <em>Ecology</em>. https://doi.org/10.1890/08-1839.1</p>
 <p>Chihara, L. M., &amp; Hesterberg, T. C. (2018). <em>Mathematical Statistics with Resampling and R</em>. https://doi.org/10.1002/9781119505969</p>
+<p>Holland, P. W. (1986). Statistics and Causal Inference. <em>Journal of the American Statistical Association</em>, 81(396), 945–960. https://doi.org/10.1080/01621459.1986.10478354</p>
 </div>
 </body>
 </html>

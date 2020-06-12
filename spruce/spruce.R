@@ -1,0 +1,13 @@
+#_1
+emo::ji("evergreen_tree")
+#_2
+emo::ji("evergreen_tree")
+#_3
+emo::ji("evergreen_tree")
+#_4
+emo::ji("evergreen_tree")
+#_5
+emo::ji("evergreen_tree")
+#_6
+emo::ji("evergreen_tree")
+#_^
