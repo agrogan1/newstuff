@@ -1,0 +1,20 @@
+digraph boxes_and_circles {
+
+  # a 'graph' statement
+  graph [overlap = true, 
+        rankdir = LR,
+        fontsize = 10]
+
+  # 'node' statement
+
+  node [shape = circle,
+        fontname = Helvetica
+        fixedsize = true] // sets as circles
+        
+  x; y; z
+
+  # several 'edge' statements
+ 
+  x -> y
+  z -> {x y}
+}
