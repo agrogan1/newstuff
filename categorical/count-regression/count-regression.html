@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Count Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">3 Jun 2020</p>
+<p class="date">14 Jun 2020</p>
 </header>
 <h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -81,10 +81,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <li>☎️ Calls to a call center (business, crisis hotline, etc.)</li>
 <li>🏥 Arrivals at the Emergency Room</li>
 </ul>
-<h1 id="other-canonical-examples-of-count-data-r.7-r.8">Other Canonical Examples of Count Data 🎄 😷</h1>
+<h1 id="other-canonical-examples-of-count-data-r.7-r.8">Other Canonical Examples of Count Data 🌳 🤧</h1>
 <ul>
-<li>🌵 🎋 🌱 Plants / trees in a field</li>
-<li>🤒 🤒 😷 Cases of disease / unit area</li>
+<li>🏵 🌳 🌵 Plants / trees in a field</li>
+<li>😷 🤢 😷 Cases of disease / unit area</li>
 </ul>
 <h1 id="poisson-distribution">Poisson Distribution</h1>
 <h2 id="theorizing-about-the-poisson-r.15-r.16-r.17-r.18-r.19-r.20">Theorizing about the Poisson 🐟 🐟 🐟 🌴 🌲 🌳</h2>
@@ -142,7 +142,7 @@ number of observations (_N) was 0, now 1,000
 <figure>
 <img src="myhistogram2.png" alt="" /><figcaption>histogram of random Poisson variable</figcaption>
 </figure>
-<h2 id="poisson-is-the-natural-form-for-observations-distributed-in-time-or-space-r.21-r.22-r.23-r.24-r.25-r.26">Poisson is the Natural Form for Observations Distributed in Time or Space 🏨 🏢 🏫 ⏳ ⏳ ⏳</h2>
+<h2 id="poisson-is-the-natural-form-for-observations-distributed-in-time-or-space-r.21-r.22-r.23-r.24-r.25-r.26">Poisson is the Natural Form for Observations Distributed in Time or Space 🏭 🏭 🏨 ⏳ ⏳ ⏳</h2>
 <p><span class="math display">\[ 
     x \sim Poisson(\lambda)
 \]</span></p>
@@ -186,14 +186,13 @@ number of observations (_N) was 0, now 20
 </pre>
 <pre class='stata'>. set maxvar 10000
 </pre>
-<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", cle
-> ar
+<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
 </pre>
 <pre class='stata'>. codebook numprobs // data from 2002
 
-────────────────────────────────────────────────────────────────────────────────────────
-numprobs                                     how many friends close to discuss problems 
-────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────────
+numprobs                                          how many friends close to discuss problems 
+─────────────────────────────────────────────────────────────────────────────────────────────
 
                   type:  numeric (byte)
                  label:  LABJP, but 33 nonmissing values are not labeled
@@ -210,40 +209,51 @@ numprobs                                     how many friends close to discuss p
 <pre class='stata'>. generate coninc_10K = coninc / 10000 // $10K chunks
 (6,520 missing values generated)
 </pre>
-<pre class='stata'>. poisson numprobs coninc sex age
+<pre class='stata'>. poisson numprobs coninc_10K i.race sex age
 
-Iteration 0:   log likelihood = -14062.177  
-Iteration 1:   log likelihood = -14062.176  
+Iteration 0:   log likelihood = -13850.015  
+Iteration 1:   log likelihood = -13850.011  
+Iteration 2:   log likelihood = -13850.011  
 
 Poisson regression                              Number of obs     =      2,406
-                                                LR chi2(3)        =     611.55
+                                                LR chi2(5)        =    1035.88
                                                 Prob > chi2       =     0.0000
-Log likelihood = -14062.176                     Pseudo R2         =     0.0213
+Log likelihood = -13850.011                     Pseudo R2         =     0.0360
 
 ─────────────┬────────────────────────────────────────────────────────────────
     numprobs │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-      coninc │   3.71e-06   1.50e-07    24.66   0.000     3.41e-06    4.00e-06
-         sex │   .1222805   .0145482     8.41   0.000     .0937666    .1507943
-         age │   .0005445   .0004342     1.25   0.210    -.0003066    .0013956
-       _cons │   1.674127    .032771    51.09   0.000     1.609897    1.738357
+  coninc_10K │   .0319119   .0015338    20.81   0.000     .0289058     .034918
+             │
+        race │
+      black  │  -.4359226   .0254022   -17.16   0.000    -.4857101   -.3861351
+      other  │  -.3791775   .0344591   -11.00   0.000    -.4467161   -.3116389
+             │
+         sex │   .1335163   .0145586     9.17   0.000      .104982    .1620507
+         age │  -.0007319   .0004376    -1.67   0.094    -.0015895    .0001257
+       _cons │   1.812817   .0332514    54.52   0.000     1.747646    1.877989
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="incidence-rate-ratios">Incidence Rate Ratios</h1>
 <pre class='stata'>. poisson, irr
 
 Poisson regression                              Number of obs     =      2,406
-                                                LR chi2(3)        =     611.55
+                                                LR chi2(5)        =    1035.88
                                                 Prob > chi2       =     0.0000
-Log likelihood = -14062.176                     Pseudo R2         =     0.0213
+Log likelihood = -13850.011                     Pseudo R2         =     0.0360
 
 ─────────────┬────────────────────────────────────────────────────────────────
     numprobs │        IRR   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-      coninc │   1.000004   1.50e-07    24.66   0.000     1.000003    1.000004
-         sex │   1.130071   .0164405     8.41   0.000     1.098303    1.162757
-         age │   1.000545   .0004345     1.25   0.210     .9996935    1.001397
-       _cons │   5.334136   .1748051    51.09   0.000     5.002296    5.687991
+  coninc_10K │   1.032427   .0015835    20.81   0.000     1.029328    1.035535
+             │
+        race │
+      black  │   .6466678   .0164268   -17.16   0.000     .6152602    .6796787
+      other  │   .6844241   .0235846   -11.00   0.000     .6397255    .7322459
+             │
+         sex │    1.14284   .0166382     9.17   0.000     1.110691     1.17592
+         age │   .9992684   .0004372    -1.67   0.094     .9984118    1.000126
+       _cons │   6.127687   .2037541    54.52   0.000     5.741071    6.540338
 ─────────────┴────────────────────────────────────────────────────────────────
 Note: _cons estimates baseline incidence rate.
 </pre>
@@ -260,12 +270,13 @@ Note: _cons estimates baseline incidence rate.
     \ln(\mu) = \beta_0 + \beta_1 x + \text{offset} + \text{dispersion} + etc.
 \]</span></p>
 <h2 id="regression">Regression</h2>
-<pre class='stata'>. nbreg numprobs coninc sex age
+<pre class='stata'>. nbreg numprobs coninc_10K i.race sex age
 
 Fitting Poisson model:
 
-Iteration 0:   log likelihood = -14062.177  
-Iteration 1:   log likelihood = -14062.176  
+Iteration 0:   log likelihood = -13850.015  
+Iteration 1:   log likelihood = -13850.011  
+Iteration 2:   log likelihood = -13850.011  
 
 Fitting constant-only model:
 
@@ -276,26 +287,32 @@ Iteration 3:   log likelihood =   -7561.83
 
 Fitting full model:
 
-Iteration 0:   log likelihood = -7526.2732  
-Iteration 1:   log likelihood = -7525.4144  
-Iteration 2:   log likelihood = -7525.4138  
+Iteration 0:   log likelihood = -7496.5295  
+Iteration 1:   log likelihood = -7493.7917  
+Iteration 2:   log likelihood = -7493.7857  
+Iteration 3:   log likelihood = -7493.7857  
 
 Negative binomial regression                    Number of obs     =      2,406
-                                                LR chi2(3)        =      72.83
+                                                LR chi2(5)        =     136.09
 Dispersion     = mean                           Prob > chi2       =     0.0000
-Log likelihood = -7525.4138                     Pseudo R2         =     0.0048
+Log likelihood = -7493.7857                     Pseudo R2         =     0.0090
 
 ─────────────┬────────────────────────────────────────────────────────────────
     numprobs │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-      coninc │   3.61e-06   4.50e-07     8.02   0.000     2.73e-06    4.49e-06
-         sex │   .1087046   .0397403     2.74   0.006      .030815    .1865941
-         age │   .0003074   .0011387     0.27   0.787    -.0019243    .0025392
-       _cons │   1.711584   .0856428    19.99   0.000     1.543728    1.879441
+  coninc_10K │   .0306399   .0045093     6.79   0.000     .0218017     .039478
+             │
+        race │
+      black  │   -.432147   .0596002    -7.25   0.000    -.5489613   -.3153328
+      other  │  -.3843031   .0830998    -4.62   0.000    -.5471758   -.2214304
+             │
+         sex │   .1154665   .0393671     2.93   0.003     .0383084    .1926246
+         age │  -.0009527   .0011445    -0.83   0.405    -.0031958    .0012904
+       _cons │   1.857757   .0873184    21.28   0.000     1.686616    2.028898
 ─────────────┼────────────────────────────────────────────────────────────────
-    /lnalpha │  -.2109088   .0315816                     -.2728077   -.1490099
+    /lnalpha │  -.2378643   .0317921                     -.3001755    -.175553
 ─────────────┼────────────────────────────────────────────────────────────────
-       alpha │   .8098479   .0255763                      .7612392    .8615606
+       alpha │   .7883097    .025062                      .7406882    .8389929
 ─────────────┴────────────────────────────────────────────────────────────────
 LR test of alpha=0: chibar2(01) = 1.3e+04              Prob >= chibar2 = 0.000
 </pre>
