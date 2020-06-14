@@ -118,9 +118,13 @@ A propensity score analysis controls for the additional observed variables that 
 ```
 > The association of fertilizer with tree height is `s %5.2f b[1,1]`.
 
+## Fixed Effects Regression
+
+## Difference in Differences
+
 ## Multilevel Longitudinal Model
 
-## Fixed Effects Regression
+## "Hybrid" Model
 
 
 # References `r emo::ji("evergreen_tree")`
