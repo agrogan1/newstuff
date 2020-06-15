@@ -34,7 +34,7 @@ graph close _all
 
 * pandoc
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --webtex -i -t slidy --css spruceslidy.css "/Users/agrogan/Desktop/newstuff/spruce/spruce.html" -o "/Users/agrogan/Desktop/newstuff/spruce/spruce-slidy.html" 
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --webtex -i -t slidy --slide-level=2 --css spruceslidy.css "/Users/agrogan/Desktop/newstuff/spruce/spruce.html" -o "/Users/agrogan/Desktop/newstuff/spruce/spruce-slidy.html" 
 
 
 
