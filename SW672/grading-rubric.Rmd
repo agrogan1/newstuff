@@ -1,0 +1,99 @@
+---
+title: "Grading Rubric"
+subtitle: "SW672"
+author: "Andy Grogan-Kaylor"
+institute: "University of Michigan"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{css, echo=FALSE}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.title-slide { 
+  color: #ffcb05;
+  background-color: #00274C; 
+}
+.title-slide h1 {
+    color: #ffcb05;
+}
+pre {
+  white-space: pre-wrap;
+}
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+body { 
+    font-family: 'Montserrat', sans-serif;
+}
+.author, .date {
+  font-family: 'Montserrat', sans-serif;
+}
+
+```
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+
+```
+
+# The Basics
+
+```{r}
+
+library(DiagrammeR)
+
+grViz("
+digraph boxes_and_circles {
+
+  # a 'graph' statement
+  graph [overlap = true, 
+  fontsize = 10,
+  rankdir = LR]
+
+  # several 'node' statements
+  node [shape = circle,
+        fontname = Helvetica]
+  A; B
+
+  # several 'edge' statements
+  A->B
+}
+")
+
+```
+
+---
+# A Conceptual Focus
+
+* Disparities: How does membership in **A** affect the chances of outcome **B**?
+* Effect of a Policy or Intervention: Do those who receive treatment or policy **A** have a different outcome **B**?
+* Political Participation: How does membership in **A** affect the chances of voting or candidate or policy **B**?
+
+---
+# Think Carefully About Design Elements
+
+1. Geometry: bars; lines; points; etc.
+2. Use of color
+3. Well labeled axes
+4. Good informative title
+
+---
+# The Difficult Stuff
+
+* Causality
+* Moderation
+* Simpson's Paradox
+* Bayes Theorem
+
+
+
