@@ -33,6 +33,8 @@ $y(\text{3 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...$
 
 * Think about OR's, predicted probabilities, non-linearity
 
+* Different models for *different types* of ordinal variables
+
 # Get The Data (General Social Survey)
 
     clear all
