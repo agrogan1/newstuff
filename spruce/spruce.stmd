@@ -118,6 +118,28 @@ A propensity score analysis controls for the additional observed variables that 
 ```
 > The association of fertilizer with tree height is `s %5.2f b[1,1]`.
 
+### Assess Balance of Propensity Score Model [^Cuartas]
+
+[^Cuartas]: With many thanks to Jorge Cuartas for the idea for the this code.
+
+```s
+
+    recode Fertilizer (2=1)(1=0), generate(F) // recode as 1/0
+    logit F Height0 Competition // logit model of propensity score
+	predict pscore // predict propensity score
+	
+	twoway (kdensity pscore if F == 1) /// 
+	(kdensity pscore if F == 0), ///
+	title("Assessing Balance of Propensity Score") ///
+	ytitle("Density") /// 
+	legend(order(1 "Fertilizer" 2 "No Fertilizer")) ///
+	scheme(michigan)
+
+	graph export mydensity.png, width(500) replace
+```
+
+![density plot of propensity score](mydensity.png)
+
 ## Fixed Effects Regression
 
 ## Difference in Differences
