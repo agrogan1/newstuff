@@ -19,10 +19,11 @@ output:
 .title-slide { 
   color: #ffcb05;
   background-color: #00274C; 
-  background-image: url("color-splash.png");
+  background-image: url("campus.png");
 }
 .title-slide h1 {
     color: #ffcb05;
+    font-weight: bold;
 }
 pre {
   white-space: pre-wrap;
