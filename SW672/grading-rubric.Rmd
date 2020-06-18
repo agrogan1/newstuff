@@ -20,6 +20,7 @@ output:
   color: #ffcb05;
   background-color: #00274C; 
   background-image: url("campus.png");
+  background-size: cover;
 }
 .title-slide h1 {
     color: #ffcb05;
