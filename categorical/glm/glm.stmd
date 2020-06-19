@@ -57,6 +57,8 @@ Thes examples use the *Palmer Penguins* data set: [https://github.com/allisonhor
 	
 ## What Predicts That A Penguin Lives on Dream Island?
 
+![Location of Dream Island](dream-island.png){width=20%}
+
     tabulate island
 
     generate dream = island == 2
@@ -78,12 +80,10 @@ Thes examples use the *Palmer Penguins* data set: [https://github.com/allisonhor
     quietly: glm dream flipper_length_mm body_mass_g, link(probit) family(binomial) 
 	
 	est store glm_probit // store estimates glm probit
-
-\newpage
 	
 # Results
 
-    est table usual_OLS glm_OLS usual_logit glm_logit usual_probit glm_probit
+    est table usual_OLS glm_OLS usual_logit glm_logit usual_probit glm_probit, star
 
    
    
