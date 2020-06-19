@@ -29,7 +29,6 @@ graph close _all
 * graph close _all
 
 
-
 * pandoc
 
 ! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" --slide-level=2 "/Users/agrogan/Desktop/newstuff/categorical/glm/glm.html" -o "/Users/agrogan/Desktop/newstuff/categorical/glm/glm-slidy.html" 
