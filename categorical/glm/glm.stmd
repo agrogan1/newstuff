@@ -1,0 +1,89 @@
+% Generalized Linear Models
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+# Introduction
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+> This discussion closely follows the Stata help for the *generalized linear model*, see `help glm`.
+
+Briefly, per Stata documentation, in the *generalized linear model* framework, we consider models of the form:
+
+$$
+    g(E(y)) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...
+$$
+
+where y is distributed as $F$ *i.e.* $y \sim F$.
+
+$g(y)$ is called the link function; $F$ is called the distribution. Hence:
+
+| Link      |  Distribution   | Standard Command   | glm                                        |
+|-----------|-----------------|--------------------|--------------------------------------------|
+| identity  | normal          | `regress y x`      | `glm y x, link(identity) family(gaussian)` |
+| logit     | bernoulli       | `logit y x`        | `glm y x, link(logit) family(binomial)`    |
+| probit    | bernoulli       | `probit y x`       | `glm y x, link(probit) family(binomial)`   |
+
+# Palmer Penguins
+
+Thes examples use the *Palmer Penguins* data set: [https://github.com/allisonhorst/palmerpenguins](https://github.com/allisonhorst/palmerpenguins/blob/master/README.md).
+
+    clear all
+
+    use penguins.dta, clear
+	
+![Palmer Penguins Illustration from @allison_horst](lter_penguins.png){width=30%}
+
+# Models
+
+> I use the Stata prefix `quietly` to run the models without output. I then store the results using `estimates store`. Finally, I present all the results together in compact form using `estimates table`.
+
+## What Predicts Culmen Depth?
+
+![Culmen Depth from @allison_horst](culmen_depth.png){width=20%}
+
+
+    quietly: regress culmen_depth_mm body_mass_g flipper_length_mm
+	
+	est store usual_OLS // store estimates usual OLS
+	
+    quietly: glm culmen_depth_mm body_mass_g flipper_length_mm, link(identity) family(gaussian)
+	
+	est store glm_OLS // store estimates glm OLS
+	
+## What Predicts That A Penguin Lives on Dream Island?
+
+    tabulate island
+
+    generate dream = island == 2
+   
+    label variable dream "Penguin Lives on Dream Island"
+   
+    quietly: logit dream flipper_length_mm body_mass_g 
+   
+    est store usual_logit // store estimates usual logit
+   
+    quietly: glm dream flipper_length_mm body_mass_g, link(logit) family(binomial)
+   
+    est store glm_logit // store estimates glm logit
+   
+    quietly: probit dream flipper_length_mm body_mass_g
+   
+    est store usual_probit // store estimates usual probit
+   
+    quietly: glm dream flipper_length_mm body_mass_g, link(probit) family(binomial) 
+	
+	est store glm_probit // store estimates glm probit
+
+\newpage
+	
+# Results
+
+    est table usual_OLS glm_OLS usual_logit glm_logit usual_probit glm_probit
+
+   
+   

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Generalized Linear Model</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../UMslidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Generalized Linear Model</h1>
+  <p class="author">
+Andy Grogan-Kaylor
+  </p>
+</div>
+<div class="slide section level1">
+
+<p>Andy Grogan-Kaylor</p>
+<p>18 Jun 2020 21:36:03</p>
+</div>
+<div id="introduction" class="slide section level1">
+<h1>Introduction</h1>
+<blockquote>
+<p>This discussion closely follows the Stata help for the <em>generalized linear model</em>, see <code>help glm</code>.</p>
+</blockquote>
+<p>Briefly, per Stata documentation, in the <em>generalized linear model</em> framework, we consider models of the form:</p>
+<p><span class="math display">\[ g(E(y)) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... \]</span></p>
+<p>where y is distributed as <span class="math inline">\(F\)</span> <em>i.e.</em> <span class="math inline">\(y \sim F\)</span>.</p>
+<p><span class="math inline">\(g(y)\)</span> is called the link function; <span class="math inline">\(F\)</span> is called the distribution. Hence:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Link</th>
+<th>Distribution</th>
+<th>Standard Command</th>
+<th>glm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>identity</td>
+<td>normal</td>
+<td><code>regress y x</code></td>
+<td><code>glm y x, link(identity) family(gaussian)</code></td>
+</tr>
+<tr class="even">
+<td>logit</td>
+<td>bernoulli</td>
+<td><code>logit y x</code></td>
+<td><code>glm y x, link(logit) family(binomial)</code></td>
+</tr>
+<tr class="odd">
+<td>probit</td>
+<td>bernoulli</td>
+<td><code>probit y x</code></td>
+<td><code>glm y x, link(probit) family(binomial)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="palmer-penguins" class="slide section level1">
+<h1>Palmer Penguins</h1>
+<p>Thes examples use the <em>Palmer Penguins</em> data set: <a href="https://github.com/allisonhorst/palmerpenguins/blob/master/README.md">https://github.com/allisonhorst/palmerpenguins</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">use</span> penguins.dta, <span class="kw">clear</span></span></code></pre></div>
+<div class="figure">
+<img src="lter_penguins.png" alt="" />
+<p class="caption">Palmer Penguins Illustration from <span class="citation" cites="allison_horst">@allison_horst</span></p>
+</div>
+</div>
+<div id="models" class="slide section level1">
+<h1>Models</h1>
+<blockquote>
+<p>I use the Stata prefix <code>quietly</code> to run the models without output. I then store the results using <code>estimates store</code>. Finally, I present all the results together in compact form using <code>estimates table</code>.</p>
+</blockquote>
+<h2 id="what-predicts-culmen-depth">What Predicts Culmen Depth?</h2>
+<div class="figure">
+<img src="culmen_depth.png" alt="" />
+<p class="caption">Culmen Depth from <span class="citation" cites="allison_horst">@allison_horst</span></p>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">quietly</span>: <span class="kw">regress</span> culmen_depth_mm body_mass_g flipper_length_mm</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">est</span> <span class="kw">store</span> usual_OLS <span class="co">// store estimates usual OLS</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">quietly</span>: <span class="kw">glm</span> culmen_depth_mm body_mass_g flipper_length_mm, <span class="kw">link</span>(<span class="kw">identity</span>) <span class="kw">family</span>(gaussian)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">est</span> <span class="kw">store</span> glm_OLS <span class="co">// store estimates glm OLS</span></span></code></pre></div>
+<h2 id="what-predicts-that-a-penguin-lives-on-dream-island">What Predicts That A Penguin Lives on Dream Island?</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">tabulate</span> island</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>     island │      Freq.     Percent        Cum.</span>
+<span id="cb7-4"><a href="#cb7-4"></a>────────────┼───────────────────────────────────</span>
+<span id="cb7-5"><a href="#cb7-5"></a>     Biscoe │        168       48.84       48.84</span>
+<span id="cb7-6"><a href="#cb7-6"></a>      Dream │        124       36.05       84.88</span>
+<span id="cb7-7"><a href="#cb7-7"></a>  Torgersen │         52       15.12      100.00</span>
+<span id="cb7-8"><a href="#cb7-8"></a>────────────┼───────────────────────────────────</span>
+<span id="cb7-9"><a href="#cb7-9"></a>      Total │        344      100.00</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">generate</span> dream = island == 2</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">label</span> <span class="kw">variable</span> dream <span class="st">&quot;Penguin Lives on Dream Island&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">quietly</span>: <span class="kw">logit</span> dream flipper_length_mm body_mass_g </span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">est</span> <span class="kw">store</span> usual_logit <span class="co">// store estimates usual logit</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">quietly</span>: <span class="kw">glm</span> dream flipper_length_mm body_mass_g, <span class="kw">link</span>(<span class="kw">logit</span>) <span class="kw">family</span>(binomial)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">est</span> <span class="kw">store</span> glm_logit <span class="co">// store estimates glm logit</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">quietly</span>: <span class="kw">probit</span> dream flipper_length_mm body_mass_g</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">est</span> <span class="kw">store</span> usual_probit <span class="co">// store estimates usual probit</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>. <span class="kw">quietly</span>: <span class="kw">glm</span> dream flipper_length_mm body_mass_g, <span class="kw">link</span>(<span class="kw">probit</span>) <span class="kw">family</span>(binomial) </span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1"></a>. <span class="kw">est</span> <span class="kw">store</span> glm_probit <span class="co">// store estimates glm probit</span></span></code></pre></div>
+</div>
+<div id="results" class="slide section level1">
+<h1>Results</h1>
+<div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>. <span class="kw">est</span> <span class="kw">table</span> usual_OLS glm_OLS usual_logit glm_logit usual_probit glm_probit</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>─────────────┬──────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    Variable │ usual_OLS     glm_OLS     usual_lo~t   glm_logit    usual_pr~t   glm_probit  </span>
+<span id="cb18-5"><a href="#cb18-5"></a>─────────────┼──────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb18-6"><a href="#cb18-6"></a>_            │</span>
+<span id="cb18-7"><a href="#cb18-7"></a> body_mass_g │  .00037535                                                                   </span>
+<span id="cb18-8"><a href="#cb18-8"></a>flipper_le~<span class="fu">m</span> │  -.1006443                                                                   </span>
+<span id="cb18-9"><a href="#cb18-9"></a>       <span class="dt">_cons</span> │  35.794997                                                                   </span>
+<span id="cb18-10"><a href="#cb18-10"></a>─────────────┼──────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb18-11"><a href="#cb18-11"></a>culmen_dep~<span class="fu">m</span> │</span>
+<span id="cb18-12"><a href="#cb18-12"></a> body_mass_g │               .00037535                                                      </span>
+<span id="cb18-13"><a href="#cb18-13"></a>flipper_le~<span class="fu">m</span> │               -.1006443                                                      </span>
+<span id="cb18-14"><a href="#cb18-14"></a>       <span class="dt">_cons</span> │               35.794997                                                      </span>
+<span id="cb18-15"><a href="#cb18-15"></a>─────────────┼──────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb18-16"><a href="#cb18-16"></a>dream        │</span>
+<span id="cb18-17"><a href="#cb18-17"></a>flipper_le~<span class="fu">m</span> │                            -.0160116    -.0160116   -.01114532   -.01114532  </span>
+<span id="cb18-18"><a href="#cb18-18"></a> body_mass_g │                            -.0013785    -.0013785   -.00082575   -.00082575  </span>
+<span id="cb18-19"><a href="#cb18-19"></a>       <span class="dt">_cons</span> │                             8.193819     8.193819    5.2018764    5.2018764  </span>
+<span id="cb18-20"><a href="#cb18-20"></a>─────────────┴──────────────────────────────────────────────────────────────────────────────</span></code></pre></div>
+</div>
+</body>
+</html>

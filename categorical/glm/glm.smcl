@@ -1,0 +1,105 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/glm/glm.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}18 Jun 2020, 21:38:23
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}18 Jun 2020
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}21:38:23
+{txt}
+{com}. //_3
+. clear all
+{res}{txt}
+{com}. //_4
+. use penguins.dta, clear
+{txt}
+{com}. //_5
+. quietly: regress culmen_depth_mm body_mass_g flipper_length_mm
+{txt}
+{com}. //_6
+. est store usual_OLS // store estimates usual OLS
+{txt}
+{com}. //_7
+. quietly: glm culmen_depth_mm body_mass_g flipper_length_mm, link(identity) family(gaussian)
+{txt}
+{com}. //_8
+. est store glm_OLS // store estimates glm OLS
+{txt}
+{com}. //_9
+. tabulate island
+
+     {txt}island {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+     Biscoe {c |}{res}        168       48.84       48.84
+{txt}      Dream {c |}{res}        124       36.05       84.88
+{txt}  Torgersen {c |}{res}         52       15.12      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}        344      100.00
+{txt}
+{com}. //_10
+. generate dream = island == 2
+{txt}
+{com}. //_11
+. label variable dream "Penguin Lives on Dream Island"
+{txt}
+{com}. //_12
+. quietly: logit dream flipper_length_mm body_mass_g 
+{txt}
+{com}. //_13
+. est store usual_logit // store estimates usual logit
+{txt}
+{com}. //_14
+. quietly: glm dream flipper_length_mm body_mass_g, link(logit) family(binomial)
+{txt}
+{com}. //_15
+. est store glm_logit // store estimates glm logit
+{txt}
+{com}. //_16
+. quietly: probit dream flipper_length_mm body_mass_g
+{txt}
+{com}. //_17
+. est store usual_probit // store estimates usual probit
+{txt}
+{com}. //_18
+. quietly: glm dream flipper_length_mm body_mass_g, link(probit) family(binomial) 
+{txt}
+{com}. //_19
+. est store glm_probit // store estimates glm probit
+{txt}
+{com}. //_20
+. est table usual_OLS glm_OLS usual_logit glm_logit usual_probit glm_probit
+{res}
+{txt}{hline 12}{c -}{c TT}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{ralign 12:Variable} {c |} {center 10:usual_OLS} {space 1} {center 10:glm_OLS} {space 1} {center 10:usual_lo~t} {space 1} {center 10:glm_logit} {space 1} {center 10:usual_pr~t} {space 1} {center 10:glm_probit} {space 1}
+{hline 12}{c -}{c +}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{res}{txt}{res}_            {txt}{c |}{res}
+{txt}{space 1}body_mass_g {c |}{res} {ralign 10:.00037535}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}
+{res}{txt}flipper_le~m {c |}{res} {ralign 10:-.1006443}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}
+{res}{txt}{space 7}_cons {c |}{res} {ralign 10:35.794997}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}
+{res}{txt}{hline 12}{c -}{c +}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{res}{txt}{res}culmen_dep~m {txt}{c |}{res}
+{txt}{space 1}body_mass_g {c |}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:.00037535}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}
+{res}{txt}flipper_le~m {c |}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:-.1006443}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}
+{res}{txt}{space 7}_cons {c |}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:35.794997}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}
+{res}{txt}{hline 12}{c -}{c +}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{res}{txt}{res}dream        {txt}{c |}{res}
+{txt}flipper_le~m {c |}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:-.0160116}{txt} {space 1}{res} {ralign 10:-.0160116}{txt} {space 1}{res} {ralign 10:-.01114532}{txt} {space 1}{res} {ralign 10:-.01114532}{txt} {space 1}
+{res}{txt}{space 1}body_mass_g {c |}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:-.0013785}{txt} {space 1}{res} {ralign 10:-.0013785}{txt} {space 1}{res} {ralign 10:-.00082575}{txt} {space 1}{res} {ralign 10:-.00082575}{txt} {space 1}
+{res}{txt}{space 7}_cons {c |}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:}{txt} {space 1}{res} {ralign 10:8.193819}{txt} {space 1}{res} {ralign 10:8.193819}{txt} {space 1}{res} {ralign 10:5.2018764}{txt} {space 1}{res} {ralign 10:5.2018764}{txt} {space 1}
+{res}{txt}{hline 12}{c -}{c BT}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{res}{txt}
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/glm/glm.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}18 Jun 2020, 21:38:24
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

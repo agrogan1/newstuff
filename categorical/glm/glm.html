@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Generalized Linear Models</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Generalized Linear Models</h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">18 Jun 2020 21:38:13</p>
+</header>
+<h1 id="introduction">Introduction</h1>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<blockquote>
+<p>This discussion closely follows the Stata help for the <em>generalized linear model</em>, see <code>help glm</code>.</p>
+</blockquote>
+<p>Briefly, per Stata documentation, in the <em>generalized linear model</em> framework, we consider models of the form:</p>
+<p><span class="math display">\[
+    g(E(y)) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...
+\]</span></p>
+<p>where y is distributed as <span class="math inline">\(F\)</span> <em>i.e.</em> <span class="math inline">\(y \sim F\)</span>.</p>
+<p><span class="math inline">\(g(y)\)</span> is called the link function; <span class="math inline">\(F\)</span> is called the distribution. Hence:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Link</th>
+<th>Distribution</th>
+<th>Standard Command</th>
+<th>glm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>identity</td>
+<td>normal</td>
+<td><code>regress y x</code></td>
+<td><code>glm y x, link(identity) family(gaussian)</code></td>
+</tr>
+<tr class="even">
+<td>logit</td>
+<td>bernoulli</td>
+<td><code>logit y x</code></td>
+<td><code>glm y x, link(logit) family(binomial)</code></td>
+</tr>
+<tr class="odd">
+<td>probit</td>
+<td>bernoulli</td>
+<td><code>probit y x</code></td>
+<td><code>glm y x, link(probit) family(binomial)</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="palmer-penguins">Palmer Penguins</h1>
+<p>Thes examples use the <em>Palmer Penguins</em> data set: <a href="https://github.com/allisonhorst/palmerpenguins/blob/master/README.md">https://github.com/allisonhorst/palmerpenguins</a>.</p>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. use penguins.dta, clear
+</pre>
+<figure>
+<img src="lter_penguins.png" style="width:30.0%" alt="" /><figcaption>Palmer Penguins Illustration from <span class="citation" data-cites="allison_horst">@allison_horst</span></figcaption>
+</figure>
+<h1 id="models">Models</h1>
+<blockquote>
+<p>I use the Stata prefix <code>quietly</code> to run the models without output. I then store the results using <code>estimates store</code>. Finally, I present all the results together in compact form using <code>estimates table</code>.</p>
+</blockquote>
+<h2 id="what-predicts-culmen-depth">What Predicts Culmen Depth?</h2>
+<figure>
+<img src="culmen_depth.png" style="width:20.0%" alt="" /><figcaption>Culmen Depth from <span class="citation" data-cites="allison_horst">@allison_horst</span></figcaption>
+</figure>
+<pre class='stata'>. quietly: regress culmen_depth_mm body_mass_g flipper_length_mm
+</pre>
+<pre class='stata'>. est store usual_OLS // store estimates usual OLS
+</pre>
+<pre class='stata'>. quietly: glm culmen_depth_mm body_mass_g flipper_length_mm, link(identity) family(gaussian)
+</pre>
+<pre class='stata'>. est store glm_OLS // store estimates glm OLS
+</pre>
+<h2 id="what-predicts-that-a-penguin-lives-on-dream-island">What Predicts That A Penguin Lives on Dream Island?</h2>
+<pre class='stata'>. tabulate island
+
+     island │      Freq.     Percent        Cum.
+────────────┼───────────────────────────────────
+     Biscoe │        168       48.84       48.84
+      Dream │        124       36.05       84.88
+  Torgersen │         52       15.12      100.00
+────────────┼───────────────────────────────────
+      Total │        344      100.00
+</pre>
+<pre class='stata'>. generate dream = island == 2
+</pre>
+<pre class='stata'>. label variable dream "Penguin Lives on Dream Island"
+</pre>
+<pre class='stata'>. quietly: logit dream flipper_length_mm body_mass_g 
+</pre>
+<pre class='stata'>. est store usual_logit // store estimates usual logit
+</pre>
+<pre class='stata'>. quietly: glm dream flipper_length_mm body_mass_g, link(logit) family(binomial)
+</pre>
+<pre class='stata'>. est store glm_logit // store estimates glm logit
+</pre>
+<pre class='stata'>. quietly: probit dream flipper_length_mm body_mass_g
+</pre>
+<pre class='stata'>. est store usual_probit // store estimates usual probit
+</pre>
+<pre class='stata'>. quietly: glm dream flipper_length_mm body_mass_g, link(probit) family(binomial) 
+</pre>
+<pre class='stata'>. est store glm_probit // store estimates glm probit
+</pre>
+
+<h1 id="results">Results</h1>
+<pre class='stata'>. est table usual_OLS glm_OLS usual_logit glm_logit usual_probit glm_probit
+
+─────────────┬──────────────────────────────────────────────────────────────────────────────
+    Variable │ usual_OLS     glm_OLS     usual_lo~t   glm_logit    usual_pr~t   glm_probit  
+─────────────┼──────────────────────────────────────────────────────────────────────────────
+_            │
+ body_mass_g │  .00037535                                                                   
+flipper_le~m │  -.1006443                                                                   
+       _cons │  35.794997                                                                   
+─────────────┼──────────────────────────────────────────────────────────────────────────────
+culmen_dep~m │
+ body_mass_g │               .00037535                                                      
+flipper_le~m │               -.1006443                                                      
+       _cons │               35.794997                                                      
+─────────────┼──────────────────────────────────────────────────────────────────────────────
+dream        │
+flipper_le~m │                            -.0160116    -.0160116   -.01114532   -.01114532  
+ body_mass_g │                            -.0013785    -.0013785   -.00082575   -.00082575  
+       _cons │                             8.193819     8.193819    5.2018764    5.2018764  
+─────────────┴──────────────────────────────────────────────────────────────────────────────
+</pre>
+</body>
+</html>
