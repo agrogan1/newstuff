@@ -20,7 +20,7 @@ $$
 
 where y is distributed as $F$ *i.e.* $y \sim F$.
 
-$g(y)$ is called the link function; $F$ is called the distribution. Hence:
+$g$ is called the link function; $F$ is called the distribution. Hence:
 
 | Link      |  Distribution   | Standard Command   | glm                                        |
 |-----------|-----------------|--------------------|--------------------------------------------|
@@ -45,7 +45,6 @@ Thes examples use the *Palmer Penguins* data set: [https://github.com/allisonhor
 ## What Predicts Culmen Depth?
 
 ![Culmen Depth from @allison_horst](culmen_depth.png){width=20%}
-
 
     quietly: regress culmen_depth_mm body_mass_g flipper_length_mm
 	
