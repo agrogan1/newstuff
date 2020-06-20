@@ -71,7 +71,7 @@ rglwidget()
 ```
 
 <aside>
-The currently available drafts of slides for the course can be found [here](https://agrogan1.github.io/newstuff/categorical/README.html)
+<span style="background-color:#FFFF00">The currently available drafts of slides for the course can be found [here](https://agrogan1.github.io/newstuff/categorical/README.html)</span>
 </aside>
 
 > <span style="background-color:cyan">Instruction will be conducted in Stata, so basic knowledge of descriptive statistics and OLS in Stata is a prerequisite.</span>
