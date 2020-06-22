@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}15 Jun 2020, 17:17:29
+ {txt}opened on:  {res}22 Jun 2020, 11:10:50
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}15 Jun 2020
+{res}22 Jun 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}17:17:29
+{res}11:10:50
 {txt}
 {com}. //_3
 . clear all
@@ -74,7 +74,20 @@ variable name   type    format     label      variable label
 {txt}{hline}
 Sorted by: 
 
-{com}. //_6
+{com}. //_6q
+. twoway (scatter Height5 Fertilizer if Fertilizer == 1) ///
+> (scatter Height5 Fertilizer if Fertilizer == 2), ///
+> title("Tree Height by Fertilizer") ///
+> xtitle("Fertilizer") xlabel("none") ///
+> ytitle("Tree Height At Year 5") ///
+> legend(order(1 "Fertilizer" 2 "No Fertilizer")) ///
+> scheme(michigan)
+{res}{txt}
+{com}.     
+. quietly: graph export myscatter.png, width(500) replace
+{txt}
+{com}. 
+. //_7
 . ttest Height5, by(Fertilizer)
 
 {txt}Two-sample t test with equal variances
@@ -94,11 +107,11 @@ combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
     {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
 {txt}
-{com}. //_7
+{com}. //_8
 . display %5.2f r(mu_2)-r(mu_1)
 {res}-14.77
 {txt}
-{com}. //_8
+{com}. //_9
 . regress Height5 Fertilizer Height0 Competition
 
 {txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        72
@@ -117,11 +130,11 @@ combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
 {txt}{space 7}_cons {c |}{col 14}{res}{space 2} 39.22163{col 26}{space 2} 6.189971{col 37}{space 1}    6.34{col 46}{space 3}0.000{col 54}{space 4} 26.86974{col 67}{space 3} 51.57353
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
-{com}. //_9
+{com}. //_10
 . display %5.2f _b[Fertilizer]
 {res}-14.72
 {txt}
-{com}. //_10
+{com}. //_11
 . teffects psmatch (Height5) (Fertilizer Height0 Competition)
 {res}
 {txt}Treatment-effects estimation{col 48}Number of obs {col 67}= {res}        72
@@ -137,14 +150,14 @@ combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
 {space 2}(NF vs F)  {c |}{col 14}{res}{space 2}-12.71019{col 26}{space 2} 1.988531{col 37}{space 1}   -6.39{col 46}{space 3}0.000{col 54}{space 4}-16.60763{col 67}{space 3}-8.812737
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_11q
+{com}. //_12q
 . matrix b = e(b) // get matrix of coefficients
 {txt}
-{com}. //_12
+{com}. //_13
 . display %5.2f b[1,1]
 {res}-12.71
 {txt}
-{com}. //_13
+{com}. //_14
 . 
 . recode Fertilizer (2=1)(1=0), generate(F) // recode as 1/0
 {txt}(72 differences between Fertilizer and F)
@@ -188,7 +201,7 @@ Iteration 2:{space 3}log likelihood = {res:-49.898334}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}15 Jun 2020, 17:17:33
+ {txt}closed on:  {res}22 Jun 2020, 11:10:54
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
