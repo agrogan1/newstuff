@@ -72,6 +72,7 @@ We can even graph this.
 
     twoway scatter odds risk_it_happened it_happened, ///
 	title("Risk and Odds") ///
+	xtitle("How many times out of 100 did this happen?") ///
 	scheme(michigan)
 
 	quietly: graph export myscatter.png, width(500) replace
