@@ -64,7 +64,13 @@ p1 <- ggplot(data = NULL,
 
 knit_hooks$set(webgl = hook_webgl)
 
-rayshader::plot_gg(p1, zoom = .8)
+rayshader::plot_gg(p1, zoom = .8) 
+
+# %>% 
+#   render_movie(filename = "logistic",
+#                type = "orbit", 
+#                frames = 360,
+#                fps = 30)
 
 rglwidget()
  
