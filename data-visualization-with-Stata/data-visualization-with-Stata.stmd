@@ -21,8 +21,8 @@ geometry: margin=1 in
 
 # Variable Types
 
-* *categorical variables* represent unordered categories like *neighborhood*, or *religious affiliation*, or *place of residence*.
-* *continuous variables* represent a continuous scale like a *mental health scale*, or a *measure of life expectancy*.
+* *categorical variables* represent unordered categories like *race*, *ethnicity*, *neighborhood*, *religious affiliation*, or *place of residence*.
+* *continuous variables* represent a continuous scale like *income*, a *mental health scale*, or a *measure of life expectancy*.
 
 # A Data Visualization Strategy
 
