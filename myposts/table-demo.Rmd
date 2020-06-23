@@ -3,6 +3,11 @@ title: "Table Demo"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: 
+    toc: yes
+    fig_height: 3
+    number_sections: yes
+    highlight: default
   html_document: 
     highlight: haddock
     toc: yes
@@ -11,11 +16,7 @@ output:
       smooth_scroll: no
     number_sections: yes
     fig_height: 3
-  pdf_document: 
-    toc: yes
-    fig_height: 3
-    number_sections: yes
-    highlight: default
+    fig_caption: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -27,11 +28,21 @@ knitr::opts_chunk$set(echo = TRUE)
 * [See the RMarkdown that generated this file](https://github.com/agrogan1/newstuff/blob/master/myposts/table-demo.Rmd)
 * [PDF looks great too!](./table-demo.pdf)
 
+# Palmer Penguins
+
+This example uses the *Palmer Penguins* data set: [https://github.com/allisonhorst/palmerpenguins](https://github.com/allisonhorst/palmerpenguins/blob/master/README.md).
+
+![Palmer Penguins Illustration from @allison_horst](lter_penguins.png){width=50%}
+
+![Illustration of Culmen](culmen_depth.png){width=25%}
+
 # Get Data
 
 ```{r}
 
-data("mtcars")
+library(palmerpenguins)
+
+data("penguins")
 
 ```
 
@@ -39,7 +50,7 @@ data("mtcars")
 
 ```{r}
 
-mtcars
+penguins
 
 ```
 
@@ -47,9 +58,11 @@ mtcars
 
 ```{r}
 
-# summary(mtcars)
+# summary(penguins)
 
-psych::describe(mtcars)
+# psych gives a good list of descriptive statistics
+
+psych::describe(penguins) 
 
 ```
 
@@ -59,7 +72,7 @@ psych::describe(mtcars)
 
 library(pander)
 
-pander(psych::describe(mtcars))
+pander(psych::describe(penguins))
 
 ```
 
@@ -67,7 +80,9 @@ pander(psych::describe(mtcars))
 
 ```{r}
 
-mynewdata <- subset(mtcars, select = c(mpg, hp))
+mynewdata <- subset(penguins, select = c(species,
+                                         island,
+                                         body_mass_g))
 
 pander(psych::describe(mynewdata))
 
