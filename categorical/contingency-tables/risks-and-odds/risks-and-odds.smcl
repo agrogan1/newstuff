@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/risks-and-odds/risks-and-odds.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}23 Jun 2020, 11:18:07
+ {txt}opened on:  {res}23 Jun 2020, 13:20:18
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}11:18:07
+{res}13:20:18
 {txt}
 {com}. //_3
 . clear all
@@ -93,7 +93,7 @@ now 10
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/risks-and-odds/risks-and-odds.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}23 Jun 2020, 11:18:09
+ {txt}closed on:  {res}23 Jun 2020, 13:20:19
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

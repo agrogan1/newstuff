@@ -28,6 +28,8 @@ As a result, the *event of interest* *didn't* happen $100 - \text{happened}$ tim
 
     generate it_didnt_happen = 100 - it_happened
 	
+> As you think through the rest of this example, it might be worth giving yourself a concrete example of the *event of interest*. What is a concrete example of a good thing that might happen, or a bad thing that might happen?
+	
 # Our Table of Information So Far
 	
 Let's list out our table of information so far:
