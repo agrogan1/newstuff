@@ -1,0 +1,79 @@
+% Risks and Odds
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+# Setup
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+    clear all
+	
+We are going to set up a table with 10 rows of information.
+
+    set obs 10 // 10 rows of information
+
+    generate events = 100 // 100 hypothetical events
+	
+In each row of the table our *event of interest* happened a different number of times. 
+
+In the code below we make use of Stata's special variable for the row number of a data set: `_n`.
+
+    generate it_happened = _n * 10
+	
+As a result, the *event of interest* *didn't* happen $100 - \text{happened}$ times.
+
+    generate it_didnt_happen = 100 - it_happened
+	
+# Our Table of Information So Far
+	
+Let's list out our table of information so far:
+
+    list, abbreviate(20)
+	
+# Risk
+
+Now let's think about risk: $\text{risk} = P(\text{event}) = \frac{\text{number of events}}{\text{number of events} + \text{number of non-events}}$
+
+    generate risk_it_happened = it_happened / (it_happened + it_didnt_happen)
+	
+There is also a risk that the event didn't happen.
+
+    generate risk_it_didnt_happen = it_didnt_happen / (it_happened + it_didnt_happen)
+	
+# Odds
+
+The odds are the probability that an event happened divided by the probability that it did not happen
+
+$\text{odds} = \frac{P(\text{happened})}{P(\text{didn't happen})}$
+
+$= \frac{\frac{\text{number of events}}{\text{number of events} + \text{number of non-events}}}{\frac{\text{number of non-events}}{\text{number of events} + \text{number of non-events}}}$
+
+    generate odds = risk_it_happened / risk_it_didnt_happen
+
+which incidentally reduces to
+
+$= \frac{\text{number of events}}{\text{number of non-events}}$
+
+# Look At Our Table Of Information
+
+Let's look at our table of information. 
+
+> Notice how the odds start to overstate the risk, as the risk becomes more common.
+
+    list it_happened it_didnt_happen risk_it_happened risk_it_didnt_happen odds, abbreviate(15)
+
+We can even graph this.
+
+    twoway scatter odds risk_it_happened it_happened, ///
+	title("Risk and Odds") ///
+	scheme(michigan)
+
+	quietly: graph export myscatter.png, width(500) replace
+
+![Risk and Odds](myscatter.png)
+
+
