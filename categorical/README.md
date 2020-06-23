@@ -5,6 +5,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
 * [A Review of Descriptive Statistics, OLS and an Introduction to Stata](https://agrogan1.github.io/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata-slidy.html)
 * [Data Visualization With Stata](https://agrogan.github.io/newstuff/https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html)
 * [Contingency Tables](https://agrogan1.github.io/newstuff/categorical/contingency-tables/contingency-tables-slidy.html)
+    + [Risks and Odds](https://agrogan1.github.io/newstuff/categorical/contingency-tables/risks-and-odds/risks-and-odds.html)
 * [Logistic Regression](https://agrogan1.github.io/newstuff/categorical/logistic-regression/logistic-regression-slidy.html)
     + [Generalized Linear Models](https://agrogan1.github.io/newstuff/categorical/glm/glm.html)
     + [Interactions in Logistic Regression](https://agrogan1.github.io/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.html)
