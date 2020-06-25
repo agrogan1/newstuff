@@ -1,4 +1,6 @@
-## Categorical Data Analysis
+---
+title: Categorical Data Analysis
+---
 
 New stuff for a course on *Categorical Data Analysis* that is going to get moved somewhere else at some point.
 
