@@ -85,7 +85,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    href="../UMslidy.css" />
   <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
-    <script type="text/javascript" async
+	<script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 </head>
@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>16 Jun 2020</p>
+<p>25 Jun 2020</p>
 </div>
 <div id="background" class="slide section level1">
 <h1>Background</h1>
@@ -216,13 +216,17 @@ Andy Grogan-Kaylor
 </div>
 <div id="plotting-margins" class="slide section level1">
 <h1>Plotting Margins</h1>
-<p><code>margins</code> provides a lot of results, which can be difficult to understand. Therefore, we <em>plot</em> these <code>margins</code> results. We use the <code>noci</code> option, so that a confidence interval is not displayed, to make the graph less cluttered.</p>
+<p><code>margins</code> provides a lot of results, which can be difficult to understand. Therefore, we use <code>marginsplot</code> to <em>plot</em> these <code>margins</code> results. The key command is <code>marginsplot</code>, which could be used on its own. I have simply added some options to improve the graphic design of the plot.</p>
 <blockquote>
 <p>There certainly seems to be some kind of interaction of <code>sex</code> and <code>age</code>.</p>
 </blockquote>
-<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. marginsplot, noci </span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  Variables that uniquely identify margins: age sex</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. marginsplot, <span class="co">///</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>&gt; <span class="dv">scheme</span>(michigan) <span class="co">/// </span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>&gt; plotopts(msize(vlarge)) <span class="co">///</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>&gt; plot1opts(lcolor(<span class="bn">navy</span>)) <span class="co">///</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>&gt; plot2opts(lcolor(<span class="bn">gold</span>))</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  Variables that uniquely identify margins: age sex</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mymarginsplot.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>(file mymarginsplot.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
