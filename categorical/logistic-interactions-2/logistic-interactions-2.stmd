@@ -52,15 +52,15 @@ We use the `margins` command to estimate predicted probabilities at different va
 
 # Plotting Margins
 
-`margins` provides a lot of results, which can be difficult to understand. Therefore, we use `marginsplot` to *plot* these `margins` results. The key command is `marginsplot`, which could be used on its own. I have simply added some options to improve the graphic design of the plot.
+`margins` provides a lot of results, which can be difficult to understand. Therefore, we use `marginsplot` to *plot* these `margins` results. The key command is `marginsplot`, which could be used on its own. I have simply added the [Michigan graph scheme](https://agrogan1.github.io/Stata/), as well as some options to improve the graphic design of the plot.
 
 > There certainly seems to be some kind of interaction of `sex` and `age`.
 
     marginsplot, ///
-	scheme(michigan) /// 
-	plotopts(msize(vlarge)) ///
-	plot1opts(lcolor(navy)) ///
-	plot2opts(lcolor(gold))
+	scheme(michigan) /// michigan graph scheme
+	plotopts(msize(vlarge)) /// larger plotting symbols
+	plot1opts(lcolor(navy)) /// line for first group is navy
+	plot2opts(lcolor(gold)) // line for second group is gold
 	
     graph export mymarginsplot.png, width(500) replace
 	

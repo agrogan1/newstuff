@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>25 Jun 2020</p>
+<p>28 Jun 2020</p>
 </div>
 <div id="background" class="slide section level1">
 <h1>Background</h1>
@@ -216,15 +216,15 @@ Andy Grogan-Kaylor
 </div>
 <div id="plotting-margins" class="slide section level1">
 <h1>Plotting Margins</h1>
-<p><code>margins</code> provides a lot of results, which can be difficult to understand. Therefore, we use <code>marginsplot</code> to <em>plot</em> these <code>margins</code> results. The key command is <code>marginsplot</code>, which could be used on its own. I have simply added some options to improve the graphic design of the plot.</p>
+<p><code>margins</code> provides a lot of results, which can be difficult to understand. Therefore, we use <code>marginsplot</code> to <em>plot</em> these <code>margins</code> results. The key command is <code>marginsplot</code>, which could be used on its own. I have simply added the <a href="https://agrogan1.github.io/Stata/">Michigan graph scheme</a>, as well as some options to improve the graphic design of the plot.</p>
 <blockquote>
 <p>There certainly seems to be some kind of interaction of <code>sex</code> and <code>age</code>.</p>
 </blockquote>
 <div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. marginsplot, <span class="co">///</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>&gt; <span class="dv">scheme</span>(michigan) <span class="co">/// </span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>&gt; plotopts(msize(vlarge)) <span class="co">///</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>&gt; plot1opts(lcolor(<span class="bn">navy</span>)) <span class="co">///</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>&gt; plot2opts(lcolor(<span class="bn">gold</span>))</span>
+<span id="cb7-2"><a href="#cb7-2"></a>&gt; <span class="dv">scheme</span>(michigan) <span class="co">/// michigan graph scheme</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>&gt; plotopts(msize(vlarge)) <span class="co">/// larger plotting symbols</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>&gt; plot1opts(lcolor(<span class="bn">navy</span>)) <span class="co">/// line for first group is navy</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>&gt; plot2opts(lcolor(<span class="bn">gold</span>)) <span class="co">// line for second group is gold</span></span>
 <span id="cb7-6"><a href="#cb7-6"></a></span>
 <span id="cb7-7"><a href="#cb7-7"></a>  Variables that uniquely identify margins: age sex</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mymarginsplot.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
