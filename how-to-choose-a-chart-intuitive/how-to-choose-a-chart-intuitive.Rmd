@@ -3,9 +3,11 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: 
+  bookdown::epub_book: default  
+  html_document:
     fig_width: 10
-    latex_engine: xelatex
+    highlight: haddock
+    code_download: yes
   bookdown::gitbook:
     split_by: none
     highlight: haddock
@@ -15,11 +17,9 @@ output:
       download:
       - how-to-choose-a-chart-intuitive.pdf
       - how-to-choose-a-chart-intuitive.epub
-  html_document:
+  pdf_document: 
     fig_width: 10
-    highlight: haddock
-    code_download: yes
-  bookdown::epub_book: default  
+    latex_engine: xelatex
 mainfont: Futura
 fontsize: 12pt
 classoption: landscape
@@ -68,8 +68,8 @@ outcomeC <- ifelse(outcome >= quantile(outcome, c(.50)),
 
 outcomeC <- factor(outcomeC,
                    levels = c(0,1),
-                   labels = c("Below \nMedian", 
-                              "At Or Above \nMedian"))
+                   labels = c("Did Not \nExperience \nOutcome", 
+                              "Experienced \nOutcome"))
 
 t <- round(runif(N, 1, 7), 
            digits = 2)
@@ -94,7 +94,9 @@ myoutcome <- ggplot(data = mydata,
                     aes(x = outcome,
                         fill = factor(1),
                         color = factor(2))) +
-  labs(title = "How Many People Experience This Outcome?") +
+  labs(title = "How Many People Experience This Outcome?",
+       x = "Outcome",
+       y = "Count") +
   scale_color_manual(values = c(michigancolors("angell hall ash"), 
                                 michigancolors("blue"))) +
   scale_fill_manual(values = c(michigancolors("blue"),
@@ -138,7 +140,8 @@ mybar <- ggplot(data = mydata,
   geom_bar(color = michigancolors("angell hall ash")) +
   scale_fill_manual(values = michigancolors()) +
   labs(title = "How Many People Are In Each Group?",
-       subtitle = "Bar Chart") +
+       subtitle = "Bar Chart",
+       y = "Count") +
   theme(legend.position = "none",
         title = element_text(size = rel(.5)))
 
@@ -151,10 +154,11 @@ mycomparisonC <- ggplot(data = mydata,
   scale_fill_manual(values = michigancolors()) +
   labs(title = "How Many People Experience Each Outcome?",
        subtitle = "Bar Chart With Comparison",
-       x = "") +
+       x = "",
+       y = "Count") +
   theme(legend.position = "none",
         title = element_text(size = rel(.5)),
-        axis.text.x = element_text(size = rel(.7),
+        axis.text.x = element_text(size = rel(.5),
                                    angle = 0,
                                    hjust = .5))
 
@@ -191,8 +195,8 @@ mylongitudinal <- ggplot(mydata,
   scale_color_manual(values = michigancolors("wave field green")) +
   labs(title = "Is the Outcome Changing Over Time?",
        subtitle = "Scatterplot",
-       x = "time",
-       y = "outcome") +
+       x = "Time",
+       y = "Outcome") +
   theme(legend.position = "none",
         title = element_text(size = rel(.5)),
         axis.text.y = element_blank(),
