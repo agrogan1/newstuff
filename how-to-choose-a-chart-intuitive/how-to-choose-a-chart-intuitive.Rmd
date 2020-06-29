@@ -3,11 +3,6 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  bookdown::epub_book: default  
-  html_document:
-    fig_width: 10
-    highlight: haddock
-    code_download: yes
   bookdown::gitbook:
     split_by: none
     highlight: haddock
@@ -17,9 +12,14 @@ output:
       download:
       - how-to-choose-a-chart-intuitive.pdf
       - how-to-choose-a-chart-intuitive.epub
+  html_document:
+    fig_width: 10
+    highlight: haddock
+    code_download: yes
   pdf_document: 
     fig_width: 10
     latex_engine: xelatex
+  bookdown::epub_book: default  
 mainfont: Futura
 fontsize: 12pt
 classoption: landscape
@@ -94,7 +94,7 @@ myoutcome <- ggplot(data = mydata,
                     aes(x = outcome,
                         fill = factor(1),
                         color = factor(2))) +
-  labs(title = "How Many People Experience This Outcome?",
+  labs(title = "How Many People \nExperience This Outcome?",
        x = "Outcome",
        y = "Count") +
   scale_color_manual(values = c(michigancolors("angell hall ash"), 
@@ -104,7 +104,7 @@ myoutcome <- ggplot(data = mydata,
   theme(legend.position = "none",
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
-        title = element_text(size = rel(.5)))
+        title = element_text(size = rel(.75)))
 
 ```
 
@@ -131,36 +131,41 @@ mybeeswarm <- myoutcome +
 
 mycomparison <- myoutcome + 
   geom_histogram(aes(fill = group, color = group)) + 
-  facet_wrap(~group, ncol = 1) +
-  labs(subtitle = "Histogram With Comparison")
+  facet_wrap(~group, 
+             ncol = 1, 
+             strip.position = "top") +
+  labs(subtitle = "Histogram With Comparison") +
+  theme(strip.text = element_text(size = rel(.75)))
 
 mybar <- ggplot(data = mydata,
                 aes(x = group,
                     fill = group)) +
   geom_bar(color = michigancolors("angell hall ash")) +
   scale_fill_manual(values = michigancolors()) +
-  labs(title = "How Many People Are In Each Group?",
+  labs(title = "How Many People \nAre In Each Group?",
        subtitle = "Bar Chart",
        y = "Count") +
   theme(legend.position = "none",
-        title = element_text(size = rel(.5)))
+        title = element_text(size = rel(.75)))
 
 mycomparisonC <- ggplot(data = mydata,
                         aes(x = outcomeC,
                             fill = group)) +
   geom_bar(color = michigancolors("angell hall ash")) + 
   facet_wrap(~group,
-             ncol = 2) +
+             ncol = 2, 
+             strip.position = "top") +
   scale_fill_manual(values = michigancolors()) +
-  labs(title = "How Many People Experience Each Outcome?",
+  labs(title = "How Many People \nExperience Each Outcome?",
        subtitle = "Bar Chart With Comparison",
        x = "",
        y = "Count") +
   theme(legend.position = "none",
-        title = element_text(size = rel(.5)),
+        title = element_text(size = rel(.75)),
         axis.text.x = element_text(size = rel(.5),
                                    angle = 0,
-                                   hjust = .5))
+                                   hjust = .5),
+        strip.text = element_text(size = rel(.75)))
 
 mypie <- ggplot(data = mydata,
                 aes(x = 1,
@@ -193,12 +198,12 @@ mylongitudinal <- ggplot(mydata,
   geom_point() +
   geom_smooth(color = michigancolors("arboretum blue")) +
   scale_color_manual(values = michigancolors("wave field green")) +
-  labs(title = "Is the Outcome Changing Over Time?",
+  labs(title = "Is the Outcome \nChanging Over Time?",
        subtitle = "Scatterplot",
        x = "Time",
        y = "Outcome") +
   theme(legend.position = "none",
-        title = element_text(size = rel(.5)),
+        title = element_text(size = rel(.75)),
         axis.text.y = element_blank(),
         axis.ticks.y=element_blank())
 
