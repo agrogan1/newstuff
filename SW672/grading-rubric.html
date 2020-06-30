@@ -4,13 +4,12 @@
     <title>Grading Rubric</title>
     <meta charset="utf-8" />
     <meta name="author" content="Andy Grogan-Kaylor" />
-    <meta name="date" content="2020-06-18" />
-    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <meta name="date" content="2020-06-30" />
     <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
     <script src="libs/viz-1.8.2/viz.js"></script>
     <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
     <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+    <link rel="stylesheet" href="animate.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -20,10 +19,12 @@ class: center, middle, inverse, title-slide
 ## SW672
 ### Andy Grogan-Kaylor
 ### University of Michigan
-### 2020-06-18
+### 2020-06-30
 
 ---
 
+
+class: animated, slideInRight
 
 &lt;style type="text/css"&gt;
 
@@ -57,17 +58,25 @@ body {
 
 # The Basics
 
-<div id="htmlwidget-7633524335b1bbfa7ff6" style="width:504px;height:504px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7633524335b1bbfa7ff6">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, \n  fontsize = 10,\n  rankdir = LR]\n\n  # several \"node\" statements\n  node [shape = circle,\n        fontname = Helvetica]\n  A; B\n\n  # several \"edge\" statements\n  A->B\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-88530edfc54e378fdbe4" style="width:504px;height:504px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-88530edfc54e378fdbe4">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, \n  fontsize = 10,\n  rankdir = LR]\n\n  # several \"node\" statements\n  node [shape = circle,\n        fontname = Helvetica]\n  A; B\n\n  # several \"edge\" statements\n  A->B\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
 ---
 # A Conceptual Focus
 
 * Disparities: How does membership in **A** affect the chances of outcome **B**?
+
+--
+
 * Effect of a Policy or Intervention: Do those who receive treatment or policy **A** have a different outcome **B**?
+
+--
+
 * Political Participation: How does membership in **A** affect the chances of voting or candidate or policy **B**?
 
 ---
+class: animated, slideInRight
+
 # Think Carefully About Design Elements
 
 1. Geometry: bars; lines; points; etc.
@@ -75,22 +84,31 @@ body {
 3. Well labeled axes
 4. Good informative title
 
+
+
+![](grading-rubric_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+
 ---
 # Wrap Your Visual In A Narrative
 
-.pull-left[
+<div id="htmlwidget-3878f74abbdda524a0d1" style="width:288px;height:144px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3878f74abbdda524a0d1">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, \n  fontsize = 10,\n  rankdir = LR]\n\n  # several \"node\" statements\n  node [shape = circle,\n        fontname = Helvetica]\n  A; B\n\n  # several \"edge\" statements\n  A->B\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
-<div id="htmlwidget-f0ebdf94b63a750a64f1" style="width:288px;height:144px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f0ebdf94b63a750a64f1">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, \n  fontsize = 10,\n  rankdir = LR]\n\n  # several \"node\" statements\n  node [shape = circle,\n        fontname = Helvetica]\n  A; B\n\n  # several \"edge\" statements\n  A->B\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-
-]
-.pull-right[ 
 * Why is *A* important? Is *A* prevalent? Widespread? Serious?
+
+--
+
 * Why is *B* important? Is *B* prevalent? Widespread? Serious?
+
+--
+
 * If *A* is connected to *B*, this means: __________
 * If *A* is not connected to *B*, this means: __________
-]
+
 ---
+class: animated, slideInRight
+
 # The Difficult Stuff
 
 * Causality

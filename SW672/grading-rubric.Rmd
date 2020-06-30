@@ -7,11 +7,14 @@ date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
+    css: animate.css
     nature:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
+
+class: animated, slideInRight
 
 ```{css, echo=FALSE}
 
@@ -79,10 +82,18 @@ digraph boxes_and_circles {
 # A Conceptual Focus
 
 * Disparities: How does membership in **A** affect the chances of outcome **B**?
+
+--
+
 * Effect of a Policy or Intervention: Do those who receive treatment or policy **A** have a different outcome **B**?
+
+--
+
 * Political Participation: How does membership in **A** affect the chances of voting or candidate or policy **B**?
 
 ---
+class: animated, slideInRight
+
 # Think Carefully About Design Elements
 
 1. Geometry: bars; lines; points; etc.
@@ -90,10 +101,43 @@ digraph boxes_and_circles {
 3. Well labeled axes
 4. Good informative title
 
+```{r}
+
+x <- round(rnorm(100, 100, 10), digits = 0)
+
+```
+
+```{r, eval=TRUE, fig.height=3}
+
+library(ggplot2)
+
+library(ggbeeswarm)
+
+ggplot(data = NULL,
+       aes(x = x,
+           fill = factor(x))) +
+  geom_histogram() +
+  geom_label(aes(x = 120, 
+                 y = 10, 
+                 label = "possibly \ninformative \nkey takeaway"),
+             size = 2, 
+             fill = "white",
+             color = "red") +
+  ylab("possibly another \ndimension of the data") +
+  xlab("one dimension of the data") +
+  labs(title = "Informative Title",
+       subtitle = "Maybe The Title Is Even Your Main Takeaway",
+       caption = "Every extra 'dimension' (x axis, y axis, color, shape) 
+       should convey information.
+       \n Words should be spelled out.") + 
+  theme_minimal() +
+  theme(legend.position = "none")
+
+```
+
+
 ---
 # Wrap Your Visual In A Narrative
-
-.pull-left[
 
 ```{r, fig.height=2, fig.width=4}
 
@@ -117,14 +161,20 @@ digraph boxes_and_circles {
 
 ```
 
-]
-.pull-right[ 
 * Why is *A* important? Is *A* prevalent? Widespread? Serious?
+
+--
+
 * Why is *B* important? Is *B* prevalent? Widespread? Serious?
+
+--
+
 * If *A* is connected to *B*, this means: __________
 * If *A* is not connected to *B*, this means: __________
-]
+
 ---
+class: animated, slideInRight
+
 # The Difficult Stuff
 
 * Causality
