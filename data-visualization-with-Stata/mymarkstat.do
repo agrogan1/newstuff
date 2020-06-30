@@ -20,7 +20,9 @@ graph close _all
 
 * pandoc
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "UMslidy.css"  "/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.html" -o "/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html" 
+doedit spruceslidy.css
+
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "spruceslidy.css"  "/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.html" -o "/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html" 
 
 
 
