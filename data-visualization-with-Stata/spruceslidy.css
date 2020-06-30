@@ -31,4 +31,8 @@ pre {
   color: black;
   background-color: white;
 }
-
+p.caption { 
+  display: block;
+  color: darkgreen;
+  font-weight: bold;
+}
