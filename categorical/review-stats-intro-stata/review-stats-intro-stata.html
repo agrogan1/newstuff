@@ -57,7 +57,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">A Review of Descriptive Statistics, OLS and an Introduction to Stata</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">4 Jun 2020</p>
+<p class="date">1 Jul 2020</p>
 </header>
 <h1 id="social-service-agency-data">Social Service Agency Data</h1>
 <style>h1 {color: black;} h2 {color: #FF0099} blockquote {border-left: 5px solid #FF0099; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -73,10 +73,10 @@ Contains data from clients.dta
   obs:           521                          Simulated Clients
  vars:             8                          3 Jun 2020 15:14
  size:        29,176                          
-────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────────
               storage   display    value
 variable name   type    format     label      variable label
-────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────────
 ID              double  %9.0g                 ID
 age             double  %9.0g                 age
 gender          long    %9.0g      gender     gender
@@ -85,7 +85,7 @@ mental_health~1 double  %9.0g                 mental_health_T1
 mental_health~2 double  %9.0g                 mental_health_T2
 latitude        double  %9.0g                 latitude
 longitude       double  %9.0g                 longitude
-────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
 <h1 id="one-line-stata">One Line Stata</h1>
@@ -280,24 +280,23 @@ mental_health_T1 │  -.0327405    .044321    -0.74   0.460    -.1198123    .054
 ─────────────┼──────────────────────────────────   Adj R-squared   =    0.5078
        Total │  28658.4065       520  55.1123202   Root MSE        =    5.2081
 
-───────────────────┬────────────────────────────────────────────────────────────────
-  mental_health_T2 │      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
-───────────────────┼────────────────────────────────────────────────────────────────
-  mental_health_T1 │   .0038108   .0940124     0.04   0.968    -.1808858    .1885074
-                   │
-           program │
-        Program B  │   14.13882   11.07298     1.28   0.202    -7.615155    35.89279
-        Program C  │   2.227825    11.6862     0.19   0.849    -20.73087    25.18653
-        Program D  │   27.30439    22.3002     1.22   0.221    -16.50657    71.11535
-                   │
-           program#│
-c.mental_health_T1 │
-        Program B  │  -.0375708   .1162481    -0.32   0.747    -.2659517    .1908101
-        Program C  │  -.0286832   .1228833    -0.23   0.816    -.2700997    .2127332
-        Program D  │  -.2851331   .2385022    -1.20   0.232    -.7536944    .1834281
-                   │
-             _cons │   94.43455   8.938253    10.57   0.000     76.87446    111.9946
-───────────────────┴────────────────────────────────────────────────────────────────
+───────────────────────────┬────────────────────────────────────────────────────────────────
+          mental_health_T2 │      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+───────────────────────────┼────────────────────────────────────────────────────────────────
+          mental_health_T1 │   .0038108   .0940124     0.04   0.968    -.1808858    .1885074
+                           │
+                   program │
+                Program B  │   14.13882   11.07298     1.28   0.202    -7.615155    35.89279
+                Program C  │   2.227825    11.6862     0.19   0.849    -20.73087    25.18653
+                Program D  │   27.30439    22.3002     1.22   0.221    -16.50657    71.11535
+                           │
+program#c.mental_health_T1 │
+                Program B  │  -.0375708   .1162481    -0.32   0.747    -.2659517    .1908101
+                Program C  │  -.0286832   .1228833    -0.23   0.816    -.2700997    .2127332
+                Program D  │  -.2851331   .2385022    -1.20   0.232    -.7536944    .1834281
+                           │
+                     _cons │   94.43455   8.938253    10.57   0.000     76.87446    111.9946
+───────────────────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="regression-assumptions-and-the-issue-of-normality">Regression Assumptions and the Issue of “Normality”</h1>
 <h1 id="questions">Questions?</h1>

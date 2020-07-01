@@ -30,7 +30,7 @@ graph close _all
 
 * pandoc
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UNICEFslidy.css"  "/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.html" -o "/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata-slidy.html" 
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../peopleslidy.css"  "/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.html" -o "/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata-slidy.html" 
 
 * cd /Applications/RStudio.app/Contents/MacOS/pandoc
 

@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 4 Jun 2020, 14:26:30
+ {txt}opened on:  {res} 1 Jul 2020, 16:56:23
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 4 Jun 2020
+{res} 1 Jul 2020
 {txt}
 {com}. //_2
 . use clients.dta, clear // use (get) the data
@@ -188,31 +188,30 @@ mental_health_T1 {c |}{col 18}{res}{space 2}-.0327405{col 30}{space 2}  .044321{
 {txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.5078
 {txt}       Total {c |} {res} 28658.4065       520  55.1123202   {txt}Root MSE        =   {res} 5.2081
 
-{txt}{hline 19}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}  mental_health_T2{col 20}{c |}      Coef.{col 32}   Std. Err.{col 44}      t{col 52}   P>|t|{col 60}     [95% Con{col 73}f. Interval]
-{hline 19}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 2}mental_health_T1 {c |}{col 20}{res}{space 2} .0038108{col 32}{space 2} .0940124{col 43}{space 1}    0.04{col 52}{space 3}0.968{col 60}{space 4}-.1808858{col 73}{space 3} .1885074
-{txt}{space 18} {c |}
-{space 11}program {c |}
-{space 8}Program B  {c |}{col 20}{res}{space 2} 14.13882{col 32}{space 2} 11.07298{col 43}{space 1}    1.28{col 52}{space 3}0.202{col 60}{space 4}-7.615155{col 73}{space 3} 35.89279
-{txt}{space 8}Program C  {c |}{col 20}{res}{space 2} 2.227825{col 32}{space 2}  11.6862{col 43}{space 1}    0.19{col 52}{space 3}0.849{col 60}{space 4}-20.73087{col 73}{space 3} 25.18653
-{txt}{space 8}Program D  {c |}{col 20}{res}{space 2} 27.30439{col 32}{space 2}  22.3002{col 43}{space 1}    1.22{col 52}{space 3}0.221{col 60}{space 4}-16.50657{col 73}{space 3} 71.11535
-{txt}{space 18} {c |}
-{space 11}program#{c |}
-c.mental_health_T1 {c |}
-{space 8}Program B  {c |}{col 20}{res}{space 2}-.0375708{col 32}{space 2} .1162481{col 43}{space 1}   -0.32{col 52}{space 3}0.747{col 60}{space 4}-.2659517{col 73}{space 3} .1908101
-{txt}{space 8}Program C  {c |}{col 20}{res}{space 2}-.0286832{col 32}{space 2} .1228833{col 43}{space 1}   -0.23{col 52}{space 3}0.816{col 60}{space 4}-.2700997{col 73}{space 3} .2127332
-{txt}{space 8}Program D  {c |}{col 20}{res}{space 2}-.2851331{col 32}{space 2} .2385022{col 43}{space 1}   -1.20{col 52}{space 3}0.232{col 60}{space 4}-.7536944{col 73}{space 3} .1834281
-{txt}{space 18} {c |}
-{space 13}_cons {c |}{col 20}{res}{space 2} 94.43455{col 32}{space 2} 8.938253{col 43}{space 1}   10.57{col 52}{space 3}0.000{col 60}{space 4} 76.87446{col 73}{space 3} 111.9946
-{txt}{hline 19}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          mental_health_T2{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}mental_health_T1 {c |}{col 28}{res}{space 2} .0038108{col 40}{space 2} .0940124{col 51}{space 1}    0.04{col 60}{space 3}0.968{col 68}{space 4}-.1808858{col 81}{space 3} .1885074
+{txt}{space 26} {c |}
+{space 19}program {c |}
+{space 16}Program B  {c |}{col 28}{res}{space 2} 14.13882{col 40}{space 2} 11.07298{col 51}{space 1}    1.28{col 60}{space 3}0.202{col 68}{space 4}-7.615155{col 81}{space 3} 35.89279
+{txt}{space 16}Program C  {c |}{col 28}{res}{space 2} 2.227825{col 40}{space 2}  11.6862{col 51}{space 1}    0.19{col 60}{space 3}0.849{col 68}{space 4}-20.73087{col 81}{space 3} 25.18653
+{txt}{space 16}Program D  {c |}{col 28}{res}{space 2} 27.30439{col 40}{space 2}  22.3002{col 51}{space 1}    1.22{col 60}{space 3}0.221{col 68}{space 4}-16.50657{col 81}{space 3} 71.11535
+{txt}{space 26} {c |}
+program#c.mental_health_T1 {c |}
+{space 16}Program B  {c |}{col 28}{res}{space 2}-.0375708{col 40}{space 2} .1162481{col 51}{space 1}   -0.32{col 60}{space 3}0.747{col 68}{space 4}-.2659517{col 81}{space 3} .1908101
+{txt}{space 16}Program C  {c |}{col 28}{res}{space 2}-.0286832{col 40}{space 2} .1228833{col 51}{space 1}   -0.23{col 60}{space 3}0.816{col 68}{space 4}-.2700997{col 81}{space 3} .2127332
+{txt}{space 16}Program D  {c |}{col 28}{res}{space 2}-.2851331{col 40}{space 2} .2385022{col 51}{space 1}   -1.20{col 60}{space 3}0.232{col 68}{space 4}-.7536944{col 81}{space 3} .1834281
+{txt}{space 26} {c |}
+{space 21}_cons {c |}{col 28}{res}{space 2} 94.43455{col 40}{space 2} 8.938253{col 51}{space 1}   10.57{col 60}{space 3}0.000{col 68}{space 4} 76.87446{col 81}{space 3} 111.9946
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 4 Jun 2020, 14:26:34
+ {txt}closed on:  {res} 1 Jul 2020, 16:56:26
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
