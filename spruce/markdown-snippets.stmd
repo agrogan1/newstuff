@@ -1,0 +1,23 @@
+## Fixed Effects Regression
+
+> A *fixed effects regression* model, and the models following, require that we reshape the data to *long* form where every observation has *multiple rows*: *1 row per timepoint*.
+
+```s
+
+    keep Tree Competition Fertilizer Height0 Height5 Diameter0 Diameter5 // keep only relevant variables
+	
+    reshape long Height Diameter, i(Tree) j(Year) // reshape to long
+ 
+```
+
+```s
+
+    xtreg Height Year Fertilizer Competition, i(Tree) fe
+
+```
+
+## Difference in Differences
+
+## Multilevel Longitudinal Model
+
+## "Hybrid" Model
