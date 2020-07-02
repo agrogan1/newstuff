@@ -85,10 +85,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    href="spruceslidy.css" />
   <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
-    <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<script type="text/javascript" async
+	<script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 </head>
@@ -102,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>15 Jun 2020 17:17:10</p>
+<p>2 Jul 2020 11:59:16</p>
 </div>
 <div id="background-r.1" class="title-slide slide section level1"><h1>Background 🌲</h1><p>Chihara and Hesterberg (2018) provide a data set concerning the growth of Black Spruce Trees. According to these authors:</p>
 <blockquote>
@@ -126,7 +123,7 @@ Andy Grogan-Kaylor
 <blockquote>
 <p>What happens to the association of <em>fertilizer</em> and <em>tree height</em> when we control for possible confounding variables <span class="math inline">\(z\)</span> using various statistical strategies?</p>
 </blockquote>
-<p>(For more interactive exploration of these ideas, see <a href="https://agrogan.shinyapps.io/causality/">this demo</a>).</p></div>
+<p>(For more interactive exploration of these ideas, see <a href="https://agrogan.shinyapps.io/causality/?_inputs_&amp;sidebarCollapsed=false&amp;y=%22tree%20height%22&amp;sidebarItemExpanded=null&amp;x=%22fertilizer%22&amp;z=%22alternative%20explanation%22">this demo</a>).</p></div>
 <div id="setup-r.4" class="title-slide slide section level1"><h1>Setup 🌲</h1></div><div id="get-data" class="slide section level2">
 <h1>Get Data</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span>
@@ -160,7 +157,19 @@ Andy Grogan-Kaylor
 <span id="cb2-22"><a href="#cb2-22"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb2-23"><a href="#cb2-23"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
 </div>
-<div id="analyses-r.5" class="title-slide slide section level1"><h1>Analyses 🌲</h1></div><div id="t-test" class="slide section level2">
+<div id="spruce-data-and-causal-criteria-r.5" class="title-slide slide section level1"><h1>Spruce Data And Causal Criteria 🌲</h1><p>Let’s consider in turn each of the criteria for causality.</p>
+<ol class="incremental" style="list-style-type: decimal">
+<li>Empirically, <em>fertilizer</em> is correlated with <em>tree height</em>.</li>
+</ol>
+<div class="figure">
+<img src="myscatter.png" alt="" />
+<p class="caption">Scatterplot of Tree Height At Year 5 By Fertilizer Use</p>
+</div>
+<ol class="incremental" start="2" style="list-style-type: decimal">
+<li>From the research design, we know that <em>fertilizer</em> comes prior to <em>tree height at year 5</em>.</li>
+<li>We are going to use various statistical strategies–detailed below–to assess whether the association of <em>fertilizer</em> and <em>tree height</em> can be accounted for by any third variable.</li>
+</ol></div>
+<div id="analyses-r.6" class="title-slide slide section level1"><h1>Analyses 🌲</h1></div><div id="t-test" class="slide section level2">
 <h1>t Test</h1>
 <p>A t test compares the difference between the means of two groups to the standard error of the difference between means.</p>
 <p>Formally, <span class="math inline">\(t = \frac{\bar{x}_2 - \bar{x}_1}{s}\)</span> where s is the standard error of the estimate of the mean.</p>
@@ -190,7 +199,9 @@ Andy Grogan-Kaylor
 </div><div id="ols-regression" class="slide section level2">
 <h1>OLS Regression</h1>
 <p>A regression estimates the association of a 1 unit change in each of the independent variables with change in the dependent variable, while accounting for all of the other independent variables in the model.</p>
-<p>A regression controls for the additional observed variables that are included in the model.</p>
+<p><span class="math inline">\(y_i = \beta_0 + \beta_1 x_{1i} + \Sigma \beta_k x_{ki} + e_i\)</span></p>
+<p>Here <span class="math inline">\(x_{1i}\)</span> is the treatment variable of interest.</p>
+<p>A regression controls for the additional observed variables (<span class="math inline">\(x_{ki}\)</span>) that are included in the model.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">regress</span> Height5 Fertilizer Height0 Competition</span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3"></a>      Source │       SS           df       MS      Number <span class="kw">of</span> <span class="kw">obs</span>   =        72</span>
@@ -269,21 +280,15 @@ Andy Grogan-Kaylor
 <span id="cb6-34"><a href="#cb6-34"></a></span>
 <span id="cb6-35"><a href="#cb6-35"></a>. </span>
 <span id="cb6-36"><a href="#cb6-36"></a>. <span class="kw">graph</span> <span class="kw">export</span> mydensity.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
-<span id="cb6-37"><a href="#cb6-37"></a>(file mydensity.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb6-37"><a href="#cb6-37"></a>(file mydensity.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span>
+<span id="cb6-38"><a href="#cb6-38"></a></span>
+<span id="cb6-39"><a href="#cb6-39"></a>.     </span></code></pre></div>
 <div class="figure">
 <img src="mydensity.png" alt="" />
-<p class="caption">density plot of propensity score</p>
+<p class="caption">Density Plot of Propensity Score</p>
 </div>
-</div><div id="fixed-effects-regression" class="slide section level2">
-<h1>Fixed Effects Regression</h1>
-</div><div id="difference-in-differences" class="slide section level2">
-<h1>Difference in Differences</h1>
-</div><div id="multilevel-longitudinal-model" class="slide section level2">
-<h1>Multilevel Longitudinal Model</h1>
-</div><div id="hybrid-model" class="slide section level2">
-<h1>“Hybrid” Model</h1>
 </div>
-<div id="references-r.6" class="title-slide slide section level1"><h1>References 🌲</h1><p>Camill, P., Chihara, L., Adams, B., Andreassi, C., Barry, A. N. N., Kalim, S., … Rafert, G. (2010). Early life history transitions and recruitment of Picea mariana in thawed boreal permafrost peatlands. <em>Ecology</em>. https://doi.org/10.1890/08-1839.1</p>
+<div id="references-r.7" class="title-slide slide section level1"><h1>References 🌲</h1><p>Camill, P., Chihara, L., Adams, B., Andreassi, C., Barry, A. N. N., Kalim, S., … Rafert, G. (2010). Early life history transitions and recruitment of Picea mariana in thawed boreal permafrost peatlands. <em>Ecology</em>. https://doi.org/10.1890/08-1839.1</p>
 <p>Chihara, L. M., &amp; Hesterberg, T. C. (2018). <em>Mathematical Statistics with Resampling and R</em>. https://doi.org/10.1002/9781119505969</p>
 <p>Holland, P. W. (1986). Statistics and Causal Inference. <em>Journal of the American Statistical Association</em>, 81(396), 945–960. https://doi.org/10.1080/01621459.1986.10478354</p>
 <div class="section footnotes" role="doc-endnotes">
