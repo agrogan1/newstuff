@@ -1,0 +1,112 @@
+% Causal Modeling With GSS Data Using Multiple Approaches
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+# Setup
+
+
+    clear all
+
+    cd "/Users/agrogan/Desktop/newstuff/causal-modeling"
+
+
+## Get Data
+
+    use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w123_R6 - stata.dta", clear
+
+## ID Variable
+
+    generate ID = id_1
+
+## Keep Only Relevant Variables 
+
+    keep ID satjob_? educ_? race_? incom16_?
+
+## Describe Data
+
+    describe
+
+## Codebook for Selected Variable(s)
+
+    codebook satjob_3
+
+# Analyses Relying On Wide Data
+
+## Correlation
+
+    pwcorr satjob_3 educ_3, sig
+
+## Regression with 1 Independent Variable
+
+    regress satjob_3 educ_3
+
+## Regression With Multiple Independent Variables
+
+    regress satjob_3 educ_3 i.race_3 incom16_3 
+
+## Propensity Score 
+
+### Data Wrangling
+
+    generate twelve_years_3 = educ_3 >= 12 // 12 or more years of education
+
+    generate twelve_years_2 = educ_2 >= 12 // 12 or more years of education
+
+    generate twelve_years_1 = educ_1 >= 12 // 12 or more years of education
+
+### Propensity Score Analysis
+
+    teffects psmatch (satjob_3) (twelve_years_3 incom16_3 i.race_3)
+
+### Check Balance
+
+# Analyses Relying On Long Data
+
+## Reshape The Data
+
+    reshape long satjob_ educ_ twelve_years_ incom16_ race_, i(ID) j(wave)
+	
+## Clean Up Variable Names
+
+	rename satjob_ satjob
+	
+	rename educ_ educ
+	
+	rename incom16_ incom16
+	
+	rename race_ race
+	
+	rename twelve_years_ twelve_years
+
+## Multilevel Model
+
+    mixed satjob wave educ incom16 i.race || ID: 
+
+## Fixed effects regression
+
+    xtreg satjob wave educ incom16 i.race, i(ID) fe
+
+## "Hybrid" Model
+
+### Generate Within And Between Variables
+
+    bysort ID: egen educ_mean = mean(educ)
+	
+	generate educ_deviation = educ - educ_mean
+	
+	mixed satjob wave educ_mean educ_deviation incom16 i.race || ID:
+
+
+
+
+
+
+
+
+
