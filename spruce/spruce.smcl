@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 2 Jul 2020, 11:59:16
+ {txt}opened on:  {res} 5 Jul 2020, 13:21:47
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 2 Jul 2020
+{res} 5 Jul 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}11:59:16
+{res}13:21:47
 {txt}
 {com}. //_3
 . clear all
@@ -163,7 +163,8 @@ combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
 . recode Fertilizer (2=1)(1=0), generate(F) // recode as 1/0
 {txt}(72 differences between Fertilizer and F)
 
-{com}. logit F Height0 Competition // logit model of propensity score
+{com}.     
+. logit F Height0 Competition // logit model of propensity score
 
 {res}{txt}Iteration 0:{space 3}log likelihood = {res:-49.906597}  
 Iteration 1:{space 3}log likelihood = {res:-49.898334}  
@@ -182,13 +183,15 @@ Iteration 2:{space 3}log likelihood = {res:-49.898334}
 {txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2086768{col 26}{space 2} 1.786467{col 37}{space 1}    0.12{col 46}{space 3}0.907{col 54}{space 4}-3.292734{col 67}{space 3} 3.710088
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. predict pscore // predict propensity score
+{com}.     
+. predict pscore // predict propensity score
 {txt}(option {bf:pr} assumed; Pr(F))
 
 {com}.     
 . twoway (kdensity pscore if F == 1) /// 
 > (kdensity pscore if F == 0), ///
 > title("Assessing Balance of Propensity Score") ///
+> xtitle("Propensity Score") ///
 > ytitle("Density") /// 
 > legend(order(1 "Fertilizer" 2 "No Fertilizer")) ///
 > scheme(michigan)
@@ -203,7 +206,7 @@ Iteration 2:{space 3}log likelihood = {res:-49.898334}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 2 Jul 2020, 11:59:20
+ {txt}closed on:  {res} 5 Jul 2020, 13:21:51
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

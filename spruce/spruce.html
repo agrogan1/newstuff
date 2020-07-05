@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Multiple Approaches to Causal Modeling Using Black Spruce Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">2 Jul 2020 11:59:16</p>
+<p class="date">5 Jul 2020 13:21:34</p>
 </header>
 <h1 id="background-r.1">Background 🌲</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -103,10 +103,10 @@ Contains data from spruce.dta
   obs:            72                          
  vars:             9                          26 Apr 2020 12:18
  size:         4,320                          
-─────────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────
               storage   display    value
 variable name   type    format     label      variable label
-─────────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────
 Tree            long    %12.0g                Tree number
 Competition     long    %12.0g     Competition
                                               C (competition), CR (competition removed)
@@ -118,7 +118,7 @@ Diameter0       double  %10.0g                Diameter (cm) of seedling at plant
 Diameter5       double  %10.0g                Diameter (cm) of seedling at year 5
 Ht_change       double  %10.0g                Change (cm) in height
 Di_change       double  %10.0g                Change (cm) in diameter
-─────────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
 <h1 id="spruce-data-and-causal-criteria-r.5">Spruce Data And Causal Criteria 🌲</h1>
@@ -215,6 +215,7 @@ ATE          │
 . recode Fertilizer (2=1)(1=0), generate(F) // recode as 1/0
 (72 differences between Fertilizer and F)
 
+.     
 . logit F Height0 Competition // logit model of propensity score
 
 Iteration 0:   log likelihood = -49.906597  
@@ -234,6 +235,7 @@ Log likelihood = -49.898334                     Pseudo R2         =     0.0002
        _cons │   .2086768   1.786467     0.12   0.907    -3.292734    3.710088
 ─────────────┴────────────────────────────────────────────────────────────────
 
+.     
 . predict pscore // predict propensity score
 (option pr assumed; Pr(F))
 
@@ -241,6 +243,7 @@ Log likelihood = -49.898334                     Pseudo R2         =     0.0002
 . twoway (kdensity pscore if F == 1) /// 
 > (kdensity pscore if F == 0), ///
 > title("Assessing Balance of Propensity Score") ///
+> xtitle("Propensity Score") ///
 > ytitle("Density") /// 
 > legend(order(1 "Fertilizer" 2 "No Fertilizer")) ///
 > scheme(michigan)

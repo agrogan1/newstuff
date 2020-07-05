@@ -152,12 +152,15 @@ A propensity score analysis controls for the additional observed variables that 
 ```s
 
     recode Fertilizer (2=1)(1=0), generate(F) // recode as 1/0
+	
     logit F Height0 Competition // logit model of propensity score
+	
 	predict pscore // predict propensity score
 	
 	twoway (kdensity pscore if F == 1) /// 
 	(kdensity pscore if F == 0), ///
 	title("Assessing Balance of Propensity Score") ///
+	xtitle("Propensity Score") ///
 	ytitle("Density") /// 
 	legend(order(1 "Fertilizer" 2 "No Fertilizer")) ///
 	scheme(michigan)
