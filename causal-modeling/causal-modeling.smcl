@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/causal-modeling/causal-modeling.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 4 Jul 2020, 14:00:12
+ {txt}opened on:  {res} 5 Jul 2020, 13:15:16
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 4 Jul 2020
+{res} 5 Jul 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}14:00:12
+{res}13:15:16
 {txt}
 {com}. //_3
 . clear all
@@ -143,6 +143,15 @@ Sorted by:
 . generate twelve_years_1 = educ_1 >= 12 // 12 or more years of education
 {txt}
 {com}. //_16
+. label variable twelve_years_3 "12 or more years of education"
+{txt}
+{com}. //_17
+. label variable twelve_years_2 "12 or more years of education"
+{txt}
+{com}. //_18
+. label variable twelve_years_1 "12 or more years of education"
+{txt}
+{com}. //_19
 . teffects psmatch (satjob_3) (twelve_years_3 incom16_3 i.race_3)
 {res}
 {txt}Treatment-effects estimation{col 48}Number of obs {col 67}= {res}       952
@@ -158,14 +167,58 @@ twelve_years_3 {c |}
 {space 5}(1 vs 0)  {c |}{col 16}{res}{space 2}-.0410168{col 28}{space 2} .1083808{col 39}{space 1}   -0.38{col 48}{space 3}0.705{col 56}{space 4}-.2534393{col 69}{space 3} .1714057
 {txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_17
+{com}. //_20
+. logit twelve_years_3 incom16_3 i.race_3 // logit model of propensity score
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res: -459.6128}  
+Iteration 1:{space 3}log likelihood = {res:-434.38973}  
+Iteration 2:{space 3}log likelihood = {res:-432.70848}  
+Iteration 3:{space 3}log likelihood = {res: -432.7023}  
+Iteration 4:{space 3}log likelihood = {res: -432.7023}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     1,290
+{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}     53.82
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res} -432.7023{txt}{col 49}Pseudo R2{col 67}= {res}    0.0586
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}twelve_years_3{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}incom16_3 {c |}{col 16}{res}{space 2} .6675118{col 28}{space 2} .1012923{col 39}{space 1}    6.59{col 48}{space 3}0.000{col 56}{space 4} .4689826{col 69}{space 3}  .866041
+{txt}{space 14} {c |}
+{space 8}race_3 {c |}
+{space 8}black  {c |}{col 16}{res}{space 2}-.3700999{col 28}{space 2} .2235376{col 39}{space 1}   -1.66{col 48}{space 3}0.098{col 56}{space 4}-.8082255{col 69}{space 3} .0680258
+{txt}{space 8}other  {c |}{col 16}{res}{space 2}  .335468{col 28}{space 2} .3787325{col 39}{space 1}    0.89{col 48}{space 3}0.376{col 56}{space 4}-.4068342{col 69}{space 3}  1.07777
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2} .3873589{col 28}{space 2} .2695467{col 39}{space 1}    1.44{col 48}{space 3}0.151{col 56}{space 4} -.140943{col 69}{space 3} .9156608
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_21
+. predict pscore // predict propensity score
+{txt}(option {bf:pr} assumed; Pr(twelve_years_3))
+(754 missing values generated)
+
+{com}. //_22
+. twoway (kdensity pscore if twelve_years_3 == 1, bwidth(.05)) /// 
+> (kdensity pscore if twelve_years_3 == 0, bwidth(.05)), ///
+> title("Assessing Balance of Propensity Score") ///
+> xtitle("Propensity Score") ///
+> ytitle("Density") /// 
+> legend(order(1 "12 or more years of education" 2 "< 12 years of education")) ///
+> scheme(michigan)
+{res}{txt}
+{com}. //_23
+. graph export mydensity.png, width(500) replace
+{txt}(file mydensity.png written in PNG format)
+
+{com}. //_24
 . reshape long satjob_ educ_ twelve_years_ incom16_ race_, i(ID) j(wave)
 {txt}(note: j = 1 2 3)
 
 Data{col 36}wide{col 43}->{col 48}long
 {hline 77}
 Number of obs.                 {res}    2044   {txt}->{res}    6132
-{txt}Number of variables            {res}      16   {txt}->{res}       7
+{txt}Number of variables            {res}      17   {txt}->{res}       8
 {txt}j variable (3 values)                     ->   {res}wave
 {txt}xij variables:
              {res}satjob_1 satjob_2 satjob_3   {txt}->   {res}satjob_
@@ -175,22 +228,22 @@ twelve_years_1 twelve_years_2 twelve_years_3{txt}-> {res}twelve_years_
                    race_1 race_2 race_3   {txt}->   {res}race_
 {txt}{hline 77}
 
-{com}. //_18
+{com}. //_25
 . rename satjob_ satjob
 {res}{txt}
-{com}. //_19
+{com}. //_26
 . rename educ_ educ
 {res}{txt}
-{com}. //_20
+{com}. //_27
 . rename incom16_ incom16
 {res}{txt}
-{com}. //_21
+{com}. //_28
 . rename race_ race
 {res}{txt}
-{com}. //_22
+{com}. //_29
 . rename twelve_years_ twelve_years
 {res}{txt}
-{com}. //_23
+{com}. //_30
 . mixed satjob wave educ incom16 i.race || ID: 
 {res}
 {txt}Performing EM optimization: 
@@ -238,7 +291,7 @@ twelve_years_1 twelve_years_2 twelve_years_3{txt}-> {res}twelve_years_
 {txt}{hline 29}{c BT}{hline 48}
 LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}322.95{col 55}{txt}Prob >= chibar2 = {col 73}{res}0.0000
 {txt}
-{com}. //_24
+{com}. //_31
 . xtreg satjob wave educ incom16 i.race, i(ID) fe
 {res}
 {txt}Fixed-effects (within) regression{col 49}Number of obs{col 67}={col 69}{res}     3,595
@@ -271,15 +324,15 @@ LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}322.9
 {hline 13}{c BT}{hline 64}
 F test that all u_i=0: F({res}1660{txt}, {res}1929{txt}) = {res}2.18{col 62}{txt}Prob > F = {res}0.0000
 {txt}
-{com}. //_25
+{com}. //_32
 . bysort ID: egen educ_mean = mean(educ)
 {txt}(6 missing values generated)
 
-{com}. //_26
+{com}. //_33
 . generate educ_deviation = educ - educ_mean
 {txt}(1,240 missing values generated)
 
-{com}. //_27
+{com}. //_34
 . mixed satjob wave educ_mean educ_deviation incom16 i.race || ID:
 {res}
 {txt}Performing EM optimization: 
@@ -333,7 +386,7 @@ LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}323.0
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/causal-modeling/causal-modeling.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 4 Jul 2020, 14:00:18
+ {txt}closed on:  {res} 5 Jul 2020, 13:15:23
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
