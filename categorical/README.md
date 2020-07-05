@@ -13,6 +13,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
     + [Interactions in Logistic Regression](https://agrogan1.github.io/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.html)
 * [Ordinal and Multinomial Logistic Regression](https://agrogan1.github.io/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression-slidy.html)
 * [Count Regression Models](https://agrogan1.github.io/newstuff/categorical/count-regression/count-regression-slidy.html)
+* [Propensity Score Models](https://agrogan1.github.io/newstuff/causal-modeling/causal-modeling.html) (as part of a larger set of materials on *causal modeling*).
 
 
 
