@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 h1, h2, h3 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+  font-family: 'Roboto', sans-serif;
   font-weight: normal;
 }
 body { 
@@ -16,6 +17,7 @@ slide.title-slide{
   background-color: #00274C; 
 }
 .slide.titlepage {
+  font-family: 'Roboto', sans-serif;
   color: #EC1F27;
   font-size: 200%;
   font-weight: bold;
