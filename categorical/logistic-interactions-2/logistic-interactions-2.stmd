@@ -89,7 +89,11 @@ Lastly, we test the margins at age 20 for men and women, and again at age 60 for
     test  _b[5._at#0bn.sex] =  _b[5._at#1.sex] // male and female at age 60
 
 
+# References
 
+Ai, C., & Norton, E. C. (2003). Interaction terms in logit and probit models. *Economics Letters*. [https://doi.org/10.1016/S0165-1765(03)00032-6](https://doi.org/10.1016/S0165-1765(03)00032-6)
+
+Karaca-Mandic, P., Norton, E. C., & Dowd, B. (2012). Interaction terms in nonlinear models. *Health Services Research*. [https://doi.org/10.1111/j.1475-6773.2011.01314.x](https://doi.org/10.1111/j.1475-6773.2011.01314.x)
 
 
 
