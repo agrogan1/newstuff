@@ -1,4 +1,6 @@
-# New Stuff
+---
+title: New Stuff
+---
 
 New stuff that is going to get moved somewhere else at some point.
 
@@ -12,6 +14,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 * [New Materials For A Course On Categorical Data Analysis](https://agrogan1.github.io/newstuff/categorical/)
 * [Multiple Approaches to Causal Modeling Using Black Spruce Data](https://agrogan1.github.io/newstuff/spruce/spruce-slidy.html)
+* [Causal Modeling With General Social Service Data Using Multiple Approaches](https://agrogan1.github.io/newstuff/causal-modeling/causal-modeling-slidy.html)
 
 ## Simulated Data
 
