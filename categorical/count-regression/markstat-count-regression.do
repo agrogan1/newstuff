@@ -28,9 +28,12 @@ markstat using count-regression.stmd, docx // Word
 
 graph close _all
 
-
 * pandoc
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css"  "/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.html" -o "/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression-slidy.html" 
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --slide-level=2 --css "../UMslidy.css"  "/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.html" -o "/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression-slidy.html" 
+
+doedit "../MathJax-CDN.txt"
+
+doedit "count-regression-slidy.html"
 
 

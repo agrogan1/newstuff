@@ -43,7 +43,7 @@ $y = \ln(count): 1, 2, 3, \text{etc.}$
 
 > The Poisson may be used to evaluate whether events occur independently in time as well as space.  In a classic example, Bortkiewicz (1898) studied the distribution of 122 men kicked to death by horses among ten Prussian army corps over 20 years. In most years in most corps, no one dies from being kicked; in one corp in one year, four men were kicked to death. Does this mean something was amiss in this particular corp?  Analysis indicates that the observed frequencies conform quite closely to the expected Poisson frequencies, and that the mean and variance are almost identical, as expected.  The corp was just "unlucky" in the sense that it is in the extreme tail of an ordinary run of events.
 
-http://www.mun.ca/biology/scarr/smcPoisson_distributions.html
+[http://www.mun.ca/biology/scarr/smcPoisson_distributions.html](http://www.mun.ca/biology/scarr/smcPoisson_distributions.html)
 
 ## Reprise of Normal Distribution
 
@@ -126,8 +126,30 @@ $$
 	scheme(burd) plotr(fcolor(olive_teal))
 
 	graph export ducks.png, width(1000) replace
-
+	
 ![Randomly Located Ducks](ducks.png){ width=50% }
+
+	generate t = runiform(1,10) // random time coordinate
+	
+	generate y2 = runiform(1,2) // random y coordinate
+	
+	generate mylabel2 = "🔥"
+	
+	generate timeperiod = field
+	
+	twoway scatter y2 t, ///
+	by(timeperiod, title("Forest Fires At Random Times", size(vhuge)) cols(10)) ///
+	ytitle("", size(zero)) ylabel(none) xtitle("", size(zero)) xlabel(none) ///
+	subtitle(, size(vhuge)) ///
+	mlab(mylabel2) mlabsize(vhuge) ///
+	msymbol(none)  ///
+    legend(order(1 "🔥 Forest Fire")) ///
+	scheme(burd) plotr(fcolor(gs14)) ///
+	xsize(5) ysize(1)
+
+	graph export fires.png, width(1000) replace
+	
+![Forest Fires At Random Times](fires.png){ width=70% }
 
 # Poisson Regression
 
@@ -139,10 +161,12 @@ $$
 	
 	codebook numprobs // data from 2002
 	
+	recode hispanic (1=0)(2/max = 1), generate(hisp) // dichotomous variable
+	
 	generate coninc_10K = coninc / 10000 // $10K chunks
 	
-	poisson numprobs coninc_10K i.race sex age
-	
+    poisson numprobs coninc_10K i.race hisp i.class sex age
+		
 # Incidence Rate Ratios
 	
 	poisson, irr
@@ -166,8 +190,8 @@ $$
 $$
 
 ## Regression
-
-    nbreg numprobs coninc_10K i.race sex age
+	
+	nbreg numprobs coninc_10K i.race hisp i.class sex age
 
 ## Predicted Values
 	

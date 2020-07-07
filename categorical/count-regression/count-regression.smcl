@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}14 Jun 2020, 08:57:19
+ {txt}opened on:  {res} 7 Jul 2020, 13:02:45
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}14 Jun 2020
+{res} 7 Jul 2020
 {txt}
 {com}. //_2
 . clear all // clear all for simulated data
@@ -24,7 +24,7 @@ now 1,000
 {txt}
 {com}. //_5
 . histogram x, title("Normally Distributed Random Variable") scheme(burd)
-{txt}(bin={res}29{txt}, start={res}-3.3779824{txt}, width={res}.21597276{txt})
+{txt}(bin={res}29{txt}, start={res}-3.659894{txt}, width={res}.27542746{txt})
 {res}{txt}
 {com}. //_6
 . graph export myhistogram.png, width(500) replace
@@ -35,7 +35,7 @@ now 1,000
 {txt}
 {com}. //_8
 . histogram w, title("Poisson Distributed Random Variable") scheme(burd)
-{txt}(bin={res}29{txt}, start={res}0{txt}, width={res}.13793103{txt})
+{txt}(bin={res}29{txt}, start={res}0{txt}, width={res}.10344828{txt})
 {res}{txt}
 {com}. //_9
 . graph export myhistogram2.png, width(500) replace
@@ -59,8 +59,8 @@ now 20
 {txt}
 {com}. //_14
 . expand mycount // create individual observations
-{txt}(6 zero counts ignored; observations not deleted)
-(7 observations created)
+{txt}(9 zero counts ignored; observations not deleted)
+(5 observations created)
 
 {com}. //_15
 . generate x = runiform(1,10) // random x coordinate
@@ -84,16 +84,43 @@ now 20
 {txt}(file ducks.png written in PNG format)
 
 {com}. //_20
+. generate t = runiform(1,10) // random time coordinate
+{txt}
+{com}. //_21
+. generate y2 = runiform(1,2) // random y coordinate
+{txt}
+{com}. //_22
+. generate mylabel2 = "🔥"
+{txt}
+{com}. //_23
+. generate timeperiod = field
+{txt}
+{com}. //_24
+. twoway scatter y2 t, ///
+> by(timeperiod, title("Forest Fires At Random Times", size(vhuge)) cols(10)) ///
+> ytitle("", size(zero)) ylabel(none) xtitle("", size(zero)) xlabel(none) ///
+> subtitle(, size(vhuge)) ///
+> mlab(mylabel2) mlabsize(vhuge) ///
+> msymbol(none)  ///
+> legend(order(1 "🔥 Forest Fire")) ///
+> scheme(burd) plotr(fcolor(gs14)) ///
+> xsize(5) ysize(1)
+{res}{txt}
+{com}. //_25
+. graph export fires.png, width(1000) replace
+{txt}(file fires.png written in PNG format)
+
+{com}. //_26
 . clear all
 {res}{txt}
-{com}. //_21
+{com}. //_27
 . set maxvar 10000
 
 {txt}
-{com}. //_22
+{com}. //_28
 . use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
 {txt}
-{com}. //_23
+{com}. //_29
 . codebook numprobs // data from 2002
 
 {txt}{hline}
@@ -112,104 +139,129 @@ now 20
 {ralign 23: }{col 26}{res}.i{col 32}{txt}IAP
 {ralign 23: }{col 26}{res}.i{col 32}{txt}IAP
 
-{com}. //_24
+{com}. //_30
+. recode hispanic (1=0)(2/max = 1), generate(hisp) // dichotomous variable
+{txt}(26650 differences between hispanic and hisp)
+
+{com}. //_31
 . generate coninc_10K = coninc / 10000 // $10K chunks
 {txt}(6,520 missing values generated)
 
-{com}. //_25
-. poisson numprobs coninc_10K i.race sex age
+{com}. //_32
+. poisson numprobs coninc_10K i.race hisp i.class sex age
 {res}
-{txt}Iteration 0:{space 3}log likelihood = {res:-13850.015}  
-Iteration 1:{space 3}log likelihood = {res:-13850.011}  
-Iteration 2:{space 3}log likelihood = {res:-13850.011}  
+{txt}Iteration 0:{space 3}log likelihood = {res: -13723.05}  
+Iteration 1:{space 3}log likelihood = {res:-13723.046}  
+Iteration 2:{space 3}log likelihood = {res:-13723.046}  
 {res}
-{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     2,406
-{txt}{col 49}LR chi2({res}5{txt}){col 67}= {res}   1035.88
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     2,399
+{txt}{col 49}LR chi2({res}9{txt}){col 67}= {res}   1125.86
 {txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-13850.011{txt}{col 49}Pseudo R2{col 67}= {res}    0.0360
+{txt}Log likelihood = {res}-13723.046{txt}{col 49}Pseudo R2{col 67}= {res}    0.0394
 
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}    numprobs{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 2}coninc_10K {c |}{col 14}{res}{space 2} .0319119{col 26}{space 2} .0015338{col 37}{space 1}   20.81{col 46}{space 3}0.000{col 54}{space 4} .0289058{col 67}{space 3}  .034918
-{txt}{space 12} {c |}
-{space 8}race {c |}
-{space 6}black  {c |}{col 14}{res}{space 2}-.4359226{col 26}{space 2} .0254022{col 37}{space 1}  -17.16{col 46}{space 3}0.000{col 54}{space 4}-.4857101{col 67}{space 3}-.3861351
-{txt}{space 6}other  {c |}{col 14}{res}{space 2}-.3791775{col 26}{space 2} .0344591{col 37}{space 1}  -11.00{col 46}{space 3}0.000{col 54}{space 4}-.4467161{col 67}{space 3}-.3116389
-{txt}{space 12} {c |}
-{space 9}sex {c |}{col 14}{res}{space 2} .1335163{col 26}{space 2} .0145586{col 37}{space 1}    9.17{col 46}{space 3}0.000{col 54}{space 4}  .104982{col 67}{space 3} .1620507
-{txt}{space 9}age {c |}{col 14}{res}{space 2}-.0007319{col 26}{space 2} .0004376{col 37}{space 1}   -1.67{col 46}{space 3}0.094{col 54}{space 4}-.0015895{col 67}{space 3} .0001257
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.812817{col 26}{space 2} .0332514{col 37}{space 1}   54.52{col 46}{space 3}0.000{col 54}{space 4} 1.747646{col 67}{space 3} 1.877989
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      numprobs{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}coninc_10K {c |}{col 16}{res}{space 2} .0288957{col 28}{space 2} .0017165{col 39}{space 1}   16.83{col 48}{space 3}0.000{col 56}{space 4} .0255315{col 69}{space 3} .0322599
+{txt}{space 14} {c |}
+{space 10}race {c |}
+{space 8}black  {c |}{col 16}{res}{space 2}-.4409339{col 28}{space 2} .0256346{col 39}{space 1}  -17.20{col 48}{space 3}0.000{col 56}{space 4}-.4911767{col 69}{space 3} -.390691
+{txt}{space 8}other  {c |}{col 16}{res}{space 2}-.2608266{col 28}{space 2}  .037588{col 39}{space 1}   -6.94{col 48}{space 3}0.000{col 56}{space 4}-.3344978{col 69}{space 3}-.1871555
+{txt}{space 14} {c |}
+{space 10}hisp {c |}{col 16}{res}{space 2}-.2247009{col 28}{space 2}  .033778{col 39}{space 1}   -6.65{col 48}{space 3}0.000{col 56}{space 4}-.2909047{col 69}{space 3}-.1584972
+{txt}{space 14} {c |}
+{space 9}class {c |}
+working class  {c |}{col 16}{res}{space 2}-.1267131{col 28}{space 2} .0342909{col 39}{space 1}   -3.70{col 48}{space 3}0.000{col 56}{space 4}-.1939219{col 69}{space 3}-.0595042
+{txt}{space 1}middle class  {c |}{col 16}{res}{space 2}-.0173452{col 28}{space 2} .0349358{col 39}{space 1}   -0.50{col 48}{space 3}0.620{col 56}{space 4}-.0858182{col 69}{space 3} .0511278
+{txt}{space 2}upper class  {c |}{col 16}{res}{space 2}-.0300967{col 28}{space 2}  .049953{col 39}{space 1}   -0.60{col 48}{space 3}0.547{col 56}{space 4}-.1280028{col 69}{space 3} .0678095
+{txt}{space 14} {c |}
+{space 11}sex {c |}{col 16}{res}{space 2} .1291068{col 28}{space 2} .0146144{col 39}{space 1}    8.83{col 48}{space 3}0.000{col 56}{space 4} .1004631{col 69}{space 3} .1577506
+{txt}{space 11}age {c |}{col 16}{res}{space 2}-.0013719{col 28}{space 2} .0004456{col 39}{space 1}   -3.08{col 48}{space 3}0.002{col 56}{space 4}-.0022453{col 69}{space 3}-.0004986
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.935927{col 28}{space 2} .0457132{col 39}{space 1}   42.35{col 48}{space 3}0.000{col 56}{space 4} 1.846331{col 69}{space 3} 2.025523
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_26
+{com}. //_33
 . poisson, irr
 
-{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     2,406
-{txt}{col 49}LR chi2({res}5{txt}){col 67}= {res}   1035.88
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     2,399
+{txt}{col 49}LR chi2({res}9{txt}){col 67}= {res}   1125.86
 {txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-13850.011{txt}{col 49}Pseudo R2{col 67}= {res}    0.0360
+{txt}Log likelihood = {res}-13723.046{txt}{col 49}Pseudo R2{col 67}= {res}    0.0394
 
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}    numprobs{col 14}{c |}        IRR{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 2}coninc_10K {c |}{col 14}{res}{space 2} 1.032427{col 26}{space 2} .0015835{col 37}{space 1}   20.81{col 46}{space 3}0.000{col 54}{space 4} 1.029328{col 67}{space 3} 1.035535
-{txt}{space 12} {c |}
-{space 8}race {c |}
-{space 6}black  {c |}{col 14}{res}{space 2} .6466678{col 26}{space 2} .0164268{col 37}{space 1}  -17.16{col 46}{space 3}0.000{col 54}{space 4} .6152602{col 67}{space 3} .6796787
-{txt}{space 6}other  {c |}{col 14}{res}{space 2} .6844241{col 26}{space 2} .0235846{col 37}{space 1}  -11.00{col 46}{space 3}0.000{col 54}{space 4} .6397255{col 67}{space 3} .7322459
-{txt}{space 12} {c |}
-{space 9}sex {c |}{col 14}{res}{space 2}  1.14284{col 26}{space 2} .0166382{col 37}{space 1}    9.17{col 46}{space 3}0.000{col 54}{space 4} 1.110691{col 67}{space 3}  1.17592
-{txt}{space 9}age {c |}{col 14}{res}{space 2} .9992684{col 26}{space 2} .0004372{col 37}{space 1}   -1.67{col 46}{space 3}0.094{col 54}{space 4} .9984118{col 67}{space 3} 1.000126
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.127687{col 26}{space 2} .2037541{col 37}{space 1}   54.52{col 46}{space 3}0.000{col 54}{space 4} 5.741071{col 67}{space 3} 6.540338
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      numprobs{col 16}{c |}        IRR{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}coninc_10K {c |}{col 16}{res}{space 2} 1.029317{col 28}{space 2} .0017668{col 39}{space 1}   16.83{col 48}{space 3}0.000{col 56}{space 4}  1.02586{col 69}{space 3} 1.032786
+{txt}{space 14} {c |}
+{space 10}race {c |}
+{space 8}black  {c |}{col 16}{res}{space 2} .6434353{col 28}{space 2} .0164942{col 39}{space 1}  -17.20{col 48}{space 3}0.000{col 56}{space 4}  .611906{col 69}{space 3} .6765892
+{txt}{space 8}other  {c |}{col 16}{res}{space 2} .7704145{col 28}{space 2} .0289583{col 39}{space 1}   -6.94{col 48}{space 3}0.000{col 56}{space 4} .7156974{col 69}{space 3} .8293148
+{txt}{space 14} {c |}
+{space 10}hisp {c |}{col 16}{res}{space 2} .7987551{col 28}{space 2} .0269804{col 39}{space 1}   -6.65{col 48}{space 3}0.000{col 56}{space 4} .7475869{col 69}{space 3} .8534254
+{txt}{space 14} {c |}
+{space 9}class {c |}
+working class  {c |}{col 16}{res}{space 2} .8809864{col 28}{space 2} .0302098{col 39}{space 1}   -3.70{col 48}{space 3}0.000{col 56}{space 4} .8237222{col 69}{space 3} .9422316
+{txt}{space 1}middle class  {c |}{col 16}{res}{space 2} .9828044{col 28}{space 2} .0343351{col 39}{space 1}   -0.50{col 48}{space 3}0.620{col 56}{space 4} .9177611{col 69}{space 3} 1.052457
+{txt}{space 2}upper class  {c |}{col 16}{res}{space 2} .9703517{col 28}{space 2}  .048472{col 39}{space 1}   -0.60{col 48}{space 3}0.547{col 56}{space 4} .8798509{col 69}{space 3} 1.070161
+{txt}{space 14} {c |}
+{space 11}sex {c |}{col 16}{res}{space 2} 1.137812{col 28}{space 2} .0166285{col 39}{space 1}    8.83{col 48}{space 3}0.000{col 56}{space 4} 1.105683{col 69}{space 3} 1.170874
+{txt}{space 11}age {c |}{col 16}{res}{space 2}  .998629{col 28}{space 2}  .000445{col 39}{space 1}   -3.08{col 48}{space 3}0.002{col 56}{space 4} .9977572{col 69}{space 3} .9995015
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 6.930466{col 28}{space 2} .3168141{col 39}{space 1}   42.35{col 48}{space 3}0.000{col 56}{space 4} 6.336526{col 69}{space 3} 7.580077
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 2}Note: {res:_cons} estimates baseline incidence rate{txt}.{p_end}
 
-{com}. //_27
-. nbreg numprobs coninc_10K i.race sex age
+{com}. //_34
+. nbreg numprobs coninc_10K i.race hisp i.class sex age
 
 {txt}Fitting Poisson model:
 {res}
-{txt}Iteration 0:{space 3}log likelihood = {res:-13850.015}  
-Iteration 1:{space 3}log likelihood = {res:-13850.011}  
-Iteration 2:{space 3}log likelihood = {res:-13850.011}  
+{txt}Iteration 0:{space 3}log likelihood = {res: -13723.05}  
+Iteration 1:{space 3}log likelihood = {res:-13723.046}  
+Iteration 2:{space 3}log likelihood = {res:-13723.046}  
 {res}
 {txt}Fitting constant-only model:
 {res}
-{txt}Iteration 0:{space 3}log likelihood = {res: -7577.985}  
-Iteration 1:{space 3}log likelihood = {res:-7561.8388}  
-Iteration 2:{space 3}log likelihood = {res:  -7561.83}  
-Iteration 3:{space 3}log likelihood = {res:  -7561.83}  
+{txt}Iteration 0:{space 3}log likelihood = {res:-7550.8728}  
+Iteration 1:{space 3}log likelihood = {res:-7534.4222}  
+Iteration 2:{space 3}log likelihood = {res:-7534.4131}  
+Iteration 3:{space 3}log likelihood = {res:-7534.4131}  
 {res}
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 3}log likelihood = {res:-7496.5295}  
-Iteration 1:{space 3}log likelihood = {res:-7493.7917}  
-Iteration 2:{space 3}log likelihood = {res:-7493.7857}  
-Iteration 3:{space 3}log likelihood = {res:-7493.7857}  
+{txt}Iteration 0:{space 3}log likelihood = {res:-7461.8838}  
+Iteration 1:{space 3}log likelihood = {res:-7458.4673}  
+Iteration 2:{space 3}log likelihood = {res:-7458.4576}  
+Iteration 3:{space 3}log likelihood = {res:-7458.4576}  
 {res}
-{txt}Negative binomial regression{col 49}Number of obs{col 67}= {res}     2,406
-{txt}{col 49}LR chi2({res}5{txt}){col 67}= {res}    136.09
+{txt}Negative binomial regression{col 49}Number of obs{col 67}= {res}     2,399
+{txt}{col 49}LR chi2({res}9{txt}){col 67}= {res}    151.91
 {txt}{col 1}Dispersion{col 16}= {res}mean{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-7493.7857{txt}{col 49}Pseudo R2{col 67}= {res}    0.0090
+{txt}Log likelihood = {res}-7458.4576{txt}{col 49}Pseudo R2{col 67}= {res}    0.0101
 
-{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}    numprobs{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
-{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 2}coninc_10K {c |}{col 14}{res}{space 2} .0306399{col 26}{space 2} .0045093{col 37}{space 1}    6.79{col 46}{space 3}0.000{col 54}{space 4} .0218017{col 67}{space 3}  .039478
-{txt}{space 12} {c |}
-{space 8}race {c |}
-{space 6}black  {c |}{col 14}{res}{space 2} -.432147{col 26}{space 2} .0596002{col 37}{space 1}   -7.25{col 46}{space 3}0.000{col 54}{space 4}-.5489613{col 67}{space 3}-.3153328
-{txt}{space 6}other  {c |}{col 14}{res}{space 2}-.3843031{col 26}{space 2} .0830998{col 37}{space 1}   -4.62{col 46}{space 3}0.000{col 54}{space 4}-.5471758{col 67}{space 3}-.2214304
-{txt}{space 12} {c |}
-{space 9}sex {c |}{col 14}{res}{space 2} .1154665{col 26}{space 2} .0393671{col 37}{space 1}    2.93{col 46}{space 3}0.003{col 54}{space 4} .0383084{col 67}{space 3} .1926246
-{txt}{space 9}age {c |}{col 14}{res}{space 2}-.0009527{col 26}{space 2} .0011445{col 37}{space 1}   -0.83{col 46}{space 3}0.405{col 54}{space 4}-.0031958{col 67}{space 3} .0012904
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.857757{col 26}{space 2} .0873184{col 37}{space 1}   21.28{col 46}{space 3}0.000{col 54}{space 4} 1.686616{col 67}{space 3} 2.028898
-{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-    /lnalpha {c |}{col 14}{res}{space 2}-.2378643{col 26}{space 2} .0317921{col 54}{space 4}-.3001755{col 67}{space 3} -.175553
-{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-       alpha {c |}{col 14}{res}{space 2} .7883097{col 26}{space 2}  .025062{col 54}{space 4} .7406882{col 67}{space 3} .8389929
-{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      numprobs{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 4}coninc_10K {c |}{col 16}{res}{space 2} .0286549{col 28}{space 2} .0049747{col 39}{space 1}    5.76{col 48}{space 3}0.000{col 56}{space 4} .0189047{col 69}{space 3} .0384052
+{txt}{space 14} {c |}
+{space 10}race {c |}
+{space 8}black  {c |}{col 16}{res}{space 2}-.4378139{col 28}{space 2} .0599275{col 39}{space 1}   -7.31{col 48}{space 3}0.000{col 56}{space 4}-.5552697{col 69}{space 3} -.320358
+{txt}{space 8}other  {c |}{col 16}{res}{space 2} -.248534{col 28}{space 2} .0944197{col 39}{space 1}   -2.63{col 48}{space 3}0.008{col 56}{space 4}-.4335933{col 69}{space 3}-.0634747
+{txt}{space 14} {c |}
+{space 10}hisp {c |}{col 16}{res}{space 2}-.2523914{col 28}{space 2} .0861951{col 39}{space 1}   -2.93{col 48}{space 3}0.003{col 56}{space 4}-.4213307{col 69}{space 3} -.083452
+{txt}{space 14} {c |}
+{space 9}class {c |}
+working class  {c |}{col 16}{res}{space 2}-.1323204{col 28}{space 2} .0890544{col 39}{space 1}   -1.49{col 48}{space 3}0.137{col 56}{space 4}-.3068639{col 69}{space 3}  .042223
+{txt}{space 1}middle class  {c |}{col 16}{res}{space 2}-.0193732{col 28}{space 2}  .091597{col 39}{space 1}   -0.21{col 48}{space 3}0.832{col 56}{space 4}   -.1989{col 69}{space 3} .1601535
+{txt}{space 2}upper class  {c |}{col 16}{res}{space 2} -.066233{col 28}{space 2} .1389252{col 39}{space 1}   -0.48{col 48}{space 3}0.634{col 56}{space 4}-.3385213{col 69}{space 3} .2060554
+{txt}{space 14} {c |}
+{space 11}sex {c |}{col 16}{res}{space 2} .1082123{col 28}{space 2} .0393212{col 39}{space 1}    2.75{col 48}{space 3}0.006{col 56}{space 4} .0311442{col 69}{space 3} .1852805
+{txt}{space 11}age {c |}{col 16}{res}{space 2}-.0013676{col 28}{space 2} .0011595{col 39}{space 1}   -1.18{col 48}{space 3}0.238{col 56}{space 4}-.0036401{col 69}{space 3} .0009049
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.975325{col 28}{space 2} .1187731{col 39}{space 1}   16.63{col 48}{space 3}0.000{col 56}{space 4} 1.742534{col 69}{space 3} 2.208116
+{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+      /lnalpha {c |}{col 16}{res}{space 2} -.246852{col 28}{space 2} .0319159{col 56}{space 4} -.309406{col 69}{space 3} -.184298
+{txt}{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+         alpha {c |}{col 16}{res}{space 2} .7812563{col 28}{space 2} .0249345{col 56}{space 4} .7338827{col 69}{space 3} .8316879
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 LR test of alpha=0: {help j_chibar##|_new:chibar2(01) = }{res}1.3e+04{col 56}{txt}Prob >= chibar2 = {res}0.000
 {txt}
 {com}. //_^
@@ -217,7 +269,7 @@ LR test of alpha=0: {help j_chibar##|_new:chibar2(01) = }{res}1.3e+04{col 56}{tx
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}14 Jun 2020, 08:57:35
+ {txt}closed on:  {res} 7 Jul 2020, 13:03:13
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
