@@ -3,24 +3,26 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 5 Jul 2020, 13:21:47
+ {txt}opened on:  {res} 8 Jul 2020, 12:45:35
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 5 Jul 2020
+{res} 8 Jul 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}13:21:47
+{res}12:45:35
 {txt}
 {com}. //_3
+. 
 . clear all
 {res}{txt}
 {com}. quietly: cd "/Users/agrogan/Desktop/newstuff/spruce"
 {txt}
 {com}. use spruce.dta, clear
 {txt}
-{com}. //_4q
+{com}.     
+. //_4q
 . 
 . label variable Tree "Tree number"
 {txt}
@@ -50,6 +52,7 @@
 {txt}
 {com}.     
 . //_5
+. 
 . describe    
 
 {txt}Contains data from {res}spruce.dta
@@ -74,8 +77,24 @@ variable name   type    format     label      variable label
 {txt}{hline}
 Sorted by: 
 
-{com}. //_6q
+{com}. 
+. //_6q
 . 
+. /*
+> label define fertilizer 1 "Fertilizer" 2 "No Fertilizer"
+>     
+> label values Fertilizer fertilizer
+>     
+> dotplot Height5, over(Fertilizer) ///
+> title("Tree Height by Fertilizer") ///
+> xtitle("Fertilizer") xlabel("none") ///
+> ytitle("Tree Height At Year 5") ///
+> msymbol(none) mlabel(mylabel) ///
+> scheme(michigan)
+> */
+.     
+. * generate mylabel = "🌲"
+.     
 . twoway (scatter Height5 Fertilizer if Fertilizer == 1) ///
 > (scatter Height5 Fertilizer if Fertilizer == 2), ///
 > title("Tree Height by Fertilizer") ///
@@ -206,7 +225,7 @@ Iteration 2:{space 3}log likelihood = {res:-49.898334}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 5 Jul 2020, 13:21:51
+ {txt}closed on:  {res} 8 Jul 2020, 12:45:38
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>5 Jul 2020 13:21:34</p>
+<p>8 Jul 2020 12:45:35</p>
 </div>
 <div id="background-r.1" class="title-slide slide section level1"><h1>Background 🌲</h1><p>Chihara and Hesterberg (2018) provide a data set concerning the growth of Black Spruce Trees. According to these authors:</p>
 <blockquote>
@@ -126,36 +126,42 @@ Andy Grogan-Kaylor
 <p>(For more interactive exploration of these ideas, see <a href="https://agrogan.shinyapps.io/causality/?_inputs_&amp;sidebarCollapsed=false&amp;y=%22tree%20height%22&amp;sidebarItemExpanded=null&amp;x=%22fertilizer%22&amp;z=%22alternative%20explanation%22">this demo</a>).</p></div>
 <div id="setup-r.4" class="title-slide slide section level1"><h1>Setup 🌲</h1></div><div id="get-data" class="slide section level2">
 <h1>Get Data</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>. <span class="kw">quietly</span>: cd <span class="st">&quot;/Users/agrogan/Desktop/newstuff/spruce&quot;</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a>. <span class="kw">use</span> spruce.dta, <span class="kw">clear</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. </span>
+<span id="cb1-2"><a href="#cb1-2"></a>. <span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>. <span class="kw">quietly</span>: cd <span class="st">&quot;/Users/agrogan/Desktop/newstuff/spruce&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a>. <span class="kw">use</span> spruce.dta, <span class="kw">clear</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>.     </span></code></pre></div>
 </div><div id="dataset-description" class="slide section level2">
 <h1>Dataset Description</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">describe</span>    </span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>Contains <span class="kw">data</span> from spruce.dta</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="kw">obs</span>:            72                          </span>
-<span id="cb2-5"><a href="#cb2-5"></a> vars:             9                          26 Apr 2020 12:18</span>
-<span id="cb2-6"><a href="#cb2-6"></a> <span class="kw">size</span>:         4,320                          </span>
-<span id="cb2-7"><a href="#cb2-7"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb2-8"><a href="#cb2-8"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb2-11"><a href="#cb2-11"></a>Tree            <span class="kw">long</span>    %12.0g                Tree number</span>
-<span id="cb2-12"><a href="#cb2-12"></a>Competition     <span class="kw">long</span>    %12.0g     Competition</span>
-<span id="cb2-13"><a href="#cb2-13"></a>                                              C (competition), CR (competition removed)</span>
-<span id="cb2-14"><a href="#cb2-14"></a>Fertilizer      <span class="kw">long</span>    %12.0g     Fertilizer</span>
-<span id="cb2-15"><a href="#cb2-15"></a>                                              <span class="fu">F</span> (fertilized), NF (<span class="kw">not</span> fertilized)</span>
-<span id="cb2-16"><a href="#cb2-16"></a>Height0         <span class="kw">double</span>  %10.0g                Height (cm) <span class="kw">of</span> seedling <span class="fu">at</span> planting</span>
-<span id="cb2-17"><a href="#cb2-17"></a>Height5         <span class="kw">double</span>  %10.0g                Height (cm) <span class="kw">of</span> seedling <span class="fu">at</span> <span class="fu">year</span> 5</span>
-<span id="cb2-18"><a href="#cb2-18"></a>Diameter0       <span class="kw">double</span>  %10.0g                Diameter (cm) <span class="kw">of</span> seedling <span class="fu">at</span> planting</span>
-<span id="cb2-19"><a href="#cb2-19"></a>Diameter5       <span class="kw">double</span>  %10.0g                Diameter (cm) <span class="kw">of</span> seedling <span class="fu">at</span> <span class="fu">year</span> 5</span>
-<span id="cb2-20"><a href="#cb2-20"></a>Ht_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> height</span>
-<span id="cb2-21"><a href="#cb2-21"></a>Di_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> diameter</span>
-<span id="cb2-22"><a href="#cb2-22"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb2-23"><a href="#cb2-23"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. </span>
+<span id="cb2-2"><a href="#cb2-2"></a>. <span class="kw">describe</span>    </span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>Contains <span class="kw">data</span> from spruce.dta</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="kw">obs</span>:            72                          </span>
+<span id="cb2-6"><a href="#cb2-6"></a> vars:             9                          26 Apr 2020 12:18</span>
+<span id="cb2-7"><a href="#cb2-7"></a> <span class="kw">size</span>:         4,320                          </span>
+<span id="cb2-8"><a href="#cb2-8"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-9"><a href="#cb2-9"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-12"><a href="#cb2-12"></a>Tree            <span class="kw">long</span>    %12.0g                Tree number</span>
+<span id="cb2-13"><a href="#cb2-13"></a>Competition     <span class="kw">long</span>    %12.0g     Competition</span>
+<span id="cb2-14"><a href="#cb2-14"></a>                                              C (competition), CR (competition removed)</span>
+<span id="cb2-15"><a href="#cb2-15"></a>Fertilizer      <span class="kw">long</span>    %12.0g     Fertilizer</span>
+<span id="cb2-16"><a href="#cb2-16"></a>                                              <span class="fu">F</span> (fertilized), NF (<span class="kw">not</span> fertilized)</span>
+<span id="cb2-17"><a href="#cb2-17"></a>Height0         <span class="kw">double</span>  %10.0g                Height (cm) <span class="kw">of</span> seedling <span class="fu">at</span> planting</span>
+<span id="cb2-18"><a href="#cb2-18"></a>Height5         <span class="kw">double</span>  %10.0g                Height (cm) <span class="kw">of</span> seedling <span class="fu">at</span> <span class="fu">year</span> 5</span>
+<span id="cb2-19"><a href="#cb2-19"></a>Diameter0       <span class="kw">double</span>  %10.0g                Diameter (cm) <span class="kw">of</span> seedling <span class="fu">at</span> planting</span>
+<span id="cb2-20"><a href="#cb2-20"></a>Diameter5       <span class="kw">double</span>  %10.0g                Diameter (cm) <span class="kw">of</span> seedling <span class="fu">at</span> <span class="fu">year</span> 5</span>
+<span id="cb2-21"><a href="#cb2-21"></a>Ht_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> height</span>
+<span id="cb2-22"><a href="#cb2-22"></a>Di_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> diameter</span>
+<span id="cb2-23"><a href="#cb2-23"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-24"><a href="#cb2-24"></a>Sorted <span class="kw">by</span>: </span>
+<span id="cb2-25"><a href="#cb2-25"></a></span>
+<span id="cb2-26"><a href="#cb2-26"></a>. </span></code></pre></div>
 </div>
 <div id="spruce-data-and-causal-criteria-r.5" class="title-slide slide section level1"><h1>Spruce Data And Causal Criteria 🌲</h1><p>Let’s consider in turn each of the criteria for causality.</p>
 <ol class="incremental" style="list-style-type: decimal">
