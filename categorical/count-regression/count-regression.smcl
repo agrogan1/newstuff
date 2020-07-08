@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 7 Jul 2020, 13:02:45
+ {txt}opened on:  {res} 8 Jul 2020, 12:41:40
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 7 Jul 2020
+{res} 8 Jul 2020
 {txt}
 {com}. //_2
 . clear all // clear all for simulated data
@@ -24,7 +24,7 @@ now 1,000
 {txt}
 {com}. //_5
 . histogram x, title("Normally Distributed Random Variable") scheme(burd)
-{txt}(bin={res}29{txt}, start={res}-3.659894{txt}, width={res}.27542746{txt})
+{txt}(bin={res}29{txt}, start={res}-3.0031285{txt}, width={res}.20304677{txt})
 {res}{txt}
 {com}. //_6
 . graph export myhistogram.png, width(500) replace
@@ -35,7 +35,7 @@ now 1,000
 {txt}
 {com}. //_8
 . histogram w, title("Poisson Distributed Random Variable") scheme(burd)
-{txt}(bin={res}29{txt}, start={res}0{txt}, width={res}.10344828{txt})
+{txt}(bin={res}29{txt}, start={res}0{txt}, width={res}.13793103{txt})
 {res}{txt}
 {com}. //_9
 . graph export myhistogram2.png, width(500) replace
@@ -60,7 +60,7 @@ now 20
 {com}. //_14
 . expand mycount // create individual observations
 {txt}(9 zero counts ignored; observations not deleted)
-(5 observations created)
+(7 observations created)
 
 {com}. //_15
 . generate x = runiform(1,10) // random x coordinate
@@ -269,7 +269,7 @@ LR test of alpha=0: {help j_chibar##|_new:chibar2(01) = }{res}1.3e+04{col 56}{tx
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 7 Jul 2020, 13:03:13
+ {txt}closed on:  {res} 8 Jul 2020, 12:42:05
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

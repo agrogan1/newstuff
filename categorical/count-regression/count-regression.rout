@@ -19,81 +19,81 @@ Type 'q()' to quit R.
 
 > #_1
 > emo::ji("horse")
-<U+0001F434> 
+🐴 
 > #_2
 > emo::ji("phone")
-<U+260E><U+FE0F> 
+☎️ 
 > #_3
 > emo::ji("hospital")
-<U+0001F3E5> 
+🏥 
 > #_4
 > emo::ji("horse")
-<U+0001F434> 
+🐴 
 > #_5
 > emo::ji("phone")
-<U+260E><U+FE0F> 
+☎️ 
 > #_6
 > emo::ji("hospital")
-<U+0001F3E5> 
+🏥 
 > #_7
 > emo::ji("tree")
-<U+0001F333> 
+🎄 
 > #_8
 > emo::ji("sick")
-<U+0001F48A> 
+🤧 
 > #_9
 > emo::ji("plant")
-<U+0001F330> 
+🏵 
 > #_10
 > emo::ji("tree")
-<U+0001F38B> 
+🎄 
 > #_11
 > emo::ji("plant")
-<U+0001F3F5> 
+🏵 
 > #_12
 > emo::ji("sick")
-<U+0001F48A> 
+🤒 
 > #_13
 > emo::ji("sick")
-<U+0001F48A> 
+💊 
 > #_14
 > emo::ji("sick")
-<U+0001F922> 
+🤢 
 > #_15
 > emo::ji("fish")
-<U+0001F41F> 
+🐟 
 > #_16
 > emo::ji("fish")
-<U+0001F41F> 
+🐟 
 > #_17
 > emo::ji("fish")
-<U+0001F41F> 
+🐟 
 > #_18
 > emo::ji("palm_tree")
-<U+0001F334> 
+🌴 
 > #_19
 > emo::ji("evergreen_tree")
-<U+0001F332> 
+🌲 
 > #_20
 > emo::ji("deciduous_tree")
-<U+0001F333> 
+🌳 
 > #_21
 > emo::ji("building")
-<U+0001F3E2> 
+🏦 
 > #_22
 > emo::ji("building")
-<U+0001F3E8> 
+🏭 
 > #_23
 > emo::ji("building")
-<U+0001F3E6> 
+🏨 
 > #_24
 > emo::ji("time")
-<U+23F3> 
+⏳ 
 > #_25
 > emo::ji("time")
-<U+23F3> 
+⏳ 
 > #_26
 > emo::ji("time")
-<U+23F3> 
+⏳ 
 > #_^
 > 
