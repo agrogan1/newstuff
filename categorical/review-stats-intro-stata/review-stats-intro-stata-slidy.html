@@ -96,7 +96,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>1 Jul 2020</p>
+<p>9 Jul 2020</p>
 </div>
 <div id="social-service-agency-data" class="slide section level1">
 <h1>Social Service Agency Data</h1>
@@ -111,10 +111,10 @@ Andy Grogan-Kaylor
 <span id="cb2-4"><a href="#cb2-4"></a>  <span class="kw">obs</span>:           521                          Simulated Clients</span>
 <span id="cb2-5"><a href="#cb2-5"></a> vars:             8                          3 Jun 2020 15:14</span>
 <span id="cb2-6"><a href="#cb2-6"></a> <span class="kw">size</span>:        29,176                          </span>
-<span id="cb2-7"><a href="#cb2-7"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-7"><a href="#cb2-7"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb2-8"><a href="#cb2-8"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
 <span id="cb2-9"><a href="#cb2-9"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-10"><a href="#cb2-10"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb2-11"><a href="#cb2-11"></a>ID              <span class="kw">double</span>  %9.0g                 ID</span>
 <span id="cb2-12"><a href="#cb2-12"></a>age             <span class="kw">double</span>  %9.0g                 age</span>
 <span id="cb2-13"><a href="#cb2-13"></a>gender          <span class="kw">long</span>    %9.0g      gender     gender</span>
@@ -123,7 +123,7 @@ Andy Grogan-Kaylor
 <span id="cb2-16"><a href="#cb2-16"></a>mental_health~2 <span class="kw">double</span>  %9.0g                 mental_health_T2</span>
 <span id="cb2-17"><a href="#cb2-17"></a>latitude        <span class="kw">double</span>  %9.0g                 latitude</span>
 <span id="cb2-18"><a href="#cb2-18"></a>longitude       <span class="kw">double</span>  %9.0g                 longitude</span>
-<span id="cb2-19"><a href="#cb2-19"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-19"><a href="#cb2-19"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb2-20"><a href="#cb2-20"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
 </div>
 <div id="one-line-stata" class="slide section level1">
@@ -322,23 +322,24 @@ Andy Grogan-Kaylor
 <span id="cb18-7"><a href="#cb18-7"></a>─────────────┼──────────────────────────────────   Adj R-squared   =    0.5078</span>
 <span id="cb18-8"><a href="#cb18-8"></a>       Total │  28658.4065       520  55.1123202   Root MSE        =    5.2081</span>
 <span id="cb18-9"><a href="#cb18-9"></a></span>
-<span id="cb18-10"><a href="#cb18-10"></a>───────────────────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb18-11"><a href="#cb18-11"></a>          mental_health_T2 │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
-<span id="cb18-12"><a href="#cb18-12"></a>───────────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb18-13"><a href="#cb18-13"></a>          mental_health_T1 │   .0038108   .0940124     0.04   0.968    -.1808858    .1885074</span>
-<span id="cb18-14"><a href="#cb18-14"></a>                           │</span>
-<span id="cb18-15"><a href="#cb18-15"></a>                   <span class="kw">program</span> │</span>
-<span id="cb18-16"><a href="#cb18-16"></a>                Program B  │   14.13882   11.07298     1.28   0.202    -7.615155    35.89279</span>
-<span id="cb18-17"><a href="#cb18-17"></a>                Program C  │   2.227825    11.6862     0.19   0.849    -20.73087    25.18653</span>
-<span id="cb18-18"><a href="#cb18-18"></a>                Program D  │   27.30439    22.3002     1.22   0.221    -16.50657    71.11535</span>
-<span id="cb18-19"><a href="#cb18-19"></a>                           │</span>
-<span id="cb18-20"><a href="#cb18-20"></a>program#c.mental_health_T1 │</span>
-<span id="cb18-21"><a href="#cb18-21"></a>                Program B  │  -.0375708   .1162481    -0.32   0.747    -.2659517    .1908101</span>
-<span id="cb18-22"><a href="#cb18-22"></a>                Program C  │  -.0286832   .1228833    -0.23   0.816    -.2700997    .2127332</span>
-<span id="cb18-23"><a href="#cb18-23"></a>                Program D  │  -.2851331   .2385022    -1.20   0.232    -.7536944    .1834281</span>
-<span id="cb18-24"><a href="#cb18-24"></a>                           │</span>
-<span id="cb18-25"><a href="#cb18-25"></a>                     <span class="dt">_cons</span> │   94.43455   8.938253    10.57   0.000     76.87446    111.9946</span>
-<span id="cb18-26"><a href="#cb18-26"></a>───────────────────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+<span id="cb18-10"><a href="#cb18-10"></a>───────────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb18-11"><a href="#cb18-11"></a>  mental_health_T2 │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
+<span id="cb18-12"><a href="#cb18-12"></a>───────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb18-13"><a href="#cb18-13"></a>  mental_health_T1 │   .0038108   .0940124     0.04   0.968    -.1808858    .1885074</span>
+<span id="cb18-14"><a href="#cb18-14"></a>                   │</span>
+<span id="cb18-15"><a href="#cb18-15"></a>           <span class="kw">program</span> │</span>
+<span id="cb18-16"><a href="#cb18-16"></a>        Program B  │   14.13882   11.07298     1.28   0.202    -7.615155    35.89279</span>
+<span id="cb18-17"><a href="#cb18-17"></a>        Program C  │   2.227825    11.6862     0.19   0.849    -20.73087    25.18653</span>
+<span id="cb18-18"><a href="#cb18-18"></a>        Program D  │   27.30439    22.3002     1.22   0.221    -16.50657    71.11535</span>
+<span id="cb18-19"><a href="#cb18-19"></a>                   │</span>
+<span id="cb18-20"><a href="#cb18-20"></a>           program#│</span>
+<span id="cb18-21"><a href="#cb18-21"></a>c.mental_health_T1 │</span>
+<span id="cb18-22"><a href="#cb18-22"></a>        Program B  │  -.0375708   .1162481    -0.32   0.747    -.2659517    .1908101</span>
+<span id="cb18-23"><a href="#cb18-23"></a>        Program C  │  -.0286832   .1228833    -0.23   0.816    -.2700997    .2127332</span>
+<span id="cb18-24"><a href="#cb18-24"></a>        Program D  │  -.2851331   .2385022    -1.20   0.232    -.7536944    .1834281</span>
+<span id="cb18-25"><a href="#cb18-25"></a>                   │</span>
+<span id="cb18-26"><a href="#cb18-26"></a>             <span class="dt">_cons</span> │   94.43455   8.938253    10.57   0.000     76.87446    111.9946</span>
+<span id="cb18-27"><a href="#cb18-27"></a>───────────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
 </div>
 <div id="regression-assumptions-and-the-issue-of-normality" class="slide section level1">
 <h1>Regression Assumptions and the Issue of “Normality”</h1>
