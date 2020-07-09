@@ -18,7 +18,7 @@ $$
     \ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 * x_2
 $$ 
 
-In the above formula, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
+> In the above formula, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
 
 # Get The Data
 
