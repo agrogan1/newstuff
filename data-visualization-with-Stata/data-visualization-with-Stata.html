@@ -57,10 +57,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Data Visualization With Stata</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">23 Jun 2020</p>
+<p class="date">10 Jul 2020</p>
 </header>
 <h1 id="introduction">Introduction</h1>
-<style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <ul>
 <li>Stata is a powerful and intuitive data analysis program.</li>
 <li>Learning how to graph in Stata is an important part of learning how to use Stata. Yet, the default graphs in Stata can sometimes be less than optimal.</li>
@@ -142,7 +142,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <figure>
 <img src="mybargraph.png" alt="" /><figcaption>bar graph of tree location</figcaption>
 </figure>
-<h1 id="continuous-by-continous">Continuous by Continous</h1>
+<h1 id="continuous-by-continuous">Continuous by Continuous</h1>
 <pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age")
 </pre>
 <pre class='stata'>. graph export myscatter.png, width(500) replace
@@ -171,19 +171,25 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </figure>
 <h1 id="schemes">Schemes</h1>
 <p>Stata <em>graph schemes</em> can substantially improve the look of a graph. Built in graph schemes include <code>sj</code> and <code>economist</code>. <code>lean2</code> is a user written scheme that is helpful when preparing graphics for publication. I have written a <a href="https://agrogan1.github.io/Stata/">Stata Michigan graph scheme</a> that can be installed.</p>
+<h2 id="continuous-by-continuous-1">Continuous by Continuous</h2>
 <pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age") scheme(michigan)
 </pre>
 <pre class='stata'>. graph export myscatterM.png, width(500) replace
 (file myscatterM.png written in PNG format)
 </pre>
-<pre class='stata'>. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(michigan)
+<figure>
+<img src="myscatterM.png" alt="" /><figcaption>scatterplot of tree height by age</figcaption>
+</figure>
+<h2 id="continuous-by-categorical-1">Continuous by Categorical</h2>
+<blockquote>
+<p>Note that in the graph below, I have used the <code>asyvars</code> option to give different colors to the different bars.</p>
+</blockquote>
+<pre class='stata'>. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(michig
+> an)
 </pre>
 <pre class='stata'>. graph export mybarM.png, width(500) replace
 (file mybarM.png written in PNG format)
 </pre>
-<figure>
-<img src="myscatterM.png" alt="" /><figcaption>scatterplot of tree height by age</figcaption>
-</figure>
 <figure>
 <img src="mybarM.png" alt="" /><figcaption>bar graph of mean tree height by location</figcaption>
 </figure>

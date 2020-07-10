@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}23 Jun 2020, 11:50:44
+ {txt}opened on:  {res}10 Jul 2020, 18:15:06
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}23 Jun 2020
+{res}10 Jul 2020
 {txt}
 {com}. //_2
 . use gutten.dta, clear
@@ -73,7 +73,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}23 Jun 2020, 11:50:52
+ {txt}closed on:  {res}10 Jul 2020, 18:15:14
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

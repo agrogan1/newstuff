@@ -93,36 +93,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Andy Grogan-Kaylor
   </p>
 </div>
-<div class="slide section level1">
+<div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>23 Jun 2020</p>
+<p>10 Jul 2020</p>
 </div>
-<div id="introduction" class="slide section level1">
-<h1>Introduction</h1>
-<ul class="incremental">
+<div id="introduction" class="title-slide slide section level1"><h1>Introduction</h1><ul class="incremental">
 <li>Stata is a powerful and intuitive data analysis program.</li>
 <li>Learning how to graph in Stata is an important part of learning how to use Stata. Yet, the default graphs in Stata can sometimes be less than optimal.</li>
 <li>This document is an introduction to (a) basic graphing ideas in Stata; and (b) a quick note on the use of schemes to make your Stata graphs look more professional.</li>
-</ul>
-</div>
-<div id="what-are-variables" class="slide section level1">
-<h1>What are Variables?</h1>
-<ul class="incremental">
+</ul></div>
+<div id="what-are-variables" class="title-slide slide section level1"><h1>What are Variables?</h1><ul class="incremental">
 <li>By variables, I simply mean the columns of data that you have.</li>
 <li>For our purposes, you may think of variables as synonymous with questionnaire items, or columns of data.</li>
-</ul>
-</div>
-<div id="variable-types" class="slide section level1">
-<h1>Variable Types</h1>
-<ul class="incremental">
+</ul></div>
+<div id="variable-types" class="title-slide slide section level1"><h1>Variable Types</h1><ul class="incremental">
 <li><em>categorical variables</em> represent unordered categories like <em>race</em>, <em>ethnicity</em>, <em>neighborhood</em>, <em>religious affiliation</em>, or <em>place of residence</em>.</li>
 <li><em>continuous variables</em> represent a continuous scale like <em>income</em>, a <em>mental health scale</em>, or a <em>measure of life expectancy</em>.</li>
-</ul>
-</div>
-<div id="a-data-visualization-strategy" class="slide section level1">
-<h1>A Data Visualization Strategy</h1>
-<p>Once we have discerned the type of variable that have, there are two followup questions we may ask before deciding upon a graphing strategy:</p>
+</ul></div>
+<div id="a-data-visualization-strategy" class="title-slide slide section level1"><h1>A Data Visualization Strategy</h1><p>Once we have discerned the type of variable that have, there are two followup questions we may ask before deciding upon a graphing strategy:</p>
 <ul class="incremental">
 <li>Is our graph about <strong>one thing at a time</strong>?
 <ul class="incremental">
@@ -134,11 +123,8 @@ Andy Grogan-Kaylor
 <li>What is the relationship of <em>x</em> and <em>y</em>?</li>
 <li>How are <em>x</em> and <em>y</em> associated?</li>
 </ul></li>
-</ul>
-</div>
-<div id="data-source" class="slide section level1">
-<h1>Data Source</h1>
-<div class="figure">
+</ul></div>
+<div id="data-source" class="title-slide slide section level1"><h1>Data Source</h1><div class="figure">
 <img src="fotolia-small.jpg" alt="" />
 <p class="caption">Norway Spruce and Larch Forest in Austrian Alps</p>
 </div>
@@ -153,11 +139,8 @@ Andy Grogan-Kaylor
 <blockquote>
 <p>“The data are measures from 107 trees. The trees were selected as being of average size from healthy and well stocked stands in the Alps.”</p>
 </blockquote>
-<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">use</span> gutten.dta, <span class="kw">clear</span></span></code></pre></div>
-</div>
-<div id="variables" class="slide section level1">
-<h1>Variables</h1>
-<p><code>site</code> Growth <em>quality</em> class of the tree’s habitat. 5 levels.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">use</span> gutten.dta, <span class="kw">clear</span></span></code></pre></div></div>
+<div id="variables" class="title-slide slide section level1"><h1>Variables</h1><p><code>site</code> Growth <em>quality</em> class of the tree’s habitat. 5 levels.</p>
 <p><code>location</code> Distinguishes tree <em>location</em>. 7 levels.</p>
 <p><code>tree</code> An identifier for the tree within location.</p>
 <p><code>age_base</code> The tree age taken at ground level.</p>
@@ -170,72 +153,61 @@ Andy Grogan-Kaylor
 <p><code>dbh_cm</code> Tree diameter, cm.</p>
 <p><code>volume</code> Tree volume.</p>
 <p><code>age_bh</code> Tree age taken at 1.3 m.</p>
-<p><code>tree.ID</code> A factor uniquely identifying the tree.</p>
-</div>
-<div id="one-continuous-thing-at-a-time" class="slide section level1">
-<h1>One Continuous Thing At A Time</h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">histogram</span> height, <span class="bn">title</span>(<span class="st">&quot;Tree Height&quot;</span>)</span>
+<p><code>tree.ID</code> A factor uniquely identifying the tree.</p></div>
+<div id="one-continuous-thing-at-a-time" class="title-slide slide section level1"><h1>One Continuous Thing At A Time</h1><div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">histogram</span> height, <span class="bn">title</span>(<span class="st">&quot;Tree Height&quot;</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>(<span class="bn">bin</span>=30, <span class="bn">start</span>=1.5, <span class="kw">width</span>=1.4)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myhistogram.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>(file myhistogram.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="myhistogram.png" alt="" />
 <p class="caption">histogram of tree height</p>
-</div>
-</div>
-<div id="one-categorical-thing-at-a-time" class="slide section level1">
-<h1>One Categorical Thing At A Time</h1>
-<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span>, <span class="bn">over</span>(location) <span class="bn">title</span>(<span class="st">&quot;Tree Location&quot;</span>)</span></code></pre></div>
+</div></div>
+<div id="one-categorical-thing-at-a-time" class="title-slide slide section level1"><h1>One Categorical Thing At A Time</h1><div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span>, <span class="bn">over</span>(location) <span class="bn">title</span>(<span class="st">&quot;Tree Location&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybargraph.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>(file mybargraph.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="mybargraph.png" alt="" />
 <p class="caption">bar graph of tree location</p>
-</div>
-</div>
-<div id="continuous-by-continous" class="slide section level1">
-<h1>Continuous by Continous</h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> height age_base, <span class="bn">title</span>(<span class="st">&quot;Tree Height by Age&quot;</span>)</span></code></pre></div>
+</div></div>
+<div id="continuous-by-continuous" class="title-slide slide section level1"><h1>Continuous by Continuous</h1><div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> height age_base, <span class="bn">title</span>(<span class="st">&quot;Tree Height by Age&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myscatter.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>(file myscatter.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="myscatter.png" alt="" />
 <p class="caption">scatterplot of tree height by age</p>
-</div>
-</div>
-<div id="categorical-by-categorical" class="slide section level1">
-<h1>Categorical by Categorical</h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span>, <span class="bn">over</span>(site) <span class="bn">over</span>(location) <span class="bn">title</span>(<span class="st">&quot;Tree Site Growth Quality by Location&quot;</span>)</span></code></pre></div>
+</div></div>
+<div id="categorical-by-categorical" class="title-slide slide section level1"><h1>Categorical by Categorical</h1><div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span>, <span class="bn">over</span>(site) <span class="bn">over</span>(location) <span class="bn">title</span>(<span class="st">&quot;Tree Site Growth Quality by Location&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybargraph2.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>(file mybargraph2.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="mybargraph2.png" alt="" />
 <p class="caption">bar graph of tree site by location</p>
-</div>
-</div>
-<div id="continuous-by-categorical" class="slide section level1">
-<h1>Continuous by Categorical</h1>
-<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> height, <span class="bn">over</span>(location) <span class="bn">title</span>(<span class="st">&quot;Tree Height by Location&quot;</span>)</span></code></pre></div>
+</div></div>
+<div id="continuous-by-categorical" class="title-slide slide section level1"><h1>Continuous by Categorical</h1><div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> height, <span class="bn">over</span>(location) <span class="bn">title</span>(<span class="st">&quot;Tree Height by Location&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybargraph3.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>(file mybargraph3.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="mybargraph3.png" alt="" />
 <p class="caption">bar graph of mean tree height by location</p>
-</div>
-</div>
-<div id="schemes" class="slide section level1">
-<h1>Schemes</h1>
-<p>Stata <em>graph schemes</em> can substantially improve the look of a graph. Built in graph schemes include <code>sj</code> and <code>economist</code>. <code>lean2</code> is a user written scheme that is helpful when preparing graphics for publication. I have written a <a href="https://agrogan1.github.io/Stata/">Stata Michigan graph scheme</a> that can be installed.</p>
+</div></div>
+<div id="schemes" class="title-slide slide section level1"><h1>Schemes</h1><p>Stata <em>graph schemes</em> can substantially improve the look of a graph. Built in graph schemes include <code>sj</code> and <code>economist</code>. <code>lean2</code> is a user written scheme that is helpful when preparing graphics for publication. I have written a <a href="https://agrogan1.github.io/Stata/">Stata Michigan graph scheme</a> that can be installed.</p></div><div id="continuous-by-continuous-1" class="slide section level2">
+<h1>Continuous by Continuous</h1>
 <div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> height age_base, <span class="bn">title</span>(<span class="st">&quot;Tree Height by Age&quot;</span>) <span class="dv">scheme</span>(michigan)</span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myscatterM.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>(file myscatterM.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> height, <span class="bn">over</span>(location) asyvars <span class="bn">title</span>(<span class="st">&quot;Tree Height by Location&quot;</span>) <span class="dv">scheme</span>(michigan)</span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybarM.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>(file mybarM.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="myscatterM.png" alt="" />
 <p class="caption">scatterplot of tree height by age</p>
 </div>
+</div><div id="continuous-by-categorical-1" class="slide section level2">
+<h1>Continuous by Categorical</h1>
+<blockquote>
+<p>Note that in the graph below, I have used the <code>asyvars</code> option to give different colors to the different bars.</p>
+</blockquote>
+<div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> height, <span class="bn">over</span>(location) asyvars <span class="bn">title</span>(<span class="st">&quot;Tree Height by Location&quot;</span>) <span class="dv">scheme</span>(michig</span>
+<span id="cb16-2"><a href="#cb16-2"></a>&gt; an)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybarM.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>(file mybarM.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="mybarM.png" alt="" />
 <p class="caption">bar graph of mean tree height by location</p>
