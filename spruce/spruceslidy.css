@@ -30,5 +30,7 @@ img {
 pre {
   color: black;
   background-color: white;
+  border: 2px solid grey;
+  border-left: 5px solid #A5A508;
 }
 
