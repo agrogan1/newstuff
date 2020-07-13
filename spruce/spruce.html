@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Multiple Approaches to Causal Modeling Using Black Spruce Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">8 Jul 2020 12:45:35</p>
+<p class="date">13 Jul 2020 15:28:15</p>
 </header>
 <h1 id="background-r.1">Background 🌲</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -89,19 +89,17 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <p>(For more interactive exploration of these ideas, see <a href="https://agrogan.shinyapps.io/causality/?_inputs_&amp;sidebarCollapsed=false&amp;y=%22tree%20height%22&amp;sidebarItemExpanded=null&amp;x=%22fertilizer%22&amp;z=%22alternative%20explanation%22">this demo</a>).</p>
 <h1 id="setup-r.4">Setup 🌲</h1>
 <h2 id="get-data">Get Data</h2>
-<pre class='stata'>. 
-. clear all
-
-. quietly: cd "/Users/agrogan/Desktop/newstuff/spruce"
-
-. use spruce.dta, clear
+<pre class='stata'>. clear all
 
 .     
+. quietly: cd "/Users/agrogan/Desktop/newstuff/spruce"
+
+.     
+. use spruce.dta, clear
 </pre>
 <h2 id="dataset-description">Dataset Description</h2>
 
-<pre class='stata'>. 
-. describe    
+<pre class='stata'>. describe    
 
 Contains data from spruce.dta
   obs:            72                          
@@ -124,8 +122,6 @@ Ht_change       double  %10.0g                Change (cm) in height
 Di_change       double  %10.0g                Change (cm) in diameter
 ─────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
-
-. 
 </pre>
 <h1 id="spruce-data-and-causal-criteria-r.5">Spruce Data And Causal Criteria 🌲</h1>
 <p>Let’s consider in turn each of the criteria for causality.</p>
@@ -217,52 +213,19 @@ ATE          │
 <p>The association of fertilizer with tree height is -12.71.</p>
 </blockquote>
 <h3 id="assess-balance-of-propensity-score-model-cuartas">Assess Balance of Propensity Score Model <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h3>
-<pre class='stata'>. 
-. recode Fertilizer (2=1)(1=0), generate(F) // recode as 1/0
-(72 differences between Fertilizer and F)
-
-.     
-. logit F Height0 Competition // logit model of propensity score
-
-Iteration 0:   log likelihood = -49.906597  
-Iteration 1:   log likelihood = -49.898334  
-Iteration 2:   log likelihood = -49.898334  
-
-Logistic regression                             Number of obs     =         72
-                                                LR chi2(2)        =       0.02
-                                                Prob > chi2       =     0.9918
-Log likelihood = -49.898334                     Pseudo R2         =     0.0002
-
-─────────────┬────────────────────────────────────────────────────────────────
-           F │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
-─────────────┼────────────────────────────────────────────────────────────────
-     Height0 │  -.0150248   .1168956    -0.13   0.898    -.2441361    .2140864
- Competition │   .0068462   .4744608     0.01   0.988    -.9230798    .9367722
-       _cons │   .2086768   1.786467     0.12   0.907    -3.292734    3.710088
-─────────────┴────────────────────────────────────────────────────────────────
-
-.     
-. predict pscore // predict propensity score
-(option pr assumed; Pr(F))
-
-.     
-. twoway (kdensity pscore if F == 1) /// 
-> (kdensity pscore if F == 0), ///
-> title("Assessing Balance of Propensity Score") ///
-> xtitle("Propensity Score") ///
-> ytitle("Density") /// 
-> legend(order(1 "Fertilizer" 2 "No Fertilizer")) ///
+<pre class='stata'>. tebalance density, ///
 > scheme(michigan)
+note: refitting the model using the generate() option
 
 . 
 . graph export mydensity.png, width(500) replace
 (file mydensity.png written in PNG format)
-
-.     
 </pre>
+
 <figure>
 <img src="mydensity.png" alt="" /><figcaption>Density Plot of Propensity Score</figcaption>
 </figure>
+
 <h1 id="references-r.7">References 🌲</h1>
 <p>Camill, P., Chihara, L., Adams, B., Andreassi, C., Barry, A. N. N., Kalim, S., … Rafert, G. (2010). Early life history transitions and recruitment of Picea mariana in thawed boreal permafrost peatlands. <em>Ecology</em>. https://doi.org/10.1890/08-1839.1</p>
 <p>Chihara, L. M., &amp; Hesterberg, T. C. (2018). <em>Mathematical Statistics with Resampling and R</em>. https://doi.org/10.1002/9781119505969</p>
@@ -270,7 +233,7 @@ Log likelihood = -49.898334                     Pseudo R2         =     0.0002
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>With many thanks to Jorge Cuartas for the idea for the this code.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>With many thanks to Jorge Cuartas for ideas for some of this code.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>

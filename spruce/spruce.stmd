@@ -39,17 +39,16 @@ Hence, for this particular data, we are exploring:
 ## Get Data
 
 ```s
-
     clear all
-	quietly: cd "/Users/agrogan/Desktop/newstuff/spruce"
-	use spruce.dta, clear
 	
+	quietly: cd "/Users/agrogan/Desktop/newstuff/spruce"
+	
+	use spruce.dta, clear
 ```
 
 ## Dataset Description
 
 ```s/
-
     label variable Tree "Tree number"
     
 	label variable Competition "C (competition), CR (competition removed)"
@@ -66,14 +65,11 @@ Hence, for this particular data, we are exploring:
     
 	label variable Ht_change "Change (cm) in height"
     
-	label variable Di_change "Change (cm) in diameter"
-	
+	label variable Di_change "Change (cm) in diameter"	
 ```
 	
 ```s
-
 	describe	
-
 ```
 
 # Spruce Data And Causal Criteria `r emo::ji("evergreen_tree")`
@@ -166,10 +162,18 @@ A propensity score analysis controls for the additional observed variables that 
 
 ### Assess Balance of Propensity Score Model [^Cuartas]
 
-[^Cuartas]: With many thanks to Jorge Cuartas for the idea for the this code.
+[^Cuartas]: With many thanks to Jorge Cuartas for ideas for some of this code.
 
 ```s
+	tebalance density, ///
+	scheme(michigan)
 
+	graph export mydensity.png, width(500) replace
+```
+
+```s/
+
+    /*
     recode Fertilizer (2=1)(1=0), generate(F) // recode as 1/0
 	
     logit F Height0 Competition // logit model of propensity score
@@ -183,12 +187,23 @@ A propensity score analysis controls for the additional observed variables that 
 	ytitle("Density") /// 
 	legend(order(1 "Fertilizer" 2 "No Fertilizer")) ///
 	scheme(michigan)
+	*/
 
-	graph export mydensity.png, width(500) replace
-	
 ```
 
 ![Density Plot of Propensity Score](mydensity.png)
+
+```s/
+
+    /*
+    * alternative syntax with psmatch2
+
+    psmatch2 F Height0 Competition, out(Height5) n(2) com
+
+    pstest, both
+    */
+
+```
 
 # References `r emo::ji("evergreen_tree")`
 
