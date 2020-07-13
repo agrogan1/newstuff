@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Causal Modeling With GSS Data Using Multiple Approaches</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">5 Jul 2020 13:14:34</p>
+<p class="date">13 Jul 2020 15:51:50</p>
 </header>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <h1 id="research-question">Research Question</h1>
@@ -92,7 +92,6 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <h2 id="get-data">Get Data</h2>
 <pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2
 > 010w123_R6 - stata.dta", clear
-( )
 </pre>
 <h2 id="id-variable">ID Variable</h2>
 <pre class='stata'>. generate ID = id_1
@@ -105,8 +104,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 
 Contains data from /Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Dat
 > a/GSS_panel2010w123_R6 - stata.dta
-  obs:         2,044                           
- vars:            13                          12 MAR 2018 16:24
+  obs:         2,044                          
+ vars:            13                          5 Jul 2020 13:27
  size:        32,704                          
 ─────────────────────────────────────────────────────────────────────────────────────────
               storage   display    value
@@ -236,42 +235,30 @@ twelve_years_3 │
 ───────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h3 id="assess-balance-of-propensity-score-model-cuartas">Assess Balance of Propensity Score Model <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h3>
-<pre class='stata'>. logit twelve_years_3 incom16_3 i.race_3 // logit model of propensity score
+<pre class='stata'>. tebalance summarize
+note: refitting the model using the generate() option
 
-Iteration 0:   log likelihood =  -459.6128  
-Iteration 1:   log likelihood = -434.38973  
-Iteration 2:   log likelihood = -432.70848  
-Iteration 3:   log likelihood =  -432.7023  
-Iteration 4:   log likelihood =  -432.7023  
+  Covariate balance summary
+                                                   Raw      Matched
+                          ─────────────────────────────────────────
+                          Number of obs =          952        1,904
+                          Treated obs   =          854          952
+                          Control obs   =           98          952
+                          ─────────────────────────────────────────
 
-Logistic regression                             Number of obs     =      1,290
-                                                LR chi2(3)        =      53.82
-                                                Prob > chi2       =     0.0000
-Log likelihood =  -432.7023                     Pseudo R2         =     0.0586
-
-───────────────┬────────────────────────────────────────────────────────────────
-twelve_years_3 │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
-───────────────┼────────────────────────────────────────────────────────────────
-     incom16_3 │   .6675118   .1012923     6.59   0.000     .4689826     .866041
-               │
-        race_3 │
-        black  │  -.3700999   .2235376    -1.66   0.098    -.8082255    .0680258
-        other  │    .335468   .3787325     0.89   0.376    -.4068342     1.07777
-               │
-         _cons │   .3873589   .2695467     1.44   0.151     -.140943    .9156608
-───────────────┴────────────────────────────────────────────────────────────────
+  ────────────────┬────────────────────────────────────────────────
+                  │Standardized differences          Variance ratio
+                  │        Raw     Matched           Raw    Matched
+  ────────────────┼────────────────────────────────────────────────
+        incom16_3 │   .5429864   -.0077616      .9418824   .9726307
+                  │
+           race_3 │
+           black  │  -.1354119   -.0199848      .7873145   .9638265
+           other  │  -.0248378    .0326166      .9163586   1.114865
+  ────────────────┴────────────────────────────────────────────────
 </pre>
-<pre class='stata'>. predict pscore // predict propensity score
-(option pr assumed; Pr(twelve_years_3))
-(754 missing values generated)
-</pre>
-<pre class='stata'>. twoway (kdensity pscore if twelve_years_3 == 1, bwidth(.05)) /// 
-> (kdensity pscore if twelve_years_3 == 0, bwidth(.05)), ///
-> title("Assessing Balance of Propensity Score") ///
-> xtitle("Propensity Score") ///
-> ytitle("Density") /// 
-> legend(order(1 "12 or more years of education" 2 "&lt; 12 years of education")) ///
-> scheme(michigan)
+<pre class='stata'>. tebalance density, scheme(michigan)
+note: refitting the model using the generate() option
 </pre>
 <pre class='stata'>. graph export mydensity.png, width(500) replace
 (file mydensity.png written in PNG format)
@@ -287,7 +274,7 @@ twelve_years_3 │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interva
 Data                               wide   ->   long
 ─────────────────────────────────────────────────────────────────────────────
 Number of obs.                     2044   ->    6132
-Number of variables                  17   ->       8
+Number of variables                  16   ->       7
 j variable (3 values)                     ->   wave
 xij variables:
              satjob_1 satjob_2 satjob_3   ->   satjob_
@@ -454,7 +441,7 @@ LR test vs. linear model: chibar2(01) = 323.08        Prob >= chibar2 = 0.0000
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>With many thanks to Jorge Cuartas for the idea for the this code.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>With many thanks to Jorge Cuartas for the ideas for earlier versions of this code.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>

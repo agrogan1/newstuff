@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/causal-modeling/causal-modeling.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 5 Jul 2020, 13:15:16
+ {txt}opened on:  {res}13 Jul 2020, 15:52:25
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 5 Jul 2020
+{res}13 Jul 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}13:15:16
+{res}15:52:25
 {txt}
 {com}. //_3
 . clear all
@@ -22,8 +22,7 @@
 {txt}
 {com}. //_5
 . use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w123_R6 - stata.dta", clear
-{txt}( )
-
+{txt}
 {com}. //_6
 . generate ID = id_1
 {txt}
@@ -34,8 +33,8 @@
 . describe
 
 {txt}Contains data from {res}/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w123_R6 - stata.dta
-{txt}  obs:{res}         2,044                           
-{txt} vars:{res}            13                          12 MAR 2018 16:24
+{txt}  obs:{res}         2,044                          
+{txt} vars:{res}            13                          5 Jul 2020 13:27
 {txt} size:{res}        32,704                          
 {txt}{hline}
               storage   display    value
@@ -168,57 +167,44 @@ twelve_years_3 {c |}
 {txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
 {com}. //_20
-. logit twelve_years_3 incom16_3 i.race_3 // logit model of propensity score
-
-{res}{txt}Iteration 0:{space 3}log likelihood = {res: -459.6128}  
-Iteration 1:{space 3}log likelihood = {res:-434.38973}  
-Iteration 2:{space 3}log likelihood = {res:-432.70848}  
-Iteration 3:{space 3}log likelihood = {res: -432.7023}  
-Iteration 4:{space 3}log likelihood = {res: -432.7023}  
+. tebalance summarize
+{txt}{p 0 6 2}note: refitting the model using the {bf:generate()} option{p_end}
 {res}
-{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     1,290
-{txt}{col 49}LR chi2({res}3{txt}){col 67}= {res}     53.82
-{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res} -432.7023{txt}{col 49}Pseudo R2{col 67}= {res}    0.0586
+{txt}{p 2 0 2}Covariate balance summary{p_end}
+{res}{col 42}{text}          Raw{col 55}      Matched
+{res}{col 27}{text}{hline 15}{hline 13}{hline 13}
+{col 27}{text}Number of obs ={col 42}{result}{space 3}       952{col 55}{space 3}     1,904
+{col 27}{text}Treated obs   ={col 42}{result}{space 3}       854{col 55}{space 3}       952
+{col 27}{text}Control obs   ={col 42}{result}{space 3}        98{col 55}{space 3}       952
+{col 27}{text}{hline 15}{hline 13}{hline 13}
 
-{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}twelve_years_3{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
-{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 5}incom16_3 {c |}{col 16}{res}{space 2} .6675118{col 28}{space 2} .1012923{col 39}{space 1}    6.59{col 48}{space 3}0.000{col 56}{space 4} .4689826{col 69}{space 3}  .866041
-{txt}{space 14} {c |}
-{space 8}race_3 {c |}
-{space 8}black  {c |}{col 16}{res}{space 2}-.3700999{col 28}{space 2} .2235376{col 39}{space 1}   -1.66{col 48}{space 3}0.098{col 56}{space 4}-.8082255{col 69}{space 3} .0680258
-{txt}{space 8}other  {c |}{col 16}{res}{space 2}  .335468{col 28}{space 2} .3787325{col 39}{space 1}    0.89{col 48}{space 3}0.376{col 56}{space 4}-.4068342{col 69}{space 3}  1.07777
-{txt}{space 14} {c |}
-{space 9}_cons {c |}{col 16}{res}{space 2} .3873589{col 28}{space 2} .2695467{col 39}{space 1}    1.44{col 48}{space 3}0.151{col 56}{space 4} -.140943{col 69}{space 3} .9156608
-{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-
-{com}. //_21
-. predict pscore // predict propensity score
-{txt}(option {bf:pr} assumed; Pr(twelve_years_3))
-(754 missing values generated)
-
-{com}. //_22
-. twoway (kdensity pscore if twelve_years_3 == 1, bwidth(.05)) /// 
-> (kdensity pscore if twelve_years_3 == 0, bwidth(.05)), ///
-> title("Assessing Balance of Propensity Score") ///
-> xtitle("Propensity Score") ///
-> ytitle("Density") /// 
-> legend(order(1 "12 or more years of education" 2 "< 12 years of education")) ///
-> scheme(michigan)
+{res}{col 3}{text}{hline 16}{c TT}{hline 24}{hline 24}
+{col 19}{text}{c |}Standardized differences{col 44}          Variance ratio
+{res}{col 19}{text}{c |}        Raw{col 32}    Matched{col 44}          Raw{col 56}    Matched
+{res}{col 3}{text}{hline 16}{c +}{hline 12}{hline 12}{hline 12}{hline 12}
+{col 3}{text}      incom16_3{col 19}{c |}{result}{space 2} .5429864{col 32}{space 2}-.0077616{col 44}{space 4} .9418824{col 56}{space 2} .9726307
+{col 19}{text}{c |}
+{res}{col 3}{text}         race_3{col 19}{c |}
+{res}{col 3}{text}         black{col 19}{c |}{result}{space 2}-.1354119{col 32}{space 2}-.0199848{col 44}{space 4} .7873145{col 56}{space 2} .9638265
+{col 3}{text}         other{col 19}{c |}{result}{space 2}-.0248378{col 32}{space 2} .0326166{col 44}{space 4} .9163586{col 56}{space 2} 1.114865
+{col 3}{text}{hline 16}{c BT}{hline 12}{hline 12}{hline 12}{hline 12}
 {res}{txt}
-{com}. //_23
+{com}. //_21
+. tebalance density, scheme(michigan)
+{txt}{p 0 6 2}note: refitting the model using the {bf:generate()} option{p_end}
+{res}{txt}
+{com}. //_22
 . graph export mydensity.png, width(500) replace
 {txt}(file mydensity.png written in PNG format)
 
-{com}. //_24
+{com}. //_23
 . reshape long satjob_ educ_ twelve_years_ incom16_ race_, i(ID) j(wave)
 {txt}(note: j = 1 2 3)
 
 Data{col 36}wide{col 43}->{col 48}long
 {hline 77}
 Number of obs.                 {res}    2044   {txt}->{res}    6132
-{txt}Number of variables            {res}      17   {txt}->{res}       8
+{txt}Number of variables            {res}      16   {txt}->{res}       7
 {txt}j variable (3 values)                     ->   {res}wave
 {txt}xij variables:
              {res}satjob_1 satjob_2 satjob_3   {txt}->   {res}satjob_
@@ -228,22 +214,22 @@ twelve_years_1 twelve_years_2 twelve_years_3{txt}-> {res}twelve_years_
                    race_1 race_2 race_3   {txt}->   {res}race_
 {txt}{hline 77}
 
-{com}. //_25
+{com}. //_24
 . rename satjob_ satjob
 {res}{txt}
-{com}. //_26
+{com}. //_25
 . rename educ_ educ
 {res}{txt}
-{com}. //_27
+{com}. //_26
 . rename incom16_ incom16
 {res}{txt}
-{com}. //_28
+{com}. //_27
 . rename race_ race
 {res}{txt}
-{com}. //_29
+{com}. //_28
 . rename twelve_years_ twelve_years
 {res}{txt}
-{com}. //_30
+{com}. //_29
 . mixed satjob wave educ incom16 i.race || ID: 
 {res}
 {txt}Performing EM optimization: 
@@ -291,7 +277,7 @@ twelve_years_1 twelve_years_2 twelve_years_3{txt}-> {res}twelve_years_
 {txt}{hline 29}{c BT}{hline 48}
 LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}322.95{col 55}{txt}Prob >= chibar2 = {col 73}{res}0.0000
 {txt}
-{com}. //_31
+{com}. //_30
 . xtreg satjob wave educ incom16 i.race, i(ID) fe
 {res}
 {txt}Fixed-effects (within) regression{col 49}Number of obs{col 67}={col 69}{res}     3,595
@@ -324,15 +310,15 @@ LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}322.9
 {hline 13}{c BT}{hline 64}
 F test that all u_i=0: F({res}1660{txt}, {res}1929{txt}) = {res}2.18{col 62}{txt}Prob > F = {res}0.0000
 {txt}
-{com}. //_32
+{com}. //_31
 . bysort ID: egen educ_mean = mean(educ)
 {txt}(6 missing values generated)
 
-{com}. //_33
+{com}. //_32
 . generate educ_deviation = educ - educ_mean
 {txt}(1,240 missing values generated)
 
-{com}. //_34
+{com}. //_33
 . mixed satjob wave educ_mean educ_deviation incom16 i.race || ID:
 {res}
 {txt}Performing EM optimization: 
@@ -386,7 +372,7 @@ LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}323.0
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/causal-modeling/causal-modeling.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 5 Jul 2020, 13:15:23
+ {txt}closed on:  {res}13 Jul 2020, 15:52:36
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

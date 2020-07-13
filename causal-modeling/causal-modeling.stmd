@@ -93,19 +93,11 @@ Hence, for this particular data, we are exploring:
 
 ### Assess Balance of Propensity Score Model [^Cuartas]
 
-[^Cuartas]: With many thanks to Jorge Cuartas for the idea for the this code.
+[^Cuartas]: With many thanks to Jorge Cuartas for the ideas for earlier versions of this code.
 
-    logit twelve_years_3 incom16_3 i.race_3 // logit model of propensity score
+    tebalance summarize
 	
-	predict pscore // predict propensity score
-	
-	twoway (kdensity pscore if twelve_years_3 == 1, bwidth(.05)) /// 
-	(kdensity pscore if twelve_years_3 == 0, bwidth(.05)), ///
-	title("Assessing Balance of Propensity Score") ///
-	xtitle("Propensity Score") ///
-	ytitle("Density") /// 
-    legend(order(1 "12 or more years of education" 2 "< 12 years of education")) ///
-	scheme(michigan)
+    tebalance density, scheme(michigan)
 
 	graph export mydensity.png, width(500) replace
 
