@@ -16,17 +16,17 @@ We are going to set up a table with 10 rows of information.
 
     set obs 10 // 10 rows of information
 
-    generate events = 100 // 100 hypothetical events
+    generate occasions = 100 // 100 hypothetical occasions
 	
 In each row of the table our *event of interest* happened a different number of times. 
 
 In the code below we make use of Stata's special variable for the row number of a data set: `_n`.
 
-    generate it_happened = _n * 10
+    generate event_happened = _n * 10
 	
 As a result, the *event of interest* *didn't* happen $100 - \text{happened}$ times.
 
-    generate it_didnt_happen = 100 - it_happened
+    generate event_didnt_happen = 100 - event_happened
 	
 > As you think through the rest of this example, it might be worth giving yourself a concrete example of the *event of interest*. What is a concrete example of a good thing that might happen, or a bad thing that might happen?
 	
@@ -38,27 +38,37 @@ Let's list out our table of information so far:
 	
 # Risk
 
-Now let's think about risk: $\text{risk} = P(\text{event}) = \frac{\text{number of events}}{\text{number of events} + \text{number of non-events}}$
+Now let's think about risk: 
 
-    generate risk_it_happened = it_happened / (it_happened + it_didnt_happen)
+$$
+    \text{risk} = P(\text{event}) = \frac{\text{number of events that happened}}{\text{number of events that happened} + \text{number of events that didn't happen}}
+$$
+
+    generate risk_event_happened = event_happened / (event_happened + event_didnt_happen)
 	
 There is also a risk that the event didn't happen.
 
-    generate risk_it_didnt_happen = it_didnt_happen / (it_happened + it_didnt_happen)
+    generate risk_event_didnt_happen = event_didnt_happen / (event_happened + event_didnt_happen)
 	
 # Odds
 
 The odds are the probability that an event happened divided by the probability that it did not happen
 
-$\text{odds} = \frac{P(\text{happened})}{P(\text{didn't happen})}$
+$$
+    \text{odds} = \frac{P(\text{event happened})}{P(\text{event didn't happen})}
+$$
 
-$= \frac{\frac{\text{number of events}}{\text{number of events} + \text{number of non-events}}}{\frac{\text{number of non-events}}{\text{number of events} + \text{number of non-events}}}$
+$$
+    = \frac{\frac{\text{number of events}}{\text{number of events} + \text{number of non-events}}}{\frac{\text{number of non-events}}{\text{number of events} + \text{number of non-events}}}
+$$
 
-    generate odds = risk_it_happened / risk_it_didnt_happen
+    generate odds = risk_event_happened / risk_event_didnt_happen
 
 which incidentally reduces to
 
-$= \frac{\text{number of events}}{\text{number of non-events}}$
+$$
+    = \frac{\text{number of events}}{\text{number of non-events}}
+$$
 
 # Look At Our Table Of Information
 
@@ -66,11 +76,14 @@ Let's look at our table of information.
 
 > Notice how the odds start to overstate the risk, as the risk becomes more common.
 
-    list it_happened it_didnt_happen risk_it_happened risk_it_didnt_happen odds, abbreviate(15)
+    list event_happened ///
+	risk_event_happened ///
+	odds, ///
+	abbreviate(20)
 
 We can even graph this.
 
-    twoway scatter odds risk_it_happened it_happened, ///
+    twoway scatter odds risk_event_happened event_happened, ///
 	title("Risk and Odds") ///
 	xtitle("How many times out of 100 did this happen?") ///
 	scheme(michigan)

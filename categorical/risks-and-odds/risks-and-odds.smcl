@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/risks-and-odds/risks-and-odds.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}25 Jun 2020, 09:33:42
+ {txt}opened on:  {res}14 Jul 2020, 11:54:07
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}25 Jun 2020
+{res}14 Jul 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}09:33:42
+{res}11:54:07
 {txt}
 {com}. //_3
 . clear all
@@ -24,64 +24,67 @@ now 10
 {p_end}
 
 {com}. //_5
-. generate events = 100 // 100 hypothetical events
+. generate occasions = 100 // 100 hypothetical occasions
 {txt}
 {com}. //_6
-. generate it_happened = _n * 10
+. generate event_happened = _n * 10
 {txt}
 {com}. //_7
-. generate it_didnt_happen = 100 - it_happened
+. generate event_didnt_happen = 100 - event_happened
 {txt}
 {com}. //_8
 . list, abbreviate(20)
 {txt}
-     {c TLC}{hline 8}{c -}{hline 13}{c -}{hline 17}{c TRC}
-     {c |} {res}events   it_happened   it_didnt_happen {txt}{c |}
-     {c LT}{hline 8}{c -}{hline 13}{c -}{hline 17}{c RT}
-  1. {c |} {res}   100            10                90 {txt}{c |}
-  2. {c |} {res}   100            20                80 {txt}{c |}
-  3. {c |} {res}   100            30                70 {txt}{c |}
-  4. {c |} {res}   100            40                60 {txt}{c |}
-  5. {c |} {res}   100            50                50 {txt}{c |}
-     {c LT}{hline 8}{c -}{hline 13}{c -}{hline 17}{c RT}
-  6. {c |} {res}   100            60                40 {txt}{c |}
-  7. {c |} {res}   100            70                30 {txt}{c |}
-  8. {c |} {res}   100            80                20 {txt}{c |}
-  9. {c |} {res}   100            90                10 {txt}{c |}
- 10. {c |} {res}   100           100                 0 {txt}{c |}
-     {c BLC}{hline 8}{c -}{hline 13}{c -}{hline 17}{c BRC}
+     {c TLC}{hline 11}{c -}{hline 16}{c -}{hline 20}{c TRC}
+     {c |} {res}occasions   event_happened   event_didnt_happen {txt}{c |}
+     {c LT}{hline 11}{c -}{hline 16}{c -}{hline 20}{c RT}
+  1. {c |} {res}      100               10                   90 {txt}{c |}
+  2. {c |} {res}      100               20                   80 {txt}{c |}
+  3. {c |} {res}      100               30                   70 {txt}{c |}
+  4. {c |} {res}      100               40                   60 {txt}{c |}
+  5. {c |} {res}      100               50                   50 {txt}{c |}
+     {c LT}{hline 11}{c -}{hline 16}{c -}{hline 20}{c RT}
+  6. {c |} {res}      100               60                   40 {txt}{c |}
+  7. {c |} {res}      100               70                   30 {txt}{c |}
+  8. {c |} {res}      100               80                   20 {txt}{c |}
+  9. {c |} {res}      100               90                   10 {txt}{c |}
+ 10. {c |} {res}      100              100                    0 {txt}{c |}
+     {c BLC}{hline 11}{c -}{hline 16}{c -}{hline 20}{c BRC}
 
 {com}. //_9
-. generate risk_it_happened = it_happened / (it_happened + it_didnt_happen)
+. generate risk_event_happened = event_happened / (event_happened + event_didnt_happen)
 {txt}
 {com}. //_10
-. generate risk_it_didnt_happen = it_didnt_happen / (it_happened + it_didnt_happen)
+. generate risk_event_didnt_happen = event_didnt_happen / (event_happened + event_didnt_happen)
 {txt}
 {com}. //_11
-. generate odds = risk_it_happened / risk_it_didnt_happen
+. generate odds = risk_event_happened / risk_event_didnt_happen
 {txt}(1 missing value generated)
 
 {com}. //_12
-. list it_happened it_didnt_happen risk_it_happened risk_it_didnt_happen odds, abbreviate(15)
+. list event_happened ///
+> risk_event_happened ///
+> odds, ///
+> abbreviate(20)
 {txt}
-     {c TLC}{hline 13}{c -}{hline 17}{c -}{hline 17}{c -}{hline 17}{c -}{hline 10}{c TRC}
-     {c |} {res}it_happened   it_didnt_happen   risk_it_happe~d   risk_it_didnt~n       odds {txt}{c |}
-     {c LT}{hline 13}{c -}{hline 17}{c -}{hline 17}{c -}{hline 17}{c -}{hline 10}{c RT}
-  1. {c |} {res}         10                90                .1                .9   .1111111 {txt}{c |}
-  2. {c |} {res}         20                80                .2                .8        .25 {txt}{c |}
-  3. {c |} {res}         30                70                .3                .7   .4285715 {txt}{c |}
-  4. {c |} {res}         40                60                .4                .6   .6666666 {txt}{c |}
-  5. {c |} {res}         50                50                .5                .5          1 {txt}{c |}
-     {c LT}{hline 13}{c -}{hline 17}{c -}{hline 17}{c -}{hline 17}{c -}{hline 10}{c RT}
-  6. {c |} {res}         60                40                .6                .4        1.5 {txt}{c |}
-  7. {c |} {res}         70                30                .7                .3   2.333333 {txt}{c |}
-  8. {c |} {res}         80                20                .8                .2          4 {txt}{c |}
-  9. {c |} {res}         90                10                .9                .1          9 {txt}{c |}
- 10. {c |} {res}        100                 0                 1                 0          . {txt}{c |}
-     {c BLC}{hline 13}{c -}{hline 17}{c -}{hline 17}{c -}{hline 17}{c -}{hline 10}{c BRC}
+     {c TLC}{hline 16}{c -}{hline 21}{c -}{hline 10}{c TRC}
+     {c |} {res}event_happened   risk_event_happened       odds {txt}{c |}
+     {c LT}{hline 16}{c -}{hline 21}{c -}{hline 10}{c RT}
+  1. {c |} {res}            10                    .1   .1111111 {txt}{c |}
+  2. {c |} {res}            20                    .2        .25 {txt}{c |}
+  3. {c |} {res}            30                    .3   .4285715 {txt}{c |}
+  4. {c |} {res}            40                    .4   .6666666 {txt}{c |}
+  5. {c |} {res}            50                    .5          1 {txt}{c |}
+     {c LT}{hline 16}{c -}{hline 21}{c -}{hline 10}{c RT}
+  6. {c |} {res}            60                    .6        1.5 {txt}{c |}
+  7. {c |} {res}            70                    .7   2.333333 {txt}{c |}
+  8. {c |} {res}            80                    .8          4 {txt}{c |}
+  9. {c |} {res}            90                    .9          9 {txt}{c |}
+ 10. {c |} {res}           100                     1          . {txt}{c |}
+     {c BLC}{hline 16}{c -}{hline 21}{c -}{hline 10}{c BRC}
 
 {com}. //_13
-. twoway scatter odds risk_it_happened it_happened, ///
+. twoway scatter odds risk_event_happened event_happened, ///
 > title("Risk and Odds") ///
 > xtitle("How many times out of 100 did this happen?") ///
 > scheme(michigan)
@@ -94,7 +97,7 @@ now 10
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/risks-and-odds/risks-and-odds.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}25 Jun 2020, 09:33:43
+ {txt}closed on:  {res}14 Jul 2020, 11:54:09
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

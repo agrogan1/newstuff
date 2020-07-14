@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Risks and Odds</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">25 Jun 2020 09:33:20</p>
+<p class="date">14 Jul 2020 11:53:37</p>
 </header>
 <h1 id="setup">Setup</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -68,14 +68,14 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. set obs 10 // 10 rows of information
 number of observations (_N) was 0, now 10
 </pre>
-<pre class='stata'>. generate events = 100 // 100 hypothetical events
+<pre class='stata'>. generate occasions = 100 // 100 hypothetical occasions
 </pre>
 <p>In each row of the table our <em>event of interest</em> happened a different number of times.</p>
 <p>In the code below we make use of Stata’s special variable for the row number of a data set: <code>_n</code>.</p>
-<pre class='stata'>. generate it_happened = _n * 10
+<pre class='stata'>. generate event_happened = _n * 10
 </pre>
 <p>As a result, the <em>event of interest</em> <em>didn’t</em> happen <span class="math inline">\(100 - \text{happened}\)</span> times.</p>
-<pre class='stata'>. generate it_didnt_happen = 100 - it_happened
+<pre class='stata'>. generate event_didnt_happen = 100 - event_happened
 </pre>
 <blockquote>
 <p>As you think through the rest of this example, it might be worth giving yourself a concrete example of the <em>event of interest</em>. What is a concrete example of a good thing that might happen, or a bad thing that might happen?</p>
@@ -84,63 +84,76 @@ number of observations (_N) was 0, now 10
 <p>Let’s list out our table of information so far:</p>
 <pre class='stata'>. list, abbreviate(20)
 
-     ┌────────────────────────────────────────┐
-     │ events   it_happened   it_didnt_happen │
-     ├────────────────────────────────────────┤
-  1. │    100            10                90 │
-  2. │    100            20                80 │
-  3. │    100            30                70 │
-  4. │    100            40                60 │
-  5. │    100            50                50 │
-     ├────────────────────────────────────────┤
-  6. │    100            60                40 │
-  7. │    100            70                30 │
-  8. │    100            80                20 │
-  9. │    100            90                10 │
- 10. │    100           100                 0 │
-     └────────────────────────────────────────┘
+     ┌─────────────────────────────────────────────────┐
+     │ occasions   event_happened   event_didnt_happen │
+     ├─────────────────────────────────────────────────┤
+  1. │       100               10                   90 │
+  2. │       100               20                   80 │
+  3. │       100               30                   70 │
+  4. │       100               40                   60 │
+  5. │       100               50                   50 │
+     ├─────────────────────────────────────────────────┤
+  6. │       100               60                   40 │
+  7. │       100               70                   30 │
+  8. │       100               80                   20 │
+  9. │       100               90                   10 │
+ 10. │       100              100                    0 │
+     └─────────────────────────────────────────────────┘
 </pre>
 <h1 id="risk">Risk</h1>
-<p>Now let’s think about risk: <span class="math inline">\(\text{risk} = P(\text{event}) = \frac{\text{number of events}}{\text{number of events} + \text{number of non-events}}\)</span></p>
-<pre class='stata'>. generate risk_it_happened = it_happened / (it_happened + it_didnt_happen)
+<p>Now let’s think about risk:</p>
+<p><span class="math display">\[
+    \text{risk} = P(\text{event}) = \frac{\text{number of events that happened}}{\text{number of events that happened} + \text{number of events that didn&#39;t happen}}
+\]</span></p>
+<pre class='stata'>. generate risk_event_happened = event_happened / (event_happened + event_didnt_happen)
 </pre>
 <p>There is also a risk that the event didn’t happen.</p>
-<pre class='stata'>. generate risk_it_didnt_happen = it_didnt_happen / (it_happened + it_didnt_happen)
+<pre class='stata'>. generate risk_event_didnt_happen = event_didnt_happen / (event_happened + event_didnt_h
+> appen)
 </pre>
 <h1 id="odds">Odds</h1>
 <p>The odds are the probability that an event happened divided by the probability that it did not happen</p>
-<p><span class="math inline">\(\text{odds} = \frac{P(\text{happened})}{P(\text{didn&#39;t happen})}\)</span></p>
-<p><span class="math inline">\(= \frac{\frac{\text{number of events}}{\text{number of events} + \text{number of non-events}}}{\frac{\text{number of non-events}}{\text{number of events} + \text{number of non-events}}}\)</span></p>
-<pre class='stata'>. generate odds = risk_it_happened / risk_it_didnt_happen
+<p><span class="math display">\[
+    \text{odds} = \frac{P(\text{event happened})}{P(\text{event didn&#39;t happen})}
+\]</span></p>
+<p><span class="math display">\[
+    = \frac{\frac{\text{number of events}}{\text{number of events} + \text{number of non-events}}}{\frac{\text{number of non-events}}{\text{number of events} + \text{number of non-events}}}
+\]</span></p>
+<pre class='stata'>. generate odds = risk_event_happened / risk_event_didnt_happen
 (1 missing value generated)
 </pre>
 <p>which incidentally reduces to</p>
-<p><span class="math inline">\(= \frac{\text{number of events}}{\text{number of non-events}}\)</span></p>
+<p><span class="math display">\[
+    = \frac{\text{number of events}}{\text{number of non-events}}
+\]</span></p>
 <h1 id="look-at-our-table-of-information">Look At Our Table Of Information</h1>
 <p>Let’s look at our table of information.</p>
 <blockquote>
 <p>Notice how the odds start to overstate the risk, as the risk becomes more common.</p>
 </blockquote>
-<pre class='stata'>. list it_happened it_didnt_happen risk_it_happened risk_it_didnt_happen odds, abbreviate(15)
+<pre class='stata'>. list event_happened ///
+> risk_event_happened ///
+> odds, ///
+> abbreviate(20)
 
-     ┌──────────────────────────────────────────────────────────────────────────────┐
-     │ it_happened   it_didnt_happen   risk_it_happe~d   risk_it_didnt~n       odds │
-     ├──────────────────────────────────────────────────────────────────────────────┤
-  1. │          10                90                .1                .9   .1111111 │
-  2. │          20                80                .2                .8        .25 │
-  3. │          30                70                .3                .7   .4285715 │
-  4. │          40                60                .4                .6   .6666666 │
-  5. │          50                50                .5                .5          1 │
-     ├──────────────────────────────────────────────────────────────────────────────┤
-  6. │          60                40                .6                .4        1.5 │
-  7. │          70                30                .7                .3   2.333333 │
-  8. │          80                20                .8                .2          4 │
-  9. │          90                10                .9                .1          9 │
- 10. │         100                 0                 1                 0          . │
-     └──────────────────────────────────────────────────────────────────────────────┘
+     ┌─────────────────────────────────────────────────┐
+     │ event_happened   risk_event_happened       odds │
+     ├─────────────────────────────────────────────────┤
+  1. │             10                    .1   .1111111 │
+  2. │             20                    .2        .25 │
+  3. │             30                    .3   .4285715 │
+  4. │             40                    .4   .6666666 │
+  5. │             50                    .5          1 │
+     ├─────────────────────────────────────────────────┤
+  6. │             60                    .6        1.5 │
+  7. │             70                    .7   2.333333 │
+  8. │             80                    .8          4 │
+  9. │             90                    .9          9 │
+ 10. │            100                     1          . │
+     └─────────────────────────────────────────────────┘
 </pre>
 <p>We can even graph this.</p>
-<pre class='stata'>. twoway scatter odds risk_it_happened it_happened, ///
+<pre class='stata'>. twoway scatter odds risk_event_happened event_happened, ///
 > title("Risk and Odds") ///
 > xtitle("How many times out of 100 did this happen?") ///
 > scheme(michigan)
