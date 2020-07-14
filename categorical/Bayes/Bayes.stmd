@@ -79,18 +79,112 @@ Then:
 
 $P(H|D) = \frac{P(D|H)P(H)}{P(D)}$
 
+$\text{posterior} \sim \text{likelihood} \times \text{prior}$
+
 # Accepting the Null Hypothesis
 
-## We Are Estimating The Probability of the Hypothesis Given The Data
+## We Are Directly Estimating The Probability of the Hypothesis Given The Data
 
-## We Are Not Rejecting a Null Hypothesis
+* Could be large e.g. .8.
+* Could be small e.g. .1.
+* Could be effectively 0. (*Essentially, we can accept a null hypothesis*)
+
+## We Are *Not* Rejecting a Null Hypothesis
+
+We are *not* imagining a hypothetical *null hypothesis* (*that may not even be substantively meaningful*), and asking the question of whether the data we observe are extreme enough that we wish to reject this null hypothesis. 
+
+* $H_0$: $\bar{x} = 0$ or $\beta = 0$
+* Posit $H_A$: $\bar{x} \neq 0$ or $\beta \neq 0$
+* Observe data and calculate a test statistic (e.g. $t$). If $\text{test statistic} > \text{critical value}$, e.g. $t > 1.96$ then reject $H_0$.
+* We can never *accept* $H_0$, only *reject* $H_A$.
 
 ## Accepting Null Hypotheses
 
+What is the effect on science and publication of having a statistical practice where we can never affirm $\bar{x} = 0$ or $\beta = 0$, but only reject $\bar{x} = 0$ or $\beta = 0$?
+
+* Only affirm difference not similarity
+* Publication bias
+
+> See [https://agrogan1.github.io/Bayes/accepting-H0/accepting-H0.html](https://agrogan1.github.io/Bayes/accepting-H0/accepting-H0.html)
+
+> Bayesian statistics allow us to accept the null hypothesis $H_0$.
+
 # Bayesian Categorical Data Analysis in Stata
 
-## Logistic Regression
+    clear all
+	
+	use "../logistic-regression/GSSsmall.dta", clear
+	
+## Frequentist Logistic Regression
 
-## Probit Regression
+    logit liberal i.race i.class
 
-## Count Model
+## Bayesian Logistic Regression 
+
+> Takes a few minutes since using MCMC (5-10 minutes).
+
+    sample 10 // Random Sample To Speed This Example: DON'T DO THIS IN PRACTICE!!!
+
+> How do we interpret the result for some of the **social class** categories where the credibility interval includes 0?
+
+    bayes: logit liberal i.race i.class
+	
+## Blocking May Improve Estimation
+
+    * bayes, block({liberal:i.race}): logit liberal i.race i.class // blocking may improve estimation
+
+## Bayesian Logistic Regression With Priors
+
+Priors:
+
+* Encode prior information: strong theory; strong clinical or practice wisdom; strong previous empirical results.
+* May be helpful in quantitatively encoding the results of prior literature.
+* May be especially helpful when your sample is small.
+
+    bayes, normalprior(5): logit liberal i.race i.class
+
+## MCMC vs. ML
+
+    clear all
+	
+	set obs 100
+	
+	generate myestimate = rnormal() + 10 // simulated values of estimate
+	
+	summarize myestimate
+	
+	local mymean = r(mean)
+	
+    kdensity myestimate ,  ///
+	title("Likelihood of Estimate") ///
+	xtitle("Estimate") ytitle("Likelihood") ///
+	note("Vertical Line At Mean Value") ///
+	caption("ML gives point estimate; Bayes gives full range of distribution") ///
+	xline(`mymean', lwidth(1) lcolor(gold)) scheme(michigan)
+	
+	graph export MCMC-ML.png, width(500) replace
+
+![MCMC vs. ML](MCMC-ML.png)
+	
+## Full Distribution of Parameters
+
+    clear all
+	
+	use "../logistic-regression/GSSsmall.dta", clear
+	
+	sample 10 // Random Sample for These Slides: DON'T DO THIS IN PRACTICE!!!
+	
+	bayes, normalprior(5): logit liberal i.race i.class
+
+	bayesgraph kdensity {liberal:2.race}, scheme(michigan)
+	
+	graph export mybayesgraph.png, width(500) replace
+
+![Density Plot of Parameter](mybayesgraph.png)
+	
+	
+
+	
+	
+
+	

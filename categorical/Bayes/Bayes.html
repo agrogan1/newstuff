@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Bayesian Categorical Data Analysis</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">14 Jul 2020 09:34:48</p>
+<p class="date">14 Jul 2020 15:04:23</p>
 </header>
 <h1 id="introduction">Introduction</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -157,13 +157,255 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <p><span class="math inline">\(P(D|H)P(H) = P(H|D)P(D)\)</span></p>
 <p>Then:</p>
 <p><span class="math inline">\(P(H|D) = \frac{P(D|H)P(H)}{P(D)}\)</span></p>
+<p><span class="math inline">\(\text{posterior} \sim \text{likelihood} \times \text{prior}\)</span></p>
 <h1 id="accepting-the-null-hypothesis">Accepting the Null Hypothesis</h1>
-<h2 id="we-are-estimating-the-probability-of-the-hypothesis-given-the-data">We Are Estimating The Probability of the Hypothesis Given The Data</h2>
-<h2 id="we-are-not-rejecting-a-null-hypothesis">We Are Not Rejecting a Null Hypothesis</h2>
+<h2 id="we-are-directly-estimating-the-probability-of-the-hypothesis-given-the-data">We Are Directly Estimating The Probability of the Hypothesis Given The Data</h2>
+<ul>
+<li>Could be large e.g. .8.</li>
+<li>Could be small e.g. .1.</li>
+<li>Could be effectively 0. (<em>Essentially, we can accept a null hypothesis</em>)</li>
+</ul>
+<h2 id="we-are-not-rejecting-a-null-hypothesis">We Are <em>Not</em> Rejecting a Null Hypothesis</h2>
+<p>We are <em>not</em> imagining a hypothetical <em>null hypothesis</em> (<em>that may not even be substantively meaningful</em>), and asking the question of whether the data we observe are extreme enough that we wish to reject this null hypothesis.</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\bar{x} = 0\)</span> or <span class="math inline">\(\beta = 0\)</span></li>
+<li>Posit <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\bar{x} \neq 0\)</span> or <span class="math inline">\(\beta \neq 0\)</span></li>
+<li>Observe data and calculate a test statistic (e.g. <span class="math inline">\(t\)</span>). If <span class="math inline">\(\text{test statistic} &gt; \text{critical value}\)</span>, e.g. <span class="math inline">\(t &gt; 1.96\)</span> then reject <span class="math inline">\(H_0\)</span>.</li>
+<li>We can never <em>accept</em> <span class="math inline">\(H_0\)</span>, only <em>reject</em> <span class="math inline">\(H_A\)</span>.</li>
+</ul>
 <h2 id="accepting-null-hypotheses">Accepting Null Hypotheses</h2>
+<p>What is the effect on science and publication of having a statistical practice where we can never affirm <span class="math inline">\(\bar{x} = 0\)</span> or <span class="math inline">\(\beta = 0\)</span>, but only reject <span class="math inline">\(\bar{x} = 0\)</span> or <span class="math inline">\(\beta = 0\)</span>?</p>
+<ul>
+<li>Only affirm difference not similarity</li>
+<li>Publication bias</li>
+</ul>
+<blockquote>
+<p>See <a href="https://agrogan1.github.io/Bayes/accepting-H0/accepting-H0.html">https://agrogan1.github.io/Bayes/accepting-H0/accepting-H0.html</a></p>
+</blockquote>
+<blockquote>
+<p>Bayesian statistics allow us to accept the null hypothesis <span class="math inline">\(H_0\)</span>.</p>
+</blockquote>
 <h1 id="bayesian-categorical-data-analysis-in-stata">Bayesian Categorical Data Analysis in Stata</h1>
-<h2 id="logistic-regression">Logistic Regression</h2>
-<h2 id="probit-regression">Probit Regression</h2>
-<h2 id="count-model">Count Model</h2>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. use "../logistic-regression/GSSsmall.dta", clear
+</pre>
+<h2 id="frequentist-logistic-regression">Frequentist Logistic Regression</h2>
+<pre class='stata'>. logit liberal i.race i.class
+
+Iteration 0:   log likelihood = -31538.733  
+Iteration 1:   log likelihood = -31370.507  
+Iteration 2:   log likelihood = -31369.841  
+Iteration 3:   log likelihood = -31369.841  
+
+Logistic regression                             Number of obs     =     53,625
+                                                LR chi2(5)        =     337.78
+                                                Prob > chi2       =     0.0000
+Log likelihood = -31369.841                     Pseudo R2         =     0.0054
+
+───────────────┬────────────────────────────────────────────────────────────────
+       liberal │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+───────────────┼────────────────────────────────────────────────────────────────
+          race │
+        black  │   .4443531   .0272062    16.33   0.000       .39103    .4976762
+        other  │   .3190896   .0413275     7.72   0.000     .2380891    .4000901
+               │
+         class │
+working class  │  -.1397848    .041515    -3.37   0.001    -.2211527   -.0584169
+ middle class  │  -.0117948   .0416509    -0.28   0.777     -.093429    .0698394
+  upper class  │   .1512565   .0648962     2.33   0.020     .0240624    .2784507
+               │
+         _cons │  -.9900441   .0397384   -24.91   0.000     -1.06793   -.9121582
+───────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h2 id="bayesian-logistic-regression">Bayesian Logistic Regression</h2>
+<blockquote>
+<p>Takes a few minutes since using MCMC (5-10 minutes).</p>
+</blockquote>
+<pre class='stata'>. sample 10 // Random Sample To Speed This Example: DON'T DO THIS IN PRACTICE!!!
+(58,332 observations deleted)
+</pre>
+<blockquote>
+<p>How do we interpret the result for some of the <strong>social class</strong> categories where the credibility interval includes 0?</p>
+</blockquote>
+<pre class='stata'>. bayes: logit liberal i.race i.class
+  
+Burn-in ...
+Simulation ...
+
+Model summary
+────────────────────────────────────────────────────────────────────────────────
+Likelihood: 
+  liberal ~ logit(xb_liberal)
+
+Prior: 
+  {liberal:i.race i.class _cons} ~ normal(0,10000)                           (1)
+────────────────────────────────────────────────────────────────────────────────
+(1) Parameters are elements of the linear form xb_liberal.
+
+Bayesian logistic regression                       MCMC iterations  =     12,500
+Random-walk Metropolis-Hastings sampling           Burn-in          =      2,500
+                                                   MCMC sample size =     10,000
+                                                   Number of obs    =      5,373
+                                                   Acceptance rate  =      .1893
+                                                   Efficiency:  min =     .01298
+                                                                avg =     .03181
+Log marginal likelihood = -3145.0775                            max =     .05821
+ 
+───────────────┬────────────────────────────────────────────────────────────────
+               │                                                Equal-tailed
+       liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]
+───────────────┼────────────────────────────────────────────────────────────────
+          race │
+        black  │   .613104   .0805279   .005117   .6146653   .4536203   .7710295
+        other  │  .3655487   .1337521   .011739   .3671928   .1096495   .6318687
+               │
+         class │
+working class  │ -.0447626   .1482117   .009539   -.049469  -.3266321   .2476447
+ middle class  │  .1308608   .1495992   .008102   .1285952  -.1451617   .4204665
+  upper class  │  .1880397   .2267409   .009398   .1907295  -.2449094   .6303463
+               │
+         _cons │ -1.156825   .1403979   .007332  -1.147622  -1.433585  -.9039966
+───────────────┴────────────────────────────────────────────────────────────────
+Note: Default priors are used for model parameters.
+</pre>
+<h2 id="blocking-may-improve-estimation">Blocking May Improve Estimation</h2>
+<pre class='stata'>. * bayes, block({liberal:i.race}): logit liberal i.race i.class // blocking may improve 
+> estimation
+</pre>
+<h2 id="bayesian-logistic-regression-with-priors">Bayesian Logistic Regression With Priors</h2>
+<p>Priors:</p>
+<ul>
+<li>Encode prior information: strong theory; strong clinical or practice wisdom; strong previous empirical results.</li>
+<li>May be helpful in quantitatively encoding the results of prior literature.</li>
+<li>May be especially helpful when your sample is small.</li>
+</ul>
+<pre class='stata'>. bayes, normalprior(5): logit liberal i.race i.class
+  
+Burn-in ...
+Simulation ...
+
+Model summary
+────────────────────────────────────────────────────────────────────────────────
+Likelihood: 
+  liberal ~ logit(xb_liberal)
+
+Prior: 
+  {liberal:i.race i.class _cons} ~ normal(0,25)                              (1)
+────────────────────────────────────────────────────────────────────────────────
+(1) Parameters are elements of the linear form xb_liberal.
+
+Bayesian logistic regression                       MCMC iterations  =     12,500
+Random-walk Metropolis-Hastings sampling           Burn-in          =      2,500
+                                                   MCMC sample size =     10,000
+                                                   Number of obs    =      5,373
+                                                   Acceptance rate  =      .1929
+                                                   Efficiency:  min =     .02211
+                                                                avg =     .04409
+Log marginal likelihood = -3127.3296                            max =     .05525
+ 
+───────────────┬────────────────────────────────────────────────────────────────
+               │                                                Equal-tailed
+       liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]
+───────────────┼────────────────────────────────────────────────────────────────
+          race │
+        black  │  .5937518    .083517   .005616   .5967408   .4265727   .7505704
+        other  │  .3590546   .1316989   .005603   .3570273    .104696   .6086465
+               │
+         class │
+working class  │ -.0370307   .1301884    .00615  -.0301299  -.3051235   .2118941
+ middle class  │  .1325218    .130243   .006091   .1323398  -.1320389   .3815793
+  upper class  │  .1984152   .2126298    .00984   .2011917  -.2379325   .5936834
+               │
+         _cons │ -1.160654   .1258682   .005632  -1.163326  -1.406338  -.9004212
+───────────────┴────────────────────────────────────────────────────────────────
+Note: Default priors are used for model parameters.
+</pre>
+<h2 id="mcmc-vs.-ml">MCMC vs. ML</h2>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. set obs 100
+number of observations (_N) was 0, now 100
+</pre>
+<pre class='stata'>. generate myestimate = rnormal() + 10 // simulated values of estimate
+</pre>
+<pre class='stata'>. summarize myestimate
+
+    Variable │        Obs        Mean    Std. Dev.       Min        Max
+─────────────┼─────────────────────────────────────────────────────────
+  myestimate │        100    10.00285    1.070822   7.630999   12.54815
+</pre>
+<pre class='stata'>. local mymean = r(mean)
+</pre>
+<pre class='stata'>. kdensity myestimate ,  ///
+> title("Likelihood of Estimate") ///
+> xtitle("Estimate") ytitle("Likelihood") ///
+> note("Vertical Line At Mean Value") ///
+> caption("ML gives point estimate; Bayes gives full range of distribution") ///
+> xline(`mymean', lwidth(1) lcolor(gold)) scheme(michigan)
+</pre>
+<pre class='stata'>. graph export MCMC-ML.png, width(500) replace
+(file MCMC-ML.png written in PNG format)
+</pre>
+<figure>
+<img src="MCMC-ML.png" alt="" /><figcaption>MCMC vs. ML</figcaption>
+</figure>
+<h2 id="full-distribution-of-parameters">Full Distribution of Parameters</h2>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. use "../logistic-regression/GSSsmall.dta", clear
+</pre>
+<pre class='stata'>. sample 10 // Random Sample for These Slides: DON'T DO THIS IN PRACTICE!!!
+(58,332 observations deleted)
+</pre>
+<pre class='stata'>. bayes, normalprior(5): logit liberal i.race i.class
+  
+Burn-in ...
+Simulation ...
+
+Model summary
+────────────────────────────────────────────────────────────────────────────────
+Likelihood: 
+  liberal ~ logit(xb_liberal)
+
+Prior: 
+  {liberal:i.race i.class _cons} ~ normal(0,25)                              (1)
+────────────────────────────────────────────────────────────────────────────────
+(1) Parameters are elements of the linear form xb_liberal.
+
+Bayesian logistic regression                       MCMC iterations  =     12,500
+Random-walk Metropolis-Hastings sampling           Burn-in          =      2,500
+                                                   MCMC sample size =     10,000
+                                                   Number of obs    =      5,402
+                                                   Acceptance rate  =      .2044
+                                                   Efficiency:  min =     .02148
+                                                                avg =     .03322
+Log marginal likelihood = -3186.5162                            max =     .04322
+ 
+───────────────┬────────────────────────────────────────────────────────────────
+               │                                                Equal-tailed
+       liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]
+───────────────┼────────────────────────────────────────────────────────────────
+          race │
+        black  │  .4398831   .0849278   .005234   .4400468   .2732082   .6042975
+        other  │  .5605932   .1239858   .005964   .5603787   .3169103   .8109727
+               │
+         class │
+working class  │ -.2455384   .1277791   .006438  -.2493332  -.4921184   .0029378
+ middle class  │ -.0127971   .1325927   .007334  -.0139752  -.2753381   .2369611
+  upper class  │  -.045365    .193218   .010151  -.0524432  -.4309591   .3347986
+               │
+         _cons │  -.947001   .1246782   .008506  -.9449621  -1.191701  -.7109242
+───────────────┴────────────────────────────────────────────────────────────────
+Note: Default priors are used for model parameters.
+</pre>
+<pre class='stata'>. bayesgraph kdensity {liberal:2.race}, scheme(michigan)
+</pre>
+<pre class='stata'>. graph export mybayesgraph.png, width(500) replace
+(file mybayesgraph.png written in PNG format)
+</pre>
+<figure>
+<img src="mybayesgraph.png" alt="" /><figcaption>Density Plot of Parameter</figcaption>
+</figure>
 </body>
 </html>

@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>14 Jul 2020 09:34:48</p>
+<p>14 Jul 2020 15:04:23</p>
 </div>
 <div id="introduction" class="title-slide slide section level1"><h1>Introduction</h1><div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div></div>
 <div id="the-importance-of-thinking-about-prior-information" class="title-slide slide section level1"><h1>The Importance of Thinking About Prior Information</h1><blockquote>
@@ -191,20 +191,246 @@ Andy Grogan-Kaylor
 <p>Then:</p>
 <p><span class="math inline">\(P(D|H)P(H) = P(H|D)P(D)\)</span></p>
 <p>Then:</p>
-<p><span class="math inline">\(P(H|D) = \frac{P(D|H)P(H)}{P(D)}\)</span></p></div>
-<div id="accepting-the-null-hypothesis" class="title-slide slide section level1"><h1>Accepting the Null Hypothesis</h1></div><div id="we-are-estimating-the-probability-of-the-hypothesis-given-the-data" class="slide section level2">
-<h1>We Are Estimating The Probability of the Hypothesis Given The Data</h1>
+<p><span class="math inline">\(P(H|D) = \frac{P(D|H)P(H)}{P(D)}\)</span></p>
+<p><span class="math inline">\(\text{posterior} \sim \text{likelihood} \times \text{prior}\)</span></p></div>
+<div id="accepting-the-null-hypothesis" class="title-slide slide section level1"><h1>Accepting the Null Hypothesis</h1></div><div id="we-are-directly-estimating-the-probability-of-the-hypothesis-given-the-data" class="slide section level2">
+<h1>We Are Directly Estimating The Probability of the Hypothesis Given The Data</h1>
+<ul class="incremental">
+<li>Could be large e.g. .8.</li>
+<li>Could be small e.g. .1.</li>
+<li>Could be effectively 0. (<em>Essentially, we can accept a null hypothesis</em>)</li>
+</ul>
 </div><div id="we-are-not-rejecting-a-null-hypothesis" class="slide section level2">
-<h1>We Are Not Rejecting a Null Hypothesis</h1>
+<h1>We Are <em>Not</em> Rejecting a Null Hypothesis</h1>
+<p>We are <em>not</em> imagining a hypothetical <em>null hypothesis</em> (<em>that may not even be substantively meaningful</em>), and asking the question of whether the data we observe are extreme enough that we wish to reject this null hypothesis.</p>
+<ul class="incremental">
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\bar{x} = 0\)</span> or <span class="math inline">\(\beta = 0\)</span></li>
+<li>Posit <span class="math inline">\(H_A\)</span>: <span class="math inline">\(\bar{x} \neq 0\)</span> or <span class="math inline">\(\beta \neq 0\)</span></li>
+<li>Observe data and calculate a test statistic (e.g. <span class="math inline">\(t\)</span>). If <span class="math inline">\(\text{test statistic} &gt; \text{critical value}\)</span>, e.g. <span class="math inline">\(t &gt; 1.96\)</span> then reject <span class="math inline">\(H_0\)</span>.</li>
+<li>We can never <em>accept</em> <span class="math inline">\(H_0\)</span>, only <em>reject</em> <span class="math inline">\(H_A\)</span>.</li>
+</ul>
 </div><div id="accepting-null-hypotheses" class="slide section level2">
 <h1>Accepting Null Hypotheses</h1>
+<p>What is the effect on science and publication of having a statistical practice where we can never affirm <span class="math inline">\(\bar{x} = 0\)</span> or <span class="math inline">\(\beta = 0\)</span>, but only reject <span class="math inline">\(\bar{x} = 0\)</span> or <span class="math inline">\(\beta = 0\)</span>?</p>
+<ul class="incremental">
+<li>Only affirm difference not similarity</li>
+<li>Publication bias</li>
+</ul>
+<blockquote>
+<p>See <a href="https://agrogan1.github.io/Bayes/accepting-H0/accepting-H0.html">https://agrogan1.github.io/Bayes/accepting-H0/accepting-H0.html</a></p>
+</blockquote>
+<blockquote>
+<p>Bayesian statistics allow us to accept the null hypothesis <span class="math inline">\(H_0\)</span>.</p>
+</blockquote>
 </div>
-<div id="bayesian-categorical-data-analysis-in-stata" class="title-slide slide section level1"><h1>Bayesian Categorical Data Analysis in Stata</h1></div><div id="logistic-regression" class="slide section level2">
-<h1>Logistic Regression</h1>
-</div><div id="probit-regression" class="slide section level2">
-<h1>Probit Regression</h1>
-</div><div id="count-model" class="slide section level2">
-<h1>Count Model</h1>
+<div id="bayesian-categorical-data-analysis-in-stata" class="title-slide slide section level1"><h1>Bayesian Categorical Data Analysis in Stata</h1><div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">use</span> <span class="st">&quot;../logistic-regression/GSSsmall.dta&quot;</span>, <span class="kw">clear</span></span></code></pre></div></div><div id="frequentist-logistic-regression" class="slide section level2">
+<h1>Frequentist Logistic Regression</h1>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">logit</span> liberal i.race i.<span class="kw">class</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>Iteration 0:   <span class="fu">log</span> likelihood = -31538.733  </span>
+<span id="cb4-4"><a href="#cb4-4"></a>Iteration 1:   <span class="fu">log</span> likelihood = -31370.507  </span>
+<span id="cb4-5"><a href="#cb4-5"></a>Iteration 2:   <span class="fu">log</span> likelihood = -31369.841  </span>
+<span id="cb4-6"><a href="#cb4-6"></a>Iteration 3:   <span class="fu">log</span> likelihood = -31369.841  </span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>Logistic regression                             Number <span class="kw">of</span> <span class="kw">obs</span>     =     53,625</span>
+<span id="cb4-9"><a href="#cb4-9"></a>                                                LR <span class="fu">chi2</span>(5)        =     337.78</span>
+<span id="cb4-10"><a href="#cb4-10"></a>                                                Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
+<span id="cb4-11"><a href="#cb4-11"></a>Log likelihood = -31369.841                     Pseudo R2         =     0.0054</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a>───────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb4-14"><a href="#cb4-14"></a>       liberal │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
+<span id="cb4-15"><a href="#cb4-15"></a>───────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb4-16"><a href="#cb4-16"></a>          race │</span>
+<span id="cb4-17"><a href="#cb4-17"></a>        <span class="bn">black</span>  │   .4443531   .0272062    16.33   0.000       .39103    .4976762</span>
+<span id="cb4-18"><a href="#cb4-18"></a>        other  │   .3190896   .0413275     7.72   0.000     .2380891    .4000901</span>
+<span id="cb4-19"><a href="#cb4-19"></a>               │</span>
+<span id="cb4-20"><a href="#cb4-20"></a>         <span class="kw">class</span> │</span>
+<span id="cb4-21"><a href="#cb4-21"></a>working <span class="kw">class</span>  │  -.1397848    .041515    -3.37   0.001    -.2211527   -.0584169</span>
+<span id="cb4-22"><a href="#cb4-22"></a> middle <span class="kw">class</span>  │  -.0117948   .0416509    -0.28   0.777     -.093429    .0698394</span>
+<span id="cb4-23"><a href="#cb4-23"></a>  <span class="fu">upper</span> <span class="kw">class</span>  │   .1512565   .0648962     2.33   0.020     .0240624    .2784507</span>
+<span id="cb4-24"><a href="#cb4-24"></a>               │</span>
+<span id="cb4-25"><a href="#cb4-25"></a>         <span class="dt">_cons</span> │  -.9900441   .0397384   -24.91   0.000     -1.06793   -.9121582</span>
+<span id="cb4-26"><a href="#cb4-26"></a>───────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+</div><div id="bayesian-logistic-regression" class="slide section level2">
+<h1>Bayesian Logistic Regression</h1>
+<blockquote>
+<p>Takes a few minutes since using MCMC (5-10 minutes).</p>
+</blockquote>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">sample</span> 10 <span class="co">// Random Sample To Speed This Example: DON&#39;T DO THIS IN PRACTICE!!!</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>(58,332 observations deleted)</span></code></pre></div>
+<blockquote>
+<p>How do we interpret the result for some of the <strong>social class</strong> categories where the credibility interval includes 0?</p>
+</blockquote>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. bayes: <span class="kw">logit</span> liberal i.race i.<span class="kw">class</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  </span>
+<span id="cb6-3"><a href="#cb6-3"></a>Burn-<span class="kw">in</span> ...</span>
+<span id="cb6-4"><a href="#cb6-4"></a>Simulation ...</span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a>Model summary</span>
+<span id="cb6-7"><a href="#cb6-7"></a>────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-8"><a href="#cb6-8"></a>Likelihood: </span>
+<span id="cb6-9"><a href="#cb6-9"></a>  liberal ~ <span class="kw">logit</span>(xb_liberal)</span>
+<span id="cb6-10"><a href="#cb6-10"></a></span>
+<span id="cb6-11"><a href="#cb6-11"></a>Prior: </span>
+<span id="cb6-12"><a href="#cb6-12"></a>  {liberal:i.race i.<span class="kw">class</span> <span class="dt">_cons</span>} ~ <span class="fu">normal</span>(0,10000)                           (1)</span>
+<span id="cb6-13"><a href="#cb6-13"></a>────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-14"><a href="#cb6-14"></a>(1) Parameters are elements <span class="kw">of</span> the linear form xb_liberal.</span>
+<span id="cb6-15"><a href="#cb6-15"></a></span>
+<span id="cb6-16"><a href="#cb6-16"></a>Bayesian <span class="kw">logistic</span> regression                       MCMC iterations  =     12,500</span>
+<span id="cb6-17"><a href="#cb6-17"></a>Random-walk Metropolis-Hastings sampling           Burn-<span class="kw">in</span>          =      2,500</span>
+<span id="cb6-18"><a href="#cb6-18"></a>                                                   MCMC <span class="kw">sample</span> <span class="kw">size</span> =     10,000</span>
+<span id="cb6-19"><a href="#cb6-19"></a>                                                   Number <span class="kw">of</span> <span class="kw">obs</span>    =      5,373</span>
+<span id="cb6-20"><a href="#cb6-20"></a>                                                   Acceptance rate  =      .1893</span>
+<span id="cb6-21"><a href="#cb6-21"></a>                                                   Efficiency:  <span class="fu">min</span> =     .01298</span>
+<span id="cb6-22"><a href="#cb6-22"></a>                                                                avg =     .03181</span>
+<span id="cb6-23"><a href="#cb6-23"></a>Log marginal likelihood = -3145.0775                            <span class="fu">max</span> =     .05821</span>
+<span id="cb6-24"><a href="#cb6-24"></a> </span>
+<span id="cb6-25"><a href="#cb6-25"></a>───────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb6-26"><a href="#cb6-26"></a>               │                                                Equal-tailed</span>
+<span id="cb6-27"><a href="#cb6-27"></a>       liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]</span>
+<span id="cb6-28"><a href="#cb6-28"></a>───────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb6-29"><a href="#cb6-29"></a>          race │</span>
+<span id="cb6-30"><a href="#cb6-30"></a>        <span class="bn">black</span>  │   .613104   .0805279   .005117   .6146653   .4536203   .7710295</span>
+<span id="cb6-31"><a href="#cb6-31"></a>        other  │  .3655487   .1337521   .011739   .3671928   .1096495   .6318687</span>
+<span id="cb6-32"><a href="#cb6-32"></a>               │</span>
+<span id="cb6-33"><a href="#cb6-33"></a>         <span class="kw">class</span> │</span>
+<span id="cb6-34"><a href="#cb6-34"></a>working <span class="kw">class</span>  │ -.0447626   .1482117   .009539   -.049469  -.3266321   .2476447</span>
+<span id="cb6-35"><a href="#cb6-35"></a> middle <span class="kw">class</span>  │  .1308608   .1495992   .008102   .1285952  -.1451617   .4204665</span>
+<span id="cb6-36"><a href="#cb6-36"></a>  <span class="fu">upper</span> <span class="kw">class</span>  │  .1880397   .2267409   .009398   .1907295  -.2449094   .6303463</span>
+<span id="cb6-37"><a href="#cb6-37"></a>               │</span>
+<span id="cb6-38"><a href="#cb6-38"></a>         <span class="dt">_cons</span> │ -1.156825   .1403979   .007332  -1.147622  -1.433585  -.9039966</span>
+<span id="cb6-39"><a href="#cb6-39"></a>───────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb6-40"><a href="#cb6-40"></a>Note: Default priors are used <span class="kw">for</span> <span class="kw">model</span> parameters.</span></code></pre></div>
+</div><div id="blocking-may-improve-estimation" class="slide section level2">
+<h1>Blocking May Improve Estimation</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. * bayes, block({liberal:i.race}): <span class="kw">logit</span> liberal i.race i.<span class="kw">class</span> <span class="co">// blocking may improve </span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>&gt; estimation</span></code></pre></div>
+</div><div id="bayesian-logistic-regression-with-priors" class="slide section level2">
+<h1>Bayesian Logistic Regression With Priors</h1>
+<p>Priors:</p>
+<ul class="incremental">
+<li>Encode prior information: strong theory; strong clinical or practice wisdom; strong previous empirical results.</li>
+<li>May be helpful in quantitatively encoding the results of prior literature.</li>
+<li>May be especially helpful when your sample is small.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. bayes, normalprior(5): <span class="kw">logit</span> liberal i.race i.<span class="kw">class</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  </span>
+<span id="cb8-3"><a href="#cb8-3"></a>Burn-<span class="kw">in</span> ...</span>
+<span id="cb8-4"><a href="#cb8-4"></a>Simulation ...</span>
+<span id="cb8-5"><a href="#cb8-5"></a></span>
+<span id="cb8-6"><a href="#cb8-6"></a>Model summary</span>
+<span id="cb8-7"><a href="#cb8-7"></a>────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb8-8"><a href="#cb8-8"></a>Likelihood: </span>
+<span id="cb8-9"><a href="#cb8-9"></a>  liberal ~ <span class="kw">logit</span>(xb_liberal)</span>
+<span id="cb8-10"><a href="#cb8-10"></a></span>
+<span id="cb8-11"><a href="#cb8-11"></a>Prior: </span>
+<span id="cb8-12"><a href="#cb8-12"></a>  {liberal:i.race i.<span class="kw">class</span> <span class="dt">_cons</span>} ~ <span class="fu">normal</span>(0,25)                              (1)</span>
+<span id="cb8-13"><a href="#cb8-13"></a>────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb8-14"><a href="#cb8-14"></a>(1) Parameters are elements <span class="kw">of</span> the linear form xb_liberal.</span>
+<span id="cb8-15"><a href="#cb8-15"></a></span>
+<span id="cb8-16"><a href="#cb8-16"></a>Bayesian <span class="kw">logistic</span> regression                       MCMC iterations  =     12,500</span>
+<span id="cb8-17"><a href="#cb8-17"></a>Random-walk Metropolis-Hastings sampling           Burn-<span class="kw">in</span>          =      2,500</span>
+<span id="cb8-18"><a href="#cb8-18"></a>                                                   MCMC <span class="kw">sample</span> <span class="kw">size</span> =     10,000</span>
+<span id="cb8-19"><a href="#cb8-19"></a>                                                   Number <span class="kw">of</span> <span class="kw">obs</span>    =      5,373</span>
+<span id="cb8-20"><a href="#cb8-20"></a>                                                   Acceptance rate  =      .1929</span>
+<span id="cb8-21"><a href="#cb8-21"></a>                                                   Efficiency:  <span class="fu">min</span> =     .02211</span>
+<span id="cb8-22"><a href="#cb8-22"></a>                                                                avg =     .04409</span>
+<span id="cb8-23"><a href="#cb8-23"></a>Log marginal likelihood = -3127.3296                            <span class="fu">max</span> =     .05525</span>
+<span id="cb8-24"><a href="#cb8-24"></a> </span>
+<span id="cb8-25"><a href="#cb8-25"></a>───────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb8-26"><a href="#cb8-26"></a>               │                                                Equal-tailed</span>
+<span id="cb8-27"><a href="#cb8-27"></a>       liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]</span>
+<span id="cb8-28"><a href="#cb8-28"></a>───────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb8-29"><a href="#cb8-29"></a>          race │</span>
+<span id="cb8-30"><a href="#cb8-30"></a>        <span class="bn">black</span>  │  .5937518    .083517   .005616   .5967408   .4265727   .7505704</span>
+<span id="cb8-31"><a href="#cb8-31"></a>        other  │  .3590546   .1316989   .005603   .3570273    .104696   .6086465</span>
+<span id="cb8-32"><a href="#cb8-32"></a>               │</span>
+<span id="cb8-33"><a href="#cb8-33"></a>         <span class="kw">class</span> │</span>
+<span id="cb8-34"><a href="#cb8-34"></a>working <span class="kw">class</span>  │ -.0370307   .1301884    .00615  -.0301299  -.3051235   .2118941</span>
+<span id="cb8-35"><a href="#cb8-35"></a> middle <span class="kw">class</span>  │  .1325218    .130243   .006091   .1323398  -.1320389   .3815793</span>
+<span id="cb8-36"><a href="#cb8-36"></a>  <span class="fu">upper</span> <span class="kw">class</span>  │  .1984152   .2126298    .00984   .2011917  -.2379325   .5936834</span>
+<span id="cb8-37"><a href="#cb8-37"></a>               │</span>
+<span id="cb8-38"><a href="#cb8-38"></a>         <span class="dt">_cons</span> │ -1.160654   .1258682   .005632  -1.163326  -1.406338  -.9004212</span>
+<span id="cb8-39"><a href="#cb8-39"></a>───────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb8-40"><a href="#cb8-40"></a>Note: Default priors are used <span class="kw">for</span> <span class="kw">model</span> parameters.</span></code></pre></div>
+</div><div id="mcmc-vs.-ml" class="slide section level2">
+<h1>MCMC vs. ML</h1>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">set</span> <span class="kw">obs</span> 100</span>
+<span id="cb10-2"><a href="#cb10-2"></a>number <span class="kw">of</span> observations (_N) was 0, now 100</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">generate</span> myestimate = rnormal() + 10 <span class="co">// simulated values of estimate</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">summarize</span> myestimate</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>    Variable │        Obs        Mean    Std. Dev.       Min        Max</span>
+<span id="cb12-4"><a href="#cb12-4"></a>─────────────┼─────────────────────────────────────────────────────────</span>
+<span id="cb12-5"><a href="#cb12-5"></a>  myestimate │        100    10.00285    1.070822   7.630999   12.54815</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">local</span> mymean = <span class="fu">r</span>(<span class="kw">mean</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">kdensity</span> myestimate ,  <span class="co">///</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;Likelihood of Estimate&quot;</span>) <span class="co">///</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>&gt; <span class="bn">xtitle</span>(<span class="st">&quot;Estimate&quot;</span>) <span class="bn">ytitle</span>(<span class="st">&quot;Likelihood&quot;</span>) <span class="co">///</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>&gt; <span class="kw">note</span>(<span class="st">&quot;Vertical Line At Mean Value&quot;</span>) <span class="co">///</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>&gt; <span class="bn">caption</span>(<span class="st">&quot;ML gives point estimate; Bayes gives full range of distribution&quot;</span>) <span class="co">///</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>&gt; <span class="bn">xline</span>(<span class="ot">`mymean&#39;</span>, lwidth(1) lcolor(<span class="bn">gold</span>)) <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> MCMC-ML.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>(file MCMC-ML.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="MCMC-ML.png" alt="" />
+<p class="caption">MCMC vs. ML</p>
+</div>
+</div><div id="full-distribution-of-parameters" class="slide section level2">
+<h1>Full Distribution of Parameters</h1>
+<div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1"></a>. <span class="kw">use</span> <span class="st">&quot;../logistic-regression/GSSsmall.dta&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>. <span class="kw">sample</span> 10 <span class="co">// Random Sample for These Slides: DON&#39;T DO THIS IN PRACTICE!!!</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>(58,332 observations deleted)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1"></a>. bayes, normalprior(5): <span class="kw">logit</span> liberal i.race i.<span class="kw">class</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  </span>
+<span id="cb19-3"><a href="#cb19-3"></a>Burn-<span class="kw">in</span> ...</span>
+<span id="cb19-4"><a href="#cb19-4"></a>Simulation ...</span>
+<span id="cb19-5"><a href="#cb19-5"></a></span>
+<span id="cb19-6"><a href="#cb19-6"></a>Model summary</span>
+<span id="cb19-7"><a href="#cb19-7"></a>────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb19-8"><a href="#cb19-8"></a>Likelihood: </span>
+<span id="cb19-9"><a href="#cb19-9"></a>  liberal ~ <span class="kw">logit</span>(xb_liberal)</span>
+<span id="cb19-10"><a href="#cb19-10"></a></span>
+<span id="cb19-11"><a href="#cb19-11"></a>Prior: </span>
+<span id="cb19-12"><a href="#cb19-12"></a>  {liberal:i.race i.<span class="kw">class</span> <span class="dt">_cons</span>} ~ <span class="fu">normal</span>(0,25)                              (1)</span>
+<span id="cb19-13"><a href="#cb19-13"></a>────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb19-14"><a href="#cb19-14"></a>(1) Parameters are elements <span class="kw">of</span> the linear form xb_liberal.</span>
+<span id="cb19-15"><a href="#cb19-15"></a></span>
+<span id="cb19-16"><a href="#cb19-16"></a>Bayesian <span class="kw">logistic</span> regression                       MCMC iterations  =     12,500</span>
+<span id="cb19-17"><a href="#cb19-17"></a>Random-walk Metropolis-Hastings sampling           Burn-<span class="kw">in</span>          =      2,500</span>
+<span id="cb19-18"><a href="#cb19-18"></a>                                                   MCMC <span class="kw">sample</span> <span class="kw">size</span> =     10,000</span>
+<span id="cb19-19"><a href="#cb19-19"></a>                                                   Number <span class="kw">of</span> <span class="kw">obs</span>    =      5,402</span>
+<span id="cb19-20"><a href="#cb19-20"></a>                                                   Acceptance rate  =      .2044</span>
+<span id="cb19-21"><a href="#cb19-21"></a>                                                   Efficiency:  <span class="fu">min</span> =     .02148</span>
+<span id="cb19-22"><a href="#cb19-22"></a>                                                                avg =     .03322</span>
+<span id="cb19-23"><a href="#cb19-23"></a>Log marginal likelihood = -3186.5162                            <span class="fu">max</span> =     .04322</span>
+<span id="cb19-24"><a href="#cb19-24"></a> </span>
+<span id="cb19-25"><a href="#cb19-25"></a>───────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb19-26"><a href="#cb19-26"></a>               │                                                Equal-tailed</span>
+<span id="cb19-27"><a href="#cb19-27"></a>       liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]</span>
+<span id="cb19-28"><a href="#cb19-28"></a>───────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb19-29"><a href="#cb19-29"></a>          race │</span>
+<span id="cb19-30"><a href="#cb19-30"></a>        <span class="bn">black</span>  │  .4398831   .0849278   .005234   .4400468   .2732082   .6042975</span>
+<span id="cb19-31"><a href="#cb19-31"></a>        other  │  .5605932   .1239858   .005964   .5603787   .3169103   .8109727</span>
+<span id="cb19-32"><a href="#cb19-32"></a>               │</span>
+<span id="cb19-33"><a href="#cb19-33"></a>         <span class="kw">class</span> │</span>
+<span id="cb19-34"><a href="#cb19-34"></a>working <span class="kw">class</span>  │ -.2455384   .1277791   .006438  -.2493332  -.4921184   .0029378</span>
+<span id="cb19-35"><a href="#cb19-35"></a> middle <span class="kw">class</span>  │ -.0127971   .1325927   .007334  -.0139752  -.2753381   .2369611</span>
+<span id="cb19-36"><a href="#cb19-36"></a>  <span class="fu">upper</span> <span class="kw">class</span>  │  -.045365    .193218   .010151  -.0524432  -.4309591   .3347986</span>
+<span id="cb19-37"><a href="#cb19-37"></a>               │</span>
+<span id="cb19-38"><a href="#cb19-38"></a>         <span class="dt">_cons</span> │  -.947001   .1246782   .008506  -.9449621  -1.191701  -.7109242</span>
+<span id="cb19-39"><a href="#cb19-39"></a>───────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb19-40"><a href="#cb19-40"></a>Note: Default priors are used <span class="kw">for</span> <span class="kw">model</span> parameters.</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1"></a>. bayesgraph <span class="kw">kdensity</span> {liberal:2.race}, <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybayesgraph.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>(file mybayesgraph.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="mybayesgraph.png" alt="" />
+<p class="caption">Density Plot of Parameter</p>
+</div>
 </div>
 </body>
 </html>

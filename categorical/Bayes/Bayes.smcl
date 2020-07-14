@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/Bayes/Bayes.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}14 Jul 2020, 09:34:48
+ {txt}opened on:  {res}14 Jul 2020, 15:05:48
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,17 +11,241 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}09:34:48
+{res}15:05:48
 {txt}
 {com}. //_3
 . clear all
 {res}{txt}
+{com}. //_4
+. clear all
+{res}{txt}
+{com}. //_5
+. use "../logistic-regression/GSSsmall.dta", clear
+{txt}
+{com}. //_6
+. logit liberal i.race i.class
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-31538.733}  
+Iteration 1:{space 3}log likelihood = {res:-31370.507}  
+Iteration 2:{space 3}log likelihood = {res:-31369.841}  
+Iteration 3:{space 3}log likelihood = {res:-31369.841}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}    53,625
+{txt}{col 49}LR chi2({res}5{txt}){col 67}= {res}    337.78
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-31369.841{txt}{col 49}Pseudo R2{col 67}= {res}    0.0054
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       liberal{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      z{col 48}   P>|z|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}race {c |}
+{space 8}black  {c |}{col 16}{res}{space 2} .4443531{col 28}{space 2} .0272062{col 39}{space 1}   16.33{col 48}{space 3}0.000{col 56}{space 4}   .39103{col 69}{space 3} .4976762
+{txt}{space 8}other  {c |}{col 16}{res}{space 2} .3190896{col 28}{space 2} .0413275{col 39}{space 1}    7.72{col 48}{space 3}0.000{col 56}{space 4} .2380891{col 69}{space 3} .4000901
+{txt}{space 14} {c |}
+{space 9}class {c |}
+working class  {c |}{col 16}{res}{space 2}-.1397848{col 28}{space 2}  .041515{col 39}{space 1}   -3.37{col 48}{space 3}0.001{col 56}{space 4}-.2211527{col 69}{space 3}-.0584169
+{txt}{space 1}middle class  {c |}{col 16}{res}{space 2}-.0117948{col 28}{space 2} .0416509{col 39}{space 1}   -0.28{col 48}{space 3}0.777{col 56}{space 4} -.093429{col 69}{space 3} .0698394
+{txt}{space 2}upper class  {c |}{col 16}{res}{space 2} .1512565{col 28}{space 2} .0648962{col 39}{space 1}    2.33{col 48}{space 3}0.020{col 56}{space 4} .0240624{col 69}{space 3} .2784507
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2}-.9900441{col 28}{space 2} .0397384{col 39}{space 1}  -24.91{col 48}{space 3}0.000{col 56}{space 4} -1.06793{col 69}{space 3}-.9121582
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_7
+. sample 10 // Random Sample To Speed This Example: DON'T DO THIS IN PRACTICE!!!
+{txt}(58,332 observations deleted)
+
+{com}. //_8
+. bayes: logit liberal i.race i.class
+{res}  
+{txt}Burn-in ...
+{txt}Simulation ...
+{res}
+{txt}Model summary
+{txt}{hline 80}
+{txt}Likelihood: 
+{p 0 12}{space 2}{res:liberal} ~ logit(xb_liberal){p_end}
+
+Prior: 
+{p 0 35}{space 2}{res}{c -(}liberal:i.race i.class _cons{c )-}{txt} ~ normal(0,10000){space 27}(1){p_end}
+{txt}{hline 80}
+{p 0 4 0 80}
+(1) Parameters are elements of the linear form xb_liberal.
+{p_end}
+
+{res}{txt}Bayesian logistic regression{col 52}MCMC iterations{col 69}={col 71}{res}    12,500
+{txt}Random-walk Metropolis-Hastings sampling{col 52}Burn-in{col 69}={col 71}{res}     2,500
+{col 52}{txt}MCMC sample size{col 69}={col 71}{res}    10,000
+{txt}{col 52}Number of obs{col 69}={col 71}{res}     5,370
+{txt}{col 52}Acceptance rate{col 69}={col 71}{res}     .2129
+{txt}{col 52}Efficiency:{col 65}min ={col 71}{res}    .02443
+{col 65}{txt}avg ={col 71}{res}    .03574
+{txt}Log marginal likelihood = {res}-3183.4711{col 65}{txt}max ={col 71}{res}    .04685
+ 
+{txt}{hline 15}{col 16}{c TT}{hline 64}
+{col 16}{c |}{col 65}Equal-tailed
+{col 8}liberal{col 16}{c |}{col 23}Mean{col 30}Std. Dev.{col 44}MCSE{col 53}Median{col 61}[95% Cred. Interval]
+{res}{txt}{hline 15}{c +}{hline 10}{hline 11}{hline 10}{hline 11}{hline 11}{hline 11}
+{space 10}race {c |}
+{space 8}black  {c |}{col 16}{res}{space 1}  .548588{col 27}{space 2} .0831709{col 38}{space 2} .003843{col 48}{space 2} .5476248{col 59}{space 2} .3904489{col 70}{space 2} .7067804
+{txt}{space 8}other  {c |}{col 16}{res}{space 1} .2686216{col 27}{space 2} .1423001{col 38}{space 2} .009104{col 48}{space 2} .2736241{col 59}{space 2}-.0167725{col 70}{space 2} .5361192
+{txt}{space 14} {c |}
+{space 9}class {c |}
+working class  {c |}{col 16}{res}{space 1}-.1566057{col 27}{space 2} .1268648{col 38}{space 2} .006531{col 48}{space 2}-.1554297{col 59}{space 2}-.4091349{col 70}{space 2} .0968553
+{txt}{space 1}middle class  {c |}{col 16}{res}{space 1} -.016449{col 27}{space 2} .1335839{col 38}{space 2} .008162{col 48}{space 2} -.013235{col 59}{space 2}-.2721034{col 70}{space 2} .2440431
+{txt}{space 2}upper class  {c |}{col 16}{res}{space 1} .2101377{col 27}{space 2} .2057211{col 38}{space 2} .010693{col 48}{space 2} .2076646{col 59}{space 2}-.2120719{col 70}{space 2}  .611688
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 1}-.9900013{col 27}{space 2} .1243759{col 38}{space 2} .006097{col 48}{space 2}-.9904929{col 59}{space 2}-1.238569{col 70}{space 2}-.7409336
+{txt}{hline 15}{c BT}{hline 10}{hline 11}{hline 10}{hline 11}{hline 11}{hline 11}
+{p 0 6 2}Note: {help j_bayes_defaultpriors:Default priors} are used for model parameters.{p_end}
+{res}{txt}
+{com}. //_9
+. * bayes, block({c -(}liberal:i.race{c )-}): logit liberal i.race i.class // blocking may improve estimation
+. //_10
+. bayes, normalprior(5): logit liberal i.race i.class
+{res}  
+{txt}Burn-in ...
+{txt}Simulation ...
+{res}
+{txt}Model summary
+{txt}{hline 80}
+{txt}Likelihood: 
+{p 0 12}{space 2}{res:liberal} ~ logit(xb_liberal){p_end}
+
+Prior: 
+{p 0 35}{space 2}{res}{c -(}liberal:i.race i.class _cons{c )-}{txt} ~ normal(0,25){space 30}(1){p_end}
+{txt}{hline 80}
+{p 0 4 0 80}
+(1) Parameters are elements of the linear form xb_liberal.
+{p_end}
+
+{res}{txt}Bayesian logistic regression{col 52}MCMC iterations{col 69}={col 71}{res}    12,500
+{txt}Random-walk Metropolis-Hastings sampling{col 52}Burn-in{col 69}={col 71}{res}     2,500
+{col 52}{txt}MCMC sample size{col 69}={col 71}{res}    10,000
+{txt}{col 52}Number of obs{col 69}={col 71}{res}     5,370
+{txt}{col 52}Acceptance rate{col 69}={col 71}{res}     .2792
+{txt}{col 52}Efficiency:{col 65}min ={col 71}{res}     .0218
+{col 65}{txt}avg ={col 71}{res}    .03738
+{txt}Log marginal likelihood = {res}-3165.5355{col 65}{txt}max ={col 71}{res}    .05414
+ 
+{txt}{hline 15}{col 16}{c TT}{hline 64}
+{col 16}{c |}{col 65}Equal-tailed
+{col 8}liberal{col 16}{c |}{col 23}Mean{col 30}Std. Dev.{col 44}MCSE{col 53}Median{col 61}[95% Cred. Interval]
+{res}{txt}{hline 15}{c +}{hline 10}{hline 11}{hline 10}{hline 11}{hline 11}{hline 11}
+{space 10}race {c |}
+{space 8}black  {c |}{col 16}{res}{space 1} .5434675{col 27}{space 2} .0861621{col 38}{space 2} .003901{col 48}{space 2} .5428555{col 59}{space 2} .3787866{col 70}{space 2} .7144542
+{txt}{space 8}other  {c |}{col 16}{res}{space 1} .2799266{col 27}{space 2} .1351239{col 38}{space 2} .005807{col 48}{space 2} .2873817{col 59}{space 2} .0103018{col 70}{space 2} .5362551
+{txt}{space 14} {c |}
+{space 9}class {c |}
+working class  {c |}{col 16}{res}{space 1}-.1525076{col 27}{space 2} .1330829{col 38}{space 2} .007231{col 48}{space 2}-.1559297{col 59}{space 2}-.4001128{col 70}{space 2} .1047808
+{txt}{space 1}middle class  {c |}{col 16}{res}{space 1}-.0050202{col 27}{space 2} .1346973{col 38}{space 2} .007531{col 48}{space 2}-.0052376{col 59}{space 2}  -.25755{col 70}{space 2} .2621892
+{txt}{space 2}upper class  {c |}{col 16}{res}{space 1} .1991016{col 27}{space 2} .2045538{col 38}{space 2} .013855{col 48}{space 2} .1896267{col 59}{space 2}-.2107889{col 70}{space 2} .5841896
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 1}-.9959125{col 27}{space 2} .1288296{col 38}{space 2} .007016{col 48}{space 2}-.9929873{col 59}{space 2}-1.244611{col 70}{space 2}-.7511895
+{txt}{hline 15}{c BT}{hline 10}{hline 11}{hline 10}{hline 11}{hline 11}{hline 11}
+{p 0 6 2}Note: {help j_bayes_defaultpriors:Default priors} are used for model parameters.{p_end}
+{res}{txt}
+{com}. //_11
+. clear all
+{res}{txt}
+{com}. //_12
+. set obs 100
+{txt}{p}
+number of observations (_N)  was 0,
+now 100
+{p_end}
+
+{com}. //_13
+. generate myestimate = rnormal() + 10 // simulated values of estimate
+{txt}
+{com}. //_14
+. summarize myestimate
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 2}myestimate {c |}{res}        100    9.845097    1.015819   7.351274    12.5474
+{txt}
+{com}. //_15
+. local mymean = r(mean)
+{txt}
+{com}. //_16
+. kdensity myestimate ,  ///
+> title("Likelihood of Estimate") ///
+> xtitle("Estimate") ytitle("Likelihood") ///
+> note("Vertical Line At Mean Value") ///
+> caption("ML gives point estimate; Bayes gives full range of distribution") ///
+> xline(`mymean', lwidth(1) lcolor(gold)) scheme(michigan)
+{res}{txt}
+{com}. //_17
+. graph export MCMC-ML.png, width(500) replace
+{txt}(file MCMC-ML.png written in PNG format)
+
+{com}. //_18
+. clear all
+{res}{txt}
+{com}. //_19
+. use "../logistic-regression/GSSsmall.dta", clear
+{txt}
+{com}. //_20
+. sample 10 // Random Sample for These Slides: DON'T DO THIS IN PRACTICE!!!
+{txt}(58,332 observations deleted)
+
+{com}. //_21
+. bayes, normalprior(5): logit liberal i.race i.class
+{res}  
+{txt}Burn-in ...
+{txt}Simulation ...
+{res}
+{txt}Model summary
+{txt}{hline 80}
+{txt}Likelihood: 
+{p 0 12}{space 2}{res:liberal} ~ logit(xb_liberal){p_end}
+
+Prior: 
+{p 0 35}{space 2}{res}{c -(}liberal:i.race i.class _cons{c )-}{txt} ~ normal(0,25){space 30}(1){p_end}
+{txt}{hline 80}
+{p 0 4 0 80}
+(1) Parameters are elements of the linear form xb_liberal.
+{p_end}
+
+{res}{txt}Bayesian logistic regression{col 52}MCMC iterations{col 69}={col 71}{res}    12,500
+{txt}Random-walk Metropolis-Hastings sampling{col 52}Burn-in{col 69}={col 71}{res}     2,500
+{col 52}{txt}MCMC sample size{col 69}={col 71}{res}    10,000
+{txt}{col 52}Number of obs{col 69}={col 71}{res}     5,359
+{txt}{col 52}Acceptance rate{col 69}={col 71}{res}     .2154
+{txt}{col 52}Efficiency:{col 65}min ={col 71}{res}    .01525
+{col 65}{txt}avg ={col 71}{res}    .04114
+{txt}Log marginal likelihood = {res}-3156.3553{col 65}{txt}max ={col 71}{res}    .06464
+ 
+{txt}{hline 15}{col 16}{c TT}{hline 64}
+{col 16}{c |}{col 65}Equal-tailed
+{col 8}liberal{col 16}{c |}{col 23}Mean{col 30}Std. Dev.{col 44}MCSE{col 53}Median{col 61}[95% Cred. Interval]
+{res}{txt}{hline 15}{c +}{hline 10}{hline 11}{hline 10}{hline 11}{hline 11}{hline 11}
+{space 10}race {c |}
+{space 8}black  {c |}{col 16}{res}{space 1} .5371258{col 27}{space 2}  .088161{col 38}{space 2} .005346{col 48}{space 2}  .533988{col 59}{space 2} .3686128{col 70}{space 2} .7075168
+{txt}{space 8}other  {c |}{col 16}{res}{space 1} .0581145{col 27}{space 2} .1310966{col 38}{space 2} .010615{col 48}{space 2} .0584126{col 59}{space 2}-.2096021{col 70}{space 2} .2948507
+{txt}{space 14} {c |}
+{space 9}class {c |}
+working class  {c |}{col 16}{res}{space 1} .1179909{col 27}{space 2} .1478062{col 38}{space 2} .007693{col 48}{space 2} .1155219{col 59}{space 2}-.1624791{col 70}{space 2} .4134657
+{txt}{space 1}middle class  {c |}{col 16}{res}{space 1} .2649346{col 27}{space 2} .1482299{col 38}{space 2} .005997{col 48}{space 2} .2634409{col 59}{space 2} -.006191{col 70}{space 2} .5795305
+{txt}{space 2}upper class  {c |}{col 16}{res}{space 1} .1883275{col 27}{space 2} .2130126{col 38}{space 2} .008378{col 48}{space 2}  .191786{col 59}{space 2}-.2337438{col 70}{space 2} .6073955
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 1}-1.233312{col 27}{space 2} .1444018{col 38}{space 2} .007068{col 48}{space 2}-1.230555{col 59}{space 2}-1.523936{col 70}{space 2}-.9601146
+{txt}{hline 15}{c BT}{hline 10}{hline 11}{hline 10}{hline 11}{hline 11}{hline 11}
+{p 0 6 2}Note: {help j_bayes_defaultpriors:Default priors} are used for model parameters.{p_end}
+{res}{txt}
+{com}. //_22
+. bayesgraph kdensity {c -(}liberal:2.race{c )-}, scheme(michigan)
+{res}{txt}
+{com}. //_23
+. graph export mybayesgraph.png, width(500) replace
+{txt}(file mybayesgraph.png written in PNG format)
+
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/Bayes/Bayes.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}14 Jul 2020, 09:34:48
+ {txt}closed on:  {res}14 Jul 2020, 15:06:45
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
