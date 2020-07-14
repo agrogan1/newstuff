@@ -54,4 +54,10 @@ pre {
   color: black;
   background-color: white;
 }
+table {
+  border-collapse: collapse;
+}
 
+table, th, td {
+  border: 1px solid black;
+}

@@ -39,3 +39,11 @@ pre {
   border: 2px solid grey;
   border-left: 12px solid #418FDE;
 }
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
