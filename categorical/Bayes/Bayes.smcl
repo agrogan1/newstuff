@@ -1,0 +1,27 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/Bayes/Bayes.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}14 Jul 2020, 09:34:48
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}14 Jul 2020
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}09:34:48
+{txt}
+{com}. //_3
+. clear all
+{res}{txt}
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/Bayes/Bayes.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}14 Jul 2020, 09:34:48
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

@@ -1,0 +1,96 @@
+% Bayesian Categorical Data Analysis
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+# Introduction
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+    clear all
+	
+# The Importance of Thinking About Prior Information
+
+> [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
+
+# Formal Derivation of Bayes Theorem
+
+> Following inspiration from Kruschke (2011).
+
+| Probability   | A            | Not A                  |
+|:--------------|-------------:|-----------------------:|
+| B             | $P_1$        | $P_2$                  |
+| Not B         | $P_3$        | $P_4$                  |
+
+Filling in the probabilities.
+
+| Probability   | A                    | Not A                           |
+|:--------------|:---------------------|:--------------------------------|
+| B             | $P(A, B)$            | $P(\text{not} A, B)$            |
+| Not B         | $P(A, \text{not} B)$ | $P(\text{not} A, \text{not} B)$ |
+
+From the definition of conditional probability: 
+
+$P(A|B) = P(A,B) / P(B)$
+
+$P(B|A) = P(A,B) / P(A)$
+
+Then: 
+
+$P(A|B)P(B) = P(A,B)$
+
+$P(B|A)P(A) = P(A,B)$
+
+Then:
+
+$P(A|B)P(B) = P(B|A)P(A)$
+
+Then:
+
+$P(A|B) = \frac{P(B|A)P(A)}{P(B)}$
+
+# Applying the Derivation to Data Analysis
+
+| Probability   | Data                 | Not Data                        |
+|:--------------|:---------------------|:--------------------------------|
+| Hypothesis    | $P(D, H)$            | $P(\text{not} D, H)$            |
+| Not Hypothesis| $P(D, \text{not} H)$ | $P(\text{not} D, \text{not} H)$ |
+
+From the definition of conditional probability: 
+
+$P(D|H) = P(D,H) / P(H)$
+
+$P(H|D) = P(D,H) / P(D)$
+
+Then: 
+
+$P(D|H)P(H) = P(D,H)$
+
+$P(H|D)P(D) = P(D,H)$
+
+Then:
+
+$P(D|H)P(H) = P(H|D)P(D)$
+
+Then:
+
+$P(H|D) = \frac{P(D|H)P(H)}{P(D)}$
+
+# Accepting the Null Hypothesis
+
+## We Are Estimating The Probability of the Hypothesis Given The Data
+
+## We Are Not Rejecting a Null Hypothesis
+
+## Accepting Null Hypotheses
+
+# Bayesian Categorical Data Analysis in Stata
+
+## Logistic Regression
+
+## Probit Regression
+
+## Count Model

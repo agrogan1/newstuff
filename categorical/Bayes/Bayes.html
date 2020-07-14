@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Bayesian Categorical Data Analysis</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Bayesian Categorical Data Analysis</h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">14 Jul 2020 09:34:48</p>
+</header>
+<h1 id="introduction">Introduction</h1>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<pre class='stata'>. clear all
+</pre>
+<h1 id="the-importance-of-thinking-about-prior-information">The Importance of Thinking About Prior Information</h1>
+<blockquote>
+<p><a href="https://agrogan.shinyapps.io/Thinking-Through-Bayes/">Thinking Through Bayesian Ideas</a></p>
+</blockquote>
+<h1 id="formal-derivation-of-bayes-theorem">Formal Derivation of Bayes Theorem</h1>
+<blockquote>
+<p>Following inspiration from Kruschke (2011).</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Probability</th>
+<th style="text-align: right;">A</th>
+<th style="text-align: right;">Not A</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">B</td>
+<td style="text-align: right;"><span class="math inline">\(P_1\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(P_2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Not B</td>
+<td style="text-align: right;"><span class="math inline">\(P_3\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(P_4\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Filling in the probabilities.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Probability</th>
+<th style="text-align: left;">A</th>
+<th style="text-align: left;">Not A</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">B</td>
+<td style="text-align: left;"><span class="math inline">\(P(A, B)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(P(\text{not} A, B)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Not B</td>
+<td style="text-align: left;"><span class="math inline">\(P(A, \text{not} B)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(P(\text{not} A, \text{not} B)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>From the definition of conditional probability:</p>
+<p><span class="math inline">\(P(A|B) = P(A,B) / P(B)\)</span></p>
+<p><span class="math inline">\(P(B|A) = P(A,B) / P(A)\)</span></p>
+<p>Then:</p>
+<p><span class="math inline">\(P(A|B)P(B) = P(A,B)\)</span></p>
+<p><span class="math inline">\(P(B|A)P(A) = P(A,B)\)</span></p>
+<p>Then:</p>
+<p><span class="math inline">\(P(A|B)P(B) = P(B|A)P(A)\)</span></p>
+<p>Then:</p>
+<p><span class="math inline">\(P(A|B) = \frac{P(B|A)P(A)}{P(B)}\)</span></p>
+<h1 id="applying-the-derivation-to-data-analysis">Applying the Derivation to Data Analysis</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Probability</th>
+<th style="text-align: left;">Data</th>
+<th style="text-align: left;">Not Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Hypothesis</td>
+<td style="text-align: left;"><span class="math inline">\(P(D, H)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(P(\text{not} D, H)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Not Hypothesis</td>
+<td style="text-align: left;"><span class="math inline">\(P(D, \text{not} H)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(P(\text{not} D, \text{not} H)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>From the definition of conditional probability:</p>
+<p><span class="math inline">\(P(D|H) = P(D,H) / P(H)\)</span></p>
+<p><span class="math inline">\(P(H|D) = P(D,H) / P(D)\)</span></p>
+<p>Then:</p>
+<p><span class="math inline">\(P(D|H)P(H) = P(D,H)\)</span></p>
+<p><span class="math inline">\(P(H|D)P(D) = P(D,H)\)</span></p>
+<p>Then:</p>
+<p><span class="math inline">\(P(D|H)P(H) = P(H|D)P(D)\)</span></p>
+<p>Then:</p>
+<p><span class="math inline">\(P(H|D) = \frac{P(D|H)P(H)}{P(D)}\)</span></p>
+<h1 id="accepting-the-null-hypothesis">Accepting the Null Hypothesis</h1>
+<h2 id="we-are-estimating-the-probability-of-the-hypothesis-given-the-data">We Are Estimating The Probability of the Hypothesis Given The Data</h2>
+<h2 id="we-are-not-rejecting-a-null-hypothesis">We Are Not Rejecting a Null Hypothesis</h2>
+<h2 id="accepting-null-hypotheses">Accepting Null Hypotheses</h2>
+<h1 id="bayesian-categorical-data-analysis-in-stata">Bayesian Categorical Data Analysis in Stata</h1>
+<h2 id="logistic-regression">Logistic Regression</h2>
+<h2 id="probit-regression">Probit Regression</h2>
+<h2 id="count-model">Count Model</h2>
+</body>
+</html>
