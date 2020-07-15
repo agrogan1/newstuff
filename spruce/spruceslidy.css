@@ -33,4 +33,9 @@ pre {
   border: 2px solid grey;
   border-left: 5px solid #A5A508;
 }
+p.caption { 
+  display: block;
+  color: darkgreen;
+  font-weight: bold;
+}
 
