@@ -42,9 +42,7 @@ save(myHTMLfiles, file = "myHTMLfiles.RData")
 # of my files
 
 myHTMLfiles %>% 
-rownames_to_column(var = "filename") %>% # rownames to column
-  filter(filename != "blogtest.html") %>%
-  filter(filename != "blogtest-tint.html") %>%
+  rownames_to_column(var = "filename") %>% # rownames to column
   mutate(modified = mtime) %>% # copy mtime to modified
   mutate(url = paste0("<a href='", # paste together URL
                       filename,
@@ -52,12 +50,13 @@ rownames_to_column(var = "filename") %>% # rownames to column
                       filename, 
                       "</a>")) %>% 
   select(modified, url) %>% # select columns
+  arrange(desc(modified)) %>%
   datatable(rownames = FALSE, # no row names
             escape = 1, # escape URL column
             caption = "Blog-ish Posts",
             # sort by descending date
-            options = list(order = list(list(0, 
-                                             'desc')))) %>% 
+            # options = list(order = list(list(1, 'desc')))
+  ) %>% 
   formatDate(1, 'toDateString') # format column 1 as dates
   
   
