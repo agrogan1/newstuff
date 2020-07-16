@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>14 Jul 2020 15:04:23</p>
+<p>16 Jul 2020 15:42:27</p>
 </div>
 <div id="introduction" class="title-slide slide section level1"><h1>Introduction</h1><div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div></div>
 <div id="the-importance-of-thinking-about-prior-information" class="title-slide slide section level1"><h1>The Importance of Thinking About Prior Information</h1><blockquote>
@@ -280,26 +280,26 @@ Andy Grogan-Kaylor
 <span id="cb6-16"><a href="#cb6-16"></a>Bayesian <span class="kw">logistic</span> regression                       MCMC iterations  =     12,500</span>
 <span id="cb6-17"><a href="#cb6-17"></a>Random-walk Metropolis-Hastings sampling           Burn-<span class="kw">in</span>          =      2,500</span>
 <span id="cb6-18"><a href="#cb6-18"></a>                                                   MCMC <span class="kw">sample</span> <span class="kw">size</span> =     10,000</span>
-<span id="cb6-19"><a href="#cb6-19"></a>                                                   Number <span class="kw">of</span> <span class="kw">obs</span>    =      5,373</span>
-<span id="cb6-20"><a href="#cb6-20"></a>                                                   Acceptance rate  =      .1893</span>
-<span id="cb6-21"><a href="#cb6-21"></a>                                                   Efficiency:  <span class="fu">min</span> =     .01298</span>
-<span id="cb6-22"><a href="#cb6-22"></a>                                                                avg =     .03181</span>
-<span id="cb6-23"><a href="#cb6-23"></a>Log marginal likelihood = -3145.0775                            <span class="fu">max</span> =     .05821</span>
+<span id="cb6-19"><a href="#cb6-19"></a>                                                   Number <span class="kw">of</span> <span class="kw">obs</span>    =      5,393</span>
+<span id="cb6-20"><a href="#cb6-20"></a>                                                   Acceptance rate  =      .2257</span>
+<span id="cb6-21"><a href="#cb6-21"></a>                                                   Efficiency:  <span class="fu">min</span> =     .01383</span>
+<span id="cb6-22"><a href="#cb6-22"></a>                                                                avg =     .03232</span>
+<span id="cb6-23"><a href="#cb6-23"></a>Log marginal likelihood = -3180.1718                            <span class="fu">max</span> =      .0583</span>
 <span id="cb6-24"><a href="#cb6-24"></a> </span>
 <span id="cb6-25"><a href="#cb6-25"></a>───────────────┬────────────────────────────────────────────────────────────────</span>
 <span id="cb6-26"><a href="#cb6-26"></a>               │                                                Equal-tailed</span>
 <span id="cb6-27"><a href="#cb6-27"></a>       liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]</span>
 <span id="cb6-28"><a href="#cb6-28"></a>───────────────┼────────────────────────────────────────────────────────────────</span>
 <span id="cb6-29"><a href="#cb6-29"></a>          race │</span>
-<span id="cb6-30"><a href="#cb6-30"></a>        <span class="bn">black</span>  │   .613104   .0805279   .005117   .6146653   .4536203   .7710295</span>
-<span id="cb6-31"><a href="#cb6-31"></a>        other  │  .3655487   .1337521   .011739   .3671928   .1096495   .6318687</span>
+<span id="cb6-30"><a href="#cb6-30"></a>        <span class="bn">black</span>  │  .3947493   .0822819   .005895   .3933429   .2289023   .5567789</span>
+<span id="cb6-31"><a href="#cb6-31"></a>        other  │  .5018242   .1295803   .011017    .503707    .255992   .7522975</span>
 <span id="cb6-32"><a href="#cb6-32"></a>               │</span>
 <span id="cb6-33"><a href="#cb6-33"></a>         <span class="kw">class</span> │</span>
-<span id="cb6-34"><a href="#cb6-34"></a>working <span class="kw">class</span>  │ -.0447626   .1482117   .009539   -.049469  -.3266321   .2476447</span>
-<span id="cb6-35"><a href="#cb6-35"></a> middle <span class="kw">class</span>  │  .1308608   .1495992   .008102   .1285952  -.1451617   .4204665</span>
-<span id="cb6-36"><a href="#cb6-36"></a>  <span class="fu">upper</span> <span class="kw">class</span>  │  .1880397   .2267409   .009398   .1907295  -.2449094   .6303463</span>
+<span id="cb6-34"><a href="#cb6-34"></a>working <span class="kw">class</span>  │ -.4241844   .1243631   .007727   -.422026  -.6713128    -.20072</span>
+<span id="cb6-35"><a href="#cb6-35"></a> middle <span class="kw">class</span>  │ -.2619162   .1232291   .006378  -.2664475  -.5197306  -.0254913</span>
+<span id="cb6-36"><a href="#cb6-36"></a>  <span class="fu">upper</span> <span class="kw">class</span>  │ -.1508993   .1983133   .010032  -.1534356  -.5326012   .2457839</span>
 <span id="cb6-37"><a href="#cb6-37"></a>               │</span>
-<span id="cb6-38"><a href="#cb6-38"></a>         <span class="dt">_cons</span> │ -1.156825   .1403979   .007332  -1.147622  -1.433585  -.9039966</span>
+<span id="cb6-38"><a href="#cb6-38"></a>         <span class="dt">_cons</span> │ -.7522187   .1149148   .004759  -.7508257  -.9723163  -.5232482</span>
 <span id="cb6-39"><a href="#cb6-39"></a>───────────────┴────────────────────────────────────────────────────────────────</span>
 <span id="cb6-40"><a href="#cb6-40"></a>Note: Default priors are used <span class="kw">for</span> <span class="kw">model</span> parameters.</span></code></pre></div>
 </div><div id="blocking-may-improve-estimation" class="slide section level2">
@@ -332,26 +332,26 @@ Andy Grogan-Kaylor
 <span id="cb8-16"><a href="#cb8-16"></a>Bayesian <span class="kw">logistic</span> regression                       MCMC iterations  =     12,500</span>
 <span id="cb8-17"><a href="#cb8-17"></a>Random-walk Metropolis-Hastings sampling           Burn-<span class="kw">in</span>          =      2,500</span>
 <span id="cb8-18"><a href="#cb8-18"></a>                                                   MCMC <span class="kw">sample</span> <span class="kw">size</span> =     10,000</span>
-<span id="cb8-19"><a href="#cb8-19"></a>                                                   Number <span class="kw">of</span> <span class="kw">obs</span>    =      5,373</span>
-<span id="cb8-20"><a href="#cb8-20"></a>                                                   Acceptance rate  =      .1929</span>
-<span id="cb8-21"><a href="#cb8-21"></a>                                                   Efficiency:  <span class="fu">min</span> =     .02211</span>
-<span id="cb8-22"><a href="#cb8-22"></a>                                                                avg =     .04409</span>
-<span id="cb8-23"><a href="#cb8-23"></a>Log marginal likelihood = -3127.3296                            <span class="fu">max</span> =     .05525</span>
+<span id="cb8-19"><a href="#cb8-19"></a>                                                   Number <span class="kw">of</span> <span class="kw">obs</span>    =      5,393</span>
+<span id="cb8-20"><a href="#cb8-20"></a>                                                   Acceptance rate  =      .2018</span>
+<span id="cb8-21"><a href="#cb8-21"></a>                                                   Efficiency:  <span class="fu">min</span> =     .01531</span>
+<span id="cb8-22"><a href="#cb8-22"></a>                                                                avg =      .0254</span>
+<span id="cb8-23"><a href="#cb8-23"></a>Log marginal likelihood = -3162.2981                            <span class="fu">max</span> =     .04229</span>
 <span id="cb8-24"><a href="#cb8-24"></a> </span>
 <span id="cb8-25"><a href="#cb8-25"></a>───────────────┬────────────────────────────────────────────────────────────────</span>
 <span id="cb8-26"><a href="#cb8-26"></a>               │                                                Equal-tailed</span>
 <span id="cb8-27"><a href="#cb8-27"></a>       liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]</span>
 <span id="cb8-28"><a href="#cb8-28"></a>───────────────┼────────────────────────────────────────────────────────────────</span>
 <span id="cb8-29"><a href="#cb8-29"></a>          race │</span>
-<span id="cb8-30"><a href="#cb8-30"></a>        <span class="bn">black</span>  │  .5937518    .083517   .005616   .5967408   .4265727   .7505704</span>
-<span id="cb8-31"><a href="#cb8-31"></a>        other  │  .3590546   .1316989   .005603   .3570273    .104696   .6086465</span>
+<span id="cb8-30"><a href="#cb8-30"></a>        <span class="bn">black</span>  │  .4063884   .0830629   .004039   .4098444   .2476307   .5649653</span>
+<span id="cb8-31"><a href="#cb8-31"></a>        other  │  .5087264   .1206866   .007204   .5028487   .2772664   .7407117</span>
 <span id="cb8-32"><a href="#cb8-32"></a>               │</span>
 <span id="cb8-33"><a href="#cb8-33"></a>         <span class="kw">class</span> │</span>
-<span id="cb8-34"><a href="#cb8-34"></a>working <span class="kw">class</span>  │ -.0370307   .1301884    .00615  -.0301299  -.3051235   .2118941</span>
-<span id="cb8-35"><a href="#cb8-35"></a> middle <span class="kw">class</span>  │  .1325218    .130243   .006091   .1323398  -.1320389   .3815793</span>
-<span id="cb8-36"><a href="#cb8-36"></a>  <span class="fu">upper</span> <span class="kw">class</span>  │  .1984152   .2126298    .00984   .2011917  -.2379325   .5936834</span>
+<span id="cb8-34"><a href="#cb8-34"></a>working <span class="kw">class</span>  │ -.4232222   .1221491   .008601   -.424899  -.6637786  -.1720494</span>
+<span id="cb8-35"><a href="#cb8-35"></a> middle <span class="kw">class</span>  │ -.2570835   .1197257   .009677  -.2614378  -.4845897  -.0119759</span>
+<span id="cb8-36"><a href="#cb8-36"></a>  <span class="fu">upper</span> <span class="kw">class</span>  │  -.135455    .200802   .012247  -.1340006  -.5505343   .2664472</span>
 <span id="cb8-37"><a href="#cb8-37"></a>               │</span>
-<span id="cb8-38"><a href="#cb8-38"></a>         <span class="dt">_cons</span> │ -1.160654   .1258682   .005632  -1.163326  -1.406338  -.9004212</span>
+<span id="cb8-38"><a href="#cb8-38"></a>         <span class="dt">_cons</span> │ -.7615401   .1153949   .008224  -.7556258   -.998298  -.5372218</span>
 <span id="cb8-39"><a href="#cb8-39"></a>───────────────┴────────────────────────────────────────────────────────────────</span>
 <span id="cb8-40"><a href="#cb8-40"></a>Note: Default priors are used <span class="kw">for</span> <span class="kw">model</span> parameters.</span></code></pre></div>
 </div><div id="mcmc-vs.-ml" class="slide section level2">
@@ -364,7 +364,7 @@ Andy Grogan-Kaylor
 <span id="cb12-2"><a href="#cb12-2"></a></span>
 <span id="cb12-3"><a href="#cb12-3"></a>    Variable │        Obs        Mean    Std. Dev.       Min        Max</span>
 <span id="cb12-4"><a href="#cb12-4"></a>─────────────┼─────────────────────────────────────────────────────────</span>
-<span id="cb12-5"><a href="#cb12-5"></a>  myestimate │        100    10.00285    1.070822   7.630999   12.54815</span></code></pre></div>
+<span id="cb12-5"><a href="#cb12-5"></a>  myestimate │        100     9.99037    .9061558   7.483831   11.92453</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">local</span> mymean = <span class="fu">r</span>(<span class="kw">mean</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">kdensity</span> myestimate ,  <span class="co">///</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;Likelihood of Estimate&quot;</span>) <span class="co">///</span></span>
@@ -402,26 +402,26 @@ Andy Grogan-Kaylor
 <span id="cb19-16"><a href="#cb19-16"></a>Bayesian <span class="kw">logistic</span> regression                       MCMC iterations  =     12,500</span>
 <span id="cb19-17"><a href="#cb19-17"></a>Random-walk Metropolis-Hastings sampling           Burn-<span class="kw">in</span>          =      2,500</span>
 <span id="cb19-18"><a href="#cb19-18"></a>                                                   MCMC <span class="kw">sample</span> <span class="kw">size</span> =     10,000</span>
-<span id="cb19-19"><a href="#cb19-19"></a>                                                   Number <span class="kw">of</span> <span class="kw">obs</span>    =      5,402</span>
-<span id="cb19-20"><a href="#cb19-20"></a>                                                   Acceptance rate  =      .2044</span>
-<span id="cb19-21"><a href="#cb19-21"></a>                                                   Efficiency:  <span class="fu">min</span> =     .02148</span>
-<span id="cb19-22"><a href="#cb19-22"></a>                                                                avg =     .03322</span>
-<span id="cb19-23"><a href="#cb19-23"></a>Log marginal likelihood = -3186.5162                            <span class="fu">max</span> =     .04322</span>
+<span id="cb19-19"><a href="#cb19-19"></a>                                                   Number <span class="kw">of</span> <span class="kw">obs</span>    =      5,345</span>
+<span id="cb19-20"><a href="#cb19-20"></a>                                                   Acceptance rate  =      .2082</span>
+<span id="cb19-21"><a href="#cb19-21"></a>                                                   Efficiency:  <span class="fu">min</span> =     .02443</span>
+<span id="cb19-22"><a href="#cb19-22"></a>                                                                avg =     .03407</span>
+<span id="cb19-23"><a href="#cb19-23"></a>Log marginal likelihood = -3105.9749                            <span class="fu">max</span> =     .06349</span>
 <span id="cb19-24"><a href="#cb19-24"></a> </span>
 <span id="cb19-25"><a href="#cb19-25"></a>───────────────┬────────────────────────────────────────────────────────────────</span>
 <span id="cb19-26"><a href="#cb19-26"></a>               │                                                Equal-tailed</span>
 <span id="cb19-27"><a href="#cb19-27"></a>       liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]</span>
 <span id="cb19-28"><a href="#cb19-28"></a>───────────────┼────────────────────────────────────────────────────────────────</span>
 <span id="cb19-29"><a href="#cb19-29"></a>          race │</span>
-<span id="cb19-30"><a href="#cb19-30"></a>        <span class="bn">black</span>  │  .4398831   .0849278   .005234   .4400468   .2732082   .6042975</span>
-<span id="cb19-31"><a href="#cb19-31"></a>        other  │  .5605932   .1239858   .005964   .5603787   .3169103   .8109727</span>
+<span id="cb19-30"><a href="#cb19-30"></a>        <span class="bn">black</span>  │  .5422929   .0827044   .004872   .5434182   .3823331   .7078339</span>
+<span id="cb19-31"><a href="#cb19-31"></a>        other  │  .4157509   .1281866   .005087   .4171814    .163697   .6570723</span>
 <span id="cb19-32"><a href="#cb19-32"></a>               │</span>
 <span id="cb19-33"><a href="#cb19-33"></a>         <span class="kw">class</span> │</span>
-<span id="cb19-34"><a href="#cb19-34"></a>working <span class="kw">class</span>  │ -.2455384   .1277791   .006438  -.2493332  -.4921184   .0029378</span>
-<span id="cb19-35"><a href="#cb19-35"></a> middle <span class="kw">class</span>  │ -.0127971   .1325927   .007334  -.0139752  -.2753381   .2369611</span>
-<span id="cb19-36"><a href="#cb19-36"></a>  <span class="fu">upper</span> <span class="kw">class</span>  │  -.045365    .193218   .010151  -.0524432  -.4309591   .3347986</span>
+<span id="cb19-34"><a href="#cb19-34"></a>working <span class="kw">class</span>  │ -.2171419   .1361014   .008708  -.2179448  -.4807177   .0627315</span>
+<span id="cb19-35"><a href="#cb19-35"></a> middle <span class="kw">class</span>  │ -.1583411   .1396594   .008239  -.1582649  -.4454747   .1111331</span>
+<span id="cb19-36"><a href="#cb19-36"></a>  <span class="fu">upper</span> <span class="kw">class</span>  │ -.0034842   .2229609   .012502  -.0032252  -.4430678   .4161878</span>
 <span id="cb19-37"><a href="#cb19-37"></a>               │</span>
-<span id="cb19-38"><a href="#cb19-38"></a>         <span class="dt">_cons</span> │  -.947001   .1246782   .008506  -.9449621  -1.191701  -.7109242</span>
+<span id="cb19-38"><a href="#cb19-38"></a>         <span class="dt">_cons</span> │ -.9453812   .1325399   .008048  -.9430257  -1.212341  -.6728245</span>
 <span id="cb19-39"><a href="#cb19-39"></a>───────────────┴────────────────────────────────────────────────────────────────</span>
 <span id="cb19-40"><a href="#cb19-40"></a>Note: Default priors are used <span class="kw">for</span> <span class="kw">model</span> parameters.</span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1"></a>. bayesgraph <span class="kw">kdensity</span> {liberal:2.race}, <span class="dv">scheme</span>(michigan)</span></code></pre></div>
