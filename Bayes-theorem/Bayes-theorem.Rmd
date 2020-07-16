@@ -1,0 +1,87 @@
+---
+title: "Bayes Theorem"
+subtitle: "Applied To Data Analysis"
+author: "Andy Grogan-Kaylor"
+institute: "University of Michigan"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{css, echo=FALSE}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.title-slide { 
+  color: #ffcb05;
+  background-color: #00274C; 
+}
+.title-slide h1 {
+    color: #ffcb05;
+}
+pre {
+  white-space: pre-wrap;
+}
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+body { 
+    font-family: 'Montserrat', sans-serif;
+}
+.author, .date {
+  font-family: 'Montserrat', sans-serif;
+}
+
+```
+
+# Bayes Theorem Applied To Data Analysis
+
+--
+
+| Probability   | Data                 | Not Data                        |
+|:--------------|:---------------------|:--------------------------------|
+| Hypothesis    | $P(D, H)$            | $P(\text{not} D, H)$            |
+| Not Hypothesis| $P(D, \text{not} H)$ | $P(\text{not} D, \text{not} H)$ |
+
+--
+
+From the definition of conditional probability: 
+
+--
+
+$P(D|H) = P(D,H) / P(H)$
+
+--
+
+$P(H|D) = P(D,H) / P(D)$
+
+---
+# Then: 
+
+--
+
+$P(D|H)P(H) = P(D,H)$
+
+--
+
+$P(H|D)P(D) = P(D,H)$
+
+--
+
+---
+# Then:
+
+$P(D|H)P(H) = P(H|D)P(D)$
+
+--
+Then:
+
+$P(H|D) = \frac{P(D|H)P(H)}{P(D)}$
+
+--
+
+$\text{posterior} \sim \text{likelihood} \times \text{prior}$
