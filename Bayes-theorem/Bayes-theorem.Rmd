@@ -42,10 +42,11 @@ body {
 
 --
 
-| Probability   | Data                 | Not Data                        |
+|               | Data                 | Not Data                        |
 |:--------------|:---------------------|:--------------------------------|
 | Hypothesis    | $P(D, H)$            | $P(\text{not} D, H)$            |
 | Not Hypothesis| $P(D, \text{not} H)$ | $P(\text{not} D, \text{not} H)$ |
+
 
 --
 
@@ -72,7 +73,6 @@ $P(H|D)P(D) = P(D,H)$
 
 --
 
----
 # Then:
 
 $P(D|H)P(H) = P(H|D)P(D)$
