@@ -98,6 +98,8 @@ Then:
 
 Consider an example using 1,000 hypothetical studies. We imagine that only 10% of interventions are likely to have results. We adopt standard assumptions of adopting an `\(\alpha\)`, or chance of detecting an effect when one is not there of 5%. We similarly assume 80% power `\(\beta\)`, or a 20% chance of failing to detect an effect when it is not present. 
 
+--
+
 |                          | D=1 (effect)        | D=0 (non effect)   |
 |:-------------------------|:--------------------|:-------------------|
 | Data (D)                 | 100 effects         | 900 non-effects    |
@@ -109,7 +111,11 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 ---
 # Calculations
 
+--
+
 `$$P(\text{effect} | \text{conclude effect}) = \frac{P(\text{conclude effect} | \text{effect}) P(\text{effect})}{P(\text{conclude effect})}$$`
+
+--
 
 `$$P(\text{effect} | \text{conclude effect}) = \frac{.8 \times .1}{.125} = .64$$`
 &gt; See also [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
