@@ -86,6 +86,15 @@ $P(D|H) = \frac{P(H|D)P(D)}{P(H)}$ Bayes Theorem
 $\text{posterior} \sim \text{likelihood} \times \text{prior}$
 
 ---
+# Expanded Version
+
+$P(D|H) = \frac{P(H|D)P(D)}{P(H|D)P(D) + P(H|\neg D)P(\neg D)}$ Expanded Version
+
+--
+
+$P(D|H) = \frac{P(H|D)P(D)}{\Sigma P(H|D_i)P(D_i)}$
+
+---
 # Example 
 
 Consider an example using 1,000 hypothetical studies. We imagine that only 10% of interventions are likely to have results. We adopt standard assumptions of adopting an $\alpha$, or chance of detecting an effect when one is not there of 5%. We similarly assume 80% power $\beta$, or a 20% chance of failing to detect an effect when it is not present. 
@@ -98,7 +107,7 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 | H=1 (conclude effect)    | 80 true positives   | 45 false positives |
 | H=0 (conclude no effect) | 20 false negatives  | 855 true negatives |
 
-* With thanks to the [Wikipedia article](https://en.wikipedia.org/wiki/Bayes%27_theorem#Cancer_rate) on this topic for inspiration for this example.
+> With thanks to the [Wikipedia article](https://en.wikipedia.org/wiki/Bayes%27_theorem#Cancer_rate) on this topic for inspiration for this example.
 
 ---
 # Calculations
@@ -114,6 +123,9 @@ $$=\frac{P(\text{conclude effect} | \text{effect}) P(\text{effect})}{P(\text{con
 --
 
 $$P(\text{effect} | \text{conclude effect}) = \frac{.8 \times .1}{.08 + .045} = .64$$
+
+--
+
 > See also [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
 
 
