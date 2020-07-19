@@ -92,7 +92,7 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 
 --
 
-|                          | D=1 (effect)        | D=0 (non effect)   |
+|                          | D=1 (effect)        | D=0 (no effect)    |
 |:-------------------------|:--------------------|:-------------------|
 | Data (D)                 | 100 effects         | 900 non-effects    |
 | H=1 (conclude effect)    | 80 true positives   | 45 false positives |
@@ -109,7 +109,11 @@ $$P(\text{effect} | \text{conclude effect}) = \frac{P(\text{conclude effect} | \
 
 --
 
-$$P(\text{effect} | \text{conclude effect}) = \frac{.8 \times .1}{.125} = .64$$
+$$=\frac{P(\text{conclude effect} | \text{effect}) P(\text{effect})}{P(\text{conclude effect} | \text{effect}) P(\text{effect}) + P(\text{conclude effect} | \text{no effect}) P(\text{no effect})}$$
+
+--
+
+$$P(\text{effect} | \text{conclude effect}) = \frac{.8 \times .1}{.08 + .045} = .64$$
 > See also [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
 
 
