@@ -80,6 +80,34 @@ rayshader::plot_gg(p1, zoom = .8) %>%
 
 ```
 
+```{r, eval=FALSE}
+
+y2 <- round(pnorm(x), digits = 5)
+
+p2 <- ggplot(data = NULL,
+             aes(x = x,
+             y = y2,
+             color = y2)) + 
+  geom_point() +
+  scale_color_viridis_c(name = "probability") +
+  labs(title = "Probit Curve",
+       x = "x",
+       y = "probability") +
+  theme_minimal() + 
+  theme(legend.position = "none")
+  
+```
+
+```{r, eval=FALSE}
+
+rayshader::plot_gg(p2, zoom = .8) %>%
+  render_movie(filename = "probit",
+               type = "orbit",
+               frames = 360,
+               fps = 30)
+
+```
+
 <aside>
 <span style="background-color:#FFFF00">The currently available drafts of slides for the course can be found [here](https://agrogan1.github.io/newstuff/categorical/README.html)</span>
 </aside>
