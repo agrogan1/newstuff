@@ -4,7 +4,7 @@
     <title>Bayes Theorem</title>
     <meta charset="utf-8" />
     <meta name="author" content="Andy Grogan-Kaylor" />
-    <meta name="date" content="2020-07-19" />
+    <meta name="date" content="2020-07-20" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 ## Applied To Data Analysis
 ### Andy Grogan-Kaylor
 ### University of Michigan
-### 2020-07-19
+### 2020-07-20
 
 ---
 
@@ -96,6 +96,8 @@ Then:
 ---
 # Expanded Version
 
+--
+
 `\(P(D|H) = \frac{P(H|D)P(D)}{P(H|D)P(D) + P(H|\neg D)P(\neg D)}\)` Expanded Version
 
 --
@@ -135,6 +137,16 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 --
 
 &gt; See also [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
+
+---
+# Discussion
+
+--
+* Calculations suggest that a true effect is likely in 64% of the cases where one concludes the presence of an effect.
+
+--
+
+* Consequently, calculations suggest that 36% of the time, when one concludes there is an effect, there is actually no effect. Put another way, despite setting `\(\alpha = .05\)`, 36% of cases result in a false positive.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

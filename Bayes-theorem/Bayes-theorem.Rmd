@@ -88,6 +88,8 @@ $\text{posterior} \sim \text{likelihood} \times \text{prior}$
 ---
 # Expanded Version
 
+--
+
 $P(D|H) = \frac{P(H|D)P(D)}{P(H|D)P(D) + P(H|\neg D)P(\neg D)}$ Expanded Version
 
 --
@@ -127,6 +129,17 @@ $$P(\text{effect} | \text{conclude effect}) = \frac{.8 \times .1}{.08 + .045} = 
 --
 
 > See also [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
+
+---
+# Discussion
+
+--
+* Calculations suggest that a true effect is likely in 64% of the cases where one concludes the presence of an effect.
+
+--
+
+* Consequently, calculations suggest that 36% of the time, when one concludes there is an effect, there is actually no effect. Put another way, despite setting $\alpha = .05$, 36% of cases result in a false positive.
+
 
 
 
