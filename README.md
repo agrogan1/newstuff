@@ -10,7 +10,16 @@ New stuff that is going to get moved somewhere else at some point.
 
 ## Statistics
 
+### Bayes
+
+* [Bayes Theorem Applied To Data Analysis](https://agrogan1.github.io/newstuff/Bayes-theorem/Bayes-theorem.html)
+
+### Categorical Data Analysis
+
 * [New Materials For A Course On Categorical Data Analysis](https://agrogan1.github.io/newstuff/categorical/)
+
+### Causal Modeling
+
 * [Multiple Approaches to Causal Modeling Using Black Spruce Data](https://agrogan1.github.io/newstuff/spruce/spruce-slidy.html)
 * [Causal Modeling With General Social Service Data Using Multiple Approaches](https://agrogan1.github.io/newstuff/causal-modeling/causal-modeling-slidy.html)
 
