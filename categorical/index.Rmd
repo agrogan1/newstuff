@@ -24,6 +24,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 library(ggplot2)
 
+library(dplyr)
+
 library(plotly)
 
 library(knitr)
@@ -107,6 +109,38 @@ rayshader::plot_gg(p2, zoom = .8) %>%
                fps = 30)
 
 ```
+
+```{r, eval=FALSE}
+
+x3 <- rnbinom(10000, mu = 4, size = 1)
+
+mydata <- data.frame(x3)
+
+p3 <- mydata %>%
+  count(x3) %>%
+  ggplot(aes(x = x3,
+             y = n,
+             color = x3)) + 
+  # geom_bar(stat = "identity") +
+  geom_point() +
+  scale_fill_viridis_c() +
+  labs(title = "Negative Binomial \nDistribution",
+       x = "x",
+       y = "Count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+# p3
+
+rayshader::plot_gg(p3, zoom = .8) %>%
+  render_movie(filename = "negative-binomial",
+               type = "orbit",
+               frames = 360,
+               fps = 30)
+
+
+```
+
 
 <aside>
 <span style="background-color:#FFFF00">The currently available drafts of slides for the course can be found [here](https://agrogan1.github.io/newstuff/categorical/README.html)</span>
