@@ -24,7 +24,7 @@ The documentation goes on to further note that:
 
 > "The data are measures from 107 trees. The trees were selected as being of average size from healthy and well stocked stands in the Alps."
 
-        use gutten.dta, clear
+    use gutten.dta, clear
 
 # Variables
 
