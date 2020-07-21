@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/mlm-R2-gutten/mlm-R2-gutten.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}26 May 2020, 11:07:10
+ {txt}opened on:  {res}21 Jul 2020, 09:34:44
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}26 May 2020
+{res}21 Jul 2020
 {txt}
 {com}. //_2
 .     use gutten.dta, clear
@@ -95,7 +95,7 @@ LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}127.8
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/mlm-R2-gutten/mlm-R2-gutten.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}26 May 2020, 11:07:10
+ {txt}closed on:  {res}21 Jul 2020, 09:34:44
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -13,3 +13,8 @@ graph close _all
 markstat using mlm-R2-gutten.stmd, pdf // PDF
 
 graph close _all
+
+
+
+
+
