@@ -16,7 +16,8 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
 * [Propensity Score Models](https://agrogan1.github.io/newstuff/causal-modeling/causal-modeling.html) (as part of a larger set of materials on *causal modeling*).
 * [Bayesian Categorical Data Analysis](https://agrogan1.github.io/newstuff/categorical/Bayes/Bayes-slidy.html)
     + [Bayes Theorem Applied To Data Analysis](https://agrogan1.github.io/newstuff/Bayes-theorem/Bayes-theorem.html)
-
+* Survival Analysis And Event History
+    + [Times, Events And Censoring](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/times-events-and-censoring.html)
 
 
 
