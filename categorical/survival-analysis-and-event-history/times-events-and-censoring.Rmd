@@ -77,11 +77,11 @@ Think about a hypothetical event: e.g. *birth*, *death*, *marriage* or *commitme
 
 Individuals in the animation below who have not yet experienced an event are indicated by a $\bullet$. When an event occurs for an individual, the symbol changes to a $\boldsymbol \times$.
 
-In this simulation, we imagine that the study period ends after time 7, so observations for which the event occurs after time 7 are considered to be *censored*. Censored observations are <span style="color: #0000FF">blue</span>, and non-censored observations are <span style="color: #FF0000">red</span>.
+In this simulation, we imagine that the study period ends after time 7, so observations for which the event occurs after time 7 are considered to be *censored*. Censored observations are **maize** <span style="color: #FFCB05">&#x2B24;</span>, and non-censored observations are **blue** <span style="color: #00274C">&#x2B24;</span> .
 
 ```{r}
 
-pal <- c("red", "blue") # color palette
+pal <- c("#00274C", "#FFCB05") # color palette
 
 p2 <- plot_ly(data = mydata, # use mydata
               x = ~t, # x is t (time)
