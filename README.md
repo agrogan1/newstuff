@@ -25,7 +25,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 ### Multilevel Modeling
 
-[Calculating R<sup>2</sup> For A Multilevel Model](https://agrogan1.github.io/newstuff/mlm-R2-gutten/mlm-R2-gutten.html)
+* [Calculating R<sup>2</sup> For A Multilevel Model](https://agrogan1.github.io/newstuff/mlm-R2-gutten/mlm-R2-gutten.html)
 
 ## Simulated Data
 
