@@ -58,14 +58,14 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Logistic Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">14 Jun 2020</p>
+<p class="date">22 Jul 2020</p>
 </header>
 <h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
 <ul>
 <li>Fitting a Curve to 2 Possible Values</li>
 </ul>
-<p><img src="logistic.png" style="width:25.0%" /></p>
+<p><img src="logistic.png" style="width:30.0%" /></p>
 <ul>
 <li><p>Linear models, probit and logit</p></li>
 <li><p><code>y x1 x2 ...</code> <span class="math inline">\(\leftarrow\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(F(y) = \beta_0 + \beta x_1 + \beta x_2 ...\)</span></p></li>
@@ -85,15 +85,16 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </pre>
 <pre class='stata'>. set maxvar 10000
 </pre>
-<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
+<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clea
+> r
 </pre>
 <pre class='stata'>. * keep if year == 2018 // keep only most recent year
 </pre>
 <pre class='stata'>. codebook polviews // what does this variable look like?
 
-─────────────────────────────────────────────────────────────────────────────────────────────
-polviews                                             think of self as liberal or conservative
-─────────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────
+polviews                                         think of self as liberal or conservative
+─────────────────────────────────────────────────────────────────────────────────────────
 
                   type:  numeric (byte)
                  label:  POLVIEWS

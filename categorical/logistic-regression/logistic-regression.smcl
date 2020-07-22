@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}14 Jun 2020, 13:19:59
+ {txt}opened on:  {res}22 Jul 2020, 17:43:02
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}14 Jun 2020
+{res}22 Jul 2020
 {txt}
 {com}. //_2
 . clear all
@@ -315,7 +315,7 @@ working class  {c |}{col 16}{res}{space 2} .9149358{col 28}{space 2} .0408347{co
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}14 Jun 2020, 13:20:11
+ {txt}closed on:  {res}22 Jul 2020, 17:43:14
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -85,7 +85,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    href="../UMslidy.css" />
   <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
-    <script type="text/javascript" async
+	<script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 </head>
@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>14 Jun 2020</p>
+<p>22 Jul 2020</p>
 </div>
 <div id="key-concepts-and-commands" class="slide section level1">
 <h1>Key Concepts and Commands</h1>
@@ -128,13 +128,14 @@ Andy Grogan-Kaylor
 <h1>General Social Survey</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">set</span> <span class="dv">maxvar</span> 10000</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">use</span> <span class="st">&quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">use</span> <span class="st">&quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA&quot;</span>, clea</span>
+<span id="cb3-2"><a href="#cb3-2"></a>&gt; <span class="fu">r</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. * <span class="kw">keep</span> <span class="kw">if</span> <span class="fu">year</span> == 2018 <span class="co">// keep only most recent year</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">codebook</span> polviews <span class="co">// what does this variable look like?</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb5-4"><a href="#cb5-4"></a>polviews                                             think <span class="kw">of</span> self <span class="kw">as</span> liberal <span class="kw">or</span> conservative</span>
-<span id="cb5-5"><a href="#cb5-5"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb5-3"><a href="#cb5-3"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb5-4"><a href="#cb5-4"></a>polviews                                         think <span class="kw">of</span> self <span class="kw">as</span> liberal <span class="kw">or</span> conservative</span>
+<span id="cb5-5"><a href="#cb5-5"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb5-6"><a href="#cb5-6"></a></span>
 <span id="cb5-7"><a href="#cb5-7"></a>                  <span class="dv">type</span>:  <span class="kw">numeric</span> (<span class="kw">byte</span>)</span>
 <span id="cb5-8"><a href="#cb5-8"></a>                 <span class="kw">label</span>:  POLVIEWS</span>
