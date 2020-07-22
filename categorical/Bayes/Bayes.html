@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Bayesian Categorical Data Analysis</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">16 Jul 2020 15:42:27</p>
+<p class="date">22 Jul 2020 19:49:56</p>
 </header>
 <h1 id="introduction">Introduction</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -193,6 +193,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <h1 id="bayesian-categorical-data-analysis-in-stata">Bayesian Categorical Data Analysis in Stata</h1>
 <pre class='stata'>. clear all
 </pre>
+<pre class='stata'>. set seed 1234 // setting random seed is important!!!
+</pre>
 <pre class='stata'>. use "../logistic-regression/GSSsmall.dta", clear
 </pre>
 <h2 id="frequentist-logistic-regression">Frequentist Logistic Regression</h2>
@@ -251,26 +253,26 @@ Prior:
 Bayesian logistic regression                       MCMC iterations  =     12,500
 Random-walk Metropolis-Hastings sampling           Burn-in          =      2,500
                                                    MCMC sample size =     10,000
-                                                   Number of obs    =      5,393
-                                                   Acceptance rate  =      .2257
-                                                   Efficiency:  min =     .01383
-                                                                avg =     .03232
-Log marginal likelihood = -3180.1718                            max =      .0583
+                                                   Number of obs    =      5,376
+                                                   Acceptance rate  =      .2312
+                                                   Efficiency:  min =     .01541
+                                                                avg =     .03017
+Log marginal likelihood = -3193.2465                            max =     .05577
  
 ───────────────┬────────────────────────────────────────────────────────────────
                │                                                Equal-tailed
        liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]
 ───────────────┼────────────────────────────────────────────────────────────────
           race │
-        black  │  .3947493   .0822819   .005895   .3933429   .2289023   .5567789
-        other  │  .5018242   .1295803   .011017    .503707    .255992   .7522975
+        black  │  .5186618   .0888498   .005436   .5162073   .3446927   .6905559
+        other  │  .3315087   .1318099   .006538   .3340969   .0778656   .5812581
                │
          class │
-working class  │ -.4241844   .1243631   .007727   -.422026  -.6713128    -.20072
- middle class  │ -.2619162   .1232291   .006378  -.2664475  -.5197306  -.0254913
-  upper class  │ -.1508993   .1983133   .010032  -.1534356  -.5326012   .2457839
+working class  │ -.2257059   .1359429    .01095  -.2304211  -.4719162   .0560403
+ middle class  │ -.2159555   .1280385   .008659  -.2177452  -.4572864   .0353198
+  upper class  │  .1385091   .2119785   .008976   .1421824  -.2664372   .5469788
                │
-         _cons │ -.7522187   .1149148   .004759  -.7508257  -.9723163  -.5232482
+         _cons │ -.8561818   .1277022   .008896  -.8537522  -1.104622  -.6151415
 ───────────────┴────────────────────────────────────────────────────────────────
 Note: Default priors are used for model parameters.
 </pre>
@@ -303,26 +305,26 @@ Prior:
 Bayesian logistic regression                       MCMC iterations  =     12,500
 Random-walk Metropolis-Hastings sampling           Burn-in          =      2,500
                                                    MCMC sample size =     10,000
-                                                   Number of obs    =      5,393
-                                                   Acceptance rate  =      .2018
-                                                   Efficiency:  min =     .01531
-                                                                avg =      .0254
-Log marginal likelihood = -3162.2981                            max =     .04229
+                                                   Number of obs    =      5,376
+                                                   Acceptance rate  =      .2296
+                                                   Efficiency:  min =     .02373
+                                                                avg =     .03808
+Log marginal likelihood = -3175.5153                            max =     .05215
  
 ───────────────┬────────────────────────────────────────────────────────────────
                │                                                Equal-tailed
        liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]
 ───────────────┼────────────────────────────────────────────────────────────────
           race │
-        black  │  .4063884   .0830629   .004039   .4098444   .2476307   .5649653
-        other  │  .5087264   .1206866   .007204   .5028487   .2772664   .7407117
+        black  │  .5156108   .0846052   .003705   .5165275   .3428716   .6703037
+        other  │  .3494915   .1292596   .007216   .3517041   .0891921   .6044571
                │
          class │
-working class  │ -.4232222   .1221491   .008601   -.424899  -.6637786  -.1720494
- middle class  │ -.2570835   .1197257   .009677  -.2614378  -.4845897  -.0119759
-  upper class  │  -.135455    .200802   .012247  -.1340006  -.5505343   .2664472
+working class  │ -.2177134   .1271378   .005941  -.2191734  -.4736636   .0299706
+ middle class  │ -.2111361   .1279262   .006815   -.209842  -.4649101   .0467745
+  upper class  │  .1408649   .2085374   .013539   .1413301  -.2595456   .5542024
                │
-         _cons │ -.7615401   .1153949   .008224  -.7556258   -.998298  -.5372218
+         _cons │ -.8599554   .1222741   .006154  -.8616087  -1.102605   -.620957
 ───────────────┴────────────────────────────────────────────────────────────────
 Note: Default priors are used for model parameters.
 </pre>
@@ -338,7 +340,7 @@ number of observations (_N) was 0, now 100
 
     Variable │        Obs        Mean    Std. Dev.       Min        Max
 ─────────────┼─────────────────────────────────────────────────────────
-  myestimate │        100     9.99037    .9061558   7.483831   11.92453
+  myestimate │        100     9.94191    .9294447   7.932717   12.31949
 </pre>
 <pre class='stata'>. local mymean = r(mean)
 </pre>
@@ -381,26 +383,26 @@ Prior:
 Bayesian logistic regression                       MCMC iterations  =     12,500
 Random-walk Metropolis-Hastings sampling           Burn-in          =      2,500
                                                    MCMC sample size =     10,000
-                                                   Number of obs    =      5,345
-                                                   Acceptance rate  =      .2082
-                                                   Efficiency:  min =     .02443
-                                                                avg =     .03407
-Log marginal likelihood = -3105.9749                            max =     .06349
+                                                   Number of obs    =      5,383
+                                                   Acceptance rate  =      .2236
+                                                   Efficiency:  min =     .02256
+                                                                avg =     .03414
+Log marginal likelihood = -3177.2034                            max =     .05443
  
 ───────────────┬────────────────────────────────────────────────────────────────
                │                                                Equal-tailed
        liberal │      Mean   Std. Dev.     MCSE     Median  [95% Cred. Interval]
 ───────────────┼────────────────────────────────────────────────────────────────
           race │
-        black  │  .5422929   .0827044   .004872   .5434182   .3823331   .7078339
-        other  │  .4157509   .1281866   .005087   .4171814    .163697   .6570723
+        black  │  .4851672   .0829121   .004159   .4879013   .3172142   .6439872
+        other  │  .0424599    .135287   .005799   .0432961   -.223915   .3134179
                │
          class │
-working class  │ -.2171419   .1361014   .008708  -.2179448  -.4807177   .0627315
- middle class  │ -.1583411   .1396594   .008239  -.1582649  -.4454747   .1111331
-  upper class  │ -.0034842   .2229609   .012502  -.0032252  -.4430678   .4161878
+working class  │ -.3129757   .1321655     .0088  -.3171116  -.5767932  -.0470307
+ middle class  │ -.2267685   .1281627   .008449  -.2287587  -.4673167   .0249752
+  upper class  │ -.1154092   .2013339   .010816  -.1178767  -.5131633   .2788442
                │
-         _cons │ -.9453812   .1325399   .008048  -.9430257  -1.212341  -.6728245
+         _cons │ -.7892161   .1229919   .007051  -.7913504  -1.037607  -.5534833
 ───────────────┴────────────────────────────────────────────────────────────────
 Note: Default priors are used for model parameters.
 </pre>

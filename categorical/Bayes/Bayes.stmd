@@ -119,6 +119,8 @@ What is the effect on science and publication of having a statistical practice w
 
     clear all
 	
+	set seed 1234 // setting random seed is important!!!
+	
 	use "../logistic-regression/GSSsmall.dta", clear
 	
 ## Frequentist Logistic Regression
