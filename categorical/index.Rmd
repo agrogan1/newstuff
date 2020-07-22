@@ -120,7 +120,7 @@ p3 <- mydata %>%
   count(x3) %>%
   ggplot(aes(x = x3,
              y = n,
-             color = x3)) + 
+             color = n)) + 
   # geom_bar(stat = "identity") +
   geom_point() +
   scale_fill_viridis_c() +
@@ -140,7 +140,6 @@ rayshader::plot_gg(p3, zoom = .8) %>%
 
 
 ```
-
 
 <aside>
 <span style="background-color:#FFFF00">The currently available drafts of slides for the course can be found [here](https://agrogan1.github.io/newstuff/categorical/README.html)</span>
