@@ -16,6 +16,12 @@ geometry: margin=1 in
 
 > [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
 
+# More About Priors From SAS Corporation
+
+> "In addition to data, analysts often have at their disposal useful auxiliary information about inputs into their model—for example, knowledge that high prices typically decrease demand or that sunny weather increases outdoor mall foot traffic. If used and incorporated correctly into the analysis, the auxiliary information can significantly improve the quality of the analysis. But this information is often ignored. Bayesian analysis provides a principled means of incorporating this information into the model through the prior distribution, but it does not provide a road map for translating auxiliary information into a useful prior."
+
+--SAS Corporation
+
 # Formal Derivation of Bayes Theorem
 
 > Following inspiration from Kruschke (2011).
