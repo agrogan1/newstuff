@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 9 Jul 2020, 11:43:53
+ {txt}opened on:  {res}22 Jul 2020, 12:32:22
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 9 Jul 2020
+{res}22 Jul 2020
 {txt}
 {com}. //_2
 . use clients.dta, clear // use (get) the data
@@ -212,7 +212,7 @@ c.mental_health_T1 {c |}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 9 Jul 2020, 11:44:00
+ {txt}closed on:  {res}22 Jul 2020, 12:32:25
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

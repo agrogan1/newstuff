@@ -1,6 +1,6 @@
-*************************
-* count regression
-*************************
+**************************************************
+* review of statistics and introduction to Stata
+**************************************************
 
 cd "/Users/agrogan/Desktop/newstuff/categorical/review-stats-intro-stata"
 
