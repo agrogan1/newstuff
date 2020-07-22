@@ -6,9 +6,9 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
 
 * [A Review of Descriptive Statistics, OLS and an Introduction to Stata](https://agrogan1.github.io/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.pdf)]
 * [Data Visualization With Stata](https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.pdf)]
-* [Contingency Tables](https://agrogan1.github.io/newstuff/categorical/contingency-tables/contingency-tables-slidy.html)
-    + [Risks and Odds](https://agrogan1.github.io/newstuff/categorical/risks-and-odds/risks-and-odds.html)
-* [Logistic Regression](https://agrogan1.github.io/newstuff/categorical/logistic-regression/logistic-regression-slidy.html)
+* [Contingency Tables](https://agrogan1.github.io/newstuff/categorical/contingency-tables/contingency-tables-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/contingency-tables/contingency-tables.pdf)]
+    + [Risks and Odds](https://agrogan1.github.io/newstuff/categorical/risks-and-odds/risks-and-odds.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/risks-and-odds/risks-and-odds.pdf)]
+* [Logistic Regression](https://agrogan1.github.io/newstuff/categorical/logistic-regression/logistic-regression-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/logistic-regression/logistic-regression.pdf)]
     + [Generalized Linear Models](https://agrogan1.github.io/newstuff/categorical/glm/glm.html)
     + [Interactions in Logistic Regression](https://agrogan1.github.io/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.html)
 * [Ordinal and Multinomial Logistic Regression](https://agrogan1.github.io/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression-slidy.html)
