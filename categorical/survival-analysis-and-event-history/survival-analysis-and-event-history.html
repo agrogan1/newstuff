@@ -49,6 +49,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -57,9 +58,91 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Survival Analysis and Event History</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">22 Jul 2020</p>
+<p class="date">23 Jul 2020</p>
 </header>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <h1 id="introduction">Introduction</h1>
+<blockquote>
+<p>“Survival analysis is a key technique in data-driven decision-making, which is now central to public interest because of COVID-19. Applying the correct technique for the specific question at hand is crucial for credible public health inferences. If you are interested in assessing how a risk factor or a potential treatment affects the progression of a disease—such as how long a patient takes to recover—then survival analysis techniques come into play. Survival analysis deeply respects the ultimate source of its data, often the disease experience or even the life and death of human patients. It seeks to exploit every last drop of information that this experience can render for saving lives—in particular, not only whether patients survived, but how long, and why. And it strives to do so with minimal assumptions, so that the data are truly driving the decision.”</p>
+</blockquote>
+<p>—SAS Corporation</p>
+<h1 id="key-concepts">Key Concepts</h1>
+<blockquote>
+<p>WHO CARES how we measure time? Isn’t it self-evident?</p>
+</blockquote>
+<ul>
+<li><p>Implementations differ; formulas are our friends</p></li>
+<li><p><span class="math inline">\(h(t) \sim x1 + x2 + \text{etc.} ...\)</span>: formula (effect on hazard)</p></li>
+</ul>
+<h1 id="the-hospital-bed-problem">The Hospital Bed Problem</h1>
+<ul>
+<li><p>Imagine a <em>Hypothetical Hospital</em> 🏥</p></li>
+<li><p>Imagine that there are 52 patients <em>total</em>.</p></li>
+</ul>
+<p><span style="color: #FFCB05">⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤</span> <span style="color: #00274C">⬤</span></p>
+<ul>
+<li>51 of the patients are <em>long term patients</em>, who each stay for <em>1 year</em>.</li>
+</ul>
+<p><span style="color: #FFCB05">⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤</span></p>
+<ul>
+<li>1 of the patients is a <em>short term patient</em>, who stays for <em>1 week</em>.</li>
+</ul>
+<p><span style="color: #00274C">⬤</span></p>
+<blockquote>
+<p>Is this a hospital that serves mostly long-term, or short term patients?</p>
+</blockquote>
+<h1 id="how-to-measure-length-of-stay-1">How To Measure Length of Stay (1)</h1>
+<p><img src="timing-of-events.png" style="width:50.0%" /></p>
+<h2 id="animated">Animated</h2>
+<p>See <a href="./times-events-and-censoring.html">times-events-and-censoring.html</a></p>
+<h1 id="how-to-measure-length-of-stay-2">How To Measure Length of Stay (2)</h1>
+<p><span class="math display">\[
+    \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i
+\]</span></p>
+<ul>
+<li>Event happened within a specified time (yes/no)
+<ul>
+<li>Statistically accurate, but we lose information on <em>when</em> the event happened.</li>
+<li>Statistically <em>less efficient</em>.</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+    \text{time} = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i
+\]</span></p>
+<ul>
+<li>Time until Event
+<ul>
+<li>What to do with events that haven’t happened yet? (Censoring)</li>
+<li>Code as <code>NA</code>. Loss of information. Possible bias.</li>
+<li>Code as 0. Possible bias. They might happen at some point.</li>
+<li>Code as <code>time of censoring</code>. Possible bias. They might never happen. They might happen much later.</li>
+</ul></li>
+</ul>
+<h1 id="a-policy-example-welfare-reform-1996">A Policy Example (Welfare Reform, 1996)</h1>
+<p>From LaDonna Pavetti (1995)</p>
+<ul>
+<li>time in months</li>
+<li>new entrants (percent)</li>
+<li>all current recipients at a point in time (percent)</li>
+</ul>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. use Pavetti.dta
+(Written by R.              )
+</pre>
+<pre class='stata'>. list, abbreviate(25) // list out the data
+
+     ┌─────────────────────────────────────────────────┐
+     │    time   new_entrants   all_current_recipients │
+     ├─────────────────────────────────────────────────┤
+  1. │    1-12           27.4                      4.5 │
+  2. │   13-24           14.8                      4.8 │
+  3. │   25-36             10                      4.9 │
+  4. │   37-48            7.7                        5 │
+  5. │   49-60            5.5                      4.5 │
+     ├─────────────────────────────────────────────────┤
+  6. │ Over 60           34.6                     76.3 │
+     └─────────────────────────────────────────────────┘
+</pre>
 </body>
 </html>

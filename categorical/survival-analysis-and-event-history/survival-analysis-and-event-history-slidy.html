@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Survival Analysis and Event History</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../UMslidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+	<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Survival Analysis and Event History</h1>
+  <p class="author">
+Andy Grogan-Kaylor
+  </p>
+</div>
+<div class="slide section level2">
+
+<p>Andy Grogan-Kaylor</p>
+<p>23 Jul 2020</p>
+</div>
+<div id="introduction" class="title-slide slide section level1"><h1>Introduction</h1><blockquote>
+<p>“Survival analysis is a key technique in data-driven decision-making, which is now central to public interest because of COVID-19. Applying the correct technique for the specific question at hand is crucial for credible public health inferences. If you are interested in assessing how a risk factor or a potential treatment affects the progression of a disease—such as how long a patient takes to recover—then survival analysis techniques come into play. Survival analysis deeply respects the ultimate source of its data, often the disease experience or even the life and death of human patients. It seeks to exploit every last drop of information that this experience can render for saving lives—in particular, not only whether patients survived, but how long, and why. And it strives to do so with minimal assumptions, so that the data are truly driving the decision.”</p>
+</blockquote>
+<p>—SAS Corporation</p></div>
+<div id="key-concepts" class="title-slide slide section level1"><h1>Key Concepts</h1><blockquote>
+<p>WHO CARES how we measure time? Isn’t it self-evident?</p>
+</blockquote>
+<ul class="incremental">
+<li><p>Implementations differ; formulas are our friends</p></li>
+<li><p><span class="math inline">\(h(t) \sim x1 + x2 + \text{etc.} ...\)</span>: formula (effect on hazard)</p></li>
+</ul></div>
+<div id="the-hospital-bed-problem" class="title-slide slide section level1"><h1>The Hospital Bed Problem</h1><ul class="incremental">
+<li><p>Imagine a <em>Hypothetical Hospital</em> 🏥</p></li>
+<li><p>Imagine that there are 52 patients <em>total</em>.</p></li>
+</ul>
+<p><span style="color: #FFCB05">⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤</span> <span style="color: #00274C">⬤</span></p>
+<ul class="incremental">
+<li>51 of the patients are <em>long term patients</em>, who each stay for <em>1 year</em>.</li>
+</ul>
+<p><span style="color: #FFCB05">⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤ ⬤</span></p>
+<ul class="incremental">
+<li>1 of the patients is a <em>short term patient</em>, who stays for <em>1 week</em>.</li>
+</ul>
+<p><span style="color: #00274C">⬤</span></p>
+<blockquote>
+<p>Is this a hospital that serves mostly long-term, or short term patients?</p>
+</blockquote></div>
+<div id="how-to-measure-length-of-stay-1" class="title-slide slide section level1"><h1>How To Measure Length of Stay (1)</h1><p><img src="timing-of-events.png" /></p></div><div id="animated" class="slide section level2">
+<h1>Animated</h1>
+<p>See <a href="./times-events-and-censoring.html">times-events-and-censoring.html</a></p>
+</div>
+<div id="how-to-measure-length-of-stay-2" class="title-slide slide section level1"><h1>How To Measure Length of Stay (2)</h1><p><span class="math display">\[ \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
+<ul class="incremental">
+<li>Event happened within a specified time (yes/no)
+<ul class="incremental">
+<li>Statistically accurate, but we lose information on <em>when</em> the event happened.</li>
+<li>Statistically <em>less efficient</em>.</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[ \text{time} = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
+<ul class="incremental">
+<li>Time until Event
+<ul class="incremental">
+<li>What to do with events that haven’t happened yet? (Censoring)</li>
+<li>Code as <code>NA</code>. Loss of information. Possible bias.</li>
+<li>Code as 0. Possible bias. They might happen at some point.</li>
+<li>Code as <code>time of censoring</code>. Possible bias. They might never happen. They might happen much later.</li>
+</ul></li>
+</ul></div>
+<div id="a-policy-example-welfare-reform-1996" class="title-slide slide section level1"><h1>A Policy Example (Welfare Reform, 1996)</h1><p>From LaDonna Pavetti (1995)</p>
+<ul class="incremental">
+<li>time in months</li>
+<li>new entrants (percent)</li>
+<li>all current recipients at a point in time (percent)</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">use</span> Pavetti.dta</span>
+<span id="cb2-2"><a href="#cb2-2"></a>(Written <span class="kw">by</span> R.              )</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="ot">list</span>, abbreviate(25) <span class="co">// list out the data</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>     ┌─────────────────────────────────────────────────┐</span>
+<span id="cb3-4"><a href="#cb3-4"></a>     │    time   new_entrants   all_current_recipients │</span>
+<span id="cb3-5"><a href="#cb3-5"></a>     ├─────────────────────────────────────────────────┤</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  1. │    1-12           27.4                      4.5 │</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  2. │   13-24           14.8                      4.8 │</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  3. │   25-36             10                      4.9 │</span>
+<span id="cb3-9"><a href="#cb3-9"></a>  4. │   37-48            7.7                        5 │</span>
+<span id="cb3-10"><a href="#cb3-10"></a>  5. │   49-60            5.5                      4.5 │</span>
+<span id="cb3-11"><a href="#cb3-11"></a>     ├─────────────────────────────────────────────────┤</span>
+<span id="cb3-12"><a href="#cb3-12"></a>  6. │ Over 60           34.6                     76.3 │</span>
+<span id="cb3-13"><a href="#cb3-13"></a>     └─────────────────────────────────────────────────┘</span></code></pre></div></div>
+</body>
+</html>

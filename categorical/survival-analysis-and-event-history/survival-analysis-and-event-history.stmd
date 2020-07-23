@@ -9,3 +9,91 @@ geometry: margin=1 in
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 
 # Introduction
+
+> "Survival analysis is a key technique in data-driven decision-making, which is now central to public interest because of COVID-19. Applying the correct technique for the specific question at hand is crucial for credible public health inferences. If you are interested in assessing how a risk factor or a potential treatment affects the progression of a disease—such as how long a patient takes to recover—then survival analysis techniques come into play. Survival analysis deeply respects the ultimate source of its data, often the disease experience or even the life and death of human patients. It seeks to exploit every last drop of information that this experience can render for saving lives—in particular, not only whether patients survived, but how long, and why. And it strives to do so with minimal assumptions, so that the data are truly driving the decision."
+
+—SAS Corporation
+
+# Key Concepts
+
+> WHO CARES how we measure time? Isn't it self-evident?
+
+* Implementations differ; formulas are our friends
+
+* $h(t) \sim x1 + x2 + \text{etc.} ...$: formula (effect on hazard)
+
+# The Hospital Bed Problem
+
+* Imagine a *Hypothetical Hospital* `r emo::ji("hospital")`
+
+* Imagine that there are 52 patients *total*.
+
+<span style="color: #FFCB05">&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
+&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
+&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
+&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
+&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
+&#x2B24;</span> <span style="color: #00274C">&#x2B24;</span>
+
+* 51 of the patients are *long term patients*, who each stay for *1 year*. 
+
+<span style="color: #FFCB05">&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
+&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
+&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
+&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
+&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
+&#x2B24;</span>
+
+* 1 of the patients is a *short term patient*, who stays for *1 week*.
+
+<span style="color: #00274C">&#x2B24;</span>	
+
+> Is this a hospital that serves mostly long-term, or short term patients?
+
+# How To Measure Length of Stay (1)
+
+![](timing-of-events.png){width=50%}
+
+## Animated
+
+See [times-events-and-censoring.html](./times-events-and-censoring.html)
+
+# How To Measure Length of Stay (2)
+
+$$
+    \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i
+$$
+
+* Event happened within a specified time (yes/no)
+   - Statistically accurate, but we lose information on *when* the event happened.
+   - Statistically *less efficient*.
+   
+$$
+    \text{time} = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i
+$$
+
+* Time until Event
+  - What to do with events that haven't happened yet? (Censoring)
+  - Code as `NA`. Loss of information. Possible bias.
+  - Code as 0. Possible bias. They might happen at some point.
+  - Code as `time of censoring`. Possible bias.  They might never happen. They might happen much later.
+
+# A Policy Example (Welfare Reform, 1996)
+
+From LaDonna Pavetti (1995)
+
+* time in months
+* new entrants (percent)
+* all current recipients at a point in time (percent)
+
+    clear all
+	
+	use Pavetti.dta
+	
+	list, abbreviate(25) // list out the data
+	
+	
+
+
+
+
