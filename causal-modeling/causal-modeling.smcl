@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/causal-modeling/causal-modeling.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}13 Jul 2020, 15:52:25
+ {txt}opened on:  {res}22 Jul 2020, 19:54:39
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}13 Jul 2020
+{res}22 Jul 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}15:52:25
+{res}19:54:39
 {txt}
 {com}. //_3
 . clear all
@@ -372,7 +372,7 @@ LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}323.0
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/causal-modeling/causal-modeling.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}13 Jul 2020, 15:52:36
+ {txt}closed on:  {res}22 Jul 2020, 19:54:49
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -143,6 +143,8 @@ Hence, for this particular data, we are exploring:
 	
 	mixed satjob wave educ_mean educ_deviation incom16 i.race || ID:
 
+## Difference In Difference Model
+
 # References
 
 Holland, P. W. (1986). Statistics and Causal Inference. *Journal of the American Statistical Association*, 81(396), 945–960. https://doi.org/10.1080/01621459.1986.10478354
