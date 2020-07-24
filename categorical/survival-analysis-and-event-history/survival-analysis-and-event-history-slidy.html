@@ -82,7 +82,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
     href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
-   href="../UMslidy.css" />
+   href="../UNslidy.css" />
   <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
 	<script type="text/javascript" async
@@ -132,7 +132,7 @@ Andy Grogan-Kaylor
 <h1>Animated</h1>
 <p>See <a href="./times-events-and-censoring.html">times-events-and-censoring.html</a></p>
 </div>
-<div id="how-to-measure-length-of-stay-2" class="title-slide slide section level1"><h1>How To Measure Length of Stay (2)</h1><p><span class="math display">\[ \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
+<div id="how-to-measure-length-of-stay-2" class="title-slide slide section level1"><h1>How To Measure Length of Stay (2)</h1><p><span class="math display">\[ \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
 <ul class="incremental">
 <li>Event happened within a specified time (yes/no)
 <ul class="incremental">
@@ -140,7 +140,7 @@ Andy Grogan-Kaylor
 <li>Statistically <em>less efficient</em>.</li>
 </ul></li>
 </ul>
-<p><span class="math display">\[ \text{time} = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
+<p><span class="math display">\[ \text{time} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
 <ul class="incremental">
 <li>Time until Event
 <ul class="incremental">
@@ -171,6 +171,135 @@ Andy Grogan-Kaylor
 <span id="cb3-10"><a href="#cb3-10"></a>  5. │   49-60            5.5                      4.5 │</span>
 <span id="cb3-11"><a href="#cb3-11"></a>     ├─────────────────────────────────────────────────┤</span>
 <span id="cb3-12"><a href="#cb3-12"></a>  6. │ Over 60           34.6                     76.3 │</span>
-<span id="cb3-13"><a href="#cb3-13"></a>     └─────────────────────────────────────────────────┘</span></code></pre></div></div>
+<span id="cb3-13"><a href="#cb3-13"></a>     └─────────────────────────────────────────────────┘</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> (asis) all_current_recipients, <span class="co">/// this particular set of options was difficu</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>&gt; lt to figure out!</span>
+<span id="cb4-3"><a href="#cb4-3"></a>&gt; <span class="bn">over</span>(time) <span class="co">///</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;All Current Recipients&quot;</span>) <span class="co">///</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>&gt; sub(<span class="st">&quot;By Months On Caseload&quot;</span>) <span class="co">///</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>&gt; <span class="bn">ytitle</span>(<span class="st">&quot;percent&quot;</span>) <span class="co">///</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> all_current_recipients.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>(file all_current_recipients.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="all_current_recipients.png" alt="" />
+<p class="caption">All Current Recipients by Months on Caseload</p>
+</div></div>
+<div id="welfare-reform-2" class="title-slide slide section level1"><h1>Welfare Reform (2)</h1><div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> (asis) new_entrants, <span class="co">///</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>&gt; <span class="bn">over</span>(time) <span class="co">///</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;New Recipients&quot;</span>) <span class="co">///</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>&gt; sub(<span class="st">&quot;By Months On Caseload&quot;</span>) <span class="co">///</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>&gt; <span class="bn">ytitle</span>(<span class="st">&quot;percent&quot;</span>) <span class="co">///</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> new_recipients.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>(file new_recipients.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="new_recipients.png" alt="" />
+<p class="caption">New Recipients by Months on Caseload</p>
+</div></div>
+<div id="musicians-and-mortality-1" class="title-slide slide section level1"><h1>Musicians and Mortality (1)</h1><div class="figure">
+<img src="music-to-die-for.png" alt="" />
+<p class="caption">Music To Die For</p>
+</div></div>
+<div id="musicians-and-mortality-2" class="title-slide slide section level1"><h1>Musicians and Mortality (2)</h1><div class="figure">
+<img src="musician_mortality.jpeg" alt="" />
+<p class="caption">Musician Mortality</p>
+</div></div>
+<div id="cox-proportional-hazards-model" class="title-slide slide section level1"><h1>Cox Proportional Hazards Model</h1></div>
+<div id="formula" class="title-slide slide section level1"><h1>Formula</h1><p><span class="math inline">\(h(t)\)</span> the rate of occurrence.</p>
+<p><span class="math display">\[ h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.} \]</span></p>
+<blockquote>
+<p>We don’t directly estimate the hazard, but estimate the effect of covariates on the hazard.</p>
+</blockquote>
+<blockquote>
+<p>The event (birth, death, program entry, program departure) is coded as 1, so we are estimating the association of the covariates with event occurrence.</p>
+</blockquote></div>
+<div id="cox-proportional-hazards-model-in-stata" class="title-slide slide section level1"><h1>Cox Proportional Hazards Model in Stata</h1><div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">webuse</span> drugtr <span class="co">// demonstration data set from Stata</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>(Patient Survival <span class="kw">in</span> Drug Trial)</span></code></pre></div></div><div id="setup-of-data" class="slide section level2">
+<h1>Setup of Data</h1>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">stset</span> <span class="co">// show st setup of data</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>-&gt; <span class="kw">stset</span> studytime, failure(died)</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a>     failure event:  died != 0 &amp; died &lt; .</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="kw">obs</span>. time interval:  (0, studytime]</span>
+<span id="cb10-6"><a href="#cb10-6"></a> <span class="kw">exit</span> <span class="kw">on</span> <span class="kw">or</span> before:  failure</span>
+<span id="cb10-7"><a href="#cb10-7"></a></span>
+<span id="cb10-8"><a href="#cb10-8"></a>──────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb10-9"><a href="#cb10-9"></a>         48  <span class="kw">total</span> observations</span>
+<span id="cb10-10"><a href="#cb10-10"></a>          0  exclusions</span>
+<span id="cb10-11"><a href="#cb10-11"></a>──────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb10-12"><a href="#cb10-12"></a>         48  observations remaining, representing</span>
+<span id="cb10-13"><a href="#cb10-13"></a>         31  failures <span class="kw">in</span> single-record/single-failure <span class="kw">data</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>        744  <span class="kw">total</span> analysis time <span class="fu">at</span> risk and under observation</span>
+<span id="cb10-15"><a href="#cb10-15"></a>                                                <span class="fu">at</span> risk from t =         0</span>
+<span id="cb10-16"><a href="#cb10-16"></a>                                     earliest observed entry t =         0</span>
+<span id="cb10-17"><a href="#cb10-17"></a>                                          <span class="fu">last</span> observed <span class="kw">exit</span> t =        39</span></code></pre></div>
+</div><div id="cox-proportional-hazards-model-1" class="slide section level2">
+<h1>Cox Proportional Hazards Model</h1>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">stcox</span> age drug <span class="co">// run Cox Proportional Hazards Model</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>         failure _d:  died</span>
+<span id="cb11-4"><a href="#cb11-4"></a>   analysis time _t:  studytime</span>
+<span id="cb11-5"><a href="#cb11-5"></a></span>
+<span id="cb11-6"><a href="#cb11-6"></a>Iteration 0:   <span class="fu">log</span> likelihood = -99.911448</span>
+<span id="cb11-7"><a href="#cb11-7"></a>Iteration 1:   <span class="fu">log</span> likelihood = -83.551879</span>
+<span id="cb11-8"><a href="#cb11-8"></a>Iteration 2:   <span class="fu">log</span> likelihood = -83.324009</span>
+<span id="cb11-9"><a href="#cb11-9"></a>Iteration 3:   <span class="fu">log</span> likelihood = -83.323546</span>
+<span id="cb11-10"><a href="#cb11-10"></a>Refining <span class="kw">estimates</span>:</span>
+<span id="cb11-11"><a href="#cb11-11"></a>Iteration 0:   <span class="fu">log</span> likelihood = -83.323546</span>
+<span id="cb11-12"><a href="#cb11-12"></a></span>
+<span id="cb11-13"><a href="#cb11-13"></a>Cox regression -- Breslow method <span class="kw">for</span> ties</span>
+<span id="cb11-14"><a href="#cb11-14"></a></span>
+<span id="cb11-15"><a href="#cb11-15"></a>No. <span class="kw">of</span> subjects =           48                  Number <span class="kw">of</span> <span class="kw">obs</span>    =          48</span>
+<span id="cb11-16"><a href="#cb11-16"></a>No. <span class="kw">of</span> failures =           31</span>
+<span id="cb11-17"><a href="#cb11-17"></a>Time <span class="fu">at</span> risk    =          744</span>
+<span id="cb11-18"><a href="#cb11-18"></a>                                                LR <span class="fu">chi2</span>(2)       =       33.18</span>
+<span id="cb11-19"><a href="#cb11-19"></a>Log likelihood  =   -83.323546                  Prob &gt; <span class="fu">chi2</span>      =      0.0000</span>
+<span id="cb11-20"><a href="#cb11-20"></a></span>
+<span id="cb11-21"><a href="#cb11-21"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb11-22"><a href="#cb11-22"></a>          _t │ Haz. Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
+<span id="cb11-23"><a href="#cb11-23"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb11-24"><a href="#cb11-24"></a>         age │   1.120325   .0417711     3.05   0.002     1.041375     1.20526</span>
+<span id="cb11-25"><a href="#cb11-25"></a>        drug │   .1048772   .0477017    -4.96   0.000     .0430057    .2557622</span>
+<span id="cb11-26"><a href="#cb11-26"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+</div><div id="graph-survival-curves" class="slide section level2">
+<h1>Graph Survival Curves</h1>
+<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">stcurve</span>, survival <span class="dv">scheme</span>(michigan) <span class="co">// survival curve</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> survival1.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>(file survival1.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="survival1.png" alt="" />
+<p class="caption">Survival Curve</p>
+</div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">stcurve</span>, survival at1(drug=0) at2(drug=1) <span class="dv">scheme</span>(michigan) <span class="co">// survival curve by group</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> survival2.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>(file survival2.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="survival2.png" alt="" />
+<p class="caption">Survival Curve by Drug Group</p>
+</div>
+</div>
+<div id="proportional-hazards-assumption" class="title-slide slide section level1"><h1>Proportional Hazards Assumption</h1><div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>. <span class="kw">estat</span> phtest <span class="co">// formal test of PH assumption</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a>      Test <span class="kw">of</span> proportional-hazards assumption</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a>      Time:  Time</span>
+<span id="cb16-6"><a href="#cb16-6"></a>      ────────────┬───────────────────────────────────────────────────</span>
+<span id="cb16-7"><a href="#cb16-7"></a>                  │                      <span class="fu">chi2</span>       df       Prob&gt;<span class="fu">chi2</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>      ────────────┼───────────────────────────────────────────────────</span>
+<span id="cb16-9"><a href="#cb16-9"></a>      <span class="kw">global</span> <span class="kw">test</span> │                      0.43        2         0.8064</span>
+<span id="cb16-10"><a href="#cb16-10"></a>      ────────────┴───────────────────────────────────────────────────</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1"></a>. <span class="kw">stphplot</span>, <span class="kw">by</span>(drug) <span class="dv">scheme</span>(michigan) <span class="co">// graphical test of PH assumption</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>         failure _d:  died</span>
+<span id="cb17-4"><a href="#cb17-4"></a>   analysis time _t:  studytime</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> ph.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>(file ph.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="ph.png" alt="" />
+<p class="caption">Graphical Assessment of Proportional Hazards Assumptions</p>
+</div></div>
+<div id="unobserved-heterogeneity" class="title-slide slide section level1"><h1>Unobserved Heterogeneity</h1></div>
 </body>
 </html>

@@ -61,7 +61,7 @@ See [times-events-and-censoring.html](./times-events-and-censoring.html)
 # How To Measure Length of Stay (2)
 
 $$
-    \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i
+    \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
 $$
 
 * Event happened within a specified time (yes/no)
@@ -69,7 +69,7 @@ $$
    - Statistically *less efficient*.
    
 $$
-    \text{time} = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i
+    \text{time} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
 $$
 
 * Time until Event
@@ -92,8 +92,91 @@ From LaDonna Pavetti (1995)
 	
 	list, abbreviate(25) // list out the data
 	
+	graph bar (asis) all_current_recipients, /// this particular set of options was difficult to figure out!
+	over(time) ///
+	title("All Current Recipients") ///
+	sub("By Months On Caseload") ///
+	ytitle("percent") ///
+	scheme(michigan)
 	
+	graph export all_current_recipients.png, width(500) replace
 
+![All Current Recipients by Months on Caseload](all_current_recipients.png)
+
+# Welfare Reform (2)
+
+    graph bar (asis) new_entrants, ///
+	over(time) ///
+	title("New Recipients") ///
+	sub("By Months On Caseload") ///
+	ytitle("percent") ///
+	scheme(michigan)
+	
+    graph export new_recipients.png, width(500) replace
+
+![New Recipients by Months on Caseload](new_recipients.png)
+
+# Musicians and Mortality (1)
+
+![Music To Die For](music-to-die-for.png){width=50%}
+
+# Musicians and Mortality (2)
+
+![Musician Mortality](musician_mortality.jpeg){width=50%}
+
+# Cox Proportional Hazards Model 
+
+# Formula
+
+$h(t)$ the rate of occurrence.
+
+$$
+    h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}
+$$
+
+> We don't directly estimate the hazard, but estimate the effect of covariates on the hazard.
+
+> The event (birth, death, program entry, program departure) is coded as 1, so we are estimating the association of the covariates with event occurrence.
+
+# Cox Proportional Hazards Model in Stata
+
+    clear all
+
+    webuse drugtr // demonstration data set from Stata
+
+## Setup of Data
+	
+	stset // show st setup of data
+	
+## Cox Proportional Hazards Model
+	
+    stcox age drug // run Cox Proportional Hazards Model
+	
+## Graph Survival Curves
+	
+    stcurve, survival scheme(michigan) // survival curve
+	
+	graph export survival1.png, width(500) replace
+
+![Survival Curve](survival1.png)
+	
+    stcurve, survival at1(drug=0) at2(drug=1) scheme(michigan) // survival curve by group
+	
+	graph export survival2.png, width(500) replace
+
+![Survival Curve by Drug Group](survival2.png)
+
+# Proportional Hazards Assumption
+
+    estat phtest // formal test of PH assumption
+
+    stphplot, by(drug) scheme(michigan) // graphical test of PH assumption
+	
+	graph export ph.png, width(500) replace
+	
+![Graphical Assessment of Proportional Hazards Assumptions](ph.png)	
+
+# Unobserved Heterogeneity
 
 
 

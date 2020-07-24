@@ -97,7 +97,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <p>See <a href="./times-events-and-censoring.html">times-events-and-censoring.html</a></p>
 <h1 id="how-to-measure-length-of-stay-2">How To Measure Length of Stay (2)</h1>
 <p><span class="math display">\[
-    \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i
+    \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
 \]</span></p>
 <ul>
 <li>Event happened within a specified time (yes/no)
@@ -107,7 +107,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </ul></li>
 </ul>
 <p><span class="math display">\[
-    \text{time} = \beta_0 + beta_1 x_1 + \beta_2 x_2 + e_i
+    \text{time} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
 \]</span></p>
 <ul>
 <li>Time until Event
@@ -144,5 +144,147 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
   6. │ Over 60           34.6                     76.3 │
      └─────────────────────────────────────────────────┘
 </pre>
+<pre class='stata'>. graph bar (asis) all_current_recipients, /// this particular set of options was difficu
+> lt to figure out!
+> over(time) ///
+> title("All Current Recipients") ///
+> sub("By Months On Caseload") ///
+> ytitle("percent") ///
+> scheme(michigan)
+</pre>
+<pre class='stata'>. graph export all_current_recipients.png, width(500) replace
+(file all_current_recipients.png written in PNG format)
+</pre>
+<figure>
+<img src="all_current_recipients.png" alt="" /><figcaption>All Current Recipients by Months on Caseload</figcaption>
+</figure>
+<h1 id="welfare-reform-2">Welfare Reform (2)</h1>
+<pre class='stata'>. graph bar (asis) new_entrants, ///
+> over(time) ///
+> title("New Recipients") ///
+> sub("By Months On Caseload") ///
+> ytitle("percent") ///
+> scheme(michigan)
+</pre>
+<pre class='stata'>. graph export new_recipients.png, width(500) replace
+(file new_recipients.png written in PNG format)
+</pre>
+<figure>
+<img src="new_recipients.png" alt="" /><figcaption>New Recipients by Months on Caseload</figcaption>
+</figure>
+<h1 id="musicians-and-mortality-1">Musicians and Mortality (1)</h1>
+<figure>
+<img src="music-to-die-for.png" style="width:50.0%" alt="" /><figcaption>Music To Die For</figcaption>
+</figure>
+<h1 id="musicians-and-mortality-2">Musicians and Mortality (2)</h1>
+<figure>
+<img src="musician_mortality.jpeg" style="width:50.0%" alt="" /><figcaption>Musician Mortality</figcaption>
+</figure>
+<h1 id="cox-proportional-hazards-model">Cox Proportional Hazards Model</h1>
+<h1 id="formula">Formula</h1>
+<p><span class="math inline">\(h(t)\)</span> the rate of occurrence.</p>
+<p><span class="math display">\[
+    h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}
+\]</span></p>
+<blockquote>
+<p>We don’t directly estimate the hazard, but estimate the effect of covariates on the hazard.</p>
+</blockquote>
+<blockquote>
+<p>The event (birth, death, program entry, program departure) is coded as 1, so we are estimating the association of the covariates with event occurrence.</p>
+</blockquote>
+<h1 id="cox-proportional-hazards-model-in-stata">Cox Proportional Hazards Model in Stata</h1>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. webuse drugtr // demonstration data set from Stata
+(Patient Survival in Drug Trial)
+</pre>
+<h2 id="setup-of-data">Setup of Data</h2>
+<pre class='stata'>. stset // show st setup of data
+-> stset studytime, failure(died)
+
+     failure event:  died != 0 &amp; died &lt; .
+obs. time interval:  (0, studytime]
+ exit on or before:  failure
+
+──────────────────────────────────────────────────────────────────────────────
+         48  total observations
+          0  exclusions
+──────────────────────────────────────────────────────────────────────────────
+         48  observations remaining, representing
+         31  failures in single-record/single-failure data
+        744  total analysis time at risk and under observation
+                                                at risk from t =         0
+                                     earliest observed entry t =         0
+                                          last observed exit t =        39
+</pre>
+<h2 id="cox-proportional-hazards-model-1">Cox Proportional Hazards Model</h2>
+<pre class='stata'>. stcox age drug // run Cox Proportional Hazards Model
+
+         failure _d:  died
+   analysis time _t:  studytime
+
+Iteration 0:   log likelihood = -99.911448
+Iteration 1:   log likelihood = -83.551879
+Iteration 2:   log likelihood = -83.324009
+Iteration 3:   log likelihood = -83.323546
+Refining estimates:
+Iteration 0:   log likelihood = -83.323546
+
+Cox regression -- Breslow method for ties
+
+No. of subjects =           48                  Number of obs    =          48
+No. of failures =           31
+Time at risk    =          744
+                                                LR chi2(2)       =       33.18
+Log likelihood  =   -83.323546                  Prob > chi2      =      0.0000
+
+─────────────┬────────────────────────────────────────────────────────────────
+          _t │ Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+         age │   1.120325   .0417711     3.05   0.002     1.041375     1.20526
+        drug │   .1048772   .0477017    -4.96   0.000     .0430057    .2557622
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h2 id="graph-survival-curves">Graph Survival Curves</h2>
+<pre class='stata'>. stcurve, survival scheme(michigan) // survival curve
+</pre>
+<pre class='stata'>. graph export survival1.png, width(500) replace
+(file survival1.png written in PNG format)
+</pre>
+<figure>
+<img src="survival1.png" alt="" /><figcaption>Survival Curve</figcaption>
+</figure>
+<pre class='stata'>. stcurve, survival at1(drug=0) at2(drug=1) scheme(michigan) // survival curve by group
+</pre>
+<pre class='stata'>. graph export survival2.png, width(500) replace
+(file survival2.png written in PNG format)
+</pre>
+<figure>
+<img src="survival2.png" alt="" /><figcaption>Survival Curve by Drug Group</figcaption>
+</figure>
+<h1 id="proportional-hazards-assumption">Proportional Hazards Assumption</h1>
+<pre class='stata'>. estat phtest // formal test of PH assumption
+
+      Test of proportional-hazards assumption
+
+      Time:  Time
+      ────────────┬───────────────────────────────────────────────────
+                  │                      chi2       df       Prob>chi2
+      ────────────┼───────────────────────────────────────────────────
+      global test │                      0.43        2         0.8064
+      ────────────┴───────────────────────────────────────────────────
+</pre>
+<pre class='stata'>. stphplot, by(drug) scheme(michigan) // graphical test of PH assumption
+
+         failure _d:  died
+   analysis time _t:  studytime
+</pre>
+<pre class='stata'>. graph export ph.png, width(500) replace
+(file ph.png written in PNG format)
+</pre>
+<figure>
+<img src="ph.png" alt="" /><figcaption>Graphical Assessment of Proportional Hazards Assumptions</figcaption>
+</figure>
+<h1 id="unobserved-heterogeneity">Unobserved Heterogeneity</h1>
 </body>
 </html>
