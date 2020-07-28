@@ -1,0 +1,40 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/mlm-gutten/mlm-gutten.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}28 Jul 2020, 14:02:30
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}28 Jul 2020
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}14:02:30
+{txt}
+{com}. //_3
+.     use gutten.dta, clear
+{txt}
+{com}. //_4
+. egen ageMEAN = mean(age_base)
+{txt}
+{com}. //_5
+. generate ageCENTERED = age_base - ageMEAN
+{txt}
+{com}. //_6
+. spagplot height ageCENTERED, id(tree_ID) scheme(michigan)
+{res}{txt}
+{com}. //_7
+. graph export myspagplot.png, width(500) replace
+{txt}(file myspagplot.png written in PNG format)
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/mlm-gutten/mlm-gutten.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}28 Jul 2020, 14:02:32
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
