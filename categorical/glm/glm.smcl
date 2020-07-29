@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/glm/glm.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}19 Jun 2020, 18:28:13
+ {txt}opened on:  {res}29 Jul 2020, 09:44:35
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}19 Jun 2020
+{res}29 Jul 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}18:28:13
+{res}09:44:35
 {txt}
 {com}. //_3
 . clear all
@@ -121,7 +121,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/glm/glm.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}19 Jun 2020, 18:28:14
+ {txt}closed on:  {res}29 Jul 2020, 09:44:38
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -82,7 +82,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
     href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
-   href="../UMslidy.css" />
+   href="../UNslidy.css" />
   <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
 	<script type="text/javascript" async
@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>19 Jun 2020 18:28:02</p>
+<p>29 Jul 2020 09:44:35</p>
 </div>
 <div id="introduction" class="title-slide slide section level1"><h1>Introduction</h1><blockquote>
 <p>This discussion closely follows the Stata help for the <em>generalized linear model</em>, see <code>help glm</code>.</p>
@@ -155,7 +155,8 @@ Andy Grogan-Kaylor
 </div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">quietly</span>: <span class="kw">regress</span> culmen_depth_mm body_mass_g flipper_length_mm</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">est</span> <span class="kw">store</span> usual_OLS <span class="co">// store estimates usual OLS</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">quietly</span>: <span class="kw">glm</span> culmen_depth_mm body_mass_g flipper_length_mm, <span class="kw">link</span>(<span class="kw">identity</span>) <span class="kw">family</span>(gaussian)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">quietly</span>: <span class="kw">glm</span> culmen_depth_mm body_mass_g flipper_length_mm, <span class="kw">link</span>(<span class="kw">identity</span>) <span class="kw">family</span>(gauss</span>
+<span id="cb5-2"><a href="#cb5-2"></a>&gt; ian)</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">est</span> <span class="kw">store</span> glm_OLS <span class="co">// store estimates glm OLS</span></span></code></pre></div>
 </div><div id="what-predicts-that-a-penguin-lives-on-dream-island" class="slide section level2">
 <h1>What Predicts That A Penguin Lives on Dream Island?</h1>
