@@ -5,14 +5,21 @@ date: "`r Sys.Date()`"
 output:
   bookdown::gitbook: 
     split_by: none
+    css: UM.css
 ---
 
 # Contingency Tables
 
-```{r}
+```{r, eval=FALSE, echo=FALSE}
 
-# file.copy("source_file.txt", 
-#           ".")
+file.copy(c("../contingency-tables/FrenchSkiiers1.png",
+            "../contingency-tables/FrenchSkiiers2.png"),
+          ".",
+          overwrite = TRUE)
+
+```
+
+```{r, echo=FALSE}
 
 htmltools::includeHTML("../contingency-tables/contingency-tables.html")
 
