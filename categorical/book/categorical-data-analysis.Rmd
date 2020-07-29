@@ -1,0 +1,20 @@
+---
+title: "Categorical Data Analysis"
+author: "Andy Grogan-Kaylor"
+date: "`r Sys.Date()`"
+output:
+  bookdown::gitbook: 
+    split_by: none
+---
+
+# Contingency Tables
+
+```{r}
+
+# file.copy("source_file.txt", 
+#           ".")
+
+htmltools::includeHTML("../contingency-tables/contingency-tables.html")
+
+```
+

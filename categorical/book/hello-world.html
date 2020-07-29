@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Categorical Data Analysis</title>
+  <meta name="description" content="Categorical Data Analysis" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Categorical Data Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Categorical Data Analysis" />
+  
+  
+  
+
+<meta name="author" content="Andy Grogan-Kaylor" />
+
+
+<meta name="date" content="2020-07-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path=""><a href="#hello-world"><i class="fa fa-check"></i><b>1</b> Hello World</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Categorical Data Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Categorical Data Analysis</h1>
+<p class="author"><em>Andy Grogan-Kaylor</em></p>
+<p class="date"><em>2020-07-29</em></p>
+</div>
+<div id="hello-world" class="section level1">
+<h1><span class="header-section-number">1</span> Hello World</h1>
+<p>Hi.</p>
+<p>Bye.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>htmltools<span class="op">::</span><span class="kw">includeHTML</span>(<span class="st">&quot;../contingency-tables/contingency-tables.html&quot;</span>)</span></code></pre></div>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Contingency Tables</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Contingency Tables</h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">23 May 2020</p>
+</header>
+<h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
+<ul>
+<li>Matrices of data</li>
+<li>Probabilities, risks, and odds</li>
+<li><span class="math inline">\(\chi^2\)</span> Tests</li>
+<li><code>tabulate x y, row col chi2</code></li>
+</ul>
+<h1 id="flipping-two-coins">Flipping Two Coins</h1>
+<p><img src="../images/2006_Quarter_Proof.png" alt="Quarter (Courtesy Wikipedia)" style="width:10.0%" /> <img src="../images/2004_WI_Proof.png" alt="Quarter (Courtesy Wikipedia)" style="width:10.0%" /></p>
+<h1 id="setup">Setup</h1>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. set seed 3846
+</pre>
+<p>Good value labels are <strong>key</strong> here.</p>
+<pre class='stata'>. label define nickel ///
+> 1 "heads for nickel" /// 
+> 0 "tails for nickel" // define value label
+</pre>
+<pre class='stata'>. label define quarter /// 
+> 1 "heads for quarter" /// 
+> 0 "tails for quarter" // define value label
+</pre>
+<pre class='stata'>. set obs 1000 // 1000 observations
+number of observations (_N) was 0, now 1,000
+</pre>
+<pre class='stata'>. * curiously it takes around 1000 obs for the proportions
+. * below to "take hold"
+</pre>
+<pre class='stata'>. generate nickel = rbinomial(1, .75) // unfair nickel
+</pre>
+<pre class='stata'>. generate quarter = rbinomial(1, .5) // fair quarter
+</pre>
+<pre class='stata'>. label values nickel nickel // assign value label
+</pre>
+<pre class='stata'>. label values quarter quarter // assign value label
+</pre>
+<h1 id="crosstabulation">Crosstabulation</h1>
+<pre class='stata'>. tabulate nickel quarter, row col
+
+┌───────────────────┐
+│ Key               │
+├───────────────────┤
+│     frequency     │
+│  row percentage   │
+│ column percentage │
+└───────────────────┘
+
+                 │        quarter
+          nickel │ tails for  heads for │     Total
+─────────────────┼──────────────────────┼──────────
+tails for nickel │       104        140 │       244 
+                 │     42.62      57.38 │    100.00 
+                 │     21.62      26.97 │     24.40 
+─────────────────┼──────────────────────┼──────────
+heads for nickel │       377        379 │       756 
+                 │     49.87      50.13 │    100.00 
+                 │     78.38      73.03 │     75.60 
+─────────────────┼──────────────────────┼──────────
+           Total │       481        519 │     1,000 
+                 │     48.10      51.90 │    100.00 
+                 │    100.00     100.00 │    100.00 
+</pre>
+<h1 id="graphing-mosaic-plot">Graphing (Mosaic Plot)</h1>
+<pre class='stata'>. * ssc install spineplot // mosaicplots (spineplots)
+</pre>
+<pre class='stata'>. * ssc install scheme-burd, replace // BuRd graph scheme
+</pre>
+<pre class='stata'>. spineplot nickel quarter, scheme(burd)
+</pre>
+<pre class='stata'>. graph export nickel-quarter.png, width(500) replace
+(file nickel-quarter.png written in PNG format)
+</pre>
+<figure>
+<img src="nickel-quarter.png" alt="Mosaic Plot" /><figcaption>Mosaic Plot</figcaption>
+</figure>
+<h1 id="bar-chart">Bar Chart</h1>
+<p>Does a bar chart work to visualize these relationships?</p>
+<pre class='stata'>. graph bar, over(quarter) over(nickel) scheme(burd)
+</pre>
+<pre class='stata'>. graph export nickel-quarter-bar1.png, width(500) replace
+(file nickel-quarter-bar1.png written in PNG format)
+</pre>
+<figure>
+<img src="nickel-quarter-bar1.png" alt="Bar Chart 1" /><figcaption>Bar Chart 1</figcaption>
+</figure>
+<h1 id="bar-chart-2">Bar Chart (2)</h1>
+<p>Option <code>asyvars</code> adds a crucial color element.</p>
+<pre class='stata'>. graph bar, over(quarter) over(nickel) scheme(burd) asyvars
+</pre>
+<pre class='stata'>. graph export nickel-quarter-bar2.png, width(500) replace
+(file nickel-quarter-bar2.png written in PNG format)
+</pre>
+<figure>
+<img src="nickel-quarter-bar2.png" alt="Bar Chart 2" /><figcaption>Bar Chart 2</figcaption>
+</figure>
+<h1 id="horizontal-bar-chart">Horizontal Bar Chart</h1>
+<p>And <code>hbar</code> may improve legibility even more.</p>
+<pre class='stata'>. graph hbar, over(quarter) over(nickel) scheme(burd) asyvars
+</pre>
+<pre class='stata'>. graph export nickel-quarter-bar3.png, width(500) replace
+(file nickel-quarter-bar3.png written in PNG format)
+</pre>
+<figure>
+<img src="nickel-quarter-bar3.png" alt="Bar Chart 3" /><figcaption>Bar Chart 3</figcaption>
+</figure>
+<h1 id="french-skiiers">1961 French Skiiers</h1>
+<pre class='stata'>. clear all
+</pre>
+<h1 id="define-matrix">Define Matrix</h1>
+<pre class='stata'>. matrix input FrenchSkiiers = (31, 109 \ 17, 122)
+</pre>
+<pre class='stata'>. matrix rownames FrenchSkiiers = Placebo AscorbicAcid
+</pre>
+<pre class='stata'>. matrix colnames FrenchSkiiers = Cold NoCold
+</pre>
+<pre class='stata'>. matrix list FrenchSkiiers
+
+FrenchSkiiers[2,2]
+                Cold  NoCold
+     Placebo      31     109
+AscorbicAcid      17     122
+</pre>
+<h1 id="theme-music">Theme Music</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_om0W6xzQd8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<h1 id="try-making-a-data-set-from-matrix">Try Making a Data Set From Matrix</h1>
+<pre class='stata'>. svmat FrenchSkiiers, name(count)
+number of observations will be reset to 2
+Press any key to continue, or Break to abort
+number of observations (_N) was 0, now 2
+</pre>
+<pre class='stata'>. list
+
+     ┌─────────────────┐
+     │ count1   count2 │
+     ├─────────────────┤
+  1. │     31      109 │
+  2. │     17      122 │
+     └─────────────────┘
+</pre>
+<h1 id="enter-data-by-hand">Enter Data By Hand</h1>
+<p>There are many alternative commands to do this, but the easiest way is using <code>edit</code>.</p>
+<p>I have already done this. Note the structure of the data is different from above.</p>
+<pre class='stata'>. use "FrenchSkiiers.dta", clear
+</pre>
+<pre class='stata'>. list // list the data
+
+     ┌─────────────────────────────────┐
+     │            Tx   Outcome   Count │
+     ├─────────────────────────────────┤
+  1. │ Ascorbic Acid      Cold      17 │
+  2. │ Ascorbic Acid   No Cold     122 │
+  3. │       Placebo      Cold      31 │
+  4. │       Placebo   No Cold     109 │
+     └─────────────────────────────────┘
+</pre>
+<h1 id="mosaic-plot">Mosaic Plot</h1>
+<pre class='stata'>. spineplot Tx Outcome, scheme(burd)
+</pre>
+<pre class='stata'>. graph export FrenchSkiiers1.png, width(500) replace
+(file FrenchSkiiers1.png written in PNG format)
+</pre>
+<figure>
+<img src="FrenchSkiiers1.png" alt="Mosaic Plot Attempt 1" /><figcaption>Mosaic Plot Attempt 1</figcaption>
+</figure>
+<h1 id="mosaic-plot-2">Mosaic Plot (2)</h1>
+<pre class='stata'>. spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretabilit
+> y
+</pre>
+<pre class='stata'>. graph export FrenchSkiiers2.png, width(500) replace
+(file FrenchSkiiers2.png written in PNG format)
+</pre>
+<figure>
+<img src="FrenchSkiiers2.png" alt="Mosaic Plot Attempt 2" /><figcaption>Mosaic Plot Attempt 2</figcaption>
+</figure>
+<h1 id="definitions-and-notation">Definitions and Notation</h1>
+<h2 id="counts">Counts</h2>
+<p><span class="math inline">\(\begin{matrix} c_{ij} &amp; c_{ij} &amp; c_{i\bullet} \\ c_{ij} &amp; c_{ij} &amp; c_{i\bullet} \\ c_{\bullet j} &amp; c_{\bullet j} &amp; c_{\bullet \bullet} \\ \end{matrix}\)</span></p>
+<h2 id="probabilities">Probabilities</h2>
+<p><span class="math inline">\(\begin{matrix}p_{ij} &amp; p_{ij} &amp; p_{i\bullet} \\ p_{ij} &amp; p_{ij} &amp; p_{i \bullet} \\ p_{\bullet j} &amp; p_{\bullet j} &amp; p_{\bullet \bullet} \\ \end{matrix}\)</span></p>
+<h1 id="terms">Terms</h1>
+<p><span class="math inline">\(p_{ij}\)</span> are <em>joint</em> probabilities.</p>
+<p><span class="math inline">\(p_{i \bullet}\)</span> and <span class="math inline">\(p_{\bullet j}\)</span> are <em>marginal</em> probabilities.</p>
+<p><span class="math inline">\(p_{ij} \mid p_{i \bullet}\)</span> and <span class="math inline">\(p_{ij} \mid p_{\bullet j}\)</span> are <em>conditional</em> probabilities.</p>
+<h1 id="formulas">Formulas</h1>
+<h2 id="counts-1">Counts</h2>
+<p><span class="math inline">\(\sum_{1}^{i} \sum_{1}^{j} c_{ij} = N\)</span></p>
+<h2 id="probabilities-1">Probabilities</h2>
+<p><span class="math inline">\(\sum_{1}^{i} \sum_{1}^{j} p_{ij} = 1.0\)</span></p>
+<h2 id="expected-probabilities-p-and-counts-m-or-frequencies">Expected Probabilities <span class="math inline">\(p\)</span> and Counts <span class="math inline">\(m\)</span> or Frequencies</h2>
+<p><span class="math inline">\(p_{ij} = p_{i \bullet} p_{\bullet j}\)</span></p>
+<p><span class="math inline">\(m_{ij} = \frac{m_{i \bullet} m_{\bullet j}}{m_{\bullet \bullet}}\)</span></p>
+<blockquote>
+<p>Observed counts are represented by <span class="math inline">\(c\)</span> while expected counts are represented by <span class="math inline">\(m\)</span>.</p>
+</blockquote>
+<h1 id="fundamental-rule">Fundamental Rule</h1>
+<p><span class="math display">\[\text{conditional = joint / marginal}\]</span></p>
+<h1 id="independence-robert-mare">Independence (Robert Mare)</h1>
+<blockquote>
+<p>If independence is true, then joint probabilities = products of marginal probabilities.</p>
+</blockquote>
+<blockquote>
+<p>That is, under independence, the conditional distribution equals the marginal distribution.</p>
+</blockquote>
+<blockquote>
+<p>Under independence, row membership provides no information about the column distribution; and column membership provides no information about the row distribution.</p>
+</blockquote>
+<blockquote>
+<p>Independence is a model, which is never exactly true in the real world.</p>
+</blockquote>
+<h1 id="observed-vs.expected">Observed vs. Expected</h1>
+<pre class='stata'>. scalar N = 31 + 109 + 17 + 122
+</pre>
+<pre class='stata'>. scalar A = ((31 + 17)*(31+109)) / N // expected count
+</pre>
+<pre class='stata'>. scalar B = ((31+109)*(109+122)) / N // expected count
+</pre>
+<pre class='stata'>. scalar C = ((31 + 17) * (17 + 122)) / N // expected count
+</pre>
+<pre class='stata'>. scalar D = ((17 + 122) * (109 + 122)) / N // expected count
+</pre>
+<pre class='stata'>. matrix FS = (A, B \ C, D) // matrix of expected values
+</pre>
+<pre class='stata'>. matrix rownames FS = Placebo AscorbicAcid // rownames
+</pre>
+<pre class='stata'>. matrix colnames FS = Cold NoCold // column names
+</pre>
+<pre class='stata'>. matrix list FS
+
+FS[2,2]
+                   Cold     NoCold
+     Placebo  24.086022  115.91398
+AscorbicAcid  23.913978  115.08602
+</pre>
+<h1 id="chi-square-test">Chi-Square Test</h1>
+<p><span class="math inline">\(\chi^2 = \Sigma \frac{(O-E)^2}{E}\)</span></p>
+<pre class='stata'>. scalar chisquare = (31 - 24.086022)^2 / 24.086022 + /// 
+> (109 - 115.91398)^2 / 115.91398 + ///
+> (17 - 23.913978)^2 / 23.913978 + /// 
+> (122 - 115.08602)^2 / 115.08602
+</pre>
+<pre class='stata'>. scalar list chisquare
+ chisquare =  4.8114124
+</pre>
+<h1 id="compare-with-tabulate">Compare With Tabulate</h1>
+<pre class='stata'>. use "FrenchSkiiers.dta", clear
+</pre>
+<pre class='stata'>. tabulate Tx Outcome [fweight = Count], row col chi2
+
+┌───────────────────┐
+│ Key               │
+├───────────────────┤
+│     frequency     │
+│  row percentage   │
+│ column percentage │
+└───────────────────┘
+
+              │        Outcome
+           Tx │   No Cold       Cold │     Total
+──────────────┼──────────────────────┼──────────
+      Placebo │       109         31 │       140 
+              │     77.86      22.14 │    100.00 
+              │     47.19      64.58 │     50.18 
+──────────────┼──────────────────────┼──────────
+Ascorbic Acid │       122         17 │       139 
+              │     87.77      12.23 │    100.00 
+              │     52.81      35.42 │     49.82 
+──────────────┼──────────────────────┼──────────
+        Total │       231         48 │       279 
+              │     82.80      17.20 │    100.00 
+              │    100.00     100.00 │    100.00 
+
+          Pearson chi2(1) =   4.8114   Pr = 0.028
+</pre>
+<h1 id="risk-differences-and-risk-ratios-relative-risk">Risk Differences and Risk Ratios (Relative Risk)</h1>
+<p>Following Viera, 2008:</p>
+<p><span class="math inline">\(\begin{bmatrix}a &amp; b \\ c &amp; d\end{bmatrix}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Develop Outcome</th>
+<th style="text-align: center;">Do Not Develop Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exposed</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">b</td>
+</tr>
+<tr class="even">
+<td>Not Exposed</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">d</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(R = \frac{a}{a+b}\)</span> (in Exposed)</p>
+<p><span class="math inline">\(RR =\frac{\text{risk in exposed}}{\text{risk in not exposed}} = \frac{a/(a+b)}{c/(c+d)}\)</span></p>
+<h1 id="odds-ratios">Odds Ratios</h1>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Develop Outcome</th>
+<th style="text-align: center;">Do Not Develop Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exposed</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">b</td>
+</tr>
+<tr class="even">
+<td>Not Exposed</td>
+<td style="text-align: center;">c</td>
+<td style="text-align: center;">d</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(OR =\)</span></p>
+<p><span class="math inline">\(\frac{\text{odds that exposed person develops outcome}}{\text{odds that unexposed person develops outcome}}\)</span></p>
+<p><span class="math inline">\(= \frac{\frac{a}{a+b} / \frac{b}{a+b}}{\frac{c}{c+d} / \frac{d}{c+d}} = \frac{a/b}{c/d} = \frac{ad}{bc}\)</span></p>
+<h1 id="properties-of-the-odds-ratio-robert-mare">Properties of the Odds Ratio (Robert Mare)</h1>
+<blockquote>
+<p>In general for the 2 X 2 Table,</p>
+</blockquote>
+<p><span class="math inline">\(0 &lt; OR &lt; 1\)</span></p>
+<blockquote>
+<p>indicates that one row is less likely to make the first response than the other row.</p>
+</blockquote>
+<p><span class="math inline">\(1 &lt; OR &lt; \infty\)</span></p>
+<blockquote>
+<p>indicates that one row is more likely to make the first response than the other row.</p>
+</blockquote>
+</body>
+</html>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": false
+});
+});
+</script>
+
+</body>
+
+</html>
