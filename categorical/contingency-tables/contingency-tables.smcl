@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}23 May 2020, 19:23:46
+ {txt}opened on:  {res}30 Jul 2020, 19:07:27
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}23 May 2020
+{res}30 Jul 2020
 {txt}
 {com}. //_2
 . clear all
@@ -251,7 +251,7 @@ Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}23 May 2020, 19:23:57
+ {txt}closed on:  {res}30 Jul 2020, 19:07:36
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

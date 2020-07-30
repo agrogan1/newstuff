@@ -28,6 +28,10 @@ graph close _all
 
 * pandoc
 
-* cd /Applications/RStudio.app/Contents/MacOS/pandoc
+* cd 
 
-* ./pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" "/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.html" -o "/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables-slidy.html" 
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" "/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.html" -o "/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables-slidy.html" 
+
+doedit "../MathJax-CDN.txt"
+
+doedit "contingency-tables-slidy.html"
