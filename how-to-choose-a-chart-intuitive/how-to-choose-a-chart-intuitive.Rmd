@@ -19,7 +19,11 @@ output:
   pdf_document: 
     fig_width: 10
     latex_engine: xelatex
-  bookdown::epub_book: default  
+  bookdown::epub_book: 
+    stylesheet: UM.css 
+    cover_image: intuitive-guide.png
+    fig_width: 7
+    fig_height: 4
 mainfont: Futura
 fontsize: 12pt
 classoption: landscape
@@ -244,6 +248,8 @@ ggsave("intuitive-guide.pdf",
        p0A,
        width = 10, 
        height = 7.5)
+
+ggsave("intuitive-guide.png")
 
 ```
 
