@@ -3,20 +3,86 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}23 Jul 2020, 20:02:53
+ {txt}opened on:  {res}30 Jul 2020, 09:43:24
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}23 Jul 2020
+{res}30 Jul 2020
 {txt}
 {com}. //_2
 . clear all
 {res}{txt}
 {com}. //_3
+. set obs 52 // 52 hypothetical obervations
+{txt}{p}
+number of observations (_N)  was 0,
+now 52
+{p_end}
+
+{com}. //_4
+. generate id = _n // set id = to observation #
+{txt}
+{com}. //_5
+. generate weeks = 52
+{txt}
+{com}. //_6
+. replace weeks = 1 if id == 52
+{txt}(1 real change made)
+
+{com}. //_7
+. twoway (scatter id weeks if weeks == 52, msize(small)) /// staying 52 weeks
+> (scatter id weeks if weeks == 1, msize(small)), /// staying 1 week
+> title("Hypothetical Hospital") ///
+> legend(on order(1 "long term" 2 "short term")) ///
+> ylabel(1(1)52, labels labsize(tiny) angle(horizontal) noticks nogrid) /// 
+> scheme(michigan)
+{res}{txt}
+{com}. //_8
+. graph export hospital_bed_problem.png, width(500) replace
+{txt}(file hospital_bed_problem.png written in PNG format)
+
+{com}. //_9
+. clear all
+{res}{txt}
+{com}. //_10
+. set obs 25 // 25 hypothetical obervations
+{txt}{p}
+number of observations (_N)  was 0,
+now 25
+{p_end}
+
+{com}. //_11
+. generate id = _n // set id = to observation #
+{txt}
+{com}. //_12
+. generate time = runiform(1, 100) // random times
+{txt}
+{com}. //_13
+. generate censored = time > 75 // censored if time > 75
+{txt}
+{com}. //_14
+. twoway (scatter id time if censored == 0) ///
+> (scatter id time if censored == 1), ///
+> title("Hypothetical Timing of Events") ///
+> subtitle("Think About Different Kinds of Events") ///
+> note("Study Ends At Time 75") ///
+> legend(on order(1 "not censored" 2 "censored")) ///
+> xline(75, lcolor("red")) /// censoring line at 75
+> ylabel(1(1)25, labsize(vsmall) angle(horizontal)) /// lines from 1 to 25
+> scheme(michigan)
+{res}{txt}
+{com}. //_15
+. graph export timing_of_events.png, width(500) replace
+{txt}(file timing_of_events.png written in PNG format)
+
+{com}. //_16
+. clear all
+{res}{txt}
+{com}. //_17
 . use Pavetti.dta
 {txt}(Written by R.              )
 
-{com}. //_4
+{com}. //_18
 . list, abbreviate(25) // list out the data
 {txt}
      {c TLC}{hline 9}{c -}{hline 14}{c -}{hline 24}{c TRC}
@@ -31,7 +97,7 @@
   6. {c |} {res}Over 60           34.6                     76.3 {txt}{c |}
      {c BLC}{hline 9}{c -}{hline 14}{c -}{hline 24}{c BRC}
 
-{com}. //_5
+{com}. //_19
 . graph bar (asis) all_current_recipients, /// this particular set of options was difficult to figure out!
 > over(time) ///
 > title("All Current Recipients") ///
@@ -39,11 +105,11 @@
 > ytitle("percent") ///
 > scheme(michigan)
 {res}{txt}
-{com}. //_6
+{com}. //_20
 . graph export all_current_recipients.png, width(500) replace
 {txt}(file all_current_recipients.png written in PNG format)
 
-{com}. //_7
+{com}. //_21
 . graph bar (asis) new_entrants, ///
 > over(time) ///
 > title("New Recipients") ///
@@ -51,18 +117,18 @@
 > ytitle("percent") ///
 > scheme(michigan)
 {res}{txt}
-{com}. //_8
+{com}. //_22
 . graph export new_recipients.png, width(500) replace
 {txt}(file new_recipients.png written in PNG format)
 
-{com}. //_9
+{com}. //_23
 . clear all
 {res}{txt}
-{com}. //_10
+{com}. //_24
 . webuse drugtr // demonstration data set from Stata
 {txt}(Patient Survival in Drug Trial)
 
-{com}. //_11
+{com}. //_25
 . stset // show st setup of data
 {txt}-> stset studytime, failure(died)
 
@@ -81,7 +147,13 @@
                                      {txt}earliest observed entry t = {res}        0
                                           {txt}last observed exit t = {res}       39
 {txt}
-{com}. //_12
+{com}. //_26
+. sts graph, scheme(michigan) // Kaplan-Meier Survivor Function
+
+         {txt}failure _d:  {res}died
+   {txt}analysis time _t:  {res}studytime
+{txt}
+{com}. //_27
 . stcox age drug // run Cox Proportional Hazards Model
 
          {txt}failure _d:  {res}died
@@ -109,21 +181,21 @@ No. of subjects = {res}          48                  {txt}Number of obs    =  {r
 {txt}{space 8}drug {c |}{col 14}{res}{space 2} .1048772{col 26}{space 2} .0477017{col 37}{space 1}   -4.96{col 46}{space 3}0.000{col 54}{space 4} .0430057{col 67}{space 3} .2557622
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_13
+{com}. //_28
 . stcurve, survival scheme(michigan) // survival curve
 {res}{txt}
-{com}. //_14
+{com}. //_29
 . graph export survival1.png, width(500) replace
 {txt}(file survival1.png written in PNG format)
 
-{com}. //_15
+{com}. //_30
 . stcurve, survival at1(drug=0) at2(drug=1) scheme(michigan) // survival curve by group
 {res}{txt}
-{com}. //_16
+{com}. //_31
 . graph export survival2.png, width(500) replace
 {txt}(file survival2.png written in PNG format)
 
-{com}. //_17
+{com}. //_32
 . estat phtest // formal test of PH assumption
 
 {txt}      Test of proportional-hazards assumption
@@ -135,13 +207,13 @@ No. of subjects = {res}          48                  {txt}Number of obs    =  {r
       global test {c |}{res}{col 37}     0.43{col 50}    2{col 64}0.8064
 {txt}      {hline 12}{c BT}{hline 51}
 
-{com}. //_18
+{com}. //_33
 . stphplot, by(drug) scheme(michigan) // graphical test of PH assumption
 
          {txt}failure _d:  {res}died
    {txt}analysis time _t:  {res}studytime
 {txt}
-{com}. //_19
+{com}. //_34
 . graph export ph.png, width(500) replace
 {txt}(file ph.png written in PNG format)
 
@@ -150,7 +222,7 @@ No. of subjects = {res}          48                  {txt}Number of obs    =  {r
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}23 Jul 2020, 20:03:00
+ {txt}closed on:  {res}30 Jul 2020, 09:43:36
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

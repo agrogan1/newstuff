@@ -22,37 +22,64 @@ geometry: margin=1 in
 
 * $h(t) \sim x1 + x2 + \text{etc.} ...$: formula (effect on hazard)
 
-# The Hospital Bed Problem
+# The "Hospital Bed Problem"
 
-* Imagine a *Hypothetical Hospital* `r emo::ji("hospital")`
+* Imagine a *Hypothetical Hospital* 
 
 * Imagine that there are 52 patients *total*.
 
-<span style="color: #FFCB05">&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
-&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
-&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
-&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
-&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
-&#x2B24;</span> <span style="color: #00274C">&#x2B24;</span>
-
 * 51 of the patients are *long term patients*, who each stay for *1 year*. 
-
-<span style="color: #FFCB05">&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
-&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
-&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
-&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
-&#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; &#x2B24; 
-&#x2B24;</span>
 
 * 1 of the patients is a *short term patient*, who stays for *1 week*.
 
-<span style="color: #00274C">&#x2B24;</span>	
-
 > Is this a hospital that serves mostly long-term, or short term patients?
+
+    clear all
+
+    set obs 52 // 52 hypothetical obervations
+
+    generate id = _n // set id = to observation #
+	
+	generate weeks = 52
+	
+	replace weeks = 1 if id == 52
+	
+	twoway (scatter id weeks if weeks == 52, msize(small)) /// staying 52 weeks
+	(scatter id weeks if weeks == 1, msize(small)), /// staying 1 week
+	title("Hypothetical Hospital") ///
+	legend(on order(1 "long term" 2 "short term")) ///
+	ylabel(1(1)52, labels labsize(tiny) angle(horizontal) noticks nogrid) /// 
+	scheme(michigan)
+	
+	graph export hospital_bed_problem.png, width(500) replace
+
+![Illustration of Hospital Bed Problem](hospital_bed_problem.png)
 
 # How To Measure Length of Stay (1)
 
-![](timing-of-events.png){width=50%}
+    clear all
+
+    set obs 25 // 25 hypothetical obervations
+
+    generate id = _n // set id = to observation #
+
+    generate time = runiform(1, 100) // random times
+
+    generate censored = time > 75 // censored if time > 75
+
+    twoway (scatter id time if censored == 0) ///
+    (scatter id time if censored == 1), ///
+    title("Hypothetical Timing of Events") ///
+    subtitle("Think About Different Kinds of Events") ///
+    note("Study Ends At Time 75") ///
+    legend(on order(1 "not censored" 2 "censored")) ///
+    xline(75, lcolor("red")) /// censoring line at 75
+    ylabel(1(1)25, labsize(vsmall) angle(horizontal)) /// lines from 1 to 25
+    scheme(michigan)
+
+	graph export timing_of_events.png, width(500) replace
+
+![Timing Of Events](timing_of_events.png)
 
 ## Animated
 
@@ -140,6 +167,8 @@ $$
 
 # Cox Proportional Hazards Model in Stata
 
+> Using a data set referenced frequently in Stata `help` and Stata YouTube Videos
+
     clear all
 
     webuse drugtr // demonstration data set from Stata
@@ -147,6 +176,14 @@ $$
 ## Setup of Data
 	
 	stset // show st setup of data
+	
+## Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)
+
+$$
+    S(t)=Pr(T>t)
+$$
+	
+	sts graph, scheme(michigan) // Kaplan-Meier Survivor Function
 	
 ## Cox Proportional Hazards Model
 	

@@ -12,9 +12,9 @@ markstat using "survival-analysis-and-event-history.stmd", mathjax // HTML
 
 graph close _all
 
-* markstat using "survival-analysis-and-event-history.stmd", pdf // PDF
+markstat using "survival-analysis-and-event-history.stmd", pdf // PDF
 
-markstat using "survival-analysis-and-event-history.stmd", docx
+* markstat using "survival-analysis-and-event-history.stmd", docx
 
 graph close _all
 
