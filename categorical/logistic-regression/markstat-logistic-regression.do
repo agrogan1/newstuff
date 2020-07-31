@@ -36,6 +36,8 @@ doedit complete-separation.stmd
 
 markstat using complete-separation.stmd, mathjax // HTML
 
+markstat using complete-separation.stmd, pdf // PDF
+
 graph close _all
 
 * pandoc
