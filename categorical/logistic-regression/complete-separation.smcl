@@ -3,14 +3,14 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/complete-separation.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}10 May 2020, 22:27:35
+ {txt}opened on:  {res}31 Jul 2020, 11:32:33
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}10 May 2020
+{res}31 Jul 2020
 {txt}
 {com}. //_2
-. use complete-separation.dta
+. use complete-separation.dta, clear
 {txt}
 {com}. //_3
 . twoway scatter y x1, scheme(michigan)
@@ -36,7 +36,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/complete-separation.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}10 May 2020, 22:27:37
+ {txt}closed on:  {res}31 Jul 2020, 11:32:35
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
