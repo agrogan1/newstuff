@@ -80,7 +80,9 @@ The documentation goes on to further note that:
 
 `tree.ID` A factor uniquely identifying the tree.
 
-# One Continuous Thing At A Time
+# Graphs
+
+## One Continuous Thing At A Time
 
     histogram height, title("Tree Height")
 	
@@ -88,7 +90,7 @@ The documentation goes on to further note that:
 
 ![histogram of tree height](myhistogram.png)
 
-# One Categorical Thing At A Time
+## One Categorical Thing At A Time
 
     graph bar, over(location) title("Tree Location")
 	
@@ -96,7 +98,7 @@ The documentation goes on to further note that:
 
 ![bar graph of tree location](mybargraph.png)
 
-# Continuous by Continuous
+## Continuous by Continuous
 
     twoway scatter height age_base, title("Tree Height by Age")
 	
@@ -104,7 +106,7 @@ The documentation goes on to further note that:
 
 ![scatterplot of tree height by age](myscatter.png)
 
-# Categorical by Categorical
+## Categorical by Categorical
 
     graph bar, over(site) over(location) title("Tree Site Growth Quality by Location")
 	
@@ -112,7 +114,7 @@ The documentation goes on to further note that:
 
 ![bar graph of tree site by location](mybargraph2.png)
 
-# Continuous by Categorical
+## Continuous by Categorical
 
     graph bar height, over(location) title("Tree Height by Location")
 	

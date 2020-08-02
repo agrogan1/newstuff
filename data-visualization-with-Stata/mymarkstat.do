@@ -22,7 +22,7 @@ graph close _all
 
 doedit spruceslidy.css
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "spruceslidy.css" --slide-level=2 "/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.html" -o "/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html" 
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "spruceslidy-architects-daughter.css" --slide-level=2 "/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.html" -o "/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html" 
 
 
 
