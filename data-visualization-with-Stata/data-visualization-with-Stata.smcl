@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 2 Aug 2020, 14:23:08
+ {txt}opened on:  {res} 2 Aug 2020, 21:05:26
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -73,7 +73,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 2 Aug 2020, 14:23:16
+ {txt}closed on:  {res} 2 Aug 2020, 21:05:50
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
