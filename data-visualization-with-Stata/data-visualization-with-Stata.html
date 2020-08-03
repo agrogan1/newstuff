@@ -57,10 +57,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Data Visualization With Stata</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">2 Aug 2020</p>
+<p class="date">3 Aug 2020</p>
 </header>
 <h1 id="introduction">Introduction</h1>
-<style>@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap'); h1, h2, h3 {color: #00274C; font-family: 'Architects Daughter', cursive;font-weight: normal;} body {font-family: 'Architects Daughter', cursive; font-size:large;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <ul>
 <li>Stata is a powerful and intuitive data analysis program.</li>
 <li>Learning how to graph in Stata is an important part of learning how to use Stata. Yet, the default graphs in Stata can sometimes be less than optimal.</li>
@@ -132,7 +132,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 (file myhistogram.png written in PNG format)
 </pre>
 <figure>
-<img src="myhistogram.png" alt="" /><figcaption>histogram of tree height</figcaption>
+<img src="myhistogram.png" alt="" /><figcaption>Histogram Of Tree Height</figcaption>
 </figure>
 <h2 id="one-categorical-thing-at-a-time">One Categorical Thing At A Time</h2>
 <pre class='stata'>. graph bar, over(location) title("Tree Location")
@@ -141,7 +141,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 (file mybargraph.png written in PNG format)
 </pre>
 <figure>
-<img src="mybargraph.png" alt="" /><figcaption>bar graph of tree location</figcaption>
+<img src="mybargraph.png" alt="" /><figcaption>Bar Graph Of Tree Location</figcaption>
 </figure>
 <h2 id="continuous-by-continuous">Continuous by Continuous</h2>
 <pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age")
@@ -150,7 +150,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 (file myscatter.png written in PNG format)
 </pre>
 <figure>
-<img src="myscatter.png" alt="" /><figcaption>scatterplot of tree height by age</figcaption>
+<img src="myscatter.png" alt="" /><figcaption>Scatterplot Of Tree Height By Age</figcaption>
 </figure>
 <h2 id="categorical-by-categorical">Categorical by Categorical</h2>
 <pre class='stata'>. graph bar, over(site) over(location) title("Tree Site Growth Quality by Location")
@@ -159,7 +159,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 (file mybargraph2.png written in PNG format)
 </pre>
 <figure>
-<img src="mybargraph2.png" alt="" /><figcaption>bar graph of tree site by location</figcaption>
+<img src="mybargraph2.png" alt="" /><figcaption>Bar Graph Of Tree Site By Location</figcaption>
 </figure>
 <h2 id="continuous-by-categorical">Continuous by Categorical</h2>
 <pre class='stata'>. graph bar height, over(location) title("Tree Height by Location")
@@ -168,10 +168,11 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 (file mybargraph3.png written in PNG format)
 </pre>
 <figure>
-<img src="mybargraph3.png" alt="" /><figcaption>bar graph of mean tree height by location</figcaption>
+<img src="mybargraph3.png" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location</figcaption>
 </figure>
 <h1 id="schemes">Schemes</h1>
-<p>Stata <em>graph schemes</em> can substantially improve the look of a graph. Built in graph schemes include <code>sj</code> and <code>economist</code>. <code>lean2</code> is a user written scheme that is helpful when preparing graphics for publication. I have written a <a href="https://agrogan1.github.io/Stata/">Stata Michigan graph scheme</a> that can be installed.</p>
+<p>Stata <em>graph schemes</em> can substantially improve the look of a graph. Built in graph schemes include <code>sj</code> and <code>economist</code>.</p>
+<p><code>lean2</code> (type <code>findit lean2</code> in the Stata Command Window) is a user written scheme that is very helpful when preparing graphics for publication. I have written a <a href="https://agrogan1.github.io/Stata/">Stata Michigan graph scheme</a> that can be installed.</p>
 <h2 id="continuous-by-continuous-1">Continuous by Continuous</h2>
 <pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age") scheme(michigan)
 </pre>
@@ -179,7 +180,15 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 (file myscatterM.png written in PNG format)
 </pre>
 <figure>
-<img src="myscatterM.png" alt="" /><figcaption>scatterplot of tree height by age</figcaption>
+<img src="myscatterM.png" alt="" /><figcaption>Scatterplot Of Tree Height By Age With Michigan Graph Scheme</figcaption>
+</figure>
+<pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age") scheme(lean2)
+</pre>
+<pre class='stata'>. graph export myscatterL.png, width(500) replace
+(file myscatterL.png written in PNG format)
+</pre>
+<figure>
+<img src="myscatterL.png" alt="" /><figcaption>Scatterplot Of Tree Height By Age With lean2 Graph Scheme</figcaption>
 </figure>
 <h2 id="continuous-by-categorical-1">Continuous by Categorical</h2>
 <blockquote>
@@ -192,7 +201,15 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 (file mybarM.png written in PNG format)
 </pre>
 <figure>
-<img src="mybarM.png" alt="" /><figcaption>bar graph of mean tree height by location</figcaption>
+<img src="mybarM.png" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location With Michigan Graph Scheme</figcaption>
+</figure>
+<pre class='stata'>. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(lean2)
+</pre>
+<pre class='stata'>. graph export mybarL.png, width(500) replace
+(file mybarL.png written in PNG format)
+</pre>
+<figure>
+<img src="mybarL.png" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location With lean2 Graph Scheme</figcaption>
 </figure>
 </body>
 </html>

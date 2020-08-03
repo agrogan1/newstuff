@@ -8,7 +8,7 @@ geometry: margin=1 in
 
 # Introduction 
 
-<style>@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap'); h1, h2, h3 {color: #00274C; font-family: 'Architects Daughter', cursive;font-weight: normal;} body {font-family: 'Architects Daughter', cursive; font-size:large;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 
 * Stata is a powerful and intuitive data analysis program. 
 * Learning how to graph in Stata is an important part of learning how to use Stata. Yet, the default graphs in Stata can sometimes be less than optimal. 
@@ -88,7 +88,7 @@ The documentation goes on to further note that:
 	
     graph export myhistogram.png, width(500) replace
 
-![histogram of tree height](myhistogram.png)
+![Histogram Of Tree Height](myhistogram.png)
 
 ## One Categorical Thing At A Time
 
@@ -96,7 +96,7 @@ The documentation goes on to further note that:
 	
 	graph export mybargraph.png, width(500) replace
 
-![bar graph of tree location](mybargraph.png)
+![Bar Graph Of Tree Location](mybargraph.png)
 
 ## Continuous by Continuous
 
@@ -104,7 +104,7 @@ The documentation goes on to further note that:
 	
 	graph export myscatter.png, width(500) replace
 
-![scatterplot of tree height by age](myscatter.png)
+![Scatterplot Of Tree Height By Age](myscatter.png)
 
 ## Categorical by Categorical
 
@@ -112,7 +112,7 @@ The documentation goes on to further note that:
 	
 	graph export mybargraph2.png, width(500) replace
 
-![bar graph of tree site by location](mybargraph2.png)
+![Bar Graph Of Tree Site By Location](mybargraph2.png)
 
 ## Continuous by Categorical
 
@@ -120,11 +120,13 @@ The documentation goes on to further note that:
 	
 	graph export mybargraph3.png, width(500) replace
 
-![bar graph of mean tree height by location](mybargraph3.png)
+![Bar Graph Of Mean Tree Height By Location](mybargraph3.png)
 
 # Schemes
 
-Stata *graph schemes* can substantially improve the look of a graph. Built in graph schemes include `sj` and `economist`. `lean2` is a user written scheme that is helpful when preparing graphics for publication. I have written a [Stata Michigan graph scheme](https://agrogan1.github.io/Stata/) that can be installed.
+Stata *graph schemes* can substantially improve the look of a graph. Built in graph schemes include `sj` and `economist`. 
+
+`lean2` (type `findit lean2` in the Stata Command Window) is a user written scheme that is very helpful when preparing graphics for publication. I have written a [Stata Michigan graph scheme](https://agrogan1.github.io/Stata/) that can be installed.
 
 ## Continuous by Continuous
 
@@ -132,7 +134,13 @@ Stata *graph schemes* can substantially improve the look of a graph. Built in gr
 	
 	graph export myscatterM.png, width(500) replace
 
-![scatterplot of tree height by age](myscatterM.png)
+![Scatterplot Of Tree Height By Age With Michigan Graph Scheme](myscatterM.png)
+
+    twoway scatter height age_base, title("Tree Height by Age") scheme(lean2)
+
+	graph export myscatterL.png, width(500) replace
+
+![Scatterplot Of Tree Height By Age With lean2 Graph Scheme](myscatterL.png)
 
 ## Continuous by Categorical 
 
@@ -142,7 +150,13 @@ Stata *graph schemes* can substantially improve the look of a graph. Built in gr
 	
 	graph export mybarM.png, width(500) replace
 
-![bar graph of mean tree height by location](mybarM.png)
+![Bar Graph Of Mean Tree Height By Location With Michigan Graph Scheme](mybarM.png)
+
+	graph bar height, over(location) asyvars title("Tree Height by Location") scheme(lean2)
+	
+	graph export mybarL.png, width(500) replace
+
+![Bar Graph Of Mean Tree Height By Location With lean2 Graph Scheme](mybarL.png)
 
 
 
