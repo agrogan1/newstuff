@@ -129,24 +129,72 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 ---
 # Visualization
 
-```{r, echo=FALSE, fig.height=4}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4}
 
-Bayesmatrix <- matrix(c(80, 45, 20, 855), 
-                      nrow = 2, 
-                      ncol = 2, 
-                      byrow = TRUE,
-                      dimnames = list(c("H=1", 
-                                        "H=0"), 
-                                      c("D=1", 
-                                        "D=0")))
+# Bayesmatrix <- matrix(c(80, 45, 20, 855), 
+#                       nrow = 2, 
+#                       ncol = 2, 
+#                       byrow = TRUE,
+#                       dimnames = list(c("H=1", 
+#                                         "H=0"), 
+#                                       c("D=1", 
+#                                         "D=0")))
 
 # Bayesmatrix
 
-mosaicplot(Bayesmatrix, 
-           main = "1,000 Hypothetical Studies",
-           color = c("blue", "gold"),
-           cex.axis = 1.0,
-           dir = c("h","v"))
+# mosaicplot(Bayesmatrix, 
+#            main = "1,000 Hypothetical Studies",
+#            color = c("blue", "gold"),
+#            cex.axis = 1.0,
+#            dir = c("h","v"))
+
+# ggplot
+
+library(ggplot2)
+
+library(ggmosaic)
+
+library(michigancolors)
+
+library(tidyr)
+
+D <- c("yes", "no", "yes", "no") # data
+
+D <- factor(D, levels = c("yes", "no")) # order of levels
+
+H <- c("yes", "yes", "no", "no") # hypothesis
+
+# H <- factor(H, levels = c("yes", "no")) # order of levels
+
+mycount <- c(80, 45, 20, 855) # count
+
+mylabel <- c("true positive", 
+             "false positive", 
+             "false negative", 
+             "true negative")
+
+mylabel <- factor(mylabel, 
+                  levels = c("true positive", 
+                             "false positive", 
+                             "false negative", 
+                             "true negative"))
+
+Bayesdata <- data.frame(D, H, mycount, mylabel)
+
+ggplot(Bayesdata) +
+  geom_mosaic(aes(x = product(D,H),
+                  fill = mylabel,
+                  weight = mycount), 
+              divider=mosaic("v"),
+              na.rm = TRUE) + 
+  labs(title = "1,000 Hypothetical Studies") +
+  scale_fill_manual(name = "Category",
+                    values = c(michigancolors("blue"),
+                               michigancolors("maize"),
+                               michigancolors("tappan red"),
+                               michigancolors("wave field green"))) + 
+  theme_void() +
+  theme(title = element_text(size=rel(2)))
 
 ```
 
