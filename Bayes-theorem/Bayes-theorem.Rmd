@@ -47,9 +47,7 @@ blockquote {
 Use the <span style="font-size:100px">&#8678;</span> and <span style="font-size:100px">&#8680;</span> keys to move through the presentation.
 
 ---
-# Bayes Theorem Applied To Data Analysis
-
-
+# Derivation
 
 --
 
@@ -94,7 +92,7 @@ $P(D|H) = \frac{P(H|D)P(D)}{P(H)}$ Bayes Theorem
 
 --
 
-$\text{posterior} \sim \text{likelihood} \times \text{prior}$
+$\text{posterior} \sim \text{likelihood} \times \text{prior}$ In words
 
 ---
 # Expanded Version
@@ -106,6 +104,10 @@ $P(D|H) = \frac{P(H|D)P(D)}{P(H|D)P(D) + P(H|\neg D)P(\neg D)}$ Expanded Version
 --
 
 $P(D|H) = \frac{P(H|D)P(D)}{\Sigma P(H|D_i)P(D_i)}$
+
+--
+
+$P(D|H) = \frac{P(H|D)P(D)}{\int P(H|D_i)P(D_i) dD}$
 
 ---
 # Example 
