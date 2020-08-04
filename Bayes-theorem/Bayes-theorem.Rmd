@@ -127,6 +127,30 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 > With thanks to the [Wikipedia article](https://en.wikipedia.org/wiki/Bayes%27_theorem#Cancer_rate) on this topic for inspiration for this example.
 
 ---
+# Visualization
+
+```{r, echo=FALSE, fig.height=4}
+
+Bayesmatrix <- matrix(c(80, 45, 20, 855), 
+                      nrow = 2, 
+                      ncol = 2, 
+                      byrow = TRUE,
+                      dimnames = list(c("H=1", 
+                                        "H=0"), 
+                                      c("D=1", 
+                                        "D=0")))
+
+# Bayesmatrix
+
+mosaicplot(Bayesmatrix, 
+           main = "1,000 Hypothetical Studies",
+           color = c("blue", "gold"),
+           cex.axis = 1.0,
+           dir = c("h","v"))
+
+```
+
+---
 # Calculations
 
 --
