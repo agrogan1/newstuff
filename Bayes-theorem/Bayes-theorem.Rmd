@@ -130,7 +130,7 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 ---
 # Visualization
 
-```{r echo=FALSE, fig.height=4, message=FALSE, warning=FALSE, fig.retina=3}
+```{r echo=FALSE, out.width = "50%", message=FALSE, warning=FALSE, fig.retina=3}
 
 # Bayesmatrix <- matrix(c(80, 45, 20, 855), 
 #                       nrow = 2, 
@@ -155,9 +155,13 @@ library(ggplot2)
 
 library(ggmosaic)
 
+library(waffle)
+
 library(michigancolors)
 
 library(tidyr)
+
+library(patchwork)
 
 D <- c("yes", "no", "yes", "no") # data
 
@@ -182,20 +186,39 @@ mylabel <- factor(mylabel,
 
 Bayesdata <- data.frame(D, H, mycount, mylabel)
 
-ggplot(Bayesdata) +
-  geom_mosaic(aes(x = product(D,H),
-                  fill = mylabel,
-                  weight = mycount), 
-              divider=mosaic("v"),
-              na.rm = TRUE) + 
+p1 <- Bayesdata %>%
+  ggplot(aes(fill = mylabel, values = mycount)) + 
+  geom_waffle() +
+  theme_minimal() +
+  theme_enhance_waffle() + 
   labs(title = "1,000 Hypothetical Studies") +
   scale_fill_manual(name = "Category",
                     values = c(michigancolors("blue"),
                                michigancolors("maize"),
                                michigancolors("tappan red"),
-                               michigancolors("wave field green"))) + 
-  theme_void() +
-  theme(title = element_text(size=rel(2)))
+                               michigancolors("wave field green"))) +
+  theme(title = element_text(size=rel(3)),
+        legend.text = element_text(size = rel(2)))
+
+# p2 <- ggplot(Bayesdata) +
+#   geom_mosaic(aes(x = product(D,H),
+#                   fill = mylabel,
+#                   weight = mycount),
+#               divider=mosaic("v"),
+#               na.rm = TRUE) +
+#   labs(title = "1,000 Hypothetical Studies",
+#        x = "Data",
+#        y = "Hypotheses") +
+#   scale_fill_manual(name = "Category",
+#                     values = c(michigancolors("blue"),
+#                                michigancolors("maize"),
+#                                michigancolors("tappan red"),
+#                                michigancolors("wave field green"))) +
+#   theme_minimal() +
+#   theme(title = element_text(size=rel(2)),
+#         panel.grid = element_blank())
+
+p1 
 
 ```
 
