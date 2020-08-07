@@ -23,6 +23,8 @@ The documentation goes on to further note that:
 > "The data are measures from 107 trees. The trees were selected as being of average size from healthy and well stocked stands in the Alps."
 
         use gutten.dta, clear
+		
+`use "https://github.com/agrogan1/newstuff/raw/master/mlm-R2-gutten/gutten.dta", clear` should work to obtain the data over the web. Please let me know if it does not.
 
 # Variables
 
@@ -64,7 +66,7 @@ Use `spagplot` to examine these relationships. Remember that the `spagplot` synt
 	
 `spagplot height ageCENTERED, id(tree_ID) scheme(s1rcolor)` also works well here.	
 	
-![Spaghetti Plot](myspagplot.png)
+![Spaghetti Plot of Predicted Height by Age](myspagplot.png)
 
 # Multilevel Models
 
