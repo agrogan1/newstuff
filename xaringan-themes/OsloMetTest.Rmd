@@ -1,0 +1,55 @@
+---
+title: "OsloMet Test"
+author: "Andy Grogan-Kaylor"
+institute: "University of Michigan"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: [oslomet.css, oslomet-fonts.css]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+
+```
+
+# Introduction
+
+Following the inspiration of the OsloMet Beamer theme at: [https://github.com/martinhelso/OsloMet](https://github.com/martinhelso/OsloMet)
+
+---
+# Bulleted List
+
+* Item 1
+
+--
+
+* Item 2
+
+--
+
+* Item 3
+
+---
+# Highlighting
+
+This text is .highlight[highlighted].
+
+This text is a .description[description].
+
+---
+# Theorem
+
+.theorem-box[This is a theorem name.]
+> This is the theorem content that uses a blockquote.
+
+
+
+
+
