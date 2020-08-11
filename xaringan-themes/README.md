@@ -1,9 +1,17 @@
-## University of Michigan Xaringan Theme
+## Xaringan Themes
 
 ### University of Michigan Xaringan Theme
 
 * [michigan.css](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/michigan.css)
 * [michigan-fonts.css](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/michigan-fonts.css)
+
+### OsloMet Xaringan Theme
+
+Inspired by: [https://github.com/martinhelso/OsloMet](https://github.com/martinhelso/OsloMet)
+
+* [RMarkdown Document](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/OsloMetTest.Rmd) [[Knit to HTML](https://agrogan1.github.io/newstuff/xaringan-themes/OsloMetTest.html)]
+* [oslomet.css](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/oslomet.css)
+* [oslomet-fonts.css](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/oslomet-fonts.css)
 
 ### Supplemental Materials
 
@@ -14,6 +22,6 @@
 
 ### Example
 
-* My [ggplot flipbook](../ggplot-flipbook/ggplot-flipbook.html) uses the same CSS as this theme.
+* My [ggplot flipbook](../ggplot-flipbook/ggplot-flipbook.html) uses the  CSS from the University of Michigan Xaringan theme.
 
 > Possibly related, and possibly helpful, may be my R Package for [Michigan Colors in R Graphs](https://agrogan1.github.io/michigancolors/)

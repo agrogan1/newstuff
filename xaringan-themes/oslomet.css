@@ -28,7 +28,7 @@ blockquote {
 .description {
   color: blue;
 }
-.theorem-box{
+.theorem-box-header{
   background: #FFDC00;
   color: #000000;
   margin: 1.5em 10px;

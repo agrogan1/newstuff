@@ -38,7 +38,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 ## RMarkdown
 
-* [University of Michigan Xaringan Slide Show Theme](./xaringan-themes)
+* [Xaringan Slide Show Themes](./xaringan-themes)
 
 ## Blog-ish Posts
 
