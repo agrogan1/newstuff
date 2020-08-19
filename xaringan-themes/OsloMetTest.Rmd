@@ -47,7 +47,8 @@ This text is a .description[description].
 # Theorem
 
 .theorem-box-header[This is the header to a theorem box.]
-> This is the theorem content that uses a blockquote.
+
+.theorem-box[This is the theorem content.]
 
 
 
