@@ -2,6 +2,8 @@
 title: Categorical Data Analysis
 ---
 
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
 New stuff for a course on *Categorical Data Analysis* that is going to get moved somewhere else at some point.
 
 > These slides and handouts are free to share and download as long as you cite their source.
