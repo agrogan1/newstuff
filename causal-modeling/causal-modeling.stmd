@@ -24,7 +24,7 @@ Hence, for this particular data, we are exploring:
 
 > What happens to the association of *education* and *job satisfaction* when we control for possible confounding variables $z$ using various statistical strategies?
 
-# To Be Added To Each Analysis
+# *To Be Added To Each Analysis*
 
 * Assumptions
 * Equation
@@ -102,6 +102,8 @@ Hence, for this particular data, we are exploring:
 	graph export mydensity.png, width(500) replace
 
 ![Density Plot of Propensity Score](mydensity.png)
+
+## Cross Lagged Regression
 
 # Analyses Relying On Long Data
 
