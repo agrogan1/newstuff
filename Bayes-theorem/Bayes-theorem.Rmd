@@ -130,26 +130,7 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 ---
 # Visualization
 
-```{r echo=FALSE, out.width = "50%", message=FALSE, warning=FALSE, fig.retina=3}
-
-# Bayesmatrix <- matrix(c(80, 45, 20, 855), 
-#                       nrow = 2, 
-#                       ncol = 2, 
-#                       byrow = TRUE,
-#                       dimnames = list(c("H=1", 
-#                                         "H=0"), 
-#                                       c("D=1", 
-#                                         "D=0")))
-
-# Bayesmatrix
-
-# mosaicplot(Bayesmatrix, 
-#            main = "1,000 Hypothetical Studies",
-#            color = c("blue", "gold"),
-#            cex.axis = 1.0,
-#            dir = c("h","v"))
-
-# ggplot
+```{r echo=FALSE, out.width = "70%", message=FALSE, warning=FALSE, fig.retina=3}
 
 library(ggplot2)
 
@@ -188,7 +169,7 @@ Bayesdata <- data.frame(D, H, mycount, mylabel)
 
 p1 <- Bayesdata %>%
   ggplot(aes(fill = mylabel, values = mycount)) + 
-  geom_waffle() +
+  geom_waffle(n_rows = 10) +
   theme_minimal() +
   theme_enhance_waffle() + 
   labs(title = "1,000 Hypothetical Studies") +
@@ -197,8 +178,11 @@ p1 <- Bayesdata %>%
                                michigancolors("maize"),
                                michigancolors("tappan red"),
                                michigancolors("wave field green"))) +
-  theme(title = element_text(size=rel(3)),
-        legend.text = element_text(size = rel(2)))
+  theme(plot.title = element_text(size=rel(3)),
+        # plot.margin = margin(0, 2, 2, 2, "cm"),
+        legend.text = element_text(size = rel(1)),
+        aspect.ratio = .5,
+        legend.position = "bottom")
 
 # p2 <- ggplot(Bayesdata) +
 #   geom_mosaic(aes(x = product(D,H),
