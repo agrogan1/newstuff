@@ -58,6 +58,11 @@ p1 <- ggplot(data = NULL,
   theme(legend.position = "none")
   
 # ggplotly(p1)
+
+ggsave(p1 + 
+         theme(title = element_text(size = rel(.5)),
+               axis.text.y = element_text(size = rel(.5))), 
+       filename = "logistic.png", height = 1.25)
   
 ```
 
