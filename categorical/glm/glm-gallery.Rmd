@@ -1,0 +1,84 @@
+---
+title: "GLM Gallery"
+description: |
+  A Gallery of Distributions Used in GLM's 
+author:
+  - name: Andy Grogan-Kaylor 
+    url: https://agrogan1.github.io/newstuff
+    affiliation: University of Michigan
+    affiliation_url: https://www.umich.edu
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+```{r}
+
+library(ggplot2)
+
+library(dplyr)
+
+library(plotly)
+
+library(knitr)
+
+library(rgl)
+
+library(rayshader)
+
+```
+
+```{r}
+
+load("../glm.RData")
+
+```
+
+```{r logit, fig.cap="Logistic Distribution"}
+
+knit_hooks$set(webgl = hook_webgl)
+
+rayshader::plot_gg(p1, zoom = .8) 
+
+rglwidget()
+ 
+```
+
+```{r probit, fig.cap="Probit Distribution"}
+
+rgl.clear()
+
+knit_hooks$set(webgl = hook_webgl)
+
+rayshader::plot_gg(p2, zoom = .8) 
+
+rglwidget()
+ 
+```
+
+```{r negbin, fig.cap="Negative Binomial Distribution"}
+
+rgl.clear()
+
+knit_hooks$set(webgl = hook_webgl)
+
+rayshader::plot_gg(p3, zoom = .8) 
+
+rglwidget()
+ 
+```
+
+
+
+
+
+
+
+
+
+
