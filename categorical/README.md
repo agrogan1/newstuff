@@ -2,6 +2,8 @@
 title: Categorical Data Analysis
 ---
 
+![](logistic.png)
+
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 
 New stuff for a course on *Categorical Data Analysis* that is going to get moved somewhere else at some point.
@@ -24,7 +26,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
 * [Survival Analysis And Event History](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.pdf)]
     + [Times, Events And Censoring](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/times-events-and-censoring.html)
 
-
+Andrew Grogan-Kaylor ([GitHub](https://agrogan1.github.io/), [New GitHub](https://agrogan1.github.io/newstuff)) | [agrogan@umich.edu](agrogan@umich.edu)
 
 
 
