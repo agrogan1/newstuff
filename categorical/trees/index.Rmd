@@ -1,0 +1,35 @@
+---
+title: "<mark>A Tour of Categorical Data Analysis</mark>"
+author: "<mark>Andy Grogan-Kaylor</mark>"
+date: '`r format(Sys.Date(), format="%B %d, %Y")`'
+output:
+  revealjs::revealjs_presentation:
+    fig_height: 4
+    highlight: haddock
+    self_contained: no
+    theme: default
+    transition: convex
+    reveal_plugins: ["zoom", "chalkboard"]
+---
+
+```{css}
+
+.slide-background:first-child {
+  background-color: #A5A508;
+  background-image: url('IMG_0518.jpg');
+}
+
+```
+
+# Some Trees {data-background="#A5A508"}
+
+![](IMG_0518.jpg){ width=50% }
+
+# Some Trees That Are Less Healthy {data-background="#A5A508"}
+
+![](IMG_0519.jpg){ width=50% }
+
+
+# Two Variables
+
+## Cross Tabulation
