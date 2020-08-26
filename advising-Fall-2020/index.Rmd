@@ -81,7 +81,7 @@ class: animated, slideInRight
 <span style="background-color: #FFFF00">These are difficult times: Let's think creatively about how to connect, and to reach out and support each other.</span>
 
 * Not getting the chance to know you in the same way as previous semesters
-* Please take the opportunity to send me an e-mail and we will schedule a time during weeks 2-3 of classes.  We’ll set up 10 minutes just to say “hello” and check in on everything, including the courses you are scheduled for.  We can do some of that scheduling right when we’re done talking as a group.  Tuesday, Wednesday and Thursday mornings are particularly good for me those weeks.
+* <span style="background-color: #FFFF00">Please take the opportunity to send me an e-mail and we will schedule a time during weeks 2-3 of classes.  We’ll set up 10 minutes just to say “hello” and check in on everything, including the courses you are scheduled for.</span> We can do some of that scheduling right when we’re done talking as a group.  Tuesday, Wednesday and Thursday mornings are particularly good for me those weeks.
 * Disabilities—the SSW faculty want to be very sensitive to mental and physical disabilities.  However, because of University policy, we are unable make accommodations for disabilities unless you take steps to explicitly inform us about the accommodations that you require.
 
 ---
