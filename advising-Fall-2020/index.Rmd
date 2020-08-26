@@ -1,0 +1,112 @@
+---
+title: "Advising Fall 2020"
+author: "Andy Grogan-Kaylor"
+institute: "University of Michigan"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: animate.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{css, echo=FALSE}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.title-slide { 
+  color: #ffcb05;
+  background-color: #00274C; 
+}
+.title-slide h1 {
+    color: #ffcb05;
+    font-weight: bold;
+}
+pre {
+  white-space: pre-wrap;
+}
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+body { 
+    font-family: 'Montserrat', sans-serif;
+}
+.author, .date {
+  font-family: 'Montserrat', sans-serif;
+}
+.inverse {
+  background-color: #00274C;
+  color: #ffcb05;
+}
+```
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+## Introduction To Me
+
+* Andy Grogan-Kaylor, MA, MSW, PhD
+* agrogan@umich.edu (best way to get in touch with me)
+* **Note that the information below is provided for reference, but may not be all that useful**
+    + (734) 615-3369
+    + 3846 SSWB (3rd floor, all the way back)
+
+---
+class: animated, slideInRight
+## About Me 
+
+[https://agrogan1.github.io/background.html](https://agrogan1.github.io/background.html)
+
+* I do research on families and children, parenting, neighborhoods and schools
+* I have strong interests in social justice.  I was originally a community organizer, and also served as a Peace Corps Volunteer in Ghana, West Africa.
+* I do a lot of child and adolescent development research on things like how family relationships, parenting, and discipline relate to child and adolescent outcomes like aggression, anxiety, and substance use.  
+* I do a lot of work researching physical punishment of children.  A few years ago, I published an analysis of 50 years of research on corporal punishment that you may have read about in the media.  Don’t spank kids!
+* I teach in the areas of research and social policy and evaluation.
+I have taught a course on *Statistics For SP&E Majors*. 
+* This fall I am teaching an MSW course on *Data Visualization*, and a  Doctoral course on how to analyze data that comes in *qualitatively distinct categories*, like *which candidate are you voting for*?
+
+---
+class: animated, slideInRight
+## Take Attendance
+
+---
+class: animated, slideInRight
+## Advising Stuff
+
+<span style="background-color: #FFFF00">These are difficult times: Let's think creatively about how to connect, and to reach out and support each other.</span>
+
+* Not getting the chance to know you in the same way as previous semesters
+* Please take the opportunity to send me an e-mail and we will schedule a time during weeks 2-3 of classes.  We’ll set up 10 minutes just to say “hello” and check in on everything, including the courses you are scheduled for.  We can do some of that scheduling right when we’re done talking as a group.  Tuesday, Wednesday and Thursday mornings are particularly good for me those weeks.
+* Disabilities—the SSW faculty want to be very sensitive to mental and physical disabilities.  However, because of University policy, we are unable to act upon disabilities unless you take steps to explicitly inform us about the accommodations that you require.
+
+---
+class: animated, slideInRight
+## Advising Stuff (2)
+
+* Exemptions (explain process) – if you have exemptions, this frees you up to take electives or to try and fill requirements from later on in the curriculum.  Exemptions are only for classroom based courses not field courses.
+* Changing method or practice area is something that you should think about this week
+* Changing from 16 to 20 month, or *vice versa*, becomes substantially more difficult once field work has started.
+* Pitch dual degrees
+* Minor ties up your course schedule but reserves time in field.
+* Lots of help on campus—If you run into problems down the road, I am a person you can come to and talk to.
+
+---
+class: center, middle, inverse, animated, zoomIn
+## Questions?
+
+---
+class: animated, slideInRight
+## If Time - Introductions to You
+
+* Name
+* Where from
+* Dual concentration
+* 1 sentence about what inspires you to be a social worker
+
+
+
