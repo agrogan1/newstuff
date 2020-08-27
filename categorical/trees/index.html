@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Andy Grogan-Kaylor" />
-  <meta name="dcterms.date" content="2020-08-26" />
+  <meta name="dcterms.date" content="2020-08-27" />
   <title>A Tour of Categorical Data Analysis</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -12,66 +12,6 @@
   <link rel="stylesheet" href="index_files/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; } /* Alert */
-code span.an { color: #008000; } /* Annotation */
-code span.at { } /* Attribute */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #0000ff; } /* ControlFlow */
-code span.ch { color: #008080; } /* Char */
-code span.cn { } /* Constant */
-code span.co { color: #008000; } /* Comment */
-code span.cv { color: #008000; } /* CommentVar */
-code span.do { color: #008000; } /* Documentation */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.im { } /* Import */
-code span.in { color: #008000; } /* Information */
-code span.kw { color: #0000ff; } /* Keyword */
-code span.op { } /* Operator */
-code span.ot { color: #ff4000; } /* Other */
-code span.pp { color: #ff4000; } /* Preprocessor */
-code span.sc { color: #008080; } /* SpecialChar */
-code span.ss { color: #008080; } /* SpecialString */
-code span.st { color: #008080; } /* String */
-code span.va { } /* Variable */
-code span.vs { color: #008080; } /* VerbatimString */
-code span.wa { color: #008000; font-weight: bold; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="index_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
 
@@ -506,6 +446,17 @@ document.getElementsByTagName('head')[0].appendChild(style);
 
     <link href="index_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
     <link href="index_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <script src="index_files/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+    <script src="index_files/viz-1.8.2/viz.js"></script>
+    <link href="index_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="index_files/grViz-binding-1.0.6.1/grViz.js"></script>
+    <script src="index_files/plotly-binding-4.9.2.1/plotly.js"></script>
+    <script src="index_files/typedarray-0.1/typedarray.min.js"></script>
+    <script src="index_files/jquery-1.11.3/jquery.min.js"></script>
+    <link href="index_files/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="index_files/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+    <link href="index_files/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="index_files/plotly-main-1.52.2/plotly-latest.min.js"></script>
 </head>
 <body>
   <div class="reveal">
@@ -513,18 +464,21 @@ document.getElementsByTagName('head')[0].appendChild(style);
 
 <section>
     <h1 class="title"><mark>A Tour of Categorical Data Analysis</mark></h1>
+  <h1 class="subtitle"><mark>An Imagistic Tour</mark></h1>
     <h2 class="author"><mark>Andy Grogan-Kaylor</mark></h2>
-    <h3 class="date">August 26, 2020</h3>
+    <h3 class="date"><mark>August 27, 2020</mark></h3>
 </section>
 
-<section class="slide level2">
-
-<div class="sourceCode" id="cb1"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">.slide-background</span><span class="in">:first-child</span> {</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="kw">background-color</span>: <span class="cn">#A5A508</span><span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="kw">background-image</span>: <span class="fu">url(</span><span class="st">&#39;IMG_0518.jpg&#39;</span><span class="fu">)</span><span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>}</span></code></pre></div>
-<style type="text/css">
+<section><section id="how-to-navigate-this-presentation-scroll-down" class="title-slide slide level1"><h1><mark>How to Navigate This Presentation (scroll down ⇩)</mark></h1></section><section id="navigation" class="slide level2">
+<h2>Navigation</h2>
+<ul>
+<li><strong>o</strong> for outline</li>
+<li><strong>f</strong> for full screen</li>
+<li><strong>Alt-Click</strong> to zoom</li>
+<li>Scroll ⇩ to the bottom of each column of slides; then ⇨</li>
+</ul>
+</section></section>
+<section id="some-trees" class="title-slide slide level1" data-background="#A5A508"><h1>Some Trees</h1><style type="text/css">
 
 .slide-background:first-child {
   background-color: #A5A508;
@@ -532,12 +486,70 @@ document.getElementsByTagName('head')[0].appendChild(style);
 }
 
 </style>
-</section>
-<section id="some-trees" class="title-slide slide level1" data-background="#A5A508"><h1>Some Trees</h1><p><img data-src="IMG_0518.jpg" style="width:50.0%" /></p></section>
-<section id="some-trees-that-are-less-healthy" class="title-slide slide level1" data-background="#A5A508"><h1>Some Trees That Are Less Healthy</h1><p><img data-src="IMG_0519.jpg" style="width:50.0%" /></p></section>
-<section><section id="two-variables" class="title-slide slide level1"><h1>Two Variables</h1></section><section id="cross-tabulation" class="slide level2">
+<p><img data-src="IMG_0518.jpg" style="width:30.0%" /></p></section>
+<section id="some-trees-that-are-less-healthy" class="title-slide slide level1" data-background="#A5A508"><h1>Some Trees That Are Less Healthy</h1><p><img data-src="IMG_0519.jpg" style="width:30.0%" /></p></section>
+<section><section id="a-simple-model" class="title-slide slide level1"><h1><mark>A Simple Model</mark></h1></section><section id="cross-tabulation" class="slide level2">
 <h2>Cross Tabulation</h2>
+<table style="width:56%;">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 13%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"> </th>
+<th style="text-align: center;">healthy</th>
+<th style="text-align: center;">not healthy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>good soil</strong></td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>bad soil</strong></td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">7</td>
+</tr>
+</tbody>
+</table>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-3-1.png" width="768" /></p>
 </section></section>
+<section><section id="more-complicated-models" class="title-slide slide level1"><h1><mark>More Complicated Models</mark></h1></section><section id="regression-models-for-dichotomous-outcomes" class="slide level2">
+<h2>Regression Models for Dichotomous Outcomes</h2>
+<blockquote>
+<p>logit and probit models</p>
+</blockquote>
+<div id="htmlwidget-448e061590b028f27b01" style="width:768px;height:384px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-448e061590b028f27b01">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  # several \"node\" statements\n  node [shape = circle,\n        fontname = Helvetica]\n\n  # several \"edge\" statements\n  \n  soil -> health\n  competition -> health\n  sunlight -> health\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</section><section id="ordinal-outcomes" class="slide level2">
+<h2>Ordinal Outcomes</h2>
+<div id="htmlwidget-1eaf830e6b003d0e81dd" style="width:768px;height:384px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1eaf830e6b003d0e81dd">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  # several \"node\" statements\n  node [shape = circle,\n        fontname = Helvetica]\n\n  # several \"edge\" statements\n  \n  soil -> good_fair_poor\n  competition -> good_fair_poor\n  sunlight -> good_fair_poor\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</section><section id="multinomial-outcomes" class="slide level2">
+<h2>Multinomial Outcomes</h2>
+<div id="htmlwidget-7d68e2a61b9be99b6224" style="width:768px;height:384px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7d68e2a61b9be99b6224">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10, rankdir = LR]\n\n  # several \"node\" statements\n  node [shape = circle,\n        fontname = Helvetica]\n\n  # several \"edge\" statements\n  \n  soil -> good\n  competition -> good\n  sunlight -> good\n  soil -> fair\n  competition -> fair\n  sunlight -> fair\n  soil -> poor\n  competition -> poor\n  sunlight -> poor\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+</section></section>
+<section><section id="count-outcomes" class="title-slide slide level1"><h1><mark>Count Outcomes</mark></h1></section><section id="regression-models-for-count-outcomes" class="slide level2">
+<h2>Regression Models For Count Outcomes</h2>
+<p><img data-src="IMG_0520.jpg" style="width:50.0%" /></p>
+</section></section>
+<section><section id="bayesian-perspectives" class="title-slide slide level1"><h1><mark>Bayesian Perspectives</mark></h1></section><section id="bayesian-models" class="slide level2">
+<h2>Bayesian Models</h2>
+<blockquote>
+<p>What do we do if we have prior information about any of these statistical models?</p>
+</blockquote>
+</section></section>
+<section><section id="timing-of-events" class="title-slide slide level1"><h1><mark>Timing of Events</mark></h1></section><section id="survival-and-event-history-models" class="slide level2">
+<h2>Survival and Event History Models</h2>
+<div id="htmlwidget-2a8371d8833f6da94eb7" style="width:768px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2a8371d8833f6da94eb7">{"x":{"visdat":{"d1667351e72":["function () ","plotlyVisDat"]},"cur_data":"d1667351e72","attrs":{"d1667351e72":{"x":{},"y":{},"text":{},"mode":"marker","marker":{"size":10},"color":{},"symbol":{},"frame":{},"colors":["green","darkgreen"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"symbols":["star-triangle-up","line-ew"],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Hypothetical Timing of Tree Lifespan <br />Censored at Time 7","shapes":[{"type":"line","x0":7,"x1":7,"y0":0,"y1":10,"line":{"dash":"dot","width":1}}],"xaxis":{"domain":[0,1],"automargin":true,"title":"t","range":[0.55,10.45]},"yaxis":{"domain":[0,1],"automargin":true,"title":"id","range":[0.55,10.45]},"hovermode":"closest","showlegend":true,"sliders":[{"currentvalue":{"prefix":"t: ","xanchor":"right","font":{"size":16,"color":"rgba(204,204,204,1)"}},"steps":[{"method":"animate","args":[["1"],{"transition":{"duration":3000,"easing":"linear"},"frame":{"duration":3000,"redraw":true},"mode":"immediate"}],"label":"1","value":"1"},{"method":"animate","args":[["2"],{"transition":{"duration":3000,"easing":"linear"},"frame":{"duration":3000,"redraw":true},"mode":"immediate"}],"label":"2","value":"2"},{"method":"animate","args":[["3"],{"transition":{"duration":3000,"easing":"linear"},"frame":{"duration":3000,"redraw":true},"mode":"immediate"}],"label":"3","value":"3"},{"method":"animate","args":[["4"],{"transition":{"duration":3000,"easing":"linear"},"frame":{"duration":3000,"redraw":true},"mode":"immediate"}],"label":"4","value":"4"},{"method":"animate","args":[["5"],{"transition":{"duration":3000,"easing":"linear"},"frame":{"duration":3000,"redraw":true},"mode":"immediate"}],"label":"5","value":"5"},{"method":"animate","args":[["6"],{"transition":{"duration":3000,"easing":"linear"},"frame":{"duration":3000,"redraw":true},"mode":"immediate"}],"label":"6","value":"6"},{"method":"animate","args":[["7"],{"transition":{"duration":3000,"easing":"linear"},"frame":{"duration":3000,"redraw":true},"mode":"immediate"}],"label":"7","value":"7"},{"method":"animate","args":[["8"],{"transition":{"duration":3000,"easing":"linear"},"frame":{"duration":3000,"redraw":true},"mode":"immediate"}],"label":"8","value":"8"},{"method":"animate","args":[["9"],{"transition":{"duration":3000,"easing":"linear"},"frame":{"duration":3000,"redraw":true},"mode":"immediate"}],"label":"9","value":"9"},{"method":"animate","args":[["10"],{"transition":{"duration":3000,"easing":"linear"},"frame":{"duration":3000,"redraw":true},"mode":"immediate"}],"label":"10","value":"10"}],"visible":true,"pad":{"t":40}}],"updatemenus":[{"type":"buttons","direction":"right","showactive":false,"y":0,"x":0,"yanchor":"top","xanchor":"right","pad":{"t":60,"r":5},"buttons":[{"label":"Play","method":"animate","args":[null,{"fromcurrent":true,"mode":"immediate","transition":{"duration":3000,"easing":"linear"},"frame":{"duration":3000,"redraw":true}}]}]}]},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[1,1,1,1],"y":[3,7,8,10],"text":["Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,100,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,100,0,1)"}},"frame":"1","type":"scatter","name":"Censored","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"line":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","visible":true},{"x":[1,1,1,1,1,1],"y":[1,2,4,5,6,9],"text":["Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,255,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,255,0,1)"}},"frame":"1","type":"scatter","name":"Not Censored","textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","visible":true}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"frames":[{"name":"1","data":[{"x":[1,1,1,1],"y":[3,7,8,10],"text":["Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,100,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,100,0,1)"}},"frame":"1","type":"scatter","name":"Censored","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"line":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","visible":true},{"x":[1,1,1,1,1,1],"y":[1,2,4,5,6,9],"text":["Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,255,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,255,0,1)"}},"frame":"1","type":"scatter","name":"Not Censored","textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","visible":true}],"traces":[0,1]},{"name":"2","data":[{"x":[2,2,2,2],"y":[3,7,8,10],"text":["Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,100,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,100,0,1)"}},"frame":"2","type":"scatter","name":"Censored","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"line":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","visible":true},{"x":[2,2,2,2,2,2],"y":[1,2,4,5,6,9],"text":["Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,255,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,255,0,1)"}},"frame":"2","type":"scatter","name":"Not Censored","textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","visible":true}],"traces":[0,1]},{"name":"3","data":[{"x":[3,3,3,3],"y":[3,7,8,10],"text":["Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,100,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,100,0,1)"}},"frame":"3","type":"scatter","name":"Censored","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"line":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","visible":true},{"x":[3,3,3,3,3,3],"y":[1,2,4,5,6,9],"text":["Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,255,0,1)","symbol":["star-triangle-up","star-triangle-up","star-triangle-up","star-triangle-up","line-ew","star-triangle-up"],"size":10,"line":{"color":"rgba(0,255,0,1)"}},"frame":"3","type":"scatter","name":"Not Censored","textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","visible":true}],"traces":[0,1]},{"name":"4","data":[{"x":[4,4,4,4],"y":[3,7,8,10],"text":["Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,100,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,100,0,1)"}},"frame":"4","type":"scatter","name":"Censored","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"line":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","visible":true},{"x":[4,4,4,4,4,4],"y":[1,2,4,5,6,9],"text":["Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,255,0,1)","symbol":["star-triangle-up","star-triangle-up","star-triangle-up","star-triangle-up","line-ew","star-triangle-up"],"size":10,"line":{"color":"rgba(0,255,0,1)"}},"frame":"4","type":"scatter","name":"Not Censored","textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","visible":true}],"traces":[0,1]},{"name":"5","data":[{"x":[5,5,5,5],"y":[3,7,8,10],"text":["Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,100,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,100,0,1)"}},"frame":"5","type":"scatter","name":"Censored","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"line":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","visible":true},{"x":[5,5,5,5,5,5],"y":[1,2,4,5,6,9],"text":["Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,255,0,1)","symbol":["star-triangle-up","star-triangle-up","star-triangle-up","star-triangle-up","line-ew","line-ew"],"size":10,"line":{"color":"rgba(0,255,0,1)"}},"frame":"5","type":"scatter","name":"Not Censored","textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","visible":true}],"traces":[0,1]},{"name":"6","data":[{"x":[6,6,6,6],"y":[3,7,8,10],"text":["Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,100,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,100,0,1)"}},"frame":"6","type":"scatter","name":"Censored","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"line":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","visible":true},{"x":[6,6,6,6,6,6],"y":[1,2,4,5,6,9],"text":["Event: Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: No Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,255,0,1)","symbol":["line-ew","star-triangle-up","star-triangle-up","star-triangle-up","line-ew","line-ew"],"size":10,"line":{"color":"rgba(0,255,0,1)"}},"frame":"6","type":"scatter","name":"Not Censored","textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","visible":true}],"traces":[0,1]},{"name":"7","data":[{"x":[7,7,7,7],"y":[3,7,8,10],"text":["Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,100,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,100,0,1)"}},"frame":"7","type":"scatter","name":"Censored","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"line":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","visible":true},{"x":[7,7,7,7,7,7],"y":[1,2,4,5,6,9],"text":["Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,255,0,1)","symbol":"line-ew","size":10,"line":{"color":"rgba(0,255,0,1)"}},"frame":"7","type":"scatter","name":"Not Censored","textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","visible":true}],"traces":[0,1]},{"name":"8","data":[{"x":[8,8,8,8],"y":[3,7,8,10],"text":["Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored","Event: No Event <br>Censored: Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,100,0,1)","symbol":"star-triangle-up","size":10,"line":{"color":"rgba(0,100,0,1)"}},"frame":"8","type":"scatter","name":"Censored","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"line":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","visible":true},{"x":[8,8,8,8,8,8],"y":[1,2,4,5,6,9],"text":["Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,255,0,1)","symbol":"line-ew","size":10,"line":{"color":"rgba(0,255,0,1)"}},"frame":"8","type":"scatter","name":"Not Censored","textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","visible":true}],"traces":[0,1]},{"name":"9","data":[{"x":[9,9,9,9],"y":[3,7,8,10],"text":["Event: No Event <br>Censored: Censored","Event: Event <br>Censored: Censored","Event: Event <br>Censored: Censored","Event: Event <br>Censored: Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,100,0,1)","symbol":["star-triangle-up","line-ew","line-ew","line-ew"],"size":10,"line":{"color":"rgba(0,100,0,1)"}},"frame":"9","type":"scatter","name":"Censored","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"line":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","visible":true},{"x":[9,9,9,9,9,9],"y":[1,2,4,5,6,9],"text":["Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,255,0,1)","symbol":"line-ew","size":10,"line":{"color":"rgba(0,255,0,1)"}},"frame":"9","type":"scatter","name":"Not Censored","textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","visible":true}],"traces":[0,1]},{"name":"10","data":[{"x":[10,10,10,10],"y":[3,7,8,10],"text":["Event: Event <br>Censored: Censored","Event: Event <br>Censored: Censored","Event: Event <br>Censored: Censored","Event: Event <br>Censored: Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,100,0,1)","symbol":"line-ew","size":10,"line":{"color":"rgba(0,100,0,1)"}},"frame":"10","type":"scatter","name":"Censored","textfont":{"color":"rgba(0,100,0,1)"},"error_y":{"color":"rgba(0,100,0,1)"},"error_x":{"color":"rgba(0,100,0,1)"},"line":{"color":"rgba(0,100,0,1)"},"xaxis":"x","yaxis":"y","visible":true},{"x":[10,10,10,10,10,10],"y":[1,2,4,5,6,9],"text":["Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored","Event: Event <br>Censored: Not Censored"],"mode":"marker+markers","marker":{"color":"rgba(0,255,0,1)","symbol":"line-ew","size":10,"line":{"color":"rgba(0,255,0,1)"}},"frame":"10","type":"scatter","name":"Not Censored","textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","visible":true}],"traces":[0,1]}],"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</section></section>
+<section id="questions" class="title-slide slide level1" data-background="IMG_0520.jpg"><h1><mark>Questions?</mark></h1></section>
     </div>
   </div>
 
