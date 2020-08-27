@@ -11,8 +11,6 @@
 
 library(haven) # read Stata
 
-library(corrr) # work with / visualize correlations
-
 library(corrplot) # correlation plots
 
 library(igraph) # network graphs
@@ -47,7 +45,7 @@ mycorrelationmatrix # replay
 
 # heatmap of correlations with Base R
 # thanks to http://www.sthda.com/english/wiki/correlation-matrix-how-to-make-a-heatmap
-# less useful datavisualization I think
+# less useful data visualization I think
 
 col <- colorRampPalette(c("blue", "white", "red"))(20)
 
