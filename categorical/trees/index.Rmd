@@ -1,6 +1,6 @@
 ---
 title: "<mark>A Tour of Categorical Data Analysis</mark>"
-subtitle: "<mark>An Imagistic Tour</mark>"
+subtitle: "<mark>A Conceptual & Imagistic Tour</mark>"
 author: "<mark>Andy Grogan-Kaylor</mark>"
 date: '<mark>`r format(Sys.Date(), format="%B %d, %Y")`</mark>'
 output:
@@ -178,7 +178,7 @@ digraph boxes_and_circles {
 
 N <- 10 # sample size
 
-T <- 10 # number of timepoints
+T <- 100 # number of timepoints
 
 id <- rep(seq(1, N), each = T) # id's 1 to N
 
@@ -198,9 +198,9 @@ event <- factor(event,
                 levels = c(FALSE, TRUE), 
                 labels = c("No Event", "Event"))
 
-# arbitrarily censored after 7
+# arbitrarily censored after 70
 
-censored <- event_time > 7 
+censored <- event_time > 70 
 
 censored <- factor(censored, 
                    levels = c(FALSE, TRUE), 
@@ -235,12 +235,14 @@ p2 <- plot_ly(data = mydata, # use mydata
               marker = list(size = 10)) %>% # marker size
   layout(title = 'Hypothetical Timing of Tree Lifespan \nCensored at Time 7',
          shapes = list(type='line', # censoring line
-                       x0 = 7, 
-                       x1 = 7, 
+                       x0 = 70, 
+                       x1 = 70, 
                        y0 = 0, 
                        y1 = 10, 
-                       line=list(dash='dot', width=1))) %>%
-  animation_opts(3000) 
+                       line=list(dash='dot', width=1))) 
+
+# %>%
+#   animation_opts(3000) 
 
 p2 # replay
 
