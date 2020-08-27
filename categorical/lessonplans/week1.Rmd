@@ -1,0 +1,86 @@
+---
+title: "Categorical Data Analysis"
+subtitle: "Week 1"
+author: "Andy Grogan-Kaylor"
+institute: "University of Michigan"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+
+options(htmltools.dir.version = FALSE)
+
+```
+
+```{css, echo=FALSE}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.title-slide { 
+  color: #ffcb05;
+  background-color: #00274C; 
+  background-image: url("campus.png");
+  background-size: cover;
+}
+.title-slide h1 {
+    color: #ffcb05;
+    font-weight: bold;
+}
+.title-slide h2, .title-slide h3 {
+    color: #ffcb05;
+    font-weight: bold;
+}
+pre {
+  white-space: pre-wrap;
+}
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+}
+body { 
+    font-family: 'Montserrat', sans-serif;
+}
+.author, .date {
+  font-family: 'Montserrat', sans-serif;
+}
+.inverse {
+  background-color: #00274C;
+  color: #ffcb05;
+}
+```
+
+# Lesson Plan
+
+* Attendance
+
+--
+
+* Introduction to Me: [https://agrogan1.github.io/background.html](https://agrogan1.github.io/background.html)
+
+--
+
+* Introduction to the Course: [https://agrogan1.github.io/newstuff/categorical/](https://agrogan1.github.io/newstuff/categorical/)
+
+--
+
+    + Conceptual Imagistic Overview: [https://agrogan1.github.io/newstuff/categorical/trees/#/](https://agrogan1.github.io/newstuff/categorical/trees/#/)
+    + Syllabus:
+    
+--
+
+* <mark>BREAK</mark>
+
+--
+
+* Introduction to You
+
+--
+
+* Questions (Please ask / interrupt with questions throughout.)
+
+
