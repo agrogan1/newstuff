@@ -33,8 +33,9 @@ mycorrelationdata <- subset(MICS,
                                        d_phys_hitface,
                                        d_phys_beathard,
                                        d_nvd_privileges,
-                                       d_nvd_explained,
-                                       d_nvd_gave))
+                                       d_nvd_explained
+                                       # d_nvd_gave
+                                       ))
 
 # correlation matrix
 
@@ -77,6 +78,7 @@ network <- graph_from_adjacency_matrix(mycorrelationmatrix,
 
 plot(network,
      edge.width=E(network)$weight * 10,
-     main = "Network Diagram of Discipline Strategies",
-     sub = "100% Correlation of Gave and Explained Dominates the Graph \n Remove One Item?")
+     main = "Network Diagram of Discipline Strategies"
+     # sub = "100% Correlation of Gave and Explained Dominates the Graph \n Remove One Item?"
+     )
 
