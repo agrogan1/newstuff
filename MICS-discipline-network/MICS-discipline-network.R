@@ -15,6 +15,8 @@ library(corrplot) # correlation plots
 
 library(igraph) # network graphs
 
+library(rgl) # 3D graphics
+
 # get data
 
 MICS <- read_dta("~/Box Sync/MICS/Data/MICS.dta")
@@ -77,8 +79,32 @@ network <- graph_from_adjacency_matrix(mycorrelationmatrix,
 # Caveat Emptor: need to check this whole script for errors
 
 plot(network,
-     edge.width=E(network)$weight * 10,
-     main = "Network Diagram of Discipline Strategies"
+     edge.width=E(network)$weight * 10, # edge width is weight of correlation
+     main = "Network Diagram of Discipline Strategies",
+     layout=layout.fruchterman.reingold
      # sub = "100% Correlation of Gave and Explained Dominates the Graph \n Remove One Item?"
      )
+
+# rgl.clear()
+# 
+# rglplot(network,
+#         edge.width=E(network)$weight * 10, # edge width is weight of correlation
+#         main = "Network Diagram of Discipline Strategies",
+#         layout=layout.fruchterman.reingold,
+#         vertex.color="orange")
+
+# library(ggplot2)
+# 
+# library(ggnetwork)
+# 
+# ggplot(ggnetwork(network), 
+#        aes(x = x, y = y, 
+#            xend = xend, yend = yend)) + 
+#   geom_edges(color = "grey75") +
+#   geom_nodes() +
+#   geom_nodetext_repel(aes(label=name)) +
+#   theme_blank()
+
+
+
 
