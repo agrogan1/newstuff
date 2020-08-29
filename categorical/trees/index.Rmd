@@ -39,6 +39,9 @@ library(plotly)
 * **f** for full screen
 * **Alt-Click** to zoom
 * Scroll &#8681; to the bottom of each column of slides; then &#8680;
+* Optional Theme Music (for later): 
+
+<audio controls src="Beautiful Cinematic Orchestral - AShamaluevMusic.mp3" data-ignore></audio>
 
 # Some Trees {data-background="#A5A508"}
 
@@ -58,7 +61,7 @@ library(plotly)
 ![](IMG_0519.jpg){ width=30% }
 
 
-# <mark>A Simple Model</mark>
+# <mark>A Simple Model (scroll down &#8681;)</mark>
 
 ## Cross Tabulation 
 
@@ -79,7 +82,7 @@ mosaicplot(mymatrix,
 
 ```
 
-# <mark>More Complicated Models</mark>
+# <mark>More Complicated Models (scroll down &#8681;)</mark>
 
 ## Regression Models for Dichotomous Outcomes
 
@@ -108,6 +111,8 @@ digraph boxes_and_circles {
 
 ## Ordinal Outcomes
 
+> Ordinal Models
+
 ```{r, echo=FALSE}
 
 grViz("
@@ -130,6 +135,8 @@ digraph boxes_and_circles {
 ```
 
 ## Multinomial Outcomes
+
+> Multinomial Models
 
 ```{r, echo=FALSE}
 
@@ -158,19 +165,21 @@ digraph boxes_and_circles {
 ")
 ```
 
-# <mark>Count Outcomes</mark>
+# <mark>Count Outcomes (scroll down &#8681;)</mark>
 
 ## Regression Models For Count Outcomes 
 
+> Poisson and Negative Binomial Models
+
 ![](IMG_0520.jpg){ width=50% }
 
-# <mark>Bayesian Perspectives</mark>
+# <mark>Bayesian Perspectives (scroll down &#8681;)</mark>
 
 ## Bayesian Models
 
 > What do we do if we have prior information about any of these statistical models?
 
-# <mark>Timing of Events</mark>
+# <mark>Timing of Events (scroll down &#8681;)</mark>
 
 ## Survival and Event History Models
 
