@@ -14,8 +14,6 @@ output:
       countIncrementalSlides: false
 ---
 
-class: animated, slideInRight
-
 ```{css, echo=FALSE}
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
@@ -54,7 +52,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 # The Basics
 
-```{r}
+```{r, fig.height=2, fig.width=4}
 
 library(DiagrammeR)
 
@@ -77,6 +75,26 @@ digraph boxes_and_circles {
 ")
 
 ```
+
+--
+
+```{r, fig.height=3, fig.width=4}
+
+N <- 100
+
+A <- rnorm(N, 10, 1)
+
+e <- rnorm(N, 0, 1)
+
+B <- A + e
+
+plot(A, B, 
+     main = "A Is Associated With B", 
+     col = rainbow(9),
+     pch = 19)
+
+```
+
 
 ---
 # A Conceptual Focus
