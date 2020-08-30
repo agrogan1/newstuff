@@ -68,6 +68,7 @@ body {
 --
 
     + Why?
+    + [Grading Rubric](../grading-rubric.html)
     + Syllabus
     
 --
