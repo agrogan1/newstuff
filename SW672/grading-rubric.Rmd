@@ -36,6 +36,13 @@ h1, h2, h3 {
 body { 
     font-family: 'Montserrat', sans-serif;
 }
+blockquote {
+  background: #FFFFFF;
+  color: #000;
+  border-left: 5px solid #ffcb05;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+}
 .author, .date {
   font-family: 'Montserrat', sans-serif;
 }
