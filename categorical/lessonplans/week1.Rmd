@@ -54,6 +54,11 @@ body {
 }
 ```
 
+# To Begin
+
+> <span style="background-color: #FFFF00">These are difficult times: Let's think creatively about how to connect, and to reach out and support each other.</span>
+
+---
 # Lesson Plan
 
 * Attendance
@@ -70,7 +75,7 @@ body {
 
     + Why Stata?
     + Conceptual Imagistic Overview: [https://agrogan1.github.io/newstuff/categorical/trees/#/](https://agrogan1.github.io/newstuff/categorical/trees/#/)
-    + Syllabus:
+    + Syllabus
     
 --
 
