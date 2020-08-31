@@ -72,11 +72,13 @@ Use `spagplot` to examine these relationships. Remember that the `spagplot` synt
 
 ## Unconditional Model
 
-Run an unconditional model with `mixed`. Calculate the ICC. What does this number tell you?
+Run an unconditional model with `mixed`. What Stata syntax do you use? What is the corresponding equation? What question is this syntax and equation asking and answering? Calculate the ICC. What does this number tell you?
 
 ## Conditional Model 
 
-Now run a model with `mixed` where you examine the relationship of tree age, site, and location with tree height. Do any of your variables need to be treated as indicator (`i.`) variables? What do you find?
+Now run a model with `mixed` where you examine the relationship of tree age, site, and location with tree height. Do any of your variables need to be treated as indicator (`i.`) variables? 
+
+What Stata syntax do you use? What is the corresponding equation? What question is this syntax and equation asking and answering? What do you find?
 
 What if you examine $\text{age of tree}^2$ as part of your model?
 
