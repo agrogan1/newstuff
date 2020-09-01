@@ -42,9 +42,22 @@ blockquote {
 }
 ```
 
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+
+xaringanExtra::use_tile_view()
+
+xaringanExtra::use_slide_tone()
+
+```
+
 # How To Navigate This Presentation
 
-Use the <span style="font-size:100px">&#8678;</span> and <span style="font-size:100px">&#8680;</span> keys to move through the presentation.
+* Use the <span style="font-size:100px">&#8678;</span> and <span style="font-size:100px">&#8680;</span> keys to move through the presentation.
+* Press *o* for *panel overview*.
 
 ---
 # Derivation
