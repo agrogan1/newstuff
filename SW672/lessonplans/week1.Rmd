@@ -25,6 +25,7 @@ options(htmltools.dir.version = FALSE)
 .title-slide { 
   color: #ffcb05;
   background-color: #00274C; 
+  background-image: url("M-Zoom-BG1.png");
   background-size: cover;
 }
 .title-slide h1 {
