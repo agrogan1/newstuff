@@ -214,7 +214,7 @@ class: animated, slideInRight
 * More thoughtful design: Cedric Sherer has an [amazing article on improving the design of a ggplot](https://cedricscherer.netlify.app/2019/05/17/the-evolution-of-a-ggplot-ep.-1/).
 * Causality (Does A *cause* B?) [https://agrogan.shinyapps.io/causality/](https://agrogan.shinyapps.io/causality/)
 * Moderation (Does C *affect the relationship* between A and B?)
-* Simpson's Paradox (When we think about C, does that *reverse* the observed association between A and B?)
+* Simpson's Paradox (When we think about C, does that *reverse* the observed association between A and B?): [https://agrogan.shinyapps.io/simpsonsparadox/](https://agrogan.shinyapps.io/simpsonsparadox/)
 * Bayes Theorem (Does thinking about the prior information affect the conclusions we draw?): [https://agrogan.shinyapps.io/Thinking-Through-Bayes/](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
 
 
