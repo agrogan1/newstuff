@@ -78,12 +78,17 @@ network <- graph_from_adjacency_matrix(mycorrelationmatrix,
 # very rough (lots of options to tweak to improve the design)
 # Caveat Emptor: need to check this whole script for errors
 
-plot(network,
-     edge.width=E(network)$weight * 10, # edge width is weight of correlation
+network2 <- delete.edges(network, 
+                         which(E(network)$weight < 0.10))
+
+plot(network2,
+     edge.width=E(network)$weight * 20, # edge width is weight of correlation
      main = "Network Diagram of Discipline Strategies",
+     # layout = layout.kamada.kawai
      layout=layout.fruchterman.reingold
-     # sub = "100% Correlation of Gave and Explained Dominates the Graph \n Remove One Item?"
      )
+
+# 3D with RGL!!!
 
 # rgl.clear()
 # 
@@ -93,14 +98,26 @@ plot(network,
 #         layout=layout.fruchterman.reingold,
 #         vertex.color="orange")
 
-# library(ggplot2)
-# 
+library(ggplot2)
+
 # library(ggnetwork)
-# 
-# ggplot(ggnetwork(network), 
-#        aes(x = x, y = y, 
-#            xend = xend, yend = yend)) + 
-#   geom_edges(color = "grey75") +
+
+library(ggraph)
+
+ggraph(network, layout = "fr") + 
+  geom_edge_fan() + 
+  geom_node_point() +
+  geom_node_label(aes(label=name)) +
+  labs(title = "Network Diagram of Discipline Strategies",
+       caption = "Need to Work on Edge Widths") +
+  theme_void()
+
+# ggplot(ggnetwork(network),
+#        aes(x = x, y = y,
+#            xend = xend, yend = yend)) +
+#   geom_edges(aes(size=weight),
+#              color = "grey75",
+#              curvature = 0.1) +
 #   geom_nodes() +
 #   geom_nodetext_repel(aes(label=name)) +
 #   theme_blank()
