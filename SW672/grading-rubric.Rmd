@@ -104,6 +104,20 @@ plot(A, B,
      col = rainbow(9),
      pch = 19)
 
+# mean of B by A > mean(A)
+
+aggdata <- aggregate(B, 
+                     by = list(A >= mean(A)), 
+                     FUN=mean)
+
+barplot(aggdata$x,
+        main = "A Is Associated With B", 
+        ylab = "Mean of B",
+        col = rainbow(9),
+        names.arg = c("A Is Low",
+                      "A Is High"),
+        cex.names = 1.0)
+
 ```
 
 
