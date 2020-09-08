@@ -1,0 +1,91 @@
+% Simulation of Eliminating Physical Punishment With MICS Data
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+# Background
+
+> What would the world look like if we eliminated physical punishment? These are some quick calculations using MICS data.
+
+# Get The Data
+
+    clear all
+	
+	set seed 3846
+	
+	cd "/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp"
+
+    use "/Users/agrogan/Box Sync/MICS/Data/MICS.dta"
+	
+> Are we using the most *up to date* data?
+	
+# Descriptive Statistics on Physical Punishment
+
+    tabulate d_phys_spank 
+	
+# Predict Aggression With A Multilevel Model
+
+> For demonstration purposes, I am only including a *limited* set of covariates. One could--and should--easily include more although including more covariates considerably lengthens the estimation time.
+
+	melogit ec16 i.d_phys_spank cmale cage || country:
+	
+# Estimate Margins (Predicted Probabilities)
+
+    margins d_phys_spank
+
+# Calculations
+
+One could rely on commands such as the one below to do these calculations on the fly. In this example I have hand-coded the calculations, so the calculations may need to be rewritten every time more covariates are added to the model. On the other hand, writing out the calculations explicitly likely increases the transparency of the thought process below.
+
+    * matrix b = r(b) // get matrix of results
+	
+    * matrix list b  // list it out to double check
+	
+> In a hypothetical sample of 100 children...
+
+## Aggressive Children Among Not Spanked Children
+
+$\text{proportion not spanked} * \text{proportion aggressive} * 100$
+
+    display round(.5668 * .3251464  * 100)
+	
+## Non Aggressive Children Among Not Spanked Children
+
+$\text{number not spanked} - \text{number aggressive}$
+	
+	display 57 - 18
+	
+## Aggressive Children Among Spanked Children
+
+$\text{proportion spanked} * \text{proportion aggressive} * 100$
+
+    display round(.4332 * .3979304 * 100)
+
+## Non-Aggressive Children Among Spanked Children
+
+$\text{number spanked} - \text{number aggressive}$
+
+    display 43 - 17
+	
+## Number Aggressive Children Among Spanked Children If They Were Not Spanked
+
+    display round(.4332 * .3251464  * 100)
+	
+## Reduction in Aggressive Children
+
+	display 17 - 14 // this many fewer aggressive children / 100
+	
+# Graph (*DRAFT*)
+
+![Graph](mywaffle.png){ width=75% }
+
+
+
+
+
+	
