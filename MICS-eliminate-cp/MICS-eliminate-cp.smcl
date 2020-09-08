@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp/MICS-eliminate-cp.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 8 Sep 2020, 10:36:28
+ {txt}opened on:  {res} 8 Sep 2020, 12:01:15
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}10:36:28
+{res}12:01:15
 {txt}
 {com}. //_3
 . clear all
@@ -91,7 +91,7 @@ Iteration 8:{space 3}log likelihood = {res:-135349.08}
 {txt}LR test vs. logistic model: {txt}{help j_chibar##|_new:chibar2(01) =}{res} 14163.72{col 55}{txt}Prob >= chibar2 = {res}{col 73}0.0000
 {txt}
 {com}. //_9
-. margins d_phys_spank
+. margins d_phys_spank // predicted probabilities of aggression
 {res}
 {txt}Predictive margins{col 49}Number of obs{col 67}= {res}   215,885
 {txt}Model VCE{col 14}: {res}OIM
@@ -142,7 +142,7 @@ d_phys_spank {c |}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp/MICS-eliminate-cp.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 8 Sep 2020, 10:38:45
+ {txt}closed on:  {res} 8 Sep 2020, 12:03:31
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

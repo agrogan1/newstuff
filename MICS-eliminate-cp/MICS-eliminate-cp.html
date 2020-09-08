@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Simulation of Eliminating Physical Punishment With MICS Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">8 Sep 2020 10:36:28</p>
+<p class="date">8 Sep 2020 12:01:15</p>
 </header>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <h1 id="background">Background</h1>
@@ -145,8 +145,8 @@ country        │
 ───────────────┴────────────────────────────────────────────────────────────────
 LR test vs. logistic model: chibar2(01) = 14163.72    Prob >= chibar2 = 0.0000
 </pre>
-<h1 id="estimate-margins-predicted-probabilities">Estimate Margins (Predicted Probabilities)</h1>
-<pre class='stata'>. margins d_phys_spank
+<h1 id="estimate-margins-predicted-probabilities-of-aggression">Estimate Margins (Predicted Probabilities of Aggression)</h1>
+<pre class='stata'>. margins d_phys_spank // predicted probabilities of aggression
 
 Predictive margins                              Number of obs     =    215,885
 Model VCE    : OIM
@@ -163,11 +163,12 @@ d_phys_spank │
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="calculations">Calculations</h1>
-<p>One could rely on commands such as the one below to do these calculations on the fly. In this example I have hand-coded the calculations, so the calculations may need to be rewritten every time more covariates are added to the model. On the other hand, writing out the calculations explicitly likely increases the transparency of the thought process below.</p>
+<p>One could rely on commands such as the one below to do these calculations <em>on-the-fly</em>.</p>
 <pre class='stata'>. * matrix b = r(b) // get matrix of results
 </pre>
 <pre class='stata'>. * matrix list b  // list it out to double check
 </pre>
+<p>In this example, however, I have hand-coded the calculations, so the calculations may need to be rewritten every time more covariates are added to the model. On the other hand, writing out the calculations explicitly likely increases the transparency of the thought process below.</p>
 <blockquote>
 <p>In a hypothetical sample of 100 children…</p>
 </blockquote>
@@ -176,7 +177,7 @@ d_phys_spank │
 <pre class='stata'>. display round(.5668 * .3251464  * 100)
 18
 </pre>
-<h2 id="non-aggressive-children-among-not-spanked-children">Non Aggressive Children Among Not Spanked Children</h2>
+<h2 id="not-aggressive-children-among-not-spanked-children">Not Aggressive Children Among Not Spanked Children</h2>
 <p><span class="math inline">\(\text{number not spanked} - \text{number aggressive}\)</span></p>
 <pre class='stata'>. display 57 - 18
 39
@@ -186,7 +187,7 @@ d_phys_spank │
 <pre class='stata'>. display round(.4332 * .3979304 * 100)
 17
 </pre>
-<h2 id="non-aggressive-children-among-spanked-children">Non-Aggressive Children Among Spanked Children</h2>
+<h2 id="not-aggressive-children-among-spanked-children">Not Aggressive Children Among Spanked Children</h2>
 <p><span class="math inline">\(\text{number spanked} - \text{number aggressive}\)</span></p>
 <pre class='stata'>. display 43 - 17
 26
@@ -195,11 +196,14 @@ d_phys_spank │
 <pre class='stata'>. display round(.4332 * .3251464  * 100)
 14
 </pre>
-<h2 id="reduction-in-aggressive-children">Reduction in Aggressive Children</h2>
+<h2 id="reduction-in-number-of-aggressive-children">Reduction in Number of Aggressive Children</h2>
 <pre class='stata'>. display 17 - 14 // this many fewer aggressive children / 100
 3
 </pre>
 <h1 id="graph-draft">Graph (<em>DRAFT</em>)</h1>
+<blockquote>
+<p>Is this the best graph?</p>
+</blockquote>
 <figure>
 <img src="mywaffle.png" style="width:75.0%" alt="" /><figcaption>Graph</figcaption>
 </figure>

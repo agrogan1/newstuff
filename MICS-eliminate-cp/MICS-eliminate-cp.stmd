@@ -34,17 +34,19 @@ geometry: margin=1 in
 
 	melogit ec16 i.d_phys_spank cmale cage || country:
 	
-# Estimate Margins (Predicted Probabilities)
+# Estimate Margins (Predicted Probabilities of Aggression)
 
-    margins d_phys_spank
+    margins d_phys_spank // predicted probabilities of aggression
 
 # Calculations
 
-One could rely on commands such as the one below to do these calculations on the fly. In this example I have hand-coded the calculations, so the calculations may need to be rewritten every time more covariates are added to the model. On the other hand, writing out the calculations explicitly likely increases the transparency of the thought process below.
+One could rely on commands such as the one below to do these calculations *on-the-fly*. 
 
     * matrix b = r(b) // get matrix of results
 	
     * matrix list b  // list it out to double check
+
+In this example, however, I have hand-coded the calculations, so the calculations may need to be rewritten every time more covariates are added to the model. On the other hand, writing out the calculations explicitly likely increases the transparency of the thought process below.
 	
 > In a hypothetical sample of 100 children...
 
@@ -54,7 +56,7 @@ $\text{proportion not spanked} * \text{proportion aggressive} * 100$
 
     display round(.5668 * .3251464  * 100)
 	
-## Non Aggressive Children Among Not Spanked Children
+## Not Aggressive Children Among Not Spanked Children
 
 $\text{number not spanked} - \text{number aggressive}$
 	
@@ -66,7 +68,7 @@ $\text{proportion spanked} * \text{proportion aggressive} * 100$
 
     display round(.4332 * .3979304 * 100)
 
-## Non-Aggressive Children Among Spanked Children
+## Not Aggressive Children Among Spanked Children
 
 $\text{number spanked} - \text{number aggressive}$
 
@@ -76,11 +78,13 @@ $\text{number spanked} - \text{number aggressive}$
 
     display round(.4332 * .3251464  * 100)
 	
-## Reduction in Aggressive Children
+## Reduction in Number of Aggressive Children
 
 	display 17 - 14 // this many fewer aggressive children / 100
 	
 # Graph (*DRAFT*)
+
+> Is this the best graph?
 
 ![Graph](mywaffle.png){ width=75% }
 
