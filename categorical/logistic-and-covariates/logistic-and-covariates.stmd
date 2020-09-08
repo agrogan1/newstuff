@@ -1,0 +1,75 @@
+% Logistic Regression With Covariates
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+# Background
+
+# Simulate Data
+
+    clear all
+
+    cd "/Users/agrogan/Desktop/newstuff/categorical/logistic-and-covariates"
+
+	set obs 1000
+	
+	generate x1 = rnormal() // normally distributed x
+
+	histogram x1, scheme(michigan)
+	
+	graph export histogram1.png, width(500) replace
+	
+![Histogram of x1](histogram1.png)
+
+	generate x2 = rnormal() // normally distributed z
+	
+	graph export histogram2.png, width(500) replace
+	
+![Histogram of x2](histogram2.png)
+	
+	generate e = rnormal() // normally distributed error
+	
+    corr x1 x2 // x1 and x2 are uncorrelated
+	
+	generate y1 = x1 + x2 + e // dependent variable
+	
+# Linear Regression
+	
+	regress y1 x1
+	
+	est store OLS1 // store estimates
+	
+	regress y1 x1 x2 
+	
+	est store OLS2 // store estimates
+	
+	estimates table OLS1 OLS2, b(%7.4f) star // table comparing estimates
+	
+# Logistic Regression
+	
+    generate prob_y2 = exp(x1 + x2 + e) / (1 + exp(x1 + x2 + e))
+	
+	recode prob_y2 (0/.5 =0)(.5/1 = 1), generate(y2) // recode probabilites as observed values
+	
+	logit y2 x1
+	
+	est store logit1
+	
+    logit y2 x1 x2
+	
+	est store logit2
+	
+	estimates table logit1 logit2, b(%7.4f) star // table comparing estimates
+
+# References
+
+I've been inspired in this disussion by Jonathan Bartlett's discussion of these issues: [https://thestatsgeek.com/2017/05/11/odds-ratios-collapsibility-marginal-vs-conditional-gee-vs-glmms/](https://thestatsgeek.com/2017/05/11/odds-ratios-collapsibility-marginal-vs-conditional-gee-vs-glmms/)
+	
+	
+	
+

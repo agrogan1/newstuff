@@ -1,0 +1,192 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-and-covariates/logistic-and-covariates.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 8 Sep 2020, 16:08:06
+{txt}
+{com}. //_1
+. display c(current_date)
+{res} 8 Sep 2020
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}16:08:06
+{txt}
+{com}. //_3
+. clear all
+{res}{txt}
+{com}. //_4
+. cd "/Users/agrogan/Desktop/newstuff/categorical/logistic-and-covariates"
+{res}/Users/agrogan/Desktop/newstuff/categorical/logistic-and-covariates
+{txt}
+{com}. //_5
+. set obs 1000
+{txt}{p}
+number of observations (_N)  was 0,
+now 1,000
+{p_end}
+
+{com}. //_6
+. generate x1 = rnormal() // normally distributed x
+{txt}
+{com}. //_7
+. histogram x1, scheme(michigan)
+{txt}(bin={res}29{txt}, start={res}-3.1592772{txt}, width={res}.22074086{txt})
+{res}{txt}
+{com}. //_8
+. graph export histogram1.png, width(500) replace
+{txt}(file histogram1.png written in PNG format)
+
+{com}. //_9
+. generate x2 = rnormal() // normally distributed z
+{txt}
+{com}. //_10
+. graph export histogram2.png, width(500) replace
+{txt}(file histogram2.png written in PNG format)
+
+{com}. //_11
+. generate e = rnormal() // normally distributed error
+{txt}
+{com}. //_12
+. corr x1 x2 // x1 and x2 are uncorrelated
+{txt}(obs=1,000)
+
+             {c |}       x1       x2
+{hline 13}{c +}{hline 18}
+          x1 {c |}{res}   1.0000
+          {txt}x2 {c |}{res}   0.0596   1.0000
+
+{txt}
+{com}. //_13
+. generate y1 = x1 + x2 + e // dependent variable
+{txt}
+{com}. //_14
+. regress y1 x1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,000
+{txt}{hline 13}{c +}{hline 34}   F(1, 998)       = {res}   635.15
+{txt}       Model {c |} {res} 1289.80971         1  1289.80971   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 2026.66544       998  2.03072689   {txt}R-squared       ={res}    0.3889
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.3883
+{txt}       Total {c |} {res} 3316.47515       999  3.31979494   {txt}Root MSE        =   {res}  1.425
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          y1{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}x1 {c |}{col 14}{res}{space 2} 1.088659{col 26}{space 2} .0431971{col 37}{space 1}   25.20{col 46}{space 3}0.000{col 54}{space 4} 1.003892{col 67}{space 3} 1.173427
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0278531{col 26}{space 2} .0450746{col 37}{space 1}    0.62{col 46}{space 3}0.537{col 54}{space 4}-.0605987{col 67}{space 3} .1163049
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_15
+. est store OLS1 // store estimates
+{txt}
+{com}. //_16
+. regress y1 x1 x2 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,000
+{txt}{hline 13}{c +}{hline 34}   F(2, 997)       = {res}  1153.65
+{txt}       Model {c |} {res}  2315.8002         2   1157.9001   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 1000.67495       997    1.003686   {txt}R-squared       ={res}    0.6983
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.6977
+{txt}       Total {c |} {res} 3316.47515       999  3.31979494   {txt}Root MSE        =   {res} 1.0018
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          y1{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}x1 {c |}{col 14}{res}{space 2} 1.030682{col 26}{space 2} .0304229{col 37}{space 1}   33.88{col 46}{space 3}0.000{col 54}{space 4} .9709817{col 67}{space 3} 1.090382
+{txt}{space 10}x2 {c |}{col 14}{res}{space 2} .9874388{col 26}{space 2} .0308843{col 37}{space 1}   31.97{col 46}{space 3}0.000{col 54}{space 4} .9268331{col 67}{space 3} 1.048044
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0081816{col 26}{space 2} .0316947{col 37}{space 1}    0.26{col 46}{space 3}0.796{col 54}{space 4}-.0540144{col 67}{space 3} .0703775
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_17
+. est store OLS2 // store estimates
+{txt}
+{com}. //_18
+. estimates table OLS1 OLS2, b(%7.4f) star // table comparing estimates
+{res}
+{txt}{hline 12}{c -}{c TT}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{ralign 12:Variable} {c |} {center 10:OLS1} {space 1} {center 10:OLS2} {space 1}
+{hline 12}{c -}{c +}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{res}{txt}{space 10}x1 {c |}{res} {ralign 7:1.0887}{lalign 3:***}{txt} {space 1}{res} {ralign 7:1.0307}{lalign 3:***}{txt} {space 1}
+{res}{txt}{space 10}x2 {c |}{res} {ralign 7:}{lalign 3:}{txt} {space 1}{res} {ralign 7:0.9874}{lalign 3:***}{txt} {space 1}
+{res}{txt}{space 7}_cons {c |}{res} {ralign 7:0.0279}{lalign 3:}{txt} {space 1}{res} {ralign 7:0.0082}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 12}{c -}{c BT}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{ralign 40:legend: * p<0.05; ** p<0.01; *** p<0.001}
+{res}{txt}
+{com}. //_19
+. generate prob_y2 = exp(x1 + x2 + e) / (1 + exp(x1 + x2 + e))
+{txt}
+{com}. //_20
+. recode prob_y2 (0/.5 =0)(.5/1 = 1), generate(y2) // recode probabilites as observed values
+{txt}(1000 differences between prob_y2 and y2)
+
+{com}. //_21
+. logit y2 x1
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-693.11518}  
+Iteration 1:{space 3}log likelihood = {res:-550.43417}  
+Iteration 2:{space 3}log likelihood = {res:-550.34901}  
+Iteration 3:{space 3}log likelihood = {res:-550.34899}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     1,000
+{txt}{col 49}LR chi2({res}1{txt}){col 67}= {res}    285.53
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-550.34899{txt}{col 49}Pseudo R2{col 67}= {res}    0.2060
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          y2{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}x1 {c |}{col 14}{res}{space 2} 1.282626{col 26}{space 2} .0926296{col 37}{space 1}   13.85{col 46}{space 3}0.000{col 54}{space 4} 1.101075{col 67}{space 3} 1.464177
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0044323{col 26}{space 2} .0733194{col 37}{space 1}    0.06{col 46}{space 3}0.952{col 54}{space 4} -.139271{col 67}{space 3} .1481356
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_22
+. est store logit1
+{txt}
+{com}. //_23
+. logit y2 x1 x2
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-693.11518}  
+Iteration 1:{space 3}log likelihood = {res:-399.88043}  
+Iteration 2:{space 3}log likelihood = {res:-399.52919}  
+Iteration 3:{space 3}log likelihood = {res:-399.52837}  
+Iteration 4:{space 3}log likelihood = {res:-399.52837}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     1,000
+{txt}{col 49}LR chi2({res}2{txt}){col 67}= {res}    587.17
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}-399.52837{txt}{col 49}Pseudo R2{col 67}= {res}    0.4236
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          y2{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}x1 {c |}{col 14}{res}{space 2}  1.80266{col 26}{space 2} .1291406{col 37}{space 1}   13.96{col 46}{space 3}0.000{col 54}{space 4} 1.549549{col 67}{space 3} 2.055771
+{txt}{space 10}x2 {c |}{col 14}{res}{space 2} 1.644651{col 26}{space 2} .1215883{col 37}{space 1}   13.53{col 46}{space 3}0.000{col 54}{space 4} 1.406342{col 67}{space 3}  1.88296
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} -.060496{col 26}{space 2} .0882002{col 37}{space 1}   -0.69{col 46}{space 3}0.493{col 54}{space 4}-.2333652{col 67}{space 3} .1123732
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_24
+. est store logit2
+{txt}
+{com}. //_25
+. estimates table logit1 logit2, b(%7.4f) star // table comparing estimates
+{res}
+{txt}{hline 12}{c -}{c TT}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{ralign 12:Variable} {c |} {center 10:logit1} {space 1} {center 10:logit2} {space 1}
+{hline 12}{c -}{c +}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{res}{txt}{space 10}x1 {c |}{res} {ralign 7:1.2826}{lalign 3:***}{txt} {space 1}{res} {ralign 7:1.8027}{lalign 3:***}{txt} {space 1}
+{res}{txt}{space 10}x2 {c |}{res} {ralign 7:}{lalign 3:}{txt} {space 1}{res} {ralign 7:1.6447}{lalign 3:***}{txt} {space 1}
+{res}{txt}{space 7}_cons {c |}{res} {ralign 7:0.0044}{lalign 3:}{txt} {space 1}{res} {ralign 7:-0.0605}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 12}{c -}{c BT}{c -}{hline 10}{c -}{c -}{c -}{hline 10}{c -}{c -}
+{ralign 40:legend: * p<0.05; ** p<0.01; *** p<0.001}
+{res}{txt}
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-and-covariates/logistic-and-covariates.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 8 Sep 2020, 16:08:09
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
