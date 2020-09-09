@@ -10,13 +10,33 @@ geometry: margin=1 in
 
 # Background
 
+In linear regression, interpretation of coefficients is *somewhat* straightforward. We might first estimate:
+
+$y = \beta_0 + \beta_1 x_1 + e_i$
+
+and then: 
+
+$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i$
+
+and would say--in the second equation--that $\beta_1$ is an estimate that accounts for the association of $x_2$ and $y$.
+
+However, in logistic regression, the situation is somewhat different.
+
+As Allison (1999) notes:
+
+> Unfortunately, there is a potential pitfall in cross-group comparisons of logit or probit coefficients that has largely gone unnoticed. Unlike linear regression coefficients, coefficients in these binary regression models are confounded with residual variation (unobserved heterogeneity). Differences in the degree of residual variation across groups can produce apparent differences in coefficients that are not indicative of true differences in causal effects. 
+
+While the mathematics of this relationship are somewhat difficult--though clearly presented in Allison's (1999) article--the finding can be easily seen in simulated data.
+
 # Simulate Data
 
     clear all
 
     cd "/Users/agrogan/Desktop/newstuff/categorical/logistic-and-covariates"
 
-	set obs 1000
+	set obs 10000
+	
+	set seed 3846 // random seed
 	
 	generate x1 = rnormal() // normally distributed x
 
@@ -24,15 +44,19 @@ geometry: margin=1 in
 	
 	graph export histogram1.png, width(500) replace
 	
-![Histogram of x1](histogram1.png)
+![Histogram of x1](histogram1.png){width=25%}
 
 	generate x2 = rnormal() // normally distributed z
 	
+	histogram x2, scheme(michigan)
+
 	graph export histogram2.png, width(500) replace
 	
-![Histogram of x2](histogram2.png)
+![Histogram of x2](histogram2.png){width=25%}
 	
-	generate e = rnormal() // normally distributed error
+	generate e = rnormal(0, .5) // normally distributed error
+	
+> Since they were generated independently, $x_1$ and $x_2$ are relatively uncorrelated.
 	
     corr x1 x2 // x1 and x2 are uncorrelated
 	
@@ -48,11 +72,13 @@ geometry: margin=1 in
 	
 	est store OLS2 // store estimates
 	
+> Note that the coefficients for $x_1$ in the two models are relatively close.
+	
 	estimates table OLS1 OLS2, b(%7.4f) star // table comparing estimates
 	
 # Logistic Regression
 	
-    generate prob_y2 = exp(x1 + x2 + e) / (1 + exp(x1 + x2 + e))
+    generate prob_y2 = exp(x1 + x2 + e) / (1 + exp(x1 + x2 + e)) // dependent variable 
 	
 	recode prob_y2 (0/.5 =0)(.5/1 = 1), generate(y2) // recode probabilites as observed values
 	
@@ -64,12 +90,10 @@ geometry: margin=1 in
 	
 	est store logit2
 	
+> Note that the coefficients for $x_1$ in the two models are rather different, even though $x_1$ and $x_2$ are, by definition, uncorrelated.
+	
 	estimates table logit1 logit2, b(%7.4f) star // table comparing estimates
 
 # References
 
-I've been inspired in this disussion by Jonathan Bartlett's discussion of these issues: [https://thestatsgeek.com/2017/05/11/odds-ratios-collapsibility-marginal-vs-conditional-gee-vs-glmms/](https://thestatsgeek.com/2017/05/11/odds-ratios-collapsibility-marginal-vs-conditional-gee-vs-glmms/)
-	
-	
-	
-
+Allison, P. D. (1999). Comparing logit and probit coefficients across groups. *Sociological Methods and Research*. [https://doi.org/10.1177/0049124199028002003](https://doi.org/10.1177/0049124199028002003)

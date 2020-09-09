@@ -49,6 +49,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -57,162 +58,189 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Logistic Regression With Covariates</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">8 Sep 2020 16:08:06</p>
+<p class="date">9 Sep 2020 09:58:09</p>
 </header>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <h1 id="background">Background</h1>
+<p>In linear regression, interpretation of coefficients is <em>somewhat</em> straightforward. We might first estimate:</p>
+<p><span class="math inline">\(y = \beta_0 + \beta_1 x_1 + e_i\)</span></p>
+<p>and then:</p>
+<p><span class="math inline">\(y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i\)</span></p>
+<p>and would say–in the second equation–that <span class="math inline">\(\beta_1\)</span> is an estimate that accounts for the association of <span class="math inline">\(x_2\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p>However, in logistic regression, the situation is somewhat different.</p>
+<p>As Allison (1999) notes:</p>
+<blockquote>
+<p>Unfortunately, there is a potential pitfall in cross-group comparisons of logit or probit coefficients that has largely gone unnoticed. Unlike linear regression coefficients, coefficients in these binary regression models are confounded with residual variation (unobserved heterogeneity). Differences in the degree of residual variation across groups can produce apparent differences in coefficients that are not indicative of true differences in causal effects.</p>
+</blockquote>
+<p>While the mathematics of this relationship are somewhat difficult–though clearly presented in Allison’s (1999) article–the finding can be easily seen in simulated data.</p>
 <h1 id="simulate-data">Simulate Data</h1>
 <pre class='stata'>. clear all
 </pre>
 <pre class='stata'>. cd "/Users/agrogan/Desktop/newstuff/categorical/logistic-and-covariates"
 /Users/agrogan/Desktop/newstuff/categorical/logistic-and-covariates
 </pre>
-<pre class='stata'>. set obs 1000
-number of observations (_N) was 0, now 1,000
+<pre class='stata'>. set obs 10000
+number of observations (_N) was 0, now 10,000
+</pre>
+<pre class='stata'>. set seed 3846 // random seed
 </pre>
 <pre class='stata'>. generate x1 = rnormal() // normally distributed x
 </pre>
 <pre class='stata'>. histogram x1, scheme(michigan)
-(bin=29, start=-3.1592772, width=.22074086)
+(bin=40, start=-3.7857256, width=.19587822)
 </pre>
 <pre class='stata'>. graph export histogram1.png, width(500) replace
 (file histogram1.png written in PNG format)
 </pre>
 <figure>
-<img src="histogram1.png" alt="" /><figcaption>Histogram of x1</figcaption>
+<img src="histogram1.png" style="width:25.0%" alt="" /><figcaption>Histogram of x1</figcaption>
 </figure>
 <pre class='stata'>. generate x2 = rnormal() // normally distributed z
+</pre>
+<pre class='stata'>. histogram x2, scheme(michigan)
+(bin=40, start=-3.9428685, width=.19152238)
 </pre>
 <pre class='stata'>. graph export histogram2.png, width(500) replace
 (file histogram2.png written in PNG format)
 </pre>
 <figure>
-<img src="histogram2.png" alt="" /><figcaption>Histogram of x2</figcaption>
+<img src="histogram2.png" style="width:25.0%" alt="" /><figcaption>Histogram of x2</figcaption>
 </figure>
-<pre class='stata'>. generate e = rnormal() // normally distributed error
+<pre class='stata'>. generate e = rnormal(0, .5) // normally distributed error
 </pre>
+<blockquote>
+<p>Since they were generated independently, <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are relatively uncorrelated.</p>
+</blockquote>
 <pre class='stata'>. corr x1 x2 // x1 and x2 are uncorrelated
-(obs=1,000)
+(obs=10,000)
 
              │       x1       x2
 ─────────────┼──────────────────
           x1 │   1.0000
-          x2 │   0.0596   1.0000
+          x2 │   0.0150   1.0000
 </pre>
 <pre class='stata'>. generate y1 = x1 + x2 + e // dependent variable
 </pre>
 <h1 id="linear-regression">Linear Regression</h1>
 <pre class='stata'>. regress y1 x1
 
-      Source │       SS           df       MS      Number of obs   =     1,000
-─────────────┼──────────────────────────────────   F(1, 998)       =    635.15
-       Model │  1289.80971         1  1289.80971   Prob > F        =    0.0000
-    Residual │  2026.66544       998  2.03072689   R-squared       =    0.3889
-─────────────┼──────────────────────────────────   Adj R-squared   =    0.3883
-       Total │  3316.47515       999  3.31979494   Root MSE        =     1.425
+      Source │       SS           df       MS      Number of obs   =    10,000
+─────────────┼──────────────────────────────────   F(1, 9998)      =   8571.07
+       Model │   10888.525         1   10888.525   Prob > F        =    0.0000
+    Residual │  12701.2625     9,998  1.27038033   R-squared       =    0.4616
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.4615
+       Total │  23589.7876     9,999  2.35921468   Root MSE        =    1.1271
 
 ─────────────┬────────────────────────────────────────────────────────────────
           y1 │      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-          x1 │   1.088659   .0431971    25.20   0.000     1.003892    1.173427
-       _cons │   .0278531   .0450746     0.62   0.537    -.0605987    .1163049
+          x1 │   1.024698   .0110682    92.58   0.000     1.003002    1.046394
+       _cons │   .0013059   .0112712     0.12   0.908     -.020788    .0233997
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <pre class='stata'>. est store OLS1 // store estimates
 </pre>
 <pre class='stata'>. regress y1 x1 x2 
 
-      Source │       SS           df       MS      Number of obs   =     1,000
-─────────────┼──────────────────────────────────   F(2, 997)       =   1153.65
-       Model │   2315.8002         2   1157.9001   Prob > F        =    0.0000
-    Residual │  1000.67495       997    1.003686   R-squared       =    0.6983
-─────────────┼──────────────────────────────────   Adj R-squared   =    0.6977
-       Total │  3316.47515       999  3.31979494   Root MSE        =    1.0018
+      Source │       SS           df       MS      Number of obs   =    10,000
+─────────────┼──────────────────────────────────   F(2, 9997)      =  41868.07
+       Model │  21073.8459         2  10536.9229   Prob > F        =    0.0000
+    Residual │  2515.94171     9,997  .251669672   R-squared       =    0.8933
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.8933
+       Total │  23589.7876     9,999  2.35921468   Root MSE        =    .50167
 
 ─────────────┬────────────────────────────────────────────────────────────────
           y1 │      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-          x1 │   1.030682   .0304229    33.88   0.000     .9709817    1.090382
-          x2 │   .9874388   .0308843    31.97   0.000     .9268331    1.048044
-       _cons │   .0081816   .0316947     0.26   0.796    -.0540144    .0703775
+          x1 │   1.009826   .0049269   204.96   0.000     1.000169    1.019484
+          x2 │   1.006154   .0050014   201.17   0.000     .9963505    1.015958
+       _cons │   .0015213   .0050167     0.30   0.762    -.0083125     .011355
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <pre class='stata'>. est store OLS2 // store estimates
 </pre>
+<blockquote>
+<p>Note that the coefficients for <span class="math inline">\(x_1\)</span> in the two models are relatively close.</p>
+</blockquote>
 <pre class='stata'>. estimates table OLS1 OLS2, b(%7.4f) star // table comparing estimates
 
 ─────────────┬──────────────────────────
     Variable │    OLS1         OLS2     
 ─────────────┼──────────────────────────
-          x1 │  1.0887***    1.0307***  
-          x2 │               0.9874***  
-       _cons │  0.0279       0.0082     
+          x1 │  1.0247***    1.0098***  
+          x2 │               1.0062***  
+       _cons │  0.0013       0.0015     
 ─────────────┴──────────────────────────
 legend: * p&lt;0.05; ** p&lt;0.01; *** p&lt;0.001
 </pre>
 <h1 id="logistic-regression">Logistic Regression</h1>
-<pre class='stata'>. generate prob_y2 = exp(x1 + x2 + e) / (1 + exp(x1 + x2 + e))
+<pre class='stata'>. generate prob_y2 = exp(x1 + x2 + e) / (1 + exp(x1 + x2 + e)) // dependent variable 
 </pre>
 <pre class='stata'>. recode prob_y2 (0/.5 =0)(.5/1 = 1), generate(y2) // recode probabilites as observed val
 > ues
-(1000 differences between prob_y2 and y2)
+(10000 differences between prob_y2 and y2)
 </pre>
 <pre class='stata'>. logit y2 x1
 
-Iteration 0:   log likelihood = -693.11518  
-Iteration 1:   log likelihood = -550.43417  
-Iteration 2:   log likelihood = -550.34901  
-Iteration 3:   log likelihood = -550.34899  
+Iteration 0:   log likelihood = -6931.3566  
+Iteration 1:   log likelihood = -5193.5531  
+Iteration 2:   log likelihood = -5191.3673  
+Iteration 3:   log likelihood = -5191.3654  
+Iteration 4:   log likelihood = -5191.3654  
 
-Logistic regression                             Number of obs     =      1,000
-                                                LR chi2(1)        =     285.53
+Logistic regression                             Number of obs     =     10,000
+                                                LR chi2(1)        =    3479.98
                                                 Prob > chi2       =     0.0000
-Log likelihood = -550.34899                     Pseudo R2         =     0.2060
+Log likelihood = -5191.3654                     Pseudo R2         =     0.2510
 
 ─────────────┬────────────────────────────────────────────────────────────────
           y2 │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-          x1 │   1.282626   .0926296    13.85   0.000     1.101075    1.464177
-       _cons │   .0044323   .0733194     0.06   0.952     -.139271    .1481356
+          x1 │   1.529607   .0329772    46.38   0.000     1.464973    1.594241
+       _cons │   .0205374   .0240145     0.86   0.392    -.0265302     .067605
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <pre class='stata'>. est store logit1
 </pre>
 <pre class='stata'>. logit y2 x1 x2
 
-Iteration 0:   log likelihood = -693.11518  
-Iteration 1:   log likelihood = -399.88043  
-Iteration 2:   log likelihood = -399.52919  
-Iteration 3:   log likelihood = -399.52837  
-Iteration 4:   log likelihood = -399.52837  
+Iteration 0:   log likelihood = -6931.3566  
+Iteration 1:   log likelihood = -2326.0511  
+Iteration 2:   log likelihood = -2285.4234  
+Iteration 3:   log likelihood = -2285.2877  
+Iteration 4:   log likelihood = -2285.2877  
 
-Logistic regression                             Number of obs     =      1,000
-                                                LR chi2(2)        =     587.17
+Logistic regression                             Number of obs     =     10,000
+                                                LR chi2(2)        =    9292.14
                                                 Prob > chi2       =     0.0000
-Log likelihood = -399.52837                     Pseudo R2         =     0.4236
+Log likelihood = -2285.2877                     Pseudo R2         =     0.6703
 
 ─────────────┬────────────────────────────────────────────────────────────────
           y2 │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-          x1 │    1.80266   .1291406    13.96   0.000     1.549549    2.055771
-          x2 │   1.644651   .1215883    13.53   0.000     1.406342     1.88296
-       _cons │   -.060496   .0882002    -0.69   0.493    -.2333652    .1123732
+          x1 │   3.694725   .0867616    42.58   0.000     3.524675    3.864774
+          x2 │   3.716715   .0876762    42.39   0.000     3.544873    3.888557
+       _cons │   .0369852   .0375883     0.98   0.325    -.0366864    .1106569
 ─────────────┴────────────────────────────────────────────────────────────────
+Note: 6 failures and 4 successes completely determined.
 </pre>
 <pre class='stata'>. est store logit2
 </pre>
+<blockquote>
+<p>Note that the coefficients for <span class="math inline">\(x_1\)</span> in the two models are rather different, even though <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are, by definition, uncorrelated.</p>
+</blockquote>
 <pre class='stata'>. estimates table logit1 logit2, b(%7.4f) star // table comparing estimates
 
 ─────────────┬──────────────────────────
     Variable │   logit1       logit2    
 ─────────────┼──────────────────────────
-          x1 │  1.2826***    1.8027***  
-          x2 │               1.6447***  
-       _cons │  0.0044      -0.0605     
+          x1 │  1.5296***    3.6947***  
+          x2 │               3.7167***  
+       _cons │  0.0205       0.0370     
 ─────────────┴──────────────────────────
 legend: * p&lt;0.05; ** p&lt;0.01; *** p&lt;0.001
 </pre>
 <h1 id="references">References</h1>
-<p>I’ve been inspired in this disussion by Jonathan Bartlett’s discussion of these issues: <a href="https://thestatsgeek.com/2017/05/11/odds-ratios-collapsibility-marginal-vs-conditional-gee-vs-glmms/">https://thestatsgeek.com/2017/05/11/odds-ratios-collapsibility-marginal-vs-conditional-gee-vs-glmms/</a></p>
+<p>Allison, P. D. (1999). Comparing logit and probit coefficients across groups. <em>Sociological Methods and Research</em>. <a href="https://doi.org/10.1177/0049124199028002003">https://doi.org/10.1177/0049124199028002003</a></p>
 </body>
 </html>
