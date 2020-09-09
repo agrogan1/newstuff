@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <meta name="dcterms.date" content="2020-09-09" />
+  <title>A Review of Descriptive Statistics and An Introduction to R</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="SW_670_Intro_to_R_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="SW_670_Intro_to_R_files/reveal.js-3.3.0.1/css/theme/white.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <link href="SW_670_Intro_to_R_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="SW_670_Intro_to_R_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+    <script src="SW_670_Intro_to_R_files/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+    <script src="SW_670_Intro_to_R_files/plotly-binding-4.9.2.1/plotly.js"></script>
+    <script src="SW_670_Intro_to_R_files/typedarray-0.1/typedarray.min.js"></script>
+    <script src="SW_670_Intro_to_R_files/jquery-1.11.3/jquery.min.js"></script>
+    <link href="SW_670_Intro_to_R_files/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="SW_670_Intro_to_R_files/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+    <link href="SW_670_Intro_to_R_files/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="SW_670_Intro_to_R_files/plotly-main-1.52.2/plotly-latest.min.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">A Review of Descriptive Statistics and An Introduction to R</h1>
+    <h2 class="author">Andy Grogan-Kaylor</h2>
+    <h3 class="date">September 09, 2020</h3>
+</section>
+
+<section id="why-r" class="slide level2">
+<h2>Why R?</h2>
+<ul>
+<li class="fragment">Open source</li>
+<li class="fragment">World wide community</li>
+<li class="fragment">Free</li>
+<li class="fragment">Used by organizations like Google, <em>New York Times</em>, <em>Financial Times</em></li>
+</ul>
+<blockquote>
+<p>Let’s make sure we understand installing R, and calling libraries.</p>
+</blockquote>
+</section>
+<section id="why-r-2" class="slide level2">
+<h2>Why R? (2)</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(plotly) <span class="co"># this is a helpful comment</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>p &lt;-<span class="st"> </span><span class="kw">plot_ly</span>(GSS2014, <span class="co"># the data I am using</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>             <span class="dt">x =</span> <span class="op">~</span>coninc, <span class="co"># income in CONSTANT $</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>             <span class="dt">y =</span> <span class="op">~</span>depress, <span class="co"># depression</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>             <span class="dt">color =</span> <span class="op">~</span>poorhealth, <span class="co"># color by poorhealth</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>             <span class="dt">z =</span> <span class="op">~</span>poorhealth, <span class="co"># poor health</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>             <span class="dt">type =</span> <span class="st">&quot;scatter3d&quot;</span>, <span class="co"># 3D scatterplot</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>             <span class="dt">mode =</span> <span class="st">&quot;markers&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-d595f20af673a17fe1c3" style="width:100%;height:400px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d595f20af673a17fe1c3">{"x":{"visdat":{"518792ef1a9":["function () ","plotlyVisDat"]},"cur_data":"518792ef1a9","attrs":{"518792ef1a9":{"x":{},"y":{},"z":{},"mode":"markers","color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter3d"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"coninc"},"yaxis":{"title":"depress"},"zaxis":{"title":"poorhealth"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[60967.5,160742.21785,17551.25,17551.25,369.5,17551.25,33255,60967.5,160742.21785,24017.5,160742.21785,88680,33255,40645,73900,88680,27712.5,73900,60967.5,4803.5,60967.5,15703.75,73900,160742.21785,160742.21785,160742.21785,40645,40645,33255,10161.25,27712.5,88680,27712.5,60967.5,103460,20322.5,20322.5,49882.5,160742.21785,20322.5,49882.5,60967.5,160742.21785,88680,73900,49882.5,103460,24017.5,40645,20322.5,73900,20322.5,40645,49882.5,10161.25,60967.5,49882.5,20322.5,24017.5,20322.5,33255,24017.5,33255,49882.5,4803.5,73900,60967.5,27712.5,17551.25,160742.21785,40645,40645,8313.75,103460,40645,40645,15703.75,40645,17551.25,73900,33255,49882.5,13856.25,49882.5,60967.5,20322.5,60967.5,73900,103460,40645,40645,40645,160742.21785,160742.21785,20322.5,5542.5,8313.75,33255,60967.5,2586.5,160742.21785,103460,103460,73900,60967.5,369.5,4064.5,40645,160742.21785,49882.5,160742.21785,160742.21785,160742.21785,160742.21785,160742.21785,60967.5,160742.21785,103460,88680,40645,24017.5,60967.5,27712.5,73900,160742.21785,160742.21785,103460,160742.21785,24017.5,73900,73900,33255,160742.21785,73900,27712.5,60967.5,160742.21785,160742.21785,27712.5,40645,49882.5,103460,160742.21785,160742.21785,60967.5,24017.5,15703.75,20322.5,103460,60967.5,60967.5,73900,160742.21785,160742.21785,160742.21785,160742.21785,73900,73900,60967.5,160742.21785,49882.5,33255,160742.21785,33255,60967.5,40645,73900,73900,49882.5,88680,20322.5,40645,49882.5,60967.5,88680,160742.21785,73900,73900,49882.5,60967.5,160742.21785,4803.5,33255,33255,13856.25,103460,73900,60967.5,12008.75,160742.21785,160742.21785,40645,49882.5,160742.21785,103460,73900,160742.21785,73900,15703.75,33255,4803.5,6651,160742.21785,49882.5,40645,73900,24017.5,33255,6651,49882.5,73900,27712.5,5542.5,73900,20322.5,33255,103460,160742.21785,24017.5,103460,49882.5,49882.5,17551.25,49882.5,33255,33255,88680,6651,24017.5,13856.25,20322.5,17551.25,20322.5,49882.5,103460,88680,33255,49882.5,49882.5,6651,24017.5,73900,12008.75,60967.5,8313.75,49882.5,49882.5,12008.75,49882.5,73900,49882.5,24017.5,160742.21785,160742.21785,33255,8313.75,24017.5,49882.5,27712.5,8313.75,24017.5,33255,27712.5,8313.75,40645,49882.5,33255,73900,15703.75,5542.5,60967.5,60967.5,60967.5,160742.21785,160742.21785,40645,73900,33255,27712.5,49882.5,103460,88680,73900,33255,20322.5,160742.21785,20322.5,40645,27712.5,24017.5,27712.5,8313.75,49882.5,33255,13856.25,4064.5,103460,73900,33255,73900,103460,49882.5,88680,17551.25,40645,17551.25,160742.21785,73900,160742.21785,49882.5,60967.5,88680,73900,40645,49882.5,40645,40645,33255,20322.5,24017.5,40645,20322.5,160742.21785,49882.5,33255,73900,73900,27712.5,15703.75,10161.25,88680,160742.21785,73900,8313.75,10161.25,40645,40645,20322.5,33255,24017.5,8313.75,24017.5,103460,20322.5,60967.5,88680,160742.21785,8313.75,49882.5,49882.5,27712.5,49882.5,40645,60967.5,27712.5,20322.5,73900,33255,24017.5,49882.5,17551.25,20322.5,27712.5,27712.5,13856.25,160742.21785,49882.5,10161.25,88680,49882.5,4803.5,49882.5,60967.5,4064.5,73900,40645,24017.5,33255,60967.5,160742.21785,73900,40645,49882.5,160742.21785,160742.21785,20322.5,15703.75,40645,10161.25,88680,24017.5,8313.75,2586.5,24017.5,20322.5,160742.21785,40645,40645,1478,33255,27712.5,24017.5,15703.75,103460,160742.21785,40645,160742.21785,27712.5,160742.21785,160742.21785,88680,40645,40645,24017.5,88680,160742.21785,60967.5,49882.5,49882.5,27712.5,60967.5,17551.25,60967.5,40645,160742.21785,103460,24017.5,15703.75,24017.5,49882.5,33255,73900,160742.21785,33255,8313.75,10161.25,33255,40645,1478,24017.5,40645,88680,40645,6651,20322.5,40645,10161.25,49882.5,17551.25,73900,60967.5,40645,15703.75,160742.21785,12008.75,60967.5,6651,24017.5,160742.21785,49882.5,13856.25,73900,27712.5,49882.5,73900,13856.25,15703.75,27712.5,73900,8313.75,49882.5,4064.5,103460,10161.25,20322.5,4803.5,24017.5,369.5,49882.5,160742.21785,8313.75,40645,20322.5,24017.5,17551.25,20322.5,49882.5,27712.5,33255,49882.5,33255,27712.5,60967.5,49882.5,33255,40645,160742.21785,160742.21785,15703.75,33255,33255,15703.75,40645,27712.5,73900,33255,73900,103460,40645,40645,24017.5,49882.5,49882.5,40645,27712.5,103460,33255,160742.21785,88680,160742.21785,20322.5,24017.5,60967.5,160742.21785,27712.5,33255,160742.21785,27712.5,73900,88680,60967.5,88680,88680,40645,27712.5,33255,160742.21785,33255,73900,40645,60967.5,49882.5,12008.75,40645,33255,24017.5,4064.5,27712.5,40645,40645,88680,49882.5,73900,33255,103460,40645,12008.75,20322.5,160742.21785,160742.21785,49882.5,88680,88680,88680,40645,49882.5,40645,4803.5,49882.5,60967.5,88680,73900,160742.21785,60967.5,160742.21785,160742.21785,88680,40645,40645,33255,24017.5,49882.5,160742.21785,33255,33255,40645,27712.5,15703.75,49882.5,49882.5,49882.5,160742.21785,17551.25,24017.5,12008.75,40645,49882.5,1478,33255,15703.75,3325.5,40645,12008.75,27712.5,73900,60967.5,3325.5,60967.5,40645,12008.75,49882.5,20322.5,40645,160742.21785,33255,103460,8313.75,73900,88680,49882.5,40645,73900,17551.25,33255,15703.75,49882.5,27712.5,49882.5,15703.75,73900,17551.25,60967.5,33255,8313.75,20322.5,33255,49882.5,12008.75,20322.5,10161.25,20322.5,60967.5,15703.75,12008.75,103460,49882.5,15703.75,33255,24017.5,20322.5,88680,24017.5,160742.21785,73900,160742.21785,49882.5,73900,40645,17551.25,40645,10161.25,49882.5,24017.5,40645,17551.25,24017.5,60967.5,27712.5,1478,10161.25,73900,27712.5,73900,27712.5,60967.5,17551.25,20322.5,40645,20322.5,17551.25,27712.5,88680,24017.5,40645,88680,49882.5,27712.5,33255,17551.25,60967.5,40645,24017.5,17551.25,20322.5,49882.5,160742.21785,160742.21785,49882.5,49882.5,33255,88680,160742.21785,33255,160742.21785,24017.5,20322.5,27712.5,40645,17551.25,49882.5,17551.25,17551.25,73900,40645,88680,88680,60967.5,49882.5,49882.5,49882.5,5542.5,24017.5,33255,15703.75,40645,40645,40645,27712.5,103460,10161.25,15703.75,24017.5,13856.25,40645,73900,27712.5,40645,103460,6651,88680,40645,49882.5,49882.5,33255,160742.21785,60967.5,60967.5,15703.75,12008.75,40645,20322.5,33255,60967.5,20322.5,40645,24017.5,73900,40645,5542.5,160742.21785,17551.25,13856.25,369.5,49882.5,24017.5,24017.5,24017.5,49882.5,60967.5,33255,24017.5,60967.5,73900,33255,33255,33255,49882.5,20322.5],"y":[2,1,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,2,2,2,1,2,2,2,2,1,2,1,1,2,2,2,2,2,1,2,1,1,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,1,2,2,2,2,2,2,2,1,2,1,2,1,2,2,2,2,2,2,1,2,2,2,1,2,2,2,1,1,2,2,2,2,1,2,2,2,1,2,2,2,2,2,2,2,2,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,2,2,2,2,1,2,2,2,2,1,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,1,2,2,2,1,2,2,2,2,1,1,2,1,1,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,2,1,2,2,2,2,1,1,1,1,1,1,2,2,2,2,1,2,2,1,2,2,2,2,1,2,2,2,2,1,2,2,2,1,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,2,2,1,2,2,2,2,2,2,1,1,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,1,2,2,2,2,1,2,2,2,2,2,1,2,2,2,2,2,1,2,2,1,1,2,2,2,2,2,2,2,2,2,1,2,1,1,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,1,2,2,2,2,2,2,2,2,2,2,1,2,2,2,2,2,1,2,2,2,1,1,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,1,2,2,1,1,2,2,2,2,2,1,2,2,1,2,2,2,2,2,2,2,2,2,1,2,1,2,2,2,2,2,2,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,1,2,2,2,1,1,1,2,2,2,2,1,2,2,2,2,2,2,2,2,1,2,2,1,2,2,1,1,2,2,2,2,2,2,1,2,2,2,2,1,2,2,1,2,2,2,2,2,2,2,1,2,2,2,2,2,1,2,1,2,2,2,2,2,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,2,1,2,2,2,2,2,2,2,2,2,2,2],"z":[1,1,2,1,1,2,1,2,2,3,2,1,2,1,1,2,1,3,2,1,2,2,1,3,3,1,2,2,2,2,2,1,3,1,1,1,1,2,2,2,2,1,2,1,2,2,1,3,1,2,3,3,2,1,3,2,2,3,2,3,3,3,1,1,3,3,2,2,3,2,2,1,2,1,2,3,2,2,2,2,3,3,2,1,2,2,1,2,3,2,1,3,1,1,2,1,3,2,2,2,2,1,1,2,2,3,1,2,2,3,1,1,2,1,2,2,2,1,3,2,2,2,2,1,2,1,1,1,1,2,1,2,2,2,2,3,2,1,1,2,1,2,2,1,2,2,2,2,1,2,2,2,2,1,2,2,1,2,3,2,3,1,2,1,1,2,2,3,1,3,3,3,2,2,1,1,1,2,2,2,1,1,2,3,3,1,1,2,2,3,3,2,1,1,2,1,1,2,3,2,2,2,1,2,2,1,2,3,2,2,3,2,3,1,2,2,2,2,4,2,3,1,2,2,2,3,2,1,2,3,2,2,4,1,2,1,2,1,2,2,2,1,2,1,1,1,1,2,1,2,1,2,2,1,2,2,2,2,1,1,2,2,2,3,3,2,3,2,2,3,1,2,1,2,1,2,1,2,2,3,2,1,2,4,1,2,2,2,1,3,2,2,1,1,3,2,1,1,2,2,2,3,2,1,1,3,1,1,1,3,2,2,2,3,2,2,2,2,2,3,2,2,2,2,3,3,1,1,3,1,1,1,2,2,2,1,2,2,2,2,2,1,1,2,2,2,1,2,2,2,2,1,3,2,2,3,2,2,1,2,2,1,3,2,2,1,1,4,1,2,4,2,2,3,2,2,2,3,3,1,1,2,3,1,2,2,3,1,1,1,3,1,3,2,2,1,2,2,3,3,2,1,1,1,2,1,3,1,2,2,1,2,1,1,1,2,2,2,3,3,1,3,1,3,2,3,2,1,2,2,1,2,2,1,3,3,1,1,4,2,2,2,2,2,2,2,3,1,2,2,2,3,1,1,2,3,3,2,2,2,2,2,3,1,1,1,2,2,2,2,1,2,1,2,3,3,3,1,1,1,2,2,2,1,2,2,2,2,1,2,1,1,2,2,3,2,1,1,3,2,1,3,2,1,2,2,2,1,3,1,2,3,3,2,2,2,2,1,2,2,2,2,1,1,1,3,1,1,2,2,2,2,1,1,3,3,2,2,3,3,1,2,3,3,2,3,1,1,2,2,2,3,3,2,2,2,1,2,1,3,2,2,1,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,1,1,3,1,3,2,2,1,2,2,2,2,1,2,2,3,2,2,2,2,1,2,1,2,2,1,2,2,2,1,3,1,2,2,1,3,4,3,2,3,1,1,2,2,2,1,1,2,3,3,2,1,1,2,2,1,1,3,2,3,4,1,1,1,3,3,2,2,1,2,1,2,3,1,2,2,1,3,1,2,2,1,2,2,2,1,1,1,1,2,3,2,2,3,2,2,1,1,1,1,3,2,2,1,2,2,2,4,2,4,1,2,2,1,3,2,2,2,2,2,2,2,2,2,1,2,2,1,2,3,2,2,2,2,1,1,1,1,2,2,2,2,3,2,2,2,1,1,2,1,2,2,3,2,2,1,2,3,1,2,1,2,2,2,2,1,2,2,2,3,1,2,3,1,1,1,1,2,1,2,1,2,3,4,2,3,1,1,2,1,1,2,2,2,2,2,1,3,2],"mode":"markers","type":"scatter3d","marker":{"colorbar":{"title":"poorhealth","ticklen":2},"cmin":1,"cmax":4,"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":false,"color":[1,1,2,1,1,2,1,2,2,3,2,1,2,1,1,2,1,3,2,1,2,2,1,3,3,1,2,2,2,2,2,1,3,1,1,1,1,2,2,2,2,1,2,1,2,2,1,3,1,2,3,3,2,1,3,2,2,3,2,3,3,3,1,1,3,3,2,2,3,2,2,1,2,1,2,3,2,2,2,2,3,3,2,1,2,2,1,2,3,2,1,3,1,1,2,1,3,2,2,2,2,1,1,2,2,3,1,2,2,3,1,1,2,1,2,2,2,1,3,2,2,2,2,1,2,1,1,1,1,2,1,2,2,2,2,3,2,1,1,2,1,2,2,1,2,2,2,2,1,2,2,2,2,1,2,2,1,2,3,2,3,1,2,1,1,2,2,3,1,3,3,3,2,2,1,1,1,2,2,2,1,1,2,3,3,1,1,2,2,3,3,2,1,1,2,1,1,2,3,2,2,2,1,2,2,1,2,3,2,2,3,2,3,1,2,2,2,2,4,2,3,1,2,2,2,3,2,1,2,3,2,2,4,1,2,1,2,1,2,2,2,1,2,1,1,1,1,2,1,2,1,2,2,1,2,2,2,2,1,1,2,2,2,3,3,2,3,2,2,3,1,2,1,2,1,2,1,2,2,3,2,1,2,4,1,2,2,2,1,3,2,2,1,1,3,2,1,1,2,2,2,3,2,1,1,3,1,1,1,3,2,2,2,3,2,2,2,2,2,3,2,2,2,2,3,3,1,1,3,1,1,1,2,2,2,1,2,2,2,2,2,1,1,2,2,2,1,2,2,2,2,1,3,2,2,3,2,2,1,2,2,1,3,2,2,1,1,4,1,2,4,2,2,3,2,2,2,3,3,1,1,2,3,1,2,2,3,1,1,1,3,1,3,2,2,1,2,2,3,3,2,1,1,1,2,1,3,1,2,2,1,2,1,1,1,2,2,2,3,3,1,3,1,3,2,3,2,1,2,2,1,2,2,1,3,3,1,1,4,2,2,2,2,2,2,2,3,1,2,2,2,3,1,1,2,3,3,2,2,2,2,2,3,1,1,1,2,2,2,2,1,2,1,2,3,3,3,1,1,1,2,2,2,1,2,2,2,2,1,2,1,1,2,2,3,2,1,1,3,2,1,3,2,1,2,2,2,1,3,1,2,3,3,2,2,2,2,1,2,2,2,2,1,1,1,3,1,1,2,2,2,2,1,1,3,3,2,2,3,3,1,2,3,3,2,3,1,1,2,2,2,3,3,2,2,2,1,2,1,3,2,2,1,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,1,1,3,1,3,2,2,1,2,2,2,2,1,2,2,3,2,2,2,2,1,2,1,2,2,1,2,2,2,1,3,1,2,2,1,3,4,3,2,3,1,1,2,2,2,1,1,2,3,3,2,1,1,2,2,1,1,3,2,3,4,1,1,1,3,3,2,2,1,2,1,2,3,1,2,2,1,3,1,2,2,1,2,2,2,1,1,1,1,2,3,2,2,3,2,2,1,1,1,1,3,2,2,1,2,2,2,4,2,4,1,2,2,1,3,2,2,2,2,2,2,2,2,2,1,2,2,1,2,3,2,2,2,2,1,1,1,1,2,2,2,2,3,2,2,2,1,1,2,1,2,2,3,2,2,1,2,3,1,2,1,2,2,2,2,1,2,2,2,3,1,2,3,1,1,1,1,2,1,2,1,2,3,4,2,3,1,1,2,1,1,2,2,2,2,2,1,3,2],"line":{"colorbar":{"title":"","ticklen":2},"cmin":1,"cmax":4,"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":false,"color":[1,1,2,1,1,2,1,2,2,3,2,1,2,1,1,2,1,3,2,1,2,2,1,3,3,1,2,2,2,2,2,1,3,1,1,1,1,2,2,2,2,1,2,1,2,2,1,3,1,2,3,3,2,1,3,2,2,3,2,3,3,3,1,1,3,3,2,2,3,2,2,1,2,1,2,3,2,2,2,2,3,3,2,1,2,2,1,2,3,2,1,3,1,1,2,1,3,2,2,2,2,1,1,2,2,3,1,2,2,3,1,1,2,1,2,2,2,1,3,2,2,2,2,1,2,1,1,1,1,2,1,2,2,2,2,3,2,1,1,2,1,2,2,1,2,2,2,2,1,2,2,2,2,1,2,2,1,2,3,2,3,1,2,1,1,2,2,3,1,3,3,3,2,2,1,1,1,2,2,2,1,1,2,3,3,1,1,2,2,3,3,2,1,1,2,1,1,2,3,2,2,2,1,2,2,1,2,3,2,2,3,2,3,1,2,2,2,2,4,2,3,1,2,2,2,3,2,1,2,3,2,2,4,1,2,1,2,1,2,2,2,1,2,1,1,1,1,2,1,2,1,2,2,1,2,2,2,2,1,1,2,2,2,3,3,2,3,2,2,3,1,2,1,2,1,2,1,2,2,3,2,1,2,4,1,2,2,2,1,3,2,2,1,1,3,2,1,1,2,2,2,3,2,1,1,3,1,1,1,3,2,2,2,3,2,2,2,2,2,3,2,2,2,2,3,3,1,1,3,1,1,1,2,2,2,1,2,2,2,2,2,1,1,2,2,2,1,2,2,2,2,1,3,2,2,3,2,2,1,2,2,1,3,2,2,1,1,4,1,2,4,2,2,3,2,2,2,3,3,1,1,2,3,1,2,2,3,1,1,1,3,1,3,2,2,1,2,2,3,3,2,1,1,1,2,1,3,1,2,2,1,2,1,1,1,2,2,2,3,3,1,3,1,3,2,3,2,1,2,2,1,2,2,1,3,3,1,1,4,2,2,2,2,2,2,2,3,1,2,2,2,3,1,1,2,3,3,2,2,2,2,2,3,1,1,1,2,2,2,2,1,2,1,2,3,3,3,1,1,1,2,2,2,1,2,2,2,2,1,2,1,1,2,2,3,2,1,1,3,2,1,3,2,1,2,2,2,1,3,1,2,3,3,2,2,2,2,1,2,2,2,2,1,1,1,3,1,1,2,2,2,2,1,1,3,3,2,2,3,3,1,2,3,3,2,3,1,1,2,2,2,3,3,2,2,2,1,2,1,3,2,2,1,2,2,2,2,1,1,2,2,2,2,2,2,2,2,2,2,1,1,3,1,3,2,2,1,2,2,2,2,1,2,2,3,2,2,2,2,1,2,1,2,2,1,2,2,2,1,3,1,2,2,1,3,4,3,2,3,1,1,2,2,2,1,1,2,3,3,2,1,1,2,2,1,1,3,2,3,4,1,1,1,3,3,2,2,1,2,1,2,3,1,2,2,1,3,1,2,2,1,2,2,2,1,1,1,1,2,3,2,2,3,2,2,1,1,1,1,3,2,2,1,2,2,2,4,2,4,1,2,2,1,3,2,2,2,2,2,2,2,2,2,1,2,2,1,2,3,2,2,2,2,1,1,1,1,2,2,2,2,3,2,2,2,1,1,2,1,2,2,3,2,2,1,2,3,1,2,1,2,2,2,2,1,2,2,2,3,1,2,3,1,1,1,1,2,1,2,1,2,3,4,2,3,1,1,2,1,1,2,2,2,2,2,1,3,2]}},"frame":null},{"x":[369.5,160742.21785],"y":[1,2],"type":"scatter3d","mode":"markers","opacity":0,"hoverinfo":"none","showlegend":false,"marker":{"colorbar":{"title":"poorhealth","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"cmin":1,"cmax":4,"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"color":[1,4],"line":{"color":"rgba(255,127,14,1)"}},"z":[1,4],"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</section>
+<section id="what-are-we-doing" class="slide level2">
+<h2>What are we doing???</h2>
+<ul>
+<li class="fragment">Start R</li>
+<li class="fragment">Get some data in it</li>
+<li class="fragment">A few descriptive statistics</li>
+<li class="fragment">Some graphs</li>
+</ul>
+</section>
+<section id="using-general-social-survey-gss-for-example" class="slide level2">
+<h2>Using General Social Survey (GSS) for Example</h2>
+<ul>
+<li class="fragment"><p>General Social Survey: Nationally representative sample collected annually or biannually from 1972 to 2010.</p></li>
+<li class="fragment"><p>When downloading data, download data from CANVAS to Mac or Windows desktop, then start RStudio to open with R.</p></li>
+</ul>
+</section>
+<section id="data-are-just-rows-and-columns" class="slide level2">
+<h2>Data Are Just Rows and Columns</h2>
+<p>We use both the codebook and data set.</p>
+<p><img src="SW_670_Intro_to_R_files/figure-revealjs/unnamed-chunk-7-1.png" width="768" /></p>
+</section>
+<section id="scripting-r-syntax" class="slide level2">
+<h2>Scripting (R Syntax)</h2>
+<p><img src="SW_670_Intro_to_R_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" /></p>
+</section>
+<section id="get-data-script" class="slide level2">
+<h2>Get Data (Script)</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># local file</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># make sure you are in the right directory</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># Menu: Session | Set Working Directory</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="kw">load</span>(<span class="st">&quot;GSS2014.Rdata&quot;</span>) </span></code></pre></div>
+<p>Menu option as well</p>
+<ul>
+<li class="fragment">Loading your data is sometimes the hardest part.</li>
+<li class="fragment">Load is for data that is ALREADY IN R FORMAT!</li>
+<li class="fragment">Pay attention to WHERE your data and scripts live.</li>
+<li class="fragment">Note that R uses forward slashes: /</li>
+</ul>
+</section>
+<section id="the-r-interface" class="slide level2">
+<h2>The R Interface</h2>
+<p><img src="SW_670_Intro_to_R_files/figure-revealjs/unnamed-chunk-11-1.png" width="768" /></p>
+</section>
+<section id="measures-of-central-tendency" class="slide level2">
+<h2>Measures of Central Tendency</h2>
+<ul>
+<li class="fragment">What are the mean, median, and mode? Why are they different?</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">summary</span>(GSS2014<span class="op">$</span>coninc)</span></code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA&#39;s 
+##    369.5  17551.2  33255.0  48603.3  60967.5 160742.2      224</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">library</span>(psych) <span class="co"># to load psych</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">describe</span>(GSS2014<span class="op">$</span>coninc)</span></code></pre></div>
+<pre><code>##    vars    n     mean       sd median  trimmed      mad   min      max    range
+## X1    1 2314 48603.29 43340.89  33255 40902.37 28760.59 369.5 160742.2 160372.7
+##    skew kurtosis     se
+## X1 1.42     1.34 900.98</code></pre>
+</section>
+<section id="we-end-with-a-graph" class="slide level2">
+<h2>We End With a Graph</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">hist</span>(GSS2014<span class="op">$</span>coninc,</span>
+<span id="cb7-2"><a href="#cb7-2"></a>     <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>) <span class="co"># histogram of the income variable</span></span></code></pre></div>
+<p><img src="SW_670_Intro_to_R_files/figure-revealjs/unnamed-chunk-14-1.png" width="768" /></p>
+</section>
+<section id="and-another" class="slide level2">
+<h2>And Another</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">pie</span>(<span class="kw">table</span>(GSS2014<span class="op">$</span>sex),</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>),</span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;gold&quot;</span>))</span></code></pre></div>
+<p><img src="SW_670_Intro_to_R_files/figure-revealjs/unnamed-chunk-15-1.png" width="768" /></p>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions?</h2>
+</section>
+    </div>
+  </div>
+
+  <script src="SW_670_Intro_to_R_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="SW_670_Intro_to_R_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        chalkboard: {
+          toggleNotesButton: true,
+          toggleChalkboardButton: true,
+          theme: 'chalkboard',
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'SW_670_Intro_to_R_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: 'SW_670_Intro_to_R_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
