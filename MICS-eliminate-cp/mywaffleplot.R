@@ -6,14 +6,16 @@ library(ggthemes)
 
 library(waffle)
 
-parts <- c(`Not Spanked Aggressive` = 18, 
-           `Not Spanked Not Aggressive` = 39, 
-           `Spanked Aggressive` = 14,
-           `Not Aggressive If Spanking Eliminated` = 3,
-           `Spanked Not Aggressive` = 26)
+parts <- c(`Not Spanked And Displays Aggression` = 18, 
+           `Not Spanked And Does Not Display Aggression` = 39, 
+           `Spanked And Displays Aggression` = 14,
+           `Would Not Display Aggression If Spanking Eliminated` = 3,
+           `Spanked And Does Not Display Aggression` = 26)
 
 waffle(parts) + 
-  scale_fill_economist(name="Group") +
+  # scale_fill_economist(name="Group") +
+  scale_fill_tableau(name="Group",
+                     direction = -1) +
   labs(title = "Informative Title",
        subtitle = "DRAFT",
        caption = "Double check calculations")
