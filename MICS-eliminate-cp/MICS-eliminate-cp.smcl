@@ -3,30 +3,30 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp/MICS-eliminate-cp.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 8 Sep 2020, 12:01:15
+ {txt}opened on:  {res} 9 Sep 2020, 10:46:10
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 8 Sep 2020
+{res} 9 Sep 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}12:01:15
+{res}10:46:10
 {txt}
 {com}. //_3
 . clear all
 {res}{txt}
-{com}. //_4
+{com}.     
 . set seed 3846
 {txt}
-{com}. //_5
+{com}.     
 . cd "/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp"
 {res}/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp
 {txt}
-{com}. //_6
+{com}. 
 . use "/Users/agrogan/Box Sync/MICS/Data/MICS.dta"
 {txt}
-{com}. //_7
+{com}. //_4
 . tabulate d_phys_spank 
 
    {txt}Selected {c |}
@@ -38,8 +38,8 @@
 {txt}{hline 12}{c +}{hline 35}
       Total {c |}{res}    215,885      100.00
 {txt}
-{com}. //_8
-. melogit ec16 i.d_phys_spank cmale cage || country:
+{com}. //_5
+. melogit ec16 i.d_phys_spank cmale cage || country:    
 {res}{txt}
 Fitting fixed-effects model:
 
@@ -90,8 +90,8 @@ Iteration 8:{space 3}log likelihood = {res:-135349.08}
 {txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {txt}LR test vs. logistic model: {txt}{help j_chibar##|_new:chibar2(01) =}{res} 14163.72{col 55}{txt}Prob >= chibar2 = {res}{col 73}0.0000
 {txt}
-{com}. //_9
-. margins d_phys_spank // predicted probabilities of aggression
+{com}. //_6
+. margins d_phys_spank // predicted probabilities of aggression    
 {res}
 {txt}Predictive margins{col 49}Number of obs{col 67}= {res}   215,885
 {txt}Model VCE{col 14}: {res}OIM
@@ -109,31 +109,31 @@ d_phys_spank {c |}
 {txt}{space 10}1  {c |}{col 14}{res}{space 2} .3979304{col 26}{space 2} .0182745{col 37}{space 1}   21.78{col 46}{space 3}0.000{col 54}{space 4} .3621131{col 67}{space 3} .4337478
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
-{com}. //_10
+{com}. //_7
 . * matrix b = r(b) // get matrix of results
-. //_11
-. * matrix list b  // list it out to double check
-. //_12
+.     
+. * matrix list b  // list it out to double check    
+. //_8
 . display round(.5668 * .3251464  * 100)
 {res}18
 {txt}
-{com}. //_13
+{com}. //_9
 . display 57 - 18
 {res}39
 {txt}
-{com}. //_14
+{com}. //_10
 . display round(.4332 * .3979304 * 100)
 {res}17
 {txt}
-{com}. //_15
+{com}. //_11
 . display 43 - 17
 {res}26
 {txt}
-{com}. //_16
-. display round(.4332 * .3251464  * 100)
+{com}. //_12
+. display round(.4332 * .3251464  * 100)    
 {res}14
 {txt}
-{com}. //_17
+{com}. //_13
 . display 17 - 14 // this many fewer aggressive children / 100
 {res}3
 {txt}
@@ -142,7 +142,7 @@ d_phys_spank {c |}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp/MICS-eliminate-cp.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 8 Sep 2020, 12:03:31
+ {txt}closed on:  {res} 9 Sep 2020, 10:48:37
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

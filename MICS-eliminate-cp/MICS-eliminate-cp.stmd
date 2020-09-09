@@ -14,6 +14,7 @@ geometry: margin=1 in
 
 # Get The Data
 
+```s
     clear all
 	
 	set seed 3846
@@ -21,30 +22,39 @@ geometry: margin=1 in
 	cd "/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp"
 
     use "/Users/agrogan/Box Sync/MICS/Data/MICS.dta"
-	
+```
+
 > Are we using the most *up to date* data?
 	
 # Descriptive Statistics on Physical Punishment
 
+```s
     tabulate d_phys_spank 
-	
+```
+
 # Predict Aggression With A Multilevel Model
 
 > For demonstration purposes, I am only including a *limited* set of covariates. One could--and should--easily include more although including more covariates considerably lengthens the estimation time.
 
-	melogit ec16 i.d_phys_spank cmale cage || country:
+```s
+	melogit ec16 i.d_phys_spank cmale cage || country:	
+```
 	
 # Estimate Margins (Predicted Probabilities of Aggression)
 
-    margins d_phys_spank // predicted probabilities of aggression
+```s
+    margins d_phys_spank // predicted probabilities of aggression	
+```
 
 # Calculations
 
 One could rely on commands such as the one below to do these calculations *on-the-fly*. 
 
+```s
     * matrix b = r(b) // get matrix of results
 	
-    * matrix list b  // list it out to double check
+    * matrix list b  // list it out to double check	
+```
 
 In this example, however, I have hand-coded the calculations, so the calculations may need to be rewritten every time more covariates are added to the model. On the other hand, writing out the calculations explicitly likely increases the transparency of the thought process below.
 	
@@ -54,34 +64,46 @@ In this example, however, I have hand-coded the calculations, so the calculation
 
 $\text{proportion not spanked} * \text{proportion aggressive} * 100$
 
+```s
     display round(.5668 * .3251464  * 100)
+```
 	
 ## Not Aggressive Children Among Not Spanked Children
 
 $\text{number not spanked} - \text{number aggressive}$
-	
+
+```s
 	display 57 - 18
-	
+```	
+
 ## Aggressive Children Among Spanked Children
 
 $\text{proportion spanked} * \text{proportion aggressive} * 100$
 
+```s
     display round(.4332 * .3979304 * 100)
+```
 
 ## Not Aggressive Children Among Spanked Children
 
 $\text{number spanked} - \text{number aggressive}$
 
+```s
     display 43 - 17
+```
 	
 ## Number Aggressive Children Among Spanked Children If They Were Not Spanked
 
-    display round(.4332 * .3251464  * 100)
+```s  
+	display round(.4332 * .3251464  * 100)	
+```
 	
 ## Reduction in Number of Aggressive Children
 
+```s
 	display 17 - 14 // this many fewer aggressive children / 100
-	
+```
+
 # Graph (*DRAFT*)
 
 > Is this the best graph?
