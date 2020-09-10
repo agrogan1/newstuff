@@ -50,7 +50,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 xaringanExtra::use_tile_view()
 
-xaringanExtra::use_slide_tone()
+# xaringanExtra::use_slide_tone()
 
 ```
 
