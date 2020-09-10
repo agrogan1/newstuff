@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp/MICS-eliminate-cp.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 9 Sep 2020, 15:19:07
+ {txt}opened on:  {res}10 Sep 2020, 16:56:39
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 9 Sep 2020
+{res}10 Sep 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}15:19:07
+{res}16:56:39
 {txt}
 {com}. //_3
 . clear all
@@ -142,7 +142,7 @@ d_phys_spank {c |}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp/MICS-eliminate-cp.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 9 Sep 2020, 15:21:49
+ {txt}closed on:  {res}10 Sep 2020, 16:58:56
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
