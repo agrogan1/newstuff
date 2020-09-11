@@ -3,29 +3,12 @@ title: "A Review of Descriptive Statistics and An Introduction to R"
 author: "Andy Grogan-Kaylor"
 date: "`r format(Sys.Date(), format='%B %d, %Y')`"
 output:
-  revealjs::revealjs_presentation:
-    fig_height: 3
-    highlight: haddock
-    incremental: yes
-    reveal_options:
-      chalkboard:
-        theme: chalkboard
-        toggleChalkboardButton: yes
-        toggleNotesButton: yes
-      previewLinks: yes
-      progress: yes
-      slideNumber: yes
-    reveal_plugins:
-    - chalkboard
-    - zoom
-    self_contained: no
-    theme: white
-    transition: convex
   html_document:
     fig_height: 3
     highlight: haddock
     number_sections: yes
     toc: yes
+    toc_float: true
   word_document:
     toc: yes
   pdf_document:
