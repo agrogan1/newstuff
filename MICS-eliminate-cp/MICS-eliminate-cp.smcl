@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp/MICS-eliminate-cp.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}12 Sep 2020, 18:16:17
+ {txt}opened on:  {res}13 Sep 2020, 12:15:26
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}12 Sep 2020
+{res}13 Sep 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}18:16:17
+{res}12:15:26
 {txt}
 {com}. //_3
 . clear all
@@ -114,27 +114,27 @@ d_phys_spank {c |}
 .     
 . * matrix list b  // list it out to double check    
 . //_8
-. display round(.5668 * .3251464  * 100)
+. display round(.5668 * .3251464  * 100) // 18
 {res}18
 {txt}
 {com}. //_9
-. display 57 - 18
+. display 57 - 18 // 39
 {res}39
 {txt}
 {com}. //_10
-. display round(.4332 * .3979304 * 100)
+. display round(.4332 * .3979304 * 100) // 17
 {res}17
 {txt}
 {com}. //_11
-. display 43 - 17
+. display 43 - 17 // 26
 {res}26
 {txt}
 {com}. //_12
-. display round(.4332 * .3251464  * 100)    
+. display round(.4332 * .3251464  * 100) // 14
 {res}14
 {txt}
 {com}. //_13
-. display 17 - 14 // this many fewer aggressive children / 100
+. display 17 - 14 // this many fewer aggressive children / 100 (3)
 {res}3
 {txt}
 {com}. //_^
@@ -142,7 +142,7 @@ d_phys_spank {c |}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp/MICS-eliminate-cp.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}12 Sep 2020, 18:18:43
+ {txt}closed on:  {res}13 Sep 2020, 12:17:41
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

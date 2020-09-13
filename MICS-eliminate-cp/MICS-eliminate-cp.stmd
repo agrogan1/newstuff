@@ -67,7 +67,7 @@ In this example, however, I have hand-coded the calculations, so the calculation
 $\text{proportion not spanked} * \text{proportion aggressive} * 100$
 
 ```s
-    display round(.5668 * .3251464  * 100)
+    display round(.5668 * .3251464  * 100) // 18
 ```
 	
 ## Not Aggressive Children Among Not Spanked Children
@@ -75,7 +75,7 @@ $\text{proportion not spanked} * \text{proportion aggressive} * 100$
 $\text{number not spanked} - \text{number aggressive}$
 
 ```s
-	display 57 - 18
+	display 57 - 18 // 39
 ```	
 
 ## Aggressive Children Among Spanked Children
@@ -83,7 +83,7 @@ $\text{number not spanked} - \text{number aggressive}$
 $\text{proportion spanked} * \text{proportion aggressive} * 100$
 
 ```s
-    display round(.4332 * .3979304 * 100)
+    display round(.4332 * .3979304 * 100) // 17
 ```
 
 ## Not Aggressive Children Among Spanked Children
@@ -91,19 +91,19 @@ $\text{proportion spanked} * \text{proportion aggressive} * 100$
 $\text{number spanked} - \text{number aggressive}$
 
 ```s
-    display 43 - 17
+    display 43 - 17 // 26
 ```
 	
 ## Number Aggressive Children Among Spanked Children If They Were Not Spanked
 
 ```s  
-	display round(.4332 * .3251464  * 100)	
+	display round(.4332 * .3251464  * 100) // 14
 ```
 	
 ## Reduction in Number of Aggressive Children
 
 ```s
-	display 17 - 14 // this many fewer aggressive children / 100
+	display 17 - 14 // this many fewer aggressive children / 100 (3)
 ```
 
 # Graph (*DRAFT*)
