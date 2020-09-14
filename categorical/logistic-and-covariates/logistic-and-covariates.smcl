@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-and-covariates/logistic-and-covariates.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 9 Sep 2020, 09:58:09
+ {txt}opened on:  {res}14 Sep 2020, 11:05:39
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 9 Sep 2020
+{res}14 Sep 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}09:58:09
+{res}11:05:39
 {txt}
 {com}. //_3
 . clear all
@@ -56,7 +56,7 @@ now 10,000
 . generate e = rnormal(0, .5) // normally distributed error
 {txt}
 {com}. //_14
-. corr x1 x2 // x1 and x2 are uncorrelated
+. corr x1 x2 // x1 and x2 are *mostly* uncorrelated
 {txt}(obs=10,000)
 
              {c |}       x1       x2
@@ -195,7 +195,7 @@ Iteration 4:{space 3}log likelihood = {res:-2285.2877}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-and-covariates/logistic-and-covariates.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 9 Sep 2020, 09:58:12
+ {txt}closed on:  {res}14 Sep 2020, 11:05:42
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

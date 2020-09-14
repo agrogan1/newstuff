@@ -58,17 +58,21 @@ While the mathematics of this relationship are somewhat difficult--though clearl
 	
 > Since they were generated independently, $x_1$ and $x_2$ are relatively uncorrelated.
 	
-    corr x1 x2 // x1 and x2 are uncorrelated
-	
+    corr x1 x2 // x1 and x2 are *mostly* uncorrelated
+		
+# Linear Regression
+
 	generate y1 = x1 + x2 + e // dependent variable
 	
-# Linear Regression
-	
 	regress y1 x1
+	
+> A 1 unit change in $x_1$ is associated with a 1.02 change in $y_1$.
 	
 	est store OLS1 // store estimates
 	
 	regress y1 x1 x2 
+	
+> A 1 unit change in $x_1$ is associated with a 1.01 change in $y_1$. The slight change in coefficient for $x_1$ is likely due to the very slight correlation between $x_1$ and $x_2$.
 	
 	est store OLS2 // store estimates
 	
@@ -84,13 +88,17 @@ While the mathematics of this relationship are somewhat difficult--though clearl
 	
 	logit y2 x1
 	
+> A 1 unit change in $x_1$ is associated with a 1.53 change in the *log odds* of $y_2$.
+	
 	est store logit1
 	
     logit y2 x1 x2
 	
+> A 1 unit change in $x_1$ is associated with a 3.69 change in the *log odds* of $y_2$.
+
 	est store logit2
 	
-> Note that the coefficients for $x_1$ in the two models are rather different, even though $x_1$ and $x_2$ are, by definition, uncorrelated.
+> Note that the coefficients for $x_1$ in the two models are rather different, even though $x_1$ and $x_2$ have, by definition, a very very small correlation.
 	
 	estimates table logit1 logit2, b(%7.4f) star // table comparing estimates
 
