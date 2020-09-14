@@ -6,6 +6,10 @@
 geometry: margin=1 in
 ---
 
+# Background
+
+*Risks* and *Odds* are different but related quantities. It it important to understand how each is mathematically defined and to understand what each quantity implies. In some cases, the *odds* may overstate the *risk*.
+
 # Setup
 
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -74,7 +78,7 @@ $$
 
 Let's look at our table of information. 
 
-> Notice how the odds start to overstate the risk, as the risk becomes more common.
+> <mark>Notice how the odds start to overstate the risk, as the risk becomes more common.</mark>
 
     list event_happened ///
 	risk_event_happened ///

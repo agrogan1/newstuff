@@ -58,8 +58,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Risks and Odds</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">14 Jul 2020 11:53:37</p>
+<p class="date">14 Sep 2020 10:20:30</p>
 </header>
+<h1 id="background">Background</h1>
+<p><em>Risks</em> and <em>Odds</em> are different but related quantities. It it important to understand how each is mathematically defined and to understand what each quantity implies. In some cases, the <em>odds</em> may overstate the <em>risk</em>.</p>
 <h1 id="setup">Setup</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <pre class='stata'>. clear all
@@ -129,7 +131,7 @@ number of observations (_N) was 0, now 10
 <h1 id="look-at-our-table-of-information">Look At Our Table Of Information</h1>
 <p>Let’s look at our table of information.</p>
 <blockquote>
-<p>Notice how the odds start to overstate the risk, as the risk becomes more common.</p>
+<p><mark>Notice how the odds start to overstate the risk, as the risk becomes more common.</mark></p>
 </blockquote>
 <pre class='stata'>. list event_happened ///
 > risk_event_happened ///
