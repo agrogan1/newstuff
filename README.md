@@ -29,6 +29,10 @@ New stuff that is going to get moved somewhere else at some point.
 * [Multilevel Models with the Von Guttenberg Tree Data](https://agrogan1.github.io/newstuff/mlm-gutten/mlm-gutten.html) [[PDF](https://agrogan1.github.io/newstuff/mlm-gutten/mlm-gutten.pdf)]
 * [Calculating R<sup>2</sup> For A Multilevel Model](https://agrogan1.github.io/newstuff/mlm-R2-gutten/mlm-R2-gutten.html)
 
+### Simpson's Paradox
+
+* [Demonstration of Simpson's Paradox With Palmer Penguin Data](https://agrogan1.github.io/newstuff/simpsonsparadox/simpsonsparadox.html)
+
 ## Simulated Data
 
 * [Simulated Social Service Agency Data](./social-service-agency)
