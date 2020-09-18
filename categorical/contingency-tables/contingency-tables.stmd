@@ -17,7 +17,7 @@ geometry: margin=1 in
 
 # Flipping Two Coins
 
-![Quarter (Courtesy Wikipedia)](../images/2004_WI_Proof.png){ width=10% }
+![Quarter (Courtesy Wikipedia)](../images/2004_WI_Proof_small.png){ width=10% }
 
 # Setup
 
@@ -47,6 +47,18 @@ Good value labels are **key** here.
 	label values nickel nickel // assign value label
 	
 	label values quarter quarter // assign value label
+	
+# The Graph We Think We Want But Don't
+	
+	graph bar, over(nickel) scheme(burd) title(Nickel) name(nickel)
+	
+    graph bar, over(quarter) scheme(burd) title(Quarter) name(quarter)
+
+    graph combine nickel quarter, title(Nickel And Quarter) scheme(burd)
+	
+    graph export unhelpfulgraph.png, width(500) replace
+
+![A Graph That May Not Be That Helpful](unhelpfulgraph.png)
 
 # Crosstabulation
 	

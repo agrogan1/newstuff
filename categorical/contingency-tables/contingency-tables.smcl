@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}29 Aug 2020, 11:37:27
+ {txt}opened on:  {res}18 Sep 2020, 07:47:09
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}29 Aug 2020
+{res}18 Sep 2020
 {txt}
 {com}. //_2
 . clear all
@@ -48,6 +48,19 @@ now 1,000
 . label values quarter quarter // assign value label
 {txt}
 {com}. //_12
+. graph bar, over(nickel) scheme(burd) title(Nickel) name(nickel)
+{res}{txt}
+{com}. //_13
+. graph bar, over(quarter) scheme(burd) title(Quarter) name(quarter)
+{res}{txt}
+{com}. //_14
+. graph combine nickel quarter, title(Nickel And Quarter) scheme(burd)
+{res}{txt}
+{com}. //_15
+. graph export unhelpfulgraph.png, width(500) replace
+{txt}(file unhelpfulgraph.png written in PNG format)
+
+{com}. //_16
 . tabulate nickel quarter, row col
 {txt}
 {c TLC}{hline 19}{c TRC}
@@ -73,51 +86,51 @@ heads for nickel {c |}{res}       377        379 {txt}{c |}{res}       756
                  {txt}{c |}{res}     48.10      51.90 {txt}{c |}{res}    100.00 
                  {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
 {txt}
-{com}. //_13
+{com}. //_17
 . * ssc install spineplot // mosaicplots (spineplots)
-. //_14
+. //_18
 . * ssc install scheme-burd, replace // BuRd graph scheme
-. //_15
+. //_19
 . spineplot nickel quarter, scheme(burd)
 {res}{txt}
-{com}. //_16
+{com}. //_20
 . graph export nickel-quarter.png, width(500) replace
 {txt}(file nickel-quarter.png written in PNG format)
 
-{com}. //_17
+{com}. //_21
 . graph bar, over(quarter) over(nickel) scheme(burd)
 {res}{txt}
-{com}. //_18
+{com}. //_22
 . graph export nickel-quarter-bar1.png, width(500) replace
 {txt}(file nickel-quarter-bar1.png written in PNG format)
 
-{com}. //_19
+{com}. //_23
 . graph bar, over(quarter) over(nickel) scheme(burd) asyvars
 {res}{txt}
-{com}. //_20
+{com}. //_24
 . graph export nickel-quarter-bar2.png, width(500) replace
 {txt}(file nickel-quarter-bar2.png written in PNG format)
 
-{com}. //_21
+{com}. //_25
 . graph hbar, over(quarter) over(nickel) scheme(burd) asyvars
 {res}{txt}
-{com}. //_22
+{com}. //_26
 . graph export nickel-quarter-bar3.png, width(500) replace
 {txt}(file nickel-quarter-bar3.png written in PNG format)
 
-{com}. //_23
+{com}. //_27
 . clear all
 {res}{txt}
-{com}. //_24
+{com}. //_28
 . matrix input FrenchSkiiers = (31, 109 \ 17, 122)
 {txt}
-{com}. //_25
+{com}. //_29
 . matrix rownames FrenchSkiiers = Placebo AscorbicAcid
 {txt}
-{com}. //_26
+{com}. //_30
 . matrix colnames FrenchSkiiers = Cold NoCold
 {txt}
-{com}. //_27
+{com}. //_31
 . matrix list FrenchSkiiers
 {res}
 {txt}FrenchSkiiers[2,2]
@@ -125,7 +138,7 @@ heads for nickel {c |}{res}       377        379 {txt}{c |}{res}       756
      Placebo {res}     31     109
 {txt}AscorbicAcid {res}     17     122
 {reset}
-{com}. //_28
+{com}. //_32
 . svmat FrenchSkiiers, name(count)
 {txt}number of observations will be reset to 2
 Press any key to continue, or Break to abort
@@ -134,7 +147,7 @@ number of observations (_N)  was 0,
 now 2
 {p_end}
 
-{com}. //_29
+{com}. //_33
 . list
 {txt}
      {c TLC}{hline 8}{c -}{hline 8}{c TRC}
@@ -144,10 +157,10 @@ now 2
   2. {c |} {res}    17      122 {txt}{c |}
      {c BLC}{hline 8}{c -}{hline 8}{c BRC}
 
-{com}. //_30
+{com}. //_34
 . use "FrenchSkiiers.dta", clear
 {txt}
-{com}. //_31
+{com}. //_35
 . list // list the data
 {txt}
      {c TLC}{hline 15}{c -}{hline 9}{c -}{hline 7}{c TRC}
@@ -159,45 +172,45 @@ now 2
   4. {c |} {res}      Placebo   No Cold     109 {txt}{c |}
      {c BLC}{hline 15}{c -}{hline 9}{c -}{hline 7}{c BRC}
 
-{com}. //_32
+{com}. //_36
 . spineplot Tx Outcome, scheme(burd)
 {res}{txt}
-{com}. //_33
+{com}. //_37
 . graph export FrenchSkiiers1.png, width(500) replace
 {txt}(file FrenchSkiiers1.png written in PNG format)
 
-{com}. //_34
+{com}. //_38
 . spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretability
 {res}{txt}
-{com}. //_35
+{com}. //_39
 . graph export FrenchSkiiers2.png, width(500) replace
 {txt}(file FrenchSkiiers2.png written in PNG format)
 
-{com}. //_36
+{com}. //_40
 . scalar N = 31 + 109 + 17 + 122
 {txt}
-{com}. //_37
+{com}. //_41
 . scalar A = ((31 + 17)*(31+109)) / N // expected count
 {txt}
-{com}. //_38
+{com}. //_42
 . scalar B = ((31+109)*(109+122)) / N // expected count
 {txt}
-{com}. //_39
+{com}. //_43
 . scalar C = ((31 + 17) * (17 + 122)) / N // expected count
 {txt}
-{com}. //_40
+{com}. //_44
 . scalar D = ((17 + 122) * (109 + 122)) / N // expected count
 {txt}
-{com}. //_41
+{com}. //_45
 . matrix FS = (A, B \ C, D) // matrix of expected values
 {txt}
-{com}. //_42
+{com}. //_46
 . matrix rownames FS = Placebo AscorbicAcid // rownames
 {txt}
-{com}. //_43
+{com}. //_47
 . matrix colnames FS = Cold NoCold // column names
 {txt}
-{com}. //_44
+{com}. //_48
 . matrix list FS
 {res}
 {txt}FS[2,2]
@@ -205,20 +218,20 @@ now 2
      Placebo {res} 24.086022  115.91398
 {txt}AscorbicAcid {res} 23.913978  115.08602
 {reset}
-{com}. //_45
+{com}. //_49
 . scalar chisquare = (31 - 24.086022)^2 / 24.086022 + /// 
 > (109 - 115.91398)^2 / 115.91398 + ///
 > (17 - 23.913978)^2 / 23.913978 + /// 
 > (122 - 115.08602)^2 / 115.08602
 {txt}
-{com}. //_46
+{com}. //_50
 . scalar list chisquare
 {txt} chisquare = {res} 4.8114124
 {txt}
-{com}. //_47
+{com}. //_51
 . use "FrenchSkiiers.dta", clear
 {txt}
-{com}. //_48
+{com}. //_52
 . tabulate Tx Outcome [fweight = Count], row col chi2
 {txt}
 {c TLC}{hline 19}{c TRC}
@@ -251,7 +264,7 @@ Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}29 Aug 2020, 11:37:37
+ {txt}closed on:  {res}18 Sep 2020, 07:47:23
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
