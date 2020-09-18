@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Simulation of Simpson’s Paradox With Hospital Data</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Simulation of Simpson’s Paradox With Hospital Data</h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">18 Sep 2020 08:46:40</p>
+</header>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<h1 id="background">Background</h1>
+<p>Simpson’s paradox occurs when a bivariate association is reversed in a multivariate model. This example uses simulated data from a hospital. Source TBD.</p>
+<h1 id="setup">Setup</h1>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. cd "/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/simpsons-paradox-hos
+> pital-data"
+/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/simpsons-paradox-hospital-
+> data
+</pre>
+<pre class='stata'>. use "hospitaldata.dta"
+</pre>
+<h1 id="outcome-by-hospital-type">Outcome By Hospital Type</h1>
+<pre class='stata'>. list
+
+     ┌──────────────────────────────────────────┐
+     │ hospital      severity   outcome   count │
+     ├──────────────────────────────────────────┤
+  1. │   better   less severe   success      18 │
+  2. │   better   less severe   failure       2 │
+  3. │   better   more severe   success      32 │
+  4. │   better   more severe   failure      48 │
+  5. │   normal   less severe   success      64 │
+     ├──────────────────────────────────────────┤
+  6. │   normal   less severe   failure      16 │
+  7. │   normal   more severe   success       4 │
+  8. │   normal   more severe   failure      16 │
+     └──────────────────────────────────────────┘
+</pre>
+<pre class='stata'>. tabulate hospital outcome
+
+           │        outcome
+  hospital │   failure    success │     Total
+───────────┼──────────────────────┼──────────
+    better │         2          2 │         4 
+    normal │         2          2 │         4 
+───────────┼──────────────────────┼──────────
+     Total │         4          4 │         8 
+</pre>
+<pre class='stata'>. tabulate hospital outcome [fweight = count], row col
+
+┌───────────────────┐
+│ Key               │
+├───────────────────┤
+│     frequency     │
+│  row percentage   │
+│ column percentage │
+└───────────────────┘
+
+           │        outcome
+  hospital │   failure    success │     Total
+───────────┼──────────────────────┼──────────
+    better │        50         50 │       100 
+           │     50.00      50.00 │    100.00 
+           │     60.98      42.37 │     50.00 
+───────────┼──────────────────────┼──────────
+    normal │        32         68 │       100 
+           │     32.00      68.00 │    100.00 
+           │     39.02      57.63 │     50.00 
+───────────┼──────────────────────┼──────────
+     Total │        82        118 │       200 
+           │     41.00      59.00 │    100.00 
+           │    100.00     100.00 │    100.00 
+</pre>
+<pre class='stata'>. graph bar [fweight = count], over(outcome) by(hospital) title(Hospital Outcomes) scheme
+> (michigan)
+</pre>
+<pre class='stata'>. graph export bivariategraph.png, width(500) replace
+(file bivariategraph.png written in PNG format)
+</pre>
+<figure>
+<img src="bivariategraph.png" alt="" /><figcaption>Bivariate Relationships</figcaption>
+</figure>
+<h1 id="outcome-by-hospital-type-by-severity">Outcome By Hospital Type by Severity</h1>
+<blockquote>
+<p>The Stata thinking and <code>command</code> for the table are relatively straightforward. We often think that visualization is an intuitive first step yet my first graphs were <em>wrong</em>, and I needed to <em>carefully look at the table</em> to make sure the graphs accurately reflected the numbers and story in the table!</p>
+</blockquote>
+<pre class='stata'>. bysort severity: tabulate hospital outcome [fweight = count], row col
+
+─────────────────────────────────────────────────────────────────────────────────────────
+-> severity = less severe
+
+┌───────────────────┐
+│ Key               │
+├───────────────────┤
+│     frequency     │
+│  row percentage   │
+│ column percentage │
+└───────────────────┘
+
+           │        outcome
+  hospital │   failure    success │     Total
+───────────┼──────────────────────┼──────────
+    better │         2         18 │        20 
+           │     10.00      90.00 │    100.00 
+           │     11.11      21.95 │     20.00 
+───────────┼──────────────────────┼──────────
+    normal │        16         64 │        80 
+           │     20.00      80.00 │    100.00 
+           │     88.89      78.05 │     80.00 
+───────────┼──────────────────────┼──────────
+     Total │        18         82 │       100 
+           │     18.00      82.00 │    100.00 
+           │    100.00     100.00 │    100.00 
+
+─────────────────────────────────────────────────────────────────────────────────────────
+-> severity = more severe
+
+┌───────────────────┐
+│ Key               │
+├───────────────────┤
+│     frequency     │
+│  row percentage   │
+│ column percentage │
+└───────────────────┘
+
+           │        outcome
+  hospital │   failure    success │     Total
+───────────┼──────────────────────┼──────────
+    better │        48         32 │        80 
+           │     60.00      40.00 │    100.00 
+           │     75.00      88.89 │     80.00 
+───────────┼──────────────────────┼──────────
+    normal │        16          4 │        20 
+           │     80.00      20.00 │    100.00 
+           │     25.00      11.11 │     20.00 
+───────────┼──────────────────────┼──────────
+     Total │        64         36 │       100 
+           │     64.00      36.00 │    100.00 
+           │    100.00     100.00 │    100.00 
+</pre>
+<pre class='stata'>. graph bar [fweight = count] if severity == "less severe", ///
+> title(Less Severe) ///
+> over(outcome) ///
+> by(hospital) ////
+> scheme(michigan) ///
+> name(lesssevere, replace)
+</pre>
+<pre class='stata'>. graph bar [fweight = count] if severity == "more severe", ///
+> title(More Severe) ///
+> over(outcome) ///
+> by(hospital) ///
+> scheme(michigan) ///
+> name(moresevere, replace)
+</pre>
+<pre class='stata'>. graph combine lesssevere moresevere, title(Hospital Outcomes) scheme(michigan)
+</pre>
+<pre class='stata'>. graph export multivariategraph.png, width(1000) replace
+(file multivariategraph.png written in PNG format)
+</pre>
+<figure>
+<img src="multivariategraph.png" alt="" /><figcaption>Multivariate Relationships</figcaption>
+</figure>
+<h1 id="a-possibly-helpful-alternative-and-more-compact-table-format">A Possibly Helpful Alternative (And More Compact) Table Format</h1>
+<pre class='stata'>. table hospital outcome [fweight=count], by(severity) 
+
+────────────┬─────────────────
+severity    │
+and         │     outcome     
+hospital    │ failure  success
+────────────┼─────────────────
+less severe │
+     better │       2       18
+     normal │      16       64
+────────────┼─────────────────
+more severe │
+     better │      48       32
+     normal │      16        4
+────────────┴─────────────────
+</pre>
+</body>
+</html>
