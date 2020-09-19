@@ -17,7 +17,10 @@ geometry: margin=1 in
 
 # Flipping Two Coins
 
-![Quarter (Courtesy Wikipedia)](../images/2004_WI_Proof_small.png){ width=10% }
+![Forthcoming Coin Emoji From Apple](the-crazy-ones.jpg){ width=10% } 
+
+![Forthcoming Coin Emoji From Apple](the-crazy-ones.jpg){ width=10% }
+
 
 # Setup
 
@@ -196,6 +199,12 @@ $m_{ij} = \frac{m_{i \bullet} m_{\bullet j}}{m_{\bullet \bullet}}$
 
 $$\text{conditional = joint / marginal}$$
 
+    tabulate Tx Outcome [fweight = Count], cell row col
+	
+	display 6.09 / 49.82
+	
+    display 17/139
+
 # Independence (Robert Mare)
 
 > If independence is true, then joint probabilities = products of marginal probabilities.
@@ -208,11 +217,13 @@ $$\text{conditional = joint / marginal}$$
 
 # Observed vs. Expected
 
+    tabulate Tx Outcome [fweight = Count]
+
     scalar N = 31 + 109 + 17 + 122
 
-	scalar A = ((31 + 17)*(31+109)) / N // expected count
+	scalar A = ((31 + 17)*(31 + 109)) / N // expected count
 
-	scalar B = ((31+109)*(109+122)) / N // expected count
+	scalar B = ((31 + 109)*(109 + 122)) / N // expected count
 
 	scalar C = ((31 + 17) * (17 + 122)) / N // expected count
 
@@ -260,6 +271,18 @@ $R = \frac{a}{a+b}$ (in Exposed)
 
 $RR =\frac{\text{risk in exposed}}{\text{risk in not exposed}} = \frac{a/(a+b)}{c/(c+d)}$ 
 
+# Calculating a Risk Ratio
+
+    tabulate Tx Outcome [fweight = Count]
+	
+	display 31/140
+
+	display 17/139
+
+	display (17/139) / (31/140)
+	
+    csi 17 31 122 109 // also has an intuitive dialog box
+
 # Odds Ratios 
 
 |             | Develop Outcome   | Do Not Develop Outcome   |
@@ -285,7 +308,14 @@ $1 < OR < \infty$
 
 > indicates that one row is more likely to make the first response than the other row.
 
- 
+# Calculate Odds Ratio
+
+    tabulate Tx Outcome [fweight = Count]
+
+    display (17 * 109)/(122 * 31)
+	
+	csi 17 31 122 109, or // also has an intuitive dialog box
+
  
  
  

@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}18 Sep 2020, 07:47:09
+ {txt}opened on:  {res}19 Sep 2020, 12:51:48
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}18 Sep 2020
+{res}19 Sep 2020
 {txt}
 {com}. //_2
 . clear all
@@ -187,30 +187,79 @@ now 2
 {txt}(file FrenchSkiiers2.png written in PNG format)
 
 {com}. //_40
-. scalar N = 31 + 109 + 17 + 122
+. tabulate Tx Outcome [fweight = Count], cell row col
+{txt}
+{c TLC}{hline 19}{c TRC}
+{c |} Key{col 21}{c |}
+{c LT}{hline 19}{c RT}
+{c |}{space 5}{it:frequency}{col 21}{c |}
+{c |}{space 2}{it:row percentage}{col 21}{c |}
+{c |}{space 1}{it:column percentage}{col 21}{c |}
+{c |}{space 2}{it:cell percentage}{col 21}{c |}
+{c BLC}{hline 19}{c BRC}
+
+              {c |}        Outcome
+           Tx {c |}   No Cold       Cold {c |}     Total
+{hline 14}{c +}{hline 22}{c +}{hline 10}
+      Placebo {c |}{res}       109         31 {txt}{c |}{res}       140 
+              {txt}{c |}{res}     77.86      22.14 {txt}{c |}{res}    100.00 
+              {txt}{c |}{res}     47.19      64.58 {txt}{c |}{res}     50.18 
+              {txt}{c |}{res}     39.07      11.11 {txt}{c |}{res}     50.18 
+{txt}{hline 14}{c +}{hline 22}{c +}{hline 10}
+Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139 
+              {txt}{c |}{res}     87.77      12.23 {txt}{c |}{res}    100.00 
+              {txt}{c |}{res}     52.81      35.42 {txt}{c |}{res}     49.82 
+              {txt}{c |}{res}     43.73       6.09 {txt}{c |}{res}     49.82 
+{txt}{hline 14}{c +}{hline 22}{c +}{hline 10}
+        Total {c |}{res}       231         48 {txt}{c |}{res}       279 
+              {txt}{c |}{res}     82.80      17.20 {txt}{c |}{res}    100.00 
+              {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
+              {txt}{c |}{res}     82.80      17.20 {txt}{c |}{res}    100.00 
 {txt}
 {com}. //_41
-. scalar A = ((31 + 17)*(31+109)) / N // expected count
+. display 6.09 / 49.82
+{res}.12224006
 {txt}
 {com}. //_42
-. scalar B = ((31+109)*(109+122)) / N // expected count
+. display 17/139
+{res}.12230216
 {txt}
 {com}. //_43
-. scalar C = ((31 + 17) * (17 + 122)) / N // expected count
+. tabulate Tx Outcome [fweight = Count]
+
+              {txt}{c |}        Outcome
+           Tx {c |}   No Cold       Cold {c |}     Total
+{hline 14}{c +}{hline 22}{c +}{hline 10}
+      Placebo {c |}{res}       109         31 {txt}{c |}{res}       140 
+{txt}Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139 
+{txt}{hline 14}{c +}{hline 22}{c +}{hline 10}
+        Total {c |}{res}       231         48 {txt}{c |}{res}       279 
 {txt}
 {com}. //_44
-. scalar D = ((17 + 122) * (109 + 122)) / N // expected count
+. scalar N = 31 + 109 + 17 + 122
 {txt}
 {com}. //_45
-. matrix FS = (A, B \ C, D) // matrix of expected values
+. scalar A = ((31 + 17)*(31 + 109)) / N // expected count
 {txt}
 {com}. //_46
-. matrix rownames FS = Placebo AscorbicAcid // rownames
+. scalar B = ((31 + 109)*(109 + 122)) / N // expected count
 {txt}
 {com}. //_47
-. matrix colnames FS = Cold NoCold // column names
+. scalar C = ((31 + 17) * (17 + 122)) / N // expected count
 {txt}
 {com}. //_48
+. scalar D = ((17 + 122) * (109 + 122)) / N // expected count
+{txt}
+{com}. //_49
+. matrix FS = (A, B \ C, D) // matrix of expected values
+{txt}
+{com}. //_50
+. matrix rownames FS = Placebo AscorbicAcid // rownames
+{txt}
+{com}. //_51
+. matrix colnames FS = Cold NoCold // column names
+{txt}
+{com}. //_52
 . matrix list FS
 {res}
 {txt}FS[2,2]
@@ -218,20 +267,20 @@ now 2
      Placebo {res} 24.086022  115.91398
 {txt}AscorbicAcid {res} 23.913978  115.08602
 {reset}
-{com}. //_49
+{com}. //_53
 . scalar chisquare = (31 - 24.086022)^2 / 24.086022 + /// 
 > (109 - 115.91398)^2 / 115.91398 + ///
 > (17 - 23.913978)^2 / 23.913978 + /// 
 > (122 - 115.08602)^2 / 115.08602
 {txt}
-{com}. //_50
+{com}. //_54
 . scalar list chisquare
 {txt} chisquare = {res} 4.8114124
 {txt}
-{com}. //_51
+{com}. //_55
 . use "FrenchSkiiers.dta", clear
 {txt}
-{com}. //_52
+{com}. //_56
 . tabulate Tx Outcome [fweight = Count], row col chi2
 {txt}
 {c TLC}{hline 19}{c TRC}
@@ -259,12 +308,93 @@ Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139
 
 {txt}          Pearson chi2({res}1{txt}) = {res}  4.8114  {txt} Pr = {res}0.028
 {txt}
+{com}. //_57
+. tabulate Tx Outcome [fweight = Count]
+
+              {txt}{c |}        Outcome
+           Tx {c |}   No Cold       Cold {c |}     Total
+{hline 14}{c +}{hline 22}{c +}{hline 10}
+      Placebo {c |}{res}       109         31 {txt}{c |}{res}       140 
+{txt}Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139 
+{txt}{hline 14}{c +}{hline 22}{c +}{hline 10}
+        Total {c |}{res}       231         48 {txt}{c |}{res}       279 
+{txt}
+{com}. //_58
+. display 31/140
+{res}.22142857
+{txt}
+{com}. //_59
+. display 17/139
+{res}.12230216
+{txt}
+{com}. //_60
+. display (17/139) / (31/140)
+{res}.55233233
+{txt}
+{com}. //_61
+. csi 17 31 122 109 // also has an intuitive dialog box
+
+{txt}{col 18}{c |}   Exposed   Unexposed  {c |}      Total
+{hline 17}{c +}{hline 24}{c +}{hline 12}
+           Cases {c |} {res}       17          31{txt}  {c |}  {res}       48
+        {txt}Noncases {c |} {res}      122         109{txt}  {c |}  {res}      231
+{txt}{hline 17}{c +}{hline 24}{c +}{hline 12}
+{col 12}Total {c |} {res}      139         140{txt}  {c |}  {res}      279
+{txt}{col 18}{c |}{col 43}{c |}
+            Risk {c |} {res} .1223022    .2214286{txt}  {c |}  {res}  .172043
+{txt}{col 18}{c |}{col 43}{c |}
+{col 18}{c |}      Point estimate    {c |}    [95% Conf. Interval]
+{col 18}{c LT}{hline 24}{c +}{hline 24}
+ Risk difference {c |} {res}{col 27}-.0991264{txt}{col 43}{c |}   {res}-.1868592   -.0113937{txt} 
+      Risk ratio {c |} {res}{col 27} .5523323{txt}{col 43}{c |}   {res} .3209178    .9506203{txt} 
+ Prev. frac. ex. {c |} {res}{col 27} .4476677{txt}{col 43}{c |}   {res} .0493797    .6790822{txt} 
+ Prev. frac. pop {c |} {res}{col 27} .2230316{txt}{col 43}{c |}
+{col 18}{c BLC}{hline 24}{c BT}{hline 24}
+{col 22}          chi2(1) ={res}     4.81{txt}  Pr>chi2 ={res} 0.0283
+{txt}
+{com}. //_62
+. tabulate Tx Outcome [fweight = Count]
+
+              {txt}{c |}        Outcome
+           Tx {c |}   No Cold       Cold {c |}     Total
+{hline 14}{c +}{hline 22}{c +}{hline 10}
+      Placebo {c |}{res}       109         31 {txt}{c |}{res}       140 
+{txt}Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139 
+{txt}{hline 14}{c +}{hline 22}{c +}{hline 10}
+        Total {c |}{res}       231         48 {txt}{c |}{res}       279 
+{txt}
+{com}. //_63
+. display (17 * 109)/(122 * 31)
+{res}.48995241
+{txt}
+{com}. //_64
+. csi 17 31 122 109, or // also has an intuitive dialog box
+
+{txt}{col 18}{c |}   Exposed   Unexposed  {c |}      Total
+{hline 17}{c +}{hline 24}{c +}{hline 12}
+           Cases {c |} {res}       17          31{txt}  {c |}  {res}       48
+        {txt}Noncases {c |} {res}      122         109{txt}  {c |}  {res}      231
+{txt}{hline 17}{c +}{hline 24}{c +}{hline 12}
+{col 12}Total {c |} {res}      139         140{txt}  {c |}  {res}      279
+{txt}{col 18}{c |}{col 43}{c |}
+            Risk {c |} {res} .1223022    .2214286{txt}  {c |}  {res}  .172043
+{txt}{col 18}{c |}{col 43}{c |}
+{col 18}{c |}      Point estimate    {c |}    [95% Conf. Interval]
+{col 18}{c LT}{hline 24}{c +}{hline 24}
+ Risk difference {c |} {res}{col 27}-.0991264{txt}{col 43}{c |}   {res}-.1868592   -.0113937{txt} 
+      Risk ratio {c |} {res}{col 27} .5523323{txt}{col 43}{c |}   {res} .3209178    .9506203{txt} 
+ Prev. frac. ex. {c |} {res}{col 27} .4476677{txt}{col 43}{c |}   {res} .0493797    .6790822{txt} 
+ Prev. frac. pop {c |} {res}{col 27} .2230316{txt}{col 43}{c |}
+      Odds ratio {c |} {res}{col 27} .4899524{txt}{col 43}{c |}   {res} .2588072    .9282861{txt} (Cornfield)
+{col 18}{c BLC}{hline 24}{c BT}{hline 24}
+{col 22}          chi2(1) ={res}     4.81{txt}  Pr>chi2 ={res} 0.0283
+{txt}
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}18 Sep 2020, 07:47:23
+ {txt}closed on:  {res}19 Sep 2020, 12:52:03
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

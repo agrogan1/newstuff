@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Contingency Tables</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">18 Sep 2020</p>
+<p class="date">19 Sep 2020</p>
 </header>
 <h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -70,7 +70,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </ul>
 <h1 id="flipping-two-coins">Flipping Two Coins</h1>
 <figure>
-<img src="../images/2004_WI_Proof_small.png" style="width:10.0%" alt="" /><figcaption>Quarter (Courtesy Wikipedia)</figcaption>
+<img src="the-crazy-ones.jpg" style="width:10.0%" alt="" /><figcaption>Forthcoming Coin Emoji From Apple</figcaption>
+</figure>
+<figure>
+<img src="the-crazy-ones.jpg" style="width:10.0%" alt="" /><figcaption>Forthcoming Coin Emoji From Apple</figcaption>
 </figure>
 <h1 id="setup">Setup</h1>
 <pre class='stata'>. clear all
@@ -242,7 +245,8 @@ number of observations (_N) was 0, now 2
 <img src="FrenchSkiiers1.png" alt="" /><figcaption>Mosaic Plot Attempt 1</figcaption>
 </figure>
 <h1 id="mosaic-plot-2">Mosaic Plot (2)</h1>
-<pre class='stata'>. spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretability
+<pre class='stata'>. spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretabili
+> ty
 </pre>
 <pre class='stata'>. graph export FrenchSkiiers2.png, width(500) replace
 (file FrenchSkiiers2.png written in PNG format)
@@ -272,6 +276,41 @@ number of observations (_N) was 0, now 2
 </blockquote>
 <h1 id="fundamental-rule">Fundamental Rule</h1>
 <p><span class="math display">\[\text{conditional = joint / marginal}\]</span></p>
+<pre class='stata'>. tabulate Tx Outcome [fweight = Count], cell row col
+
+┌───────────────────┐
+│ Key               │
+├───────────────────┤
+│     frequency     │
+│  row percentage   │
+│ column percentage │
+│  cell percentage  │
+└───────────────────┘
+
+              │        Outcome
+           Tx │   No Cold       Cold │     Total
+──────────────┼──────────────────────┼──────────
+      Placebo │       109         31 │       140 
+              │     77.86      22.14 │    100.00 
+              │     47.19      64.58 │     50.18 
+              │     39.07      11.11 │     50.18 
+──────────────┼──────────────────────┼──────────
+Ascorbic Acid │       122         17 │       139 
+              │     87.77      12.23 │    100.00 
+              │     52.81      35.42 │     49.82 
+              │     43.73       6.09 │     49.82 
+──────────────┼──────────────────────┼──────────
+        Total │       231         48 │       279 
+              │     82.80      17.20 │    100.00 
+              │    100.00     100.00 │    100.00 
+              │     82.80      17.20 │    100.00 
+</pre>
+<pre class='stata'>. display 6.09 / 49.82
+.12224006
+</pre>
+<pre class='stata'>. display 17/139
+.12230216
+</pre>
 <h1 id="independence-robert-mare">Independence (Robert Mare)</h1>
 <blockquote>
 <p>If independence is true, then joint probabilities = products of marginal probabilities.</p>
@@ -286,11 +325,21 @@ number of observations (_N) was 0, now 2
 <p>Independence is a model, which is never exactly true in the real world.</p>
 </blockquote>
 <h1 id="observed-vs.-expected">Observed vs. Expected</h1>
+<pre class='stata'>. tabulate Tx Outcome [fweight = Count]
+
+              │        Outcome
+           Tx │   No Cold       Cold │     Total
+──────────────┼──────────────────────┼──────────
+      Placebo │       109         31 │       140 
+Ascorbic Acid │       122         17 │       139 
+──────────────┼──────────────────────┼──────────
+        Total │       231         48 │       279 
+</pre>
 <pre class='stata'>. scalar N = 31 + 109 + 17 + 122
 </pre>
-<pre class='stata'>. scalar A = ((31 + 17)*(31+109)) / N // expected count
+<pre class='stata'>. scalar A = ((31 + 17)*(31 + 109)) / N // expected count
 </pre>
-<pre class='stata'>. scalar B = ((31+109)*(109+122)) / N // expected count
+<pre class='stata'>. scalar B = ((31 + 109)*(109 + 122)) / N // expected count
 </pre>
 <pre class='stata'>. scalar C = ((31 + 17) * (17 + 122)) / N // expected count
 </pre>
@@ -375,6 +424,46 @@ Ascorbic Acid │       122         17 │       139
 </table>
 <p><span class="math inline">\(R = \frac{a}{a+b}\)</span> (in Exposed)</p>
 <p><span class="math inline">\(RR =\frac{\text{risk in exposed}}{\text{risk in not exposed}} = \frac{a/(a+b)}{c/(c+d)}\)</span></p>
+<h1 id="calculating-a-risk-ratio">Calculating a Risk Ratio</h1>
+<pre class='stata'>. tabulate Tx Outcome [fweight = Count]
+
+              │        Outcome
+           Tx │   No Cold       Cold │     Total
+──────────────┼──────────────────────┼──────────
+      Placebo │       109         31 │       140 
+Ascorbic Acid │       122         17 │       139 
+──────────────┼──────────────────────┼──────────
+        Total │       231         48 │       279 
+</pre>
+<pre class='stata'>. display 31/140
+.22142857
+</pre>
+<pre class='stata'>. display 17/139
+.12230216
+</pre>
+<pre class='stata'>. display (17/139) / (31/140)
+.55233233
+</pre>
+<pre class='stata'>. csi 17 31 122 109 // also has an intuitive dialog box
+
+                 │   Exposed   Unexposed  │      Total
+─────────────────┼────────────────────────┼────────────
+           Cases │        17          31  │         48
+        Noncases │       122         109  │        231
+─────────────────┼────────────────────────┼────────────
+           Total │       139         140  │        279
+                 │                        │
+            Risk │  .1223022    .2214286  │    .172043
+                 │                        │
+                 │      Point estimate    │    [95% Conf. Interval]
+                 ├────────────────────────┼────────────────────────
+ Risk difference │        -.0991264       │   -.1868592   -.0113937 
+      Risk ratio │         .5523323       │    .3209178    .9506203 
+ Prev. frac. ex. │         .4476677       │    .0493797    .6790822 
+ Prev. frac. pop │         .2230316       │
+                 └────────────────────────┴────────────────────────
+                               chi2(1) =     4.81  Pr>chi2 = 0.0283
+</pre>
 <h1 id="odds-ratios">Odds Ratios</h1>
 <table>
 <thead>
@@ -412,5 +501,40 @@ Ascorbic Acid │       122         17 │       139
 <blockquote>
 <p>indicates that one row is more likely to make the first response than the other row.</p>
 </blockquote>
+<h1 id="calculate-odds-ratio">Calculate Odds Ratio</h1>
+<pre class='stata'>. tabulate Tx Outcome [fweight = Count]
+
+              │        Outcome
+           Tx │   No Cold       Cold │     Total
+──────────────┼──────────────────────┼──────────
+      Placebo │       109         31 │       140 
+Ascorbic Acid │       122         17 │       139 
+──────────────┼──────────────────────┼──────────
+        Total │       231         48 │       279 
+</pre>
+<pre class='stata'>. display (17 * 109)/(122 * 31)
+.48995241
+</pre>
+<pre class='stata'>. csi 17 31 122 109, or // also has an intuitive dialog box
+
+                 │   Exposed   Unexposed  │      Total
+─────────────────┼────────────────────────┼────────────
+           Cases │        17          31  │         48
+        Noncases │       122         109  │        231
+─────────────────┼────────────────────────┼────────────
+           Total │       139         140  │        279
+                 │                        │
+            Risk │  .1223022    .2214286  │    .172043
+                 │                        │
+                 │      Point estimate    │    [95% Conf. Interval]
+                 ├────────────────────────┼────────────────────────
+ Risk difference │        -.0991264       │   -.1868592   -.0113937 
+      Risk ratio │         .5523323       │    .3209178    .9506203 
+ Prev. frac. ex. │         .4476677       │    .0493797    .6790822 
+ Prev. frac. pop │         .2230316       │
+      Odds ratio │         .4899524       │    .2588072    .9282861 (Cornfield)
+                 └────────────────────────┴────────────────────────
+                               chi2(1) =     4.81  Pr>chi2 = 0.0283
+</pre>
 </body>
 </html>

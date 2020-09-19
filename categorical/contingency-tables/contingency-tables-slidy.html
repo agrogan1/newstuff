@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>18 Sep 2020</p>
+<p>19 Sep 2020</p>
 </div>
 <div id="key-concepts-and-commands" class="slide section level1">
 <h1>Key Concepts and Commands</h1>
@@ -113,8 +113,12 @@ Andy Grogan-Kaylor
 <div id="flipping-two-coins" class="slide section level1">
 <h1>Flipping Two Coins</h1>
 <div class="figure">
-<img src="../images/2004_WI_Proof_small.png" alt="" />
-<p class="caption">Quarter (Courtesy Wikipedia)</p>
+<img src="the-crazy-ones.jpg" alt="" />
+<p class="caption">Forthcoming Coin Emoji From Apple</p>
+</div>
+<div class="figure">
+<img src="the-crazy-ones.jpg" alt="" />
+<p class="caption">Forthcoming Coin Emoji From Apple</p>
 </div>
 </div>
 <div id="setup" class="slide section level1">
@@ -284,7 +288,8 @@ Andy Grogan-Kaylor
 </div>
 <div id="mosaic-plot-2" class="slide section level1">
 <h1>Mosaic Plot (2)</h1>
-<div class="sourceCode" id="cb37"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb37-1"><a href="#cb37-1"></a>. spineplot Outcome Tx [<span class="kw">fweight</span>=Count], <span class="dv">scheme</span>(burd) <span class="co">// order matters to interpretability</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb37-1"><a href="#cb37-1"></a>. spineplot Outcome Tx [<span class="kw">fweight</span>=Count], <span class="dv">scheme</span>(burd) <span class="co">// order matters to interpretabili</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>&gt; ty</span></code></pre></div>
 <div class="sourceCode" id="cb38"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb38-1"><a href="#cb38-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> FrenchSkiiers2.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb38-2"><a href="#cb38-2"></a>(file FrenchSkiiers2.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
@@ -321,6 +326,38 @@ Andy Grogan-Kaylor
 <div id="fundamental-rule" class="slide section level1">
 <h1>Fundamental Rule</h1>
 <p><span class="math display">\[\text{conditional = joint / marginal}\]</span></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb39-1"><a href="#cb39-1"></a>. <span class="kw">tabulate</span> Tx Outcome [<span class="kw">fweight</span> = Count], cell <span class="ot">row</span> col</span>
+<span id="cb39-2"><a href="#cb39-2"></a></span>
+<span id="cb39-3"><a href="#cb39-3"></a>┌───────────────────┐</span>
+<span id="cb39-4"><a href="#cb39-4"></a>│ Key               │</span>
+<span id="cb39-5"><a href="#cb39-5"></a>├───────────────────┤</span>
+<span id="cb39-6"><a href="#cb39-6"></a>│     <span class="kw">frequency</span>     │</span>
+<span id="cb39-7"><a href="#cb39-7"></a>│  <span class="ot">row</span> percentage   │</span>
+<span id="cb39-8"><a href="#cb39-8"></a>│ column percentage │</span>
+<span id="cb39-9"><a href="#cb39-9"></a>│  cell percentage  │</span>
+<span id="cb39-10"><a href="#cb39-10"></a>└───────────────────┘</span>
+<span id="cb39-11"><a href="#cb39-11"></a></span>
+<span id="cb39-12"><a href="#cb39-12"></a>              │        Outcome</span>
+<span id="cb39-13"><a href="#cb39-13"></a>           Tx │   No Cold       Cold │     Total</span>
+<span id="cb39-14"><a href="#cb39-14"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb39-15"><a href="#cb39-15"></a>      Placebo │       109         31 │       140 </span>
+<span id="cb39-16"><a href="#cb39-16"></a>              │     77.86      22.14 │    100.00 </span>
+<span id="cb39-17"><a href="#cb39-17"></a>              │     47.19      64.58 │     50.18 </span>
+<span id="cb39-18"><a href="#cb39-18"></a>              │     39.07      11.11 │     50.18 </span>
+<span id="cb39-19"><a href="#cb39-19"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb39-20"><a href="#cb39-20"></a>Ascorbic Acid │       122         17 │       139 </span>
+<span id="cb39-21"><a href="#cb39-21"></a>              │     87.77      12.23 │    100.00 </span>
+<span id="cb39-22"><a href="#cb39-22"></a>              │     52.81      35.42 │     49.82 </span>
+<span id="cb39-23"><a href="#cb39-23"></a>              │     43.73       6.09 │     49.82 </span>
+<span id="cb39-24"><a href="#cb39-24"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb39-25"><a href="#cb39-25"></a>        Total │       231         48 │       279 </span>
+<span id="cb39-26"><a href="#cb39-26"></a>              │     82.80      17.20 │    100.00 </span>
+<span id="cb39-27"><a href="#cb39-27"></a>              │    100.00     100.00 │    100.00 </span>
+<span id="cb39-28"><a href="#cb39-28"></a>              │     82.80      17.20 │    100.00 </span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb40-1"><a href="#cb40-1"></a>. <span class="kw">display</span> 6.09 / 49.82</span>
+<span id="cb40-2"><a href="#cb40-2"></a>.12224006</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb41-1"><a href="#cb41-1"></a>. <span class="kw">display</span> 17/139</span>
+<span id="cb41-2"><a href="#cb41-2"></a>.12230216</span></code></pre></div>
 </div>
 <div id="independence-robert-mare" class="slide section level1">
 <h1>Independence (Robert Mare)</h1>
@@ -339,60 +376,69 @@ Andy Grogan-Kaylor
 </div>
 <div id="observed-vs.-expected" class="slide section level1">
 <h1>Observed vs. Expected</h1>
-<div class="sourceCode" id="cb39"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb39-1"><a href="#cb39-1"></a>. <span class="fu">scalar</span> <span class="kw">N</span> = 31 + 109 + 17 + 122</span></code></pre></div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb40-1"><a href="#cb40-1"></a>. <span class="fu">scalar</span> A = ((31 + 17)*(31+109)) / <span class="kw">N</span> <span class="co">// expected count</span></span></code></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb41-1"><a href="#cb41-1"></a>. <span class="fu">scalar</span> B = ((31+109)*(109+122)) / <span class="kw">N</span> <span class="co">// expected count</span></span></code></pre></div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb42-1"><a href="#cb42-1"></a>. <span class="fu">scalar</span> C = ((31 + 17) * (17 + 122)) / <span class="kw">N</span> <span class="co">// expected count</span></span></code></pre></div>
-<div class="sourceCode" id="cb43"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb43-1"><a href="#cb43-1"></a>. <span class="fu">scalar</span> D = ((17 + 122) * (109 + 122)) / <span class="kw">N</span> <span class="co">// expected count</span></span></code></pre></div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb44-1"><a href="#cb44-1"></a>. <span class="fu">matrix</span> FS = (A, B \ C, D) <span class="co">// matrix of expected values</span></span></code></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb45-1"><a href="#cb45-1"></a>. <span class="fu">matrix</span> <span class="ot">rownames</span> FS = Placebo AscorbicAcid <span class="co">// rownames</span></span></code></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb46-1"><a href="#cb46-1"></a>. <span class="fu">matrix</span> <span class="ot">colnames</span> FS = Cold NoCold <span class="co">// column names</span></span></code></pre></div>
-<div class="sourceCode" id="cb47"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb47-1"><a href="#cb47-1"></a>. <span class="fu">matrix</span> <span class="ot">list</span> FS</span>
-<span id="cb47-2"><a href="#cb47-2"></a></span>
-<span id="cb47-3"><a href="#cb47-3"></a>FS[2,2]</span>
-<span id="cb47-4"><a href="#cb47-4"></a>                   Cold     NoCold</span>
-<span id="cb47-5"><a href="#cb47-5"></a>     Placebo  24.086022  115.91398</span>
-<span id="cb47-6"><a href="#cb47-6"></a>AscorbicAcid  23.913978  115.08602</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb42-1"><a href="#cb42-1"></a>. <span class="kw">tabulate</span> Tx Outcome [<span class="kw">fweight</span> = Count]</span>
+<span id="cb42-2"><a href="#cb42-2"></a></span>
+<span id="cb42-3"><a href="#cb42-3"></a>              │        Outcome</span>
+<span id="cb42-4"><a href="#cb42-4"></a>           Tx │   No Cold       Cold │     Total</span>
+<span id="cb42-5"><a href="#cb42-5"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb42-6"><a href="#cb42-6"></a>      Placebo │       109         31 │       140 </span>
+<span id="cb42-7"><a href="#cb42-7"></a>Ascorbic Acid │       122         17 │       139 </span>
+<span id="cb42-8"><a href="#cb42-8"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb42-9"><a href="#cb42-9"></a>        Total │       231         48 │       279 </span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb43-1"><a href="#cb43-1"></a>. <span class="fu">scalar</span> <span class="kw">N</span> = 31 + 109 + 17 + 122</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb44-1"><a href="#cb44-1"></a>. <span class="fu">scalar</span> A = ((31 + 17)*(31 + 109)) / <span class="kw">N</span> <span class="co">// expected count</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb45-1"><a href="#cb45-1"></a>. <span class="fu">scalar</span> B = ((31 + 109)*(109 + 122)) / <span class="kw">N</span> <span class="co">// expected count</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb46-1"><a href="#cb46-1"></a>. <span class="fu">scalar</span> C = ((31 + 17) * (17 + 122)) / <span class="kw">N</span> <span class="co">// expected count</span></span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb47-1"><a href="#cb47-1"></a>. <span class="fu">scalar</span> D = ((17 + 122) * (109 + 122)) / <span class="kw">N</span> <span class="co">// expected count</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb48-1"><a href="#cb48-1"></a>. <span class="fu">matrix</span> FS = (A, B \ C, D) <span class="co">// matrix of expected values</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb49-1"><a href="#cb49-1"></a>. <span class="fu">matrix</span> <span class="ot">rownames</span> FS = Placebo AscorbicAcid <span class="co">// rownames</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb50-1"><a href="#cb50-1"></a>. <span class="fu">matrix</span> <span class="ot">colnames</span> FS = Cold NoCold <span class="co">// column names</span></span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb51-1"><a href="#cb51-1"></a>. <span class="fu">matrix</span> <span class="ot">list</span> FS</span>
+<span id="cb51-2"><a href="#cb51-2"></a></span>
+<span id="cb51-3"><a href="#cb51-3"></a>FS[2,2]</span>
+<span id="cb51-4"><a href="#cb51-4"></a>                   Cold     NoCold</span>
+<span id="cb51-5"><a href="#cb51-5"></a>     Placebo  24.086022  115.91398</span>
+<span id="cb51-6"><a href="#cb51-6"></a>AscorbicAcid  23.913978  115.08602</span></code></pre></div>
 </div>
 <div id="chi-square-test" class="slide section level1">
 <h1>Chi-Square Test</h1>
 <p><span class="math inline">\(\chi^2 = \Sigma \frac{(O-E)^2}{E}\)</span></p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb48-1"><a href="#cb48-1"></a>. <span class="fu">scalar</span> chisquare = (31 - 24.086022)^2 / 24.086022 + <span class="co">/// </span></span>
-<span id="cb48-2"><a href="#cb48-2"></a>&gt; (109 - 115.91398)^2 / 115.91398 + <span class="co">///</span></span>
-<span id="cb48-3"><a href="#cb48-3"></a>&gt; (17 - 23.913978)^2 / 23.913978 + <span class="co">/// </span></span>
-<span id="cb48-4"><a href="#cb48-4"></a>&gt; (122 - 115.08602)^2 / 115.08602</span></code></pre></div>
-<div class="sourceCode" id="cb49"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb49-1"><a href="#cb49-1"></a>. <span class="fu">scalar</span> <span class="ot">list</span> chisquare</span>
-<span id="cb49-2"><a href="#cb49-2"></a> chisquare =  4.8114124</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb52-1"><a href="#cb52-1"></a>. <span class="fu">scalar</span> chisquare = (31 - 24.086022)^2 / 24.086022 + <span class="co">/// </span></span>
+<span id="cb52-2"><a href="#cb52-2"></a>&gt; (109 - 115.91398)^2 / 115.91398 + <span class="co">///</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a>&gt; (17 - 23.913978)^2 / 23.913978 + <span class="co">/// </span></span>
+<span id="cb52-4"><a href="#cb52-4"></a>&gt; (122 - 115.08602)^2 / 115.08602</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb53-1"><a href="#cb53-1"></a>. <span class="fu">scalar</span> <span class="ot">list</span> chisquare</span>
+<span id="cb53-2"><a href="#cb53-2"></a> chisquare =  4.8114124</span></code></pre></div>
 </div>
 <div id="compare-with-tabulate" class="slide section level1">
 <h1>Compare With Tabulate</h1>
-<div class="sourceCode" id="cb50"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb50-1"><a href="#cb50-1"></a>. <span class="kw">use</span> <span class="st">&quot;FrenchSkiiers.dta&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
-<div class="sourceCode" id="cb51"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb51-1"><a href="#cb51-1"></a>. <span class="kw">tabulate</span> Tx Outcome [<span class="kw">fweight</span> = Count], <span class="ot">row</span> col <span class="fu">chi2</span></span>
-<span id="cb51-2"><a href="#cb51-2"></a></span>
-<span id="cb51-3"><a href="#cb51-3"></a>┌───────────────────┐</span>
-<span id="cb51-4"><a href="#cb51-4"></a>│ Key               │</span>
-<span id="cb51-5"><a href="#cb51-5"></a>├───────────────────┤</span>
-<span id="cb51-6"><a href="#cb51-6"></a>│     <span class="kw">frequency</span>     │</span>
-<span id="cb51-7"><a href="#cb51-7"></a>│  <span class="ot">row</span> percentage   │</span>
-<span id="cb51-8"><a href="#cb51-8"></a>│ column percentage │</span>
-<span id="cb51-9"><a href="#cb51-9"></a>└───────────────────┘</span>
-<span id="cb51-10"><a href="#cb51-10"></a></span>
-<span id="cb51-11"><a href="#cb51-11"></a>              │        Outcome</span>
-<span id="cb51-12"><a href="#cb51-12"></a>           Tx │   No Cold       Cold │     Total</span>
-<span id="cb51-13"><a href="#cb51-13"></a>──────────────┼──────────────────────┼──────────</span>
-<span id="cb51-14"><a href="#cb51-14"></a>      Placebo │       109         31 │       140 </span>
-<span id="cb51-15"><a href="#cb51-15"></a>              │     77.86      22.14 │    100.00 </span>
-<span id="cb51-16"><a href="#cb51-16"></a>              │     47.19      64.58 │     50.18 </span>
-<span id="cb51-17"><a href="#cb51-17"></a>──────────────┼──────────────────────┼──────────</span>
-<span id="cb51-18"><a href="#cb51-18"></a>Ascorbic Acid │       122         17 │       139 </span>
-<span id="cb51-19"><a href="#cb51-19"></a>              │     87.77      12.23 │    100.00 </span>
-<span id="cb51-20"><a href="#cb51-20"></a>              │     52.81      35.42 │     49.82 </span>
-<span id="cb51-21"><a href="#cb51-21"></a>──────────────┼──────────────────────┼──────────</span>
-<span id="cb51-22"><a href="#cb51-22"></a>        Total │       231         48 │       279 </span>
-<span id="cb51-23"><a href="#cb51-23"></a>              │     82.80      17.20 │    100.00 </span>
-<span id="cb51-24"><a href="#cb51-24"></a>              │    100.00     100.00 │    100.00 </span>
-<span id="cb51-25"><a href="#cb51-25"></a></span>
-<span id="cb51-26"><a href="#cb51-26"></a>          Pearson <span class="fu">chi2</span>(1) =   4.8114   Pr = 0.028</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb54-1"><a href="#cb54-1"></a>. <span class="kw">use</span> <span class="st">&quot;FrenchSkiiers.dta&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb55-1"><a href="#cb55-1"></a>. <span class="kw">tabulate</span> Tx Outcome [<span class="kw">fweight</span> = Count], <span class="ot">row</span> col <span class="fu">chi2</span></span>
+<span id="cb55-2"><a href="#cb55-2"></a></span>
+<span id="cb55-3"><a href="#cb55-3"></a>┌───────────────────┐</span>
+<span id="cb55-4"><a href="#cb55-4"></a>│ Key               │</span>
+<span id="cb55-5"><a href="#cb55-5"></a>├───────────────────┤</span>
+<span id="cb55-6"><a href="#cb55-6"></a>│     <span class="kw">frequency</span>     │</span>
+<span id="cb55-7"><a href="#cb55-7"></a>│  <span class="ot">row</span> percentage   │</span>
+<span id="cb55-8"><a href="#cb55-8"></a>│ column percentage │</span>
+<span id="cb55-9"><a href="#cb55-9"></a>└───────────────────┘</span>
+<span id="cb55-10"><a href="#cb55-10"></a></span>
+<span id="cb55-11"><a href="#cb55-11"></a>              │        Outcome</span>
+<span id="cb55-12"><a href="#cb55-12"></a>           Tx │   No Cold       Cold │     Total</span>
+<span id="cb55-13"><a href="#cb55-13"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb55-14"><a href="#cb55-14"></a>      Placebo │       109         31 │       140 </span>
+<span id="cb55-15"><a href="#cb55-15"></a>              │     77.86      22.14 │    100.00 </span>
+<span id="cb55-16"><a href="#cb55-16"></a>              │     47.19      64.58 │     50.18 </span>
+<span id="cb55-17"><a href="#cb55-17"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb55-18"><a href="#cb55-18"></a>Ascorbic Acid │       122         17 │       139 </span>
+<span id="cb55-19"><a href="#cb55-19"></a>              │     87.77      12.23 │    100.00 </span>
+<span id="cb55-20"><a href="#cb55-20"></a>              │     52.81      35.42 │     49.82 </span>
+<span id="cb55-21"><a href="#cb55-21"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb55-22"><a href="#cb55-22"></a>        Total │       231         48 │       279 </span>
+<span id="cb55-23"><a href="#cb55-23"></a>              │     82.80      17.20 │    100.00 </span>
+<span id="cb55-24"><a href="#cb55-24"></a>              │    100.00     100.00 │    100.00 </span>
+<span id="cb55-25"><a href="#cb55-25"></a></span>
+<span id="cb55-26"><a href="#cb55-26"></a>          Pearson <span class="fu">chi2</span>(1) =   4.8114   Pr = 0.028</span></code></pre></div>
 </div>
 <div id="risk-differences-and-risk-ratios-relative-risk" class="slide section level1">
 <h1>Risk Differences and Risk Ratios (Relative Risk)</h1>
@@ -421,6 +467,43 @@ Andy Grogan-Kaylor
 </table>
 <p><span class="math inline">\(R = \frac{a}{a+b}\)</span> (in Exposed)</p>
 <p><span class="math inline">\(RR =\frac{\text{risk in exposed}}{\text{risk in not exposed}} = \frac{a/(a+b)}{c/(c+d)}\)</span></p>
+</div>
+<div id="calculating-a-risk-ratio" class="slide section level1">
+<h1>Calculating a Risk Ratio</h1>
+<div class="sourceCode" id="cb56"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb56-1"><a href="#cb56-1"></a>. <span class="kw">tabulate</span> Tx Outcome [<span class="kw">fweight</span> = Count]</span>
+<span id="cb56-2"><a href="#cb56-2"></a></span>
+<span id="cb56-3"><a href="#cb56-3"></a>              │        Outcome</span>
+<span id="cb56-4"><a href="#cb56-4"></a>           Tx │   No Cold       Cold │     Total</span>
+<span id="cb56-5"><a href="#cb56-5"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb56-6"><a href="#cb56-6"></a>      Placebo │       109         31 │       140 </span>
+<span id="cb56-7"><a href="#cb56-7"></a>Ascorbic Acid │       122         17 │       139 </span>
+<span id="cb56-8"><a href="#cb56-8"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb56-9"><a href="#cb56-9"></a>        Total │       231         48 │       279 </span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb57-1"><a href="#cb57-1"></a>. <span class="kw">display</span> 31/140</span>
+<span id="cb57-2"><a href="#cb57-2"></a>.22142857</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb58-1"><a href="#cb58-1"></a>. <span class="kw">display</span> 17/139</span>
+<span id="cb58-2"><a href="#cb58-2"></a>.12230216</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb59-1"><a href="#cb59-1"></a>. <span class="kw">display</span> (17/139) / (31/140)</span>
+<span id="cb59-2"><a href="#cb59-2"></a>.55233233</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb60-1"><a href="#cb60-1"></a>. <span class="kw">csi</span> 17 31 122 109 <span class="co">// also has an intuitive dialog box</span></span>
+<span id="cb60-2"><a href="#cb60-2"></a></span>
+<span id="cb60-3"><a href="#cb60-3"></a>                 │   Exposed   Unexposed  │      Total</span>
+<span id="cb60-4"><a href="#cb60-4"></a>─────────────────┼────────────────────────┼────────────</span>
+<span id="cb60-5"><a href="#cb60-5"></a>           Cases │        17          31  │         48</span>
+<span id="cb60-6"><a href="#cb60-6"></a>        Noncases │       122         109  │        231</span>
+<span id="cb60-7"><a href="#cb60-7"></a>─────────────────┼────────────────────────┼────────────</span>
+<span id="cb60-8"><a href="#cb60-8"></a>           Total │       139         140  │        279</span>
+<span id="cb60-9"><a href="#cb60-9"></a>                 │                        │</span>
+<span id="cb60-10"><a href="#cb60-10"></a>            Risk │  .1223022    .2214286  │    .172043</span>
+<span id="cb60-11"><a href="#cb60-11"></a>                 │                        │</span>
+<span id="cb60-12"><a href="#cb60-12"></a>                 │      Point estimate    │    [95% Conf. Interval]</span>
+<span id="cb60-13"><a href="#cb60-13"></a>                 ├────────────────────────┼────────────────────────</span>
+<span id="cb60-14"><a href="#cb60-14"></a> Risk difference │        -.0991264       │   -.1868592   -.0113937 </span>
+<span id="cb60-15"><a href="#cb60-15"></a>      Risk <span class="kw">ratio</span> │         .5523323       │    .3209178    .9506203 </span>
+<span id="cb60-16"><a href="#cb60-16"></a> Prev. frac. ex. │         .4476677       │    .0493797    .6790822 </span>
+<span id="cb60-17"><a href="#cb60-17"></a> Prev. frac. pop │         .2230316       │</span>
+<span id="cb60-18"><a href="#cb60-18"></a>                 └────────────────────────┴────────────────────────</span>
+<span id="cb60-19"><a href="#cb60-19"></a>                               <span class="fu">chi2</span>(1) =     4.81  Pr&gt;<span class="fu">chi2</span> = 0.0283</span></code></pre></div>
 </div>
 <div id="odds-ratios" class="slide section level1">
 <h1>Odds Ratios</h1>
@@ -462,6 +545,40 @@ Andy Grogan-Kaylor
 <blockquote>
 <p>indicates that one row is more likely to make the first response than the other row.</p>
 </blockquote>
+</div>
+<div id="calculate-odds-ratio" class="slide section level1">
+<h1>Calculate Odds Ratio</h1>
+<div class="sourceCode" id="cb61"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb61-1"><a href="#cb61-1"></a>. <span class="kw">tabulate</span> Tx Outcome [<span class="kw">fweight</span> = Count]</span>
+<span id="cb61-2"><a href="#cb61-2"></a></span>
+<span id="cb61-3"><a href="#cb61-3"></a>              │        Outcome</span>
+<span id="cb61-4"><a href="#cb61-4"></a>           Tx │   No Cold       Cold │     Total</span>
+<span id="cb61-5"><a href="#cb61-5"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb61-6"><a href="#cb61-6"></a>      Placebo │       109         31 │       140 </span>
+<span id="cb61-7"><a href="#cb61-7"></a>Ascorbic Acid │       122         17 │       139 </span>
+<span id="cb61-8"><a href="#cb61-8"></a>──────────────┼──────────────────────┼──────────</span>
+<span id="cb61-9"><a href="#cb61-9"></a>        Total │       231         48 │       279 </span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb62-1"><a href="#cb62-1"></a>. <span class="kw">display</span> (17 * 109)/(122 * 31)</span>
+<span id="cb62-2"><a href="#cb62-2"></a>.48995241</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb63-1"><a href="#cb63-1"></a>. <span class="kw">csi</span> 17 31 122 109, <span class="kw">or</span> <span class="co">// also has an intuitive dialog box</span></span>
+<span id="cb63-2"><a href="#cb63-2"></a></span>
+<span id="cb63-3"><a href="#cb63-3"></a>                 │   Exposed   Unexposed  │      Total</span>
+<span id="cb63-4"><a href="#cb63-4"></a>─────────────────┼────────────────────────┼────────────</span>
+<span id="cb63-5"><a href="#cb63-5"></a>           Cases │        17          31  │         48</span>
+<span id="cb63-6"><a href="#cb63-6"></a>        Noncases │       122         109  │        231</span>
+<span id="cb63-7"><a href="#cb63-7"></a>─────────────────┼────────────────────────┼────────────</span>
+<span id="cb63-8"><a href="#cb63-8"></a>           Total │       139         140  │        279</span>
+<span id="cb63-9"><a href="#cb63-9"></a>                 │                        │</span>
+<span id="cb63-10"><a href="#cb63-10"></a>            Risk │  .1223022    .2214286  │    .172043</span>
+<span id="cb63-11"><a href="#cb63-11"></a>                 │                        │</span>
+<span id="cb63-12"><a href="#cb63-12"></a>                 │      Point estimate    │    [95% Conf. Interval]</span>
+<span id="cb63-13"><a href="#cb63-13"></a>                 ├────────────────────────┼────────────────────────</span>
+<span id="cb63-14"><a href="#cb63-14"></a> Risk difference │        -.0991264       │   -.1868592   -.0113937 </span>
+<span id="cb63-15"><a href="#cb63-15"></a>      Risk <span class="kw">ratio</span> │         .5523323       │    .3209178    .9506203 </span>
+<span id="cb63-16"><a href="#cb63-16"></a> Prev. frac. ex. │         .4476677       │    .0493797    .6790822 </span>
+<span id="cb63-17"><a href="#cb63-17"></a> Prev. frac. pop │         .2230316       │</span>
+<span id="cb63-18"><a href="#cb63-18"></a>      Odds <span class="kw">ratio</span> │         .4899524       │    .2588072    .9282861 (Cornfield)</span>
+<span id="cb63-19"><a href="#cb63-19"></a>                 └────────────────────────┴────────────────────────</span>
+<span id="cb63-20"><a href="#cb63-20"></a>                               <span class="fu">chi2</span>(1) =     4.81  Pr&gt;<span class="fu">chi2</span> = 0.0283</span></code></pre></div>
 </div>
 </body>
 </html>
