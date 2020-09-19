@@ -15,9 +15,12 @@ New stuff that is going to get moved somewhere else at some point.
 * A *kinda new*, *kinda old* resource: [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
 * [Bayes Theorem Applied To Data Analysis](https://agrogan1.github.io/newstuff/Bayes-theorem/Bayes-theorem.html)
 
-### Categorical Data Analysis
+### Categorical Data Analysis 
 
-* [New Materials For A Course On Categorical Data Analysis](https://agrogan1.github.io/newstuff/categorical/)
+(New Materials For A Course On Categorical Data Analysis)
+
+* [Main Course Page](https://agrogan1.github.io/newstuff/categorical/)
+* [Slides and Handouts](https://agrogan1.github.io/newstuff/categorical/README.html)
 
 ### Causal Modeling
 
