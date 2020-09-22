@@ -1,0 +1,477 @@
+---
+title: "Visualizing Categorical by Categorical Data"
+subtitle: "Using Data From The Titanic"
+author: "Andy Grogan-Kaylor"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    code_folding: hide
+    fig_height: 3
+    highlight: haddock
+    number_sections: yes
+    toc: yes
+    toc_float:
+      collapsed: yes
+      smooth_scroll: yes
+    css: ../UM.css
+mainfont: Helvetica
+bibliography: ../categorical.bib
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.margin = FALSE)
+
+# out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+
+
+```
+
+# Background
+
+The R software contains data on the Titanic disaster. We will use different visualization ideas, and this data, to explore factors that may have contributed to surviving the Titanic disaster.
+
+> We are going to explore--in particular--the question of whether social class was associated with surviving the Titanic disaster.
+
+# Setup
+
+```{r}
+
+library(datasets) # datasets
+
+library(dplyr) # data wrangling
+
+library(tidyr) # data tidying
+
+library(ggplot2) # beautiful graphs
+
+library(ggmosaic) # mosaic plots
+
+library(ggalluvial) # alluvial diagrams
+
+library(ggthemes) # beautiful themes
+
+library(waffle) # waffle plots
+
+library(patchwork) # arrange plots
+
+library(pander) # nice tables
+
+library(DT) # interactive tables
+
+```
+
+# Titanic Data {.tabset .tabset-fade .tabset-pills}
+
+```{r}
+
+data("Titanic")
+
+Titanic_data <- as.data.frame(Titanic)
+
+Titanic_data <- Titanic_data %>% 
+  uncount(Freq) # expand
+
+```
+
+## Summary Table
+
+```{r}
+
+Titanic_data %>%
+  group_by(Class, Survived) %>%
+  tally() %>%
+  datatable()
+
+```
+
+## All Rows of Data
+
+```{r}
+
+datatable(Titanic_data)
+
+```
+
+## CrossTabulation
+
+```{r}
+
+gmodels::CrossTable(Titanic_data$Class, Titanic_data$Survived)
+
+# table(Titanic_data$Class, Titanic_data$Survived)
+
+chisq.test(table(Titanic_data$Class, Titanic_data$Survived))
+
+```
+
+# Mosaic Plot
+
+> Order matters in a mosaic plot because we are always conditioning on one variable.
+
+> Phrased in terms of [Bayes Theorem](https://agrogan1.github.io/Bayes/Bayes-Theorem/Bayes-Theorem.html), $P(A|B) \neq P(B|A)$.
+
+```{r}
+
+p1A <- ggplot(Titanic_data) +
+  geom_mosaic(aes(x = product(Survived, # mosaic is Survived X Class
+                              Class), 
+                  fill = Survived), # fill is Survived
+              na.rm=TRUE) +
+  labs(title = "Titanic") +
+  scale_fill_colorblind() +
+  theme(axis.title = element_blank()) 
+
+p1B <- ggplot(Titanic_data) +
+   geom_mosaic(aes(x = product(Class, # mosaic is Class X Survived
+                               Survived), 
+                  fill = Survived), # fill by Survived
+               na.rm=TRUE) +
+  labs(title = "Titanic") + 
+  scale_fill_colorblind() + 
+  theme(axis.title = element_blank())
+
+p1A + p1B + plot_layout(ncol = 2)
+
+```
+
+## Statistical Independence or Dependence
+
+> How do we assess statistical independence or statistical dependence in a mosaic plot?
+
+```{r}
+
+class <- c("1st", "1st", 
+           "2nd", "2nd",
+           "3rd", "3rd",
+           "Crew", "Crew")
+
+survived <- c("yes", "no", 
+              "yes", "no",
+              "yes", "no",
+              "yes", "no")
+
+independent_counts <- rep(10, 8)
+
+dependent_counts <- c(5, 5, 
+                      4, 6,
+                      3, 7,
+                      2, 8)
+
+simulated_data <- tibble(class, 
+                         survived, 
+                         independent_counts, 
+                         dependent_counts) 
+
+independent_data <- simulated_data %>% 
+  uncount(independent_counts)
+
+dependent_data <- simulated_data %>% 
+  uncount(dependent_counts)
+
+s1A <- ggplot(independent_data) +
+  geom_mosaic(aes(x = product(survived, class),
+                  fill = survived)) +
+  scale_fill_colorblind() +
+  theme(axis.title = element_blank()) +
+  labs(title = "Simulated Independent Data")
+
+s2A <- ggplot(dependent_data) +
+  geom_mosaic(aes(x = product(survived, class),
+                  fill = survived)) +
+  scale_fill_colorblind() +
+  theme(axis.title = element_blank()) +
+  labs(title = "Simulated Dependent Data")
+
+s1A + s2A
+
+```
+
+# Bar Chart
+
+> Order also matters in a bar chart because we are again conditioning on one variable.
+
+```{r}
+
+p2A <- ggplot(Titanic_data,
+       aes(x = Class, # x is Class
+           fill = Survived)) + # fill is Survived
+  geom_bar() +
+  labs(title = "Titanic") + 
+  scale_fill_colorblind()
+
+p2B <- ggplot(Titanic_data, 
+       aes(x = Survived, # x is Survived
+           fill = Class)) + # fill is Class
+  geom_bar() +
+  labs(title = "Titanic") + 
+  scale_fill_colorblind()
+
+p2A + p2B
+
+```
+
+> Do we assess statistical independence or statistical dependence in the same way?
+
+# Stacked Bar Chart
+
+> A stacked bar chart may clarify the percentages within each bar, but may obscure the fact that each bar represents different numbers of people.
+
+```{r}
+
+p3A <- ggplot(Titanic_data,
+       aes(x = Class, # x is Class
+           fill = Survived)) + # fill is Survived
+  geom_bar(position = "fill") +
+  labs(title = "Titanic") + 
+  scale_fill_colorblind()
+
+p3B <- ggplot(Titanic_data,
+       aes(x = Survived, # x is Survived
+           fill = Class)) + # fill is Class
+  geom_bar(position = "fill") +
+  labs(title = "Titanic") + 
+  scale_fill_colorblind()
+
+p3A + p3B 
+
+```
+
+> Do we assess statistical independence or statistical dependence in the same way?
+
+# Waffle Chart
+
+> Like many of the visualization techniques explored so far, waffle plots depend crucially on the ordering of variables.
+
+> Waffle charts may work better with smaller data sets, and less well with larger data sets such as the data that we are using in this example.
+
+> The origins of the Waffle Chart are likely multiple, but one line of thinking can be traced back to the work of Marie Neurath.
+
+```{r}
+
+# waffle charts require some data wrangling
+
+p4A <- Titanic_data %>% 
+  group_by(Class, Survived) %>% # group by Class X Survived
+  tally() %>% # count up; count = n
+  ggplot(aes(fill = Survived, # fill by Survived
+             values = n)) + # values are n (count)
+  geom_waffle(color = "grey") +
+  labs(title = "Titanic") + 
+  scale_fill_colorblind() + 
+  facet_wrap(~Class) + # facet on Class
+  theme(axis.text = element_blank())
+
+p4B <- Titanic_data %>% 
+  group_by(Class, Survived) %>% # group by Class X Survived
+  tally() %>% # count up; count = n
+  ggplot(aes(fill = Class, # fill by Class
+             values = n)) + # values are n (count)
+  geom_waffle(color = "grey") +
+  labs(title = "Titanic") + 
+  scale_fill_colorblind() + 
+  facet_wrap(~Survived) + # facet on Survived
+  theme(axis.text = element_blank())
+
+p4A # replay
+
+```
+
+```{r}
+
+p4B # replay
+
+```
+
+> Do we assess statistical independence or statistical dependence in the same way?
+
+# Scatterplot
+
+A scatterplot is an older style of visualizing categorical data, and arguably works less well than some other methods.
+
+```{r}
+
+p5A <- Titanic_data %>%
+  group_by(Class, Survived) %>% # group by Class X Survived
+  tally() %>% # count up; count = n
+  ggplot(aes(x = Class, # x is Class
+             y = Survived, # y is Survived
+             color = Survived, # color is Survived
+             size = n)) + # size of points is n (count)
+  geom_point(shape = 15) + # square
+  labs(title = "Titanic") + 
+  scale_size_continuous(range = c(5, 20),
+                        name = "count") +
+  scale_color_colorblind()
+
+p5A
+
+```
+
+> How do we assess statistical independence or statistical dependence with a scatterplot?
+
+# Heatmap
+
+A Heatmap is a more recent form of data visualization and has the advantage of somewhat looking like a cross-tabulation.
+
+```{r}
+
+p6A <- Titanic_data %>%
+  group_by(Class, Survived) %>% # group by Class X Survived
+  tally() %>% # count up; count = n
+  ggplot(aes(x = Class, # x is Class
+             y = Survived, # y is Survived
+             fill = n)) + # fill is n (count)
+  geom_tile() + 
+  labs(title = "Titanic") + 
+  scale_fill_gradient(name = "Count",
+                      low = "#000000",
+                      high = "#E69F00") 
+ 
+p6A
+
+```
+
+> How do we assess statistical independence or statistical dependence with a heatmap?
+
+# Alluvial Diagram
+
+Alluvial diagrams (closely related to Sankey diagrams) have become more prominent more recently, but have a long history, tracing back to the famous [Minard diagram](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#The_map_of_Napoleon's_Russian_campaign).
+
+```{r, out.width="50%", fig.cap="Minard's Map of Napoleon's Russian Campaign"}
+
+knitr::include_graphics("Minard.png")
+
+```
+
+One inspiration for alluvial diagrams has been to track changes in large networks over time [@Rosvall2010], but they can also be useful in visualizing categorical data.
+
+> Code below is adapted from [http://corybrunson.github.io/ggalluvial/](http://corybrunson.github.io/ggalluvial/).
+
+```{r}
+
+p7A <- Titanic_data %>%
+  group_by(Class, Survived) %>% # group by Class X Survived
+  tally() %>% # count up; count is n
+  ggplot(aes(axis1 = Class, # axes
+             axis2 = Survived, 
+             y = n)) +
+  geom_alluvium(aes(fill = Survived)) + # alluvium geom (Survived)
+  geom_stratum() + 
+  geom_text(stat = "stratum", 
+            aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("Class", "Survived"),
+                   expand = c(.1, .05)) +
+  scale_fill_colorblind() +
+  xlab("") +
+  ylab("") +
+  theme_minimal() +
+  labs(title = "Titanic") 
+
+p7A
+
+```
+
+> How do we assess statistical independence or statistical dependence with an alluvial diagram?
+
+# Simpson's Paradox
+
+Simpson's Paradox is the idea that observed associations may change when a new variable is added.
+
+> Do the visualizations below present evidence that Simpson's paradox is at work in the Titanic data?
+
+> Which of these visualizations best conveys the idea of Simpson's paradox?
+
+```{r}
+
+p1A | p1A + facet_wrap(~Sex, nrow = 2, scales = "free")
+
+```
+
+```{r}
+
+p2A | p2A + facet_wrap(~Sex, nrow = 2, scales = "free")
+
+```
+
+```{r}
+
+p3A | p3A + facet_wrap(~Sex, nrow = 2, scales = "free")
+
+```
+
+```{r}
+
+p5Afacet <- Titanic_data %>%
+  group_by(Class, Survived, Sex) %>%
+  tally() %>%
+  ggplot(aes(x = Class,
+             y = Survived,
+             color = Survived,
+             size = n)) +
+  geom_point(shape = 15) + # square
+  labs(title = "Titanic") + 
+  # scale_size_continuous(range = c(5, 20),
+  #                       name = "count") +
+  scale_color_colorblind() +
+  facet_wrap(~Sex, ncol = 1)
+
+p5A 
+
+p5Afacet
+
+```
+
+```{r}
+
+p6Afacet <- Titanic_data %>%
+  group_by(Class, Survived, Sex) %>%
+  tally() %>%
+  ggplot(aes(x = Class, y = Survived, fill = n)) +
+  geom_tile() + 
+  labs(title = "Titanic") + 
+  scale_fill_gradient(name = "Count",
+                      low = "#000000",
+                      high = "#E69F00") +
+  facet_wrap(~Sex, nrow = 2)
+
+p6A + p6Afacet
+
+```
+
+```{r, fig.height=8}
+
+p7Afacet <- Titanic_data %>%
+  group_by(Class, 
+           Survived,
+           Sex) %>% # group by Class, Sex and Survived
+  tally() %>% # count up
+  ggplot(aes(axis1 = Class, 
+             axis2 = Survived, 
+             y = n)) +
+  geom_alluvium(aes(fill = Survived)) +
+  geom_stratum() + 
+  geom_text(stat = "stratum", 
+            aes(label = after_stat(stratum))) +
+  scale_x_discrete(limits = c("Class", "Survived"),
+                   expand = c(.1, .05)) +
+  scale_fill_colorblind() +
+  xlab("") +
+  ylab("") +
+  theme_minimal() +
+  labs(title = "Titanic") +
+  facet_wrap(~Sex, 
+             scales = "free",
+             nrow = 1)
+
+p7A / p7Afacet
+
+```
+
+# References
+
+
+
