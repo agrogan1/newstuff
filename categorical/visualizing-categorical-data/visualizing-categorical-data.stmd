@@ -1,0 +1,105 @@
+% Visualizing Categorical Data With French Skiiers Data
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+# Background
+
+Visualizing categorical data presents its own unique challenges. Creating graphs may be easy, but creating graphs that effectively tell a story, or impart a message, may require additional effort.
+
+There are multiple commands that may be useful, `spineplot`, `graph bar`, and `graph pie`.
+
+The general useage of these commands is hopefully fairly simple, and is as follows:
+
+* `spineplot y x`
+* `graph bar, over(y) by(x)`
+* `graph pie, over(y) by (x)`
+
+Our graphing task is made a little bit more complicated because we have *weighted* data where every row of data represents multiple observations, so we need to include `[fweight = Count]` in order to let Stata know that we have weighted data.
+
+We also add options to various graphs to make them more informative.
+
+# Data
+
+We use the *French Skiiers* data.
+
+    use "FrenchSkiiers.dta", clear
+	
+# 2 X 2 Table
+
+A 2 X 2 Table may be helpful
+
+    tabulate Outcome Tx [fweight=Count], row col
+	
+We note from the column percentages that allocation to the placebo or treament (ascorbic acid) was roughly 50% in each group (1 subject dropped out of the study). We further note from the within column percentages that 22.14% of those receiving the placebo got colds while only 12.23% of those receiving ascorbic acid got colds.
+
+# Spineplot (MosaicPlot)
+
+A basic *spineplot* is illusrative of the *spineplot* idea, but perhaps not as informative as it might be.
+
+    spineplot Outcome Tx [fweight=Count]
+
+	graph export myspineplot1.png, width(500) replace
+
+![Spine Plot or Mosaic Plot](myspineplot1.png)
+
+We add options to clarify the spineplot, which have the unfortunate effect of making the syntax more complicated and less intuitive. Hopefully, however we still see the core syntax of `spineplot Outcome Tx` is still there, and everything after the `,` is just options.
+
+Observe especially that we have added `note()`'s to the graph to clarify the meaning of the spineplot.
+
+	spineplot Outcome Tx [fweight=Count], ///
+	title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
+	note("Allocation to Treament vs. Placebo is Roughly Equal" "Fewer Colds Among Those Recieving Treatment") /// note
+	xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
+	xtitle(" ", axis(1)) /// blank x title on axis(1)
+	ytitle("Outcome", axis(2)) /// ytitle on axis(2)
+	text(Count) /// add Count variable to boxes
+	scheme(michigan) // Michigan graph scheme
+	
+    graph export myspineplot2.png, width(500) replace
+
+![Spine Plot or Mosaic Plot](myspineplot2.png)
+
+> The spineplot makes clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the spineplot would have made this clear as well.
+
+> With enough annotations, the spineplot *may* make it clear that the treatment appears to result in a lower rate of colds than the placebo.
+
+# Bar Plot
+
+We try a bar plot. 
+
+    graph bar [fweight = Count], over(Outcome) /// 
+	asyvars /// different colors for bars
+	blabel(bar, format(%9.4g)) /// bars labelled with bar height
+	by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
+	scheme(michigan) // Michigan graph scheme
+	
+    graph export mybarplot2.png, width(500) replace
+
+![Bar Plot](mybarplot2.png)
+
+> The bar plot tells a *very* clear story about *outcomes*. However, the bar plot *does not* make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.
+
+# Pie Chart
+
+    graph pie [fweight = Count], over(Outcome) ///
+	by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
+	plabel(_all percent) /// label with percentages
+	scheme(michigan) // Michigan graph scheme
+
+    graph export mypie2.png, width(500) replace
+
+![Bar Plot](mypie2.png)
+	
+> The pie chart also tells a *very* clear story about *outcomes*. Similar to the bar plot, however, the pie chart *does not* make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.
+
+	
+	
+	
+	
+	

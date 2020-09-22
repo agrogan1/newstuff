@@ -1,0 +1,95 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}21 Sep 2020, 20:21:59
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}21 Sep 2020
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}20:21:59
+{txt}
+{com}. //_3
+. use "FrenchSkiiers.dta", clear
+{txt}
+{com}. //_4
+. tabulate Outcome Tx [fweight=Count], row col
+{txt}
+{c TLC}{hline 19}{c TRC}
+{c |} Key{col 21}{c |}
+{c LT}{hline 19}{c RT}
+{c |}{space 5}{it:frequency}{col 21}{c |}
+{c |}{space 2}{it:row percentage}{col 21}{c |}
+{c |}{space 1}{it:column percentage}{col 21}{c |}
+{c BLC}{hline 19}{c BRC}
+
+           {c |}          Tx
+   Outcome {c |}   Placebo  Ascorbic  {c |}     Total
+{hline 11}{c +}{hline 22}{c +}{hline 10}
+   No Cold {c |}{res}       109        122 {txt}{c |}{res}       231 
+           {txt}{c |}{res}     47.19      52.81 {txt}{c |}{res}    100.00 
+           {txt}{c |}{res}     77.86      87.77 {txt}{c |}{res}     82.80 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+      Cold {c |}{res}        31         17 {txt}{c |}{res}        48 
+           {txt}{c |}{res}     64.58      35.42 {txt}{c |}{res}    100.00 
+           {txt}{c |}{res}     22.14      12.23 {txt}{c |}{res}     17.20 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+     Total {c |}{res}       140        139 {txt}{c |}{res}       279 
+           {txt}{c |}{res}     50.18      49.82 {txt}{c |}{res}    100.00 
+           {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
+{txt}
+{com}. //_5
+. spineplot Outcome Tx [fweight=Count]
+{res}{txt}
+{com}. //_6
+. graph export myspineplot1.png, width(500) replace
+{txt}(file myspineplot1.png written in PNG format)
+
+{com}. //_7
+. spineplot Outcome Tx [fweight=Count], ///
+> title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
+> note("Allocation to Treament vs. Placebo is Roughly Equal" "Fewer Colds Among Those Recieving Treatment") /// note
+> xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
+> xtitle(" ", axis(1)) /// blank x title on axis(1)
+> ytitle("Outcome", axis(2)) /// ytitle on axis(2)
+> text(Count) /// add Count variable to boxes
+> scheme(michigan) // Michigan graph scheme
+{res}{txt}
+{com}. //_8
+. graph export myspineplot2.png, width(500) replace
+{txt}(file myspineplot2.png written in PNG format)
+
+{com}. //_9
+. graph bar [fweight = Count], over(Outcome) /// 
+> asyvars /// different colors for bars
+> blabel(bar, format(%9.4g)) /// bars labelled with bar height
+> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
+> scheme(michigan) // Michigan graph scheme
+{res}{txt}
+{com}. //_10
+. graph export mybarplot2.png, width(500) replace
+{txt}(file mybarplot2.png written in PNG format)
+
+{com}. //_11
+. graph pie [fweight = Count], over(Outcome) ///
+> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
+> plabel(_all percent) /// label with percentages
+> scheme(michigan) // Michigan graph scheme
+{res}{txt}
+{com}. //_12
+. graph export mypie2.png, width(500) replace
+{txt}(file mypie2.png written in PNG format)
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}21 Sep 2020, 20:22:04
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

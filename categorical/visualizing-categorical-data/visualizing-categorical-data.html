@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Visualizing Categorical Data With French Skiiers Data</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Visualizing Categorical Data With French Skiiers Data</h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">21 Sep 2020 20:21:53</p>
+</header>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<h1 id="background">Background</h1>
+<p>Visualizing categorical data presents its own unique challenges. Creating graphs may be easy, but creating graphs that effectively tell a story, or impart a message, may require additional effort.</p>
+<p>There are multiple commands that may be useful, <code>spineplot</code>, <code>graph bar</code>, and <code>graph pie</code>.</p>
+<p>The general useage of these commands is hopefully fairly simple, and is as follows:</p>
+<ul>
+<li><code>spineplot y x</code></li>
+<li><code>graph bar, over(y) by(x)</code></li>
+<li><code>graph pie, over(y) by (x)</code></li>
+</ul>
+<p>Our graphing task is made a little bit more complicated because we have <em>weighted</em> data where every row of data represents multiple observations, so we need to include <code>[fweight = Count]</code> in order to let Stata know that we have weighted data.</p>
+<p>We also add options to various graphs to make them more informative.</p>
+<h1 id="data">Data</h1>
+<p>We use the <em>French Skiiers</em> data.</p>
+<pre class='stata'>. use "FrenchSkiiers.dta", clear
+</pre>
+<h1 id="x-2-table">2 X 2 Table</h1>
+<p>A 2 X 2 Table may be helpful</p>
+<pre class='stata'>. tabulate Outcome Tx [fweight=Count], row col
+
+┌───────────────────┐
+│ Key               │
+├───────────────────┤
+│     frequency     │
+│  row percentage   │
+│ column percentage │
+└───────────────────┘
+
+           │          Tx
+   Outcome │   Placebo  Ascorbic  │     Total
+───────────┼──────────────────────┼──────────
+   No Cold │       109        122 │       231 
+           │     47.19      52.81 │    100.00 
+           │     77.86      87.77 │     82.80 
+───────────┼──────────────────────┼──────────
+      Cold │        31         17 │        48 
+           │     64.58      35.42 │    100.00 
+           │     22.14      12.23 │     17.20 
+───────────┼──────────────────────┼──────────
+     Total │       140        139 │       279 
+           │     50.18      49.82 │    100.00 
+           │    100.00     100.00 │    100.00 
+</pre>
+<p>We note from the column percentages that allocation to the placebo or treament (ascorbic acid) was roughly 50% in each group (1 subject dropped out of the study). We further note from the within column percentages that 22.14% of those receiving the placebo got colds while only 12.23% of those receiving ascorbic acid got colds.</p>
+<h1 id="spineplot-mosaicplot">Spineplot (MosaicPlot)</h1>
+<p>A basic <em>spineplot</em> is illusrative of the <em>spineplot</em> idea, but perhaps not as informative as it might be.</p>
+<pre class='stata'>. spineplot Outcome Tx [fweight=Count]
+</pre>
+<pre class='stata'>. graph export myspineplot1.png, width(500) replace
+(file myspineplot1.png written in PNG format)
+</pre>
+<figure>
+<img src="myspineplot1.png" alt="" /><figcaption>Spine Plot or Mosaic Plot</figcaption>
+</figure>
+<p>We add options to clarify the spineplot, which have the unfortunate effect of making the syntax more complicated and less intuitive. Hopefully, however we still see the core syntax of <code>spineplot Outcome Tx</code> is still there, and everything after the <code>,</code> is just options.</p>
+<p>Observe especially that we have added <code>note()</code>’s to the graph to clarify the meaning of the spineplot.</p>
+<pre class='stata'>. spineplot Outcome Tx [fweight=Count], ///
+> title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
+> note("Allocation to Treament vs. Placebo is Roughly Equal" "Fewer Colds Among Those Reciev
+> ing Treatment") /// note
+> xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
+> xtitle(" ", axis(1)) /// blank x title on axis(1)
+> ytitle("Outcome", axis(2)) /// ytitle on axis(2)
+> text(Count) /// add Count variable to boxes
+> scheme(michigan) // Michigan graph scheme
+</pre>
+<pre class='stata'>. graph export myspineplot2.png, width(500) replace
+(file myspineplot2.png written in PNG format)
+</pre>
+<figure>
+<img src="myspineplot2.png" alt="" /><figcaption>Spine Plot or Mosaic Plot</figcaption>
+</figure>
+<blockquote>
+<p>The spineplot makes clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the spineplot would have made this clear as well.</p>
+</blockquote>
+<blockquote>
+<p>With enough annotations, the spineplot <em>may</em> make it clear that the treatment appears to result in a lower rate of colds than the placebo.</p>
+</blockquote>
+<h1 id="bar-plot">Bar Plot</h1>
+<p>We try a bar plot.</p>
+<pre class='stata'>. graph bar [fweight = Count], over(Outcome) /// 
+> asyvars /// different colors for bars
+> blabel(bar, format(%9.4g)) /// bars labelled with bar height
+> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by comm
+> and)
+> scheme(michigan) // Michigan graph scheme
+</pre>
+<pre class='stata'>. graph export mybarplot2.png, width(500) replace
+(file mybarplot2.png written in PNG format)
+</pre>
+<figure>
+<img src="mybarplot2.png" alt="" /><figcaption>Bar Plot</figcaption>
+</figure>
+<blockquote>
+<p>The bar plot tells a <em>very</em> clear story about <em>outcomes</em>. However, the bar plot <em>does not</em> make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.</p>
+</blockquote>
+<h1 id="pie-chart">Pie Chart</h1>
+<pre class='stata'>. graph pie [fweight = Count], over(Outcome) ///
+> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by comm
+> and)
+> plabel(_all percent) /// label with percentages
+> scheme(michigan) // Michigan graph scheme
+</pre>
+<pre class='stata'>. graph export mypie2.png, width(500) replace
+(file mypie2.png written in PNG format)
+</pre>
+<figure>
+<img src="mypie2.png" alt="" /><figcaption>Bar Plot</figcaption>
+</figure>
+<blockquote>
+<p>The pie chart also tells a <em>very</em> clear story about <em>outcomes</em>. Similar to the bar plot, however, the pie chart <em>does not</em> make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.</p>
+</blockquote>
+</body>
+</html>
