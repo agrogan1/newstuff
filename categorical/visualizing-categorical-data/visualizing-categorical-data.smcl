@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}21 Sep 2020, 20:21:59
+ {txt}opened on:  {res}21 Sep 2020, 20:32:51
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}20:21:59
+{res}20:32:51
 {txt}
 {com}. //_3
 . use "FrenchSkiiers.dta", clear
@@ -89,7 +89,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}21 Sep 2020, 20:22:04
+ {txt}closed on:  {res}21 Sep 2020, 20:32:56
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

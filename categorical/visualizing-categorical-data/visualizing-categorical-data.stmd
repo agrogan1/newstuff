@@ -94,7 +94,7 @@ We try a bar plot.
 
     graph export mypie2.png, width(500) replace
 
-![Bar Plot](mypie2.png)
+![Pie Chart](mypie2.png)
 	
 > The pie chart also tells a *very* clear story about *outcomes*. Similar to the bar plot, however, the pie chart *does not* make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.
 
