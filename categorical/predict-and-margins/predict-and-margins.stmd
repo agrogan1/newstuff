@@ -1,0 +1,71 @@
+% `predict` and `margins`
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+# Background
+
+Odds ratios, or coefficients showing the association of the independent variables with the log odds, represent the most immediate output of a logistic regression. However, for a variety of reasons, it may make sense to not only report odds ratios, but also to investigate predicted probabilities.
+
+# The Data
+
+The data are an extract of the *National Survey of Children's Health, 2018*. The data contain information on children's current depression status, their exposure to various *Adverse Childhood Experiences* (ACEs) and their sex and race.
+
+    clear all
+
+    cd "/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins"
+
+    use "NSCH_ACES.dta", clear
+
+    describe
+
+# Logistic Regression
+
+We estimate a logistic regression using `,or` to ask for *odds ratios*.
+
+    logit depress ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R ace10R i.sc_race_r i.sc_sex, or
+
+# Predicted Probabilities
+
+Predicted probabilities are *each participant's individual predicted probability* of experiencing depression based upon the independent variables included in the model.  We often denote such predicted probabilities with $\hat{y}$
+
+    predict yhat
+
+`yhat` is a variable in the data, just like any other variable, and we can tabulate and graph it.
+
+    tabulate sc_race_r, summarize(yhat)
+
+    graph bar yhat, ///
+	over(sc_race_r, label(angle(forty_five))) ///
+	title("Predicted Probability of Depression") ///
+	scheme(michigan)
+	
+	graph export mybar.png, width(500) replace
+
+![Bar Graph of Predicted Probabilities](mybar.png)
+
+# Predicted Margins (Over A Variable of Interest)
+
+In their simplest form, predictive margins are *average predicted probabilities* were everyone in the sample were treated as if they were of a particular race.
+
+    margins sc_race_r // predictive margins 
+	
+> We could also evaluate `margins` holding other variables at their *mean* values using the `atmeans` option. You can also read about obtaining `margins` for various combinations of the independent variables by typing `help margins` at the Stata prompt.
+	
+The essential graphing command is `marginsplot`, which will usually produce a perfectly useable graph. The other graphing options are added for clarification and aesthetic purposes.
+
+    marginsplot, ///
+	title("Predicted Probability of Depression") ///
+	ylabel(, labsize(small) angle(horizontal)) ///
+	xlabel(, angle(forty_five)) ///
+	scheme(michigan)
+	
+	graph export mymargins.png, width(500) replace
+
+![Margins Plot of Predicted Probabilities](mymargins.png)
+

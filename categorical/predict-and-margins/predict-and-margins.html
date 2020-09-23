@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>predict and margins</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><code>predict</code> and <code>margins</code></h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">23 Sep 2020 14:33:37</p>
+</header>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<h1 id="background">Background</h1>
+<p>Odds ratios, or coefficients showing the association of the independent variables with the log odds, represent the most immediate output of a logistic regression. However, for a variety of reasons, it may make sense to not only report odds ratios, but also to investigate predicted probabilities.</p>
+<h1 id="the-data">The Data</h1>
+<p>The data are an extract of the <em>National Survey of Children’s Health, 2018</em>. The data contain information on children’s current depression status, their exposure to various <em>Adverse Childhood Experiences</em> (ACEs) and their sex and race.</p>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. cd "/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins"
+/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins
+</pre>
+<pre class='stata'>. use "NSCH_ACES.dta", clear
+</pre>
+<pre class='stata'>. describe
+
+Contains data from NSCH_ACES.dta
+  obs:        30,530                          
+ vars:            13                          23 Sep 2020 13:49
+ size:       488,480                          
+────────────────────────────────────────────────────────────────────────────────────────────
+              storage   display    value
+variable name   type    format     label      variable label
+────────────────────────────────────────────────────────────────────────────────────────────
+sc_sex          byte    %30.0g     sc_sex_lab
+                                              Sex of Selected Child
+sc_race_r       byte    %48.0g     sc_race_r_lab
+                                              Race of Selected Child, Detailed
+sc_racer        byte    %31.0g     sc_racer_lab
+                                              Race of Selected Child, Recode
+depress         float   %9.0g                 
+ace1R           byte    %9.0g                 RECODE of ace1 (Hard to Cover Basics Like Food
+                                                or Housing)
+ace3R           byte    %9.0g                 RECODE of ace3 (Child Experienced - Parent or
+                                                Guardian Divorced)
+ace4R           byte    %9.0g                 RECODE of ace4 (Child Experienced - Parent or
+                                                Guardian Died)
+ace5R           byte    %9.0g                 RECODE of ace5 (Child Experienced - Parent or
+                                                Guardian Time in Jail)
+ace6R           byte    %9.0g                 RECODE of ace6 (Child Experienced - Adults
+                                                Slap, Hit, Kick, Punch Others)
+ace7R           byte    %9.0g                 RECODE of ace7 (Child Experienced - Victim of
+                                                Violence)
+ace8R           byte    %9.0g                 RECODE of ace8 (Child Experienced - Lived with
+                                                Mentally Ill)
+ace9R           byte    %9.0g                 RECODE of ace9 (Child Experienced - Lived with
+                                                Person with Alcohol/Drug Problem)
+ace10R          byte    %9.0g                 RECODE of ace10 (Child Experienced - Treated
+                                                Unfairly Because of Race)
+────────────────────────────────────────────────────────────────────────────────────────────
+Sorted by: 
+</pre>
+<h1 id="logistic-regression">Logistic Regression</h1>
+<p>We estimate a logistic regression using <code>,or</code> to ask for <em>odds ratios</em>.</p>
+<pre class='stata'>. logit depress ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R ace10R i.sc_race_r i.sc_sex,
+>  or
+
+Iteration 0:   log likelihood = -4742.8248  
+Iteration 1:   log likelihood = -4256.2811  
+Iteration 2:   log likelihood = -4180.3512  
+Iteration 3:   log likelihood = -4179.6624  
+Iteration 4:   log likelihood =  -4179.661  
+Iteration 5:   log likelihood =  -4179.661  
+
+Logistic regression                             Number of obs     =     28,926
+                                                LR chi2(16)       =    1126.33
+                                                Prob > chi2       =     0.0000
+Log likelihood =  -4179.661                     Pseudo R2         =     0.1187
+
+──────────────────────────┬────────────────────────────────────────────────────────────────
+                  depress │ Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+──────────────────────────┼────────────────────────────────────────────────────────────────
+                    ace1R │   1.611495   .1106592     6.95   0.000     1.408569    1.843656
+                    ace3R │   1.627997   .1212124     6.55   0.000     1.406946    1.883778
+                    ace4R │    1.78926   .2211975     4.71   0.000     1.404247    2.279835
+                    ace5R │   1.048195   .1097253     0.45   0.653     .8537646    1.286904
+                    ace6R │   1.136375   .1253184     1.16   0.246     .9154867     1.41056
+                    ace7R │     1.9394   .2129262     6.03   0.000     1.563919     2.40503
+                    ace8R │    3.72644   .2966351    16.53   0.000     3.188131    4.355642
+                    ace9R │   1.410608   .1304044     3.72   0.000     1.176837    1.690815
+                   ace10R │   1.535313   .2020991     3.26   0.001     1.186178     1.98721
+                          │
+                sc_race_r │
+Black or African Ameri..  │    .827289   .1074881    -1.46   0.144     .6413015    1.067216
+American Indian or Ala..  │   .6279865   .2045843    -1.43   0.153     .3316252    1.189195
+             Asian alone  │   .7145884   .1439746    -1.67   0.095     .4814561    1.060609
+Native Hawaiian and Ot..  │   .2644952   .2745993    -1.28   0.200       .03457    2.023654
+   Some Other Race alone  │   .6443303   .1434801    -1.97   0.048     .4164493    .9969076
+       Two or More Races  │    .616392   .0814335    -3.66   0.000     .4757754    .7985681
+                          │
+                   sc_sex │
+                  Female  │   1.468479   .0935905     6.03   0.000     1.296039    1.663862
+                    _cons │   .0150195   .0010428   -60.47   0.000     .0131087    .0172089
+──────────────────────────┴────────────────────────────────────────────────────────────────
+Note: _cons estimates baseline odds.
+</pre>
+<h1 id="predicted-probabilities">Predicted Probabilities</h1>
+<p>Predicted probabilities are <em>each participant’s individual predicted probability</em> of experiencing depression based upon the independent variables included in the model. We often denote such predicted probabilities with <span class="math inline">\(\hat{y}\)</span></p>
+<pre class='stata'>. predict yhat
+(option pr assumed; Pr(depress))
+(1,604 missing values generated)
+</pre>
+<p><code>yhat</code> is a variable in the data, just like any other variable, and we can tabulate and graph it.</p>
+<pre class='stata'>. tabulate sc_race_r, summarize(yhat)
+
+    Race of │
+   Selected │
+     Child, │       Summary of Pr(depress)
+   Detailed │        Mean   Std. Dev.       Freq.
+────────────┼────────────────────────────────────
+  White alo │   .04050317   .05252093      22,418
+  Black or  │   .04153355   .05702566       1,878
+  American  │   .05128205   .08430179         234
+  Asian alo │   .01963636   .01999562       1,375
+  Native Ha │   .01369863   .02790487          73
+  Some Othe │   .03038309   .04326265         757
+  Two or Mo │   .03286171   .05022293       2,191
+────────────┼────────────────────────────────────
+      Total │   .03875406   .05190828      28,926
+</pre>
+<pre class='stata'>. graph bar yhat, ///
+> over(sc_race_r, label(angle(forty_five))) ///
+> title("Predicted Probability of Depression") ///
+> scheme(michigan)
+</pre>
+<pre class='stata'>. graph export mybar.png, width(500) replace
+(file mybar.png written in PNG format)
+</pre>
+<figure>
+<img src="mybar.png" alt="" /><figcaption>Bar Graph of Predicted Probabilities</figcaption>
+</figure>
+<h1 id="predicted-margins-over-a-variable-of-interest">Predicted Margins (Over A Variable of Interest)</h1>
+<p>In their simplest form, predictive margins are <em>average predicted probabilities</em> were everyone in the sample were treated as if they were of a particular race.</p>
+<pre class='stata'>. margins sc_race_r // predictive margins 
+
+Predictive margins                              Number of obs     =     28,926
+Model VCE    : OIM
+
+Expression   : Pr(depress), predict()
+
+──────────────────────────┬────────────────────────────────────────────────────────────────
+                          │            Delta-method
+                          │     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
+──────────────────────────┼────────────────────────────────────────────────────────────────
+                sc_race_r │
+             White alone  │   .0415443   .0013092    31.73   0.000     .0389785    .0441102
+Black or African Ameri..  │   .0350812   .0038971     9.00   0.000     .0274431    .0427194
+American Indian or Ala..  │   .0273233   .0080773     3.38   0.001     .0114921    .0431546
+             Asian alone  │   .0307367   .0055275     5.56   0.000      .019903    .0415704
+Native Hawaiian and Ot..  │   .0121547   .0120465     1.01   0.313    -.0114559    .0357653
+   Some Other Race alone  │   .0279727   .0056061     4.99   0.000      .016985    .0389605
+       Two or More Races  │   .0268611   .0031053     8.65   0.000     .0207748    .0329474
+──────────────────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<blockquote>
+<p>We could also evaluate <code>margins</code> holding other variables at their <em>mean</em> values using the <code>atmeans</code> option. You can also read about obtaining <code>margins</code> for various combinations of the independent variables by typing <code>help margins</code> at the Stata prompt.</p>
+</blockquote>
+<p>The essential graphing command is <code>marginsplot</code>, which will usually produce a perfectly useable graph. The other graphing options are added for clarification and aesthetic purposes.</p>
+<pre class='stata'>. marginsplot, ///
+> title("Predicted Probability of Depression") ///
+> ylabel(, labsize(small) angle(horizontal)) ///
+> xlabel(, angle(forty_five)) ///
+> scheme(michigan)
+
+  Variables that uniquely identify margins: sc_race_r
+</pre>
+<pre class='stata'>. graph export mymargins.png, width(500) replace
+(file mymargins.png written in PNG format)
+</pre>
+<figure>
+<img src="mymargins.png" alt="" /><figcaption>Margins Plot of Predicted Probabilities</figcaption>
+</figure>
+</body>
+</html>
