@@ -62,7 +62,7 @@ geometry: margin=1 in
 	
 	keep year polviews liberal ///
 	race latinx class ///
-	coninc coninc_10K income_group // keep only some variables
+	coninc coninc_10K income_group happy govlazy goveqinc // keep only some variables
 	
 	save GSSsmall.dta, replace
 	
