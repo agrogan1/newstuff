@@ -247,6 +247,95 @@ ggplot(mydata,  # data
 ---
 class: animated, slideInRight
 
+# Add Color
+
+
+
+---
+
+
+
+count: false
+ 
+
+.panel1-graph1colorful-auto[
+
+```r
+*ggplot(mydata,  # data
+*      aes(x = outcome))   # variable
+```
+]
+ 
+.panel2-graph1colorful-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph1colorful_auto_01_output-1.png" width="432" /&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-graph1colorful-auto[
+
+```r
+ggplot(mydata,  # data
+       aes(x = outcome)) +  # variable
+* geom_histogram(fill = "red")
+```
+]
+ 
+.panel2-graph1colorful-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph1colorful_auto_02_output-1.png" width="432" /&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-graph1colorful-auto[
+
+```r
+ggplot(mydata,  # data
+       aes(x = outcome)) +  # variable
+  geom_histogram(fill = "red")
+```
+]
+ 
+.panel2-graph1colorful-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph1colorful_auto_03_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.panel1-graph1colorful-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-graph1colorful-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-graph1colorful-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+class: animated, slideInRight
+
 # An Alternative Geometry
 
 
@@ -279,7 +368,7 @@ count: false
 ```r
 ggplot(mydata,  # data
        aes(x = outcome)) +  # variable
-* geom_density()
+* geom_density(fill = "blue")
 ```
 ]
  
@@ -296,7 +385,7 @@ count: false
 ```r
 ggplot(mydata,  # data
        aes(x = outcome)) +  # variable
-  geom_density()
+  geom_density(fill = "blue")
 ```
 ]
  

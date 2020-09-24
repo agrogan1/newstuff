@@ -133,13 +133,33 @@ ggplot(mydata, # data
 ---
 class: animated, slideInRight
 
+# Add Color
+
+```{r graph1colorful, include = FALSE}
+
+ggplot(mydata, # data
+       aes(x = outcome)) + # variable
+  geom_histogram(fill = "red") #BREAK2
+
+```
+
+---
+
+```{r, code = knitr::knit_code$get("graph1colorful"), eval = FALSE, echo = FALSE}
+```
+
+`r chunk_reveal("graph1colorful", break_type = "auto")`
+
+---
+class: animated, slideInRight
+
 # An Alternative Geometry
 
 ```{r graph1A, include = FALSE}
 
 ggplot(mydata, # data
        aes(x = outcome)) + # variable
-  geom_density() #BREAK2
+  geom_density(fill = "blue") #BREAK2
 
 ```
 
