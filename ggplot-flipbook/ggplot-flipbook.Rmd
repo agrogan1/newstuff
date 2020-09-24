@@ -55,6 +55,15 @@ library(flipbookr)
 
 library(tidyverse)
 
+library(xaringanExtra)
+
+xaringanExtra::use_tile_view()
+
+xaringanExtra::use_slide_tone()
+
+xaringanExtra::use_share_again()
+
+
 ```
 
 ```{r, echo = FALSE}
@@ -74,14 +83,17 @@ mydata <- data.frame(predictor, outcome, group)
 
 ```
 
----
-class: animated, bounceInDown
+# How To Navigate This Presentation
 
-# Get Started
-
-Use the <span style="font-size:100px">&#8678;</span> and <span style="font-size:100px">&#8680;</span> keys to move through the presentation.
+* Use the <span style="font-size:100px">&#8678;</span> and <span style="font-size:100px">&#8680;</span> keys to move through the presentation.
+* Press *o* for *panel overview*.
+* This presentation plays a *tone* when each new item appears. Turn the volume down if you find these tones annoying.
 
 Based upon [2 Page ggplot](https://agrogan1.github.io/R/two-page-ggplot2/two-page-ggplot2.pdf)
+
+---
+class: animated, slideInRight
+# Get Started
 
 ```{r graph0, include = FALSE}
 
@@ -117,6 +129,26 @@ ggplot(mydata, # data
 ```
 
 `r chunk_reveal("graph1", break_type = "auto")`
+
+---
+class: animated, slideInRight
+
+# An Alternative Geometry
+
+```{r graph1A, include = FALSE}
+
+ggplot(mydata, # data
+       aes(x = outcome)) + # variable
+  geom_density() #BREAK2
+
+```
+
+---
+
+```{r, code = knitr::knit_code$get("graph1A"), eval = FALSE, echo = FALSE}
+```
+
+`r chunk_reveal("graph1A", break_type = "auto")`
 
 ---
 class: animated, slideInRight
@@ -178,23 +210,12 @@ ggplot(mydata, # data
            color = group)) + 
   geom_point() + # 1st geometry
   geom_smooth() + # 2nd geometry
-  labs(title = "My Title", # title
-       caption = "Colors Inspired by UNICEF", # subtitle
-       x = "Predictor", # x title
-       y = "Outcome") + # y title
+  labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome") + # labels
   # manual colors 
-  scale_colour_manual(name = "Group", 
-                      values = 
-                        c("#FF0099", 
-                          "#0099FF"),  
-                      labels = 
-                        c("group1", 
-                          "group2")) +
+  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2")) +
   theme_minimal() + # theme
   # add to theme
-  theme(plot.title = 
-          element_text(size = 20, 
-                       color = "#0099FF")) 
+  theme(plot.title = element_text(size = 20, color = "#0099FF")) 
 
 ```
 

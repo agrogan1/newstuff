@@ -4,10 +4,19 @@
     <title>ggplot flipbook</title>
     <meta charset="utf-8" />
     <meta name="author" content="Andy Grogan-Kaylor" />
-    <meta name="date" content="2020-06-10" />
+    <meta name="date" content="2020-09-24" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link href="libs/tile-view-0.2.3/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view-0.2.3/tile-view.js"></script>
+    <script src="libs/tone-13.8.34/Tone.js"></script>
+    <script src="libs/slide-tone-0.2.3/slide-tone.js"></script>
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/shareon-1.4.1/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon-1.4.1/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain-0.2.3/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain-0.2.3/shareagain.js"></script>
     <link rel="stylesheet" href="animate.css" type="text/css" />
   </head>
   <body>
@@ -17,7 +26,7 @@ class: center, middle, inverse, title-slide
 # ggplot flipbook
 ## Use <span style="font-size:50px">⇦</span> and <span style="font-size:50px">⇨</span> to navigate.
 ### Andy Grogan-Kaylor
-### 2020-06-10
+### 2020-09-24
 
 ---
 
@@ -51,69 +60,100 @@ body {
 
 
 
----
-class: animated, bounceInDown
+# How To Navigate This Presentation
 
-# Get Started
-
-Use the &lt;span style="font-size:100px"&gt;&amp;#8678;&lt;/span&gt; and &lt;span style="font-size:100px"&gt;&amp;#8680;&lt;/span&gt; keys to move through the presentation.
+* Use the &lt;span style="font-size:100px"&gt;&amp;#8678;&lt;/span&gt; and &lt;span style="font-size:100px"&gt;&amp;#8680;&lt;/span&gt; keys to move through the presentation.
+* Press *o* for *panel overview*.
+* This presentation plays a *tone* when each new item appears. Turn the volume down if you find these tones annoying.
 
 Based upon [2 Page ggplot](https://agrogan1.github.io/R/two-page-ggplot2/two-page-ggplot2.pdf)
 
+---
+class: animated, slideInRight
+# Get Started
+
 
 
 ---
 
 
 
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph0-auto[
 
 ```r
 *library(ggplot2)  # beautiful graphs
 ```
-]]
-.column[.content[
+]
+ 
+.panel2-graph0-auto[
 
-]]
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph0-auto[
 
 ```r
 library(ggplot2)  # beautiful graphs
 
 *library(ggthemes)  # nice themes
 ```
-]]
-.column[.content[
+]
+ 
+.panel2-graph0-auto[
 
-]]
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph0-auto[
 
 ```r
 library(ggplot2)  # beautiful graphs
 
 library(ggthemes)  # nice themes
 ```
-]]
-.column[.content[
+]
+ 
+.panel2-graph0-auto[
 
-]]
+]
+
+&lt;style&gt;
+.panel1-graph0-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-graph0-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-graph0-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
 
 ---
 class: animated, slideInRight
@@ -126,55 +166,172 @@ class: animated, slideInRight
 
 
 
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph1-auto[
 
 ```r
 *ggplot(mydata,  # data
 *      aes(x = outcome))   # variable
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph1_auto_1_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph1-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph1_auto_01_output-1.png" width="432" /&gt;
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph1-auto[
 
 ```r
 ggplot(mydata,  # data
        aes(x = outcome)) +  # variable
 * geom_histogram()
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph1_auto_2_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph1-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph1_auto_02_output-1.png" width="432" /&gt;
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph1-auto[
 
 ```r
 ggplot(mydata,  # data
        aes(x = outcome)) +  # variable
-  geom_histogram()  
+  geom_histogram()
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph1_auto_3_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph1-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph1_auto_03_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.panel1-graph1-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-graph1-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-graph1-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+---
+class: animated, slideInRight
+
+# An Alternative Geometry
+
+
+
+---
+
+
+
+count: false
+ 
+
+.panel1-graph1A-auto[
+
+```r
+*ggplot(mydata,  # data
+*      aes(x = outcome))   # variable
+```
+]
+ 
+.panel2-graph1A-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph1A_auto_01_output-1.png" width="432" /&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-graph1A-auto[
+
+```r
+ggplot(mydata,  # data
+       aes(x = outcome)) +  # variable
+* geom_density()
+```
+]
+ 
+.panel2-graph1A-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph1A_auto_02_output-1.png" width="432" /&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-graph1A-auto[
+
+```r
+ggplot(mydata,  # data
+       aes(x = outcome)) +  # variable
+  geom_density()
+```
+]
+ 
+.panel2-graph1A-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph1A_auto_03_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.panel1-graph1A-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-graph1A-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-graph1A-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
 
 ---
 class: animated, slideInRight
@@ -187,44 +344,72 @@ class: animated, slideInRight
 
 
 
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph2-non_seq[
 
 ```r
 ggplot(mydata,  # data
-       aes(  
-         x = group,  
-       )) +  
+       aes(
+         x = group,
+       )) +
   geom_bar()  # geometry
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph2_non_seq_1_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph2-non_seq[
+&lt;img src="ggplot-flipbook_files/figure-html/graph2_non_seq_01_output-1.png" width="432" /&gt;
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph2-non_seq[
 
 ```r
 ggplot(mydata,  # data
-       aes(  
-         x = group,  
+       aes(
+         x = group,
 *        fill = group
-       )) +  
+       )) +
   geom_bar()  # geometry
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph2_non_seq_2_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph2-non_seq[
+&lt;img src="ggplot-flipbook_files/figure-html/graph2_non_seq_02_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.panel1-graph2-non_seq {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-graph2-non_seq {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-graph2-non_seq {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
 
 ---
 class: animated, slideInRight
@@ -237,46 +422,74 @@ class: animated, slideInRight
 
 
 
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph3-non_seq[
 
 ```r
 ggplot(mydata,  # data
-       aes(  
+       aes(
          x = predictor,  # variables
-         y = outcome,  
-       )) +  
+         y = outcome,
+       )) +
   geom_point()  # geometry
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph3_non_seq_1_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph3-non_seq[
+&lt;img src="ggplot-flipbook_files/figure-html/graph3_non_seq_01_output-1.png" width="432" /&gt;
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph3-non_seq[
 
 ```r
 ggplot(mydata,  # data
-       aes(  
+       aes(
          x = predictor,  # variables
-         y = outcome,  
+         y = outcome,
 *        color = group
-       )) +  
+       )) +
   geom_point()  # geometry
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph3_non_seq_2_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph3-non_seq[
+&lt;img src="ggplot-flipbook_files/figure-html/graph3_non_seq_02_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.panel1-graph3-non_seq {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-graph3-non_seq {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-graph3-non_seq {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
 
 ---
 class: animated, slideInRight
@@ -289,12 +502,10 @@ class: animated, slideInRight
 
 
 
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph4-auto[
 
 ```r
 *ggplot(mydata,  # data
@@ -302,212 +513,199 @@ count: false
 *          y = outcome,
 *          color = group))
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_1_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph4-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_01_output-1.png" width="432" /&gt;
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph4-auto[
 
 ```r
 ggplot(mydata,  # data
        aes(x = predictor,  # variables
-           y = outcome,  
-           color = group)) +  
+           y = outcome,
+           color = group)) +
 * geom_point()   # 1st geometry
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_2_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph4-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_02_output-1.png" width="432" /&gt;
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph4-auto[
 
 ```r
 ggplot(mydata,  # data
        aes(x = predictor,  # variables
-           y = outcome,  
-           color = group)) +  
+           y = outcome,
+           color = group)) +
   geom_point() +  # 1st geometry
 * geom_smooth()   # 2nd geometry
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_3_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph4-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_03_output-1.png" width="432" /&gt;
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph4-auto[
 
 ```r
 ggplot(mydata,  # data
        aes(x = predictor,  # variables
-           y = outcome,  
-           color = group)) +  
+           y = outcome,
+           color = group)) +
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
-* labs(title = "My Title",  # title
-*      caption = "Colors Inspired by UNICEF",  # subtitle
-*      x = "Predictor",  # x title
-*      y = "Outcome")   # y title
+* labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome")   # labels
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_4_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph4-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_04_output-1.png" width="432" /&gt;
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph4-auto[
 
 ```r
 ggplot(mydata,  # data
        aes(x = predictor,  # variables
-           y = outcome,  
-           color = group)) +  
+           y = outcome,
+           color = group)) +
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
-  labs(title = "My Title",  # title
-       caption = "Colors Inspired by UNICEF",  # subtitle
-       x = "Predictor",  # x title
-       y = "Outcome") +  # y title
+  labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome") +  # labels
 # manual colors
-* scale_colour_manual(name = "Group",
-*                     values =
-*                       c("#FF0099",
-*                         "#0099FF"),
-*                     labels =
-*                       c("group1",
-*                         "group2"))
+* scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2"))
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_5_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph4-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_05_output-1.png" width="432" /&gt;
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph4-auto[
 
 ```r
 ggplot(mydata,  # data
        aes(x = predictor,  # variables
-           y = outcome,  
-           color = group)) +  
+           y = outcome,
+           color = group)) +
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
-  labs(title = "My Title",  # title
-       caption = "Colors Inspired by UNICEF",  # subtitle
-       x = "Predictor",  # x title
-       y = "Outcome") +  # y title
+  labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome") +  # labels
 # manual colors
-  scale_colour_manual(name = "Group",  
-                      values =  
-                        c("#FF0099",  
-                          "#0099FF"),  
-                      labels =  
-                        c("group1",  
-                          "group2")) +  
+  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2")) +
 * theme_minimal()   # theme
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_6_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph4-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_06_output-1.png" width="432" /&gt;
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph4-auto[
 
 ```r
 ggplot(mydata,  # data
        aes(x = predictor,  # variables
-           y = outcome,  
-           color = group)) +  
+           y = outcome,
+           color = group)) +
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
-  labs(title = "My Title",  # title
-       caption = "Colors Inspired by UNICEF",  # subtitle
-       x = "Predictor",  # x title
-       y = "Outcome") +  # y title
+  labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome") +  # labels
 # manual colors
-  scale_colour_manual(name = "Group",  
-                      values =  
-                        c("#FF0099",  
-                          "#0099FF"),  
-                      labels =  
-                        c("group1",  
-                          "group2")) +  
+  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2")) +
   theme_minimal() +  # theme
 # add to theme
-* theme(plot.title =
-*         element_text(size = 20,
-*                      color = "#0099FF"))
+* theme(plot.title = element_text(size = 20, color = "#0099FF"))
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_7_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph4-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_07_output-1.png" width="432" /&gt;
+]
+
 ---
-class: split-40
 count: false
  
 
- 
-.column[.content[
+.panel1-graph4-auto[
 
 ```r
 ggplot(mydata,  # data
        aes(x = predictor,  # variables
-           y = outcome,  
-           color = group)) +  
+           y = outcome,
+           color = group)) +
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
-  labs(title = "My Title",  # title
-       caption = "Colors Inspired by UNICEF",  # subtitle
-       x = "Predictor",  # x title
-       y = "Outcome") +  # y title
+  labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome") +  # labels
 # manual colors
-  scale_colour_manual(name = "Group",  
-                      values =  
-                        c("#FF0099",  
-                          "#0099FF"),  
-                      labels =  
-                        c("group1",  
-                          "group2")) +  
+  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2")) +
   theme_minimal() +  # theme
 # add to theme
-  theme(plot.title =  
-          element_text(size = 20,  
-                       color = "#0099FF"))  
+  theme(plot.title = element_text(size = 20, color = "#0099FF"))
 ```
-]]
-.column[.content[
-&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_8_output-1.png" width="432" /&gt;
-]]
+]
+ 
+.panel2-graph4-auto[
+&lt;img src="ggplot-flipbook_files/figure-html/graph4_auto_08_output-1.png" width="432" /&gt;
+]
+
+&lt;style&gt;
+.panel1-graph4-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-graph4-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-graph4-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
 
 ---
 class: animated, slideInRight
