@@ -24,6 +24,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 library(ggplot2)
 
+library(ggthemes)
+
 library(dplyr)
 
 library(plotly)
@@ -133,9 +135,8 @@ p3 <- mydata %>%
   ggplot(aes(x = x3,
              y = n,
              color = n)) + 
-  # geom_bar(stat = "identity") +
   geom_point() +
-  scale_fill_viridis_c() +
+  scale_color_viridis_c() +
   labs(title = "Negative Binomial \nDistribution",
        x = "x",
        y = "count") +
