@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Causal Modeling With GSS Data Using Multiple Approaches</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">25 Aug 2020 09:03:28</p>
+<p class="date">29 Sep 2020 13:16:15</p>
 </header>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <h1 id="research-question">Research Question</h1>
@@ -90,8 +90,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 /Users/agrogan/Desktop/newstuff/causal-modeling
 </pre>
 <h2 id="get-data">Get Data</h2>
-<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2
-> 010w123_R6 - stata.dta", clear
+<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010
+> w123_R6 - stata.dta", clear
 </pre>
 <h2 id="id-variable">ID Variable</h2>
 <pre class='stata'>. generate ID = id_1
@@ -102,15 +102,15 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <h2 id="describe-data">Describe Data</h2>
 <pre class='stata'>. describe
 
-Contains data from /Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Dat
-> a/GSS_panel2010w123_R6 - stata.dta
+Contains data from /Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/G
+> SS_panel2010w123_R6 - stata.dta
   obs:         2,044                          
  vars:            13                          5 Jul 2020 13:27
  size:        32,704                          
-─────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────
               storage   display    value
 variable name   type    format     label      variable label
-─────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────
 educ_1          byte    %8.0g      EDUC_1     educ_1: HIGHEST YEAR OF SCHOOL COMPLETED
 educ_2          byte    %8.0g      EDUC_2     educ_2: HIGHEST YEAR OF SCHOOL COMPLETED
 educ_3          byte    %8.0g      EDUC_3     educ_3: HIGHEST YEAR OF SCHOOL COMPLETED
@@ -124,16 +124,16 @@ satjob_1        byte    %8.0g      SATJOB_1   satjob_1: JOB OR HOUSEWORK
 satjob_2        byte    %8.0g      SATJOB_2   satjob_2: JOB OR HOUSEWORK
 satjob_3        byte    %8.0g      SATJOB_3   satjob_3: JOB OR HOUSEWORK
 ID              float   %9.0g                 
-─────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
      Note: Dataset has changed since last saved.
 </pre>
 <h2 id="codebook-for-selected-variables">Codebook For Selected Variable(s)</h2>
 <pre class='stata'>. codebook satjob_3
 
-─────────────────────────────────────────────────────────────────────────────────────────
-satjob_3                                                       satjob_3: JOB OR HOUSEWORK
-─────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────
+satjob_3                                                          satjob_3: JOB OR HOUSEWORK
+────────────────────────────────────────────────────────────────────────────────────────────
 
                   type:  numeric (byte)
                  label:  SATJOB_3
@@ -267,6 +267,53 @@ note: refitting the model using the generate() option
 <img src="mydensity.png" alt="" /><figcaption>Density Plot of Propensity Score</figcaption>
 </figure>
 <h2 id="cross-lagged-regression">Cross Lagged Regression</h2>
+<pre class='stata'>. sem (satjob_3 &lt;- twelve_years_2 incom16_2) ///
+> (twelve_years_3 &lt;- satjob_2 incom16_2), ///
+> cov(e.satjob_3*e.twelve_years_3)
+(1164 observations with missing values excluded)
+
+Endogenous variables
+
+Observed:  satjob_3 twelve_years_3
+
+Exogenous variables
+
+Observed:  twelve_years_2 incom16_2 satjob_2
+
+Fitting target model:
+
+Iteration 0:   log likelihood =  -3673.669  
+Iteration 1:   log likelihood = -3673.4349  
+Iteration 2:   log likelihood = -3673.4342  
+Iteration 3:   log likelihood = -3673.4342  
+
+Structural equation model                       Number of obs     =        880
+Estimation method  = ml
+Log likelihood     = -3673.4342
+
+─────────────────────┬────────────────────────────────────────────────────────────────
+                     │                 OIM
+                     │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────────────┼────────────────────────────────────────────────────────────────
+Structural           │
+  satjob_3           │
+      twelve_years_2 │  -.0722619   .1575751    -0.46   0.647    -.3811034    .2365795
+           incom16_2 │  -.0024625   .0304497    -0.08   0.936    -.0621428    .0572177
+               _cons │   1.734644   .1378498    12.58   0.000     1.464464    2.004825
+  ───────────────────┼────────────────────────────────────────────────────────────────
+  twelve_years_3     │
+           incom16_2 │   .0607781   .0108369     5.61   0.000     .0395381    .0820181
+            satjob_2 │  -.0054737   .0149476    -0.37   0.714    -.0347704    .0238231
+               _cons │   .7396908   .0427695    17.29   0.000     .6558642    .8235175
+─────────────────────┼────────────────────────────────────────────────────────────────
+      var(e.satjob_3)│   .6046871   .0288304                      .5507404    .6639181
+var(e.twelve_years_3)│   .0868092   .0041385                      .0790653    .0953116
+─────────────────────┼────────────────────────────────────────────────────────────────
+      cov(e.satjob_3,│
+    e.twelve_years_3)│   .0016217   .0154575     0.10   0.916    -.0286744    .0319178
+─────────────────────┴────────────────────────────────────────────────────────────────
+LR test of model vs. saturated: chi2(2)   =    968.48, Prob > chi2 = 0.0000
+</pre>
 <h1 id="analyses-relying-on-long-data">Analyses Relying On Long Data</h1>
 <h2 id="reshape-the-data">Reshape The Data</h2>
 <pre class='stata'>. reshape long satjob_ educ_ twelve_years_ incom16_ race_, i(ID) j(wave)

@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/causal-modeling/causal-modeling.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}25 Aug 2020, 09:03:52
+ {txt}opened on:  {res}29 Sep 2020, 13:17:03
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}25 Aug 2020
+{res}29 Sep 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}09:03:52
+{res}13:17:03
 {txt}
 {com}. //_3
 . clear all
@@ -198,6 +198,54 @@ twelve_years_3 {c |}
 {txt}(file mydensity.png written in PNG format)
 
 {com}. //_23
+. sem (satjob_3 <- twelve_years_2 incom16_2) ///
+> (twelve_years_3 <- satjob_2 incom16_2), ///
+> cov(e.satjob_3*e.twelve_years_3)
+{res}{txt}(1164 observations with missing values excluded)
+
+Endogenous variables
+
+{p 0 11 2}Observed:{space 2}{res}satjob_3 twelve_years_3{p_end}
+{txt}
+Exogenous variables
+
+{p 0 11 2}Observed:{space 2}{res}twelve_years_2 incom16_2 satjob_2{p_end}
+{txt}
+Fitting target model:
+
+Iteration 0:{space 3}log likelihood = {res: -3673.669}  
+Iteration 1:{space 3}log likelihood = {res:-3673.4349}  
+Iteration 2:{space 3}log likelihood = {res:-3673.4342}  
+Iteration 3:{space 3}log likelihood = {res:-3673.4342}  
+
+{col 1}Structural equation model{col 49}Number of obs{col 67}= {res}       880
+{txt}{col 1}Estimation method{col 20}= {res}ml
+{txt}{col 1}Log likelihood{col 20}= {res}-3673.4342
+
+{txt}{hline 21}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 22}{c |}{col 34}      OIM
+{col 22}{c |}      Coef.{col 34}   Std. Err.{col 46}      z{col 54}   P>|z|{col 62}     [95% Con{col 75}f. Interval]
+{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}{res}Structural          {col 22}{txt}{c |}
+{space 2}{col 3}satjob_3          {col 22}{c |}
+{space 6}twelve_years_2 {c |}{col 22}{res}{space 2}-.0722619{col 34}{space 2} .1575751{col 45}{space 1}   -0.46{col 54}{space 3}0.647{col 62}{space 4}-.3811034{col 75}{space 3} .2365795
+{txt}{space 11}incom16_2 {c |}{col 22}{res}{space 2}-.0024625{col 34}{space 2} .0304497{col 45}{space 1}   -0.08{col 54}{space 3}0.936{col 62}{space 4}-.0621428{col 75}{space 3} .0572177
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2} 1.734644{col 34}{space 2} .1378498{col 45}{space 1}   12.58{col 54}{space 3}0.000{col 62}{space 4} 1.464464{col 75}{space 3} 2.004825
+{space 2}{txt}{hline 19}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 2}{col 3}twelve_years_3    {col 22}{c |}
+{space 11}incom16_2 {c |}{col 22}{res}{space 2} .0607781{col 34}{space 2} .0108369{col 45}{space 1}    5.61{col 54}{space 3}0.000{col 62}{space 4} .0395381{col 75}{space 3} .0820181
+{txt}{space 12}satjob_2 {c |}{col 22}{res}{space 2}-.0054737{col 34}{space 2} .0149476{col 45}{space 1}   -0.37{col 54}{space 3}0.714{col 62}{space 4}-.0347704{col 75}{space 3} .0238231
+{txt}{space 15}_cons {c |}{col 22}{res}{space 2} .7396908{col 34}{space 2} .0427695{col 45}{space 1}   17.29{col 54}{space 3}0.000{col 62}{space 4} .6558642{col 75}{space 3} .8235175
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+      var(e.satjob_3){c |}{col 22}{res}{space 2} .6046871{col 34}{space 2} .0288304{col 62}{space 4} .5507404{col 75}{space 3} .6639181
+{txt}var(e.twelve_years_3){c |}{col 22}{res}{space 2} .0868092{col 34}{space 2} .0041385{col 62}{space 4} .0790653{col 75}{space 3} .0953116
+{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+      cov(e.satjob_3,{c |}
+    e.twelve_years_3){c |}{col 22}{res}{space 2} .0016217{col 34}{space 2} .0154575{col 45}{space 1}    0.10{col 54}{space 3}0.916{col 62}{space 4}-.0286744{col 75}{space 3} .0319178
+{txt}{hline 21}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+LR test of model vs. saturated: chi2({res:2})   = {res:   968.48}, Prob > chi2 = {res}0.0000
+{txt}
+{com}. //_24
 . reshape long satjob_ educ_ twelve_years_ incom16_ race_, i(ID) j(wave)
 {txt}(note: j = 1 2 3)
 
@@ -214,22 +262,22 @@ twelve_years_1 twelve_years_2 twelve_years_3{txt}-> {res}twelve_years_
                    race_1 race_2 race_3   {txt}->   {res}race_
 {txt}{hline 77}
 
-{com}. //_24
+{com}. //_25
 . rename satjob_ satjob
 {res}{txt}
-{com}. //_25
+{com}. //_26
 . rename educ_ educ
 {res}{txt}
-{com}. //_26
+{com}. //_27
 . rename incom16_ incom16
 {res}{txt}
-{com}. //_27
+{com}. //_28
 . rename race_ race
 {res}{txt}
-{com}. //_28
+{com}. //_29
 . rename twelve_years_ twelve_years
 {res}{txt}
-{com}. //_29
+{com}. //_30
 . mixed satjob wave educ incom16 i.race || ID: 
 {res}
 {txt}Performing EM optimization: 
@@ -277,7 +325,7 @@ twelve_years_1 twelve_years_2 twelve_years_3{txt}-> {res}twelve_years_
 {txt}{hline 29}{c BT}{hline 48}
 LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}322.95{col 55}{txt}Prob >= chibar2 = {col 73}{res}0.0000
 {txt}
-{com}. //_30
+{com}. //_31
 . xtreg satjob wave educ incom16 i.race, i(ID) fe
 {res}
 {txt}Fixed-effects (within) regression{col 49}Number of obs{col 67}={col 69}{res}     3,595
@@ -310,15 +358,15 @@ LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}322.9
 {hline 13}{c BT}{hline 64}
 F test that all u_i=0: F({res}1660{txt}, {res}1929{txt}) = {res}2.18{col 62}{txt}Prob > F = {res}0.0000
 {txt}
-{com}. //_31
+{com}. //_32
 . bysort ID: egen educ_mean = mean(educ)
 {txt}(6 missing values generated)
 
-{com}. //_32
+{com}. //_33
 . generate educ_deviation = educ - educ_mean
 {txt}(1,240 missing values generated)
 
-{com}. //_33
+{com}. //_34
 . mixed satjob wave educ_mean educ_deviation incom16 i.race || ID:
 {res}
 {txt}Performing EM optimization: 
@@ -372,7 +420,7 @@ LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}323.0
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/causal-modeling/causal-modeling.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}25 Aug 2020, 09:04:02
+ {txt}closed on:  {res}29 Sep 2020, 13:17:14
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>25 Aug 2020 09:03:28</p>
+<p>29 Sep 2020 13:16:15</p>
 </div>
 <div id="research-question" class="title-slide slide section level1"><h1>Research Question</h1><blockquote>
 <p>What is the <em>possibly causal</em> association of <em>education</em> with <em>job satisfaction</em>, while accounting for factors that may possibly have an association with <em>level of education</em>?</p>
@@ -124,8 +124,8 @@ Andy Grogan-Kaylor
 <div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. cd <span class="st">&quot;/Users/agrogan/Desktop/newstuff/causal-modeling&quot;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>/Users/agrogan/Desktop/newstuff/causal-modeling</span></code></pre></div></div><div id="get-data" class="slide section level2">
 <h1>Get Data</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">use</span> <span class="st">&quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="st">&gt; 010w123_R6 - stata.dta&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">use</span> <span class="st">&quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">&gt; w123_R6 - stata.dta&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
 </div><div id="id-variable" class="slide section level2">
 <h1>ID Variable</h1>
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">generate</span> ID = id_1</span></code></pre></div>
@@ -136,15 +136,15 @@ Andy Grogan-Kaylor
 <h1>Describe Data</h1>
 <div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">describe</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a>Contains <span class="kw">data</span> from /Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Dat</span>
-<span id="cb6-4"><a href="#cb6-4"></a>&gt; a/GSS_panel2010w123_R6 - stata.dta</span>
+<span id="cb6-3"><a href="#cb6-3"></a>Contains <span class="kw">data</span> from /Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/G</span>
+<span id="cb6-4"><a href="#cb6-4"></a>&gt; SS_panel2010w123_R6 - stata.dta</span>
 <span id="cb6-5"><a href="#cb6-5"></a>  <span class="kw">obs</span>:         2,044                          </span>
 <span id="cb6-6"><a href="#cb6-6"></a> vars:            13                          5 Jul 2020 13:27</span>
 <span id="cb6-7"><a href="#cb6-7"></a> <span class="kw">size</span>:        32,704                          </span>
-<span id="cb6-8"><a href="#cb6-8"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-8"><a href="#cb6-8"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb6-9"><a href="#cb6-9"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
 <span id="cb6-10"><a href="#cb6-10"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-11"><a href="#cb6-11"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb6-12"><a href="#cb6-12"></a>educ_1          <span class="kw">byte</span>    %8.0g      EDUC_1     educ_1: HIGHEST YEAR OF SCHOOL COMPLETED</span>
 <span id="cb6-13"><a href="#cb6-13"></a>educ_2          <span class="kw">byte</span>    %8.0g      EDUC_2     educ_2: HIGHEST YEAR OF SCHOOL COMPLETED</span>
 <span id="cb6-14"><a href="#cb6-14"></a>educ_3          <span class="kw">byte</span>    %8.0g      EDUC_3     educ_3: HIGHEST YEAR OF SCHOOL COMPLETED</span>
@@ -158,16 +158,16 @@ Andy Grogan-Kaylor
 <span id="cb6-22"><a href="#cb6-22"></a>satjob_2        <span class="kw">byte</span>    %8.0g      SATJOB_2   satjob_2: JOB OR HOUSEWORK</span>
 <span id="cb6-23"><a href="#cb6-23"></a>satjob_3        <span class="kw">byte</span>    %8.0g      SATJOB_3   satjob_3: JOB OR HOUSEWORK</span>
 <span id="cb6-24"><a href="#cb6-24"></a>ID              <span class="kw">float</span>   %9.0g                 </span>
-<span id="cb6-25"><a href="#cb6-25"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-25"><a href="#cb6-25"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb6-26"><a href="#cb6-26"></a>Sorted <span class="kw">by</span>: </span>
 <span id="cb6-27"><a href="#cb6-27"></a>     Note: Dataset has changed since <span class="fu">last</span> saved.</span></code></pre></div>
 </div><div id="codebook-for-selected-variables" class="slide section level2">
 <h1>Codebook For Selected Variable(s)</h1>
 <div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">codebook</span> satjob_3</span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb7-4"><a href="#cb7-4"></a>satjob_3                                                       satjob_3: JOB OR HOUSEWORK</span>
-<span id="cb7-5"><a href="#cb7-5"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb7-3"><a href="#cb7-3"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb7-4"><a href="#cb7-4"></a>satjob_3                                                          satjob_3: JOB OR HOUSEWORK</span>
+<span id="cb7-5"><a href="#cb7-5"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb7-6"><a href="#cb7-6"></a></span>
 <span id="cb7-7"><a href="#cb7-7"></a>                  <span class="dv">type</span>:  <span class="kw">numeric</span> (<span class="kw">byte</span>)</span>
 <span id="cb7-8"><a href="#cb7-8"></a>                 <span class="kw">label</span>:  SATJOB_3</span>
@@ -293,170 +293,216 @@ Andy Grogan-Kaylor
 </div>
 </div><div id="cross-lagged-regression" class="slide section level2">
 <h1>Cross Lagged Regression</h1>
+<div class="sourceCode" id="cb21"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1"></a>. sem (satjob_3 &lt;- twelve_years_2 incom16_2) <span class="co">///</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>&gt; (twelve_years_3 &lt;- satjob_2 incom16_2), <span class="co">///</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>&gt; cov(<span class="fu">e</span>.satjob_3*<span class="fu">e</span>.twelve_years_3)</span>
+<span id="cb21-4"><a href="#cb21-4"></a>(1164 observations with <span class="fu">missing</span> <span class="kw">values</span> excluded)</span>
+<span id="cb21-5"><a href="#cb21-5"></a></span>
+<span id="cb21-6"><a href="#cb21-6"></a>Endogenous variables</span>
+<span id="cb21-7"><a href="#cb21-7"></a></span>
+<span id="cb21-8"><a href="#cb21-8"></a>Observed:  satjob_3 twelve_years_3</span>
+<span id="cb21-9"><a href="#cb21-9"></a></span>
+<span id="cb21-10"><a href="#cb21-10"></a>Exogenous variables</span>
+<span id="cb21-11"><a href="#cb21-11"></a></span>
+<span id="cb21-12"><a href="#cb21-12"></a>Observed:  twelve_years_2 incom16_2 satjob_2</span>
+<span id="cb21-13"><a href="#cb21-13"></a></span>
+<span id="cb21-14"><a href="#cb21-14"></a>Fitting target <span class="kw">model</span>:</span>
+<span id="cb21-15"><a href="#cb21-15"></a></span>
+<span id="cb21-16"><a href="#cb21-16"></a>Iteration 0:   <span class="fu">log</span> likelihood =  -3673.669  </span>
+<span id="cb21-17"><a href="#cb21-17"></a>Iteration 1:   <span class="fu">log</span> likelihood = -3673.4349  </span>
+<span id="cb21-18"><a href="#cb21-18"></a>Iteration 2:   <span class="fu">log</span> likelihood = -3673.4342  </span>
+<span id="cb21-19"><a href="#cb21-19"></a>Iteration 3:   <span class="fu">log</span> likelihood = -3673.4342  </span>
+<span id="cb21-20"><a href="#cb21-20"></a></span>
+<span id="cb21-21"><a href="#cb21-21"></a>Structural equation <span class="kw">model</span>                       Number <span class="kw">of</span> <span class="kw">obs</span>     =        880</span>
+<span id="cb21-22"><a href="#cb21-22"></a>Estimation method  = <span class="kw">ml</span></span>
+<span id="cb21-23"><a href="#cb21-23"></a>Log likelihood     = -3673.4342</span>
+<span id="cb21-24"><a href="#cb21-24"></a></span>
+<span id="cb21-25"><a href="#cb21-25"></a>─────────────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb21-26"><a href="#cb21-26"></a>                     │                 OIM</span>
+<span id="cb21-27"><a href="#cb21-27"></a>                     │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
+<span id="cb21-28"><a href="#cb21-28"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb21-29"><a href="#cb21-29"></a>Structural           │</span>
+<span id="cb21-30"><a href="#cb21-30"></a>  satjob_3           │</span>
+<span id="cb21-31"><a href="#cb21-31"></a>      twelve_years_2 │  -.0722619   .1575751    -0.46   0.647    -.3811034    .2365795</span>
+<span id="cb21-32"><a href="#cb21-32"></a>           incom16_2 │  -.0024625   .0304497    -0.08   0.936    -.0621428    .0572177</span>
+<span id="cb21-33"><a href="#cb21-33"></a>               <span class="dt">_cons</span> │   1.734644   .1378498    12.58   0.000     1.464464    2.004825</span>
+<span id="cb21-34"><a href="#cb21-34"></a>  ───────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb21-35"><a href="#cb21-35"></a>  twelve_years_3     │</span>
+<span id="cb21-36"><a href="#cb21-36"></a>           incom16_2 │   .0607781   .0108369     5.61   0.000     .0395381    .0820181</span>
+<span id="cb21-37"><a href="#cb21-37"></a>            satjob_2 │  -.0054737   .0149476    -0.37   0.714    -.0347704    .0238231</span>
+<span id="cb21-38"><a href="#cb21-38"></a>               <span class="dt">_cons</span> │   .7396908   .0427695    17.29   0.000     .6558642    .8235175</span>
+<span id="cb21-39"><a href="#cb21-39"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb21-40"><a href="#cb21-40"></a>      <span class="kw">var</span>(<span class="fu">e</span>.satjob_3)│   .6046871   .0288304                      .5507404    .6639181</span>
+<span id="cb21-41"><a href="#cb21-41"></a><span class="kw">var</span>(<span class="fu">e</span>.twelve_years_3)│   .0868092   .0041385                      .0790653    .0953116</span>
+<span id="cb21-42"><a href="#cb21-42"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb21-43"><a href="#cb21-43"></a>      cov(<span class="fu">e</span>.satjob_3,│</span>
+<span id="cb21-44"><a href="#cb21-44"></a>    <span class="fu">e</span>.twelve_years_3)│   .0016217   .0154575     0.10   0.916    -.0286744    .0319178</span>
+<span id="cb21-45"><a href="#cb21-45"></a>─────────────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb21-46"><a href="#cb21-46"></a>LR <span class="kw">test</span> <span class="kw">of</span> <span class="kw">model</span> vs. saturated: <span class="fu">chi2</span>(2)   =    968.48, Prob &gt; <span class="fu">chi2</span> = 0.0000</span></code></pre></div>
 </div>
 <div id="analyses-relying-on-long-data" class="title-slide slide section level1"><h1>Analyses Relying On Long Data</h1></div><div id="reshape-the-data" class="slide section level2">
 <h1>Reshape The Data</h1>
-<div class="sourceCode" id="cb21"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1"></a>. <span class="kw">reshape</span> <span class="kw">long</span> satjob_ educ_ twelve_years_ incom16_ race_, i(ID) j(wave)</span>
-<span id="cb21-2"><a href="#cb21-2"></a>(<span class="kw">note</span>: j = 1 2 3)</span>
-<span id="cb21-3"><a href="#cb21-3"></a></span>
-<span id="cb21-4"><a href="#cb21-4"></a>Data                               <span class="kw">wide</span>   -&gt;   <span class="kw">long</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>─────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb21-6"><a href="#cb21-6"></a>Number <span class="kw">of</span> <span class="kw">obs</span>.                     2044   -&gt;    6132</span>
-<span id="cb21-7"><a href="#cb21-7"></a>Number <span class="kw">of</span> variables                  16   -&gt;       7</span>
-<span id="cb21-8"><a href="#cb21-8"></a>j <span class="kw">variable</span> (3 <span class="kw">values</span>)                     -&gt;   wave</span>
-<span id="cb21-9"><a href="#cb21-9"></a>xij variables:</span>
-<span id="cb21-10"><a href="#cb21-10"></a>             satjob_1 satjob_2 satjob_3   -&gt;   satjob_</span>
-<span id="cb21-11"><a href="#cb21-11"></a>                   educ_1 educ_2 educ_3   -&gt;   educ_</span>
-<span id="cb21-12"><a href="#cb21-12"></a>twelve_years_1 twelve_years_2 twelve_years_3-&gt; twelve_years_</span>
-<span id="cb21-13"><a href="#cb21-13"></a>          incom16_1 incom16_2 incom16_3   -&gt;   incom16_</span>
-<span id="cb21-14"><a href="#cb21-14"></a>                   race_1 race_2 race_3   -&gt;   race_</span>
-<span id="cb21-15"><a href="#cb21-15"></a>─────────────────────────────────────────────────────────────────────────────</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1"></a>. <span class="kw">reshape</span> <span class="kw">long</span> satjob_ educ_ twelve_years_ incom16_ race_, i(ID) j(wave)</span>
+<span id="cb22-2"><a href="#cb22-2"></a>(<span class="kw">note</span>: j = 1 2 3)</span>
+<span id="cb22-3"><a href="#cb22-3"></a></span>
+<span id="cb22-4"><a href="#cb22-4"></a>Data                               <span class="kw">wide</span>   -&gt;   <span class="kw">long</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>─────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb22-6"><a href="#cb22-6"></a>Number <span class="kw">of</span> <span class="kw">obs</span>.                     2044   -&gt;    6132</span>
+<span id="cb22-7"><a href="#cb22-7"></a>Number <span class="kw">of</span> variables                  16   -&gt;       7</span>
+<span id="cb22-8"><a href="#cb22-8"></a>j <span class="kw">variable</span> (3 <span class="kw">values</span>)                     -&gt;   wave</span>
+<span id="cb22-9"><a href="#cb22-9"></a>xij variables:</span>
+<span id="cb22-10"><a href="#cb22-10"></a>             satjob_1 satjob_2 satjob_3   -&gt;   satjob_</span>
+<span id="cb22-11"><a href="#cb22-11"></a>                   educ_1 educ_2 educ_3   -&gt;   educ_</span>
+<span id="cb22-12"><a href="#cb22-12"></a>twelve_years_1 twelve_years_2 twelve_years_3-&gt; twelve_years_</span>
+<span id="cb22-13"><a href="#cb22-13"></a>          incom16_1 incom16_2 incom16_3   -&gt;   incom16_</span>
+<span id="cb22-14"><a href="#cb22-14"></a>                   race_1 race_2 race_3   -&gt;   race_</span>
+<span id="cb22-15"><a href="#cb22-15"></a>─────────────────────────────────────────────────────────────────────────────</span></code></pre></div>
 </div><div id="clean-up-variable-names" class="slide section level2">
 <h1>Clean Up Variable Names</h1>
-<div class="sourceCode" id="cb22"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1"></a>. <span class="kw">rename</span> satjob_ satjob</span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1"></a>. <span class="kw">rename</span> educ_ educ</span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1"></a>. <span class="kw">rename</span> incom16_ incom16</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1"></a>. <span class="kw">rename</span> race_ race</span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1"></a>. <span class="kw">rename</span> twelve_years_ twelve_years</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1"></a>. <span class="kw">rename</span> satjob_ satjob</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1"></a>. <span class="kw">rename</span> educ_ educ</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1"></a>. <span class="kw">rename</span> incom16_ incom16</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1"></a>. <span class="kw">rename</span> race_ race</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1"></a>. <span class="kw">rename</span> twelve_years_ twelve_years</span></code></pre></div>
 </div><div id="multilevel-model" class="slide section level2">
 <h1>Multilevel Model</h1>
-<div class="sourceCode" id="cb27"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1"></a>. mixed satjob wave educ incom16 i.race || ID: </span>
-<span id="cb27-2"><a href="#cb27-2"></a></span>
-<span id="cb27-3"><a href="#cb27-3"></a>Performing EM optimization: </span>
-<span id="cb27-4"><a href="#cb27-4"></a></span>
-<span id="cb27-5"><a href="#cb27-5"></a>Performing <span class="kw">gradient</span>-based optimization: </span>
-<span id="cb27-6"><a href="#cb27-6"></a></span>
-<span id="cb27-7"><a href="#cb27-7"></a>Iteration 0:   <span class="fu">log</span> likelihood =  -4161.775  </span>
-<span id="cb27-8"><a href="#cb27-8"></a>Iteration 1:   <span class="fu">log</span> likelihood = -4161.7476  </span>
-<span id="cb27-9"><a href="#cb27-9"></a>Iteration 2:   <span class="fu">log</span> likelihood = -4161.7476  </span>
-<span id="cb27-10"><a href="#cb27-10"></a></span>
-<span id="cb27-11"><a href="#cb27-11"></a>Computing standard errors:</span>
-<span id="cb27-12"><a href="#cb27-12"></a></span>
-<span id="cb27-13"><a href="#cb27-13"></a>Mixed-<span class="kw">effects</span> ML regression                     Number <span class="kw">of</span> <span class="kw">obs</span>     =      3,595</span>
-<span id="cb27-14"><a href="#cb27-14"></a>Group <span class="kw">variable</span>: ID                              Number <span class="kw">of</span> groups  =      1,661</span>
-<span id="cb27-15"><a href="#cb27-15"></a></span>
-<span id="cb27-16"><a href="#cb27-16"></a>                                                Obs per <span class="fu">group</span>:</span>
-<span id="cb27-17"><a href="#cb27-17"></a>                                                              <span class="fu">min</span> =          1</span>
-<span id="cb27-18"><a href="#cb27-18"></a>                                                              avg =        2.2</span>
-<span id="cb27-19"><a href="#cb27-19"></a>                                                              <span class="fu">max</span> =          3</span>
-<span id="cb27-20"><a href="#cb27-20"></a></span>
-<span id="cb27-21"><a href="#cb27-21"></a>                                                Wald <span class="fu">chi2</span>(5)      =      42.38</span>
-<span id="cb27-22"><a href="#cb27-22"></a>Log likelihood = -4161.7476                     Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
-<span id="cb27-23"><a href="#cb27-23"></a></span>
-<span id="cb27-24"><a href="#cb27-24"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb27-25"><a href="#cb27-25"></a>      satjob │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
-<span id="cb27-26"><a href="#cb27-26"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb27-27"><a href="#cb27-27"></a>        wave │   -.018625    .014015    -1.33   0.184    -.0460938    .0088439</span>
-<span id="cb27-28"><a href="#cb27-28"></a>        educ │   -.018976   .0054133    -3.51   0.000    -.0295859    -.008366</span>
-<span id="cb27-29"><a href="#cb27-29"></a>     incom16 │  -.0350535   .0154559    -2.27   0.023    -.0653465   -.0047606</span>
-<span id="cb27-30"><a href="#cb27-30"></a>             │</span>
-<span id="cb27-31"><a href="#cb27-31"></a>        race │</span>
-<span id="cb27-32"><a href="#cb27-32"></a>      <span class="bn">black</span>  │   .1695589   .0451171     3.76   0.000     .0811311    .2579868</span>
-<span id="cb27-33"><a href="#cb27-33"></a>      other  │    .035975   .0543135     0.66   0.508    -.0704776    .1424276</span>
-<span id="cb27-34"><a href="#cb27-34"></a>             │</span>
-<span id="cb27-35"><a href="#cb27-35"></a>       <span class="dt">_cons</span> │   2.049073   .0843019    24.31   0.000     1.883845    2.214302</span>
-<span id="cb27-36"><a href="#cb27-36"></a>─────────────┴────────────────────────────────────────────────────────────────</span>
-<span id="cb27-37"><a href="#cb27-37"></a></span>
-<span id="cb27-38"><a href="#cb27-38"></a>─────────────────────────────┬────────────────────────────────────────────────</span>
-<span id="cb27-39"><a href="#cb27-39"></a>  Random-<span class="kw">effects</span> Parameters  │   Estimate   Std. Err.     [95% Conf. Interval]</span>
-<span id="cb27-40"><a href="#cb27-40"></a>─────────────────────────────┼────────────────────────────────────────────────</span>
-<span id="cb27-41"><a href="#cb27-41"></a>ID: Identity                 │</span>
-<span id="cb27-42"><a href="#cb27-42"></a>                  <span class="kw">var</span>(<span class="dt">_cons</span>) │   .2305185   .0161162      .2009999    .2643722</span>
-<span id="cb27-43"><a href="#cb27-43"></a>─────────────────────────────┼────────────────────────────────────────────────</span>
-<span id="cb27-44"><a href="#cb27-44"></a>               <span class="kw">var</span>(Residual) │   .4174209   .0131143      .3924927    .4439323</span>
-<span id="cb27-45"><a href="#cb27-45"></a>─────────────────────────────┴────────────────────────────────────────────────</span>
-<span id="cb27-46"><a href="#cb27-46"></a>LR <span class="kw">test</span> vs. linear <span class="kw">model</span>: chibar2(01) = 322.95        Prob &gt;= chibar2 = 0.0000</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1"></a>. mixed satjob wave educ incom16 i.race || ID: </span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a>Performing EM optimization: </span>
+<span id="cb28-4"><a href="#cb28-4"></a></span>
+<span id="cb28-5"><a href="#cb28-5"></a>Performing <span class="kw">gradient</span>-based optimization: </span>
+<span id="cb28-6"><a href="#cb28-6"></a></span>
+<span id="cb28-7"><a href="#cb28-7"></a>Iteration 0:   <span class="fu">log</span> likelihood =  -4161.775  </span>
+<span id="cb28-8"><a href="#cb28-8"></a>Iteration 1:   <span class="fu">log</span> likelihood = -4161.7476  </span>
+<span id="cb28-9"><a href="#cb28-9"></a>Iteration 2:   <span class="fu">log</span> likelihood = -4161.7476  </span>
+<span id="cb28-10"><a href="#cb28-10"></a></span>
+<span id="cb28-11"><a href="#cb28-11"></a>Computing standard errors:</span>
+<span id="cb28-12"><a href="#cb28-12"></a></span>
+<span id="cb28-13"><a href="#cb28-13"></a>Mixed-<span class="kw">effects</span> ML regression                     Number <span class="kw">of</span> <span class="kw">obs</span>     =      3,595</span>
+<span id="cb28-14"><a href="#cb28-14"></a>Group <span class="kw">variable</span>: ID                              Number <span class="kw">of</span> groups  =      1,661</span>
+<span id="cb28-15"><a href="#cb28-15"></a></span>
+<span id="cb28-16"><a href="#cb28-16"></a>                                                Obs per <span class="fu">group</span>:</span>
+<span id="cb28-17"><a href="#cb28-17"></a>                                                              <span class="fu">min</span> =          1</span>
+<span id="cb28-18"><a href="#cb28-18"></a>                                                              avg =        2.2</span>
+<span id="cb28-19"><a href="#cb28-19"></a>                                                              <span class="fu">max</span> =          3</span>
+<span id="cb28-20"><a href="#cb28-20"></a></span>
+<span id="cb28-21"><a href="#cb28-21"></a>                                                Wald <span class="fu">chi2</span>(5)      =      42.38</span>
+<span id="cb28-22"><a href="#cb28-22"></a>Log likelihood = -4161.7476                     Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
+<span id="cb28-23"><a href="#cb28-23"></a></span>
+<span id="cb28-24"><a href="#cb28-24"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb28-25"><a href="#cb28-25"></a>      satjob │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
+<span id="cb28-26"><a href="#cb28-26"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb28-27"><a href="#cb28-27"></a>        wave │   -.018625    .014015    -1.33   0.184    -.0460938    .0088439</span>
+<span id="cb28-28"><a href="#cb28-28"></a>        educ │   -.018976   .0054133    -3.51   0.000    -.0295859    -.008366</span>
+<span id="cb28-29"><a href="#cb28-29"></a>     incom16 │  -.0350535   .0154559    -2.27   0.023    -.0653465   -.0047606</span>
+<span id="cb28-30"><a href="#cb28-30"></a>             │</span>
+<span id="cb28-31"><a href="#cb28-31"></a>        race │</span>
+<span id="cb28-32"><a href="#cb28-32"></a>      <span class="bn">black</span>  │   .1695589   .0451171     3.76   0.000     .0811311    .2579868</span>
+<span id="cb28-33"><a href="#cb28-33"></a>      other  │    .035975   .0543135     0.66   0.508    -.0704776    .1424276</span>
+<span id="cb28-34"><a href="#cb28-34"></a>             │</span>
+<span id="cb28-35"><a href="#cb28-35"></a>       <span class="dt">_cons</span> │   2.049073   .0843019    24.31   0.000     1.883845    2.214302</span>
+<span id="cb28-36"><a href="#cb28-36"></a>─────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb28-37"><a href="#cb28-37"></a></span>
+<span id="cb28-38"><a href="#cb28-38"></a>─────────────────────────────┬────────────────────────────────────────────────</span>
+<span id="cb28-39"><a href="#cb28-39"></a>  Random-<span class="kw">effects</span> Parameters  │   Estimate   Std. Err.     [95% Conf. Interval]</span>
+<span id="cb28-40"><a href="#cb28-40"></a>─────────────────────────────┼────────────────────────────────────────────────</span>
+<span id="cb28-41"><a href="#cb28-41"></a>ID: Identity                 │</span>
+<span id="cb28-42"><a href="#cb28-42"></a>                  <span class="kw">var</span>(<span class="dt">_cons</span>) │   .2305185   .0161162      .2009999    .2643722</span>
+<span id="cb28-43"><a href="#cb28-43"></a>─────────────────────────────┼────────────────────────────────────────────────</span>
+<span id="cb28-44"><a href="#cb28-44"></a>               <span class="kw">var</span>(Residual) │   .4174209   .0131143      .3924927    .4439323</span>
+<span id="cb28-45"><a href="#cb28-45"></a>─────────────────────────────┴────────────────────────────────────────────────</span>
+<span id="cb28-46"><a href="#cb28-46"></a>LR <span class="kw">test</span> vs. linear <span class="kw">model</span>: chibar2(01) = 322.95        Prob &gt;= chibar2 = 0.0000</span></code></pre></div>
 </div><div id="fixed-effects-regression" class="slide section level2">
 <h1>Fixed effects regression</h1>
-<div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1"></a>. <span class="kw">xtreg</span> satjob wave educ incom16 i.race, i(ID) <span class="kw">fe</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a></span>
-<span id="cb28-3"><a href="#cb28-3"></a>Fixed-<span class="kw">effects</span> (within) regression               Number <span class="kw">of</span> <span class="kw">obs</span>     =      3,595</span>
-<span id="cb28-4"><a href="#cb28-4"></a>Group <span class="kw">variable</span>: ID                              Number <span class="kw">of</span> groups  =      1,661</span>
-<span id="cb28-5"><a href="#cb28-5"></a></span>
-<span id="cb28-6"><a href="#cb28-6"></a>R-sq:                                           Obs per <span class="fu">group</span>:</span>
-<span id="cb28-7"><a href="#cb28-7"></a>     within  = 0.0052                                         <span class="fu">min</span> =          1</span>
-<span id="cb28-8"><a href="#cb28-8"></a>     between = 0.0148                                         avg =        2.2</span>
-<span id="cb28-9"><a href="#cb28-9"></a>     overall = 0.0122                                         <span class="fu">max</span> =          3</span>
-<span id="cb28-10"><a href="#cb28-10"></a></span>
-<span id="cb28-11"><a href="#cb28-11"></a>                                                <span class="fu">F</span>(5,1929)         =       2.03</span>
-<span id="cb28-12"><a href="#cb28-12"></a><span class="fu">corr</span>(u_i, Xb)  = -0.0714                        Prob &gt; <span class="fu">F</span>          =     0.0711</span>
-<span id="cb28-13"><a href="#cb28-13"></a></span>
-<span id="cb28-14"><a href="#cb28-14"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb28-15"><a href="#cb28-15"></a>      satjob │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
-<span id="cb28-16"><a href="#cb28-16"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb28-17"><a href="#cb28-17"></a>        wave │  -.0237842   .0152551    -1.56   0.119    -.0537023     .006134</span>
-<span id="cb28-18"><a href="#cb28-18"></a>        educ │  -.0087664   .0158008    -0.55   0.579    -.0397548     .022222</span>
-<span id="cb28-19"><a href="#cb28-19"></a>     incom16 │   -.047186   .0228265    -2.07   0.039    -.0919531   -.0024189</span>
-<span id="cb28-20"><a href="#cb28-20"></a>             │</span>
-<span id="cb28-21"><a href="#cb28-21"></a>        race │</span>
-<span id="cb28-22"><a href="#cb28-22"></a>      <span class="bn">black</span>  │   .3226033   .2025604     1.59   0.111    -.0746572    .7198637</span>
-<span id="cb28-23"><a href="#cb28-23"></a>      other  │   .0383663    .104807     0.37   0.714    -.1671806    .2439132</span>
-<span id="cb28-24"><a href="#cb28-24"></a>             │</span>
-<span id="cb28-25"><a href="#cb28-25"></a>       <span class="dt">_cons</span> │   1.928458    .227991     8.46   0.000     1.481323    2.375593</span>
-<span id="cb28-26"><a href="#cb28-26"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb28-27"><a href="#cb28-27"></a>     sigma_u │   .6861769</span>
-<span id="cb28-28"><a href="#cb28-28"></a>     sigma_e │  .64822634</span>
-<span id="cb28-29"><a href="#cb28-29"></a>         rho │  .52841711   (fraction <span class="kw">of</span> <span class="kw">variance</span> due to u_i)</span>
-<span id="cb28-30"><a href="#cb28-30"></a>─────────────┴────────────────────────────────────────────────────────────────</span>
-<span id="cb28-31"><a href="#cb28-31"></a><span class="fu">F</span> <span class="kw">test</span> that <span class="ot">all</span> u_i=0: <span class="fu">F</span>(1660, 1929) = 2.18                  Prob &gt; <span class="fu">F</span> = 0.0000</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1"></a>. <span class="kw">xtreg</span> satjob wave educ incom16 i.race, i(ID) <span class="kw">fe</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a>Fixed-<span class="kw">effects</span> (within) regression               Number <span class="kw">of</span> <span class="kw">obs</span>     =      3,595</span>
+<span id="cb29-4"><a href="#cb29-4"></a>Group <span class="kw">variable</span>: ID                              Number <span class="kw">of</span> groups  =      1,661</span>
+<span id="cb29-5"><a href="#cb29-5"></a></span>
+<span id="cb29-6"><a href="#cb29-6"></a>R-sq:                                           Obs per <span class="fu">group</span>:</span>
+<span id="cb29-7"><a href="#cb29-7"></a>     within  = 0.0052                                         <span class="fu">min</span> =          1</span>
+<span id="cb29-8"><a href="#cb29-8"></a>     between = 0.0148                                         avg =        2.2</span>
+<span id="cb29-9"><a href="#cb29-9"></a>     overall = 0.0122                                         <span class="fu">max</span> =          3</span>
+<span id="cb29-10"><a href="#cb29-10"></a></span>
+<span id="cb29-11"><a href="#cb29-11"></a>                                                <span class="fu">F</span>(5,1929)         =       2.03</span>
+<span id="cb29-12"><a href="#cb29-12"></a><span class="fu">corr</span>(u_i, Xb)  = -0.0714                        Prob &gt; <span class="fu">F</span>          =     0.0711</span>
+<span id="cb29-13"><a href="#cb29-13"></a></span>
+<span id="cb29-14"><a href="#cb29-14"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb29-15"><a href="#cb29-15"></a>      satjob │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
+<span id="cb29-16"><a href="#cb29-16"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb29-17"><a href="#cb29-17"></a>        wave │  -.0237842   .0152551    -1.56   0.119    -.0537023     .006134</span>
+<span id="cb29-18"><a href="#cb29-18"></a>        educ │  -.0087664   .0158008    -0.55   0.579    -.0397548     .022222</span>
+<span id="cb29-19"><a href="#cb29-19"></a>     incom16 │   -.047186   .0228265    -2.07   0.039    -.0919531   -.0024189</span>
+<span id="cb29-20"><a href="#cb29-20"></a>             │</span>
+<span id="cb29-21"><a href="#cb29-21"></a>        race │</span>
+<span id="cb29-22"><a href="#cb29-22"></a>      <span class="bn">black</span>  │   .3226033   .2025604     1.59   0.111    -.0746572    .7198637</span>
+<span id="cb29-23"><a href="#cb29-23"></a>      other  │   .0383663    .104807     0.37   0.714    -.1671806    .2439132</span>
+<span id="cb29-24"><a href="#cb29-24"></a>             │</span>
+<span id="cb29-25"><a href="#cb29-25"></a>       <span class="dt">_cons</span> │   1.928458    .227991     8.46   0.000     1.481323    2.375593</span>
+<span id="cb29-26"><a href="#cb29-26"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb29-27"><a href="#cb29-27"></a>     sigma_u │   .6861769</span>
+<span id="cb29-28"><a href="#cb29-28"></a>     sigma_e │  .64822634</span>
+<span id="cb29-29"><a href="#cb29-29"></a>         rho │  .52841711   (fraction <span class="kw">of</span> <span class="kw">variance</span> due to u_i)</span>
+<span id="cb29-30"><a href="#cb29-30"></a>─────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb29-31"><a href="#cb29-31"></a><span class="fu">F</span> <span class="kw">test</span> that <span class="ot">all</span> u_i=0: <span class="fu">F</span>(1660, 1929) = 2.18                  Prob &gt; <span class="fu">F</span> = 0.0000</span></code></pre></div>
 </div><div id="hybrid-model" class="slide section level2">
 <h1>“Hybrid” Model</h1>
 <blockquote>
 <p>The contention here is that the <em>between person</em> coefficient replicates the effect of the fixed effects regression coefficient while the <em>within person</em> coefficient is simultaneously estimated.</p>
 </blockquote>
 <h3 id="generate-within-and-between-variables">Generate Within And Between Variables</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1"></a>. <span class="kw">bysort</span> ID: <span class="kw">egen</span> educ_mean = <span class="kw">mean</span>(educ)</span>
-<span id="cb29-2"><a href="#cb29-2"></a>(6 <span class="fu">missing</span> <span class="kw">values</span> generated)</span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1"></a>. <span class="kw">generate</span> educ_deviation = educ - educ_mean</span>
-<span id="cb30-2"><a href="#cb30-2"></a>(1,240 <span class="fu">missing</span> <span class="kw">values</span> generated)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1"></a>. <span class="kw">bysort</span> ID: <span class="kw">egen</span> educ_mean = <span class="kw">mean</span>(educ)</span>
+<span id="cb30-2"><a href="#cb30-2"></a>(6 <span class="fu">missing</span> <span class="kw">values</span> generated)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb31-1"><a href="#cb31-1"></a>. <span class="kw">generate</span> educ_deviation = educ - educ_mean</span>
+<span id="cb31-2"><a href="#cb31-2"></a>(1,240 <span class="fu">missing</span> <span class="kw">values</span> generated)</span></code></pre></div>
 <h3 id="estimate-the-model">Estimate The Model</h3>
-<div class="sourceCode" id="cb31"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb31-1"><a href="#cb31-1"></a>. mixed satjob wave educ_mean educ_deviation incom16 i.race || ID:</span>
-<span id="cb31-2"><a href="#cb31-2"></a></span>
-<span id="cb31-3"><a href="#cb31-3"></a>Performing EM optimization: </span>
-<span id="cb31-4"><a href="#cb31-4"></a></span>
-<span id="cb31-5"><a href="#cb31-5"></a>Performing <span class="kw">gradient</span>-based optimization: </span>
-<span id="cb31-6"><a href="#cb31-6"></a></span>
-<span id="cb31-7"><a href="#cb31-7"></a>Iteration 0:   <span class="fu">log</span> likelihood = -4161.3224  </span>
-<span id="cb31-8"><a href="#cb31-8"></a>Iteration 1:   <span class="fu">log</span> likelihood = -4161.2951  </span>
-<span id="cb31-9"><a href="#cb31-9"></a>Iteration 2:   <span class="fu">log</span> likelihood = -4161.2951  </span>
-<span id="cb31-10"><a href="#cb31-10"></a></span>
-<span id="cb31-11"><a href="#cb31-11"></a>Computing standard errors:</span>
-<span id="cb31-12"><a href="#cb31-12"></a></span>
-<span id="cb31-13"><a href="#cb31-13"></a>Mixed-<span class="kw">effects</span> ML regression                     Number <span class="kw">of</span> <span class="kw">obs</span>     =      3,595</span>
-<span id="cb31-14"><a href="#cb31-14"></a>Group <span class="kw">variable</span>: ID                              Number <span class="kw">of</span> groups  =      1,661</span>
-<span id="cb31-15"><a href="#cb31-15"></a></span>
-<span id="cb31-16"><a href="#cb31-16"></a>                                                Obs per <span class="fu">group</span>:</span>
-<span id="cb31-17"><a href="#cb31-17"></a>                                                              <span class="fu">min</span> =          1</span>
-<span id="cb31-18"><a href="#cb31-18"></a>                                                              avg =        2.2</span>
-<span id="cb31-19"><a href="#cb31-19"></a>                                                              <span class="fu">max</span> =          3</span>
-<span id="cb31-20"><a href="#cb31-20"></a></span>
-<span id="cb31-21"><a href="#cb31-21"></a>                                                Wald <span class="fu">chi2</span>(6)      =      43.30</span>
-<span id="cb31-22"><a href="#cb31-22"></a>Log likelihood = -4161.2951                     Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
-<span id="cb31-23"><a href="#cb31-23"></a></span>
-<span id="cb31-24"><a href="#cb31-24"></a>───────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb31-25"><a href="#cb31-25"></a>        satjob │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
-<span id="cb31-26"><a href="#cb31-26"></a>───────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb31-27"><a href="#cb31-27"></a>          wave │  -.0197009   .0140588    -1.40   0.161    -.0472556    .0078537</span>
-<span id="cb31-28"><a href="#cb31-28"></a>     educ_mean │  -.0208983   .0057775    -3.62   0.000    -.0322221   -.0095745</span>
-<span id="cb31-29"><a href="#cb31-29"></a>educ_deviation │  -.0054971   .0151667    -0.36   0.717    -.0352233    .0242292</span>
-<span id="cb31-30"><a href="#cb31-30"></a>       incom16 │  -.0343579   .0154712    -2.22   0.026    -.0646809   -.0040349</span>
-<span id="cb31-31"><a href="#cb31-31"></a>               │</span>
-<span id="cb31-32"><a href="#cb31-32"></a>          race │</span>
-<span id="cb31-33"><a href="#cb31-33"></a>        <span class="bn">black</span>  │   .1684699   .0451261     3.73   0.000     .0800245    .2569154</span>
-<span id="cb31-34"><a href="#cb31-34"></a>        other  │   .0342568   .0543368     0.63   0.528    -.0722414     .140755</span>
-<span id="cb31-35"><a href="#cb31-35"></a>               │</span>
-<span id="cb31-36"><a href="#cb31-36"></a>         <span class="dt">_cons</span> │   2.075849    .088866    23.36   0.000     1.901675    2.250023</span>
-<span id="cb31-37"><a href="#cb31-37"></a>───────────────┴────────────────────────────────────────────────────────────────</span>
-<span id="cb31-38"><a href="#cb31-38"></a></span>
-<span id="cb31-39"><a href="#cb31-39"></a>─────────────────────────────┬────────────────────────────────────────────────</span>
-<span id="cb31-40"><a href="#cb31-40"></a>  Random-<span class="kw">effects</span> Parameters  │   Estimate   Std. Err.     [95% Conf. Interval]</span>
-<span id="cb31-41"><a href="#cb31-41"></a>─────────────────────────────┼────────────────────────────────────────────────</span>
-<span id="cb31-42"><a href="#cb31-42"></a>ID: Identity                 │</span>
-<span id="cb31-43"><a href="#cb31-43"></a>                  <span class="kw">var</span>(<span class="dt">_cons</span>) │   .2304651   .0161097      .2009581    .2643046</span>
-<span id="cb31-44"><a href="#cb31-44"></a>─────────────────────────────┼────────────────────────────────────────────────</span>
-<span id="cb31-45"><a href="#cb31-45"></a>               <span class="kw">var</span>(Residual) │   .4173132   .0131099      .3923934    .4438157</span>
-<span id="cb31-46"><a href="#cb31-46"></a>─────────────────────────────┴────────────────────────────────────────────────</span>
-<span id="cb31-47"><a href="#cb31-47"></a>LR <span class="kw">test</span> vs. linear <span class="kw">model</span>: chibar2(01) = 323.08        Prob &gt;= chibar2 = 0.0000</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb32-1"><a href="#cb32-1"></a>. mixed satjob wave educ_mean educ_deviation incom16 i.race || ID:</span>
+<span id="cb32-2"><a href="#cb32-2"></a></span>
+<span id="cb32-3"><a href="#cb32-3"></a>Performing EM optimization: </span>
+<span id="cb32-4"><a href="#cb32-4"></a></span>
+<span id="cb32-5"><a href="#cb32-5"></a>Performing <span class="kw">gradient</span>-based optimization: </span>
+<span id="cb32-6"><a href="#cb32-6"></a></span>
+<span id="cb32-7"><a href="#cb32-7"></a>Iteration 0:   <span class="fu">log</span> likelihood = -4161.3224  </span>
+<span id="cb32-8"><a href="#cb32-8"></a>Iteration 1:   <span class="fu">log</span> likelihood = -4161.2951  </span>
+<span id="cb32-9"><a href="#cb32-9"></a>Iteration 2:   <span class="fu">log</span> likelihood = -4161.2951  </span>
+<span id="cb32-10"><a href="#cb32-10"></a></span>
+<span id="cb32-11"><a href="#cb32-11"></a>Computing standard errors:</span>
+<span id="cb32-12"><a href="#cb32-12"></a></span>
+<span id="cb32-13"><a href="#cb32-13"></a>Mixed-<span class="kw">effects</span> ML regression                     Number <span class="kw">of</span> <span class="kw">obs</span>     =      3,595</span>
+<span id="cb32-14"><a href="#cb32-14"></a>Group <span class="kw">variable</span>: ID                              Number <span class="kw">of</span> groups  =      1,661</span>
+<span id="cb32-15"><a href="#cb32-15"></a></span>
+<span id="cb32-16"><a href="#cb32-16"></a>                                                Obs per <span class="fu">group</span>:</span>
+<span id="cb32-17"><a href="#cb32-17"></a>                                                              <span class="fu">min</span> =          1</span>
+<span id="cb32-18"><a href="#cb32-18"></a>                                                              avg =        2.2</span>
+<span id="cb32-19"><a href="#cb32-19"></a>                                                              <span class="fu">max</span> =          3</span>
+<span id="cb32-20"><a href="#cb32-20"></a></span>
+<span id="cb32-21"><a href="#cb32-21"></a>                                                Wald <span class="fu">chi2</span>(6)      =      43.30</span>
+<span id="cb32-22"><a href="#cb32-22"></a>Log likelihood = -4161.2951                     Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
+<span id="cb32-23"><a href="#cb32-23"></a></span>
+<span id="cb32-24"><a href="#cb32-24"></a>───────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb32-25"><a href="#cb32-25"></a>        satjob │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
+<span id="cb32-26"><a href="#cb32-26"></a>───────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb32-27"><a href="#cb32-27"></a>          wave │  -.0197009   .0140588    -1.40   0.161    -.0472556    .0078537</span>
+<span id="cb32-28"><a href="#cb32-28"></a>     educ_mean │  -.0208983   .0057775    -3.62   0.000    -.0322221   -.0095745</span>
+<span id="cb32-29"><a href="#cb32-29"></a>educ_deviation │  -.0054971   .0151667    -0.36   0.717    -.0352233    .0242292</span>
+<span id="cb32-30"><a href="#cb32-30"></a>       incom16 │  -.0343579   .0154712    -2.22   0.026    -.0646809   -.0040349</span>
+<span id="cb32-31"><a href="#cb32-31"></a>               │</span>
+<span id="cb32-32"><a href="#cb32-32"></a>          race │</span>
+<span id="cb32-33"><a href="#cb32-33"></a>        <span class="bn">black</span>  │   .1684699   .0451261     3.73   0.000     .0800245    .2569154</span>
+<span id="cb32-34"><a href="#cb32-34"></a>        other  │   .0342568   .0543368     0.63   0.528    -.0722414     .140755</span>
+<span id="cb32-35"><a href="#cb32-35"></a>               │</span>
+<span id="cb32-36"><a href="#cb32-36"></a>         <span class="dt">_cons</span> │   2.075849    .088866    23.36   0.000     1.901675    2.250023</span>
+<span id="cb32-37"><a href="#cb32-37"></a>───────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb32-38"><a href="#cb32-38"></a></span>
+<span id="cb32-39"><a href="#cb32-39"></a>─────────────────────────────┬────────────────────────────────────────────────</span>
+<span id="cb32-40"><a href="#cb32-40"></a>  Random-<span class="kw">effects</span> Parameters  │   Estimate   Std. Err.     [95% Conf. Interval]</span>
+<span id="cb32-41"><a href="#cb32-41"></a>─────────────────────────────┼────────────────────────────────────────────────</span>
+<span id="cb32-42"><a href="#cb32-42"></a>ID: Identity                 │</span>
+<span id="cb32-43"><a href="#cb32-43"></a>                  <span class="kw">var</span>(<span class="dt">_cons</span>) │   .2304651   .0161097      .2009581    .2643046</span>
+<span id="cb32-44"><a href="#cb32-44"></a>─────────────────────────────┼────────────────────────────────────────────────</span>
+<span id="cb32-45"><a href="#cb32-45"></a>               <span class="kw">var</span>(Residual) │   .4173132   .0131099      .3923934    .4438157</span>
+<span id="cb32-46"><a href="#cb32-46"></a>─────────────────────────────┴────────────────────────────────────────────────</span>
+<span id="cb32-47"><a href="#cb32-47"></a>LR <span class="kw">test</span> vs. linear <span class="kw">model</span>: chibar2(01) = 323.08        Prob &gt;= chibar2 = 0.0000</span></code></pre></div>
 </div><div id="difference-in-difference-model" class="slide section level2">
 <h1>Difference In Difference Model</h1>
 </div>

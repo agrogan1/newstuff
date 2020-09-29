@@ -105,6 +105,10 @@ Hence, for this particular data, we are exploring:
 
 ## Cross Lagged Regression
 
+    sem (satjob_3 <- twelve_years_2 incom16_2) ///
+    (twelve_years_3 <- satjob_2 incom16_2), ///
+    cov(e.satjob_3*e.twelve_years_3)
+
 # Analyses Relying On Long Data
 
 ## Reshape The Data
