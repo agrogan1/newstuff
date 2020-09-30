@@ -2,9 +2,7 @@
 
 [Dataviz exercise](https://agrogan1.github.io/newstuff/social-service-agency/social-service-agency.pdf) with *Simulated* Social Service Agency data.
 
-The data contain the following (simulated) variables:
-
-"ID", "age", "gender", "program", "mental_health_T1", "mental_health_T2", "latitude", longitude"  
+The data contain the following (simulated) variables:  "ID", "age", "gender", "program", "mental_health_T1", "mental_health_T2", "latitude", "longitude".
 
 The *mental health* variables are scaled to have an average of 100. Lower numbers indicate lower mental health, while higher numbers indicate higher mental health.
 
