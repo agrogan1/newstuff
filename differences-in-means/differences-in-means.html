@@ -1,0 +1,45 @@
+<h1><a href="#differences-in-means" id="differences-in-means">Differences in Means</a></h1>
+<p>Intuitively, if the <em>confidence intervals</em> of two variables overlap, we would expect that the two variables would not differ to a degree that is statistically significant.</p>
+<p>However, as the brief example below illustrates, it is possible for two variables to have <em>overlapping confidence intervals</em>, yet to be different to a degree that is <em>statistically significant</em>.</p>
+<pre><code>. clear all // clear the workspace
+
+. 
+. set seed 3846 // set random seed
+
+. 
+. set obs 100 // 100 empty observations
+number of observations (_N) was 0, now 100
+
+. 
+. generate x1 = rnormal(100, 10) // x1 has mean of 100, sd of 10
+
+. 
+. generate x2 = rnormal(102, 10) // x2 has mean of 102, sd of 10
+
+. 
+. ci means x1 x2 // confidence intervals of the two variables overlap
+
+    Variable |        Obs        Mean    Std. Err.       [95% Conf. Interval]
+-------------+---------------------------------------------------------------
+          x1 |        100    98.74361    1.040009        96.68001    100.8072
+          x2 |        100    101.9778    1.011382          99.971    103.9846
+
+. 
+. ttest x1 == x2 // t-test finds significant differences between x and x2
+
+Paired t test
+------------------------------------------------------------------------------
+Variable |     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]
+---------+--------------------------------------------------------------------
+      x1 |     100    98.74361    1.040009    10.40009    96.68001    100.8072
+      x2 |     100    101.9778    1.011382    10.11382      99.971    103.9846
+---------+--------------------------------------------------------------------
+    diff |     100   -3.234191    1.414134    14.14134    -6.04014   -.4282415
+------------------------------------------------------------------------------
+     mean(diff) = mean(x1 - x2)                                   t =  -2.2870
+ Ho: mean(diff) = 0                              degrees of freedom =       99
+
+ Ha: mean(diff) &lt; 0           Ha: mean(diff) != 0           Ha: mean(diff) &gt; 0
+ Pr(T &lt; t) = 0.0122         Pr(|T| &gt; |t|) = 0.0243          Pr(T &gt; t) = 0.9878
+
+</code></pre>
