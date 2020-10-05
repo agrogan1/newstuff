@@ -58,10 +58,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Logistic Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">22 Jul 2020</p>
+<p class="date">5 Oct 2020</p>
 </header>
 <h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
-<style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <ul>
 <li>Fitting a Curve to 2 Possible Values</li>
 </ul>
@@ -85,16 +85,15 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </pre>
 <pre class='stata'>. set maxvar 10000
 </pre>
-<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clea
-> r
+<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
 </pre>
 <pre class='stata'>. * keep if year == 2018 // keep only most recent year
 </pre>
 <pre class='stata'>. codebook polviews // what does this variable look like?
 
-─────────────────────────────────────────────────────────────────────────────────────────
-polviews                                         think of self as liberal or conservative
-─────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────
+polviews                                            think of self as liberal or conservative
+────────────────────────────────────────────────────────────────────────────────────────────
 
                   type:  numeric (byte)
                  label:  POLVIEWS
@@ -137,8 +136,9 @@ polviews                                         think of self as liberal or con
 (41258 differences between hispanic and latinx)
 </pre>
 <pre class='stata'>. keep year polviews liberal ///
+> age sex ///
 > race latinx class ///
-> coninc coninc_10K income_group // keep only some variables
+> coninc coninc_10K income_group happy govlazy goveqinc // keep only some variables
 </pre>
 <pre class='stata'>. save GSSsmall.dta, replace
 file GSSsmall.dta saved

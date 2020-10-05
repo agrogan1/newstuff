@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}22 Jul 2020, 19:39:10
+ {txt}opened on:  {res} 5 Oct 2020, 10:17:16
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}22 Jul 2020
+{res} 5 Oct 2020
 {txt}
 {com}. //_2
 . clear all
@@ -72,8 +72,9 @@
 
 {com}. //_13
 . keep year polviews liberal ///
+> age sex ///
 > race latinx class ///
-> coninc coninc_10K income_group // keep only some variables
+> coninc coninc_10K income_group happy govlazy goveqinc // keep only some variables
 {txt}
 {com}. //_14
 . save GSSsmall.dta, replace
@@ -315,7 +316,7 @@ working class  {c |}{col 16}{res}{space 2} .9149358{col 28}{space 2} .0408347{co
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}22 Jul 2020, 19:39:22
+ {txt}closed on:  {res} 5 Oct 2020, 10:17:28
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

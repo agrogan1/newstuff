@@ -61,6 +61,7 @@ geometry: margin=1 in
 	recode hispanic (1 = 1)(else = 0), generate(latinx) // Latinx
 	
 	keep year polviews liberal ///
+	age sex ///
 	race latinx class ///
 	coninc coninc_10K income_group happy govlazy goveqinc // keep only some variables
 	

@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>22 Jul 2020</p>
+<p>5 Oct 2020</p>
 </div>
 <div id="key-concepts-and-commands" class="slide section level1">
 <h1>Key Concepts and Commands</h1>
@@ -128,14 +128,13 @@ Andy Grogan-Kaylor
 <h1>General Social Survey</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">set</span> <span class="dv">maxvar</span> 10000</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">use</span> <span class="st">&quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA&quot;</span>, clea</span>
-<span id="cb3-2"><a href="#cb3-2"></a>&gt; <span class="fu">r</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">use</span> <span class="st">&quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. * <span class="kw">keep</span> <span class="kw">if</span> <span class="fu">year</span> == 2018 <span class="co">// keep only most recent year</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">codebook</span> polviews <span class="co">// what does this variable look like?</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb5-4"><a href="#cb5-4"></a>polviews                                         think <span class="kw">of</span> self <span class="kw">as</span> liberal <span class="kw">or</span> conservative</span>
-<span id="cb5-5"><a href="#cb5-5"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb5-3"><a href="#cb5-3"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb5-4"><a href="#cb5-4"></a>polviews                                            think <span class="kw">of</span> self <span class="kw">as</span> liberal <span class="kw">or</span> conservative</span>
+<span id="cb5-5"><a href="#cb5-5"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb5-6"><a href="#cb5-6"></a></span>
 <span id="cb5-7"><a href="#cb5-7"></a>                  <span class="dv">type</span>:  <span class="kw">numeric</span> (<span class="kw">byte</span>)</span>
 <span id="cb5-8"><a href="#cb5-8"></a>                 <span class="kw">label</span>:  POLVIEWS</span>
@@ -173,8 +172,9 @@ Andy Grogan-Kaylor
 <div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">recode</span> hispanic (1 = 1)(<span class="kw">else</span> = 0), <span class="kw">generate</span>(latinx) <span class="co">// Latinx</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>(41258 differences between hispanic and latinx)</span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">keep</span> <span class="fu">year</span> polviews liberal <span class="co">///</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>&gt; race latinx <span class="kw">class</span> <span class="co">///</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>&gt; coninc coninc_10K income_group <span class="co">// keep only some variables</span></span></code></pre></div>
+<span id="cb12-2"><a href="#cb12-2"></a>&gt; age sex <span class="co">///</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>&gt; race latinx <span class="kw">class</span> <span class="co">///</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>&gt; coninc coninc_10K income_group happy govlazy goveqinc <span class="co">// keep only some variables</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">save</span> GSSsmall.dta, <span class="kw">replace</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>file GSSsmall.dta saved</span></code></pre></div>
 </div>
