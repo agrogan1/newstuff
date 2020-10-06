@@ -12,7 +12,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 ### Introductory Statistics
 
-* [Differences In Means Of Two Groups](https://agrogan1.github.io/newstuff/differences-in-two-means/differences-in-two-means.html)
+* [Differences In The Means Of Two Groups](https://agrogan1.github.io/newstuff/differences-in-2-means/differences-in-2-means.html)
 
 ### Bayesian Statistics
 
