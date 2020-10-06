@@ -1,4 +1,4 @@
-Differences in Means
+Differences In The Means Of Two Groups
 ===============================================================
 
 Intuitively, if the *confidence intervals* of two variables overlap, we would expect that the two variables would not differ to a degree that is statistically significant.
