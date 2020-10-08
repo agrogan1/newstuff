@@ -1,0 +1,113 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-logistic-cutpoints/ordinal-logistic-cutpoints.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 7 Oct 2020, 22:15:00
+{txt}
+{com}. //_1
+. display c(current_date)
+{res} 7 Oct 2020
+{txt}
+{com}. //_2
+. clear all // clear the workspace
+{res}{txt}
+{com}. //_3
+. use http://www.stata-press.com/data/r15/fullauto // use auto data set from Stata documentation
+{txt}(Automobile Models)
+
+{com}. //_4
+. codebook rep77 foreign // codebook
+
+{txt}{hline}
+{res}rep77{right:Repair Record 1977}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}int{txt})
+{ralign 22:label}:  {res:repair}
+
+{col 18}range:  [{res}1{txt},{res}5{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}5{col 51}{txt}missing .:  {res}8{txt}/{res}74
+
+{txt}{col 13}tabulation:  Freq.   Numeric  Label
+{col 21}{res}         3{col 33}       1{col 43}{txt}Poor
+{col 21}{res}        11{col 33}       2{col 43}{txt}Fair
+{col 21}{res}        27{col 33}       3{col 43}{txt}Average
+{col 21}{res}        20{col 33}       4{col 43}{txt}Good
+{col 21}{res}         5{col 33}       5{col 43}{txt}Excellent
+{col 21}{res}         8{col 33}       .{col 43}
+
+{txt}{hline}
+{res}foreign{right:Foreign}
+{txt}{hline}
+
+{col 19}type:  numeric ({res}int{txt})
+{ralign 22:label}:  {res:foreign}
+
+{col 18}range:  [{res}0{txt},{res}1{txt}]{col 55}units:  {res}1
+{col 10}{txt}unique values:  {res}2{col 51}{txt}missing .:  {res}0{txt}/{res}74
+
+{txt}{col 13}tabulation:  Freq.   Numeric  Label
+{col 21}{res}        52{col 33}       0{col 43}{txt}Domestic
+{col 21}{res}        22{col 33}       1{col 43}{txt}Foreign
+
+{com}. //_5
+. ologit rep77 foreign // estimate ordered logistic regression
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-89.895098}  
+Iteration 1:{space 3}log likelihood = {res:-85.951765}  
+Iteration 2:{space 3}log likelihood = {res:-85.908227}  
+Iteration 3:{space 3}log likelihood = {res:-85.908161}  
+Iteration 4:{space 3}log likelihood = {res:-85.908161}  
+{res}
+{txt}Ordered logistic regression{col 49}Number of obs{col 67}= {res}        66
+{txt}{col 49}LR chi2({res}1{txt}){col 67}= {res}      7.97
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0047
+{txt}Log likelihood = {res}-85.908161{txt}{col 49}Pseudo R2{col 67}= {res}    0.0444
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       rep77{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}foreign {c |}{col 14}{res}{space 2} 1.455878{col 26}{space 2} .5308951{col 37}{space 1}    2.74{col 46}{space 3}0.006{col 54}{space 4} .4153425{col 67}{space 3} 2.496413
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+       /cut1 {c |}{col 14}{res}{space 2}-2.765562{col 26}{space 2} .5988208{col 54}{space 4}-3.939229{col 67}{space 3}-1.591895
+{txt}       /cut2 {c |}{col 14}{res}{space 2}-.9963603{col 26}{space 2} .3217706{col 54}{space 4}-1.627019{col 67}{space 3}-.3657016
+{txt}       /cut3 {c |}{col 14}{res}{space 2} .9426153{col 26}{space 2} .3136398{col 54}{space 4} .3278925{col 67}{space 3} 1.557338
+{txt}       /cut4 {c |}{col 14}{res}{space 2} 3.123351{col 26}{space 2} .5423257{col 54}{space 4} 2.060412{col 67}{space 3}  4.18629
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_6
+. predict yhat* // predicted probabilities for different levels of dv
+{txt}(option {bf:pr} assumed; predicted probabilities)
+
+{com}. //_7
+. tabstat yhat1 yhat2 yhat3 yhat4 yhat5, by(foreign) // table of predicted probabilities
+
+{txt}Summary statistics: mean
+  by categories of: foreign (Foreign)
+
+{ralign 8:foreign} {...}
+{c |}{...}
+     yhat1     yhat2     yhat3     yhat4     yhat5
+{hline 9}{c +}{hline 50}
+{ralign 8:Domestic} {...}
+{c |}{...}
+ {res} .0592137  .2104439    .44997  .2382181  .0421543
+{txt}{ralign 8:Foreign} {...}
+{c |}{...}
+ {res} .0144652  .0648099   .295154  .4668096  .1587614
+{txt}{hline 9}{c +}{hline 50}
+{ralign 8:Total} {...}
+{c |}{...}
+ {res} .0459101  .1671473  .4039436  .3061777  .0768213
+{txt}{hline 9}{c BT}{hline 50}
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-logistic-cutpoints/ordinal-logistic-cutpoints.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 7 Oct 2020, 22:15:01
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

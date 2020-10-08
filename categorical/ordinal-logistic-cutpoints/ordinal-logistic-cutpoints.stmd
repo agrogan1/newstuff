@@ -1,0 +1,48 @@
+% Cutpoints in Ordered Logistic Regression
+% Andy Grogan-Kaylor
+% `s c(current_date)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+# Background
+
+Cutpoints in ordered logistic regression are not terrifically substantively informative, but they do contain statistical information.
+
+> This handout draws heavily on the Stata documentation for `ologit`.
+
+# Ordered Logistic Regression
+
+## Setup
+ 
+    clear all // clear the workspace
+	
+## Get The Data
+
+    use http://www.stata-press.com/data/r15/fullauto // use auto data set from Stata documentation
+
+## Codebook
+
+    codebook rep77 foreign // codebook
+
+## Run The Model
+	
+    ologit rep77 foreign // estimate ordered logistic regression
+
+    predict yhat* // predicted probabilities for different levels of dv
+
+    tabstat yhat1 yhat2 yhat3 yhat4 yhat5, by(foreign) // table of predicted probabilities
+
+# Calculations
+
+We can use the cutpoints as another way of calculating these probabilities, with the logistic formula $1/(1 + e^{u_j})$
+
+For example, the Stata documentation notes that 
+
+> "For a foreign car, the probability of a poor record is the probability that $1.46 + u_j <= -2.77$, or equivalently, $u_j <= -4.23$. Making this calculation requires familiarity with the logistic distribution: the probability is $1/(1+e^{4.23}) = 0.014$. On the other hand, for domestic cars, the probability of a poor record is the probability $u_j <= -2.77$, which is 0.059 [$1/(1 + e^{2.77})$]."
+
+
+
