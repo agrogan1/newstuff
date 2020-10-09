@@ -231,11 +231,9 @@ ggplot(mydata, # data
   geom_point() + # 1st geometry
   geom_smooth() + # 2nd geometry
   labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome") + # labels
-  # manual colors 
-  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2")) +
+  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2")) + # manual colors 
   theme_minimal() + # theme
-  # add to theme
-  theme(plot.title = element_text(size = 20, color = "#0099FF")) 
+  theme(plot.title = element_text(size = 20, color = "#0099FF")) # add to theme
 
 ```
 
@@ -244,7 +242,7 @@ ggplot(mydata, # data
 ```{r, code = knitr::knit_code$get("graph4"), eval = FALSE, echo = FALSE}
 ```
 
-`r chunk_reveal("graph4", break_type = "auto")`
+`r chunk_reveal("graph4", break_type = "auto", widths = c(4,2))`
 
 ---
 class: animated, slideInRight
