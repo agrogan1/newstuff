@@ -17,13 +17,13 @@ output:
     toc_float:
       collapsed: yes
       smooth_scroll: yes
-  tint::tintPdf:
-    toc: yes
   tufte::tufte_handout:
     number_sections: yes
     toc: yes
   pdf_document:
     toc: no
+  tint::tintPdf:
+    toc: yes
 header-includes: \usepackage{xcolor}
 ---
 
@@ -42,9 +42,11 @@ options(htmltools.dir.version = FALSE)
 
 # You Have To Get Your Data From Somewhere
 
-> In learning R, as well as RMarkdown, one of the most difficult tasks seems to be understanding how to import data.
+In learning R, as well as RMarkdown, one of the most difficult tasks seems to be understanding how to import data.
 
-> Read your data into a dataset using the *right function* for the *right format* from the *correct location*.
+Read your data into a dataset using the *right function* for the *right format* from the *correct location*.
+
+Note that while learning the correct syntax is *very helpful*, RStudio can generate much of this syntax for you using the **File | Import Dataset | ...** menu.
 
 # Basic Idea
 
