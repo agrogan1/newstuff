@@ -28,10 +28,9 @@ This is an example report using the *simulated* social service agency data.
 
 ```{r getdata}
 
-library(readxl) # to read Excel data
+library(readxl)
 
-social_service_agency <- read_excel("social-service-agency.xlsx", 
-                                    sheet = "clients")
+social_service_agency <- read_excel("social-service-agency.xlsx")
 
 ```
 
