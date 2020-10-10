@@ -3,10 +3,7 @@ title: "You Have To Get Your Data From Somewhere"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  tufte::tufte_html: 
-    css: myTufteCSS.css
-    highlight: haddock
-    number_sections: yes
+  tint::tintPdf:
     toc: yes
   html_document:
     css: UM.css
@@ -17,12 +14,15 @@ output:
     toc_float:
       collapsed: yes
       smooth_scroll: yes
-  tufte::tufte_handout:
+  tufte::tufte_html: 
+    css: myTufteCSS.css
+    highlight: haddock
     number_sections: yes
     toc: yes
   pdf_document:
     toc: no
-  tint::tintPdf:
+  tufte::tufte_handout:
+    number_sections: yes
     toc: yes
 header-includes: \usepackage{xcolor}
 ---
@@ -141,7 +141,7 @@ setwd("/project1") # set your working directory
 
 * Note that R uses a forward slash `/` to specify directory paths. R does not understand the use of a backward slash `\` to specify directories. R uses `~` to refer to the user's (usually your) home directory.
 * If you are working in RStudio, you can use the menu option *Session | Set Working Directory | Choose Directory* to choose a particular working directory.
-* If you double click on a `*.Rmd` file to start RStudio, R will assume that your working directory is the directory in which that `*.Rmd` file is located.
+* If you double click on a `*.Rmd` file to start RStudio, R will assume that your working directory is the directory in which that `*.Rmd` file is located. <mark>Thus, it is often a good idea to have your data and RMarkdown document saved in the same directory.</mark>
 
  
 
