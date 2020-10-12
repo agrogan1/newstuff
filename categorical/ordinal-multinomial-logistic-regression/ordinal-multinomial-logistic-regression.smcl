@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}15 Jun 2020, 08:28:49
+ {txt}opened on:  {res}10 Oct 2020, 11:14:11
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}15 Jun 2020
+{res}10 Oct 2020
 {txt}
 {com}. //_2
 . clear all
@@ -31,7 +31,7 @@
 
 {txt}Contains data from {res}GSSsmall.dta
 {txt}  obs:{res}        64,814                          
-{txt} vars:{res}             7                          15 Jun 2020 08:28
+{txt} vars:{res}             7                          10 Oct 2020 11:14
 {txt} size:{res}       907,396                          
 {txt}{hline}
               storage   display    value
@@ -138,6 +138,23 @@ Iteration 3:{space 3}log likelihood = {res:-83368.485}
 {p 0 6 2}Note: {help eform_option:Estimates are transformed} only in the first equation.{p_end}
 
 {com}. //_12
+. brant
+{res}
+{txt}{p 0 0 2}Brant test of parallel regression assumption{p_end}
+
+{space 1}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 10:chi2}{space 1}{space 1}{ralign 9:p>chi2}{space 1}{space 1}{ralign 6:df}{space 0}
+{space 1}{hline 13}{c   +}{hline 12}{hline 11}{hline 7}
+{space 1}{space 0}{ralign 12:All}{space 1}{c |}{space 1}{ralign 10:{res:{sf:   1456.59}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:    20}}}{space 0}
+{space 1}{hline 13}{c   +}{hline 12}{hline 11}{hline 7}
+{space 1}{space 0}{ralign 12:sex}{space 1}{c |}{space 1}{ralign 10:{res:{sf:    108.03}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
+{space 1}{space 0}{ralign 12:age}{space 1}{c |}{space 1}{ralign 10:{res:{sf:    120.63}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
+{space 1}{space 0}{ralign 12:degree}{space 1}{c |}{space 1}{ralign 10:{res:{sf:    835.26}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
+{space 1}{space 0}{ralign 12:coninc}{space 1}{c |}{space 1}{ralign 10:{res:{sf:     67.78}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
+
+A significant test statistic provides evidence that the parallel
+regression assumption has been violated.
+
+{com}. //_13
 . mlogit polviews i.sex age degree coninc
 
 {res}{txt}Iteration 0:{space 3}log likelihood = {res:-83895.058}  
@@ -204,7 +221,7 @@ Iteration 3:{space 3}log likelihood = {res:-82694.594}
 {txt}{space 15}_cons {c |}{col 22}{res}{space 2}-3.040997{col 34}{space 2} .0945989{col 45}{space 1}  -32.15{col 54}{space 3}0.000{col 62}{space 4}-3.226407{col 75}{space 3}-2.855587
 {txt}{hline 21}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_13
+{com}. //_14
 . mlogit, rr
 
 {txt}Multinomial logistic regression{col 49}Number of obs{col 67}= {res}    50,049
@@ -267,7 +284,7 @@ Iteration 3:{space 3}log likelihood = {res:-82694.594}
 {txt}{hline 21}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 2}Note: {res:_cons} estimates baseline relative risk{txt} for each outcome{txt}.{p_end}
 
-{com}. //_14
+{com}. //_15
 . margins sex, predict(outcome(1)) // predicted probabilities by sex; y = 1
 {res}
 {txt}Predictive margins{col 49}Number of obs{col 67}= {res}    50,049
@@ -291,7 +308,7 @@ Iteration 3:{space 3}log likelihood = {res:-82694.594}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}15 Jun 2020, 08:28:59
+ {txt}closed on:  {res}10 Oct 2020, 11:14:30
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

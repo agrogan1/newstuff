@@ -6,7 +6,7 @@ cd "/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-reg
 
 doedit ordinal-multinomial-logistic-regression.stmd
 
-* doedit stata.sty
+* render
 
 markstat using ordinal-multinomial-logistic-regression.stmd, mathjax // HTML
 
@@ -28,12 +28,11 @@ graph close _all
 
 * graph close _all
 
-
-
 * pandoc
 
-* cd /Applications/RStudio.app/Contents/MacOS/pandoc
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" "/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.html" -o "/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression-slidy.html" 
 
-* ./pandoc -s --mathjax -i -t slidy --css "../UMslidy.css"  "/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.html" -o "/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression-slidy.html" 
+doedit "../MathJax-CDN.txt"
 
+doedit "ordinal-multinomial-logistic-regression-slidy.html"
 

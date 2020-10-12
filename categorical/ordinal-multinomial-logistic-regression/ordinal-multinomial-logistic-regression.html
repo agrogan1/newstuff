@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Ordinal and Multinomial Logistic Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">15 Jun 2020</p>
+<p class="date">10 Oct 2020</p>
 </header>
 <h1 id="meta-background">Meta-Background</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
@@ -102,12 +102,12 @@ file GSSsmall.dta saved
 
 Contains data from GSSsmall.dta
   obs:        64,814                          
- vars:             7                          15 Jun 2020 08:28
+ vars:             7                          10 Oct 2020 11:13
  size:       907,396                          
-─────────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────
               storage   display    value
 variable name   type    format     label      variable label
-─────────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────
 age             byte    %8.0g      AGE        age of respondent
 paeduc          byte    %8.0g      LABK       highest year school completed, father
 maeduc          byte    %8.0g      LABK       highest year school completed, mother
@@ -115,7 +115,7 @@ degree          byte    %8.0g      LABL       r's highest degree
 sex             byte    %8.0g      SEX        respondents sex
 polviews        byte    %8.0g      POLVIEWS   think of self as liberal or conservative
 coninc          double  %12.0g     LABIH      family income in constant dollars
-─────────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
 <h1 id="thinking-about-your-data-and-data-wrangling">Thinking About Your Data and Data Wrangling</h1>
@@ -218,8 +218,23 @@ Log likelihood = -83368.485                     Pseudo R2         =     0.0063
 ─────────────┴────────────────────────────────────────────────────────────────
 Note: Estimates are transformed only in the first equation.
 </pre>
-<h1 id="the-proportional-odds-assumption">The Proportional Odds Assumption</h1>
-<h1 id="the-brant-test">The Brant Test</h1>
+<h1 id="the-proportional-odds-assumption-and-the-brant-test">The Proportional Odds Assumption And The Brant Test</h1>
+<pre class='stata'>. brant
+
+Brant test of parallel regression assumption
+
+              │       chi2     p>chi2      df
+ ─────────────+──────────────────────────────
+          All │    1456.59      0.000      20
+ ─────────────+──────────────────────────────
+          sex │     108.03      0.000       5
+          age │     120.63      0.000       5
+       degree │     835.26      0.000       5
+       coninc │      67.78      0.000       5
+
+A significant test statistic provides evidence that the parallel
+regression assumption has been violated.
+</pre>
 <h1 id="the-multinomial-model">The Multinomial Model</h1>
 <p><span class="math display">\[
     \ln \left( \frac{P(y = y_2)}{P(y = y_1)} \right) = \ln \left( \frac{P(y = \text{something else})}{P(y = \text{something})} \right)

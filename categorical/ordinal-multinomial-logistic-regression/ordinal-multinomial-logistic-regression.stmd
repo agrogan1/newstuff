@@ -75,9 +75,9 @@ $$
 
     ologit polviews sex age degree coninc, or
 	
-# The Proportional Odds Assumption
+# The Proportional Odds Assumption And The Brant Test
 
-# The Brant Test
+    brant
 
 # The Multinomial Model
 
