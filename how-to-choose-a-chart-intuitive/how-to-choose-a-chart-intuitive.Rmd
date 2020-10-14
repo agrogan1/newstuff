@@ -3,6 +3,18 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
+  html_document:
+    fig_width: 10
+    highlight: haddock
+    code_download: yes
+  bookdown::epub_book: 
+    stylesheet: UM.css 
+    cover_image: intuitive-guide.png
+    fig_width: 7
+    fig_height: 4
   bookdown::gitbook:
     split_by: none
     highlight: haddock
@@ -12,18 +24,6 @@ output:
       download:
       - how-to-choose-a-chart-intuitive.pdf
       - how-to-choose-a-chart-intuitive.epub
-  html_document:
-    fig_width: 10
-    highlight: haddock
-    code_download: yes
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
-  bookdown::epub_book: 
-    stylesheet: UM.css 
-    cover_image: intuitive-guide.png
-    fig_width: 7
-    fig_height: 4
 mainfont: Futura
 fontsize: 12pt
 classoption: landscape
@@ -105,6 +105,7 @@ myoutcome <- ggplot(data = mydata,
                                 michigancolors("blue"))) +
   scale_fill_manual(values = c(michigancolors("blue"),
                                michigancolors("maize"))) +
+  theme_minimal() +
   theme(legend.position = "none",
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
@@ -139,7 +140,8 @@ mycomparison <- myoutcome +
              ncol = 1, 
              strip.position = "top") +
   labs(subtitle = "Histogram With Comparison") +
-  theme(strip.text = element_text(size = rel(.75)))
+  theme(strip.text = element_text(size = rel(.75)),
+        axis.text.y = element_text(size = rel(.5)))
 
 mybar <- ggplot(data = mydata,
                 aes(x = group,
@@ -149,6 +151,7 @@ mybar <- ggplot(data = mydata,
   labs(title = "How Many People \nAre In Each Group?",
        subtitle = "Bar Chart",
        y = "Count") +
+  theme_minimal() +
   theme(legend.position = "none",
         title = element_text(size = rel(.75)))
 
@@ -164,6 +167,7 @@ mycomparisonC <- ggplot(data = mydata,
        subtitle = "Bar Chart With Comparison",
        x = "",
        y = "Count") +
+  theme_minimal() +
   theme(legend.position = "none",
         title = element_text(size = rel(.75)),
         axis.text.x = element_text(size = rel(.5),
@@ -206,6 +210,7 @@ mylongitudinal <- ggplot(mydata,
        subtitle = "Scatterplot",
        x = "Time",
        y = "Outcome") +
+  theme_minimal() +
   theme(legend.position = "none",
         title = element_text(size = rel(.75)),
         axis.text.y = element_blank(),
@@ -238,18 +243,13 @@ p0 <- myhistogram + mycomparison + mybeeswarm +
 
 p0 # replay
 
-p0A <- p0 + 
+p0A <- myhistogram + mycomparison + 
   plot_annotation(title = 'How To Choose A Chart', 
                   subtitle = 'An Intuitive Guide')
 
 # save an alternative PDF version
 
-ggsave("intuitive-guide.pdf", 
-       p0A,
-       width = 10, 
-       height = 7.5)
-
-ggsave("intuitive-guide.png")
+ggsave("intuitive-guide.png", width = 4, height = 4)
 
 ```
 
