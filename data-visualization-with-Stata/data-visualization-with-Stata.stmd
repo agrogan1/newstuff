@@ -21,8 +21,8 @@ geometry: margin=1 in
 
 # Variable Types
 
-* *categorical variables* represent unordered categories like *race*, *ethnicity*, *neighborhood*, *religious affiliation*, or *place of residence*.
-* *continuous variables* represent a continuous scale like *income*, a *mental health scale*, or a *measure of life expectancy*.
+* *Categorical variables* represent unordered categories like *race*, *ethnicity*, *neighborhood*, *religious affiliation*, or *place of residence*.
+* *Continuous variables* represent a continuous scale like *income*, a *mental health scale*, or a *measure of life expectancy*.
 
 # A Data Visualization Strategy
 
@@ -52,7 +52,7 @@ The documentation goes on to further note that:
 
 > "The data are measures from 107 trees. The trees were selected as being of average size from healthy and well stocked stands in the Alps."
 
-    use gutten.dta, clear
+    use "https://github.com/agrogan1/newstuff/raw/master/data-visualization-with-Stata/gutten.dta", clear
 		
 # Variables
 
@@ -142,6 +142,12 @@ Stata *graph schemes* can substantially improve the look of a graph. Built in gr
 
 ![Scatterplot Of Tree Height By Age With lean2 Graph Scheme](myscatterL.png)
 
+    twoway scatter height age_base, title("Tree Height by Age") scheme(s1rcolor)
+
+	graph export myscatterS.png, width(500) replace
+
+![Scatterplot Of Tree Height By Age With s1rcolor Graph Scheme](myscatterS.png)
+
 ## Continuous by Categorical 
 
 > Note that in the graph below, I have used the `asyvars` option to give different colors to the different bars.
@@ -158,7 +164,11 @@ Stata *graph schemes* can substantially improve the look of a graph. Built in gr
 
 ![Bar Graph Of Mean Tree Height By Location With lean2 Graph Scheme](mybarL.png)
 
+	graph bar height, over(location) asyvars title("Tree Height by Location") scheme(s1rcolor)
+	
+	graph export mybarS.png, width(500) replace
 
+![Bar Graph Of Mean Tree Height By Location With s1rcolor Graph Scheme](mybarS.png)
 
 
 
