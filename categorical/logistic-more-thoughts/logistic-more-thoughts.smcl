@@ -1,0 +1,51 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-more-thoughts/logistic-more-thoughts.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}15 Oct 2020, 09:57:17
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}15 Oct 2020
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}09:57:17
+{txt}
+{com}. //_3
+. clear all // clear the workspace
+{res}{txt}
+{com}. //_4
+. set obs 100 // 100 simulated observations
+{txt}{p}
+number of observations (_N)  was 0,
+now 100
+{p_end}
+
+{com}. //_5
+. generate x = runiform(-10,10) // randomly distributed x
+{txt}
+{com}. //_6
+. generate p = exp(1.0986123 *x)/(1 + exp(1.0986123 *x)) // p with odds ratio of 3 CF ln(3)
+{txt}
+{com}. //_7
+. twoway scatter p x, ///
+> title("Probability by x") ytitle("probability") ///
+> xline(0 1 2 3, lcolor("red")) yline(.5 .75 .9 .965, lcolor("red")) ///
+> xlabel(0 1 2 3) ylabel(.5 .75 .9 .965) ///
+> scheme(michigan) // graph
+{res}{txt}
+{com}. //_8
+. graph export myscatter.png, width(500) replace
+{txt}(file myscatter.png written in PNG format)
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-more-thoughts/logistic-more-thoughts.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}15 Oct 2020, 09:57:19
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
