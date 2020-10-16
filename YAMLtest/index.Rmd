@@ -3,17 +3,9 @@ title: "RMarkdown YAML Test"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  html_document: 
-    code_download: yes
-    highlight: haddock
-    number_sections: yes
-    code_folding: hide
+  pdf_document:
     toc: yes
-    toc_float:
-      collapsed: no
-      smooth_scroll: yes
-    theme: readable
-  slidy_presentation: 
+  slidy_presentation:
     fig_caption: yes
     footer: Andrew Grogan-Kaylor
     highlight: haddock
@@ -34,7 +26,7 @@ output:
     highlight: haddock
     number_sections: yes
     toc: yes
-  bookdown::epub_book: default  
+  bookdown::epub_book: default
   revealjs::revealjs_presentation:
     fig_height: 4
     highlight: haddock
@@ -45,6 +37,16 @@ output:
     toc: yes
     number_sections: yes
     latex_engine: xelatex
+  html_document:
+    code_download: yes
+    highlight: haddock
+    number_sections: yes
+    code_folding: hide
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+    theme: readable
 ---
 
 ```{r setup, include=FALSE}
@@ -53,8 +55,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
-
 ## Background 
+
+This document can be written out to many many formats. The formats are encoded in the `YAML`. You can get an idea of the available formats by inspecting the `YAML` of this document: [https://github.com/agrogan1/newstuff/blob/master/YAMLtest/index.Rmd](https://github.com/agrogan1/newstuff/blob/master/YAMLtest/index.Rmd)
+
+Note also, that you can download the source \*.Rmd of  this document using the button in the *upper right hand corner*. This button is added by adding `code_download: yes` to the `YAML`.
 
 > You will need to install some of these packages from CRAN
 
