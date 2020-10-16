@@ -1,0 +1,104 @@
+---
+title: "RMarkdown YAML Test"
+author: "Andy Grogan-Kaylor"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    code_download: yes
+    highlight: haddock
+    number_sections: yes
+    code_folding: hide
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+    theme: readable
+  slidy_presentation: 
+    fig_caption: yes
+    footer: Andrew Grogan-Kaylor
+    highlight: haddock
+    theme: default
+  tint::tintHtml:
+    highlight: haddock
+    number_sections: yes
+    toc: yes
+  ioslides_presentation:
+    highlight: haddock
+    incremental: yes
+  distill::distill_article:
+    highlight: haddock
+    toc: yes
+  bookdown::gitbook:
+    highlight: haddock
+  tint::tintPdf:
+    highlight: haddock
+    number_sections: yes
+    toc: yes
+  bookdown::epub_book: default  
+  revealjs::revealjs_presentation:
+    fig_height: 4
+    highlight: haddock
+    theme: sky
+    transition: convex
+  tufte::tufte_handout:
+    fig_height: 2.5
+    toc: yes
+    number_sections: yes
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+## Background 
+
+> You will need to install some of these packages from CRAN
+
+```{r, eval = FALSE}
+
+# install.packages(c("bookdown", "distill", "revealjs", "tint", "tufte"))
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+> This is an example of a blockquote.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+
+library(palmerpenguins)
+
+summary(penguins)
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+
+ggplot(penguins,
+       aes(x = body_mass_g,
+       y = flipper_length_mm,
+       color = species)) + 
+  geom_point() + 
+  geom_smooth() +
+  scale_color_viridis_d() +
+  labs(title = "Penguin Flipper Length by Body Mass") +
+  theme_minimal()
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
