@@ -108,7 +108,7 @@ library(ggthemes) # nice themes
 ```{r, code = knitr::knit_code$get("graph0"), eval = FALSE, echo = FALSE}
 ```
 
-`r chunk_reveal("graph0", break_type = "auto")`
+`r chunk_reveal("graph0", break_type = "auto", widths = c(4,2))`
 
 ---
 class: animated, slideInRight
@@ -128,7 +128,7 @@ ggplot(mydata, # data
 ```{r, code = knitr::knit_code$get("graph1"), eval = FALSE, echo = FALSE}
 ```
 
-`r chunk_reveal("graph1", break_type = "auto")`
+`r chunk_reveal("graph1", break_type = "auto", widths = c(4,2))`
 
 ---
 class: animated, slideInRight
@@ -148,7 +148,7 @@ ggplot(mydata, # data
 ```{r, code = knitr::knit_code$get("graph1colorful"), eval = FALSE, echo = FALSE}
 ```
 
-`r chunk_reveal("graph1colorful", break_type = "auto")`
+`r chunk_reveal("graph1colorful", break_type = "auto", widths = c(4,2))`
 
 ---
 class: animated, slideInRight
@@ -168,7 +168,7 @@ ggplot(mydata, # data
 ```{r, code = knitr::knit_code$get("graph1A"), eval = FALSE, echo = FALSE}
 ```
 
-`r chunk_reveal("graph1A", break_type = "auto")`
+`r chunk_reveal("graph1A", break_type = "auto", widths = c(4,2))`
 
 ---
 class: animated, slideInRight
@@ -191,7 +191,7 @@ ggplot(mydata, # data
 ```{r, code = knitr::knit_code$get("graph2"), eval = FALSE, echo = FALSE}
 ```
 
-`r chunk_reveal("graph2", break_type = "non_seq")`
+`r chunk_reveal("graph2", break_type = "non_seq", widths = c(4,2))`
 
 ---
 class: animated, slideInRight
@@ -215,7 +215,7 @@ ggplot(mydata, # data
 ```{r, code = knitr::knit_code$get("graph3"), eval = FALSE, echo = FALSE}
 ```
 
-`r chunk_reveal("graph3", break_type = "non_seq")`
+`r chunk_reveal("graph3", break_type = "non_seq", widths = c(4,2))`
 
 ---
 class: animated, slideInRight
@@ -231,9 +231,9 @@ ggplot(mydata, # data
   geom_point() + # 1st geometry
   geom_smooth() + # 2nd geometry
   labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome") + # labels
-  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2")) + # manual colors 
+  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group 1", "group 2")) + # manual colors 
   theme_minimal() + # theme
-  theme(plot.title = element_text(size = 20, color = "#0099FF")) # add to theme
+  theme(plot.title = element_text(size = 20, color = "#0099FF"), plot.caption = element_text(size=rel(1.25))) # add to theme
 
 ```
 

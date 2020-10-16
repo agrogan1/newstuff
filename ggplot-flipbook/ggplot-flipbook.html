@@ -4,7 +4,7 @@
     <title>ggplot flipbook</title>
     <meta charset="utf-8" />
     <meta name="author" content="Andy Grogan-Kaylor" />
-    <meta name="date" content="2020-10-09" />
+    <meta name="date" content="2020-10-16" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
@@ -26,7 +26,7 @@ class: center, middle, inverse, title-slide
 # ggplot flipbook
 ## Use <span style="font-size:50px">⇦</span> and <span style="font-size:50px">⇨</span> to navigate.
 ### Andy Grogan-Kaylor
-### 2020-10-09
+### 2020-10-16
 
 ---
 
@@ -129,7 +129,7 @@ library(ggthemes)  # nice themes
 &lt;style&gt;
 .panel1-graph0-auto {
   color: black;
-  width: 38.6060606060606%;
+  width: 65.3333333333333%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -137,7 +137,7 @@ library(ggthemes)  # nice themes
 }
 .panel2-graph0-auto {
   color: black;
-  width: 59.3939393939394%;
+  width: 32.6666666666667%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -218,7 +218,7 @@ ggplot(mydata,  # data
 &lt;style&gt;
 .panel1-graph1-auto {
   color: black;
-  width: 38.6060606060606%;
+  width: 65.3333333333333%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -226,7 +226,7 @@ ggplot(mydata,  # data
 }
 .panel2-graph1-auto {
   color: black;
-  width: 59.3939393939394%;
+  width: 32.6666666666667%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -307,7 +307,7 @@ ggplot(mydata,  # data
 &lt;style&gt;
 .panel1-graph1colorful-auto {
   color: black;
-  width: 38.6060606060606%;
+  width: 65.3333333333333%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -315,7 +315,7 @@ ggplot(mydata,  # data
 }
 .panel2-graph1colorful-auto {
   color: black;
-  width: 59.3939393939394%;
+  width: 32.6666666666667%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -396,7 +396,7 @@ ggplot(mydata,  # data
 &lt;style&gt;
 .panel1-graph1A-auto {
   color: black;
-  width: 38.6060606060606%;
+  width: 65.3333333333333%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -404,7 +404,7 @@ ggplot(mydata,  # data
 }
 .panel2-graph1A-auto {
   color: black;
-  width: 59.3939393939394%;
+  width: 32.6666666666667%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -474,7 +474,7 @@ ggplot(mydata,  # data
 &lt;style&gt;
 .panel1-graph2-non_seq {
   color: black;
-  width: 38.6060606060606%;
+  width: 65.3333333333333%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -482,7 +482,7 @@ ggplot(mydata,  # data
 }
 .panel2-graph2-non_seq {
   color: black;
-  width: 59.3939393939394%;
+  width: 32.6666666666667%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -554,7 +554,7 @@ ggplot(mydata,  # data
 &lt;style&gt;
 .panel1-graph3-non_seq {
   color: black;
-  width: 38.6060606060606%;
+  width: 65.3333333333333%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -562,7 +562,7 @@ ggplot(mydata,  # data
 }
 .panel2-graph3-non_seq {
   color: black;
-  width: 59.3939393939394%;
+  width: 32.6666666666667%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -682,7 +682,7 @@ ggplot(mydata,  # data
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
   labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome") +  # labels
-* scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2"))   # manual colors
+* scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group 1", "group 2"))   # manual colors
 ```
 ]
  
@@ -704,7 +704,7 @@ ggplot(mydata,  # data
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
   labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome") +  # labels
-  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2")) +  # manual colors
+  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group 1", "group 2")) +  # manual colors
 * theme_minimal()   # theme
 ```
 ]
@@ -727,9 +727,9 @@ ggplot(mydata,  # data
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
   labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome") +  # labels
-  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2")) +  # manual colors
+  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group 1", "group 2")) +  # manual colors
   theme_minimal() +  # theme
-* theme(plot.title = element_text(size = 20, color = "#0099FF"))  # add to theme
+* theme(plot.title = element_text(size = 20, color = "#0099FF"), plot.caption = element_text(size=rel(1.25)))  # add to theme
 ```
 ]
  
@@ -751,9 +751,9 @@ ggplot(mydata,  # data
   geom_point() +  # 1st geometry
   geom_smooth() +  # 2nd geometry
   labs(title = "My Title", caption = "Colors Inspired by UNICEF", x = "Predictor", y = "Outcome") +  # labels
-  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group1", "group2")) +  # manual colors
+  scale_colour_manual(name = "Group", values = c("#FF0099", "#0099FF"),  labels = c("group 1", "group 2")) +  # manual colors
   theme_minimal() +  # theme
-  theme(plot.title = element_text(size = 20, color = "#0099FF"))  # add to theme
+  theme(plot.title = element_text(size = 20, color = "#0099FF"), plot.caption = element_text(size=rel(1.25)))  # add to theme
 ```
 ]
  
