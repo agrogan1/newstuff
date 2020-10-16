@@ -16,7 +16,6 @@ I shared some of my handouts and slides on logistic regression with Madhur Singh
 
 "To get a better grip of the distinction between odds and probability, I was trying to 'visualize' it mathematically, and very interestingly, if we assume that the odds of an event, y, at x = 0 is 1 (i.e., p = 0.5) and OR = 3 (i.e., a 200% increase in the odds for every unit increase in x), (NB: Here, p is the probability of the event occurring; NOT the 'p-value' from the regression)"
 
-
 "Then: A unit increase in x from 0 --> 1 will increase the odds to 3. This is equivalent to p = 0.75 (at x = 1), which is a 50% increase in the predicted probability (0.5 + 0.25)."
 
 "For the next unit increase in x form 1 --> 2, the odds for y increase to 9, which gives a predicted probability of 0.9 at x = 1, or a 20% increase (a 'slower' change compared to the 50% increase with the first unit change in x)."
@@ -42,6 +41,8 @@ Below, I try to visualize Madhur's ideas.
 	graph export myscatter.png, width(500) replace
 
 ![Probability by x](myscatter.png)
+
+Madhur goes on to write:
 
 "So, if y were a desirable outcome, and one were to design an intervention to increase x as a way to effect an increase in the likelihood of y in the population, then to 'anecdotally' examine the effectiveness of the intervention, one might expect the most immediate 'real-world' change among those whose baseline levels of x are somewhere close to 0."
 

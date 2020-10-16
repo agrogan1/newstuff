@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-more-thoughts/logistic-more-thoughts.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}15 Oct 2020, 09:57:17
+ {txt}opened on:  {res}15 Oct 2020, 15:04:31
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}09:57:17
+{res}15:04:31
 {txt}
 {com}. //_3
 . clear all // clear the workspace
@@ -45,7 +45,7 @@ now 100
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-more-thoughts/logistic-more-thoughts.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}15 Oct 2020, 09:57:19
+ {txt}closed on:  {res}15 Oct 2020, 15:04:32
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
