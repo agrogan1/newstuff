@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>10 Oct 2020</p>
+<p>19 Oct 2020</p>
 </div>
 <div id="meta-background" class="slide section level1">
 <h1>Meta-Background</h1>
@@ -141,12 +141,12 @@ Andy Grogan-Kaylor
 <span id="cb6-2"><a href="#cb6-2"></a></span>
 <span id="cb6-3"><a href="#cb6-3"></a>Contains <span class="kw">data</span> from GSSsmall.dta</span>
 <span id="cb6-4"><a href="#cb6-4"></a>  <span class="kw">obs</span>:        64,814                          </span>
-<span id="cb6-5"><a href="#cb6-5"></a> vars:             7                          10 Oct 2020 11:13</span>
+<span id="cb6-5"><a href="#cb6-5"></a> vars:             7                          19 Oct 2020 07:59</span>
 <span id="cb6-6"><a href="#cb6-6"></a> <span class="kw">size</span>:       907,396                          </span>
-<span id="cb6-7"><a href="#cb6-7"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-7"><a href="#cb6-7"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb6-8"><a href="#cb6-8"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
 <span id="cb6-9"><a href="#cb6-9"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-10"><a href="#cb6-10"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb6-11"><a href="#cb6-11"></a>age             <span class="kw">byte</span>    %8.0g      AGE        age <span class="kw">of</span> respondent</span>
 <span id="cb6-12"><a href="#cb6-12"></a>paeduc          <span class="kw">byte</span>    %8.0g      LABK       highest <span class="fu">year</span> school completed, father</span>
 <span id="cb6-13"><a href="#cb6-13"></a>maeduc          <span class="kw">byte</span>    %8.0g      LABK       highest <span class="fu">year</span> school completed, mother</span>
@@ -154,7 +154,7 @@ Andy Grogan-Kaylor
 <span id="cb6-15"><a href="#cb6-15"></a>sex             <span class="kw">byte</span>    %8.0g      SEX        respondents sex</span>
 <span id="cb6-16"><a href="#cb6-16"></a>polviews        <span class="kw">byte</span>    %8.0g      POLVIEWS   think <span class="kw">of</span> self <span class="kw">as</span> liberal <span class="kw">or</span> conservative</span>
 <span id="cb6-17"><a href="#cb6-17"></a>coninc          <span class="kw">double</span>  %12.0g     LABIH      <span class="kw">family</span> income <span class="kw">in</span> constant dollars</span>
-<span id="cb6-18"><a href="#cb6-18"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-18"><a href="#cb6-18"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb6-19"><a href="#cb6-19"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
 </div>
 <div id="thinking-about-your-data-and-data-wrangling" class="slide section level1">
@@ -193,8 +193,9 @@ Andy Grogan-Kaylor
 <span id="cb8-14"><a href="#cb8-14"></a>─────────────────────┼───────────────────────────────────</span>
 <span id="cb8-15"><a href="#cb8-15"></a>               Total │     55,328      100.00</span></code></pre></div>
 </div>
-<div id="the-ordinal-model-k-categories" class="slide section level1">
-<h1>The Ordinal Model (<em>k categories</em>)</h1>
+<div id="the-ordinal-model-k-categoriesstata" class="slide section level1">
+<h1>The Ordinal Model (<em>k categories</em>)<a href="#fn1" id="fnref1" class="footnote-ref"><sup>1</sup></a></h1>
+<p><span class="math display">\[ p_{ij} = Pr \Big( k_{i-1} &lt; x_j \beta &lt;= k_i \Big) \]</span></p>
 <p><span class="math display">\[ \ln \left( \frac{p(y \le k)}{p(y &gt; k)} \right) = \beta_0 + \beta_1 x_1 + ... \]</span></p>
 </div>
 <div id="ordinal-regression" class="slide section level1">
@@ -435,6 +436,14 @@ Andy Grogan-Kaylor
 <span id="cb14-13"><a href="#cb14-13"></a>       male  │   .0325114    .001187    27.39   0.000     .0301849    .0348378</span>
 <span id="cb14-14"><a href="#cb14-14"></a>     female  │   .0295928   .0010205    29.00   0.000     .0275927     .031593</span>
 <span id="cb14-15"><a href="#cb14-15"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+<div class="section footnotes" role="doc-endnotes">
+<hr />
+<ol class="incremental">
+<li><div id="fn1">
+<p>Per Stata documentation.<a href="#fnref1" class="footnote-back">↩︎</a></p>
+</div></li>
+</ol>
+</div>
 </div>
 </body>
 </html>

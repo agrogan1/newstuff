@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}10 Oct 2020, 11:14:11
+ {txt}opened on:  {res}19 Oct 2020, 08:01:28
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}10 Oct 2020
+{res}19 Oct 2020
 {txt}
 {com}. //_2
 . clear all
@@ -31,7 +31,7 @@
 
 {txt}Contains data from {res}GSSsmall.dta
 {txt}  obs:{res}        64,814                          
-{txt} vars:{res}             7                          10 Oct 2020 11:14
+{txt} vars:{res}             7                          19 Oct 2020 08:01
 {txt} size:{res}       907,396                          
 {txt}{hline}
               storage   display    value
@@ -308,7 +308,7 @@ Iteration 3:{space 3}log likelihood = {res:-82694.594}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}10 Oct 2020, 11:14:30
+ {txt}closed on:  {res}19 Oct 2020, 08:01:48
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

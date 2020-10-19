@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Ordinal and Multinomial Logistic Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">10 Oct 2020</p>
+<p class="date">19 Oct 2020</p>
 </header>
 <h1 id="meta-background">Meta-Background</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
@@ -102,12 +102,12 @@ file GSSsmall.dta saved
 
 Contains data from GSSsmall.dta
   obs:        64,814                          
- vars:             7                          10 Oct 2020 11:13
+ vars:             7                          19 Oct 2020 07:59
  size:       907,396                          
-────────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────────
               storage   display    value
 variable name   type    format     label      variable label
-────────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────────
 age             byte    %8.0g      AGE        age of respondent
 paeduc          byte    %8.0g      LABK       highest year school completed, father
 maeduc          byte    %8.0g      LABK       highest year school completed, mother
@@ -115,7 +115,7 @@ degree          byte    %8.0g      LABL       r's highest degree
 sex             byte    %8.0g      SEX        respondents sex
 polviews        byte    %8.0g      POLVIEWS   think of self as liberal or conservative
 coninc          double  %12.0g     LABIH      family income in constant dollars
-────────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
 <h1 id="thinking-about-your-data-and-data-wrangling">Thinking About Your Data and Data Wrangling</h1>
@@ -152,7 +152,10 @@ extrmly conservative │      1,832        3.31      100.00
 ─────────────────────┼───────────────────────────────────
                Total │     55,328      100.00
 </pre>
-<h1 id="the-ordinal-model-k-categories">The Ordinal Model (<em>k categories</em>)</h1>
+<h1 id="the-ordinal-model-k-categoriesstata">The Ordinal Model (<em>k categories</em>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h1>
+<p><span class="math display">\[
+    p_{ij} = Pr \Big( k_{i-1} &lt; x_j \beta &lt;= k_i \Big)
+\]</span></p>
 <p><span class="math display">\[
     \ln \left( \frac{p(y \le k)}{p(y &gt; k)} \right) = \beta_0 + \beta_1 x_1 + ... 
 \]</span></p>
@@ -395,5 +398,11 @@ Expression   : Pr(polviews==extremely_liberal), predict(outcome(1))
      female  │   .0295928   .0010205    29.00   0.000     .0275927     .031593
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Per Stata documentation.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 </body>
 </html>

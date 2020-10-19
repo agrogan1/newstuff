@@ -59,7 +59,13 @@ $y(\text{3 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...$
 	
 	tabulate polviews
 	
-# The Ordinal Model (*k categories*)
+# The Ordinal Model (*k categories*)[^Stata]
+
+$$
+    p_{ij} = Pr \Big( k_{i-1} < x_j \beta <= k_i \Big)
+$$
+
+[^Stata]: Per Stata documentation.
 
 $$
     \ln \left( \frac{p(y \le k)}{p(y > k)} \right) = \beta_0 + \beta_1 x_1 + ... 
