@@ -3,8 +3,9 @@ title: "RMarkdown YAML Test"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    toc: yes
+  ioslides_presentation:
+    highlight: haddock
+    incremental: yes
   slidy_presentation:
     fig_caption: yes
     footer: Andrew Grogan-Kaylor
@@ -14,11 +15,10 @@ output:
     highlight: haddock
     number_sections: yes
     toc: yes
-  ioslides_presentation:
-    highlight: haddock
-    incremental: yes
   distill::distill_article:
     highlight: haddock
+    toc: yes
+  pdf_document:
     toc: yes
   bookdown::gitbook:
     highlight: haddock
