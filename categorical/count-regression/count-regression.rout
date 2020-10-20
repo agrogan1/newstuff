@@ -1,7 +1,7 @@
 
-R version 3.6.1 (2019-07-05) -- "Action of the Toes"
-Copyright (C) 2019 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -37,28 +37,28 @@ Type 'q()' to quit R.
 🏥 
 > #_7
 > emo::ji("tree")
-🎄 
+🌴 
 > #_8
 > emo::ji("sick")
 🤧 
 > #_9
 > emo::ji("plant")
-🏵 
+🌱 
 > #_10
 > emo::ji("tree")
-🎄 
+🌲 
 > #_11
 > emo::ji("plant")
-🏵 
+🌰 
 > #_12
 > emo::ji("sick")
-🤒 
+🤧 
 > #_13
 > emo::ji("sick")
-💊 
+🤒 
 > #_14
 > emo::ji("sick")
-🤢 
+💊 
 > #_15
 > emo::ji("fish")
 🐟 
@@ -79,13 +79,13 @@ Type 'q()' to quit R.
 🌳 
 > #_21
 > emo::ji("building")
-🏦 
+🏭 
 > #_22
 > emo::ji("building")
-🏭 
+🏦 
 > #_23
 > emo::ji("building")
-🏨 
+🏦 
 > #_24
 > emo::ji("time")
 ⏳ 
