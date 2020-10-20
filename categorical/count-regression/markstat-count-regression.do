@@ -2,6 +2,8 @@
 * count regression
 *************************
 
+clear all
+
 cd "/Users/agrogan/Desktop/newstuff/categorical/count-regression"
 
 doedit count-regression.stmd

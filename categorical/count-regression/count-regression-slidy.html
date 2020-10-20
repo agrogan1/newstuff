@@ -119,9 +119,9 @@ Andy Grogan-Kaylor
 <li>☎️ Calls to a call center (business, crisis hotline, etc.)</li>
 <li>🏥 Arrivals at the Emergency Room</li>
 </ul></div>
-<div id="other-canonical-examples-of-count-data-r.7-r.8" class="title-slide slide section level1"><h1>Other Canonical Examples of Count Data 🌴 🤧</h1><ul class="incremental">
-<li>🌱 🌲 🌰 Plants / trees in a field</li>
-<li>🤧 🤒 💊 Cases of disease / unit area</li>
+<div id="other-canonical-examples-of-count-data-r.7-r.8" class="title-slide slide section level1"><h1>Other Canonical Examples of Count Data 🎄 🤧</h1><ul class="incremental">
+<li>🏵 🌲 🌰 Plants / trees in a field</li>
+<li>🤒 🤢 🤒 Cases of disease / unit area</li>
 </ul></div>
 <div id="poisson-distribution" class="title-slide slide section level1"><h1>Poisson Distribution</h1></div><div id="theorizing-about-the-poisson-r.15-r.16-r.17-r.18-r.19-r.20" class="slide section level2">
 <h1>Theorizing about the Poisson 🐟 🐟 🐟 🌴 🌲 🌳</h1>
@@ -144,8 +144,8 @@ Andy Grogan-Kaylor
 <div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">set</span> <span class="kw">obs</span> 1000 <span class="co">// number of observations</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>number <span class="kw">of</span> observations (_N) was 0, now 1,000</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">generate</span> x = rnormal() <span class="co">// normally distributed random variable</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">histogram</span> x, <span class="bn">title</span>(<span class="st">&quot;Normally Distributed Random Variable&quot;</span>) <span class="dv">scheme</span>(burd)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>(<span class="bn">bin</span>=29, <span class="bn">start</span>=-3.659894, <span class="kw">width</span>=.27542746)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">histogram</span> x, <span class="bn">title</span>(<span class="st">&quot;Normally Distributed Random Variable&quot;</span>) <span class="dv">scheme</span>(michigan)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>(<span class="bn">bin</span>=29, <span class="bn">start</span>=-3.1667628, <span class="kw">width</span>=.23144381)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myhistogram.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>(file myhistogram.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
@@ -159,7 +159,7 @@ Andy Grogan-Kaylor
 <p><span style="background-color: #FFFF00">A Poisson with large lambda looks very similar to a normal distribution.</span></p>
 </blockquote>
 <div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">generate</span> <span class="fu">w</span> = rpoisson(.5)</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">histogram</span> <span class="fu">w</span>, <span class="bn">title</span>(<span class="st">&quot;Poisson Distributed Random Variable&quot;</span>) <span class="dv">scheme</span>(burd)</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">histogram</span> <span class="fu">w</span>, <span class="bn">title</span>(<span class="st">&quot;Poisson Distributed Random Variable&quot;</span>) <span class="dv">scheme</span>(michigan)</span>
 <span id="cb7-2"><a href="#cb7-2"></a>(<span class="bn">bin</span>=29, <span class="bn">start</span>=0, <span class="kw">width</span>=.10344828)</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myhistogram2.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>(file myhistogram2.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
@@ -168,7 +168,7 @@ Andy Grogan-Kaylor
 <p class="caption">histogram of random Poisson variable</p>
 </div>
 </div><div id="poisson-is-the-natural-form-for-observations-distributed-in-time-or-space-r.21-r.22-r.23-r.24-r.25-r.26" class="slide section level2">
-<h1>Poisson is the Natural Form for Observations Distributed in Time or Space 🏭 🏦 🏦 ⏳ ⏳ ⏳</h1>
+<h1>Poisson is the Natural Form for Observations Distributed in Time or Space 🏭 🏭 🏫 ⏳ ⏳ ⏳</h1>
 <p><span class="math display">\[ x \sim Poisson(\lambda) \]</span></p>
 <blockquote>
 <p><span class="math inline">\(\lambda\)</span> is both mean and variance.</p>
@@ -179,8 +179,8 @@ Andy Grogan-Kaylor
 <div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">generate</span> <span class="fu">field</span> = <span class="dt">_n</span> <span class="co">// field number</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">generate</span> mycount = rpoisson(1)</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. expand mycount <span class="co">// create individual observations</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>(10 <span class="bn">zero</span> counts ignored; observations <span class="kw">not</span> deleted)</span>
-<span id="cb13-3"><a href="#cb13-3"></a>(6 observations created)</span></code></pre></div>
+<span id="cb13-2"><a href="#cb13-2"></a>(7 <span class="bn">zero</span> counts ignored; observations <span class="kw">not</span> deleted)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>(7 observations created)</span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">generate</span> x = runiform(1,10) <span class="co">// random x coordinate</span></span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">generate</span> <span class="fu">y</span> =runiform(1,10) <span class="co">// random y coordinate</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>. <span class="kw">generate</span> mylabel = <span class="st">&quot;🦆&quot;</span></span></code></pre></div>
@@ -189,7 +189,7 @@ Andy Grogan-Kaylor
 <span id="cb17-3"><a href="#cb17-3"></a>&gt; mlab(mylabel) <span class="bn">mlabsize</span>(vlarge) <span class="co">///</span></span>
 <span id="cb17-4"><a href="#cb17-4"></a>&gt; <span class="bn">msymbol</span>(<span class="kw">none</span>)  <span class="co">///</span></span>
 <span id="cb17-5"><a href="#cb17-5"></a>&gt; <span class="bn">legend</span>(<span class="kw">order</span>(1 <span class="st">&quot;🦆 Duck&quot;</span>)) <span class="co">///</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a>&gt; <span class="dv">scheme</span>(burd) plotr(fcolor(<span class="bn">olive_teal</span>))</span></code></pre></div>
+<span id="cb17-6"><a href="#cb17-6"></a>&gt; <span class="dv">scheme</span>(michigan) plotr(fcolor(<span class="bn">olive_teal</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> ducks.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a>(file ducks.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
@@ -208,7 +208,7 @@ Andy Grogan-Kaylor
 <span id="cb23-6"><a href="#cb23-6"></a>&gt; mlab(mylabel2) <span class="bn">mlabsize</span>(vhuge) <span class="co">///</span></span>
 <span id="cb23-7"><a href="#cb23-7"></a>&gt; <span class="bn">msymbol</span>(<span class="kw">none</span>)  <span class="co">///</span></span>
 <span id="cb23-8"><a href="#cb23-8"></a>&gt; <span class="bn">legend</span>(<span class="kw">order</span>(1 <span class="st">&quot;🔥 Forest Fire&quot;</span>)) <span class="co">///</span></span>
-<span id="cb23-9"><a href="#cb23-9"></a>&gt; <span class="dv">scheme</span>(burd) plotr(fcolor(gs14)) <span class="co">///</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>&gt; <span class="dv">scheme</span>(michigan) plotr(fcolor(gs14)) <span class="co">///</span></span>
 <span id="cb23-10"><a href="#cb23-10"></a>&gt; <span class="bn">xsize</span>(5) <span class="bn">ysize</span>(1)</span></code></pre></div>
 <div class="sourceCode" id="cb24"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> fires.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a>(file fires.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
@@ -217,156 +217,221 @@ Andy Grogan-Kaylor
 <p class="caption">Forest Fires At Random Times</p>
 </div>
 </div>
-<div id="poisson-regression" class="title-slide slide section level1"><h1>Poisson Regression</h1><div class="sourceCode" id="cb25"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1"></a>. <span class="kw">set</span> <span class="dv">maxvar</span> 10000</span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1"></a>. <span class="kw">use</span> <span class="st">&quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="st">&gt; .DTA&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1"></a>. <span class="kw">codebook</span> numprobs <span class="co">// data from 2002</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a></span>
-<span id="cb28-3"><a href="#cb28-3"></a>──────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb28-4"><a href="#cb28-4"></a>numprobs                           how many friends <span class="kw">close</span> to discuss problems </span>
-<span id="cb28-5"><a href="#cb28-5"></a>──────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb28-6"><a href="#cb28-6"></a></span>
-<span id="cb28-7"><a href="#cb28-7"></a>                  <span class="dv">type</span>:  <span class="kw">numeric</span> (<span class="kw">byte</span>)</span>
-<span id="cb28-8"><a href="#cb28-8"></a>                 <span class="kw">label</span>:  LABJP, but 33 nonmissing <span class="kw">values</span> are <span class="kw">not</span> labeled</span>
-<span id="cb28-9"><a href="#cb28-9"></a></span>
-<span id="cb28-10"><a href="#cb28-10"></a>                 <span class="kw">range</span>:  [0,96]                       units:  1</span>
-<span id="cb28-11"><a href="#cb28-11"></a>         <span class="kw">unique</span> <span class="kw">values</span>:  34                       <span class="fu">missing</span> .:  0/64,814</span>
-<span id="cb28-12"><a href="#cb28-12"></a>       <span class="kw">unique</span> mv codes:  3                       <span class="fu">missing</span> .*:  62,141/64,814</span>
-<span id="cb28-13"><a href="#cb28-13"></a></span>
-<span id="cb28-14"><a href="#cb28-14"></a>              examples:  .i    IAP</span>
-<span id="cb28-15"><a href="#cb28-15"></a>                         .i    IAP</span>
-<span id="cb28-16"><a href="#cb28-16"></a>                         .i    IAP</span>
-<span id="cb28-17"><a href="#cb28-17"></a>                         .i    IAP</span></code></pre></div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1"></a>. <span class="kw">recode</span> hispanic (1=0)(2/<span class="fu">max</span> = 1), <span class="kw">generate</span>(hisp) <span class="co">// dichotomous variable</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>(26650 differences between hispanic and hisp)</span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1"></a>. <span class="kw">generate</span> coninc_10K = coninc / 10000 <span class="co">// $10K chunks</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>(6,520 <span class="fu">missing</span> <span class="kw">values</span> generated)</span></code></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb31-1"><a href="#cb31-1"></a>. <span class="kw">poisson</span> numprobs coninc_10K i.race hisp i.<span class="kw">class</span> sex age</span>
+<div id="poisson-regression-national-survey-of-childrens-health" class="title-slide slide section level1"><h1>Poisson Regression (National Survey Of Children’s Health)</h1><p>The data are an extract of the <em>National Survey of Children’s Health, 2018</em>. The data contain information on children’s exposure to various <em>Adverse Childhood Experiences</em> (ACEs) and their demographic characteristics.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1"></a>. <span class="kw">use</span> <span class="st">&quot;../predict-and-margins/NSCH_ACES.dta&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1"></a>. <span class="kw">describe</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a></span>
+<span id="cb27-3"><a href="#cb27-3"></a>Contains <span class="kw">data</span> from ../<span class="kw">predict</span>-and-margins/NSCH_ACES.dta</span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="kw">obs</span>:        30,530                          </span>
+<span id="cb27-5"><a href="#cb27-5"></a> vars:            23                          20 Oct 2020 14:50</span>
+<span id="cb27-6"><a href="#cb27-6"></a> <span class="kw">size</span>:       702,190                          </span>
+<span id="cb27-7"><a href="#cb27-7"></a>──────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb27-8"><a href="#cb27-8"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a>──────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb27-11"><a href="#cb27-11"></a>sc_sex          <span class="kw">byte</span>    %30.0g     sc_sex_lab</span>
+<span id="cb27-12"><a href="#cb27-12"></a>                                              Sex <span class="kw">of</span> Selected Child</span>
+<span id="cb27-13"><a href="#cb27-13"></a>ace3            <span class="kw">byte</span>    %30.0g     ace3_lab   Child Experienced - Parent <span class="kw">or</span></span>
+<span id="cb27-14"><a href="#cb27-14"></a>                                                Guardian Divorced</span>
+<span id="cb27-15"><a href="#cb27-15"></a>ace4            <span class="kw">byte</span>    %30.0g     ace4_lab   Child Experienced - Parent <span class="kw">or</span></span>
+<span id="cb27-16"><a href="#cb27-16"></a>                                                Guardian Died</span>
+<span id="cb27-17"><a href="#cb27-17"></a>ace5            <span class="kw">byte</span>    %30.0g     ace5_lab   Child Experienced - Parent <span class="kw">or</span></span>
+<span id="cb27-18"><a href="#cb27-18"></a>                                                Guardian Time <span class="kw">in</span> Jail</span>
+<span id="cb27-19"><a href="#cb27-19"></a>ace6            <span class="kw">byte</span>    %30.0g     ace6_lab   Child Experienced - Adults Slap,</span>
+<span id="cb27-20"><a href="#cb27-20"></a>                                                Hit, Kick, Punch Others</span>
+<span id="cb27-21"><a href="#cb27-21"></a>ace7            <span class="kw">byte</span>    %30.0g     ace7_lab   Child Experienced - Victim <span class="kw">of</span></span>
+<span id="cb27-22"><a href="#cb27-22"></a>                                                Violence</span>
+<span id="cb27-23"><a href="#cb27-23"></a>ace8            <span class="kw">byte</span>    %30.0g     ace8_lab   Child Experienced - Lived with</span>
+<span id="cb27-24"><a href="#cb27-24"></a>                                                Mentally Ill</span>
+<span id="cb27-25"><a href="#cb27-25"></a>ace9            <span class="kw">byte</span>    %30.0g     ace9_lab   Child Experienced - Lived with</span>
+<span id="cb27-26"><a href="#cb27-26"></a>                                                Person with Alcohol/Drug</span>
+<span id="cb27-27"><a href="#cb27-27"></a>                                                Problem</span>
+<span id="cb27-28"><a href="#cb27-28"></a>ace10           <span class="kw">byte</span>    %30.0g     ace10_lab</span>
+<span id="cb27-29"><a href="#cb27-29"></a>                                              Child Experienced - Treated</span>
+<span id="cb27-30"><a href="#cb27-30"></a>                                                Unfairly Because <span class="kw">of</span> Race</span>
+<span id="cb27-31"><a href="#cb27-31"></a>ace1            <span class="kw">byte</span>    %30.0g     ace1_lab   Hard to Cover Basics Like Food</span>
+<span id="cb27-32"><a href="#cb27-32"></a>                                                <span class="kw">or</span> Housing</span>
+<span id="cb27-33"><a href="#cb27-33"></a>sc_race_r       <span class="kw">byte</span>    %48.0g     sc_race_r_lab</span>
+<span id="cb27-34"><a href="#cb27-34"></a>                                              Race <span class="kw">of</span> Selected Child, Detailed</span>
+<span id="cb27-35"><a href="#cb27-35"></a>sc_racer        <span class="kw">byte</span>    %31.0g     sc_racer_lab</span>
+<span id="cb27-36"><a href="#cb27-36"></a>                                              Race <span class="kw">of</span> Selected Child, Recode</span>
+<span id="cb27-37"><a href="#cb27-37"></a>higrade         <span class="kw">byte</span>    %61.0g     higrade_lab</span>
+<span id="cb27-38"><a href="#cb27-38"></a>                                              Highest Level <span class="kw">of</span> Education among</span>
+<span id="cb27-39"><a href="#cb27-39"></a>                                                Reported Adults</span>
+<span id="cb27-40"><a href="#cb27-40"></a>depress         <span class="kw">byte</span>    %9.0g                 RECODE <span class="kw">of</span> k2q32b (Depression</span>
+<span id="cb27-41"><a href="#cb27-41"></a>                                                Currently)</span>
+<span id="cb27-42"><a href="#cb27-42"></a>ace1R           <span class="kw">byte</span>    %9.0g                 RECODE <span class="kw">of</span> ace1 (Hard to Cover</span>
+<span id="cb27-43"><a href="#cb27-43"></a>                                                Basics Like Food <span class="kw">or</span> Housing)</span>
+<span id="cb27-44"><a href="#cb27-44"></a>ace3R           <span class="kw">byte</span>    %9.0g                 RECODE <span class="kw">of</span> ace3 (Child</span>
+<span id="cb27-45"><a href="#cb27-45"></a>                                                Experienced - Parent <span class="kw">or</span></span>
+<span id="cb27-46"><a href="#cb27-46"></a>                                                Guardian Divorced)</span>
+<span id="cb27-47"><a href="#cb27-47"></a>ace4R           <span class="kw">byte</span>    %9.0g                 RECODE <span class="kw">of</span> ace4 (Child</span>
+<span id="cb27-48"><a href="#cb27-48"></a>                                                Experienced - Parent <span class="kw">or</span></span>
+<span id="cb27-49"><a href="#cb27-49"></a>                                                Guardian Died)</span>
+<span id="cb27-50"><a href="#cb27-50"></a>ace5R           <span class="kw">byte</span>    %9.0g                 RECODE <span class="kw">of</span> ace5 (Child</span>
+<span id="cb27-51"><a href="#cb27-51"></a>                                                Experienced - Parent <span class="kw">or</span></span>
+<span id="cb27-52"><a href="#cb27-52"></a>                                                Guardian Time <span class="kw">in</span> Jail)</span>
+<span id="cb27-53"><a href="#cb27-53"></a>ace6R           <span class="kw">byte</span>    %9.0g                 RECODE <span class="kw">of</span> ace6 (Child</span>
+<span id="cb27-54"><a href="#cb27-54"></a>                                                Experienced - Adults Slap,</span>
+<span id="cb27-55"><a href="#cb27-55"></a>                                                Hit, Kick, Punch Others)</span>
+<span id="cb27-56"><a href="#cb27-56"></a>ace7R           <span class="kw">byte</span>    %9.0g                 RECODE <span class="kw">of</span> ace7 (Child</span>
+<span id="cb27-57"><a href="#cb27-57"></a>                                                Experienced - Victim <span class="kw">of</span></span>
+<span id="cb27-58"><a href="#cb27-58"></a>                                                Violence)</span>
+<span id="cb27-59"><a href="#cb27-59"></a>ace8R           <span class="kw">byte</span>    %9.0g                 RECODE <span class="kw">of</span> ace8 (Child</span>
+<span id="cb27-60"><a href="#cb27-60"></a>                                                Experienced - Lived with</span>
+<span id="cb27-61"><a href="#cb27-61"></a>                                                Mentally Ill)</span>
+<span id="cb27-62"><a href="#cb27-62"></a>ace9R           <span class="kw">byte</span>    %9.0g                 RECODE <span class="kw">of</span> ace9 (Child</span>
+<span id="cb27-63"><a href="#cb27-63"></a>                                                Experienced - Lived with</span>
+<span id="cb27-64"><a href="#cb27-64"></a>                                                Person with Alcohol/Drug</span>
+<span id="cb27-65"><a href="#cb27-65"></a>                                                Problem)</span>
+<span id="cb27-66"><a href="#cb27-66"></a>ace10R          <span class="kw">byte</span>    %9.0g                 RECODE <span class="kw">of</span> ace10 (Child</span>
+<span id="cb27-67"><a href="#cb27-67"></a>                                                Experienced - Treated Unfairly</span>
+<span id="cb27-68"><a href="#cb27-68"></a>                                                Because <span class="kw">of</span> Race)</span>
+<span id="cb27-69"><a href="#cb27-69"></a>──────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb27-70"><a href="#cb27-70"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1"></a>. <span class="kw">egen</span> acecount = <span class="fu">anycount</span>(ace*R), <span class="kw">values</span>(1) <span class="co">// generate count of ACES</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1"></a>. <span class="kw">histogram</span> acecount, discrete <span class="dv">scheme</span>(michigan)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>(<span class="bn">start</span>=0, <span class="kw">width</span>=1)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myhistogram3.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>(file myhistogram3.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="myhistogram3.png" alt="" />
+<p class="caption">Count of ACEs</p>
+</div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb31-1"><a href="#cb31-1"></a>. <span class="kw">poisson</span> acecount sc_sex i.sc_race_r i.higrade</span>
 <span id="cb31-2"><a href="#cb31-2"></a></span>
-<span id="cb31-3"><a href="#cb31-3"></a>Iteration 0:   <span class="fu">log</span> likelihood =  -13723.05  </span>
-<span id="cb31-4"><a href="#cb31-4"></a>Iteration 1:   <span class="fu">log</span> likelihood = -13723.046  </span>
-<span id="cb31-5"><a href="#cb31-5"></a>Iteration 2:   <span class="fu">log</span> likelihood = -13723.046  </span>
+<span id="cb31-3"><a href="#cb31-3"></a>Iteration 0:   <span class="fu">log</span> likelihood = -44759.253  </span>
+<span id="cb31-4"><a href="#cb31-4"></a>Iteration 1:   <span class="fu">log</span> likelihood = -44758.999  </span>
+<span id="cb31-5"><a href="#cb31-5"></a>Iteration 2:   <span class="fu">log</span> likelihood = -44758.999  </span>
 <span id="cb31-6"><a href="#cb31-6"></a></span>
-<span id="cb31-7"><a href="#cb31-7"></a>Poisson regression                              Number <span class="kw">of</span> <span class="kw">obs</span>     =      2,399</span>
-<span id="cb31-8"><a href="#cb31-8"></a>                                                LR <span class="fu">chi2</span>(9)        =    1125.86</span>
+<span id="cb31-7"><a href="#cb31-7"></a>Poisson regression                              Number <span class="kw">of</span> <span class="kw">obs</span>     =     30,530</span>
+<span id="cb31-8"><a href="#cb31-8"></a>                                                LR <span class="fu">chi2</span>(9)        =    2054.20</span>
 <span id="cb31-9"><a href="#cb31-9"></a>                                                Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
-<span id="cb31-10"><a href="#cb31-10"></a>Log likelihood = -13723.046                     Pseudo R2         =     0.0394</span>
+<span id="cb31-10"><a href="#cb31-10"></a>Log likelihood = -44758.999                     Pseudo R2         =     0.0224</span>
 <span id="cb31-11"><a href="#cb31-11"></a></span>
 <span id="cb31-12"><a href="#cb31-12"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb31-13"><a href="#cb31-13"></a>    numprobs │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
+<span id="cb31-13"><a href="#cb31-13"></a>    acecount │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
 <span id="cb31-14"><a href="#cb31-14"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb31-15"><a href="#cb31-15"></a>  coninc_10K │   .0288957   .0017165    16.83   0.000     .0255315    .0322599</span>
+<span id="cb31-15"><a href="#cb31-15"></a>      sc_sex │   -.012823   .0111291    -1.15   0.249    -.0346357    .0089897</span>
 <span id="cb31-16"><a href="#cb31-16"></a>             │</span>
-<span id="cb31-17"><a href="#cb31-17"></a>        race │</span>
-<span id="cb31-18"><a href="#cb31-18"></a>      <span class="bn">black</span>  │  -.4409339   .0256346   -17.20   0.000    -.4911767    -.390691</span>
-<span id="cb31-19"><a href="#cb31-19"></a>      other  │  -.2608266    .037588    -6.94   0.000    -.3344978   -.1871555</span>
-<span id="cb31-20"><a href="#cb31-20"></a>             │</span>
-<span id="cb31-21"><a href="#cb31-21"></a>        hisp │  -.2247009    .033778    -6.65   0.000    -.2909047   -.1584972</span>
-<span id="cb31-22"><a href="#cb31-22"></a>             │</span>
-<span id="cb31-23"><a href="#cb31-23"></a>       <span class="kw">class</span> │</span>
-<span id="cb31-24"><a href="#cb31-24"></a>working c..  │  -.1267131   .0342909    -3.70   0.000    -.1939219   -.0595042</span>
-<span id="cb31-25"><a href="#cb31-25"></a>middle cl..  │  -.0173452   .0349358    -0.50   0.620    -.0858182    .0511278</span>
-<span id="cb31-26"><a href="#cb31-26"></a><span class="fu">upper</span> <span class="kw">class</span>  │  -.0300967    .049953    -0.60   0.547    -.1280028    .0678095</span>
-<span id="cb31-27"><a href="#cb31-27"></a>             │</span>
-<span id="cb31-28"><a href="#cb31-28"></a>         sex │   .1291068   .0146144     8.83   0.000     .1004631    .1577506</span>
-<span id="cb31-29"><a href="#cb31-29"></a>         age │  -.0013719   .0004456    -3.08   0.002    -.0022453   -.0004986</span>
-<span id="cb31-30"><a href="#cb31-30"></a>       <span class="dt">_cons</span> │   1.935927   .0457132    42.35   0.000     1.846331    2.025523</span>
-<span id="cb31-31"><a href="#cb31-31"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div></div>
+<span id="cb31-17"><a href="#cb31-17"></a>   sc_race_r │</span>
+<span id="cb31-18"><a href="#cb31-18"></a>Black <span class="kw">or</span> ..  │   .2662761   .0196921    13.52   0.000     .2276802    .3048719</span>
+<span id="cb31-19"><a href="#cb31-19"></a>American ..  │   .5971063   .0447201    13.35   0.000     .5094566     .684756</span>
+<span id="cb31-20"><a href="#cb31-20"></a>Asian alone  │  -.6243821   .0358521   -17.42   0.000    -.6946509   -.5541134</span>
+<span id="cb31-21"><a href="#cb31-21"></a>Native Ha..  │   .2067409   .0969415     2.13   0.033     .0167392    .3967427</span>
+<span id="cb31-22"><a href="#cb31-22"></a>Some Othe..  │   .0675521   .0324881     2.08   0.038     .0038765    .1312277</span>
+<span id="cb31-23"><a href="#cb31-23"></a>Two <span class="kw">or</span> Mo..  │   .2818125   .0190548    14.79   0.000     .2444658    .3191593</span>
+<span id="cb31-24"><a href="#cb31-24"></a>             │</span>
+<span id="cb31-25"><a href="#cb31-25"></a>     higrade │</span>
+<span id="cb31-26"><a href="#cb31-26"></a>High sch..)  │   .0632486   .0322397     1.96   0.050       .00006    .1264372</span>
+<span id="cb31-27"><a href="#cb31-27"></a>More than..  │  -.3786108    .030587   -12.38   0.000    -.4385602   -.3186615</span>
+<span id="cb31-28"><a href="#cb31-28"></a>             │</span>
+<span id="cb31-29"><a href="#cb31-29"></a>       <span class="dt">_cons</span> │   .3399425   .0345283     9.85   0.000     .2722683    .4076166</span>
+<span id="cb31-30"><a href="#cb31-30"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div></div>
 <div id="incidence-rate-ratios" class="title-slide slide section level1"><h1>Incidence Rate Ratios</h1><div class="sourceCode" id="cb32"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb32-1"><a href="#cb32-1"></a>. <span class="kw">poisson</span>, <span class="kw">irr</span></span>
 <span id="cb32-2"><a href="#cb32-2"></a></span>
-<span id="cb32-3"><a href="#cb32-3"></a>Poisson regression                              Number <span class="kw">of</span> <span class="kw">obs</span>     =      2,399</span>
-<span id="cb32-4"><a href="#cb32-4"></a>                                                LR <span class="fu">chi2</span>(9)        =    1125.86</span>
+<span id="cb32-3"><a href="#cb32-3"></a>Poisson regression                              Number <span class="kw">of</span> <span class="kw">obs</span>     =     30,530</span>
+<span id="cb32-4"><a href="#cb32-4"></a>                                                LR <span class="fu">chi2</span>(9)        =    2054.20</span>
 <span id="cb32-5"><a href="#cb32-5"></a>                                                Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
-<span id="cb32-6"><a href="#cb32-6"></a>Log likelihood = -13723.046                     Pseudo R2         =     0.0394</span>
+<span id="cb32-6"><a href="#cb32-6"></a>Log likelihood = -44758.999                     Pseudo R2         =     0.0224</span>
 <span id="cb32-7"><a href="#cb32-7"></a></span>
 <span id="cb32-8"><a href="#cb32-8"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb32-9"><a href="#cb32-9"></a>    numprobs │        IRR   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
+<span id="cb32-9"><a href="#cb32-9"></a>    acecount │        IRR   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
 <span id="cb32-10"><a href="#cb32-10"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb32-11"><a href="#cb32-11"></a>  coninc_10K │   1.029317   .0017668    16.83   0.000      1.02586    1.032786</span>
+<span id="cb32-11"><a href="#cb32-11"></a>      sc_sex │   .9872589   .0109873    -1.15   0.249     .9659573     1.00903</span>
 <span id="cb32-12"><a href="#cb32-12"></a>             │</span>
-<span id="cb32-13"><a href="#cb32-13"></a>        race │</span>
-<span id="cb32-14"><a href="#cb32-14"></a>      <span class="bn">black</span>  │   .6434353   .0164942   -17.20   0.000      .611906    .6765892</span>
-<span id="cb32-15"><a href="#cb32-15"></a>      other  │   .7704145   .0289583    -6.94   0.000     .7156974    .8293148</span>
-<span id="cb32-16"><a href="#cb32-16"></a>             │</span>
-<span id="cb32-17"><a href="#cb32-17"></a>        hisp │   .7987551   .0269804    -6.65   0.000     .7475869    .8534254</span>
-<span id="cb32-18"><a href="#cb32-18"></a>             │</span>
-<span id="cb32-19"><a href="#cb32-19"></a>       <span class="kw">class</span> │</span>
-<span id="cb32-20"><a href="#cb32-20"></a>working c..  │   .8809864   .0302098    -3.70   0.000     .8237222    .9422316</span>
-<span id="cb32-21"><a href="#cb32-21"></a>middle cl..  │   .9828044   .0343351    -0.50   0.620     .9177611    1.052457</span>
-<span id="cb32-22"><a href="#cb32-22"></a><span class="fu">upper</span> <span class="kw">class</span>  │   .9703517    .048472    -0.60   0.547     .8798509    1.070161</span>
-<span id="cb32-23"><a href="#cb32-23"></a>             │</span>
-<span id="cb32-24"><a href="#cb32-24"></a>         sex │   1.137812   .0166285     8.83   0.000     1.105683    1.170874</span>
-<span id="cb32-25"><a href="#cb32-25"></a>         age │    .998629    .000445    -3.08   0.002     .9977572    .9995015</span>
-<span id="cb32-26"><a href="#cb32-26"></a>       <span class="dt">_cons</span> │   6.930466   .3168141    42.35   0.000     6.336526    7.580077</span>
-<span id="cb32-27"><a href="#cb32-27"></a>─────────────┴────────────────────────────────────────────────────────────────</span>
-<span id="cb32-28"><a href="#cb32-28"></a>Note: <span class="dt">_cons</span> <span class="kw">estimates</span> baseline incidence rate.</span></code></pre></div></div>
+<span id="cb32-13"><a href="#cb32-13"></a>   sc_race_r │</span>
+<span id="cb32-14"><a href="#cb32-14"></a>Black <span class="kw">or</span> ..  │   1.305095   .0257001    13.52   0.000     1.255684    1.356451</span>
+<span id="cb32-15"><a href="#cb32-15"></a>American ..  │   1.816854   .0812498    13.35   0.000     1.664386    1.983288</span>
+<span id="cb32-16"><a href="#cb32-16"></a>Asian alone  │   .5355922   .0192021   -17.42   0.000     .4992487    .5745815</span>
+<span id="cb32-17"><a href="#cb32-17"></a>Native Ha..  │   1.229664   .1192054     2.13   0.033      1.01688    1.486973</span>
+<span id="cb32-18"><a href="#cb32-18"></a>Some Othe..  │   1.069886   .0347586     2.08   0.038     1.003884    1.140227</span>
+<span id="cb32-19"><a href="#cb32-19"></a>Two <span class="kw">or</span> Mo..  │    1.32553   .0252577    14.79   0.000     1.276939     1.37597</span>
+<span id="cb32-20"><a href="#cb32-20"></a>             │</span>
+<span id="cb32-21"><a href="#cb32-21"></a>     higrade │</span>
+<span id="cb32-22"><a href="#cb32-22"></a>High sch..)  │   1.065292   .0343446     1.96   0.050      1.00006    1.134778</span>
+<span id="cb32-23"><a href="#cb32-23"></a>More than..  │   .6848121   .0209463   -12.38   0.000     .6449644    .7271216</span>
+<span id="cb32-24"><a href="#cb32-24"></a>             │</span>
+<span id="cb32-25"><a href="#cb32-25"></a>       <span class="dt">_cons</span> │   1.404867   .0485076     9.85   0.000     1.312939    1.503231</span>
+<span id="cb32-26"><a href="#cb32-26"></a>─────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb32-27"><a href="#cb32-27"></a>Note: <span class="dt">_cons</span> <span class="kw">estimates</span> baseline incidence rate.</span></code></pre></div></div>
 <div id="negative-binomial-distribution" class="title-slide slide section level1"><h1>Negative Binomial Distribution</h1></div><div id="over-dispersion" class="slide section level2">
 <h1>Over-Dispersion</h1>
 <p>Due to population heterogeneity (diversity, variation), variance may be <span class="math inline">\(&gt;\)</span> mean. This is often empirically the case.</p>
 <p><span class="math display">\[ \text{var}(y) &gt; \text{mean}(y) \]</span></p>
 <p><span class="math display">\[ y \sim Poisson(\mu) \]</span></p>
 <p><span class="math display">\[ \ln(\mu) = \beta_0 + \beta_1 x + \text{offset} + \text{dispersion} + etc. \]</span></p>
-</div><div id="regression" class="slide section level2">
-<h1>Regression</h1>
-<div class="sourceCode" id="cb33"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb33-1"><a href="#cb33-1"></a>. <span class="kw">nbreg</span> numprobs coninc_10K i.race hisp i.<span class="kw">class</span> sex age</span>
+</div><div id="negative-binomial-regression" class="slide section level2">
+<h1>Negative Binomial Regression</h1>
+<div class="sourceCode" id="cb33"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb33-1"><a href="#cb33-1"></a>. <span class="kw">nbreg</span> acecount sc_sex i.sc_race_r i.higrade, <span class="kw">irr</span></span>
 <span id="cb33-2"><a href="#cb33-2"></a></span>
 <span id="cb33-3"><a href="#cb33-3"></a>Fitting Poisson <span class="kw">model</span>:</span>
 <span id="cb33-4"><a href="#cb33-4"></a></span>
-<span id="cb33-5"><a href="#cb33-5"></a>Iteration 0:   <span class="fu">log</span> likelihood =  -13723.05  </span>
-<span id="cb33-6"><a href="#cb33-6"></a>Iteration 1:   <span class="fu">log</span> likelihood = -13723.046  </span>
-<span id="cb33-7"><a href="#cb33-7"></a>Iteration 2:   <span class="fu">log</span> likelihood = -13723.046  </span>
+<span id="cb33-5"><a href="#cb33-5"></a>Iteration 0:   <span class="fu">log</span> likelihood = -44759.253  </span>
+<span id="cb33-6"><a href="#cb33-6"></a>Iteration 1:   <span class="fu">log</span> likelihood = -44758.999  </span>
+<span id="cb33-7"><a href="#cb33-7"></a>Iteration 2:   <span class="fu">log</span> likelihood = -44758.999  </span>
 <span id="cb33-8"><a href="#cb33-8"></a></span>
 <span id="cb33-9"><a href="#cb33-9"></a>Fitting constant-only <span class="kw">model</span>:</span>
 <span id="cb33-10"><a href="#cb33-10"></a></span>
-<span id="cb33-11"><a href="#cb33-11"></a>Iteration 0:   <span class="fu">log</span> likelihood = -7550.8728  </span>
-<span id="cb33-12"><a href="#cb33-12"></a>Iteration 1:   <span class="fu">log</span> likelihood = -7534.4222  </span>
-<span id="cb33-13"><a href="#cb33-13"></a>Iteration 2:   <span class="fu">log</span> likelihood = -7534.4131  </span>
-<span id="cb33-14"><a href="#cb33-14"></a>Iteration 3:   <span class="fu">log</span> likelihood = -7534.4131  </span>
+<span id="cb33-11"><a href="#cb33-11"></a>Iteration 0:   <span class="fu">log</span> likelihood =   -43591.3  </span>
+<span id="cb33-12"><a href="#cb33-12"></a>Iteration 1:   <span class="fu">log</span> likelihood = -43392.427  </span>
+<span id="cb33-13"><a href="#cb33-13"></a>Iteration 2:   <span class="fu">log</span> likelihood = -43391.748  </span>
+<span id="cb33-14"><a href="#cb33-14"></a>Iteration 3:   <span class="fu">log</span> likelihood = -43391.748  </span>
 <span id="cb33-15"><a href="#cb33-15"></a></span>
 <span id="cb33-16"><a href="#cb33-16"></a>Fitting full <span class="kw">model</span>:</span>
 <span id="cb33-17"><a href="#cb33-17"></a></span>
-<span id="cb33-18"><a href="#cb33-18"></a>Iteration 0:   <span class="fu">log</span> likelihood = -7461.8838  </span>
-<span id="cb33-19"><a href="#cb33-19"></a>Iteration 1:   <span class="fu">log</span> likelihood = -7458.4673  </span>
-<span id="cb33-20"><a href="#cb33-20"></a>Iteration 2:   <span class="fu">log</span> likelihood = -7458.4576  </span>
-<span id="cb33-21"><a href="#cb33-21"></a>Iteration 3:   <span class="fu">log</span> likelihood = -7458.4576  </span>
+<span id="cb33-18"><a href="#cb33-18"></a>Iteration 0:   <span class="fu">log</span> likelihood = -42801.127  </span>
+<span id="cb33-19"><a href="#cb33-19"></a>Iteration 1:   <span class="fu">log</span> likelihood = -42775.936  </span>
+<span id="cb33-20"><a href="#cb33-20"></a>Iteration 2:   <span class="fu">log</span> likelihood = -42775.864  </span>
+<span id="cb33-21"><a href="#cb33-21"></a>Iteration 3:   <span class="fu">log</span> likelihood = -42775.864  </span>
 <span id="cb33-22"><a href="#cb33-22"></a></span>
-<span id="cb33-23"><a href="#cb33-23"></a>Negative binomial regression                    Number <span class="kw">of</span> <span class="kw">obs</span>     =      2,399</span>
-<span id="cb33-24"><a href="#cb33-24"></a>                                                LR <span class="fu">chi2</span>(9)        =     151.91</span>
+<span id="cb33-23"><a href="#cb33-23"></a>Negative binomial regression                    Number <span class="kw">of</span> <span class="kw">obs</span>     =     30,530</span>
+<span id="cb33-24"><a href="#cb33-24"></a>                                                LR <span class="fu">chi2</span>(9)        =    1231.77</span>
 <span id="cb33-25"><a href="#cb33-25"></a>Dispersion     = <span class="kw">mean</span>                           Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
-<span id="cb33-26"><a href="#cb33-26"></a>Log likelihood = -7458.4576                     Pseudo R2         =     0.0101</span>
+<span id="cb33-26"><a href="#cb33-26"></a>Log likelihood = -42775.864                     Pseudo R2         =     0.0142</span>
 <span id="cb33-27"><a href="#cb33-27"></a></span>
 <span id="cb33-28"><a href="#cb33-28"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb33-29"><a href="#cb33-29"></a>    numprobs │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
+<span id="cb33-29"><a href="#cb33-29"></a>    acecount │        IRR   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
 <span id="cb33-30"><a href="#cb33-30"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb33-31"><a href="#cb33-31"></a>  coninc_10K │   .0286549   .0049747     5.76   0.000     .0189047    .0384052</span>
+<span id="cb33-31"><a href="#cb33-31"></a>      sc_sex │   .9873253   .0140708    -0.90   0.371     .9601287    1.015292</span>
 <span id="cb33-32"><a href="#cb33-32"></a>             │</span>
-<span id="cb33-33"><a href="#cb33-33"></a>        race │</span>
-<span id="cb33-34"><a href="#cb33-34"></a>      <span class="bn">black</span>  │  -.4378139   .0599275    -7.31   0.000    -.5552697    -.320358</span>
-<span id="cb33-35"><a href="#cb33-35"></a>      other  │   -.248534   .0944197    -2.63   0.008    -.4335933   -.0634747</span>
-<span id="cb33-36"><a href="#cb33-36"></a>             │</span>
-<span id="cb33-37"><a href="#cb33-37"></a>        hisp │  -.2523914   .0861951    -2.93   0.003    -.4213307    -.083452</span>
-<span id="cb33-38"><a href="#cb33-38"></a>             │</span>
-<span id="cb33-39"><a href="#cb33-39"></a>       <span class="kw">class</span> │</span>
-<span id="cb33-40"><a href="#cb33-40"></a>working c..  │  -.1323204   .0890544    -1.49   0.137    -.3068639     .042223</span>
-<span id="cb33-41"><a href="#cb33-41"></a>middle cl..  │  -.0193732    .091597    -0.21   0.832       -.1989    .1601535</span>
-<span id="cb33-42"><a href="#cb33-42"></a><span class="fu">upper</span> <span class="kw">class</span>  │   -.066233   .1389252    -0.48   0.634    -.3385213    .2060554</span>
-<span id="cb33-43"><a href="#cb33-43"></a>             │</span>
-<span id="cb33-44"><a href="#cb33-44"></a>         sex │   .1082123   .0393212     2.75   0.006     .0311442    .1852805</span>
-<span id="cb33-45"><a href="#cb33-45"></a>         age │  -.0013676   .0011595    -1.18   0.238    -.0036401    .0009049</span>
-<span id="cb33-46"><a href="#cb33-46"></a>       <span class="dt">_cons</span> │   1.975325   .1187731    16.63   0.000     1.742534    2.208116</span>
-<span id="cb33-47"><a href="#cb33-47"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb33-48"><a href="#cb33-48"></a>    /lnalpha │   -.246852   .0319159                      -.309406    -.184298</span>
-<span id="cb33-49"><a href="#cb33-49"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb33-50"><a href="#cb33-50"></a>       <span class="kw">alpha</span> │   .7812563   .0249345                      .7338827    .8316879</span>
-<span id="cb33-51"><a href="#cb33-51"></a>─────────────┴────────────────────────────────────────────────────────────────</span>
-<span id="cb33-52"><a href="#cb33-52"></a>LR <span class="kw">test</span> <span class="kw">of</span> <span class="kw">alpha</span>=0: chibar2(01) = 1.3e+04              Prob &gt;= chibar2 = 0.000</span></code></pre></div>
+<span id="cb33-33"><a href="#cb33-33"></a>   sc_race_r │</span>
+<span id="cb33-34"><a href="#cb33-34"></a>Black <span class="kw">or</span> ..  │   1.326253   .0350126    10.70   0.000     1.259374    1.396682</span>
+<span id="cb33-35"><a href="#cb33-35"></a>American ..  │   1.864104   .1222717     9.49   0.000     1.639221    2.119839</span>
+<span id="cb33-36"><a href="#cb33-36"></a>Asian alone  │   .5378757   .0222161   -15.01   0.000     .4960489    .5832294</span>
+<span id="cb33-37"><a href="#cb33-37"></a>Native Ha..  │   1.244574   .1624972     1.68   0.094     .9635716    1.607524</span>
+<span id="cb33-38"><a href="#cb33-38"></a>Some Othe..  │   1.083969   .0459946     1.90   0.057     .9974679    1.177971</span>
+<span id="cb33-39"><a href="#cb33-39"></a>Two <span class="kw">or</span> Mo..  │   1.325755   .0336113    11.12   0.000     1.261488    1.393296</span>
+<span id="cb33-40"><a href="#cb33-40"></a>             │</span>
+<span id="cb33-41"><a href="#cb33-41"></a>     higrade │</span>
+<span id="cb33-42"><a href="#cb33-42"></a>High sch..)  │    1.06806   .0468996     1.50   0.134      .979983    1.164053</span>
+<span id="cb33-43"><a href="#cb33-43"></a>More than..  │   .6831897   .0282212    -9.22   0.000     .6300572     .740803</span>
+<span id="cb33-44"><a href="#cb33-44"></a>             │</span>
+<span id="cb33-45"><a href="#cb33-45"></a>       <span class="dt">_cons</span> │   1.403757   .0647737     7.35   0.000     1.282374    1.536629</span>
+<span id="cb33-46"><a href="#cb33-46"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb33-47"><a href="#cb33-47"></a>    /lnalpha │  -.5443067   .0239625                     -.5912723   -.4973411</span>
+<span id="cb33-48"><a href="#cb33-48"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb33-49"><a href="#cb33-49"></a>       <span class="kw">alpha</span> │   .5802439   .0139041                      .5536224    .6081455</span>
+<span id="cb33-50"><a href="#cb33-50"></a>─────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb33-51"><a href="#cb33-51"></a>Note: Estimates are transformed only <span class="kw">in</span> the first equation.</span>
+<span id="cb33-52"><a href="#cb33-52"></a>Note: <span class="dt">_cons</span> <span class="kw">estimates</span> baseline incidence rate.</span>
+<span id="cb33-53"><a href="#cb33-53"></a>LR <span class="kw">test</span> <span class="kw">of</span> <span class="kw">alpha</span>=0: chibar2(01) = 3966.27              Prob &gt;= chibar2 = 0.000</span></code></pre></div>
 </div><div id="predicted-values" class="slide section level2">
 <h1>Predicted Values</h1>
+<div class="sourceCode" id="cb34"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb34-1"><a href="#cb34-1"></a>. <span class="kw">predict</span> yhat</span>
+<span id="cb34-2"><a href="#cb34-2"></a>(option n assumed; predicted number <span class="kw">of</span> events)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb35-1"><a href="#cb35-1"></a>. <span class="kw">histogram</span> yhat, <span class="dv">scheme</span>(michigan) </span>
+<span id="cb35-2"><a href="#cb35-2"></a>(<span class="bn">bin</span>=44, <span class="bn">start</span>=.50284678, <span class="kw">width</span>=.05128577)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb36-1"><a href="#cb36-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myyhats.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a>(file myyhats.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="figure">
+<img src="myyhats.png" alt="" />
+<p class="caption">Predicted Count of ACEs</p>
+</div>
 </div><div id="exposure" class="slide section level2">
 <h1>Exposure</h1>
 <p>In some data sets, we will have a <em>years exposed</em> or <em>time exposed</em> variable. It is important to control for this variable.</p>
 </div>
-<div id="zero-inflated-models" class="title-slide slide section level1"><h1>Zero-Inflated Models</h1></div>
 </body>
 </html>

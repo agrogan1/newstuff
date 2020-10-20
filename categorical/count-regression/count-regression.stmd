@@ -71,7 +71,7 @@ $$
 	
 	generate x = rnormal() // normally distributed random variable
 	
-	histogram x, title("Normally Distributed Random Variable") scheme(burd)
+	histogram x, title("Normally Distributed Random Variable") scheme(michigan)
 	
 	graph export myhistogram.png, width(500) replace
 
@@ -88,7 +88,7 @@ $$
 
     generate w = rpoisson(.5)
 	
-	histogram w, title("Poisson Distributed Random Variable") scheme(burd)
+	histogram w, title("Poisson Distributed Random Variable") scheme(michigan)
 	
 	graph export myhistogram2.png, width(500) replace
 
@@ -123,7 +123,7 @@ $$
 	mlab(mylabel) mlabsize(vlarge) ///
 	msymbol(none)  ///
     legend(order(1 "🦆 Duck")) ///
-	scheme(burd) plotr(fcolor(olive_teal))
+	scheme(michigan) plotr(fcolor(olive_teal))
 
 	graph export ducks.png, width(1000) replace
 	
@@ -144,28 +144,32 @@ $$
 	mlab(mylabel2) mlabsize(vhuge) ///
 	msymbol(none)  ///
     legend(order(1 "🔥 Forest Fire")) ///
-	scheme(burd) plotr(fcolor(gs14)) ///
+	scheme(michigan) plotr(fcolor(gs14)) ///
 	xsize(5) ysize(1)
 
 	graph export fires.png, width(1000) replace
 	
 ![Forest Fires At Random Times](fires.png){ width=70% }
 
-# Poisson Regression
+# Poisson Regression (National Survey Of Children's Health)
+
+The data are an extract of the *National Survey of Children's Health, 2018*. The data contain information on children's exposure to various *Adverse Childhood Experiences* (ACEs) and their demographic characteristics.
 
     clear all
-
-    set maxvar 10000
 	
-	use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
+	use "../predict-and-margins/NSCH_ACES.dta", clear
 	
-	codebook numprobs // data from 2002
+	describe
 	
-	recode hispanic (1=0)(2/max = 1), generate(hisp) // dichotomous variable
+	egen acecount = anycount(ace*R), values(1) // generate count of ACES
 	
-	generate coninc_10K = coninc / 10000 // $10K chunks
+    histogram acecount, discrete scheme(michigan)
 	
-    poisson numprobs coninc_10K i.race hisp i.class sex age
+	graph export myhistogram3.png, width(1000) replace
+	
+![Count of ACEs](myhistogram3.png){ width=50% }
+    	
+    poisson acecount sc_sex i.sc_race_r i.higrade
 		
 # Incidence Rate Ratios
 	
@@ -189,14 +193,21 @@ $$
     \ln(\mu) = \beta_0 + \beta_1 x + \text{offset} + \text{dispersion} + etc.
 $$
 
-## Regression
+## Negative Binomial Regression
 	
-	nbreg numprobs coninc_10K i.race hisp i.class sex age
+	nbreg acecount sc_sex i.sc_race_r i.higrade, irr
 
 ## Predicted Values
+
+    predict yhat
 	
+	histogram yhat, scheme(michigan) 
+	
+	graph export myyhats.png, width(1000) replace
+	
+![Predicted Count of ACEs](myyhats.png){ width=50% }
+   
 ## Exposure
 
 In some data sets, we will have a *years exposed* or *time exposed* variable. It is important to control for this variable.
 
-# Zero-Inflated Models

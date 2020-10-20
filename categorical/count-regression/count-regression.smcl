@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}20 Oct 2020, 12:42:37
+ {txt}opened on:  {res}20 Oct 2020, 15:13:55
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -23,8 +23,8 @@ now 1,000
 . generate x = rnormal() // normally distributed random variable
 {txt}
 {com}. //_5
-. histogram x, title("Normally Distributed Random Variable") scheme(burd)
-{txt}(bin={res}29{txt}, start={res}-3.659894{txt}, width={res}.27542746{txt})
+. histogram x, title("Normally Distributed Random Variable") scheme(michigan)
+{txt}(bin={res}29{txt}, start={res}-2.9297853{txt}, width={res}.2228604{txt})
 {res}{txt}
 {com}. //_6
 . graph export myhistogram.png, width(500) replace
@@ -34,8 +34,8 @@ now 1,000
 . generate w = rpoisson(.5)
 {txt}
 {com}. //_8
-. histogram w, title("Poisson Distributed Random Variable") scheme(burd)
-{txt}(bin={res}29{txt}, start={res}0{txt}, width={res}.10344828{txt})
+. histogram w, title("Poisson Distributed Random Variable") scheme(michigan)
+{txt}(bin={res}29{txt}, start={res}0{txt}, width={res}.17241379{txt})
 {res}{txt}
 {com}. //_9
 . graph export myhistogram2.png, width(500) replace
@@ -59,8 +59,8 @@ now 20
 {txt}
 {com}. //_14
 . expand mycount // create individual observations
-{txt}(10 zero counts ignored; observations not deleted)
-(6 observations created)
+{txt}(11 zero counts ignored; observations not deleted)
+(5 observations created)
 
 {com}. //_15
 . generate x = runiform(1,10) // random x coordinate
@@ -77,7 +77,7 @@ now 20
 > mlab(mylabel) mlabsize(vlarge) ///
 > msymbol(none)  ///
 > legend(order(1 "🦆 Duck")) ///
-> scheme(burd) plotr(fcolor(olive_teal))
+> scheme(michigan) plotr(fcolor(olive_teal))
 {res}{txt}
 {com}. //_19
 . graph export ducks.png, width(1000) replace
@@ -103,7 +103,7 @@ now 20
 > mlab(mylabel2) mlabsize(vhuge) ///
 > msymbol(none)  ///
 > legend(order(1 "🔥 Forest Fire")) ///
-> scheme(burd) plotr(fcolor(gs14)) ///
+> scheme(michigan) plotr(fcolor(gs14)) ///
 > xsize(5) ysize(1)
 {res}{txt}
 {com}. //_25
@@ -114,162 +114,195 @@ now 20
 . clear all
 {res}{txt}
 {com}. //_27
-. set maxvar 10000
-
+. use "../predict-and-margins/NSCH_ACES.dta", clear
 {txt}
 {com}. //_28
-. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
-{txt}
+. describe
+
+{txt}Contains data from {res}../predict-and-margins/NSCH_ACES.dta
+{txt}  obs:{res}        30,530                          
+{txt} vars:{res}            23                          20 Oct 2020 14:50
+{txt} size:{res}       702,190                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:sc_sex         }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{txt}sc_sex_lab{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}Sex of Selected Child{p_end}
+{p 0 48}{bind:ace3           }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{bind:ace3_lab }{bind:  }{res}{res}Child Experienced - Parent or Guardian Divorced{p_end}
+{p 0 48}{bind:ace4           }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{bind:ace4_lab }{bind:  }{res}{res}Child Experienced - Parent or Guardian Died{p_end}
+{p 0 48}{bind:ace5           }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{bind:ace5_lab }{bind:  }{res}{res}Child Experienced - Parent or Guardian Time in Jail{p_end}
+{p 0 48}{bind:ace6           }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{bind:ace6_lab }{bind:  }{res}{res}Child Experienced - Adults Slap, Hit, Kick, Punch Others{p_end}
+{p 0 48}{bind:ace7           }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{bind:ace7_lab }{bind:  }{res}{res}Child Experienced - Victim of Violence{p_end}
+{p 0 48}{bind:ace8           }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{bind:ace8_lab }{bind:  }{res}{res}Child Experienced - Lived with Mentally Ill{p_end}
+{p 0 48}{bind:ace9           }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{bind:ace9_lab }{bind:  }{res}{res}Child Experienced - Lived with Person with Alcohol/Drug Problem{p_end}
+{p 0 48}{bind:ace10          }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{txt}ace10_lab{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}Child Experienced - Treated Unfairly Because of Race{p_end}
+{p 0 48}{bind:ace1           }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{bind:ace1_lab }{bind:  }{res}{res}Hard to Cover Basics Like Food or Housing{p_end}
+{p 0 48}{bind:sc_race_r      }{txt}{bind: byte    }{bind:{txt}%48.0g    }{space 1}{txt}sc_race_r_lab{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}Race of Selected Child, Detailed{p_end}
+{p 0 48}{bind:sc_racer       }{txt}{bind: byte    }{bind:{txt}%31.0g    }{space 1}{txt}sc_racer_lab{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}Race of Selected Child, Recode{p_end}
+{p 0 48}{bind:higrade        }{txt}{bind: byte    }{bind:{txt}%61.0g    }{space 1}{txt}higrade_lab{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}Highest Level of Education among Reported Adults{p_end}
+{p 0 48}{bind:depress        }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of k2q32b (Depression Currently){p_end}
+{p 0 48}{bind:ace1R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace1 (Hard to Cover Basics Like Food or Housing){p_end}
+{p 0 48}{bind:ace3R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace3 (Child Experienced - Parent or Guardian Divorced){p_end}
+{p 0 48}{bind:ace4R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace4 (Child Experienced - Parent or Guardian Died){p_end}
+{p 0 48}{bind:ace5R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace5 (Child Experienced - Parent or Guardian Time in Jail){p_end}
+{p 0 48}{bind:ace6R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace6 (Child Experienced - Adults Slap, Hit, Kick, Punch Others){p_end}
+{p 0 48}{bind:ace7R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace7 (Child Experienced - Victim of Violence){p_end}
+{p 0 48}{bind:ace8R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace8 (Child Experienced - Lived with Mentally Ill){p_end}
+{p 0 48}{bind:ace9R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace9 (Child Experienced - Lived with Person with Alcohol/Drug Problem){p_end}
+{p 0 48}{bind:ace10R         }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace10 (Child Experienced - Treated Unfairly Because of Race){p_end}
+{txt}{hline}
+Sorted by: 
+
 {com}. //_29
-. codebook numprobs // data from 2002
-
-{txt}{hline}
-{res}numprobs{right:how many friends close to discuss problems }
-{txt}{hline}
-
-{col 19}type:  numeric ({res}byte{txt})
-{ralign 22:label}:  {res:LABJP}, but {res:33} nonmissing values are not labeled
-
-{col 18}range:  [{res}0{txt},{res}96{txt}]{col 55}units:  {res}1
-{col 10}{txt}unique values:  {res}34{col 51}{txt}missing .:  {res}0{txt}/{res}64,814
-{col 8}{txt}unique mv codes:  {res}3{col 50}{txt}missing .*:  {res}62,141{txt}/{res}64,814
-
-{txt}{ralign 23: examples:}{col 26}{res}.i{col 32}{txt}IAP
-{ralign 23: }{col 26}{res}.i{col 32}{txt}IAP
-{ralign 23: }{col 26}{res}.i{col 32}{txt}IAP
-{ralign 23: }{col 26}{res}.i{col 32}{txt}IAP
-
+. egen acecount = anycount(ace*R), values(1) // generate count of ACES
+{txt}
 {com}. //_30
-. recode hispanic (1=0)(2/max = 1), generate(hisp) // dichotomous variable
-{txt}(26650 differences between hispanic and hisp)
-
+. histogram acecount, discrete scheme(michigan)
+{txt}(start={res}0{txt}, width={res}1{txt})
+{res}{txt}
 {com}. //_31
-. generate coninc_10K = coninc / 10000 // $10K chunks
-{txt}(6,520 missing values generated)
+. graph export myhistogram3.png, width(1000) replace
+{txt}(file myhistogram3.png written in PNG format)
 
 {com}. //_32
-. poisson numprobs coninc_10K i.race hisp i.class sex age
+. poisson acecount sc_sex i.sc_race_r i.higrade
 {res}
-{txt}Iteration 0:{space 3}log likelihood = {res: -13723.05}  
-Iteration 1:{space 3}log likelihood = {res:-13723.046}  
-Iteration 2:{space 3}log likelihood = {res:-13723.046}  
+{txt}Iteration 0:{space 3}log likelihood = {res:-44759.253}  
+Iteration 1:{space 3}log likelihood = {res:-44758.999}  
+Iteration 2:{space 3}log likelihood = {res:-44758.999}  
 {res}
-{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     2,399
-{txt}{col 49}LR chi2({res}9{txt}){col 67}= {res}   1125.86
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    30,530
+{txt}{col 49}LR chi2({res}9{txt}){col 67}= {res}   2054.20
 {txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-13723.046{txt}{col 49}Pseudo R2{col 67}= {res}    0.0394
+{txt}Log likelihood = {res}-44758.999{txt}{col 49}Pseudo R2{col 67}= {res}    0.0224
 
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}    numprobs{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{col 1}    acecount{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 2}coninc_10K {c |}{col 14}{res}{space 2} .0288957{col 26}{space 2} .0017165{col 37}{space 1}   16.83{col 46}{space 3}0.000{col 54}{space 4} .0255315{col 67}{space 3} .0322599
+{space 6}sc_sex {c |}{col 14}{res}{space 2} -.012823{col 26}{space 2} .0111291{col 37}{space 1}   -1.15{col 46}{space 3}0.249{col 54}{space 4}-.0346357{col 67}{space 3} .0089897
 {txt}{space 12} {c |}
-{space 8}race {c |}
-{space 6}black  {c |}{col 14}{res}{space 2}-.4409339{col 26}{space 2} .0256346{col 37}{space 1}  -17.20{col 46}{space 3}0.000{col 54}{space 4}-.4911767{col 67}{space 3} -.390691
-{txt}{space 6}other  {c |}{col 14}{res}{space 2}-.2608266{col 26}{space 2}  .037588{col 37}{space 1}   -6.94{col 46}{space 3}0.000{col 54}{space 4}-.3344978{col 67}{space 3}-.1871555
+{space 3}sc_race_r {c |}
+Black or ..  {c |}{col 14}{res}{space 2} .2662761{col 26}{space 2} .0196921{col 37}{space 1}   13.52{col 46}{space 3}0.000{col 54}{space 4} .2276802{col 67}{space 3} .3048719
+{txt}American ..  {c |}{col 14}{res}{space 2} .5971063{col 26}{space 2} .0447201{col 37}{space 1}   13.35{col 46}{space 3}0.000{col 54}{space 4} .5094566{col 67}{space 3}  .684756
+{txt}Asian alone  {c |}{col 14}{res}{space 2}-.6243821{col 26}{space 2} .0358521{col 37}{space 1}  -17.42{col 46}{space 3}0.000{col 54}{space 4}-.6946509{col 67}{space 3}-.5541134
+{txt}Native Ha..  {c |}{col 14}{res}{space 2} .2067409{col 26}{space 2} .0969415{col 37}{space 1}    2.13{col 46}{space 3}0.033{col 54}{space 4} .0167392{col 67}{space 3} .3967427
+{txt}Some Othe..  {c |}{col 14}{res}{space 2} .0675521{col 26}{space 2} .0324881{col 37}{space 1}    2.08{col 46}{space 3}0.038{col 54}{space 4} .0038765{col 67}{space 3} .1312277
+{txt}Two or Mo..  {c |}{col 14}{res}{space 2} .2818125{col 26}{space 2} .0190548{col 37}{space 1}   14.79{col 46}{space 3}0.000{col 54}{space 4} .2444658{col 67}{space 3} .3191593
 {txt}{space 12} {c |}
-{space 8}hisp {c |}{col 14}{res}{space 2}-.2247009{col 26}{space 2}  .033778{col 37}{space 1}   -6.65{col 46}{space 3}0.000{col 54}{space 4}-.2909047{col 67}{space 3}-.1584972
+{space 5}higrade {c |}
+High sch..)  {c |}{col 14}{res}{space 2} .0632486{col 26}{space 2} .0322397{col 37}{space 1}    1.96{col 46}{space 3}0.050{col 54}{space 4}   .00006{col 67}{space 3} .1264372
+{txt}More than..  {c |}{col 14}{res}{space 2}-.3786108{col 26}{space 2}  .030587{col 37}{space 1}  -12.38{col 46}{space 3}0.000{col 54}{space 4}-.4385602{col 67}{space 3}-.3186615
 {txt}{space 12} {c |}
-{space 7}class {c |}
-working c..  {c |}{col 14}{res}{space 2}-.1267131{col 26}{space 2} .0342909{col 37}{space 1}   -3.70{col 46}{space 3}0.000{col 54}{space 4}-.1939219{col 67}{space 3}-.0595042
-{txt}middle cl..  {c |}{col 14}{res}{space 2}-.0173452{col 26}{space 2} .0349358{col 37}{space 1}   -0.50{col 46}{space 3}0.620{col 54}{space 4}-.0858182{col 67}{space 3} .0511278
-{txt}upper class  {c |}{col 14}{res}{space 2}-.0300967{col 26}{space 2}  .049953{col 37}{space 1}   -0.60{col 46}{space 3}0.547{col 54}{space 4}-.1280028{col 67}{space 3} .0678095
-{txt}{space 12} {c |}
-{space 9}sex {c |}{col 14}{res}{space 2} .1291068{col 26}{space 2} .0146144{col 37}{space 1}    8.83{col 46}{space 3}0.000{col 54}{space 4} .1004631{col 67}{space 3} .1577506
-{txt}{space 9}age {c |}{col 14}{res}{space 2}-.0013719{col 26}{space 2} .0004456{col 37}{space 1}   -3.08{col 46}{space 3}0.002{col 54}{space 4}-.0022453{col 67}{space 3}-.0004986
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.935927{col 26}{space 2} .0457132{col 37}{space 1}   42.35{col 46}{space 3}0.000{col 54}{space 4} 1.846331{col 67}{space 3} 2.025523
+{space 7}_cons {c |}{col 14}{res}{space 2} .3399425{col 26}{space 2} .0345283{col 37}{space 1}    9.85{col 46}{space 3}0.000{col 54}{space 4} .2722683{col 67}{space 3} .4076166
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
 {com}. //_33
 . poisson, irr
 
-{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     2,399
-{txt}{col 49}LR chi2({res}9{txt}){col 67}= {res}   1125.86
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    30,530
+{txt}{col 49}LR chi2({res}9{txt}){col 67}= {res}   2054.20
 {txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-13723.046{txt}{col 49}Pseudo R2{col 67}= {res}    0.0394
+{txt}Log likelihood = {res}-44758.999{txt}{col 49}Pseudo R2{col 67}= {res}    0.0224
 
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}    numprobs{col 14}{c |}        IRR{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{col 1}    acecount{col 14}{c |}        IRR{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 2}coninc_10K {c |}{col 14}{res}{space 2} 1.029317{col 26}{space 2} .0017668{col 37}{space 1}   16.83{col 46}{space 3}0.000{col 54}{space 4}  1.02586{col 67}{space 3} 1.032786
+{space 6}sc_sex {c |}{col 14}{res}{space 2} .9872589{col 26}{space 2} .0109873{col 37}{space 1}   -1.15{col 46}{space 3}0.249{col 54}{space 4} .9659573{col 67}{space 3}  1.00903
 {txt}{space 12} {c |}
-{space 8}race {c |}
-{space 6}black  {c |}{col 14}{res}{space 2} .6434353{col 26}{space 2} .0164942{col 37}{space 1}  -17.20{col 46}{space 3}0.000{col 54}{space 4}  .611906{col 67}{space 3} .6765892
-{txt}{space 6}other  {c |}{col 14}{res}{space 2} .7704145{col 26}{space 2} .0289583{col 37}{space 1}   -6.94{col 46}{space 3}0.000{col 54}{space 4} .7156974{col 67}{space 3} .8293148
+{space 3}sc_race_r {c |}
+Black or ..  {c |}{col 14}{res}{space 2} 1.305095{col 26}{space 2} .0257001{col 37}{space 1}   13.52{col 46}{space 3}0.000{col 54}{space 4} 1.255684{col 67}{space 3} 1.356451
+{txt}American ..  {c |}{col 14}{res}{space 2} 1.816854{col 26}{space 2} .0812498{col 37}{space 1}   13.35{col 46}{space 3}0.000{col 54}{space 4} 1.664386{col 67}{space 3} 1.983288
+{txt}Asian alone  {c |}{col 14}{res}{space 2} .5355922{col 26}{space 2} .0192021{col 37}{space 1}  -17.42{col 46}{space 3}0.000{col 54}{space 4} .4992487{col 67}{space 3} .5745815
+{txt}Native Ha..  {c |}{col 14}{res}{space 2} 1.229664{col 26}{space 2} .1192054{col 37}{space 1}    2.13{col 46}{space 3}0.033{col 54}{space 4}  1.01688{col 67}{space 3} 1.486973
+{txt}Some Othe..  {c |}{col 14}{res}{space 2} 1.069886{col 26}{space 2} .0347586{col 37}{space 1}    2.08{col 46}{space 3}0.038{col 54}{space 4} 1.003884{col 67}{space 3} 1.140227
+{txt}Two or Mo..  {c |}{col 14}{res}{space 2}  1.32553{col 26}{space 2} .0252577{col 37}{space 1}   14.79{col 46}{space 3}0.000{col 54}{space 4} 1.276939{col 67}{space 3}  1.37597
 {txt}{space 12} {c |}
-{space 8}hisp {c |}{col 14}{res}{space 2} .7987551{col 26}{space 2} .0269804{col 37}{space 1}   -6.65{col 46}{space 3}0.000{col 54}{space 4} .7475869{col 67}{space 3} .8534254
+{space 5}higrade {c |}
+High sch..)  {c |}{col 14}{res}{space 2} 1.065292{col 26}{space 2} .0343446{col 37}{space 1}    1.96{col 46}{space 3}0.050{col 54}{space 4}  1.00006{col 67}{space 3} 1.134778
+{txt}More than..  {c |}{col 14}{res}{space 2} .6848121{col 26}{space 2} .0209463{col 37}{space 1}  -12.38{col 46}{space 3}0.000{col 54}{space 4} .6449644{col 67}{space 3} .7271216
 {txt}{space 12} {c |}
-{space 7}class {c |}
-working c..  {c |}{col 14}{res}{space 2} .8809864{col 26}{space 2} .0302098{col 37}{space 1}   -3.70{col 46}{space 3}0.000{col 54}{space 4} .8237222{col 67}{space 3} .9422316
-{txt}middle cl..  {c |}{col 14}{res}{space 2} .9828044{col 26}{space 2} .0343351{col 37}{space 1}   -0.50{col 46}{space 3}0.620{col 54}{space 4} .9177611{col 67}{space 3} 1.052457
-{txt}upper class  {c |}{col 14}{res}{space 2} .9703517{col 26}{space 2}  .048472{col 37}{space 1}   -0.60{col 46}{space 3}0.547{col 54}{space 4} .8798509{col 67}{space 3} 1.070161
-{txt}{space 12} {c |}
-{space 9}sex {c |}{col 14}{res}{space 2} 1.137812{col 26}{space 2} .0166285{col 37}{space 1}    8.83{col 46}{space 3}0.000{col 54}{space 4} 1.105683{col 67}{space 3} 1.170874
-{txt}{space 9}age {c |}{col 14}{res}{space 2}  .998629{col 26}{space 2}  .000445{col 37}{space 1}   -3.08{col 46}{space 3}0.002{col 54}{space 4} .9977572{col 67}{space 3} .9995015
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 6.930466{col 26}{space 2} .3168141{col 37}{space 1}   42.35{col 46}{space 3}0.000{col 54}{space 4} 6.336526{col 67}{space 3} 7.580077
+{space 7}_cons {c |}{col 14}{res}{space 2} 1.404867{col 26}{space 2} .0485076{col 37}{space 1}    9.85{col 46}{space 3}0.000{col 54}{space 4} 1.312939{col 67}{space 3} 1.503231
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 2}Note: {res:_cons} estimates baseline incidence rate{txt}.{p_end}
 
 {com}. //_34
-. nbreg numprobs coninc_10K i.race hisp i.class sex age
+. nbreg acecount sc_sex i.sc_race_r i.higrade, irr
 
 {txt}Fitting Poisson model:
 {res}
-{txt}Iteration 0:{space 3}log likelihood = {res: -13723.05}  
-Iteration 1:{space 3}log likelihood = {res:-13723.046}  
-Iteration 2:{space 3}log likelihood = {res:-13723.046}  
+{txt}Iteration 0:{space 3}log likelihood = {res:-44759.253}  
+Iteration 1:{space 3}log likelihood = {res:-44758.999}  
+Iteration 2:{space 3}log likelihood = {res:-44758.999}  
 {res}
 {txt}Fitting constant-only model:
 {res}
-{txt}Iteration 0:{space 3}log likelihood = {res:-7550.8728}  
-Iteration 1:{space 3}log likelihood = {res:-7534.4222}  
-Iteration 2:{space 3}log likelihood = {res:-7534.4131}  
-Iteration 3:{space 3}log likelihood = {res:-7534.4131}  
+{txt}Iteration 0:{space 3}log likelihood = {res:  -43591.3}  
+Iteration 1:{space 3}log likelihood = {res:-43392.427}  
+Iteration 2:{space 3}log likelihood = {res:-43391.748}  
+Iteration 3:{space 3}log likelihood = {res:-43391.748}  
 {res}
 {txt}Fitting full model:
 {res}
-{txt}Iteration 0:{space 3}log likelihood = {res:-7461.8838}  
-Iteration 1:{space 3}log likelihood = {res:-7458.4673}  
-Iteration 2:{space 3}log likelihood = {res:-7458.4576}  
-Iteration 3:{space 3}log likelihood = {res:-7458.4576}  
+{txt}Iteration 0:{space 3}log likelihood = {res:-42801.127}  
+Iteration 1:{space 3}log likelihood = {res:-42775.936}  
+Iteration 2:{space 3}log likelihood = {res:-42775.864}  
+Iteration 3:{space 3}log likelihood = {res:-42775.864}  
 {res}
-{txt}Negative binomial regression{col 49}Number of obs{col 67}= {res}     2,399
-{txt}{col 49}LR chi2({res}9{txt}){col 67}= {res}    151.91
+{txt}Negative binomial regression{col 49}Number of obs{col 67}= {res}    30,530
+{txt}{col 49}LR chi2({res}9{txt}){col 67}= {res}   1231.77
 {txt}{col 1}Dispersion{col 16}= {res}mean{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-7458.4576{txt}{col 49}Pseudo R2{col 67}= {res}    0.0101
+{txt}Log likelihood = {res}-42775.864{txt}{col 49}Pseudo R2{col 67}= {res}    0.0142
 
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}    numprobs{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{col 1}    acecount{col 14}{c |}        IRR{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 2}coninc_10K {c |}{col 14}{res}{space 2} .0286549{col 26}{space 2} .0049747{col 37}{space 1}    5.76{col 46}{space 3}0.000{col 54}{space 4} .0189047{col 67}{space 3} .0384052
+{space 6}sc_sex {c |}{col 14}{res}{space 2} .9873253{col 26}{space 2} .0140708{col 37}{space 1}   -0.90{col 46}{space 3}0.371{col 54}{space 4} .9601287{col 67}{space 3} 1.015292
 {txt}{space 12} {c |}
-{space 8}race {c |}
-{space 6}black  {c |}{col 14}{res}{space 2}-.4378139{col 26}{space 2} .0599275{col 37}{space 1}   -7.31{col 46}{space 3}0.000{col 54}{space 4}-.5552697{col 67}{space 3} -.320358
-{txt}{space 6}other  {c |}{col 14}{res}{space 2} -.248534{col 26}{space 2} .0944197{col 37}{space 1}   -2.63{col 46}{space 3}0.008{col 54}{space 4}-.4335933{col 67}{space 3}-.0634747
+{space 3}sc_race_r {c |}
+Black or ..  {c |}{col 14}{res}{space 2} 1.326253{col 26}{space 2} .0350126{col 37}{space 1}   10.70{col 46}{space 3}0.000{col 54}{space 4} 1.259374{col 67}{space 3} 1.396682
+{txt}American ..  {c |}{col 14}{res}{space 2} 1.864104{col 26}{space 2} .1222717{col 37}{space 1}    9.49{col 46}{space 3}0.000{col 54}{space 4} 1.639221{col 67}{space 3} 2.119839
+{txt}Asian alone  {c |}{col 14}{res}{space 2} .5378757{col 26}{space 2} .0222161{col 37}{space 1}  -15.01{col 46}{space 3}0.000{col 54}{space 4} .4960489{col 67}{space 3} .5832294
+{txt}Native Ha..  {c |}{col 14}{res}{space 2} 1.244574{col 26}{space 2} .1624972{col 37}{space 1}    1.68{col 46}{space 3}0.094{col 54}{space 4} .9635716{col 67}{space 3} 1.607524
+{txt}Some Othe..  {c |}{col 14}{res}{space 2} 1.083969{col 26}{space 2} .0459946{col 37}{space 1}    1.90{col 46}{space 3}0.057{col 54}{space 4} .9974679{col 67}{space 3} 1.177971
+{txt}Two or Mo..  {c |}{col 14}{res}{space 2} 1.325755{col 26}{space 2} .0336113{col 37}{space 1}   11.12{col 46}{space 3}0.000{col 54}{space 4} 1.261488{col 67}{space 3} 1.393296
 {txt}{space 12} {c |}
-{space 8}hisp {c |}{col 14}{res}{space 2}-.2523914{col 26}{space 2} .0861951{col 37}{space 1}   -2.93{col 46}{space 3}0.003{col 54}{space 4}-.4213307{col 67}{space 3} -.083452
+{space 5}higrade {c |}
+High sch..)  {c |}{col 14}{res}{space 2}  1.06806{col 26}{space 2} .0468996{col 37}{space 1}    1.50{col 46}{space 3}0.134{col 54}{space 4}  .979983{col 67}{space 3} 1.164053
+{txt}More than..  {c |}{col 14}{res}{space 2} .6831897{col 26}{space 2} .0282212{col 37}{space 1}   -9.22{col 46}{space 3}0.000{col 54}{space 4} .6300572{col 67}{space 3}  .740803
 {txt}{space 12} {c |}
-{space 7}class {c |}
-working c..  {c |}{col 14}{res}{space 2}-.1323204{col 26}{space 2} .0890544{col 37}{space 1}   -1.49{col 46}{space 3}0.137{col 54}{space 4}-.3068639{col 67}{space 3}  .042223
-{txt}middle cl..  {c |}{col 14}{res}{space 2}-.0193732{col 26}{space 2}  .091597{col 37}{space 1}   -0.21{col 46}{space 3}0.832{col 54}{space 4}   -.1989{col 67}{space 3} .1601535
-{txt}upper class  {c |}{col 14}{res}{space 2} -.066233{col 26}{space 2} .1389252{col 37}{space 1}   -0.48{col 46}{space 3}0.634{col 54}{space 4}-.3385213{col 67}{space 3} .2060554
-{txt}{space 12} {c |}
-{space 9}sex {c |}{col 14}{res}{space 2} .1082123{col 26}{space 2} .0393212{col 37}{space 1}    2.75{col 46}{space 3}0.006{col 54}{space 4} .0311442{col 67}{space 3} .1852805
-{txt}{space 9}age {c |}{col 14}{res}{space 2}-.0013676{col 26}{space 2} .0011595{col 37}{space 1}   -1.18{col 46}{space 3}0.238{col 54}{space 4}-.0036401{col 67}{space 3} .0009049
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.975325{col 26}{space 2} .1187731{col 37}{space 1}   16.63{col 46}{space 3}0.000{col 54}{space 4} 1.742534{col 67}{space 3} 2.208116
+{space 7}_cons {c |}{col 14}{res}{space 2} 1.403757{col 26}{space 2} .0647737{col 37}{space 1}    7.35{col 46}{space 3}0.000{col 54}{space 4} 1.282374{col 67}{space 3} 1.536629
 {txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-    /lnalpha {c |}{col 14}{res}{space 2} -.246852{col 26}{space 2} .0319159{col 54}{space 4} -.309406{col 67}{space 3} -.184298
+    /lnalpha {c |}{col 14}{res}{space 2}-.5443067{col 26}{space 2} .0239625{col 54}{space 4}-.5912723{col 67}{space 3}-.4973411
 {txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-       alpha {c |}{col 14}{res}{space 2} .7812563{col 26}{space 2} .0249345{col 54}{space 4} .7338827{col 67}{space 3} .8316879
+       alpha {c |}{col 14}{res}{space 2} .5802439{col 26}{space 2} .0139041{col 54}{space 4} .5536224{col 67}{space 3} .6081455
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-LR test of alpha=0: {help j_chibar##|_new:chibar2(01) = }{res}1.3e+04{col 56}{txt}Prob >= chibar2 = {res}0.000
+{p 0 6 2}Note: {help eform_option:Estimates are transformed} only in the first equation.{p_end}
+{p 0 6 2}Note: {res:_cons} estimates baseline incidence rate{txt}.{p_end}
+LR test of alpha=0: {help j_chibar##|_new:chibar2(01) = }{res}3966.27{col 56}{txt}Prob >= chibar2 = {res}0.000
 {txt}
+{com}. //_35
+. predict yhat
+{txt}(option {bf:n} assumed; predicted number of events)
+
+{com}. //_36
+. histogram yhat, scheme(michigan) 
+{txt}(bin={res}44{txt}, start={res}.50284678{txt}, width={res}.05128577{txt})
+{res}{txt}
+{com}. //_37
+. graph export myyhats.png, width(1000) replace
+{txt}(file myyhats.png written in PNG format)
+
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}20 Oct 2020, 12:43:01
+ {txt}closed on:  {res}20 Oct 2020, 15:14:21
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
