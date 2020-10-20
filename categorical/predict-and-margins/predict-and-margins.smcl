@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins/predict-and-margins.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}23 Sep 2020, 14:35:15
+ {txt}opened on:  {res}20 Oct 2020, 15:04:12
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}23 Sep 2020
+{res}20 Oct 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}14:35:15
+{res}15:04:12
 {txt}
 {com}. //_3
 . clear all
@@ -24,23 +24,12 @@
 . use "NSCH_ACES.dta", clear
 {txt}
 {com}. //_6
-. describe
+. describe depress ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R
 
-{txt}Contains data from {res}NSCH_ACES.dta
-{txt}  obs:{res}        30,530                          
-{txt} vars:{res}            13                          23 Sep 2020 13:49
-{txt} size:{res}       488,480                          
-{txt}{hline}
-              storage   display    value
+              {txt}storage   display    value
 variable name   type    format     label      variable label
 {hline}
-{p 0 48}{res}{bind:sc_sex         }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{txt}sc_sex_lab{p_end}
-{p 0 48}{space 44}{bind:  }{res}{res}Sex of Selected Child{p_end}
-{p 0 48}{bind:sc_race_r      }{txt}{bind: byte    }{bind:{txt}%48.0g    }{space 1}{txt}sc_race_r_lab{p_end}
-{p 0 48}{space 44}{bind:  }{res}{res}Race of Selected Child, Detailed{p_end}
-{p 0 48}{bind:sc_racer       }{txt}{bind: byte    }{bind:{txt}%31.0g    }{space 1}{txt}sc_racer_lab{p_end}
-{p 0 48}{space 44}{bind:  }{res}{res}Race of Selected Child, Recode{p_end}
-{p 0 48}{bind:depress        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{p 0 48}{res}{bind:depress        }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of k2q32b (Depression Currently){p_end}
 {p 0 48}{bind:ace1R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace1 (Hard to Cover Basics Like Food or Housing){p_end}
 {p 0 48}{bind:ace3R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace3 (Child Experienced - Parent or Guardian Divorced){p_end}
 {p 0 48}{bind:ace4R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace4 (Child Experienced - Parent or Guardian Died){p_end}
@@ -49,56 +38,51 @@ variable name   type    format     label      variable label
 {p 0 48}{bind:ace7R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace7 (Child Experienced - Victim of Violence){p_end}
 {p 0 48}{bind:ace8R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace8 (Child Experienced - Lived with Mentally Ill){p_end}
 {p 0 48}{bind:ace9R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace9 (Child Experienced - Lived with Person with Alcohol/Drug Problem){p_end}
-{p 0 48}{bind:ace10R         }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace10 (Child Experienced - Treated Unfairly Because of Race){p_end}
-{txt}{hline}
-Sorted by: 
-
+{txt}
 {com}. //_7
-. logit depress ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R ace10R i.sc_race_r i.sc_sex, or
+. logit depress ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R i.sc_race_r i.sc_sex, or
 
-{res}{txt}Iteration 0:{space 3}log likelihood = {res:-4742.8248}  
-Iteration 1:{space 3}log likelihood = {res:-4256.2811}  
-Iteration 2:{space 3}log likelihood = {res:-4180.3512}  
-Iteration 3:{space 3}log likelihood = {res:-4179.6624}  
-Iteration 4:{space 3}log likelihood = {res: -4179.661}  
-Iteration 5:{space 3}log likelihood = {res: -4179.661}  
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-760.76202}  
+Iteration 1:{space 3}log likelihood = {res:-739.43605}  
+Iteration 2:{space 3}log likelihood = {res:  -739.012}  
+Iteration 3:{space 3}log likelihood = {res:-739.01149}  
+Iteration 4:{space 3}log likelihood = {res:-739.01149}  
 {res}
-{txt}Logistic regression{col 49}Number of obs{col 67}= {res}    28,926
-{txt}{col 49}LR chi2({res}16{txt}){col 67}= {res}   1126.33
-{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res} -4179.661{txt}{col 49}Pseudo R2{col 67}= {res}    0.1187
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     1,442
+{txt}{col 49}LR chi2({res}15{txt}){col 67}= {res}     43.50
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0001
+{txt}Log likelihood = {res}-739.01149{txt}{col 49}Pseudo R2{col 67}= {res}    0.0286
 
-{txt}{hline 26}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}                  depress{col 27}{c |} Odds Ratio{col 39}   Std. Err.{col 51}      z{col 59}   P>|z|{col 67}     [95% Con{col 80}f. Interval]
-{hline 26}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 20}ace1R {c |}{col 27}{res}{space 2} 1.611495{col 39}{space 2} .1106592{col 50}{space 1}    6.95{col 59}{space 3}0.000{col 67}{space 4} 1.408569{col 80}{space 3} 1.843656
-{txt}{space 20}ace3R {c |}{col 27}{res}{space 2} 1.627997{col 39}{space 2} .1212124{col 50}{space 1}    6.55{col 59}{space 3}0.000{col 67}{space 4} 1.406946{col 80}{space 3} 1.883778
-{txt}{space 20}ace4R {c |}{col 27}{res}{space 2}  1.78926{col 39}{space 2} .2211975{col 50}{space 1}    4.71{col 59}{space 3}0.000{col 67}{space 4} 1.404247{col 80}{space 3} 2.279835
-{txt}{space 20}ace5R {c |}{col 27}{res}{space 2} 1.048195{col 39}{space 2} .1097253{col 50}{space 1}    0.45{col 59}{space 3}0.653{col 67}{space 4} .8537646{col 80}{space 3} 1.286904
-{txt}{space 20}ace6R {c |}{col 27}{res}{space 2} 1.136375{col 39}{space 2} .1253184{col 50}{space 1}    1.16{col 59}{space 3}0.246{col 67}{space 4} .9154867{col 80}{space 3}  1.41056
-{txt}{space 20}ace7R {c |}{col 27}{res}{space 2}   1.9394{col 39}{space 2} .2129262{col 50}{space 1}    6.03{col 59}{space 3}0.000{col 67}{space 4} 1.563919{col 80}{space 3}  2.40503
-{txt}{space 20}ace8R {c |}{col 27}{res}{space 2}  3.72644{col 39}{space 2} .2966351{col 50}{space 1}   16.53{col 59}{space 3}0.000{col 67}{space 4} 3.188131{col 80}{space 3} 4.355642
-{txt}{space 20}ace9R {c |}{col 27}{res}{space 2} 1.410608{col 39}{space 2} .1304044{col 50}{space 1}    3.72{col 59}{space 3}0.000{col 67}{space 4} 1.176837{col 80}{space 3} 1.690815
-{txt}{space 19}ace10R {c |}{col 27}{res}{space 2} 1.535313{col 39}{space 2} .2020991{col 50}{space 1}    3.26{col 59}{space 3}0.001{col 67}{space 4} 1.186178{col 80}{space 3}  1.98721
-{txt}{space 25} {c |}
-{space 16}sc_race_r {c |}
-Black or African Ameri..  {c |}{col 27}{res}{space 2}  .827289{col 39}{space 2} .1074881{col 50}{space 1}   -1.46{col 59}{space 3}0.144{col 67}{space 4} .6413015{col 80}{space 3} 1.067216
-{txt}American Indian or Ala..  {c |}{col 27}{res}{space 2} .6279865{col 39}{space 2} .2045843{col 50}{space 1}   -1.43{col 59}{space 3}0.153{col 67}{space 4} .3316252{col 80}{space 3} 1.189195
-{txt}{space 13}Asian alone  {c |}{col 27}{res}{space 2} .7145884{col 39}{space 2} .1439746{col 50}{space 1}   -1.67{col 59}{space 3}0.095{col 67}{space 4} .4814561{col 80}{space 3} 1.060609
-{txt}Native Hawaiian and Ot..  {c |}{col 27}{res}{space 2} .2644952{col 39}{space 2} .2745993{col 50}{space 1}   -1.28{col 59}{space 3}0.200{col 67}{space 4}   .03457{col 80}{space 3} 2.023654
-{txt}{space 3}Some Other Race alone  {c |}{col 27}{res}{space 2} .6443303{col 39}{space 2} .1434801{col 50}{space 1}   -1.97{col 59}{space 3}0.048{col 67}{space 4} .4164493{col 80}{space 3} .9969076
-{txt}{space 7}Two or More Races  {c |}{col 27}{res}{space 2}  .616392{col 39}{space 2} .0814335{col 50}{space 1}   -3.66{col 59}{space 3}0.000{col 67}{space 4} .4757754{col 80}{space 3} .7985681
-{txt}{space 25} {c |}
-{space 19}sc_sex {c |}
-{space 18}Female  {c |}{col 27}{res}{space 2} 1.468479{col 39}{space 2} .0935905{col 50}{space 1}    6.03{col 59}{space 3}0.000{col 67}{space 4} 1.296039{col 80}{space 3} 1.663862
-{txt}{space 20}_cons {c |}{col 27}{res}{space 2} .0150195{col 39}{space 2} .0010428{col 50}{space 1}  -60.47{col 59}{space 3}0.000{col 67}{space 4} .0131087{col 80}{space 3} .0172089
-{txt}{hline 26}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     depress{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}ace1R {c |}{col 14}{res}{space 2} 1.275539{col 26}{space 2}  .177745{col 37}{space 1}    1.75{col 46}{space 3}0.081{col 54}{space 4}  .970688{col 67}{space 3}  1.67613
+{txt}{space 7}ace3R {c |}{col 14}{res}{space 2} .8328396{col 26}{space 2} .1225773{col 37}{space 1}   -1.24{col 46}{space 3}0.214{col 54}{space 4} .6241393{col 67}{space 3} 1.111325
+{txt}{space 7}ace4R {c |}{col 14}{res}{space 2}  1.03589{col 26}{space 2} .2559531{col 37}{space 1}    0.14{col 46}{space 3}0.887{col 54}{space 4} .6382551{col 67}{space 3} 1.681253
+{txt}{space 7}ace5R {c |}{col 14}{res}{space 2} 1.238661{col 26}{space 2} .2620121{col 37}{space 1}    1.01{col 46}{space 3}0.312{col 54}{space 4} .8182749{col 67}{space 3}  1.87502
+{txt}{space 7}ace6R {c |}{col 14}{res}{space 2} 1.242079{col 26}{space 2}  .284433{col 37}{space 1}    0.95{col 46}{space 3}0.344{col 54}{space 4} .7929142{col 67}{space 3} 1.945684
+{txt}{space 7}ace7R {c |}{col 14}{res}{space 2} 1.438336{col 26}{space 2} .3249996{col 37}{space 1}    1.61{col 46}{space 3}0.108{col 54}{space 4} .9236915{col 67}{space 3}  2.23972
+{txt}{space 7}ace8R {c |}{col 14}{res}{space 2} 1.931751{col 26}{space 2} .3179664{col 37}{space 1}    4.00{col 46}{space 3}0.000{col 54}{space 4} 1.399082{col 67}{space 3} 2.667221
+{txt}{space 7}ace9R {c |}{col 14}{res}{space 2} .6476801{col 26}{space 2} .1088199{col 37}{space 1}   -2.59{col 46}{space 3}0.010{col 54}{space 4} .4659572{col 67}{space 3} .9002747
+{txt}{space 12} {c |}
+{space 3}sc_race_r {c |}
+Black or ..  {c |}{col 14}{res}{space 2} 1.150371{col 26}{space 2} .3258065{col 37}{space 1}    0.49{col 46}{space 3}0.621{col 54}{space 4} .6603312{col 67}{space 3} 2.004075
+{txt}American ..  {c |}{col 14}{res}{space 2} .7002442{col 26}{space 2} .4236335{col 37}{space 1}   -0.59{col 46}{space 3}0.556{col 54}{space 4}  .213939{col 67}{space 3} 2.291971
+{txt}Asian alone  {c |}{col 14}{res}{space 2} 1.222781{col 26}{space 2} .5325791{col 37}{space 1}    0.46{col 46}{space 3}0.644{col 54}{space 4} .5207269{col 67}{space 3} 2.871358
+{txt}Native Ha..  {c |}{col 14}{res}{space 2} .2318806{col 26}{space 2} .3550441{col 37}{space 1}   -0.95{col 46}{space 3}0.340{col 54}{space 4} .0115331{col 67}{space 3} 4.662103
+{txt}Some Othe..  {c |}{col 14}{res}{space 2} .7923493{col 26}{space 2} .3360807{col 37}{space 1}   -0.55{col 46}{space 3}0.583{col 54}{space 4} .3450431{col 67}{space 3} 1.819533
+{txt}Two or Mo..  {c |}{col 14}{res}{space 2} .7852821{col 26}{space 2} .1983556{col 37}{space 1}   -0.96{col 46}{space 3}0.339{col 54}{space 4} .4786515{col 67}{space 3} 1.288345
+{txt}{space 12} {c |}
+{space 6}sc_sex {c |}
+{space 5}Female  {c |}{col 14}{res}{space 2}  1.36572{col 26}{space 2} .1769313{col 37}{space 1}    2.41{col 46}{space 3}0.016{col 54}{space 4} 1.059466{col 67}{space 3} 1.760501
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.357814{col 26}{space 2} .3247614{col 37}{space 1}    6.23{col 46}{space 3}0.000{col 54}{space 4} 1.799975{col 67}{space 3} 3.088536
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
 
 {com}. //_8
 . predict yhat
 {txt}(option {bf:pr} assumed; Pr(depress))
-(1,604 missing values generated)
+(1,558 missing values generated)
 
 {com}. //_9
 . tabulate sc_race_r, summarize(yhat)
@@ -108,15 +92,15 @@ Black or African Ameri..  {c |}{col 27}{res}{space 2}  .827289{col 39}{space 2} 
      Child, {c |}       Summary of Pr(depress)
    Detailed {c |}        Mean   Std. Dev.       Freq.
 {hline 12}{c +}{hline 36}
-  White alo {c |}  {res} .04050317   .05252093      22,418
-  {txt}Black or  {c |}  {res} .04153355   .05702566       1,878
-  {txt}American  {c |}  {res} .05128205   .08430179         234
-  {txt}Asian alo {c |}  {res} .01963636   .01999562       1,375
-  {txt}Native Ha {c |}  {res} .01369863   .02790487          73
-  {txt}Some Othe {c |}  {res} .03038309   .04326265         757
-  {txt}Two or Mo {c |}  {res} .03286171   .05022293       2,191
+  White alo {c |}  {res} .75045109   .05197594      22,445
+  {txt}Black or  {c |}  {res} .78322165   .04940146       1,881
+  {txt}American  {c |}  {res} .69508786   .07204945         235
+  {txt}Asian alo {c |}  {res} .78128584   .03714901       1,377
+  {txt}Native Ha {c |}  {res} .40799774   .06911794          73
+  {txt}Some Othe {c |}  {res} .71235484   .05558899         763
+  {txt}Two or Mo {c |}  {res} .70971281   .06233783       2,198
 {txt}{hline 12}{c +}{hline 36}
-      Total {c |}  {res} .03875406   .05190828      28,926
+      Total {c |}  {res} .74863835   .05781597      28,972
 {txt}
 {com}. //_10
 . graph bar yhat, ///
@@ -131,26 +115,26 @@ Black or African Ameri..  {c |}{col 27}{res}{space 2}  .827289{col 39}{space 2} 
 {com}. //_12
 . margins sc_race_r // predictive margins 
 {res}
-{txt}Predictive margins{col 49}Number of obs{col 67}= {res}    28,926
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}     1,442
 {txt}Model VCE{col 14}: {res}OIM
 
 {txt}{p2colset 1 14 16 2}{...}
 {p2col:Expression}:{space 1}{res:Pr(depress), predict()}{p_end}
 {p2colreset}{...}
 
-{res}{txt}{hline 26}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 27}{c |}{col 39} Delta-method
-{col 27}{c |}     Margin{col 39}   Std. Err.{col 51}      z{col 59}   P>|z|{col 67}     [95% Con{col 80}f. Interval]
-{hline 26}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 16}sc_race_r {c |}
-{space 13}White alone  {c |}{col 27}{res}{space 2} .0415443{col 39}{space 2} .0013092{col 50}{space 1}   31.73{col 59}{space 3}0.000{col 67}{space 4} .0389785{col 80}{space 3} .0441102
-{txt}Black or African Ameri..  {c |}{col 27}{res}{space 2} .0350812{col 39}{space 2} .0038971{col 50}{space 1}    9.00{col 59}{space 3}0.000{col 67}{space 4} .0274431{col 80}{space 3} .0427194
-{txt}American Indian or Ala..  {c |}{col 27}{res}{space 2} .0273233{col 39}{space 2} .0080773{col 50}{space 1}    3.38{col 59}{space 3}0.001{col 67}{space 4} .0114921{col 80}{space 3} .0431546
-{txt}{space 13}Asian alone  {c |}{col 27}{res}{space 2} .0307367{col 39}{space 2} .0055275{col 50}{space 1}    5.56{col 59}{space 3}0.000{col 67}{space 4}  .019903{col 80}{space 3} .0415704
-{txt}Native Hawaiian and Ot..  {c |}{col 27}{res}{space 2} .0121547{col 39}{space 2} .0120465{col 50}{space 1}    1.01{col 59}{space 3}0.313{col 67}{space 4}-.0114559{col 80}{space 3} .0357653
-{txt}{space 3}Some Other Race alone  {c |}{col 27}{res}{space 2} .0279727{col 39}{space 2} .0056061{col 50}{space 1}    4.99{col 59}{space 3}0.000{col 67}{space 4}  .016985{col 80}{space 3} .0389605
-{txt}{space 7}Two or More Races  {c |}{col 27}{res}{space 2} .0268611{col 39}{space 2} .0031053{col 50}{space 1}    8.65{col 59}{space 3}0.000{col 67}{space 4} .0207748{col 80}{space 3} .0329474
-{txt}{hline 26}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}sc_race_r {c |}
+White alone  {c |}{col 14}{res}{space 2} .7819423{col 26}{space 2}  .011883{col 37}{space 1}   65.80{col 46}{space 3}0.000{col 54}{space 4}  .758652{col 67}{space 3} .8052326
+{txt}Black or ..  {c |}{col 14}{res}{space 2} .8043012{col 26}{space 2} .0419853{col 37}{space 1}   19.16{col 46}{space 3}0.000{col 54}{space 4} .7220115{col 67}{space 3} .8865909
+{txt}American ..  {c |}{col 14}{res}{space 2} .7173792{col 26}{space 2} .1176945{col 37}{space 1}    6.10{col 46}{space 3}0.000{col 54}{space 4} .4867023{col 67}{space 3} .9480561
+{txt}Asian alone  {c |}{col 14}{res}{space 2} .8135006{col 26}{space 2} .0635869{col 37}{space 1}   12.79{col 46}{space 3}0.000{col 54}{space 4} .6888727{col 67}{space 3} .9381286
+{txt}Native Ha..  {c |}{col 14}{res}{space 2} .4675318{col 26}{space 2} .3641302{col 37}{space 1}    1.28{col 46}{space 3}0.199{col 54}{space 4}-.2461503{col 67}{space 3} 1.181214
+{txt}Some Othe..  {c |}{col 14}{res}{space 2} .7409869{col 26}{space 2} .0777287{col 37}{space 1}    9.53{col 46}{space 3}0.000{col 54}{space 4} .5886414{col 67}{space 3} .8933323
+{txt}Two or Mo..  {c |}{col 14}{res}{space 2} .7393176{col 26}{space 2} .0451682{col 37}{space 1}   16.37{col 46}{space 3}0.000{col 54}{space 4} .6507896{col 67}{space 3} .8278456
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
 {com}. //_13
 . marginsplot, ///
@@ -170,7 +154,7 @@ Black or African Ameri..  {c |}{col 27}{res}{space 2}  .827289{col 39}{space 2} 
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins/predict-and-margins.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}23 Sep 2020, 14:35:21
+ {txt}closed on:  {res}20 Oct 2020, 15:04:15
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

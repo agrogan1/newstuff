@@ -22,13 +22,13 @@ The data are an extract of the *National Survey of Children's Health, 2018*. The
 
     use "NSCH_ACES.dta", clear
 
-    describe
+    describe depress ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R
 
 # Logistic Regression
 
 We estimate a logistic regression using `,or` to ask for *odds ratios*.
 
-    logit depress ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R ace10R i.sc_race_r i.sc_sex, or
+    logit depress ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R i.sc_race_r i.sc_sex, or
 
 # Predicted Probabilities
 
