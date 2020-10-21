@@ -151,7 +151,9 @@ $$
 	
 ![Forest Fires At Random Times](fires.png){ width=70% }
 
-# Poisson Regression (National Survey Of Children's Health)
+# Poisson Regression 
+
+## National Survey of Children's Health (2018)
 
 The data are an extract of the *National Survey of Children's Health, 2018*. The data contain information on children's exposure to various *Adverse Childhood Experiences* (ACEs) and their demographic characteristics.
 
@@ -161,6 +163,8 @@ The data are an extract of the *National Survey of Children's Health, 2018*. The
 	
 	describe
 	
+## Generate Count of Aces
+	
 	egen acecount = anycount(ace*R), values(1) // generate count of ACES
 	
     histogram acecount, discrete scheme(michigan)
@@ -168,10 +172,12 @@ The data are an extract of the *National Survey of Children's Health, 2018*. The
 	graph export myhistogram3.png, width(1000) replace
 	
 ![Count of ACEs](myhistogram3.png){ width=50% }
+
+## Poisson Regression
     	
     poisson acecount sc_sex i.sc_race_r i.higrade
 		
-# Incidence Rate Ratios
+## Incidence Rate Ratios
 	
 	poisson, irr
 	

@@ -81,10 +81,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <li>☎️ Calls to a call center (business, crisis hotline, etc.)</li>
 <li>🏥 Arrivals at the Emergency Room</li>
 </ul>
-<h1 id="other-canonical-examples-of-count-data-r.7-r.8">Other Canonical Examples of Count Data 🎄 🤧</h1>
+<h1 id="other-canonical-examples-of-count-data-r.7-r.8">Other Canonical Examples of Count Data 🎄 🤒</h1>
 <ul>
-<li>🏵 🌲 🌰 Plants / trees in a field</li>
-<li>🤒 🤢 🤒 Cases of disease / unit area</li>
+<li>🌰 🎋 🌱 Plants / trees in a field</li>
+<li>🤮 💊 😷 Cases of disease / unit area</li>
 </ul>
 <h1 id="poisson-distribution">Poisson Distribution</h1>
 <h2 id="theorizing-about-the-poisson-r.15-r.16-r.17-r.18-r.19-r.20">Theorizing about the Poisson 🐟 🐟 🐟 🌴 🌲 🌳</h2>
@@ -116,7 +116,7 @@ number of observations (_N) was 0, now 1,000
 <pre class='stata'>. generate x = rnormal() // normally distributed random variable
 </pre>
 <pre class='stata'>. histogram x, title("Normally Distributed Random Variable") scheme(michigan)
-(bin=29, start=-3.1667628, width=.23144381)
+(bin=29, start=-3.1348748, width=.20447365)
 </pre>
 <pre class='stata'>. graph export myhistogram.png, width(500) replace
 (file myhistogram.png written in PNG format)
@@ -134,7 +134,7 @@ number of observations (_N) was 0, now 1,000
 <pre class='stata'>. generate w = rpoisson(.5)
 </pre>
 <pre class='stata'>. histogram w, title("Poisson Distributed Random Variable") scheme(michigan)
-(bin=29, start=0, width=.10344828)
+(bin=29, start=0, width=.17241379)
 </pre>
 <pre class='stata'>. graph export myhistogram2.png, width(500) replace
 (file myhistogram2.png written in PNG format)
@@ -142,7 +142,7 @@ number of observations (_N) was 0, now 1,000
 <figure>
 <img src="myhistogram2.png" alt="" /><figcaption>histogram of random Poisson variable</figcaption>
 </figure>
-<h2 id="poisson-is-the-natural-form-for-observations-distributed-in-time-or-space-r.21-r.22-r.23-r.24-r.25-r.26">Poisson is the Natural Form for Observations Distributed in Time or Space 🏭 🏭 🏫 ⏳ ⏳ ⏳</h2>
+<h2 id="poisson-is-the-natural-form-for-observations-distributed-in-time-or-space-r.21-r.22-r.23-r.24-r.25-r.26">Poisson is the Natural Form for Observations Distributed in Time or Space 🏭 🏢 🏦 ⏳ ⏳ ⏳</h2>
 <p><span class="math display">\[ 
     x \sim Poisson(\lambda)
 \]</span></p>
@@ -159,8 +159,8 @@ number of observations (_N) was 0, now 20
 <pre class='stata'>. generate mycount = rpoisson(1)
 </pre>
 <pre class='stata'>. expand mycount // create individual observations
-(7 zero counts ignored; observations not deleted)
-(7 observations created)
+(8 zero counts ignored; observations not deleted)
+(12 observations created)
 </pre>
 <pre class='stata'>. generate x = runiform(1,10) // random x coordinate
 </pre>
@@ -206,7 +206,8 @@ number of observations (_N) was 0, now 20
 <figure>
 <img src="fires.png" style="width:70.0%" alt="" /><figcaption>Forest Fires At Random Times</figcaption>
 </figure>
-<h1 id="poisson-regression-national-survey-of-childrens-health">Poisson Regression (National Survey Of Children’s Health)</h1>
+<h1 id="poisson-regression">Poisson Regression</h1>
+<h2 id="national-survey-of-childrens-health-2018">National Survey of Children’s Health (2018)</h2>
 <p>The data are an extract of the <em>National Survey of Children’s Health, 2018</em>. The data contain information on children’s exposure to various <em>Adverse Childhood Experiences</em> (ACEs) and their demographic characteristics.</p>
 <pre class='stata'>. clear all
 </pre>
@@ -283,6 +284,7 @@ ace10R          byte    %9.0g                 RECODE of ace10 (Child
 ──────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
+<h2 id="generate-count-of-aces">Generate Count of Aces</h2>
 <pre class='stata'>. egen acecount = anycount(ace*R), values(1) // generate count of ACES
 </pre>
 <pre class='stata'>. histogram acecount, discrete scheme(michigan)
@@ -294,6 +296,7 @@ Sorted by:
 <figure>
 <img src="myhistogram3.png" style="width:50.0%" alt="" /><figcaption>Count of ACEs</figcaption>
 </figure>
+<h2 id="poisson-regression-1">Poisson Regression</h2>
 <pre class='stata'>. poisson acecount sc_sex i.sc_race_r i.higrade
 
 Iteration 0:   log likelihood = -44759.253  
@@ -325,7 +328,7 @@ More than..  │  -.3786108    .030587   -12.38   0.000    -.4385602   -.3186615
        _cons │   .3399425   .0345283     9.85   0.000     .2722683    .4076166
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
-<h1 id="incidence-rate-ratios">Incidence Rate Ratios</h1>
+<h2 id="incidence-rate-ratios">Incidence Rate Ratios</h2>
 <pre class='stata'>. poisson, irr
 
 Poisson regression                              Number of obs     =     30,530
