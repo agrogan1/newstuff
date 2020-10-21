@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Interactions in Logistic Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">9 Jul 2020</p>
+<p class="date">21 Oct 2020</p>
 </header>
 <h1 id="background">Background</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -87,10 +87,10 @@ Contains data from http://www.stata-press.com/data/r15/margex.dta
   obs:         3,000                          Artificial data for margins
  vars:            11                          27 Nov 2016 14:27
  size:        78,000                          
-─────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────
               storage   display    value
 variable name   type    format     label      variable label
-─────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────
 y               float   %6.1f                 
 outcome         byte    %2.0f                 
 sex             byte    %6.0f      sexlbl     
@@ -102,7 +102,7 @@ yc              float   %6.1f
 treatment       byte    %2.0f                 
 agegroup        byte    %8.0g      agelab     
 arm             byte    %8.0g                 
-─────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────
 Sorted by: group
 </pre>
 <h1 id="estimate-logistic-regression">Estimate Logistic Regression</h1>
@@ -110,32 +110,35 @@ Sorted by: group
 <blockquote>
 <p>We note that the regression coefficient for the interaction term is not statistically significant.</p>
 </blockquote>
-<pre class='stata'>. logit outcome sex##c.age group
+<pre class='stata'>. logit outcome sex##c.age i.group
 
 Iteration 0:   log likelihood = -1366.0718  
-Iteration 1:   log likelihood = -1117.9739  
-Iteration 2:   log likelihood = -1070.4331  
-Iteration 3:   log likelihood = -1068.1463  
-Iteration 4:   log likelihood = -1068.1394  
-Iteration 5:   log likelihood = -1068.1394  
+Iteration 1:   log likelihood =  -1118.129  
+Iteration 2:   log likelihood = -1070.8227  
+Iteration 3:   log likelihood = -1068.0102  
+Iteration 4:   log likelihood =   -1067.99  
+Iteration 5:   log likelihood =   -1067.99  
 
 Logistic regression                             Number of obs     =      3,000
-                                                LR chi2(4)        =     595.86
+                                                LR chi2(5)        =     596.16
                                                 Prob > chi2       =     0.0000
-Log likelihood = -1068.1394                     Pseudo R2         =     0.2181
+Log likelihood =   -1067.99                     Pseudo R2         =     0.2182
 
 ─────────────┬────────────────────────────────────────────────────────────────
      outcome │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
          sex │
-     female  │   .6128018   .6410998     0.96   0.339    -.6437307    1.869334
-         age │   .0919461    .011215     8.20   0.000     .0699652    .1139271
+     female  │   .5565025   .6488407     0.86   0.391    -.7152019    1.828207
+         age │   .0910807   .0113215     8.04   0.000     .0688909    .1132704
              │
    sex#c.age │
-     female  │  -.0023741   .0132292    -0.18   0.858    -.0283028    .0235547
+     female  │   -.001211   .0134012    -0.09   0.928    -.0274769     .025055
              │
-       group │  -.6267288   .1119308    -5.60   0.000    -.8461092   -.4073484
-       _cons │  -5.000151   .6104382    -8.19   0.000    -6.196588   -3.803714
+       group │
+          2  │  -.5854237   .1349791    -4.34   0.000    -.8499779   -.3208696
+          3  │  -1.355227   .2965301    -4.57   0.000    -1.936416   -.7740391
+             │
+       _cons │  -5.592272   .5583131   -10.02   0.000    -6.686545   -4.497998
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="margins">Margins</h1>
@@ -162,16 +165,16 @@ Expression   : Pr(outcome), predict()
              │     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
      _at#sex │
-     1#male  │   .0147659   .0046146     3.20   0.001     .0057214    .0238104
-   1#female  │   .0256473   .0055867     4.59   0.000     .0146975    .0365971
-     2#male  │    .036082   .0074358     4.85   0.000     .0215081    .0506559
-   2#female  │   .0601807   .0086289     6.97   0.000     .0432683     .077093
-     3#male  │   .0850702    .009884     8.61   0.000     .0656979    .1044425
-   3#female  │   .1338511   .0108109    12.38   0.000     .1126622    .1550401
-     4#male  │   .1859699   .0163525    11.37   0.000     .1539195    .2180202
-   4#female  │     .26897   .0156965    17.14   0.000     .2382054    .2997346
-     5#male  │   .3558393   .0405971     8.77   0.000     .2762704    .4354082
-   5#female  │   .4632205   .0316107    14.65   0.000     .4012647    .5251762
+     1#male  │   .0150645   .0047348     3.18   0.001     .0057846    .0243445
+   1#female  │    .025333   .0055508     4.56   0.000     .0144536    .0362124
+     2#male  │   .0364848   .0075444     4.84   0.000     .0216981    .0512714
+   2#female  │   .0596255   .0086074     6.93   0.000     .0427552    .0764958
+     3#male  │   .0852689   .0099016     8.61   0.000     .0658622    .1046757
+   3#female  │   .1329912   .0108127    12.30   0.000     .1117987    .1541838
+     4#male  │   .1849367   .0163684    11.30   0.000     .1528551    .2170182
+   4#female  │    .267774   .0156218    17.14   0.000     .2371558    .2983921
+     5#male  │   .3518378   .0408522     8.61   0.000      .271769    .4319066
+   5#female  │   .4614446   .0314754    14.66   0.000     .3997539    .5231353
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="plotting-margins">Plotting Margins</h1>
@@ -217,16 +220,16 @@ Expression   : Pr(outcome), predict()
              │     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
      _at#sex │
-     1#male  │   .0147659   .0046146     3.20   0.001     .0057214    .0238104
-   1#female  │   .0256473   .0055867     4.59   0.000     .0146975    .0365971
-     2#male  │    .036082   .0074358     4.85   0.000     .0215081    .0506559
-   2#female  │   .0601807   .0086289     6.97   0.000     .0432683     .077093
-     3#male  │   .0850702    .009884     8.61   0.000     .0656979    .1044425
-   3#female  │   .1338511   .0108109    12.38   0.000     .1126622    .1550401
-     4#male  │   .1859699   .0163525    11.37   0.000     .1539195    .2180202
-   4#female  │     .26897   .0156965    17.14   0.000     .2382054    .2997346
-     5#male  │   .3558393   .0405971     8.77   0.000     .2762704    .4354082
-   5#female  │   .4632205   .0316107    14.65   0.000     .4012647    .5251762
+     1#male  │   .0150645   .0047348     3.18   0.001     .0057846    .0243445
+   1#female  │    .025333   .0055508     4.56   0.000     .0144536    .0362124
+     2#male  │   .0364848   .0075444     4.84   0.000     .0216981    .0512714
+   2#female  │   .0596255   .0086074     6.93   0.000     .0427552    .0764958
+     3#male  │   .0852689   .0099016     8.61   0.000     .0658622    .1046757
+   3#female  │   .1329912   .0108127    12.30   0.000     .1117987    .1541838
+     4#male  │   .1849367   .0163684    11.30   0.000     .1528551    .2170182
+   4#female  │    .267774   .0156218    17.14   0.000     .2371558    .2983921
+     5#male  │   .3518378   .0408522     8.61   0.000      .271769    .4319066
+   5#female  │   .4614446   .0314754    14.66   0.000     .3997539    .5231353
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="margins-with-coeflegend"><code>margins</code> with <code>coeflegend</code></h1>
@@ -252,16 +255,16 @@ Expression   : Pr(outcome), predict()
              │     Margin  Legend
 ─────────────┼────────────────────────────────────────────────────────────────
      _at#sex │
-     1#male  │   .0147659  _b[1bn._at#0bn.sex]
-   1#female  │   .0256473  _b[1bn._at#1.sex]
-     2#male  │    .036082  _b[2._at#0bn.sex]
-   2#female  │   .0601807  _b[2._at#1.sex]
-     3#male  │   .0850702  _b[3._at#0bn.sex]
-   3#female  │   .1338511  _b[3._at#1.sex]
-     4#male  │   .1859699  _b[4._at#0bn.sex]
-   4#female  │     .26897  _b[4._at#1.sex]
-     5#male  │   .3558393  _b[5._at#0bn.sex]
-   5#female  │   .4632205  _b[5._at#1.sex]
+     1#male  │   .0150645  _b[1bn._at#0bn.sex]
+   1#female  │    .025333  _b[1bn._at#1.sex]
+     2#male  │   .0364848  _b[2._at#0bn.sex]
+   2#female  │   .0596255  _b[2._at#1.sex]
+     3#male  │   .0852689  _b[3._at#0bn.sex]
+   3#female  │   .1329912  _b[3._at#1.sex]
+     4#male  │   .1849367  _b[4._at#0bn.sex]
+   4#female  │    .267774  _b[4._at#1.sex]
+     5#male  │   .3518378  _b[5._at#0bn.sex]
+   5#female  │   .4614446  _b[5._at#1.sex]
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="testing-margins-against-each-other">Testing Margins Against Each Other</h1>
@@ -273,15 +276,26 @@ Expression   : Pr(outcome), predict()
 
  ( 1)  1bn._at#0bn.sex - 1bn._at#1.sex = 0
 
-           chi2(  1) =    2.29
-         Prob > chi2 =    0.1303
+           chi2(  1) =    1.99
+         Prob > chi2 =    0.1583
 </pre>
 <pre class='stata'>. test  _b[5._at#0bn.sex] =  _b[5._at#1.sex] // male and female at age 60
 
  ( 1)  5._at#0bn.sex - 5._at#1.sex = 0
 
-           chi2(  1) =    4.91
-         Prob > chi2 =    0.0267
+           chi2(  1) =    5.16
+         Prob > chi2 =    0.0232
+</pre>
+<blockquote>
+<p>There is some suggestion that the difference of the differences is statistically significant, but this statistical significance is only marginal [pun intended].</p>
+</blockquote>
+<pre class='stata'>. test _b[1bn._at#1.sex] - _b[1bn._at#0bn.sex] = _b[5._at#1.sex] - _b[5._at#0b
+> n.sex] // test equivalence of the differences
+
+ ( 1)  - 1bn._at#0bn.sex + 1bn._at#1.sex + 5._at#0bn.sex - 5._at#1.sex = 0
+
+           chi2(  1) =    3.62
+         Prob > chi2 =    0.0572
 </pre>
 <h1 id="references">References</h1>
 <p>Ai, C., &amp; Norton, E. C. (2003). Interaction terms in logit and probit models. <em>Economics Letters</em>. <a href="https://doi.org/10.1016/S0165-1765(03)00032-6">https://doi.org/10.1016/S0165-1765(03)00032-6</a></p>

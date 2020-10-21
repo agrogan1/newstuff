@@ -42,7 +42,7 @@ We then run a logistic regression model in which `outcome` is the dependent vari
 
 > We note that the regression coefficient for the interaction term is not statistically significant. 
 
-    logit outcome sex##c.age group
+    logit outcome sex##c.age i.group
 
 # Margins
 
@@ -87,8 +87,11 @@ Lastly, we test the margins at age 20 for men and women, and again at age 60 for
     test _b[1bn._at#0bn.sex] = _b[1bn._at#1.sex] // male and female at age 20
 
     test  _b[5._at#0bn.sex] =  _b[5._at#1.sex] // male and female at age 60
+	
+> There is some suggestion that the difference of the differences is statistically significant, but this statistical significance is only marginal [pun intended].
 
-
+    test _b[1bn._at#1.sex] - _b[1bn._at#0bn.sex] = _b[5._at#1.sex] - _b[5._at#0bn.sex] // test equivalence of the differences
+	
 # References
 
 Ai, C., & Norton, E. C. (2003). Interaction terms in logit and probit models. *Economics Letters*. [https://doi.org/10.1016/S0165-1765(03)00032-6](https://doi.org/10.1016/S0165-1765(03)00032-6)

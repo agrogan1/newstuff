@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 9 Jul 2020, 15:00:25
+ {txt}opened on:  {res}21 Oct 2020, 15:48:12
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 9 Jul 2020
+{res}21 Oct 2020
 {txt}
 {com}. //_2
 . clear all
@@ -45,32 +45,35 @@ variable name   type    format     label      variable label
 Sorted by: {res}group
 {txt}
 {com}. //_6
-. logit outcome sex##c.age group
+. logit outcome sex##c.age i.group
 
 {res}{txt}Iteration 0:{space 3}log likelihood = {res:-1366.0718}  
-Iteration 1:{space 3}log likelihood = {res:-1117.9739}  
-Iteration 2:{space 3}log likelihood = {res:-1070.4331}  
-Iteration 3:{space 3}log likelihood = {res:-1068.1463}  
-Iteration 4:{space 3}log likelihood = {res:-1068.1394}  
-Iteration 5:{space 3}log likelihood = {res:-1068.1394}  
+Iteration 1:{space 3}log likelihood = {res: -1118.129}  
+Iteration 2:{space 3}log likelihood = {res:-1070.8227}  
+Iteration 3:{space 3}log likelihood = {res:-1068.0102}  
+Iteration 4:{space 3}log likelihood = {res:  -1067.99}  
+Iteration 5:{space 3}log likelihood = {res:  -1067.99}  
 {res}
 {txt}Logistic regression{col 49}Number of obs{col 67}= {res}     3,000
-{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}    595.86
+{txt}{col 49}LR chi2({res}5{txt}){col 67}= {res}    596.16
 {txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-1068.1394{txt}{col 49}Pseudo R2{col 67}= {res}    0.2181
+{txt}Log likelihood = {res}  -1067.99{txt}{col 49}Pseudo R2{col 67}= {res}    0.2182
 
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 1}     outcome{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 9}sex {c |}
-{space 5}female  {c |}{col 14}{res}{space 2} .6128018{col 26}{space 2} .6410998{col 37}{space 1}    0.96{col 46}{space 3}0.339{col 54}{space 4}-.6437307{col 67}{space 3} 1.869334
-{txt}{space 9}age {c |}{col 14}{res}{space 2} .0919461{col 26}{space 2}  .011215{col 37}{space 1}    8.20{col 46}{space 3}0.000{col 54}{space 4} .0699652{col 67}{space 3} .1139271
+{space 5}female  {c |}{col 14}{res}{space 2} .5565025{col 26}{space 2} .6488407{col 37}{space 1}    0.86{col 46}{space 3}0.391{col 54}{space 4}-.7152019{col 67}{space 3} 1.828207
+{txt}{space 9}age {c |}{col 14}{res}{space 2} .0910807{col 26}{space 2} .0113215{col 37}{space 1}    8.04{col 46}{space 3}0.000{col 54}{space 4} .0688909{col 67}{space 3} .1132704
 {txt}{space 12} {c |}
 {space 3}sex#c.age {c |}
-{space 5}female  {c |}{col 14}{res}{space 2}-.0023741{col 26}{space 2} .0132292{col 37}{space 1}   -0.18{col 46}{space 3}0.858{col 54}{space 4}-.0283028{col 67}{space 3} .0235547
+{space 5}female  {c |}{col 14}{res}{space 2} -.001211{col 26}{space 2} .0134012{col 37}{space 1}   -0.09{col 46}{space 3}0.928{col 54}{space 4}-.0274769{col 67}{space 3}  .025055
 {txt}{space 12} {c |}
-{space 7}group {c |}{col 14}{res}{space 2}-.6267288{col 26}{space 2} .1119308{col 37}{space 1}   -5.60{col 46}{space 3}0.000{col 54}{space 4}-.8461092{col 67}{space 3}-.4073484
-{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-5.000151{col 26}{space 2} .6104382{col 37}{space 1}   -8.19{col 46}{space 3}0.000{col 54}{space 4}-6.196588{col 67}{space 3}-3.803714
+{space 7}group {c |}
+{space 10}2  {c |}{col 14}{res}{space 2}-.5854237{col 26}{space 2} .1349791{col 37}{space 1}   -4.34{col 46}{space 3}0.000{col 54}{space 4}-.8499779{col 67}{space 3}-.3208696
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}-1.355227{col 26}{space 2} .2965301{col 37}{space 1}   -4.57{col 46}{space 3}0.000{col 54}{space 4}-1.936416{col 67}{space 3}-.7740391
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-5.592272{col 26}{space 2} .5583131{col 37}{space 1}  -10.02{col 46}{space 3}0.000{col 54}{space 4}-6.686545{col 67}{space 3}-4.497998
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
 {com}. //_7
@@ -108,16 +111,16 @@ Iteration 5:{space 3}log likelihood = {res:-1068.1394}
 {col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 5}_at#sex {c |}
-{space 5}1#male  {c |}{col 14}{res}{space 2} .0147659{col 26}{space 2} .0046146{col 37}{space 1}    3.20{col 46}{space 3}0.001{col 54}{space 4} .0057214{col 67}{space 3} .0238104
-{txt}{space 3}1#female  {c |}{col 14}{res}{space 2} .0256473{col 26}{space 2} .0055867{col 37}{space 1}    4.59{col 46}{space 3}0.000{col 54}{space 4} .0146975{col 67}{space 3} .0365971
-{txt}{space 5}2#male  {c |}{col 14}{res}{space 2}  .036082{col 26}{space 2} .0074358{col 37}{space 1}    4.85{col 46}{space 3}0.000{col 54}{space 4} .0215081{col 67}{space 3} .0506559
-{txt}{space 3}2#female  {c |}{col 14}{res}{space 2} .0601807{col 26}{space 2} .0086289{col 37}{space 1}    6.97{col 46}{space 3}0.000{col 54}{space 4} .0432683{col 67}{space 3}  .077093
-{txt}{space 5}3#male  {c |}{col 14}{res}{space 2} .0850702{col 26}{space 2}  .009884{col 37}{space 1}    8.61{col 46}{space 3}0.000{col 54}{space 4} .0656979{col 67}{space 3} .1044425
-{txt}{space 3}3#female  {c |}{col 14}{res}{space 2} .1338511{col 26}{space 2} .0108109{col 37}{space 1}   12.38{col 46}{space 3}0.000{col 54}{space 4} .1126622{col 67}{space 3} .1550401
-{txt}{space 5}4#male  {c |}{col 14}{res}{space 2} .1859699{col 26}{space 2} .0163525{col 37}{space 1}   11.37{col 46}{space 3}0.000{col 54}{space 4} .1539195{col 67}{space 3} .2180202
-{txt}{space 3}4#female  {c |}{col 14}{res}{space 2}   .26897{col 26}{space 2} .0156965{col 37}{space 1}   17.14{col 46}{space 3}0.000{col 54}{space 4} .2382054{col 67}{space 3} .2997346
-{txt}{space 5}5#male  {c |}{col 14}{res}{space 2} .3558393{col 26}{space 2} .0405971{col 37}{space 1}    8.77{col 46}{space 3}0.000{col 54}{space 4} .2762704{col 67}{space 3} .4354082
-{txt}{space 3}5#female  {c |}{col 14}{res}{space 2} .4632205{col 26}{space 2} .0316107{col 37}{space 1}   14.65{col 46}{space 3}0.000{col 54}{space 4} .4012647{col 67}{space 3} .5251762
+{space 5}1#male  {c |}{col 14}{res}{space 2} .0150645{col 26}{space 2} .0047348{col 37}{space 1}    3.18{col 46}{space 3}0.001{col 54}{space 4} .0057846{col 67}{space 3} .0243445
+{txt}{space 3}1#female  {c |}{col 14}{res}{space 2}  .025333{col 26}{space 2} .0055508{col 37}{space 1}    4.56{col 46}{space 3}0.000{col 54}{space 4} .0144536{col 67}{space 3} .0362124
+{txt}{space 5}2#male  {c |}{col 14}{res}{space 2} .0364848{col 26}{space 2} .0075444{col 37}{space 1}    4.84{col 46}{space 3}0.000{col 54}{space 4} .0216981{col 67}{space 3} .0512714
+{txt}{space 3}2#female  {c |}{col 14}{res}{space 2} .0596255{col 26}{space 2} .0086074{col 37}{space 1}    6.93{col 46}{space 3}0.000{col 54}{space 4} .0427552{col 67}{space 3} .0764958
+{txt}{space 5}3#male  {c |}{col 14}{res}{space 2} .0852689{col 26}{space 2} .0099016{col 37}{space 1}    8.61{col 46}{space 3}0.000{col 54}{space 4} .0658622{col 67}{space 3} .1046757
+{txt}{space 3}3#female  {c |}{col 14}{res}{space 2} .1329912{col 26}{space 2} .0108127{col 37}{space 1}   12.30{col 46}{space 3}0.000{col 54}{space 4} .1117987{col 67}{space 3} .1541838
+{txt}{space 5}4#male  {c |}{col 14}{res}{space 2} .1849367{col 26}{space 2} .0163684{col 37}{space 1}   11.30{col 46}{space 3}0.000{col 54}{space 4} .1528551{col 67}{space 3} .2170182
+{txt}{space 3}4#female  {c |}{col 14}{res}{space 2}  .267774{col 26}{space 2} .0156218{col 37}{space 1}   17.14{col 46}{space 3}0.000{col 54}{space 4} .2371558{col 67}{space 3} .2983921
+{txt}{space 5}5#male  {c |}{col 14}{res}{space 2} .3518378{col 26}{space 2} .0408522{col 37}{space 1}    8.61{col 46}{space 3}0.000{col 54}{space 4}  .271769{col 67}{space 3} .4319066
+{txt}{space 3}5#female  {c |}{col 14}{res}{space 2} .4614446{col 26}{space 2} .0314754{col 37}{space 1}   14.66{col 46}{space 3}0.000{col 54}{space 4} .3997539{col 67}{space 3} .5231353
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
 {com}. //_8
@@ -168,16 +171,16 @@ Iteration 5:{space 3}log likelihood = {res:-1068.1394}
 {col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 5}_at#sex {c |}
-{space 5}1#male  {c |}{col 14}{res}{space 2} .0147659{col 26}{space 2} .0046146{col 37}{space 1}    3.20{col 46}{space 3}0.001{col 54}{space 4} .0057214{col 67}{space 3} .0238104
-{txt}{space 3}1#female  {c |}{col 14}{res}{space 2} .0256473{col 26}{space 2} .0055867{col 37}{space 1}    4.59{col 46}{space 3}0.000{col 54}{space 4} .0146975{col 67}{space 3} .0365971
-{txt}{space 5}2#male  {c |}{col 14}{res}{space 2}  .036082{col 26}{space 2} .0074358{col 37}{space 1}    4.85{col 46}{space 3}0.000{col 54}{space 4} .0215081{col 67}{space 3} .0506559
-{txt}{space 3}2#female  {c |}{col 14}{res}{space 2} .0601807{col 26}{space 2} .0086289{col 37}{space 1}    6.97{col 46}{space 3}0.000{col 54}{space 4} .0432683{col 67}{space 3}  .077093
-{txt}{space 5}3#male  {c |}{col 14}{res}{space 2} .0850702{col 26}{space 2}  .009884{col 37}{space 1}    8.61{col 46}{space 3}0.000{col 54}{space 4} .0656979{col 67}{space 3} .1044425
-{txt}{space 3}3#female  {c |}{col 14}{res}{space 2} .1338511{col 26}{space 2} .0108109{col 37}{space 1}   12.38{col 46}{space 3}0.000{col 54}{space 4} .1126622{col 67}{space 3} .1550401
-{txt}{space 5}4#male  {c |}{col 14}{res}{space 2} .1859699{col 26}{space 2} .0163525{col 37}{space 1}   11.37{col 46}{space 3}0.000{col 54}{space 4} .1539195{col 67}{space 3} .2180202
-{txt}{space 3}4#female  {c |}{col 14}{res}{space 2}   .26897{col 26}{space 2} .0156965{col 37}{space 1}   17.14{col 46}{space 3}0.000{col 54}{space 4} .2382054{col 67}{space 3} .2997346
-{txt}{space 5}5#male  {c |}{col 14}{res}{space 2} .3558393{col 26}{space 2} .0405971{col 37}{space 1}    8.77{col 46}{space 3}0.000{col 54}{space 4} .2762704{col 67}{space 3} .4354082
-{txt}{space 3}5#female  {c |}{col 14}{res}{space 2} .4632205{col 26}{space 2} .0316107{col 37}{space 1}   14.65{col 46}{space 3}0.000{col 54}{space 4} .4012647{col 67}{space 3} .5251762
+{space 5}1#male  {c |}{col 14}{res}{space 2} .0150645{col 26}{space 2} .0047348{col 37}{space 1}    3.18{col 46}{space 3}0.001{col 54}{space 4} .0057846{col 67}{space 3} .0243445
+{txt}{space 3}1#female  {c |}{col 14}{res}{space 2}  .025333{col 26}{space 2} .0055508{col 37}{space 1}    4.56{col 46}{space 3}0.000{col 54}{space 4} .0144536{col 67}{space 3} .0362124
+{txt}{space 5}2#male  {c |}{col 14}{res}{space 2} .0364848{col 26}{space 2} .0075444{col 37}{space 1}    4.84{col 46}{space 3}0.000{col 54}{space 4} .0216981{col 67}{space 3} .0512714
+{txt}{space 3}2#female  {c |}{col 14}{res}{space 2} .0596255{col 26}{space 2} .0086074{col 37}{space 1}    6.93{col 46}{space 3}0.000{col 54}{space 4} .0427552{col 67}{space 3} .0764958
+{txt}{space 5}3#male  {c |}{col 14}{res}{space 2} .0852689{col 26}{space 2} .0099016{col 37}{space 1}    8.61{col 46}{space 3}0.000{col 54}{space 4} .0658622{col 67}{space 3} .1046757
+{txt}{space 3}3#female  {c |}{col 14}{res}{space 2} .1329912{col 26}{space 2} .0108127{col 37}{space 1}   12.30{col 46}{space 3}0.000{col 54}{space 4} .1117987{col 67}{space 3} .1541838
+{txt}{space 5}4#male  {c |}{col 14}{res}{space 2} .1849367{col 26}{space 2} .0163684{col 37}{space 1}   11.30{col 46}{space 3}0.000{col 54}{space 4} .1528551{col 67}{space 3} .2170182
+{txt}{space 3}4#female  {c |}{col 14}{res}{space 2}  .267774{col 26}{space 2} .0156218{col 37}{space 1}   17.14{col 46}{space 3}0.000{col 54}{space 4} .2371558{col 67}{space 3} .2983921
+{txt}{space 5}5#male  {c |}{col 14}{res}{space 2} .3518378{col 26}{space 2} .0408522{col 37}{space 1}    8.61{col 46}{space 3}0.000{col 54}{space 4}  .271769{col 67}{space 3} .4319066
+{txt}{space 3}5#female  {c |}{col 14}{res}{space 2} .4614446{col 26}{space 2} .0314754{col 37}{space 1}   14.66{col 46}{space 3}0.000{col 54}{space 4} .3997539{col 67}{space 3} .5231353
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
 {com}. //_11
@@ -214,16 +217,16 @@ Iteration 5:{space 3}log likelihood = {res:-1068.1394}
 {col 14}{c |}     Margin{col 26}  Legend
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 5}_at#sex {c |}
-{space 5}1#male  {c |}{col 14}{res}{space 2} .0147659{col 26}{txt}  _b[1bn._at#0bn.sex]
-{space 3}1#female  {c |}{col 14}{res}{space 2} .0256473{col 26}{txt}  _b[1bn._at#1.sex]
-{space 5}2#male  {c |}{col 14}{res}{space 2}  .036082{col 26}{txt}  _b[2._at#0bn.sex]
-{space 3}2#female  {c |}{col 14}{res}{space 2} .0601807{col 26}{txt}  _b[2._at#1.sex]
-{space 5}3#male  {c |}{col 14}{res}{space 2} .0850702{col 26}{txt}  _b[3._at#0bn.sex]
-{space 3}3#female  {c |}{col 14}{res}{space 2} .1338511{col 26}{txt}  _b[3._at#1.sex]
-{space 5}4#male  {c |}{col 14}{res}{space 2} .1859699{col 26}{txt}  _b[4._at#0bn.sex]
-{space 3}4#female  {c |}{col 14}{res}{space 2}   .26897{col 26}{txt}  _b[4._at#1.sex]
-{space 5}5#male  {c |}{col 14}{res}{space 2} .3558393{col 26}{txt}  _b[5._at#0bn.sex]
-{space 3}5#female  {c |}{col 14}{res}{space 2} .4632205{col 26}{txt}  _b[5._at#1.sex]
+{space 5}1#male  {c |}{col 14}{res}{space 2} .0150645{col 26}{txt}  _b[1bn._at#0bn.sex]
+{space 3}1#female  {c |}{col 14}{res}{space 2}  .025333{col 26}{txt}  _b[1bn._at#1.sex]
+{space 5}2#male  {c |}{col 14}{res}{space 2} .0364848{col 26}{txt}  _b[2._at#0bn.sex]
+{space 3}2#female  {c |}{col 14}{res}{space 2} .0596255{col 26}{txt}  _b[2._at#1.sex]
+{space 5}3#male  {c |}{col 14}{res}{space 2} .0852689{col 26}{txt}  _b[3._at#0bn.sex]
+{space 3}3#female  {c |}{col 14}{res}{space 2} .1329912{col 26}{txt}  _b[3._at#1.sex]
+{space 5}4#male  {c |}{col 14}{res}{space 2} .1849367{col 26}{txt}  _b[4._at#0bn.sex]
+{space 3}4#female  {c |}{col 14}{res}{space 2}  .267774{col 26}{txt}  _b[4._at#1.sex]
+{space 5}5#male  {c |}{col 14}{res}{space 2} .3518378{col 26}{txt}  _b[5._at#0bn.sex]
+{space 3}5#female  {c |}{col 14}{res}{space 2} .4614446{col 26}{txt}  _b[5._at#1.sex]
 {hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
 {com}. //_12
@@ -231,23 +234,31 @@ Iteration 5:{space 3}log likelihood = {res:-1068.1394}
 
 {p 0 7}{space 1}{text:( 1)}{space 1} {res}1bn._at#0bn.sex - 1bn._at#1.sex = 0{p_end}
 
-{txt}{col 12}chi2(  1) ={res}    2.29
-{txt}{col 10}Prob > chi2 =  {res}  0.1303
+{txt}{col 12}chi2(  1) ={res}    1.99
+{txt}{col 10}Prob > chi2 =  {res}  0.1583
 {txt}
 {com}. //_13
 . test  _b[5._at#0bn.sex] =  _b[5._at#1.sex] // male and female at age 60
 
 {p 0 7}{space 1}{text:( 1)}{space 1} {res}5._at#0bn.sex - 5._at#1.sex = 0{p_end}
 
-{txt}{col 12}chi2(  1) ={res}    4.91
-{txt}{col 10}Prob > chi2 =  {res}  0.0267
+{txt}{col 12}chi2(  1) ={res}    5.16
+{txt}{col 10}Prob > chi2 =  {res}  0.0232
+{txt}
+{com}. //_14
+. test _b[1bn._at#1.sex] - _b[1bn._at#0bn.sex] = _b[5._at#1.sex] - _b[5._at#0bn.sex] // test equivalence of the differences
+
+{p 0 7}{space 1}{text:( 1)}{space 1}{space 1}{res}- 1bn._at#0bn.sex + 1bn._at#1.sex + 5._at#0bn.sex - 5._at#1.sex = 0{p_end}
+
+{txt}{col 12}chi2(  1) ={res}    3.62
+{txt}{col 10}Prob > chi2 =  {res}  0.0572
 {txt}
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 9 Jul 2020, 15:00:29
+ {txt}closed on:  {res}21 Oct 2020, 15:48:14
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
