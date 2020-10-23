@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>20 Oct 2020</p>
+<p>23 Oct 2020</p>
 </div>
 <div id="key-concepts-and-commands" class="title-slide slide section level1"><h1>Key Concepts and Commands</h1><ul class="incremental">
 <li>formulas are our friends</li>
@@ -118,15 +118,19 @@ Andy Grogan-Kaylor
 <li>🐴 Deaths from horsekicks in the Prussian Army</li>
 <li>☎️ Calls to a call center (business, crisis hotline, etc.)</li>
 <li>🏥 Arrivals at the Emergency Room</li>
-</ul></div>
-<div id="other-canonical-examples-of-count-data-r.7-r.8" class="title-slide slide section level1"><h1>Other Canonical Examples of Count Data 🎄 🤒</h1><ul class="incremental">
-<li>🌰 🎋 🌱 Plants / trees in a field</li>
-<li>🤮 💊 😷 Cases of disease / unit area</li>
+</ul>
+<p>From the Stata documentation:</p>
+<blockquote>
+<p>“Poisson regression fits models of the number of occurrences (counts) of an event. The Poisson distribution has been applied to diverse events, such as the number of soldiers kicked to death by horses in the Prussian army (von Bortkiewicz 1898); the pattern of hits by buzz bombs launched against London during World War II (Clarke 1946); telephone connections to a wrong number (Thorndike 1926); and disease incidence, typically with respect to time, but occasionally with respect to space.”</p>
+</blockquote></div>
+<div id="other-canonical-examples-of-count-data-r.7-r.8" class="title-slide slide section level1"><h1>Other Canonical Examples of Count Data 🎄 🤧</h1><ul class="incremental">
+<li>🌱 🌲 🏵 Plants / trees in a field</li>
+<li>💉 🤧 😷 Cases of disease / unit area</li>
 </ul></div>
 <div id="poisson-distribution" class="title-slide slide section level1"><h1>Poisson Distribution</h1></div><div id="theorizing-about-the-poisson-r.15-r.16-r.17-r.18-r.19-r.20" class="slide section level2">
 <h1>Theorizing about the Poisson 🐟 🐟 🐟 🌴 🌲 🌳</h1>
 <blockquote>
-<p>The Poisson distribution is a modified form of the binomial distribution that is useful for the analysis of phenomena characterized by discrete, rare events. For example, in a study of the distribution of a rare plant among a number of quadrats, a majority of plots may contain no specimens, a smaller number a single plant, and still smaller numbers two, three, or more plants. If a single plant per quadrat is expected, the mean µ = 1 and the “0” and “1” classes occur at 37% each, the “2” class at 18%, the “3” class at 6%, and larger classes take up the remaining 2%. The characteristic test for a Poisson is that the variance equals the mean, which in the plant example means that the rare plant is randomly distributed. Note, that, In the distributions above, as the mean µ increases towards 10, the distribution approaches normality.</p>
+<p>The Poisson distribution is a modified form of the binomial distribution that is useful for the analysis of phenomena characterized by discrete, rare events. For example, in a study of the distribution of a rare plant among a number of quadrats, a majority of plots may contain no specimens, a smaller number a single plant, and still smaller numbers two, three, or more plants. If a single plant per quadrat is expected, the mean µ = 1 and the “0” and “1” classes occur at 37% each, the “2” class at 18%, the “3” class at 6%, and larger classes take up the remaining 2%. The characteristic test for a Poisson is that the variance equals the mean, which in the plant example means that the rare plant is randomly distributed. Note, that, In the distributions above, as the mean <span class="math inline">\(\mu\)</span> increases towards 10, the distribution approaches normality.</p>
 </blockquote>
 <blockquote>
 <p>The Poisson may be used to evaluate whether events occur independently in time as well as space. In a classic example, Bortkiewicz (1898) studied the distribution of 122 men kicked to death by horses among ten Prussian army corps over 20 years. In most years in most corps, no one dies from being kicked; in one corp in one year, four men were kicked to death. Does this mean something was amiss in this particular corp? Analysis indicates that the observed frequencies conform quite closely to the expected Poisson frequencies, and that the mean and variance are almost identical, as expected. The corp was just “unlucky” in the sense that it is in the extreme tail of an ordinary run of events.</p>
@@ -145,7 +149,7 @@ Andy Grogan-Kaylor
 <span id="cb2-2"><a href="#cb2-2"></a>number <span class="kw">of</span> observations (_N) was 0, now 1,000</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">generate</span> x = rnormal() <span class="co">// normally distributed random variable</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">histogram</span> x, <span class="bn">title</span>(<span class="st">&quot;Normally Distributed Random Variable&quot;</span>) <span class="dv">scheme</span>(michigan)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>(<span class="bn">bin</span>=29, <span class="bn">start</span>=-3.1348748, <span class="kw">width</span>=.20447365)</span></code></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a>(<span class="bn">bin</span>=29, <span class="bn">start</span>=-3.0031285, <span class="kw">width</span>=.20304677)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myhistogram.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>(file myhistogram.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
@@ -160,7 +164,7 @@ Andy Grogan-Kaylor
 </blockquote>
 <div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">generate</span> <span class="fu">w</span> = rpoisson(.5)</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">histogram</span> <span class="fu">w</span>, <span class="bn">title</span>(<span class="st">&quot;Poisson Distributed Random Variable&quot;</span>) <span class="dv">scheme</span>(michigan)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>(<span class="bn">bin</span>=29, <span class="bn">start</span>=0, <span class="kw">width</span>=.17241379)</span></code></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>(<span class="bn">bin</span>=29, <span class="bn">start</span>=0, <span class="kw">width</span>=.13793103)</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myhistogram2.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>(file myhistogram2.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
@@ -168,7 +172,7 @@ Andy Grogan-Kaylor
 <p class="caption">histogram of random Poisson variable</p>
 </div>
 </div><div id="poisson-is-the-natural-form-for-observations-distributed-in-time-or-space-r.21-r.22-r.23-r.24-r.25-r.26" class="slide section level2">
-<h1>Poisson is the Natural Form for Observations Distributed in Time or Space 🏭 🏢 🏦 ⏳ ⏳ ⏳</h1>
+<h1>Poisson is the Natural Form for Observations Distributed in Time or Space 🏭 🏦 🏭 ⏳ ⏳ ⏳</h1>
 <p><span class="math display">\[ x \sim Poisson(\lambda) \]</span></p>
 <blockquote>
 <p><span class="math inline">\(\lambda\)</span> is both mean and variance.</p>
@@ -179,8 +183,8 @@ Andy Grogan-Kaylor
 <div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">generate</span> <span class="fu">field</span> = <span class="dt">_n</span> <span class="co">// field number</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">generate</span> mycount = rpoisson(1)</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. expand mycount <span class="co">// create individual observations</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>(8 <span class="bn">zero</span> counts ignored; observations <span class="kw">not</span> deleted)</span>
-<span id="cb13-3"><a href="#cb13-3"></a>(12 observations created)</span></code></pre></div>
+<span id="cb13-2"><a href="#cb13-2"></a>(9 <span class="bn">zero</span> counts ignored; observations <span class="kw">not</span> deleted)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>(7 observations created)</span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">generate</span> x = runiform(1,10) <span class="co">// random x coordinate</span></span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">generate</span> <span class="fu">y</span> =runiform(1,10) <span class="co">// random y coordinate</span></span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>. <span class="kw">generate</span> mylabel = <span class="st">&quot;🦆&quot;</span></span></code></pre></div>

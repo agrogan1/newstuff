@@ -30,6 +30,12 @@ $y = \ln(count): 1, 2, 3, \text{etc.}$
 * `r emo::ji("phone")` Calls to a call center (business, crisis hotline, etc.) 
 *  `r emo::ji("hospital")` Arrivals at the Emergency Room 
 
+From the Stata documentation: 
+
+> "Poisson regression fits models of the number of occurrences (counts) of an event. The Poisson distribution has been applied to diverse events, such as the number of soldiers kicked to death by horses in the Prussian army (von Bortkiewicz 1898); the pattern of hits by buzz bombs launched against London during World War II (Clarke 1946); telephone connections to a wrong number
+(Thorndike 1926); and disease incidence, typically with respect to time, but occasionally with respect to space."
+
+
 # Other Canonical Examples of Count Data `r emo::ji("tree")` `r emo::ji("sick")` 
 
 * `r emo::ji("plant")` `r emo::ji("tree")` `r emo::ji("plant")` Plants / trees in a field
@@ -39,7 +45,7 @@ $y = \ln(count): 1, 2, 3, \text{etc.}$
 
 ## Theorizing about the Poisson `r emo::ji("fish")` `r emo::ji("fish")` `r emo::ji("fish")` `r emo::ji("palm_tree")` `r emo::ji("evergreen_tree")` `r emo::ji("deciduous_tree")`
 
-> The Poisson distribution is a modified form of the binomial distribution that is useful for the analysis of phenomena characterized by discrete, rare events.  For example, in a study of the distribution of a rare plant among a number of quadrats, a majority of plots may contain no specimens, a smaller number a single plant, and still smaller numbers two, three, or more plants.  If a single plant per quadrat is expected, the mean µ = 1 and the "0" and "1" classes occur at 37% each, the "2" class at 18%, the "3" class at 6%, and larger classes take up the remaining 2%.  The characteristic test for a Poisson is that the variance equals the mean, which in the plant example means that the rare plant is randomly distributed.  Note, that, In the distributions above, as the mean µ increases towards 10, the distribution approaches normality.
+> The Poisson distribution is a modified form of the binomial distribution that is useful for the analysis of phenomena characterized by discrete, rare events.  For example, in a study of the distribution of a rare plant among a number of quadrats, a majority of plots may contain no specimens, a smaller number a single plant, and still smaller numbers two, three, or more plants.  If a single plant per quadrat is expected, the mean µ = 1 and the "0" and "1" classes occur at 37% each, the "2" class at 18%, the "3" class at 6%, and larger classes take up the remaining 2%.  The characteristic test for a Poisson is that the variance equals the mean, which in the plant example means that the rare plant is randomly distributed.  Note, that, In the distributions above, as the mean $\mu$ increases towards 10, the distribution approaches normality.
 
 > The Poisson may be used to evaluate whether events occur independently in time as well as space.  In a classic example, Bortkiewicz (1898) studied the distribution of 122 men kicked to death by horses among ten Prussian army corps over 20 years. In most years in most corps, no one dies from being kicked; in one corp in one year, four men were kicked to death. Does this mean something was amiss in this particular corp?  Analysis indicates that the observed frequencies conform quite closely to the expected Poisson frequencies, and that the mean and variance are almost identical, as expected.  The corp was just "unlucky" in the sense that it is in the extreme tail of an ordinary run of events.
 

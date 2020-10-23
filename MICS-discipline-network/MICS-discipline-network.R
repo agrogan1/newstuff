@@ -35,8 +35,8 @@ mycorrelationdata <- subset(MICS,
                                        d_phys_hitface,
                                        d_phys_beathard,
                                        d_nvd_privileges,
-                                       d_nvd_explained
-                                       # d_nvd_gave
+                                       d_nvd_explained,
+                                       d_nvd_gave
                                        ))
 
 # correlation matrix

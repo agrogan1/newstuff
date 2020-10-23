@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}20 Oct 2020, 20:37:37
+ {txt}opened on:  {res}23 Oct 2020, 09:39:40
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}20 Oct 2020
+{res}23 Oct 2020
 {txt}
 {com}. //_2
 . clear all // clear all for simulated data
@@ -302,7 +302,7 @@ LR test of alpha=0: {help j_chibar##|_new:chibar2(01) = }{res}3966.27{col 56}{tx
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}20 Oct 2020, 20:38:03
+ {txt}closed on:  {res}23 Oct 2020, 09:40:06
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
