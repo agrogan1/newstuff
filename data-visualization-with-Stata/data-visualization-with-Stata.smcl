@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}14 Oct 2020, 16:04:37
+ {txt}opened on:  {res}23 Oct 2020, 17:09:20
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}14 Oct 2020
+{res}23 Oct 2020
 {txt}
 {com}. //_2
 . use "https://github.com/agrogan1/newstuff/raw/master/data-visualization-with-Stata/gutten.dta", clear
@@ -62,7 +62,7 @@
 {txt}(file myscatterM.png written in PNG format)
 
 {com}. //_17
-. twoway scatter height age_base, title("Tree Height by Age") scheme(lean2)
+. twoway scatter height age_base, title("Tree Height by Age") scheme(lean2) msymbol(o)
 {res}{txt}
 {com}. //_18
 . graph export myscatterL.png, width(500) replace
@@ -76,32 +76,46 @@
 {txt}(file myscatterS.png written in PNG format)
 
 {com}. //_21
-. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(michigan)
+. twoway scatter height age_base, title("Tree Height by Age") scheme(burd) msymbol(o)
 {res}{txt}
 {com}. //_22
+. graph export myscatterB.png, width(500) replace
+{txt}(file myscatterB.png written in PNG format)
+
+{com}. //_23
+. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(michigan)
+{res}{txt}
+{com}. //_24
 . graph export mybarM.png, width(500) replace
 {txt}(file mybarM.png written in PNG format)
 
-{com}. //_23
+{com}. //_25
 . graph bar height, over(location) asyvars title("Tree Height by Location") scheme(lean2)
 {res}{txt}
-{com}. //_24
+{com}. //_26
 . graph export mybarL.png, width(500) replace
 {txt}(file mybarL.png written in PNG format)
 
-{com}. //_25
+{com}. //_27
 . graph bar height, over(location) asyvars title("Tree Height by Location") scheme(s1rcolor)
 {res}{txt}
-{com}. //_26
+{com}. //_28
 . graph export mybarS.png, width(500) replace
 {txt}(file mybarS.png written in PNG format)
+
+{com}. //_29
+. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(burd)
+{res}{txt}
+{com}. //_30
+. graph export mybarB.png, width(500) replace
+{txt}(file mybarB.png written in PNG format)
 
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}14 Oct 2020, 16:04:50
+ {txt}closed on:  {res}23 Oct 2020, 17:09:37
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
