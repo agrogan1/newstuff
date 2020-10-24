@@ -16,7 +16,7 @@ $F(y) = \beta_0 + \beta_1 x_1 + ...$
 
 $y = \ln(count): 1, 2, 3, \text{etc.}$
 
-* Think about OR's, pred. prob., non-linearity
+* Think about IRR's, predicted counts, non-linearity
 
 * So much of categorical data analysis depends upon arguments for "functional form". When do we think these arguments are valid?
 

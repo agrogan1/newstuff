@@ -37,28 +37,28 @@ Type 'q()' to quit R.
 🏥 
 > #_7
 > emo::ji("tree")
-🎄 
+🌴 
 > #_8
 > emo::ji("sick")
-🤧 
+🤒 
 > #_9
 > emo::ji("plant")
-🌱 
+🏵 
 > #_10
 > emo::ji("tree")
-🌲 
+🎋 
 > #_11
 > emo::ji("plant")
-🏵 
+🌱 
 > #_12
 > emo::ji("sick")
-💉 
+💊 
 > #_13
 > emo::ji("sick")
-🤧 
+💊 
 > #_14
 > emo::ji("sick")
-😷 
+💉 
 > #_15
 > emo::ji("fish")
 🐟 
@@ -79,13 +79,13 @@ Type 'q()' to quit R.
 🌳 
 > #_21
 > emo::ji("building")
-🏭 
+🏫 
 > #_22
 > emo::ji("building")
-🏦 
+🏫 
 > #_23
 > emo::ji("building")
-🏭 
+🏨 
 > #_24
 > emo::ji("time")
 ⏳ 
