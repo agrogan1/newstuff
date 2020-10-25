@@ -20,13 +20,23 @@ $$
 
 where y is distributed as $F$ *i.e.* $y \sim F$.
 
-$g$ is called the link function; $F$ is called the distribution. Hence:
+$g$ is called the link function; $F$ is called the distribution. Hence[^Stata]:
 
 | Link      |  Distribution   | Standard Command   | glm                                        |
 |-----------|-----------------|--------------------|--------------------------------------------|
 | identity  | normal          | `regress y x`      | `glm y x, link(identity) family(gaussian)` |
 | logit     | bernoulli       | `logit y x`        | `glm y x, link(logit) family(binomial)`    |
 | probit    | bernoulli       | `probit y x`       | `glm y x, link(probit) family(binomial)`   |
+
+Though not the subject of this discussion, it is worth noting here, that *count regression* models follow a similar logic.
+
+[^Stata]: This table and the table below draw heavily on the Stata documentation.
+
+| Link      |  Distribution   | Standard Command   | glm                                        |
+|-----------|-----------------|--------------------|--------------------------------------------|
+| log       | poisson         | `poisson y x`      | `glm y x, link(log) family(poisson)`       |
+| log       | nbinomial       | `nbinomial y x`    | `glm y x, link(log) family(nbinomial)`     |
+
 
 # Palmer Penguins
 

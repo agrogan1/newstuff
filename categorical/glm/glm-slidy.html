@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>29 Jul 2020 09:44:35</p>
+<p>25 Oct 2020 08:12:02</p>
 </div>
 <div id="introduction" class="title-slide slide section level1"><h1>Introduction</h1><blockquote>
 <p>This discussion closely follows the Stata help for the <em>generalized linear model</em>, see <code>help glm</code>.</p>
@@ -107,7 +107,7 @@ Andy Grogan-Kaylor
 <p>Briefly, per Stata documentation, in the <em>generalized linear model</em> framework, we consider models of the form:</p>
 <p><span class="math display">\[ g(E(y)) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... \]</span></p>
 <p>where y is distributed as <span class="math inline">\(F\)</span> <em>i.e.</em> <span class="math inline">\(y \sim F\)</span>.</p>
-<p><span class="math inline">\(g\)</span> is called the link function; <span class="math inline">\(F\)</span> is called the distribution. Hence:</p>
+<p><span class="math inline">\(g\)</span> is called the link function; <span class="math inline">\(F\)</span> is called the distribution. Hence<a href="#fn1" id="fnref1" class="footnote-ref"><sup>1</sup></a>:</p>
 <table>
 <thead>
 <tr class="header">
@@ -137,6 +137,31 @@ Andy Grogan-Kaylor
 <td><code>glm y x, link(probit) family(binomial)</code></td>
 </tr>
 </tbody>
+</table>
+<p>Though not the subject of this discussion, it is worth noting here, that <em>count regression</em> models follow a similar logic.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Link</th>
+<th>Distribution</th>
+<th>Standard Command</th>
+<th>glm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>log</td>
+<td>poisson</td>
+<td><code>poisson y x</code></td>
+<td><code>glm y x, link(log) family(poisson)</code></td>
+</tr>
+<tr class="even">
+<td>log</td>
+<td>nbinomial</td>
+<td><code>nbinomial y x</code></td>
+<td><code>glm y x, link(log) family(nbinomial)</code></td>
+</tr>
+</tbody>
 </table></div>
 <div id="palmer-penguins" class="title-slide slide section level1"><h1>Palmer Penguins</h1><p>Thes examples use the <em>Palmer Penguins</em> data set: <a href="https://github.com/allisonhorst/palmerpenguins/blob/master/README.md">https://github.com/allisonhorst/palmerpenguins</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
@@ -155,8 +180,7 @@ Andy Grogan-Kaylor
 </div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">quietly</span>: <span class="kw">regress</span> culmen_depth_mm body_mass_g flipper_length_mm</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">est</span> <span class="kw">store</span> usual_OLS <span class="co">// store estimates usual OLS</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">quietly</span>: <span class="kw">glm</span> culmen_depth_mm body_mass_g flipper_length_mm, <span class="kw">link</span>(<span class="kw">identity</span>) <span class="kw">family</span>(gauss</span>
-<span id="cb5-2"><a href="#cb5-2"></a>&gt; ian)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">quietly</span>: <span class="kw">glm</span> culmen_depth_mm body_mass_g flipper_length_mm, <span class="kw">link</span>(<span class="kw">identity</span>) <span class="kw">family</span>(gaussian)</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">est</span> <span class="kw">store</span> glm_OLS <span class="co">// store estimates glm OLS</span></span></code></pre></div>
 </div><div id="what-predicts-that-a-penguin-lives-on-dream-island" class="slide section level2">
 <h1>What Predicts That A Penguin Lives on Dream Island?</h1>
@@ -186,45 +210,53 @@ Andy Grogan-Kaylor
 </div>
 <div id="results" class="title-slide slide section level1"><h1>Results</h1><div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>. <span class="kw">est</span> <span class="kw">table</span> usual_OLS glm_OLS usual_logit glm_logit usual_probit glm_probit, <span class="kw">star</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a></span>
-<span id="cb18-3"><a href="#cb18-3"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb18-4"><a href="#cb18-4"></a>    Variable │   usual_OLS        glm_OLS       usual_logit      glm_logit    </span>
-<span id="cb18-5"><a href="#cb18-5"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb18-3"><a href="#cb18-3"></a>─────────────┬────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    Variable │   usual_OLS        glm_OLS       usual_logit      glm_logit     usual_probit   </span>
+<span id="cb18-5"><a href="#cb18-5"></a>─────────────┼────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb18-6"><a href="#cb18-6"></a>_            │</span>
-<span id="cb18-7"><a href="#cb18-7"></a> body_mass_g │  .00037535                                                     </span>
-<span id="cb18-8"><a href="#cb18-8"></a>flipper_le~<span class="fu">m</span> │  -.1006443***                                                  </span>
-<span id="cb18-9"><a href="#cb18-9"></a>       <span class="dt">_cons</span> │  35.794997***                                                  </span>
-<span id="cb18-10"><a href="#cb18-10"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb18-7"><a href="#cb18-7"></a> body_mass_g │  .00037535                                                                     </span>
+<span id="cb18-8"><a href="#cb18-8"></a>flipper_le~<span class="fu">m</span> │  -.1006443***                                                                  </span>
+<span id="cb18-9"><a href="#cb18-9"></a>       <span class="dt">_cons</span> │  35.794997***                                                                  </span>
+<span id="cb18-10"><a href="#cb18-10"></a>─────────────┼────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb18-11"><a href="#cb18-11"></a>culmen_dep~<span class="fu">m</span> │</span>
-<span id="cb18-12"><a href="#cb18-12"></a> body_mass_g │                  .00037535                                     </span>
-<span id="cb18-13"><a href="#cb18-13"></a>flipper_le~<span class="fu">m</span> │                  -.1006443***                                  </span>
-<span id="cb18-14"><a href="#cb18-14"></a>       <span class="dt">_cons</span> │                  35.794997***                                  </span>
-<span id="cb18-15"><a href="#cb18-15"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb18-12"><a href="#cb18-12"></a> body_mass_g │                  .00037535                                                     </span>
+<span id="cb18-13"><a href="#cb18-13"></a>flipper_le~<span class="fu">m</span> │                  -.1006443***                                                  </span>
+<span id="cb18-14"><a href="#cb18-14"></a>       <span class="dt">_cons</span> │                  35.794997***                                                  </span>
+<span id="cb18-15"><a href="#cb18-15"></a>─────────────┼────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb18-16"><a href="#cb18-16"></a>dream        │</span>
-<span id="cb18-17"><a href="#cb18-17"></a>flipper_le~<span class="fu">m</span> │                                  -.0160116       -.0160116     </span>
-<span id="cb18-18"><a href="#cb18-18"></a> body_mass_g │                                  -.0013785***    -.0013785***  </span>
-<span id="cb18-19"><a href="#cb18-19"></a>       <span class="dt">_cons</span> │                                   8.193819**      8.193819**   </span>
-<span id="cb18-20"><a href="#cb18-20"></a>─────────────┴────────────────────────────────────────────────────────────────</span>
-<span id="cb18-21"><a href="#cb18-21"></a>                                      <span class="bn">legend</span>: * <span class="kw">p</span>&lt;0.05; ** <span class="kw">p</span>&lt;0.01; *** <span class="kw">p</span>&lt;0.001</span>
+<span id="cb18-17"><a href="#cb18-17"></a>flipper_le~<span class="fu">m</span> │                                  -.0160116       -.0160116      -.01114532     </span>
+<span id="cb18-18"><a href="#cb18-18"></a> body_mass_g │                                  -.0013785***    -.0013785***   -.00082575***  </span>
+<span id="cb18-19"><a href="#cb18-19"></a>       <span class="dt">_cons</span> │                                   8.193819**      8.193819**     5.2018764**   </span>
+<span id="cb18-20"><a href="#cb18-20"></a>─────────────┴────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb18-21"><a href="#cb18-21"></a>                                                      <span class="bn">legend</span>: * <span class="kw">p</span>&lt;0.05; ** <span class="kw">p</span>&lt;0.01; *** <span class="kw">p</span>&lt;0.001</span>
 <span id="cb18-22"><a href="#cb18-22"></a></span>
 <span id="cb18-23"><a href="#cb18-23"></a></span>
-<span id="cb18-24"><a href="#cb18-24"></a>─────────────┬────────────────────────────────</span>
-<span id="cb18-25"><a href="#cb18-25"></a>    Variable │ usual_probit     glm_probit    </span>
-<span id="cb18-26"><a href="#cb18-26"></a>─────────────┼────────────────────────────────</span>
+<span id="cb18-24"><a href="#cb18-24"></a>─────────────┬────────────────</span>
+<span id="cb18-25"><a href="#cb18-25"></a>    Variable │  glm_probit    </span>
+<span id="cb18-26"><a href="#cb18-26"></a>─────────────┼────────────────</span>
 <span id="cb18-27"><a href="#cb18-27"></a>_            │</span>
-<span id="cb18-28"><a href="#cb18-28"></a> body_mass_g │                                </span>
-<span id="cb18-29"><a href="#cb18-29"></a>flipper_le~<span class="fu">m</span> │                                </span>
-<span id="cb18-30"><a href="#cb18-30"></a>       <span class="dt">_cons</span> │                                </span>
-<span id="cb18-31"><a href="#cb18-31"></a>─────────────┼────────────────────────────────</span>
+<span id="cb18-28"><a href="#cb18-28"></a> body_mass_g │                </span>
+<span id="cb18-29"><a href="#cb18-29"></a>flipper_le~<span class="fu">m</span> │                </span>
+<span id="cb18-30"><a href="#cb18-30"></a>       <span class="dt">_cons</span> │                </span>
+<span id="cb18-31"><a href="#cb18-31"></a>─────────────┼────────────────</span>
 <span id="cb18-32"><a href="#cb18-32"></a>culmen_dep~<span class="fu">m</span> │</span>
-<span id="cb18-33"><a href="#cb18-33"></a> body_mass_g │                                </span>
-<span id="cb18-34"><a href="#cb18-34"></a>flipper_le~<span class="fu">m</span> │                                </span>
-<span id="cb18-35"><a href="#cb18-35"></a>       <span class="dt">_cons</span> │                                </span>
-<span id="cb18-36"><a href="#cb18-36"></a>─────────────┼────────────────────────────────</span>
+<span id="cb18-33"><a href="#cb18-33"></a> body_mass_g │                </span>
+<span id="cb18-34"><a href="#cb18-34"></a>flipper_le~<span class="fu">m</span> │                </span>
+<span id="cb18-35"><a href="#cb18-35"></a>       <span class="dt">_cons</span> │                </span>
+<span id="cb18-36"><a href="#cb18-36"></a>─────────────┼────────────────</span>
 <span id="cb18-37"><a href="#cb18-37"></a>dream        │</span>
-<span id="cb18-38"><a href="#cb18-38"></a>flipper_le~<span class="fu">m</span> │ -.01114532      -.01114532     </span>
-<span id="cb18-39"><a href="#cb18-39"></a> body_mass_g │ -.00082575***   -.00082575***  </span>
-<span id="cb18-40"><a href="#cb18-40"></a>       <span class="dt">_cons</span> │  5.2018764**     5.2018764**   </span>
-<span id="cb18-41"><a href="#cb18-41"></a>─────────────┴────────────────────────────────</span>
-<span id="cb18-42"><a href="#cb18-42"></a>      <span class="bn">legend</span>: * <span class="kw">p</span>&lt;0.05; ** <span class="kw">p</span>&lt;0.01; *** <span class="kw">p</span>&lt;0.001</span></code></pre></div></div>
+<span id="cb18-38"><a href="#cb18-38"></a>flipper_le~<span class="fu">m</span> │ -.01114532     </span>
+<span id="cb18-39"><a href="#cb18-39"></a> body_mass_g │ -.00082575***  </span>
+<span id="cb18-40"><a href="#cb18-40"></a>       <span class="dt">_cons</span> │  5.2018764**   </span>
+<span id="cb18-41"><a href="#cb18-41"></a>─────────────┴────────────────</span>
+<span id="cb18-42"><a href="#cb18-42"></a><span class="bn">legend</span>: * <span class="kw">p</span>&lt;0.05; ** <span class="kw">p</span>&lt;0.01; *** <span class="kw">p</span>&lt;0.001</span></code></pre></div>
+<div class="section footnotes" role="doc-endnotes">
+<hr />
+<ol class="incremental">
+<li><div id="fn1">
+<p>This table and the table below draw heavily on the Stata documentation.<a href="#fnref1" class="footnote-back">↩︎</a></p>
+</div></li>
+</ol>
+</div></div>
 </body>
 </html>

@@ -2,6 +2,8 @@
 * generalized linear model
 **************************************************
 
+clear
+
 cd "/Users/agrogan/Desktop/newstuff/categorical/glm"
 
 doedit glm.stmd
