@@ -14,6 +14,8 @@ geometry: margin=1 in
 * Learning how to graph in Stata is an important part of learning how to use Stata. Yet, the default graphs in Stata can sometimes be less than optimal. 
 * This document is an introduction to (a) basic graphing ideas in Stata; and (b) a quick note on the use of schemes to make your Stata graphs look more professional.
 
+> When this document is presented in *slide show format*, some slides may be long, and you may need to *scroll down* to see the full slide.
+
 # What are Variables?
 
 * By variables, I simply mean the columns of data that you have.
