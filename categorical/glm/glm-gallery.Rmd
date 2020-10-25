@@ -1,7 +1,7 @@
 ---
 title: "GLM Gallery"
 description: |
-  A Gallery of Distributions Used in GLM's 
+  A Gallery of Generalized Linear Models 
 author:
   - name: Andy Grogan-Kaylor 
     url: https://agrogan1.github.io/newstuff
@@ -39,7 +39,9 @@ load("../glm.RData")
 
 ```
 
-```{r logit, fig.cap="Logistic Distribution"}
+# Logit
+
+```{r logit, fig.cap="Logistic Curve"}
 
 knit_hooks$set(webgl = hook_webgl)
 
@@ -48,8 +50,9 @@ rayshader::plot_gg(p1, zoom = .8)
 rglwidget()
  
 ```
+# Probit
 
-```{r probit, fig.cap="Probit Distribution"}
+```{r probit, fig.cap="Probit Curve"}
 
 rgl.clear()
 
@@ -61,17 +64,33 @@ rglwidget()
  
 ```
 
-```{r negbin, fig.cap="Negative Binomial Distribution"}
+# Negative Binomial
+
+```{r negbin2, fig.cap="Negative Binomial Curve"}
 
 rgl.clear()
 
 knit_hooks$set(webgl = hook_webgl)
 
-rayshader::plot_gg(p3, zoom = .8) 
+rayshader::plot_gg(p4, zoom = .8) 
 
 rglwidget()
  
 ```
+
+<aside>
+```{r negbin1, fig.cap="Negative Binomial Distribution"}
+
+rgl.clear()
+
+knit_hooks$set(webgl = hook_webgl)
+
+rayshader::plot_gg(p3, zoom = 1.00) 
+
+rglwidget()
+ 
+```
+</aside>
 
 
 
