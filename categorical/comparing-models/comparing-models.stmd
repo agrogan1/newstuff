@@ -1,0 +1,74 @@
+% Comparing Statistical Models
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+# Introduction 
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;}</style>
+
+Using the *general linear model* framework, we could conceivably compare different statistical models on several grounds.
+
+1. Theoretical plausibility
+2. Functional form of the dependent variable
+3. Functional form of the entire model
+4. Statistical criteria of fit.
+
+> Frequently, there is no one correct way to analyze data, and different statistical approaches need to be weighed on multiple criteria to ascertain which approach(es) is / are appropriate.
+
+# Theoretical and Functional Concerns
+
+| Statistical Model | Stata Command | Theoretical plausibility | Functional form of the dependent variable | Functional form of the entire model |
+|:--|:--|:--|:--|:--|
+| OLS | `regress` | Continuous dependent variable? | y can range from negative infinity to positive infinity | y is a linear function of the x's |
+| Logistic Regression | `logit` | Binary dependent variable? | y must be 0 or 1 | logit(y) is a linear function of x's |
+| Ordinal logistic regression | `ologit` | Ordered dependent variable where distance between categories does not matter | y can range from negative infinity to positive infinity | logit(y (higher category vs. lower category)) is a linear function of x's |
+| Multinomial Logistic Regression | `mlogit` | Dependent variable with multiple unordered categories | y can range from negative infinity to positive infinity | logit(y (one category vs. another)) is a linear function of x's |
+| Poisson Regression | `poisson` | Dependent variable representing a count | y must be an integer greater than or equal to 0 | ln(y (count)) is a linear function of x's |
+ Negative Binomial Regression | `nbreg` | Dependent variable representing a count | y must be an integer greater than or equal to 0 | ln(y (count)) is a linear function of x's |
+
+# Assessing Model Fit
+
+## Get Data And Create Count of ACEs
+
+    clear all
+	
+	use "NSCH_ACES.dta", clear
+
+    egen acecount = anycount(ace*R), values(1)  // generate count of ACES
+
+## Explore Some Models
+
+> We use `quietly` to suppress model output at this stage.
+
+    quietly: regress acecount sc_sex i.sc_race_r i.higrade // OLS
+	
+	estimates store OLS
+	
+	quietly: ologit acecount sc_sex i.sc_race_r i.higrade // ordinal logit
+	
+	estimates store ORDINAL
+	
+	quietly: poisson acecount sc_sex i.sc_race_r i.higrade // Poisson
+
+    estimates store POISSON
+	
+	quietly: nbreg acecount sc_sex i.sc_race_r i.higrade // Negative Binomial
+	
+	estimates store NBREG
+	
+## Compare The Models Including Fit Measures
+
+    estimates table OLS ORDINAL POISSON NBREG, var(20) star stats(N ll aic bic) equations(1)
+	
+In terms of *log-likelihood* a higher value indicates a better fit.  We can also use the *Akaike Information Criterion* (AIC) and the *Bayesian Information Criterion* (BIC) to compare models. For AIC and BIC, lower values indicate a better fit.
+
+Thus, on strictly statistical grounds, the *ordinal* model would appear to provide the best fit, followed by the *negative binomial* model, the *Poisson* model, and the *OLS* model. However, we should note that the differences in fit between the *ordinal*, *negative binomial* and *Poisson* models are not exceptionally large. We would also worry that any differences in fit that we do see might be due to overfitting in this particular sample, or to capitalizing upon chance.
+
+We need to balance these differences in fit against the fact that theoretically, a count data model seems more appropriate.
+
+In this case, we would most likely choose to proceed with a count regression model.
+	
+	
+	
+	
+	
