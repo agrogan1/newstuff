@@ -2,6 +2,10 @@
 % Andy Grogan-Kaylor
 % `s c(current_date)` `s c(current_time)`
 
+---
+geometry: margin=1 in
+---
+
 # Introduction 
 
 <style>h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;}</style>
@@ -63,6 +67,8 @@ Using the *general linear model* framework, we could conceivably compare differe
 In terms of *log-likelihood* a higher value indicates a better fit.  We can also use the *Akaike Information Criterion* (AIC) and the *Bayesian Information Criterion* (BIC) to compare models. For AIC and BIC, lower values indicate a better fit.
 
 Thus, on strictly statistical grounds, the *ordinal* model would appear to provide the best fit, followed by the *negative binomial* model, the *Poisson* model, and the *OLS* model. However, we should note that the differences in fit between the *ordinal*, *negative binomial* and *Poisson* models are not exceptionally large. We would also worry that any differences in fit that we do see might be due to overfitting in this particular sample, or to capitalizing upon chance.
+
+Lastly, we'd worry that the ordinal model might not satisfy the *proportional hazards* assumption, and should examine this with a `brant` test.
 
 We need to balance these differences in fit against the fact that theoretically, a count data model seems more appropriate.
 

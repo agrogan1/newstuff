@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/comparing-models/comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}26 Oct 2020, 17:58:03
+ {txt}opened on:  {res}26 Oct 2020, 20:58:13
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}17:58:03
+{res}20:58:13
 {txt}
 {com}. //_3
 . clear all
@@ -112,7 +112,7 @@ High school (inc..)  {c |}{res} {ralign 10:.10021068}{lalign 3:}{txt} {space 1}{
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/comparing-models/comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}26 Oct 2020, 17:58:07
+ {txt}closed on:  {res}26 Oct 2020, 20:58:17
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

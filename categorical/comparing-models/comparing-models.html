@@ -57,7 +57,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Comparing Statistical Models</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">26 Oct 2020 17:57:58</p>
+<p class="date">26 Oct 2020 20:57:55</p>
 </header>
 <h1 id="introduction">Introduction</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;}</style>
@@ -225,6 +225,7 @@ Statistics           │
 </pre>
 <p>In terms of <em>log-likelihood</em> a higher value indicates a better fit. We can also use the <em>Akaike Information Criterion</em> (AIC) and the <em>Bayesian Information Criterion</em> (BIC) to compare models. For AIC and BIC, lower values indicate a better fit.</p>
 <p>Thus, on strictly statistical grounds, the <em>ordinal</em> model would appear to provide the best fit, followed by the <em>negative binomial</em> model, the <em>Poisson</em> model, and the <em>OLS</em> model. However, we should note that the differences in fit between the <em>ordinal</em>, <em>negative binomial</em> and <em>Poisson</em> models are not exceptionally large. We would also worry that any differences in fit that we do see might be due to overfitting in this particular sample, or to capitalizing upon chance.</p>
+<p>Lastly, we’d worry that the ordinal model might not satisfy the <em>proportional hazards</em> assumption, and should examine this with a <code>brant</code> test.</p>
 <p>We need to balance these differences in fit against the fact that theoretically, a count data model seems more appropriate.</p>
 <p>In this case, we would most likely choose to proceed with a count regression model.</p>
 </body>
