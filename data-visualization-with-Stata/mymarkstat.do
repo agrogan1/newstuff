@@ -1,4 +1,4 @@
-* Calculating R2 With MLM and Gutten Tree Data
+* Data Visualization With Stata
 
 cd "/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata"
 
