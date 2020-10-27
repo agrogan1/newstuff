@@ -6,7 +6,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 * [How To Choose A Chart: An Intuitive Guide](https://agrogan1.github.io/newstuff/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.html) [[PDF](https://agrogan1.github.io/newstuff/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.pdf)] [[epub](https://agrogan1.github.io/newstuff/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.epub) ¯\\\_(ツ)_/¯]
 * [ggplot flipbook](https://agrogan1.github.io/newstuff/ggplot-flipbook/ggplot-flipbook.html#1): a *flipbook* based upon [2 Page ggplot](https://agrogan1.github.io/R/two-page-ggplot2/two-page-ggplot2.pdf)
-* [Data Visualization With Stata](https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.pdf)]
+* [Data Visualization With Stata](https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.pdf)] [[The Basics](./data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.html) ([PDF](./data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.pdf))]
 
 ## Statistics
 
