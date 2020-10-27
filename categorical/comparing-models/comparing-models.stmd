@@ -23,8 +23,8 @@ Using the *general linear model* framework, we could conceivably compare differe
 
 | Statistical Model | Stata Command | Theoretical plausibility | Functional form of the dependent variable | Functional form of the entire model |
 |:--|:--|:--|:--|:--|
-| OLS | `regress` | Continuous dependent variable? | y can range from negative infinity to positive infinity | y is a linear function of the x's |
-| Logistic Regression | `logit` | Binary dependent variable? | y must be 0 or 1 | logit(y) is a linear function of x's |
+| OLS | `regress` | Continuous dependent variable | y can range from negative infinity to positive infinity | y is a linear function of the x's |
+| Logistic Regression | `logit` | Binary dependent variable | y must be 0 or 1 | logit(y) is a linear function of x's |
 | Ordinal logistic regression | `ologit` | Ordered dependent variable where distance between categories does not matter | y can range from negative infinity to positive infinity | logit(y (higher category vs. lower category)) is a linear function of x's |
 | Multinomial Logistic Regression | `mlogit` | Dependent variable with multiple unordered categories | y can range from negative infinity to positive infinity | logit(y (one category vs. another)) is a linear function of x's |
 | Poisson Regression | `poisson` | Dependent variable representing a count | y must be an integer greater than or equal to 0 | ln(y (count)) is a linear function of x's |
