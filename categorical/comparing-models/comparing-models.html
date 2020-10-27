@@ -49,6 +49,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -57,11 +58,11 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Comparing Statistical Models</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">26 Oct 2020 21:11:08</p>
+<p class="date">27 Oct 2020 08:40:02</p>
 </header>
 <h1 id="introduction">Introduction</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;}</style>
-<p>Using the <em>general linear model</em> framework, we could conceivably compare different statistical models on several grounds.</p>
+<p>In this example, we explore the predictors of the <em>count of Adverse Childhood Experiences</em> (ACES) that children experience. Using the <em>general linear model</em> framework, we could conceivably compare different statistical models on several grounds.</p>
 <ol type="1">
 <li>Theoretical plausibility</li>
 <li>Functional form of the dependent variable</li>
@@ -74,19 +75,19 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <h1 id="theoretical-and-functional-concerns">Theoretical and Functional Concerns</h1>
 <table>
 <colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 23%" />
+<col style="width: 17%" />
+<col style="width: 23%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Statistical Model</th>
 <th style="text-align: left;">Stata Command</th>
-<th style="text-align: left;">Theoretical plausibility</th>
-<th style="text-align: left;">Functional form of the dependent variable</th>
-<th style="text-align: left;">Functional form of the entire model</th>
+<th style="text-align: left;">Theoretical Rationale</th>
+<th style="text-align: left;">Functional Form of Dependent Variable</th>
+<th style="text-align: left;">Functional Form of Entire Model</th>
 </tr>
 </thead>
 <tbody>
@@ -94,43 +95,43 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <td style="text-align: left;">OLS</td>
 <td style="text-align: left;"><code>regress</code></td>
 <td style="text-align: left;">Continuous dependent variable</td>
-<td style="text-align: left;">y can range from negative infinity to positive infinity</td>
+<td style="text-align: left;"><span class="math inline">\(-\infty &lt; y &lt; \infty\)</span></td>
 <td style="text-align: left;">y is a linear function of the x’s</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Logistic Regression</td>
 <td style="text-align: left;"><code>logit</code></td>
 <td style="text-align: left;">Binary dependent variable</td>
-<td style="text-align: left;">y must be 0 or 1</td>
-<td style="text-align: left;">logit(y) is a linear function of x’s</td>
+<td style="text-align: left;"><span class="math inline">\(y = 0 \text{ or } 1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\ln \big( \frac{p(y)}{1-p(y)} \big)\)</span> is a linear function of x’s</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Ordinal logistic regression</td>
 <td style="text-align: left;"><code>ologit</code></td>
 <td style="text-align: left;">Ordered dependent variable where distance between categories does not matter</td>
-<td style="text-align: left;">y can range from negative infinity to positive infinity</td>
-<td style="text-align: left;">logit(y (higher category vs. lower category)) is a linear function of x’s</td>
+<td style="text-align: left;"><span class="math inline">\(-\infty &lt; y &lt; \infty\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\ln \big( \frac{p(y \text{ higher category})}{p(y \text{ lower categories})} \big)\)</span> is a linear function of x’s</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Multinomial Logistic Regression</td>
 <td style="text-align: left;"><code>mlogit</code></td>
 <td style="text-align: left;">Dependent variable with multiple unordered categories</td>
-<td style="text-align: left;">y can range from negative infinity to positive infinity</td>
-<td style="text-align: left;">logit(y (one category vs. another)) is a linear function of x’s</td>
+<td style="text-align: left;"><span class="math inline">\(-\infty &lt; y &lt; \infty\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\ln \big( \frac{p(y \text{ another category})}{p(y \text{ reference category})} \big)\)</span> is a linear function of x’s</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Poisson Regression</td>
 <td style="text-align: left;"><code>poisson</code></td>
 <td style="text-align: left;">Dependent variable representing a count</td>
-<td style="text-align: left;">y must be an integer greater than or equal to 0</td>
-<td style="text-align: left;">ln(y (count)) is a linear function of x’s</td>
+<td style="text-align: left;"><span class="math inline">\(y \text{ is integer} \geq 0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\ln(y \text{ (count)})\)</span> is a linear function of x’s</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Negative Binomial Regression</td>
 <td style="text-align: left;"><code>nbreg</code></td>
 <td style="text-align: left;">Dependent variable representing a count</td>
-<td style="text-align: left;">y must be an integer greater than or equal to 0</td>
-<td style="text-align: left;">ln(y (count)) is a linear function of x’s</td>
+<td style="text-align: left;"><span class="math inline">\(y \text{ is integer} \geq 0\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\ln(y \text{ (count)})\)</span> is a linear function of x’s</td>
 </tr>
 </tbody>
 </table>
@@ -144,7 +145,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </pre>
 <h2 id="explore-some-models">Explore Some Models</h2>
 <blockquote>
-<p>We use <code>quietly</code> to suppress model output at this stage.</p>
+<p>Only some of the above listed models are relevant. We use <code>quietly</code> to suppress model output at this stage.</p>
 </blockquote>
 <pre class='stata'>. quietly: regress acecount sc_sex i.sc_race_r i.higrade // OLS
 </pre>
