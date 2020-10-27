@@ -1,0 +1,56 @@
+% Data Visualization With Stata (The Basics)
+% Andy Grogan-Kaylor
+% `s c(current_date)`
+
+---
+geometry: margin=.5in
+---
+
+# Introduction 
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+
+99% of data visualization work sometimes seems to consist of creating bar graphs and scatterplots. (For the sake of completeness, I am also going to mention histograms.)  
+
+This is a quick guide to these ideas using the [Palmer Penguins Data](https://github.com/allisonhorst/palmerpenguins/blob/master/README.md).
+
+![Palmer Penguins Illustration from @allison_horst](lter_penguins.png){width=20%} ![Culmen Depth from @allison_horst](culmen_depth.png){width=20%}
+
+    clear all
+
+    use penguins.dta, clear
+
+# Histogram: `histogram`
+
+    histogram body_mass_g, title("Body Mass of Penguins")
+	
+	graph export myhistogram.png, width(1000) replace
+
+![histogram](myhistogram.png){width=25%}
+
+\newpage
+# Bar Graph: `graph bar`
+
+## Counting Up Numbers In Each Group
+
+    graph bar, over(species) title("Penguin Species")
+	
+	graph export mybar1.png, width(1000) replace
+
+![bar graph](mybar1.png){width=25%}
+
+## Average Of A Continuous Variable Across Groups
+
+    graph bar body_mass_g, over(species) title("Body Mass of Penguin Species")
+	
+	graph export mybar2.png, width(1000) replace
+
+![bar graph](mybar2.png){width=25%}
+
+# Scatterplot: `twoway scatter`
+
+    twoway scatter culmen_length_mm body_mass_g, title("Penguin Culmen Length by Body Mass")
+	
+	graph export myscatter.png, width(1000) replace
+
+![scatterplot](myscatter.png){width=25%}

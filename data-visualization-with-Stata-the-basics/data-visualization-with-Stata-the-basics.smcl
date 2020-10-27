@@ -1,0 +1,55 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}26 Oct 2020, 20:52:38
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}26 Oct 2020
+{txt}
+{com}. //_2
+. clear all
+{res}{txt}
+{com}. //_3
+. use penguins.dta, clear
+{txt}
+{com}. //_4
+. histogram body_mass_g, title("Body Mass of Penguins")
+{txt}(bin={res}18{txt}, start={res}2700{txt}, width={res}200{txt})
+{res}{txt}
+{com}. //_5
+. graph export myhistogram.png, width(1000) replace
+{txt}(file myhistogram.png written in PNG format)
+
+{com}. //_6
+. graph bar, over(species) title("Penguin Species")
+{res}{txt}
+{com}. //_7
+. graph export mybar1.png, width(1000) replace
+{txt}(file mybar1.png written in PNG format)
+
+{com}. //_8
+. graph bar body_mass_g, over(species) title("Body Mass of Penguin Species")
+{res}{txt}
+{com}. //_9
+. graph export mybar2.png, width(1000) replace
+{txt}(file mybar2.png written in PNG format)
+
+{com}. //_10
+. twoway scatter culmen_length_mm body_mass_g, title("Penguin Culmen Length by Body Mass")
+{res}{txt}
+{com}. //_11
+. graph export myscatter.png, width(1000) replace
+{txt}(file myscatter.png written in PNG format)
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}26 Oct 2020, 20:52:41
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
