@@ -14,12 +14,12 @@ geometry: margin=.5in
 
 This is a quick guide to these ideas using the [Palmer Penguins Data](https://github.com/allisonhorst/palmerpenguins/blob/master/README.md).
 
-![Palmer Penguins Illustration from @allison_horst](lter_penguins.png){width=20%} ![Culmen Depth from @allison_horst](culmen_depth.png){width=20%}
+![Palmer Penguins Illustration from @allison_horst](lter_penguins.png){width=20%}  ![Culmen Depth from @allison_horst](culmen_depth.png){width=20%}
 
     clear all
 
-    use penguins.dta, clear
-
+    use "https://github.com/agrogan1/newstuff/raw/master/data-visualization-with-Stata-the-basics/penguins.dta", clear
+	
 # Histogram: `histogram`
 
     histogram body_mass_g, title("Body Mass of Penguins")

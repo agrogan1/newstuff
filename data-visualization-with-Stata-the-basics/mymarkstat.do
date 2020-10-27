@@ -1,5 +1,7 @@
 * Data Visualization With Stata The Basics
 
+clear all
+
 cd "/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata-the-basics"
 
 doedit data-visualization-with-Stata-the-basics.stmd
