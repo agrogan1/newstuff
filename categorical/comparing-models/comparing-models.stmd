@@ -40,6 +40,10 @@ In this example, we explore the predictors of the *count of Adverse Childhood Ex
 
     egen acecount = anycount(ace*R), values(1)  // generate count of ACES
 
+## Describe The Data
+
+    describe acecount sc_sex sc_race_r higrade
+	
 ## Explore Some Models
 
 > Only some of the above listed models are relevant.  We use `quietly` to suppress model output at this stage.

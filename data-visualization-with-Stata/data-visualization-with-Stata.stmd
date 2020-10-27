@@ -88,41 +88,41 @@ The documentation goes on to further note that:
 
     histogram height, title("Tree Height")
 	
-    graph export myhistogram.png, width(500) replace
+    graph export myhistogram.png, width(1000) replace
 
-![Histogram Of Tree Height](myhistogram.png)
+![Histogram Of Tree Height](myhistogram.png){width=50%}
 
 ## One Categorical Thing At A Time
 
     graph bar, over(location) title("Tree Location")
 	
-	graph export mybargraph.png, width(500) replace
+	graph export mybargraph.png, width(1000) replace
 
-![Bar Graph Of Tree Location](mybargraph.png)
+![Bar Graph Of Tree Location](mybargraph.png){width=50%}
 
 ## Continuous by Continuous
 
     twoway scatter height age_base, title("Tree Height by Age")
 	
-	graph export myscatter.png, width(500) replace
+	graph export myscatter.png, width(1000) replace
 
-![Scatterplot Of Tree Height By Age](myscatter.png)
+![Scatterplot Of Tree Height By Age](myscatter.png){width=50%}
 
 ## Categorical by Categorical
 
     graph bar, over(site) over(location) title("Tree Site Growth Quality by Location")
 	
-	graph export mybargraph2.png, width(500) replace
+	graph export mybargraph2.png, width(1000) replace
 
-![Bar Graph Of Tree Site By Location](mybargraph2.png)
+![Bar Graph Of Tree Site By Location](mybargraph2.png){width=50%}
 
 ## Continuous by Categorical
 
     graph bar height, over(location) title("Tree Height by Location")
 	
-	graph export mybargraph3.png, width(500) replace
+	graph export mybargraph3.png, width(1000) replace
 
-![Bar Graph Of Mean Tree Height By Location](mybargraph3.png)
+![Bar Graph Of Mean Tree Height By Location](mybargraph3.png){width=50%}
 
 # Schemes
 
@@ -134,27 +134,27 @@ Stata *graph schemes* can substantially improve the look of a graph. Built in gr
 
     twoway scatter height age_base, title("Tree Height by Age") scheme(michigan)
 	
-	graph export myscatterM.png, width(500) replace
+	graph export myscatterM.png, width(1000) replace
 
-![Scatterplot Of Tree Height By Age With Michigan Graph Scheme](myscatterM.png)
+![Scatterplot Of Tree Height By Age With Michigan Graph Scheme](myscatterM.png){width=50%}
 
     twoway scatter height age_base, title("Tree Height by Age") scheme(lean2) msymbol(o)
 
-	graph export myscatterL.png, width(500) replace
+	graph export myscatterL.png, width(1000) replace
 
-![Scatterplot Of Tree Height By Age With lean2 Graph Scheme](myscatterL.png)
+![Scatterplot Of Tree Height By Age With lean2 Graph Scheme](myscatterL.png){width=50%}
 
     twoway scatter height age_base, title("Tree Height by Age") scheme(s1rcolor)
 
-	graph export myscatterS.png, width(500) replace
+	graph export myscatterS.png, width(1000) replace
 
-![Scatterplot Of Tree Height By Age With s1rcolor Graph Scheme](myscatterS.png)
+![Scatterplot Of Tree Height By Age With s1rcolor Graph Scheme](myscatterS.png){width=50%}
 
     twoway scatter height age_base, title("Tree Height by Age") scheme(burd) msymbol(o)
 
-	graph export myscatterB.png, width(500) replace
+	graph export myscatterB.png, width(1000) replace
 
-![Scatterplot Of Tree Height By Age With burd Graph Scheme](myscatterB.png)
+![Scatterplot Of Tree Height By Age With burd Graph Scheme](myscatterB.png){width=50%}
 
 ## Continuous by Categorical 
 
@@ -162,25 +162,25 @@ Stata *graph schemes* can substantially improve the look of a graph. Built in gr
 
 	graph bar height, over(location) asyvars title("Tree Height by Location") scheme(michigan)
 	
-	graph export mybarM.png, width(500) replace
+	graph export mybarM.png, width(1000) replace
 
-![Bar Graph Of Mean Tree Height By Location With Michigan Graph Scheme](mybarM.png)
+![Bar Graph Of Mean Tree Height By Location With Michigan Graph Scheme](mybarM.png){width=50%}
 
 	graph bar height, over(location) asyvars title("Tree Height by Location") scheme(lean2)
 	
-	graph export mybarL.png, width(500) replace
+	graph export mybarL.png, width(1000) replace
 
-![Bar Graph Of Mean Tree Height By Location With lean2 Graph Scheme](mybarL.png)
+![Bar Graph Of Mean Tree Height By Location With lean2 Graph Scheme](mybarL.png){width=50%}
 
 	graph bar height, over(location) asyvars title("Tree Height by Location") scheme(s1rcolor)
 	
-	graph export mybarS.png, width(500) replace
+	graph export mybarS.png, width(1000) replace
 
-![Bar Graph Of Mean Tree Height By Location With s1rcolor Graph Scheme](mybarS.png)
+![Bar Graph Of Mean Tree Height By Location With s1rcolor Graph Scheme](mybarS.png){width=50%}
 
     graph bar height, over(location) asyvars title("Tree Height by Location") scheme(burd)
 
-	graph export mybarB.png, width(500) replace
+	graph export mybarB.png, width(1000) replace
 
-![Bar Graph Of Mean Tree Height By Location With burd Graph Scheme](mybarB.png)
+![Bar Graph Of Mean Tree Height By Location With burd Graph Scheme](mybarB.png){width=50%}
 

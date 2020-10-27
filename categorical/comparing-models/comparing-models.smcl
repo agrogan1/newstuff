@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/comparing-models/comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}27 Oct 2020, 08:40:19
+ {txt}opened on:  {res}27 Oct 2020, 11:37:44
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}08:40:19
+{res}11:37:44
 {txt}
 {com}. //_3
 . clear all
@@ -23,30 +23,44 @@
 . egen acecount = anycount(ace*R), values(1)  // generate count of ACES
 {txt}
 {com}. //_6
-. quietly: regress acecount sc_sex i.sc_race_r i.higrade // OLS
+. describe acecount sc_sex sc_race_r higrade
+
+              {txt}storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:acecount       }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R ace10R == 1{p_end}
+{p 0 48}{bind:sc_sex         }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{txt}sc_sex_lab{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}Sex of Selected Child{p_end}
+{p 0 48}{bind:sc_race_r      }{txt}{bind: byte    }{bind:{txt}%48.0g    }{space 1}{txt}sc_race_r_lab{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}Race of Selected Child, Detailed{p_end}
+{p 0 48}{bind:higrade        }{txt}{bind: byte    }{bind:{txt}%61.0g    }{space 1}{txt}higrade_lab{p_end}
+{p 0 48}{space 44}{bind:  }{res}{res}Highest Level of Education among Reported Adults{p_end}
 {txt}
 {com}. //_7
-. estimates store OLS
+. quietly: regress acecount sc_sex i.sc_race_r i.higrade // OLS
 {txt}
 {com}. //_8
-. quietly: ologit acecount sc_sex i.sc_race_r i.higrade // ordinal logit
+. estimates store OLS
 {txt}
 {com}. //_9
-. estimates store ORDINAL
+. quietly: ologit acecount sc_sex i.sc_race_r i.higrade // ordinal logit
 {txt}
 {com}. //_10
-. quietly: poisson acecount sc_sex i.sc_race_r i.higrade // Poisson
+. estimates store ORDINAL
 {txt}
 {com}. //_11
-. estimates store POISSON
+. quietly: poisson acecount sc_sex i.sc_race_r i.higrade // Poisson
 {txt}
 {com}. //_12
-. quietly: nbreg acecount sc_sex i.sc_race_r i.higrade // Negative Binomial
+. estimates store POISSON
 {txt}
 {com}. //_13
-. estimates store NBREG
+. quietly: nbreg acecount sc_sex i.sc_race_r i.higrade // Negative Binomial
 {txt}
 {com}. //_14
+. estimates store NBREG
+{txt}
+{com}. //_15
 . estimates table OLS ORDINAL POISSON NBREG, var(20) star stats(N ll aic bic) equations(1)
 {res}
 {txt}{hline 20}{c -}{c TT}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
@@ -112,7 +126,7 @@ High school (inc..)  {c |}{res} {ralign 10:.10021068}{lalign 3:}{txt} {space 1}{
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/comparing-models/comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}27 Oct 2020, 08:40:23
+ {txt}closed on:  {res}27 Oct 2020, 11:37:48
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

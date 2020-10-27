@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Comparing Statistical Models</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">27 Oct 2020 08:40:02</p>
+<p class="date">27 Oct 2020 11:37:39</p>
 </header>
 <h1 id="introduction">Introduction</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;}</style>
@@ -142,6 +142,21 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. use "NSCH_ACES.dta", clear
 </pre>
 <pre class='stata'>. egen acecount = anycount(ace*R), values(1)  // generate count of ACES
+</pre>
+<h2 id="describe-the-data">Describe The Data</h2>
+<pre class='stata'>. describe acecount sc_sex sc_race_r higrade
+
+              storage   display    value
+variable name   type    format     label      variable label
+────────────────────────────────────────────────────────────────────────────────────────────────
+acecount        byte    %8.0g                 ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R
+                                                ace10R == 1
+sc_sex          byte    %30.0g     sc_sex_lab
+                                              Sex of Selected Child
+sc_race_r       byte    %48.0g     sc_race_r_lab
+                                              Race of Selected Child, Detailed
+higrade         byte    %61.0g     higrade_lab
+                                              Highest Level of Education among Reported Adults
 </pre>
 <h2 id="explore-some-models">Explore Some Models</h2>
 <blockquote>
