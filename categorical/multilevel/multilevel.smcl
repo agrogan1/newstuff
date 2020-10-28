@@ -1,0 +1,156 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/multilevel/multilevel.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}28 Oct 2020, 07:33:03
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}28 Oct 2020
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}07:33:03
+{txt}
+{com}. //_3
+. use hsb.dta, clear
+{txt}
+{com}. //_4
+. describe
+
+{txt}Contains data from {res}hsb.dta
+{txt}  obs:{res}         7,185                          
+{txt} vars:{res}             7                          27 Oct 2020 21:35
+{txt} size:{res}       143,700                          
+{txt}{hline}
+              storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:female         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}female{p_end}
+{p 0 48}{bind:ses            }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}socioeconomic status{p_end}
+{p 0 48}{bind:mathach        }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}math achievement{p_end}
+{p 0 48}{bind:size           }{txt}{bind: int     }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}school size{p_end}
+{p 0 48}{bind:sector         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}Catholic vs. Public{p_end}
+{p 0 48}{bind:schoolid       }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}School ID{p_end}
+{p 0 48}{bind:mathgroup      }{txt}{bind: float   }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}math group (Hi / Lo){p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. //_5
+. melogit mathgroup female ses size sector || schoolid:
+{res}{txt}
+Fitting fixed-effects model:
+
+Iteration 0:{space 3}log likelihood = {res:-4565.8765}  
+Iteration 1:{space 3}log likelihood = {res:-4562.4746}  
+Iteration 2:{space 3}log likelihood = {res:-4562.4721}  
+Iteration 3:{space 3}log likelihood = {res:-4562.4721}  
+
+Refining starting values:
+
+Grid node 0:{space 3}log likelihood = {res:-4513.3688}
+
+Fitting full model:
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-4513.3688}  (not concave)
+Iteration 1:{space 3}log likelihood = {res:-4489.5697}  
+Iteration 2:{space 3}log likelihood = {res:-4484.6285}  
+Iteration 3:{space 3}log likelihood = {res: -4481.049}  
+Iteration 4:{space 3}log likelihood = {res:-4480.8848}  
+Iteration 5:{space 3}log likelihood = {res:-4480.8842}  
+Iteration 6:{space 3}log likelihood = {res:-4480.8842}  
+{res}
+{txt}Mixed-effects logistic regression{col 49}{txt}Number of obs{col 67}={res}{col 69}     7,185
+{txt}Group variable: {col 24}{res}schoolid{col 49}{txt}Number of groups{col 67}={res}{col 69}       160
+
+{col 49}{txt}Obs per group:
+{col 63}{txt}min{col 67}={res}{col 69}        14
+{col 63}{txt}avg{col 67}={res}{col 69}      44.9
+{col 63}{txt}max{col 67}={res}{col 69}        67
+
+{txt}Integration method: {col 21}{res}mvaghermite{col 49}{txt}Integration pts.{col 67}={col 78}{res}7
+
+{col 49}{txt}Wald chi2({res}4{txt}){col 67}={res}{col 70}   393.35
+{txt}Log likelihood = {res}-4480.8842{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   mathgroup{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}female {c |}{col 14}{res}{space 2}-.3204768{col 26}{space 2} .0579682{col 37}{space 1}   -5.53{col 46}{space 3}0.000{col 54}{space 4}-.4340924{col 67}{space 3}-.2068611
+{txt}{space 9}ses {c |}{col 14}{res}{space 2} .6806318{col 26}{space 2}  .039101{col 37}{space 1}   17.41{col 46}{space 3}0.000{col 54}{space 4} .6039952{col 67}{space 3} .7572684
+{txt}{space 8}size {c |}{col 14}{res}{space 2} .0001675{col 26}{space 2} .0000892{col 37}{space 1}    1.88{col 46}{space 3}0.061{col 54}{space 4}-7.43e-06{col 67}{space 3} .0003424
+{txt}{space 6}sector {c |}{col 14}{res}{space 2} .6718503{col 26}{space 2} .1118137{col 37}{space 1}    6.01{col 46}{space 3}0.000{col 54}{space 4} .4526995{col 67}{space 3} .8910011
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.3410853{col 26}{space 2} .1410036{col 37}{space 1}   -2.42{col 46}{space 3}0.016{col 54}{space 4}-.6174473{col 67}{space 3}-.0647234
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}{res}schoolid    {col 14}{txt}{c |}
+   var(_cons){c |}{col 14}{res}{space 2}  .277578{col 26}{space 2} .0485216{col 54}{space 4}  .197057{col 67}{space 3} .3910012
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}LR test vs. logistic model: {txt}{help j_chibar##|_new:chibar2(01) =}{res} 163.18{col 55}{txt}Prob >= chibar2 = {res}{col 73}0.0000
+{txt}
+{com}. //_6
+. melogit, or
+
+{txt}Mixed-effects logistic regression{col 49}{txt}Number of obs{col 67}={res}{col 69}     7,185
+{txt}Group variable: {col 24}{res}schoolid{col 49}{txt}Number of groups{col 67}={res}{col 69}       160
+
+{col 49}{txt}Obs per group:
+{col 63}{txt}min{col 67}={res}{col 69}        14
+{col 63}{txt}avg{col 67}={res}{col 69}      44.9
+{col 63}{txt}max{col 67}={res}{col 69}        67
+
+{txt}Integration method: {col 21}{res}mvaghermite{col 49}{txt}Integration pts.{col 67}={col 78}{res}7
+
+{col 49}{txt}Wald chi2({res}4{txt}){col 67}={res}{col 70}   393.35
+{txt}Log likelihood = {res}-4480.8842{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   mathgroup{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 6}female {c |}{col 14}{res}{space 2} .7258029{col 26}{space 2} .0420735{col 37}{space 1}   -5.53{col 46}{space 3}0.000{col 54}{space 4} .6478524{col 67}{space 3} .8131326
+{txt}{space 9}ses {c |}{col 14}{res}{space 2} 1.975125{col 26}{space 2} .0772294{col 37}{space 1}   17.41{col 46}{space 3}0.000{col 54}{space 4} 1.829413{col 67}{space 3} 2.132443
+{txt}{space 8}size {c |}{col 14}{res}{space 2} 1.000167{col 26}{space 2} .0000893{col 37}{space 1}    1.88{col 46}{space 3}0.061{col 54}{space 4} .9999926{col 67}{space 3} 1.000342
+{txt}{space 6}sector {c |}{col 14}{res}{space 2} 1.957857{col 26}{space 2} .2189152{col 37}{space 1}    6.01{col 46}{space 3}0.000{col 54}{space 4} 1.572552{col 67}{space 3} 2.437569
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .7109982{col 26}{space 2} .1002533{col 37}{space 1}   -2.42{col 46}{space 3}0.016{col 54}{space 4} .5393194{col 67}{space 3} .9373267
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}{res}schoolid    {col 14}{txt}{c |}
+   var(_cons){c |}{col 14}{res}{space 2}  .277578{col 26}{space 2} .0485216{col 54}{space 4}  .197057{col 67}{space 3} .3910012
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {help eform_option:Estimates are transformed} only in the first equation.{p_end}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds (conditional on zero random effects){txt}.{p_end}
+{txt}LR test vs. logistic model: {txt}{help j_chibar##|_new:chibar2(01) =}{res} 163.18{col 55}{txt}Prob >= chibar2 = {res}{col 73}0.0000
+{txt}
+{com}. //_7
+. estat icc
+
+{txt}Residual intraclass correlation
+
+{res}{col 1}{text}{hline 29}{c TT}{hline 12}{hline 12}{hline 12}{hline 12}
+{col 1}{text}                       Level{col 30}{c |}        ICC{col 43}  Std. Err.{col 55}    [95% Conf. Interval]
+{res}{col 1}{text}{hline 29}{c +}{hline 12}{hline 12}{hline 12}{hline 12}
+{col 1}{text}                    schoolid{col 30}{c |}{result}{space 2} .0778086{col 43}{space 1} .0125429{col 55}{space 3} .0565131{col 67}{space 3} .1062252
+{col 1}{text}{hline 29}{c BT}{hline 12}{hline 12}{hline 12}{hline 12}
+{res}{txt}
+{com}. //_8
+. clear all
+{res}{txt}
+{com}. //_9
+. twoway (function y = logistic(x), range(-5 5)) /// first school; random intercept 0
+> (function y = logistic(x + 1), range(-5 5)) /// second school; random intercept 1
+> (function y = logistic(x - 1), range(-5 5)), /// third school; random intercept -1
+> title("Three Hypothetical Schools") ///
+> sub("With Different Random Intercepts") ///
+> legend(order(1 "random intercept 0" 2 "random intercept +1" 3 "random intercept -1")) ///
+> scheme(michigan)
+{res}{txt}
+{com}. //_10
+. graph export myMLM.png, width(1000) replace
+{txt}(file myMLM.png written in PNG format)
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/multilevel/multilevel.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}28 Oct 2020, 07:33:07
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

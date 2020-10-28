@@ -1,0 +1,64 @@
+h1, h2, h3 {
+  font-family: Helvetica, sans-serif;
+  font-weight: normal;
+}
+body { 
+  font-family: Helvetica, sans-serif;
+}
+.author, .date {
+  font-family: Helvetica, sans-serif;
+  font-weight: normal;
+}
+slide.title-slide{
+  background-color: #FFDC00; 
+}
+.title-slide {
+  background-color: #FFDC00; 
+}
+.slide.titlepage {
+  color: black;
+  font-size: 200%;
+  font-weight: bold;
+  background-color: #FFDC00; 
+}
+blockquote {
+  background: #FFFFFF;
+  color: #000;
+  border-left: 5px solid #FFDC00;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+}
+#nextsteps {
+   color: black;
+   background-color: #FFDC00;
+   text-align: left;
+   font-size: 125%;
+}
+#majorsection {
+   color: white;
+   background-position: center;
+   background-color: #000000;
+   text-align: center;
+   font-size: 300%;
+}
+.emphasized {
+   font-size: 200%;
+   text-align: center;
+}
+img {
+  max-width: 75%;
+  height: auto;
+}
+pre {
+  color: black;
+  background-color: white;
+  border: 2px solid grey;
+  border-left: 12px solid #FFDC00;
+}
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}

@@ -1,0 +1,102 @@
+% Multilevel Models For Categorical Data
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+# Motivating Example 
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;}</style>
+
+## High School and Beyond Data
+
+    use hsb.dta, clear
+	
+	describe
+	
+## A Multilevel Model
+
+    melogit mathgroup female ses size sector || schoolid:
+	
+## Ask For Odds Ratios
+
+    melogit, or
+	
+## Intra Class Correlation Coefficient (ICC)
+
+    estat icc
+
+# Visualizing The Idea Of A Random Intercept
+
+    clear all
+	
+	twoway (function y = logistic(x), range(-5 5)) /// first school; random intercept 0
+    (function y = logistic(x + 1), range(-5 5)) /// second school; random intercept 1
+	(function y = logistic(x - 1), range(-5 5)), /// third school; random intercept -1
+	title("Three Hypothetical Schools") ///
+	sub("With Different Random Intercepts") ///
+	legend(order(1 "random intercept 0" 2 "random intercept +1" 3 "random intercept -1")) ///
+	scheme(michigan)
+
+	graph export myMLM.png, width(1000) replace
+
+![Simulated MLM of School Data](myMLM.png){width=50%}
+
+# Multiple Uses For Multilevel Modeling
+
+Multilevel modeling is useful in a number of situations with clustering.
+
+| Model | Clustering or Nesting |
+|--|--|
+| Nested or clustered cross-sectional data | People inside social units such as families, classrooms, schools or neighborhoods, … inside states, countries, etc. |
+| Longitudinal data | Measurement occasions inside people (multiple time points; different people have very different time points) |
+| Meta-Analysis | People inside multiple studies concerning a particular outcome |
+| Meta-Analysis of Multiple Outcomes | People inside multiple studies concerning different outcomes |
+| Dyadic analysis (e.g. couples; parent and child in family) | People inside dyads |
+| Combinations of these approaches | |
+
+> Mathematics is the art of giving the same name to different things.  —Henri Poincaré
+
+# Developing Some Notation
+
+Our notation for logistic regression model is:
+
+$$
+    \ln \Big( \frac{p(outcome)}{1 - p(outcome)} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...
+$$
+
+which after *exponentiating* both sides, and some rearrangement, can be written:
+
+$$
+    p(outcome) = \frac{e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...}}{1 +e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...}} =
+$$
+
+$$
+    F(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...)
+$$
+
+where $F(z) = \frac{e^z}{1 + e^z}$, which is the logistic distribution.
+
+So in adapting this notation for the multilevel context, we are ultimately going to write the notation for the multilevel logistic regression model as:
+
+$p(outcome | \text{unique intercept for each unit}) = F(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + u_{0j})$
+
+# Stata Commands
+
+> Multilevel models have complicated likelihoods. As we move toward the middle to end of this table, models may have difficulty converging.
+
+| Single Level Command | Multilevel Command |
+|--|--|
+| `regress y x` | `mixed y x || id:` |
+| `logit y x` | `melogit y x || id:` |
+| `ologit y x` | `meologit y x || id:` |
+| `mlogit y x` | `gsem...` |
+| `poisson y x` | `mepoisson y x || id:` |
+| `nbreg y x` | `menbreg y x || id:` |
+
+
+
+
+
