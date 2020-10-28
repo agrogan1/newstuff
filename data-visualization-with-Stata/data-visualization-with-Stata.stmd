@@ -150,7 +150,7 @@ Stata *graph schemes* can substantially improve the look of a graph. Built in gr
 
 ![Scatterplot Of Tree Height By Age With s1rcolor Graph Scheme](myscatterS.png){width=50%}
 
-    twoway scatter height age_base, title("Tree Height by Age") scheme(burd) msymbol(o)
+    twoway scatter height age_base, title("Tree Height by Age") scheme(burd) msymbol(o) graphregion(lcolor(none))
 
 	graph export myscatterB.png, width(1000) replace
 
@@ -178,7 +178,7 @@ Stata *graph schemes* can substantially improve the look of a graph. Built in gr
 
 ![Bar Graph Of Mean Tree Height By Location With s1rcolor Graph Scheme](mybarS.png){width=50%}
 
-    graph bar height, over(location) asyvars title("Tree Height by Location") scheme(burd)
+    graph bar height, over(location) asyvars title("Tree Height by Location") scheme(burd) graphregion(lcolor(none))
 
 	graph export mybarB.png, width(1000) replace
 
