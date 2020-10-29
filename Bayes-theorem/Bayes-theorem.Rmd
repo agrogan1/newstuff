@@ -146,7 +146,7 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 ---
 # Visualization
 
-```{r echo=FALSE, out.width = "60%", message=FALSE, warning=FALSE, fig.retina=3}
+```{r echo=FALSE, out.width = "80%", message=FALSE, warning=FALSE, fig.retina=3}
 
 library(ggplot2)
 
@@ -192,20 +192,20 @@ p1 <- Bayesdata %>%
               make_proportional = FALSE,
               height = 0.8, 
               width = 0.8) +
-  facet_wrap(~mylabel) +
+  # facet_wrap(~mylabel) +
   labs(title = "1,000 Hypothetical Studies") +
   scale_fill_manual(name = "Category",
                     values = c(michigancolors("blue"),
                                michigancolors("maize"),
                                michigancolors("tappan red"),
                                michigancolors("wave field green"))) +
+  coord_fixed() +
   theme(plot.title = element_text(size=rel(3)),
         # plot.margin = margin(0, 2, 2, 2, "cm"),
         legend.text = element_text(size = rel(1)),
         aspect.ratio = .5) +
   theme_ipsum_rc(grid="") +
-  theme_enhance_waffle() +
-  theme(legend.position = "bottom")
+  theme_enhance_waffle() 
 
 p1 
 
