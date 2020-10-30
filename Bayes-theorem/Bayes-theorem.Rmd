@@ -145,9 +145,10 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 > With thanks to the [Wikipedia article](https://en.wikipedia.org/wiki/Bayes%27_theorem#Cancer_rate) on this topic for inspiration for this example.
 
 ---
+class: center, top
 # Visualization
 
-```{r echo=FALSE, out.width = "80%", message=FALSE, warning=FALSE, fig.retina=3}
+```{r echo=FALSE, message=FALSE, warning=FALSE, out.width="80%", fig.retina=3}
 
 library(ggplot2)
 
