@@ -2,16 +2,16 @@
 title: "Goodnight R"
 author: "Andy Grogan-Kaylor"
 output: 
-  revealjs::revealjs_presentation:
-    fig_height: 4
-    highlight: kate
-    self_contained: no
+  slidy_presentation:
+    fig_caption: yes
+    css: goodnight-R.css
+    footer: Andrew Grogan-Kaylor
+    highlight: haddock
     theme: default
-    transition: fade
 subtitle: "(with thanks to @olgarithmic)"
 ---
 
-## Goodnight R
+# Goodnight R
 
 * In the great green room
 * There was someone coding alone
@@ -24,7 +24,7 @@ subtitle: "(with thanks to @olgarithmic)"
 * And a bowl full of mush `r emo::ji("bowl with spoon")`
 * And the person who was coding was whispering, "Hush." `r emo::ji("shushing face")`
 
-## Goodnight columns, goodnight rows, {data-background=#559955}
+# Goodnight columns, goodnight rows, {data-background=#559955}
 
 
 ```{r setup, include=FALSE}
@@ -72,7 +72,7 @@ pander(x) # row
 
 `r emo::ji("rabbit")`
 
-## Goodnight kind strangers on Stack Overflow, {data-background=#559955}
+# Goodnight kind strangers on Stack Overflow, {data-background=#559955}
 
 `r emo::ji("smiley")` `r emo::ji("smiley")` `r emo::ji("smiley")`
 
@@ -82,7 +82,7 @@ knitr::include_graphics("stack-overflow-icon.png")
 
 ```
 
-## Goodnight factors, goodnight strings, {data-background=#559955}
+# Goodnight factors, goodnight strings, {data-background=#559955}
 
 ```{r, echo=TRUE}
 
@@ -96,8 +96,7 @@ as.factor(x)
 
 ```
 
-
-## Goodnight overfitted things, {data-background=#559955}
+# Goodnight overfitted things. {data-background=#559955}
 
 ```{r, echo=FALSE}
 
@@ -121,10 +120,9 @@ ggplot(data=NULL,
 
 ```
 
+# Goodnight anxiety and frustrated thoughts, {data-background=#559955}
 
-## Goodnight anxiety and frustrated thoughts, {data-background=#559955}
-
-## Goodnight inconclusive plots. {data-background=#559955}
+# Goodnight inconclusive plots. {data-background=#559955}
 
 ```{r}
 
@@ -142,4 +140,4 @@ ggplot(data=NULL,
 ```
 
 
-## Goodnight R {data-background=#559955}
+# Goodnight R {data-background=#559955}
