@@ -1,24 +1,24 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/simpsons-paradox-hospital-data/simpsons-paradox-hospital-data.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/simpsons-paradox-hospital-data/simpsons-paradox-hospital-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}18 Sep 2020, 08:46:40
+ {txt}opened on:  {res} 2 Nov 2020, 12:36:46
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}18 Sep 2020
+{res} 2 Nov 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}08:46:40
+{res}12:36:46
 {txt}
 {com}. //_3
 . clear all
 {res}{txt}
 {com}. //_4
-. cd "/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/simpsons-paradox-hospital-data"
-{res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/simpsons-paradox-hospital-data
+. cd "/Users/agrogan/Desktop/newstuff/categorical/simpsons-paradox-hospital-data"
+{res}/Users/agrogan/Desktop/newstuff/categorical/simpsons-paradox-hospital-data
 {txt}
 {com}. //_5
 . use "hospitaldata.dta"
@@ -41,109 +41,70 @@
      {c BLC}{hline 10}{c -}{hline 13}{c -}{hline 9}{c -}{hline 7}{c BRC}
 
 {com}. //_7
-. tabulate hospital outcome
-
-           {txt}{c |}        outcome
-  hospital {c |}   failure    success {c |}     Total
-{hline 11}{c +}{hline 22}{c +}{hline 10}
-    better {c |}{res}         2          2 {txt}{c |}{res}         4 
-{txt}    normal {c |}{res}         2          2 {txt}{c |}{res}         4 
-{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
-     Total {c |}{res}         4          4 {txt}{c |}{res}         8 
+. tabulate hospital outcome [fweight = count], row 
 {txt}
-{com}. //_8
-. tabulate hospital outcome [fweight = count], row col
-{txt}
-{c TLC}{hline 19}{c TRC}
-{c |} Key{col 21}{c |}
-{c LT}{hline 19}{c RT}
-{c |}{space 5}{it:frequency}{col 21}{c |}
-{c |}{space 2}{it:row percentage}{col 21}{c |}
-{c |}{space 1}{it:column percentage}{col 21}{c |}
-{c BLC}{hline 19}{c BRC}
+{c TLC}{hline 16}{c TRC}
+{c |} Key{col 18}{c |}
+{c LT}{hline 16}{c RT}
+{c |}{space 3}{it:frequency}{col 18}{c |}
+{c |}{space 1}{it:row percentage}{col 18}{c |}
+{c BLC}{hline 16}{c BRC}
 
            {c |}        outcome
   hospital {c |}   failure    success {c |}     Total
 {hline 11}{c +}{hline 22}{c +}{hline 10}
     better {c |}{res}        50         50 {txt}{c |}{res}       100 
            {txt}{c |}{res}     50.00      50.00 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}     60.98      42.37 {txt}{c |}{res}     50.00 
 {txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
     normal {c |}{res}        32         68 {txt}{c |}{res}       100 
            {txt}{c |}{res}     32.00      68.00 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}     39.02      57.63 {txt}{c |}{res}     50.00 
 {txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
      Total {c |}{res}        82        118 {txt}{c |}{res}       200 
            {txt}{c |}{res}     41.00      59.00 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
 {txt}
-{com}. //_9
-. graph bar [fweight = count], over(outcome) by(hospital) title(Hospital Outcomes) scheme(michigan)
+{com}. //_8
+. graph bar (count) [fweight = count], over(outcome) over(hospital) blabel(bar) title("Hospital Outcomes") scheme(michigan)
 {res}{txt}
-{com}. //_10
-. graph export bivariategraph.png, width(500) replace
+{com}. //_9
+. graph export bivariategraph.png, width(1000) replace
 {txt}(file bivariategraph.png written in PNG format)
 
+{com}. //_10
+. generate severity_hospital = severity + " " + hospital // concatenate severity + hospital type
+{txt}
 {com}. //_11
-. bysort severity: tabulate hospital outcome [fweight = count], row col
+. tabulate severity_hospital outcome [fweight=count], row 
+{txt}
+{c TLC}{hline 16}{c TRC}
+{c |} Key{col 18}{c |}
+{c LT}{hline 16}{c RT}
+{c |}{space 3}{it:frequency}{col 18}{c |}
+{c |}{space 1}{it:row percentage}{col 18}{c |}
+{c BLC}{hline 16}{c BRC}
 
-{txt}{hline}
--> severity = less severe
-
-{c TLC}{hline 19}{c TRC}
-{c |} Key{col 21}{c |}
-{c LT}{hline 19}{c RT}
-{c |}{space 5}{it:frequency}{col 21}{c |}
-{c |}{space 2}{it:row percentage}{col 21}{c |}
-{c |}{space 1}{it:column percentage}{col 21}{c |}
-{c BLC}{hline 19}{c BRC}
-
-           {c |}        outcome
-  hospital {c |}   failure    success {c |}     Total
-{hline 11}{c +}{hline 22}{c +}{hline 10}
-    better {c |}{res}         2         18 {txt}{c |}{res}        20 
-           {txt}{c |}{res}     10.00      90.00 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}     11.11      21.95 {txt}{c |}{res}     20.00 
-{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
-    normal {c |}{res}        16         64 {txt}{c |}{res}        80 
-           {txt}{c |}{res}     20.00      80.00 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}     88.89      78.05 {txt}{c |}{res}     80.00 
-{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
-     Total {c |}{res}        18         82 {txt}{c |}{res}       100 
-           {txt}{c |}{res}     18.00      82.00 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
-
-{txt}{hline}
--> severity = more severe
-
-{c TLC}{hline 19}{c TRC}
-{c |} Key{col 21}{c |}
-{c LT}{hline 19}{c RT}
-{c |}{space 5}{it:frequency}{col 21}{c |}
-{c |}{space 2}{it:row percentage}{col 21}{c |}
-{c |}{space 1}{it:column percentage}{col 21}{c |}
-{c BLC}{hline 19}{c BRC}
-
-           {c |}        outcome
-  hospital {c |}   failure    success {c |}     Total
-{hline 11}{c +}{hline 22}{c +}{hline 10}
-    better {c |}{res}        48         32 {txt}{c |}{res}        80 
-           {txt}{c |}{res}     60.00      40.00 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}     75.00      88.89 {txt}{c |}{res}     80.00 
-{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
-    normal {c |}{res}        16          4 {txt}{c |}{res}        20 
-           {txt}{c |}{res}     80.00      20.00 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}     25.00      11.11 {txt}{c |}{res}     20.00 
-{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
-     Total {c |}{res}        64         36 {txt}{c |}{res}       100 
-           {txt}{c |}{res}     64.00      36.00 {txt}{c |}{res}    100.00 
-           {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
-
+                   {c |}        outcome
+ severity_hospital {c |}   failure    success {c |}     Total
+{hline 19}{c +}{hline 22}{c +}{hline 10}
+less severe better {c |}{res}         2         18 {txt}{c |}{res}        20 
+                   {txt}{c |}{res}     10.00      90.00 {txt}{c |}{res}    100.00 
+{txt}{hline 19}{c +}{hline 22}{c +}{hline 10}
+less severe normal {c |}{res}        16         64 {txt}{c |}{res}        80 
+                   {txt}{c |}{res}     20.00      80.00 {txt}{c |}{res}    100.00 
+{txt}{hline 19}{c +}{hline 22}{c +}{hline 10}
+more severe better {c |}{res}        48         32 {txt}{c |}{res}        80 
+                   {txt}{c |}{res}     60.00      40.00 {txt}{c |}{res}    100.00 
+{txt}{hline 19}{c +}{hline 22}{c +}{hline 10}
+more severe normal {c |}{res}        16          4 {txt}{c |}{res}        20 
+                   {txt}{c |}{res}     80.00      20.00 {txt}{c |}{res}    100.00 
+{txt}{hline 19}{c +}{hline 22}{c +}{hline 10}
+             Total {c |}{res}        82        118 {txt}{c |}{res}       200 
+                   {txt}{c |}{res}     41.00      59.00 {txt}{c |}{res}    100.00 
 {txt}
 {com}. //_12
 . graph bar [fweight = count] if severity == "less severe", ///
 > title(Less Severe) ///
 > over(outcome) ///
+> blabel(bar) ///
 > by(hospital) ////
 > scheme(michigan) ///
 > name(lesssevere, replace)
@@ -152,6 +113,7 @@
 . graph bar [fweight = count] if severity == "more severe", ///
 > title(More Severe) ///
 > over(outcome) ///
+> blabel(bar) ///
 > by(hospital) ///
 > scheme(michigan) ///
 > name(moresevere, replace)
@@ -163,29 +125,12 @@
 . graph export multivariategraph.png, width(1000) replace
 {txt}(file multivariategraph.png written in PNG format)
 
-{com}. //_16
-. table hospital outcome [fweight=count], by(severity) 
-
-{txt}{hline 12}{c TT}{hline 17}
-severity    {c |}
-and         {c |}     outcome     
-hospital    {c |} failure  success
-{hline 12}{c +}{hline 17}
-less severe {c |}
-     better {c |}       {res}2       18
-     {txt}normal {c |}      {res}16       64
-{txt}{hline 12}{c +}{hline 17}
-more severe {c |}
-     better {c |}      {res}48       32
-     {txt}normal {c |}      {res}16        4
-{txt}{hline 12}{c BT}{hline 17}
-
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/simpsons-paradox-hospital-data/simpsons-paradox-hospital-data.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/simpsons-paradox-hospital-data/simpsons-paradox-hospital-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}18 Sep 2020, 08:46:52
+ {txt}closed on:  {res} 2 Nov 2020, 12:36:55
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

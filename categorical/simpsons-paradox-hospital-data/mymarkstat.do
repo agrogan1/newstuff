@@ -2,7 +2,7 @@
 
 clear all
 
-cd "/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/simpsons-paradox-hospital-data"
+cd "/Users/agrogan/Desktop/newstuff/categorical/simpsons-paradox-hospital-data"
 
 doedit "simpsons-paradox-hospital-data.stmd"
 

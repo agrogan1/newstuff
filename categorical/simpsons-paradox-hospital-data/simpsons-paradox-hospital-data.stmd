@@ -10,39 +10,42 @@ geometry: margin=1 in
 
 # Background
 
-Simpson's paradox occurs when a bivariate association is reversed in a multivariate model. This example uses simulated data from a hospital. Source TBD.
+> Simpson's paradox occurs when a bivariate association is reversed in a multivariate model. This example uses simulated data from hospitals (Wang et al., 2018). 
 
 # Setup
 
     clear all
 
-    cd "/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/simpsons-paradox-hospital-data"
+    cd "/Users/agrogan/Desktop/newstuff/categorical/simpsons-paradox-hospital-data"
 
     use "hospitaldata.dta"
 	
+	list
+	
 # Outcome By Hospital Type
 
-    list
+> It appears as though patients do better at the *normal* hospital, as opposed to the *better* hospital.
+	
+	tabulate hospital outcome [fweight = count], row 
+	
+	graph bar (count) [fweight = count], over(outcome) over(hospital) blabel(bar) title("Hospital Outcomes") scheme(michigan)
+		
+	graph export bivariategraph.png, width(1000) replace
 
-    tabulate hospital outcome
-	
-	tabulate hospital outcome [fweight = count], row col
-	
-    graph bar [fweight = count], over(outcome) by(hospital) title(Hospital Outcomes) scheme(michigan)
-	
-	graph export bivariategraph.png, width(500) replace
-
-![Bivariate Relationships](bivariategraph.png)
+![Bivariate Relationships](bivariategraph.png){width=50%}
 	
 # Outcome By Hospital Type by Severity
 
-> The Stata thinking and `command` for the table are relatively straightforward. We often think that visualization is an intuitive first step yet my first graphs were *wrong*, and I needed to *carefully look at the table* to make sure the graphs accurately reflected the numbers and story in the table!
+> When we factor in the *severity* of the illness, we arrive at the reverse conclusion. Patients do better at the *better* hospital.
 
-	bysort severity: tabulate hospital outcome [fweight = count], row col
+    generate severity_hospital = severity + " " + hospital // concatenate severity + hospital type
+
+	tabulate severity_hospital outcome [fweight=count], row 
 	
 	graph bar [fweight = count] if severity == "less severe", ///
 	title(Less Severe) ///
 	over(outcome) ///
+	blabel(bar) ///
 	by(hospital) ////
 	scheme(michigan) ///
 	name(lesssevere, replace)
@@ -50,6 +53,7 @@ Simpson's paradox occurs when a bivariate association is reversed in a multivari
 	graph bar [fweight = count] if severity == "more severe", ///
 	title(More Severe) ///
 	over(outcome) ///
+	blabel(bar) ///
 	by(hospital) ///
 	scheme(michigan) ///
 	name(moresevere, replace)
@@ -58,9 +62,8 @@ Simpson's paradox occurs when a bivariate association is reversed in a multivari
 
 	graph export multivariategraph.png, width(1000) replace
 
-![Multivariate Relationships](multivariategraph.png)
+![Multivariate Relationships](multivariategraph.png){width=50%}
 	
-# A Possibly Helpful Alternative (And More Compact) Table Format
+# Reference
 
-    table hospital outcome [fweight=count], by(severity) 
-
+Wang, B., Wu, P., Kwan, B., Tu, X. M., & Feng, C. (2018). Simpson’s Paradox: Examples. *Shanghai Archives of Psychiatry*, 30(2), 139–143. [https://doi.org/10.11919/j.issn.1002-0829.218026](https://doi.org/10.11919/j.issn.1002-0829.218026)
