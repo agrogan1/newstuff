@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Multilevel Models For Categorical Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">28 Oct 2020 07:32:41</p>
+<p class="date">2 Nov 2020 12:40:36</p>
 </header>
 <h1 id="motivating-example">Motivating Example</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;}</style>
@@ -71,10 +71,10 @@ Contains data from hsb.dta
   obs:         7,185                          
  vars:             7                          27 Oct 2020 21:35
  size:       143,700                          
-────────────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────────────────────
               storage   display    value
 variable name   type    format     label      variable label
-────────────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────────────────────
 female          byte    %8.0g                 female
 ses             float   %9.0g                 socioeconomic status
 mathach         float   %9.0g                 math achievement
@@ -82,32 +82,74 @@ size            int     %8.0g                 school size
 sector          byte    %8.0g                 Catholic vs. Public
 schoolid        float   %9.0g                 School ID
 mathgroup       float   %9.0g                 math group (Hi / Lo)
-────────────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
+<pre class='stata'>. summarize
+
+    Variable │        Obs        Mean    Std. Dev.       Min        Max
+─────────────┼─────────────────────────────────────────────────────────
+      female │      7,185    .5281837    .4992398          0          1
+         ses │      7,185    .0001434    .7793552     -3.758      2.692
+     mathach │      7,185    12.74785    6.878246     -2.832     24.993
+        size │      7,185    1056.862    604.1725        100       2713
+      sector │      7,185    .4931106    .4999873          0          1
+─────────────┼─────────────────────────────────────────────────────────
+    schoolid │      7,185    5277.898    2499.578       1224       9586
+   mathgroup │      7,185    .5000696    .5000348          0          1
+</pre>
+<h2 id="histogram-of-ses">Histogram of SES</h2>
+<pre class='stata'>. histogram ses, scheme(michigan)
+(bin=38, start=-3.7579999, width=.16973684)
+</pre>
+<pre class='stata'>. graph export myhistogram.png, width(1000) replace
+(file myhistogram.png written in PNG format)
+</pre>
+<figure>
+<img src="myhistogram.png" style="width:50.0%" alt="" /><figcaption>Histogram of SES</figcaption>
+</figure>
+<h2 id="generate-mean-ses-per-school">Generate Mean SES Per School</h2>
+<pre class='stata'>. bysort schoolid: egen meanses = mean(ses) // generate mean ses per school
+</pre>
+<pre class='stata'>. summarize ses meanses
+
+    Variable │        Obs        Mean    Std. Dev.       Min        Max
+─────────────┼─────────────────────────────────────────────────────────
+         ses │      7,185    .0001434    .7793552     -3.758      2.692
+     meanses │      7,185    .0001434    .4135432  -1.193946   .8249825
+</pre>
+<pre class='stata'>. twoway scatter ses meanses, msize(vsmall) ///
+> title("SES and Mean SES Are Correlated") sub("But Not Equivalent") ///
+> scheme(michigan)
+</pre>
+<pre class='stata'>. graph export myscatter.png, width(1000) replace
+(file myscatter.png written in PNG format)
+</pre>
+<figure>
+<img src="myscatter.png" style="width:50.0%" alt="" /><figcaption>Scatterplot of SES and Mean SES by School</figcaption>
+</figure>
 <h2 id="a-multilevel-model">A Multilevel Model</h2>
-<pre class='stata'>. melogit mathgroup female ses size sector || schoolid:
+<pre class='stata'>. melogit mathgroup female ses meanses size sector || schoolid:
 
 Fitting fixed-effects model:
 
-Iteration 0:   log likelihood = -4565.8765  
-Iteration 1:   log likelihood = -4562.4746  
-Iteration 2:   log likelihood = -4562.4721  
-Iteration 3:   log likelihood = -4562.4721  
+Iteration 0:   log likelihood = -4510.2199  
+Iteration 1:   log likelihood = -4507.2385  
+Iteration 2:   log likelihood = -4507.2365  
+Iteration 3:   log likelihood = -4507.2365  
 
 Refining starting values:
 
-Grid node 0:   log likelihood = -4513.3688
+Grid node 0:   log likelihood = -4500.0458
 
 Fitting full model:
 
-Iteration 0:   log likelihood = -4513.3688  (not concave)
-Iteration 1:   log likelihood = -4489.5697  
-Iteration 2:   log likelihood = -4484.6285  
-Iteration 3:   log likelihood =  -4481.049  
-Iteration 4:   log likelihood = -4480.8848  
-Iteration 5:   log likelihood = -4480.8842  
-Iteration 6:   log likelihood = -4480.8842  
+Iteration 0:   log likelihood = -4500.0458  (not concave)
+Iteration 1:   log likelihood = -4464.0398  
+Iteration 2:   log likelihood = -4456.1438  
+Iteration 3:   log likelihood = -4455.9091  
+Iteration 4:   log likelihood = -4455.9081  
+Iteration 5:   log likelihood = -4455.9081  
 
 Mixed-effects logistic regression               Number of obs     =      7,185
 Group variable:        schoolid                 Number of groups  =        160
@@ -119,21 +161,22 @@ Group variable:        schoolid                 Number of groups  =        160
 
 Integration method: mvaghermite                 Integration pts.  =          7
 
-                                                Wald chi2(4)      =     393.35
-Log likelihood = -4480.8842                     Prob > chi2       =     0.0000
+                                                Wald chi2(5)      =     483.33
+Log likelihood = -4455.9081                     Prob > chi2       =     0.0000
 ─────────────┬────────────────────────────────────────────────────────────────
    mathgroup │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-      female │  -.3204768   .0579682    -5.53   0.000    -.4340924   -.2068611
-         ses │   .6806318    .039101    17.41   0.000     .6039952    .7572684
-        size │   .0001675   .0000892     1.88   0.061    -7.43e-06    .0003424
-      sector │   .6718503   .1118137     6.01   0.000     .4526995    .8910011
-       _cons │  -.3410853   .1410036    -2.42   0.016    -.6174473   -.0647234
+      female │    -.32004   .0571132    -5.60   0.000    -.4319798   -.2081003
+         ses │   .6061583   .0398911    15.20   0.000     .5279733    .6843434
+     meanses │   .8865231   .1199975     7.39   0.000     .6513323    1.121714
+        size │   .0001412   .0000777     1.82   0.069    -.0000111    .0002936
+      sector │   .4156577   .1017318     4.09   0.000     .2162671    .6150483
+       _cons │  -.1954753   .1244737    -1.57   0.116    -.4394392    .0484886
 ─────────────┼────────────────────────────────────────────────────────────────
 schoolid     │
-   var(_cons)│    .277578   .0485216                       .197057    .3910012
+   var(_cons)│   .1822203   .0351234                      .1248895     .265869
 ─────────────┴────────────────────────────────────────────────────────────────
-LR test vs. logistic model: chibar2(01) = 163.18      Prob >= chibar2 = 0.0000
+LR test vs. logistic model: chibar2(01) = 102.66      Prob >= chibar2 = 0.0000
 </pre>
 <h2 id="ask-for-odds-ratios">Ask For Odds Ratios</h2>
 <pre class='stata'>. melogit, or
@@ -148,23 +191,24 @@ Group variable:        schoolid                 Number of groups  =        160
 
 Integration method: mvaghermite                 Integration pts.  =          7
 
-                                                Wald chi2(4)      =     393.35
-Log likelihood = -4480.8842                     Prob > chi2       =     0.0000
+                                                Wald chi2(5)      =     483.33
+Log likelihood = -4455.9081                     Prob > chi2       =     0.0000
 ─────────────┬────────────────────────────────────────────────────────────────
    mathgroup │ Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
 ─────────────┼────────────────────────────────────────────────────────────────
-      female │   .7258029   .0420735    -5.53   0.000     .6478524    .8131326
-         ses │   1.975125   .0772294    17.41   0.000     1.829413    2.132443
-        size │   1.000167   .0000893     1.88   0.061     .9999926    1.000342
-      sector │   1.957857   .2189152     6.01   0.000     1.572552    2.437569
-       _cons │   .7109982   .1002533    -2.42   0.016     .5393194    .9373267
+      female │     .72612    .041471    -5.60   0.000     .6492225    .8121256
+         ses │   1.833375   .0731353    15.20   0.000     1.695493     1.98247
+     meanses │   2.426678   .2911952     7.39   0.000     1.918095    3.070111
+        size │   1.000141   .0000777     1.82   0.069     .9999889    1.000294
+      sector │   1.515367    .154161     4.09   0.000     1.241434    1.849746
+       _cons │   .8224437   .1023726    -1.57   0.116     .6443977    1.049683
 ─────────────┼────────────────────────────────────────────────────────────────
 schoolid     │
-   var(_cons)│    .277578   .0485216                       .197057    .3910012
+   var(_cons)│   .1822203   .0351234                      .1248895     .265869
 ─────────────┴────────────────────────────────────────────────────────────────
 Note: Estimates are transformed only in the first equation.
 Note: _cons estimates baseline odds (conditional on zero random effects).
-LR test vs. logistic model: chibar2(01) = 163.18      Prob >= chibar2 = 0.0000
+LR test vs. logistic model: chibar2(01) = 102.66      Prob >= chibar2 = 0.0000
 </pre>
 <h2 id="intra-class-correlation-coefficient-icc">Intra Class Correlation Coefficient (ICC)</h2>
 <pre class='stata'>. estat icc
@@ -174,7 +218,7 @@ Residual intraclass correlation
 ─────────────────────────────┬────────────────────────────────────────────────
                        Level │        ICC   Std. Err.     [95% Conf. Interval]
 ─────────────────────────────┼────────────────────────────────────────────────
-                    schoolid │   .0778086   .0125429      .0565131    .1062252
+                    schoolid │   .0524815    .009585      .0365734    .0747718
 ─────────────────────────────┴────────────────────────────────────────────────
 </pre>
 <h1 id="visualizing-the-idea-of-a-random-intercept">Visualizing The Idea Of A Random Intercept</h1>

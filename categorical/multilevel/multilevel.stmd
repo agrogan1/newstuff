@@ -16,9 +16,33 @@ geometry: margin=1 in
 	
 	describe
 	
+	summarize
+	
+## Histogram of SES
+
+    histogram ses, scheme(michigan)
+
+	graph export myhistogram.png, width(1000) replace
+
+![Histogram of SES](myhistogram.png){width=50%}
+
+## Generate Mean SES Per School
+
+    bysort schoolid: egen meanses = mean(ses) // generate mean ses per school
+	
+	summarize ses meanses
+	
+	twoway scatter ses meanses, msize(vsmall) ///
+	title("SES and Mean SES Are Correlated") sub("But Not Equivalent") ///
+	scheme(michigan)
+	
+	graph export myscatter.png, width(1000) replace
+
+![Scatterplot of SES and Mean SES by School](myscatter.png){width=50%}
+
 ## A Multilevel Model
 
-    melogit mathgroup female ses size sector || schoolid:
+    melogit mathgroup female ses meanses size sector || schoolid:
 	
 ## Ask For Odds Ratios
 
