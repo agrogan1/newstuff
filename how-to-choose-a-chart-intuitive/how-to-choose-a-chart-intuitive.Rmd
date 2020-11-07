@@ -3,18 +3,6 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
-  html_document:
-    fig_width: 10
-    highlight: haddock
-    code_download: yes
-  bookdown::epub_book: 
-    stylesheet: UM.css 
-    cover_image: intuitive-guide.png
-    fig_width: 7
-    fig_height: 4
   bookdown::gitbook:
     split_by: none
     highlight: haddock
@@ -24,6 +12,18 @@ output:
       download:
       - how-to-choose-a-chart-intuitive.pdf
       - how-to-choose-a-chart-intuitive.epub
+  html_document:
+    fig_width: 10
+    highlight: haddock
+    code_download: yes
+  bookdown::epub_book: 
+    stylesheet: UM.css 
+    cover_image: intuitive-guide.png
+    fig_width: 7
+    fig_height: 4
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
 mainfont: Futura
 fontsize: 12pt
 classoption: landscape
