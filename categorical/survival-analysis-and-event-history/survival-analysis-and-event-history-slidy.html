@@ -96,23 +96,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Andy Grogan-Kaylor
   </p>
 </div>
-<div class="slide section level2">
+<div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>30 Jul 2020</p>
+<p>8 Nov 2020</p>
 </div>
-<div id="introduction" class="title-slide slide section level1"><h1>Introduction</h1><blockquote>
+<div id="introduction" class="slide section level1">
+<h1>Introduction</h1>
+<blockquote>
 <p>“Survival analysis is a key technique in data-driven decision-making, which is now central to public interest because of COVID-19. Applying the correct technique for the specific question at hand is crucial for credible public health inferences. If you are interested in assessing how a risk factor or a potential treatment affects the progression of a disease—such as how long a patient takes to recover—then survival analysis techniques come into play. Survival analysis deeply respects the ultimate source of its data, often the disease experience or even the life and death of human patients. It seeks to exploit every last drop of information that this experience can render for saving lives—in particular, not only whether patients survived, but how long, and why. And it strives to do so with minimal assumptions, so that the data are truly driving the decision.”</p>
 </blockquote>
-<p>—SAS Corporation</p></div>
-<div id="key-concepts" class="title-slide slide section level1"><h1>Key Concepts</h1><blockquote>
+<p>—SAS Corporation</p>
+</div>
+<div id="key-concepts" class="slide section level1">
+<h1>Key Concepts</h1>
+<blockquote>
 <p>WHO CARES how we measure time? Isn’t it self-evident?</p>
 </blockquote>
 <ul class="incremental">
 <li><p>Implementations differ; formulas are our friends</p></li>
 <li><p><span class="math inline">\(h(t) \sim x1 + x2 + \text{etc.} ...\)</span>: formula (effect on hazard)</p></li>
-</ul></div>
-<div id="the-hospital-bed-problem" class="title-slide slide section level1"><h1>The “Hospital Bed Problem”</h1><ul class="incremental">
+</ul>
+</div>
+<div id="the-hospital-bed-problem" class="slide section level1">
+<h1>The “Hospital Bed Problem”</h1>
+<ul class="incremental">
 <li><p>Imagine a <em>Hypothetical Hospital</em></p></li>
 <li><p>Imagine that there are 52 patients <em>total</em>.</p></li>
 <li><p>51 of the patients are <em>long term patients</em>, who each stay for <em>1 year</em>.</p></li>
@@ -132,15 +140,19 @@ Andy Grogan-Kaylor
 <span id="cb6-2"><a href="#cb6-2"></a>&gt; (<span class="kw">scatter</span> id weeks <span class="kw">if</span> weeks == 1, msize(small)), <span class="co">/// staying 1 week</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;Hypothetical Hospital&quot;</span>) <span class="co">///</span></span>
 <span id="cb6-4"><a href="#cb6-4"></a>&gt; <span class="bn">legend</span>(<span class="kw">on</span> <span class="kw">order</span>(1 <span class="st">&quot;long term&quot;</span> 2 <span class="st">&quot;short term&quot;</span>)) <span class="co">///</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>&gt; <span class="kw">ylabel</span>(1(1)52, labels <span class="bn">labsize</span>(tiny) angle(horizontal) noticks <span class="bn">nogrid</span>) <span class="co">/// </span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<span id="cb6-5"><a href="#cb6-5"></a>&gt; <span class="bn">xtitle</span>(<span class="st">&quot;week of discharge&quot;</span>) <span class="co">///</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>&gt; <span class="kw">ylabel</span>(1(1)52, labels <span class="bn">labsize</span>(tiny) angle(horizontal) noticks <span class="bn">nogrid</span>) <span class="co">/// </span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> hospital_bed_problem.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>(file hospital_bed_problem.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="hospital_bed_problem.png" alt="" />
 <p class="caption">Illustration of Hospital Bed Problem</p>
-</div></div>
-<div id="how-to-measure-length-of-stay-1" class="title-slide slide section level1"><h1>How To Measure Length of Stay (1)</h1><div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+</div>
+</div>
+<div id="how-to-measure-length-of-stay-1" class="slide section level1">
+<h1>How To Measure Length of Stay (1)</h1>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">set</span> <span class="kw">obs</span> 25 <span class="co">// 25 hypothetical obervations</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>number <span class="kw">of</span> observations (_N) was 0, now 25</span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">generate</span> id = <span class="dt">_n</span> <span class="co">// set id = to observation #</span></span></code></pre></div>
@@ -160,29 +172,33 @@ Andy Grogan-Kaylor
 <div class="figure">
 <img src="timing_of_events.png" alt="" />
 <p class="caption">Timing Of Events</p>
-</div></div><div id="animated" class="slide section level2">
-<h1>Animated</h1>
+</div>
+<h2 id="animated">Animated</h2>
 <p>See <a href="./times-events-and-censoring.html">times-events-and-censoring.html</a></p>
 </div>
-<div id="how-to-measure-length-of-stay-2" class="title-slide slide section level1"><h1>How To Measure Length of Stay (2)</h1><p><span class="math display">\[ \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
-<ul class="incremental">
-<li>Event happened within a specified time (yes/no)
+<div id="how-to-measure-length-of-stay-2" class="slide section level1">
+<h1>How To Measure Length of Stay (2)</h1>
+<h2 id="event-happened-within-a-specified-time-yesno">Event happened within a specified time (yes/no)</h2>
+<p><span class="math display">\[ \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
 <ul class="incremental">
 <li>Statistically accurate, but we lose information on <em>when</em> the event happened.</li>
 <li>Statistically <em>less efficient</em>.</li>
-</ul></li>
 </ul>
-<p><span class="math display">\[ \text{time} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
-<ul class="incremental">
-<li>Time until Event
+<h2 id="time-until-event">Time until Event</h2>
+<p><span class="math display">\[ \text{time until event} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
 <ul class="incremental">
 <li>What to do with events that haven’t happened yet? (Censoring)</li>
-<li>Code as <code>NA</code>. Loss of information. Possible bias.</li>
+<li>Code as <code>missing</code>. Loss of information if using complete cases. Possible bias.</li>
 <li>Code as 0. Possible bias. They might happen at some point.</li>
 <li>Code as <code>time of censoring</code>. Possible bias. They might never happen. They might happen much later.</li>
-</ul></li>
-</ul></div>
-<div id="a-policy-example-welfare-reform-1996" class="title-slide slide section level1"><h1>A Policy Example (Welfare Reform, 1996)</h1><p>From LaDonna Pavetti (1995)</p>
+</ul>
+<h2 id="hazard-risk-of-event-occurence">Hazard (Risk) of Event Occurence</h2>
+<p><span class="math display">\[ h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta} \]</span></p>
+<p>This definition per Johnson &amp; Shih (2007)<a href="#fn1" id="fnref1" class="footnote-ref"><sup>1</sup></a></p>
+</div>
+<div id="a-policy-example-welfare-reform-1996" class="slide section level1">
+<h1>A Policy Example (Welfare Reform, 1996)</h1>
+<p>From LaDonna Pavetti (1995)</p>
 <ul class="incremental">
 <li>time in months</li>
 <li>new entrants (percent)</li>
@@ -204,8 +220,8 @@ Andy Grogan-Kaylor
 <span id="cb17-11"><a href="#cb17-11"></a>     ├─────────────────────────────────────────────────┤</span>
 <span id="cb17-12"><a href="#cb17-12"></a>  6. │ Over 60           34.6                     76.3 │</span>
 <span id="cb17-13"><a href="#cb17-13"></a>     └─────────────────────────────────────────────────┘</span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> (asis) all_current_recipients, <span class="co">/// this particular set of options was difficu</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>&gt; lt to figure out!</span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> (asis) all_current_recipients, <span class="co">/// this particular set of options was difficult to fig</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>&gt; ure out!</span>
 <span id="cb18-3"><a href="#cb18-3"></a>&gt; <span class="bn">over</span>(time) <span class="co">///</span></span>
 <span id="cb18-4"><a href="#cb18-4"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;All Current Recipients&quot;</span>) <span class="co">///</span></span>
 <span id="cb18-5"><a href="#cb18-5"></a>&gt; sub(<span class="st">&quot;By Months On Caseload&quot;</span>) <span class="co">///</span></span>
@@ -216,8 +232,11 @@ Andy Grogan-Kaylor
 <div class="figure">
 <img src="all_current_recipients.png" alt="" />
 <p class="caption">All Current Recipients by Months on Caseload</p>
-</div></div>
-<div id="welfare-reform-2" class="title-slide slide section level1"><h1>Welfare Reform (2)</h1><div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> (asis) new_entrants, <span class="co">///</span></span>
+</div>
+</div>
+<div id="welfare-reform-2" class="slide section level1">
+<h1>Welfare Reform (2)</h1>
+<div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> (asis) new_entrants, <span class="co">///</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a>&gt; <span class="bn">over</span>(time) <span class="co">///</span></span>
 <span id="cb20-3"><a href="#cb20-3"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;New Recipients&quot;</span>) <span class="co">///</span></span>
 <span id="cb20-4"><a href="#cb20-4"></a>&gt; sub(<span class="st">&quot;By Months On Caseload&quot;</span>) <span class="co">///</span></span>
@@ -228,31 +247,47 @@ Andy Grogan-Kaylor
 <div class="figure">
 <img src="new_recipients.png" alt="" />
 <p class="caption">New Recipients by Months on Caseload</p>
-</div></div>
-<div id="musicians-and-mortality-1" class="title-slide slide section level1"><h1>Musicians and Mortality (1)</h1><div class="figure">
+</div>
+</div>
+<div id="musicians-and-mortality-1" class="slide section level1">
+<h1>Musicians and Mortality (1)</h1>
+<div class="figure">
 <img src="music-to-die-for.png" alt="" />
 <p class="caption">Music To Die For</p>
-</div></div>
-<div id="musicians-and-mortality-2" class="title-slide slide section level1"><h1>Musicians and Mortality (2)</h1><div class="figure">
+</div>
+</div>
+<div id="musicians-and-mortality-2" class="slide section level1">
+<h1>Musicians and Mortality (2)</h1>
+<div class="figure">
 <img src="musician_mortality.jpeg" alt="" />
 <p class="caption">Musician Mortality</p>
-</div></div>
-<div id="cox-proportional-hazards-model" class="title-slide slide section level1"><h1>Cox Proportional Hazards Model</h1></div>
-<div id="formula" class="title-slide slide section level1"><h1>Formula</h1><p><span class="math inline">\(h(t)\)</span> the rate of occurrence.</p>
+</div>
+</div>
+<div id="cox-proportional-hazards-model" class="slide section level1">
+<h1>Cox Proportional Hazards Model</h1>
+</div>
+<div id="formula" class="slide section level1">
+<h1>Formula</h1>
+<p><span class="math inline">\(h(t)\)</span> the rate of occurrence.</p>
+<p><span class="math display">\[ h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta} \]</span></p>
+<p>This definition per Johnson &amp; Shih (2007)<a href="#fn2" id="fnref2" class="footnote-ref"><sup>2</sup></a></p>
 <p><span class="math display">\[ h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.} \]</span></p>
 <blockquote>
 <p>We don’t directly estimate the hazard, but estimate the effect of covariates on the hazard.</p>
 </blockquote>
 <blockquote>
 <p>The event (birth, death, program entry, program departure) is coded as 1, so we are estimating the association of the covariates with event occurrence.</p>
-</blockquote></div>
-<div id="cox-proportional-hazards-model-in-stata" class="title-slide slide section level1"><h1>Cox Proportional Hazards Model in Stata</h1><blockquote>
+</blockquote>
+</div>
+<div id="cox-proportional-hazards-model-in-stata" class="slide section level1">
+<h1>Cox Proportional Hazards Model in Stata</h1>
+<blockquote>
 <p>Using a data set referenced frequently in Stata <code>help</code> and Stata YouTube Videos</p>
 </blockquote>
 <div class="sourceCode" id="cb22"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1"></a>. <span class="kw">webuse</span> drugtr <span class="co">// demonstration data set from Stata</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>(Patient Survival <span class="kw">in</span> Drug Trial)</span></code></pre></div></div><div id="setup-of-data" class="slide section level2">
-<h1>Setup of Data</h1>
+<span id="cb23-2"><a href="#cb23-2"></a>(Patient Survival <span class="kw">in</span> Drug Trial)</span></code></pre></div>
+<h2 id="setup-of-data">Setup of Data</h2>
 <div class="sourceCode" id="cb24"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1"></a>. <span class="kw">stset</span> <span class="co">// show st setup of data</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a>-&gt; <span class="kw">stset</span> studytime, failure(died)</span>
 <span id="cb24-3"><a href="#cb24-3"></a></span>
@@ -270,15 +305,13 @@ Andy Grogan-Kaylor
 <span id="cb24-15"><a href="#cb24-15"></a>                                                <span class="fu">at</span> risk from t =         0</span>
 <span id="cb24-16"><a href="#cb24-16"></a>                                     earliest observed entry t =         0</span>
 <span id="cb24-17"><a href="#cb24-17"></a>                                          <span class="fu">last</span> observed <span class="kw">exit</span> t =        39</span></code></pre></div>
-</div><div id="kaplan-meier-survivor-function-per-gabriela-ortiz-stata" class="slide section level2">
-<h1>Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)</h1>
+<h2 id="kaplan-meier-survivor-function-per-gabriela-ortiz-stata">Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)</h2>
 <p><span class="math display">\[ S(t)=Pr(T&gt;t) \]</span></p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1"></a>. <span class="kw">sts</span> <span class="kw">graph</span>, <span class="dv">scheme</span>(michigan) <span class="co">// Kaplan-Meier Survivor Function</span></span>
 <span id="cb25-2"><a href="#cb25-2"></a></span>
 <span id="cb25-3"><a href="#cb25-3"></a>         failure _d:  died</span>
 <span id="cb25-4"><a href="#cb25-4"></a>   analysis time _t:  studytime</span></code></pre></div>
-</div><div id="cox-proportional-hazards-model-1" class="slide section level2">
-<h1>Cox Proportional Hazards Model</h1>
+<h2 id="cox-proportional-hazards-model-1">Cox Proportional Hazards Model</h2>
 <div class="sourceCode" id="cb26"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1"></a>. <span class="kw">stcox</span> age drug <span class="co">// run Cox Proportional Hazards Model</span></span>
 <span id="cb26-2"><a href="#cb26-2"></a></span>
 <span id="cb26-3"><a href="#cb26-3"></a>         failure _d:  died</span>
@@ -305,8 +338,7 @@ Andy Grogan-Kaylor
 <span id="cb26-24"><a href="#cb26-24"></a>         age │   1.120325   .0417711     3.05   0.002     1.041375     1.20526</span>
 <span id="cb26-25"><a href="#cb26-25"></a>        drug │   .1048772   .0477017    -4.96   0.000     .0430057    .2557622</span>
 <span id="cb26-26"><a href="#cb26-26"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
-</div><div id="graph-survival-curves" class="slide section level2">
-<h1>Graph Survival Curves</h1>
+<h2 id="graph-survival-curves">Graph Survival Curves</h2>
 <div class="sourceCode" id="cb27"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1"></a>. <span class="kw">stcurve</span>, survival <span class="dv">scheme</span>(michigan) <span class="co">// survival curve</span></span></code></pre></div>
 <div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> survival1.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
 <span id="cb28-2"><a href="#cb28-2"></a>(file survival1.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
@@ -322,7 +354,9 @@ Andy Grogan-Kaylor
 <p class="caption">Survival Curve by Drug Group</p>
 </div>
 </div>
-<div id="proportional-hazards-assumption" class="title-slide slide section level1"><h1>Proportional Hazards Assumption</h1><div class="sourceCode" id="cb31"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb31-1"><a href="#cb31-1"></a>. <span class="kw">estat</span> phtest <span class="co">// formal test of PH assumption</span></span>
+<div id="proportional-hazards-assumption" class="slide section level1">
+<h1>Proportional Hazards Assumption</h1>
+<div class="sourceCode" id="cb31"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb31-1"><a href="#cb31-1"></a>. <span class="kw">estat</span> phtest <span class="co">// formal test of PH assumption</span></span>
 <span id="cb31-2"><a href="#cb31-2"></a></span>
 <span id="cb31-3"><a href="#cb31-3"></a>      Test <span class="kw">of</span> proportional-hazards assumption</span>
 <span id="cb31-4"><a href="#cb31-4"></a></span>
@@ -341,7 +375,21 @@ Andy Grogan-Kaylor
 <div class="figure">
 <img src="ph.png" alt="" />
 <p class="caption">Graphical Assessment of Proportional Hazards Assumptions</p>
-</div></div>
-<div id="unobserved-heterogeneity" class="title-slide slide section level1"><h1>Unobserved Heterogeneity</h1></div>
+</div>
+</div>
+<div id="unobserved-heterogeneity" class="slide section level1">
+<h1>Unobserved Heterogeneity</h1>
+<div class="section footnotes" role="doc-endnotes">
+<hr />
+<ol class="incremental">
+<li><div id="fn1">
+<p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4<a href="#fnref1" class="footnote-back">↩︎</a></p>
+</div></li>
+<li><div id="fn2">
+<p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4<a href="#fnref2" class="footnote-back">↩︎</a></p>
+</div></li>
+</ol>
+</div>
+</div>
 </body>
 </html>

@@ -48,6 +48,7 @@ geometry: margin=1 in
 	(scatter id weeks if weeks == 1, msize(small)), /// staying 1 week
 	title("Hypothetical Hospital") ///
 	legend(on order(1 "long term" 2 "short term")) ///
+	xtitle("week of discharge") ///
 	ylabel(1(1)52, labels labsize(tiny) angle(horizontal) noticks nogrid) /// 
 	scheme(michigan)
 	
@@ -87,23 +88,36 @@ See [times-events-and-censoring.html](./times-events-and-censoring.html)
 
 # How To Measure Length of Stay (2)
 
+## Event happened within a specified time (yes/no)
+
 $$
     \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
 $$
 
-* Event happened within a specified time (yes/no)
    - Statistically accurate, but we lose information on *when* the event happened.
    - Statistically *less efficient*.
-   
+
+## Time until Event
+
 $$
-    \text{time} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
+    \text{time until event} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
 $$
 
-* Time until Event
   - What to do with events that haven't happened yet? (Censoring)
-  - Code as `NA`. Loss of information. Possible bias.
+  - Code as `missing`. Loss of information if using complete cases. Possible bias.
   - Code as 0. Possible bias. They might happen at some point.
   - Code as `time of censoring`. Possible bias.  They might never happen. They might happen much later.
+
+## Hazard (Risk) of Event Occurence
+
+$$
+    h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
+$$ 
+
+This definition per Johnson & Shih (2007)[^Johnson_and_Shih]
+
+[^Johnson_and_Shih]: Johnson, L. L., & Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin & F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4
+
 
 # A Policy Example (Welfare Reform, 1996)
 
@@ -156,6 +170,12 @@ From LaDonna Pavetti (1995)
 # Formula
 
 $h(t)$ the rate of occurrence.
+
+$$
+    h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
+$$ 
+
+This definition per Johnson & Shih (2007)[^Johnson_and_Shih]
 
 $$
     h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}

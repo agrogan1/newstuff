@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}30 Jul 2020, 09:43:24
+ {txt}opened on:  {res} 8 Nov 2020, 11:18:00
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}30 Jul 2020
+{res} 8 Nov 2020
 {txt}
 {com}. //_2
 . clear all
@@ -34,6 +34,7 @@ now 52
 > (scatter id weeks if weeks == 1, msize(small)), /// staying 1 week
 > title("Hypothetical Hospital") ///
 > legend(on order(1 "long term" 2 "short term")) ///
+> xtitle("week of discharge") ///
 > ylabel(1(1)52, labels labsize(tiny) angle(horizontal) noticks nogrid) /// 
 > scheme(michigan)
 {res}{txt}
@@ -222,7 +223,7 @@ No. of subjects = {res}          48                  {txt}Number of obs    =  {r
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}30 Jul 2020, 09:43:36
+ {txt}closed on:  {res} 8 Nov 2020, 11:18:10
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -2,6 +2,8 @@
 * survival analysis and event history
 **************************************************
 
+clear all
+
 cd "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history"
 
 doedit "survival-analysis-and-event-history.stmd"
@@ -14,13 +16,11 @@ graph close _all
 
 markstat using "survival-analysis-and-event-history.stmd", pdf // PDF
 
-* markstat using "survival-analysis-and-event-history.stmd", docx
-
 graph close _all
 
 * pandoc
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UNslidy.css" --slide-level=2 "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.html" -o "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history-slidy.html" 
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UNslidy.css" --slide-level=1 "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.html" -o "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history-slidy.html" 
 
 doedit "../MathJax-CDN.txt"
 

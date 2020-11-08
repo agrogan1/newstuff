@@ -58,7 +58,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Survival Analysis and Event History</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">30 Jul 2020</p>
+<p class="date">8 Nov 2020</p>
 </header>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <h1 id="introduction">Introduction</h1>
@@ -100,6 +100,7 @@ number of observations (_N) was 0, now 52
 > (scatter id weeks if weeks == 1, msize(small)), /// staying 1 week
 > title("Hypothetical Hospital") ///
 > legend(on order(1 "long term" 2 "short term")) ///
+> xtitle("week of discharge") ///
 > ylabel(1(1)52, labels labsize(tiny) angle(horizontal) noticks nogrid) /// 
 > scheme(michigan)
 </pre>
@@ -140,28 +141,29 @@ number of observations (_N) was 0, now 25
 <h2 id="animated">Animated</h2>
 <p>See <a href="./times-events-and-censoring.html">times-events-and-censoring.html</a></p>
 <h1 id="how-to-measure-length-of-stay-2">How To Measure Length of Stay (2)</h1>
+<h2 id="event-happened-within-a-specified-time-yesno">Event happened within a specified time (yes/no)</h2>
 <p><span class="math display">\[
     \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
 \]</span></p>
 <ul>
-<li>Event happened within a specified time (yes/no)
-<ul>
 <li>Statistically accurate, but we lose information on <em>when</em> the event happened.</li>
 <li>Statistically <em>less efficient</em>.</li>
-</ul></li>
 </ul>
+<h2 id="time-until-event">Time until Event</h2>
 <p><span class="math display">\[
-    \text{time} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
+    \text{time until event} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
 \]</span></p>
 <ul>
-<li>Time until Event
-<ul>
 <li>What to do with events that haven’t happened yet? (Censoring)</li>
-<li>Code as <code>NA</code>. Loss of information. Possible bias.</li>
+<li>Code as <code>missing</code>. Loss of information if using complete cases. Possible bias.</li>
 <li>Code as 0. Possible bias. They might happen at some point.</li>
 <li>Code as <code>time of censoring</code>. Possible bias. They might never happen. They might happen much later.</li>
-</ul></li>
 </ul>
+<h2 id="hazard-risk-of-event-occurence">Hazard (Risk) of Event Occurence</h2>
+<p><span class="math display">\[
+    h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
+\]</span></p>
+<p>This definition per Johnson &amp; Shih (2007)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <h1 id="a-policy-example-welfare-reform-1996">A Policy Example (Welfare Reform, 1996)</h1>
 <p>From LaDonna Pavetti (1995)</p>
 <ul>
@@ -188,8 +190,8 @@ number of observations (_N) was 0, now 25
   6. │ Over 60           34.6                     76.3 │
      └─────────────────────────────────────────────────┘
 </pre>
-<pre class='stata'>. graph bar (asis) all_current_recipients, /// this particular set of options was difficu
-> lt to figure out!
+<pre class='stata'>. graph bar (asis) all_current_recipients, /// this particular set of options was difficult to fig
+> ure out!
 > over(time) ///
 > title("All Current Recipients") ///
 > sub("By Months On Caseload") ///
@@ -227,6 +229,10 @@ number of observations (_N) was 0, now 25
 <h1 id="cox-proportional-hazards-model">Cox Proportional Hazards Model</h1>
 <h1 id="formula">Formula</h1>
 <p><span class="math inline">\(h(t)\)</span> the rate of occurrence.</p>
+<p><span class="math display">\[
+    h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
+\]</span></p>
+<p>This definition per Johnson &amp; Shih (2007)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p><span class="math display">\[
     h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}
 \]</span></p>
@@ -342,5 +348,12 @@ Log likelihood  =   -83.323546                  Prob > chi2      =      0.0000
 <img src="ph.png" alt="" /><figcaption>Graphical Assessment of Proportional Hazards Assumptions</figcaption>
 </figure>
 <h1 id="unobserved-heterogeneity">Unobserved Heterogeneity</h1>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 </body>
 </html>
