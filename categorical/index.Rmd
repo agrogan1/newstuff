@@ -159,7 +159,7 @@ p4 <- ggplot(data = NULL,
   scale_color_viridis_c() +
   labs(title = "Negative Binomial \nCurve",
        x = "x",
-       y = "y") +
+       y = "count") +
   theme_minimal() +
   theme(legend.position = "none")
 
