@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>10 Nov 2020</p>
+<p>11 Nov 2020</p>
 </div>
 <div id="introduction" class="slide section level1">
 <h1>Introduction</h1>
@@ -179,7 +179,7 @@ Andy Grogan-Kaylor
 <div id="how-to-measure-length-of-stay-2" class="slide section level1">
 <h1>How To Measure Length of Stay (2)</h1>
 <h2 id="event-happened-within-a-specified-time-yesno">Event happened within a specified time (yes/no)</h2>
-<p><span class="math display">\[ \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
+<p><span class="math display">\[ \ln(\frac{P(\text{event})}{1-P(\text{event})}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
 <ul class="incremental">
 <li>Statistically accurate, but we lose information on <em>when</em> the event happened.</li>
 <li>Statistically <em>less efficient</em>.</li>
@@ -193,8 +193,10 @@ Andy Grogan-Kaylor
 <li>Code as <code>time of censoring</code>. Possible bias. They might never happen. They might happen much later.</li>
 </ul>
 <h2 id="hazard-risk-of-event-occurence">Hazard (Risk) of Event Occurence</h2>
+<h3 id="a-more-heuristic-definition">A more heuristic definition:</h3>
 <p><span class="math display">\[ h(t) = \lim_{\delta\to 0} \frac{\text{probability of having an event before time } t + \delta}{\delta} \]</span></p>
 <p>This definition per Johnson &amp; Shih (2007)<a href="#fn1" id="fnref1" class="footnote-ref"><sup>1</sup></a></p>
+<h3 id="a-more-formal-definition">A more formal definition:</h3>
 <p><span class="math display">\[ h(t) = \lim_{\Delta t \to 0} \frac{P(t \le T &lt; t + \Delta t | T &gt; t)}{\Delta t} \]</span></p>
 <p>This definition per Ragnar Frisch Centre for Economic Research (2020)<a href="#fn2" id="fnref2" class="footnote-ref"><sup>2</sup></a></p>
 </div>

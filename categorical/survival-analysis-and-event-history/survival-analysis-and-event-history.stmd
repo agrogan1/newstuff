@@ -91,7 +91,7 @@ See [times-events-and-censoring.html](./times-events-and-censoring.html)
 ## Event happened within a specified time (yes/no)
 
 $$
-    \ln(\frac{P(event)}{1-P(event)}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
+    \ln(\frac{P(\text{event})}{1-P(\text{event})}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i
 $$
 
    - Statistically accurate, but we lose information on *when* the event happened.
@@ -110,11 +110,15 @@ $$
 
 ## Hazard (Risk) of Event Occurence
 
+### A more heuristic definition:
+
 $$
     h(t) = \lim_{\delta\to 0} \frac{\text{probability of having an event before time } t + \delta}{\delta}
 $$ 
 
 This definition per Johnson & Shih (2007)[^Johnson_and_Shih]
+
+### A more formal definition:
 
 $$
     h(t) = \lim_{\Delta t \to 0} \frac{P(t \le T < t + \Delta t | T > t)}{\Delta t}
