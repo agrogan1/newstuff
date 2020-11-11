@@ -44,9 +44,9 @@ A basic *spineplot* is illusrative of the *spineplot* idea, but perhaps not as i
 
     spineplot Outcome Tx [fweight=Count]
 
-	graph export myspineplot1.png, width(500) replace
+	graph export myspineplot1.png, width(1000) replace
 
-![Spine Plot or Mosaic Plot](myspineplot1.png)
+![Spine Plot or Mosaic Plot](myspineplot1.png){width=50%}
 
 We add options to clarify the spineplot, which have the unfortunate effect of making the syntax more complicated and less intuitive. Hopefully, however we still see the core syntax of `spineplot Outcome Tx` is still there, and everything after the `,` is just options.
 
@@ -61,40 +61,42 @@ Observe especially that we have added `note()`'s to the graph to clarify the mea
 	text(Count) /// add Count variable to boxes
 	scheme(michigan) // Michigan graph scheme
 	
-    graph export myspineplot2.png, width(500) replace
+    graph export myspineplot2.png, width(1000) replace
 
-![Spine Plot or Mosaic Plot](myspineplot2.png)
+![Spine Plot or Mosaic Plot](myspineplot2.png){width=50%}
 
 > The spineplot makes clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the spineplot would have made this clear as well.
 
 > With enough annotations, the spineplot *may* make it clear that the treatment appears to result in a lower rate of colds than the placebo.
 
-# Bar Plot
+# Bar Graph
 
-We try a bar plot. 
+We try a bar graph. 
 
     graph bar [fweight = Count], over(Outcome) /// 
 	asyvars /// different colors for bars
 	blabel(bar, format(%9.4g)) /// bars labelled with bar height
+	yscale(range(0 100)) /// y scale from 0 to 100
 	by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
 	scheme(michigan) // Michigan graph scheme
 	
-    graph export mybarplot2.png, width(500) replace
+    graph export mybargraph1.png, width(1000) replace
 
-![Bar Plot](mybarplot2.png)
+![Bar Graph](mybargraph1.png){width=50%}
 
-> The bar plot tells a *very* clear story about *outcomes*. However, the bar plot *does not* make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.
+> The bar graph tells a *very* clear story about *outcomes*. However, this version of a bar graph *does not* make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.
 
 # Pie Chart
 
     graph pie [fweight = Count], over(Outcome) ///
 	by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
+	pie(1, color(ltblue)) /// slice 1 is light blue to improve legibility
 	plabel(_all percent) /// label with percentages
 	scheme(michigan) // Michigan graph scheme
 
-    graph export mypie2.png, width(500) replace
+    graph export mypie2.png, width(1000) replace
 
-![Pie Chart](mypie2.png)
+![Pie Chart](mypie2.png){width=50%}
 	
 > The pie chart also tells a *very* clear story about *outcomes*. Similar to the bar plot, however, the pie chart *does not* make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.
 

@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}21 Sep 2020, 20:32:51
+ {txt}opened on:  {res}11 Nov 2020, 11:30:05
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}21 Sep 2020
+{res}11 Nov 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}20:32:51
+{res}11:30:05
 {txt}
 {com}. //_3
 . use "FrenchSkiiers.dta", clear
@@ -46,7 +46,7 @@
 . spineplot Outcome Tx [fweight=Count]
 {res}{txt}
 {com}. //_6
-. graph export myspineplot1.png, width(500) replace
+. graph export myspineplot1.png, width(1000) replace
 {txt}(file myspineplot1.png written in PNG format)
 
 {com}. //_7
@@ -60,28 +60,30 @@
 > scheme(michigan) // Michigan graph scheme
 {res}{txt}
 {com}. //_8
-. graph export myspineplot2.png, width(500) replace
+. graph export myspineplot2.png, width(1000) replace
 {txt}(file myspineplot2.png written in PNG format)
 
 {com}. //_9
 . graph bar [fweight = Count], over(Outcome) /// 
 > asyvars /// different colors for bars
 > blabel(bar, format(%9.4g)) /// bars labelled with bar height
+> yscale(range(0 100)) /// y scale from 0 to 100
 > by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
 > scheme(michigan) // Michigan graph scheme
 {res}{txt}
 {com}. //_10
-. graph export mybarplot2.png, width(500) replace
-{txt}(file mybarplot2.png written in PNG format)
+. graph export mybargraph1.png, width(1000) replace
+{txt}(file mybargraph1.png written in PNG format)
 
 {com}. //_11
 . graph pie [fweight = Count], over(Outcome) ///
 > by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
+> pie(1, color(ltblue)) /// slice 1 is light blue to improve legibility
 > plabel(_all percent) /// label with percentages
 > scheme(michigan) // Michigan graph scheme
 {res}{txt}
 {com}. //_12
-. graph export mypie2.png, width(500) replace
+. graph export mypie2.png, width(1000) replace
 {txt}(file mypie2.png written in PNG format)
 
 {com}. //_^
@@ -89,7 +91,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}21 Sep 2020, 20:32:56
+ {txt}closed on:  {res}11 Nov 2020, 11:30:10
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
