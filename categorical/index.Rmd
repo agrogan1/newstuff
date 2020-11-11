@@ -39,7 +39,7 @@ library(rayshader)
 ```
 
 
-```{r, layout="l-screen", fig.height=3}
+```{r}
 
 x <- seq(-10, 10, by = 0.25)
 
@@ -74,7 +74,7 @@ ggsave(p1 +
 ```
 
 
-```{r}
+```{r, fig.cap="Manipulable Diagram of Logistic Distribution"}
 
 knit_hooks$set(webgl = hook_webgl)
 
