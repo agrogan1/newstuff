@@ -210,6 +210,8 @@ $$
 	
 	stset // show st setup of data
 	
+	describe // show variables in data
+	
 ## Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)
 
 $$
