@@ -38,3 +38,6 @@ p.caption {
   color: darkgreen;
   font-weight: bold;
 }
+table, th, td {
+  border: 1px solid #A5A508;
+}

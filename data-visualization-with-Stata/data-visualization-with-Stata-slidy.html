@@ -96,7 +96,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>28 Oct 2020</p>
+<p>12 Nov 2020</p>
 </div>
 <div id="introduction" class="title-slide slide section level1"><h1>Introduction</h1><ul class="incremental">
 <li>Stata is a powerful and intuitive data analysis program.</li>
@@ -109,7 +109,37 @@ Andy Grogan-Kaylor
 <div id="what-are-variables" class="title-slide slide section level1"><h1>What are Variables?</h1><ul class="incremental">
 <li>By variables, I simply mean the columns of data that you have.</li>
 <li>For our purposes, you may think of variables as synonymous with questionnaire items, or columns of data.</li>
-</ul></div>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Column 1</th>
+<th>Column 2</th>
+<th>Column 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Row 1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Row 2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Row 3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
 <div id="variable-types" class="title-slide slide section level1"><h1>Variable Types</h1><ul class="incremental">
 <li><em>Categorical variables</em> represent unordered categories like <em>race</em>, <em>ethnicity</em>, <em>neighborhood</em>, <em>religious affiliation</em>, or <em>place of residence</em>.</li>
 <li><em>Continuous variables</em> represent a continuous scale like <em>income</em>, a <em>mental health scale</em>, or a <em>measure of life expectancy</em>.</li>
@@ -142,8 +172,8 @@ Andy Grogan-Kaylor
 <blockquote>
 <p>“The data are measures from 107 trees. The trees were selected as being of average size from healthy and well stocked stands in the Alps.”</p>
 </blockquote>
-<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">use</span> <span class="st">&quot;https://github.com/agrogan1/newstuff/raw/master/data-visualization-with-Stata/gutten.dta&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>&gt; , <span class="kw">clear</span></span></code></pre></div></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">use</span> <span class="st">&quot;https://github.com/agrogan1/newstuff/raw/master/data-visualization-with-Stata/gutten.dta&quot;</span>, </span>
+<span id="cb1-2"><a href="#cb1-2"></a>&gt; <span class="kw">clear</span></span></code></pre></div></div>
 <div id="variables" class="title-slide slide section level1"><h1>Variables</h1><p><code>site</code> Growth <em>quality</em> class of the tree’s habitat. 5 levels.</p>
 <p><code>location</code> Distinguishes tree <em>location</em>. 7 levels.</p>
 <p><code>tree</code> An identifier for the tree within location.</p>
@@ -229,8 +259,8 @@ Andy Grogan-Kaylor
 <img src="myscatterS.png" alt="" />
 <p class="caption">Scatterplot Of Tree Height By Age With s1rcolor Graph Scheme</p>
 </div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> height age_base, <span class="bn">title</span>(<span class="st">&quot;Tree Height by Age&quot;</span>) <span class="dv">scheme</span>(burd) <span class="bn">msymbol</span>(o) graphregio</span>
-<span id="cb20-2"><a href="#cb20-2"></a>&gt; n(lcolor(<span class="kw">none</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> height age_base, <span class="bn">title</span>(<span class="st">&quot;Tree Height by Age&quot;</span>) <span class="dv">scheme</span>(burd) <span class="bn">msymbol</span>(o) graphregion(</span>
+<span id="cb20-2"><a href="#cb20-2"></a>&gt; lcolor(<span class="kw">none</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myscatterB.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a>(file myscatterB.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
@@ -263,8 +293,8 @@ Andy Grogan-Kaylor
 <img src="mybarS.png" alt="" />
 <p class="caption">Bar Graph Of Mean Tree Height By Location With s1rcolor Graph Scheme</p>
 </div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> height, <span class="bn">over</span>(location) asyvars <span class="bn">title</span>(<span class="st">&quot;Tree Height by Location&quot;</span>) <span class="dv">scheme</span>(burd) graphre</span>
-<span id="cb28-2"><a href="#cb28-2"></a>&gt; gion(lcolor(<span class="kw">none</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> height, <span class="bn">over</span>(location) asyvars <span class="bn">title</span>(<span class="st">&quot;Tree Height by Location&quot;</span>) <span class="dv">scheme</span>(burd) graphregi</span>
+<span id="cb28-2"><a href="#cb28-2"></a>&gt; <span class="kw">on</span>(lcolor(<span class="kw">none</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb29"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybarB.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
 <span id="cb29-2"><a href="#cb29-2"></a>(file mybarB.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">

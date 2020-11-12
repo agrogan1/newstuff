@@ -21,6 +21,12 @@ geometry: margin=1 in
 * By variables, I simply mean the columns of data that you have.
 * For our purposes, you may think of variables as synonymous with questionnaire items, or columns of data.
 
+|          | Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|----------|
+| Row    1 |          |          |          |
+| Row    2 |          |          |          |
+| Row    3 |          |          |          |
+
 # Variable Types
 
 * *Categorical variables* represent unordered categories like *race*, *ethnicity*, *neighborhood*, *religious affiliation*, or *place of residence*.
