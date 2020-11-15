@@ -1,7 +1,5 @@
 * render with markstat
 
-* THIS IS A DUMMY COMMENT THAT I AM PRETENDING IS A REAL CHANGE.
-
 clear all
 
 cd "/Users/agrogan/Desktop/newstuff/MICS-eliminate-cp"
