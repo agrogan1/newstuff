@@ -12,7 +12,7 @@
 
 <meta name="author" content="Andy Grogan-Kaylor" />
 
-<meta name="date" content="2020-10-10" />
+<meta name="date" content="2020-11-18" />
 
 <title>You Have To Get Your Data From Somewhere</title>
 
@@ -340,7 +340,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 
 <h1 class="title toc-ignore">You Have To Get Your Data From Somewhere</h1>
 <h4 class="author">Andy Grogan-Kaylor</h4>
-<h4 class="date">2020-10-10</h4>
+<h4 class="date">2020-11-18</h4>
 
 
 <div id="TOC">
@@ -415,7 +415,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <span id="cb7-2"><a href="#cb7-2"></a></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="kw">setwd</span>(<span class="st">&quot;/project1&quot;</span>) <span class="co"># set your working directory</span></span></code></pre></div>
 <ul>
-<li>Note that R uses a forward slash <code>/</code> to specify directory paths. R does not understand the use of a backward slash <code>\</code> to specify directories. R uses <code>~</code> to refer to the user’s (usually your) home directory.</li>
+<li>Note that R uses a forward slash <code>/</code> to specify directory paths. R does not understand the use of a backward slash <code>\</code> to specify directories. R uses <code>~</code> to refer to the user’s (usually your) home directory. <mark>Sometimes, especially on a Mac, it is necessary to refer to your directory with this <code>~</code>, e.g. <code>~/downloads/project1.RData</code> or <code>~/project1/project1.RData</code>.</mark></li>
 <li>If you are working in RStudio, you can use the menu option <em>Session | Set Working Directory | Choose Directory</em> to choose a particular working directory.</li>
 <li>If you double click on a <code>*.Rmd</code> file to start RStudio, R will assume that your working directory is the directory in which that <code>*.Rmd</code> file is located. <mark>Thus, it is often a good idea to have your data and RMarkdown document saved in the same directory.</mark></li>
 </ul>
