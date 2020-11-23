@@ -4,7 +4,7 @@
     <title>ggplot flipbook</title>
     <meta charset="utf-8" />
     <meta name="author" content="Andy Grogan-Kaylor" />
-    <meta name="date" content="2020-10-16" />
+    <meta name="date" content="2020-11-23" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
@@ -26,7 +26,7 @@ class: center, middle, inverse, title-slide
 # ggplot flipbook
 ## Use <span style="font-size:50px">⇦</span> and <span style="font-size:50px">⇨</span> to navigate.
 ### Andy Grogan-Kaylor
-### 2020-10-16
+### 2020-11-23
 
 ---
 
@@ -67,6 +67,16 @@ body {
 * This presentation plays a *tone* when each new item appears. Turn the volume down if you find these tones annoying.
 
 Based upon [2 Page ggplot](https://agrogan1.github.io/R/two-page-ggplot2/two-page-ggplot2.pdf)
+
+---
+class: animated, slideInRight
+# The Essential Idea Of ggplot2 Is Simple 
+
+There are 3 essential elements to any ggplot call:
+
+1. An *aesthetic* that tells ggplot which variables are being mapped to the *x axis*, *y axis*, (and often other attributes of the graph, such as the *color fill*).  Intuitively, the aesthetic can be thought of as **what you are graphing**.
+2. A *geom* or *geometry* that tells ggplot about the basic structure of the graph.  Intuitively, the geom can be thought of as **how you are graphing it**.
+3. Other options, such as a *graph title*, *axis labels* and *overall theme* for the graph.
 
 ---
 class: animated, slideInRight
