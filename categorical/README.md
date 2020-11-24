@@ -36,6 +36,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
     + [Accepting The Null Hypothesis](https://agrogan1.github.io/Bayes/accepting-H0/accepting-H0.html)
 * [Survival Analysis And Event History](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.pdf)]
     + [Times, Events And Censoring](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/times-events-and-censoring.html)
+    + [Reformatting Longitudinal Data As Survival Data](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.html)
 
 Andrew Grogan-Kaylor ([GitHub](https://agrogan1.github.io/), [New GitHub](https://agrogan1.github.io/newstuff)) | [agrogan@umich.edu](agrogan@umich.edu)
 
