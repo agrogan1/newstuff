@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}24 Nov 2020, 08:53:44
+ {txt}opened on:  {res}24 Nov 2020, 08:57:47
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -101,7 +101,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}24 Nov 2020, 08:53:45
+ {txt}closed on:  {res}24 Nov 2020, 08:57:49
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
