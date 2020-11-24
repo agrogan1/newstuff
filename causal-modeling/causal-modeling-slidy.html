@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>29 Sep 2020 13:16:15</p>
+<p>24 Nov 2020 08:22:27</p>
 </div>
 <div id="research-question" class="title-slide slide section level1"><h1>Research Question</h1><blockquote>
 <p>What is the <em>possibly causal</em> association of <em>education</em> with <em>job satisfaction</em>, while accounting for factors that may possibly have an association with <em>level of education</em>?</p>
@@ -124,8 +124,7 @@ Andy Grogan-Kaylor
 <div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. cd <span class="st">&quot;/Users/agrogan/Desktop/newstuff/causal-modeling&quot;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>/Users/agrogan/Desktop/newstuff/causal-modeling</span></code></pre></div></div><div id="get-data" class="slide section level2">
 <h1>Get Data</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">use</span> <span class="st">&quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="st">&gt; w123_R6 - stata.dta&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">use</span> <span class="st">&quot;GSS_panel2010w123_R6 - stata.dta&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
 </div><div id="id-variable" class="slide section level2">
 <h1>ID Variable</h1>
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">generate</span> ID = id_1</span></code></pre></div>
@@ -136,38 +135,37 @@ Andy Grogan-Kaylor
 <h1>Describe Data</h1>
 <div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">describe</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a>Contains <span class="kw">data</span> from /Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/G</span>
-<span id="cb6-4"><a href="#cb6-4"></a>&gt; SS_panel2010w123_R6 - stata.dta</span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="kw">obs</span>:         2,044                          </span>
-<span id="cb6-6"><a href="#cb6-6"></a> vars:            13                          5 Jul 2020 13:27</span>
-<span id="cb6-7"><a href="#cb6-7"></a> <span class="kw">size</span>:        32,704                          </span>
-<span id="cb6-8"><a href="#cb6-8"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb6-9"><a href="#cb6-9"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb6-12"><a href="#cb6-12"></a>educ_1          <span class="kw">byte</span>    %8.0g      EDUC_1     educ_1: HIGHEST YEAR OF SCHOOL COMPLETED</span>
-<span id="cb6-13"><a href="#cb6-13"></a>educ_2          <span class="kw">byte</span>    %8.0g      EDUC_2     educ_2: HIGHEST YEAR OF SCHOOL COMPLETED</span>
-<span id="cb6-14"><a href="#cb6-14"></a>educ_3          <span class="kw">byte</span>    %8.0g      EDUC_3     educ_3: HIGHEST YEAR OF SCHOOL COMPLETED</span>
-<span id="cb6-15"><a href="#cb6-15"></a>incom16_1       <span class="kw">byte</span>    %8.0g      INCOM16    incom16_1: RS FAMILY INCOME WHEN 16 YRS OLD</span>
-<span id="cb6-16"><a href="#cb6-16"></a>incom16_2       <span class="kw">byte</span>    %8.0g      V1318_A    incom16_2: RS FAMILY INCOME WHEN 16 YRS OLD</span>
-<span id="cb6-17"><a href="#cb6-17"></a>incom16_3       <span class="kw">byte</span>    %8.0g      V1319_A    incom16_3: RS FAMILY INCOME WHEN 16 YRS OLD</span>
-<span id="cb6-18"><a href="#cb6-18"></a>race_1          <span class="kw">byte</span>    %8.0g      RACE_1     race_1: RACE OF RESPONDENT</span>
-<span id="cb6-19"><a href="#cb6-19"></a>race_2          <span class="kw">byte</span>    %8.0g      RACE_2     race_2: RACE OF RESPONDENT</span>
-<span id="cb6-20"><a href="#cb6-20"></a>race_3          <span class="kw">byte</span>    %8.0g      RACE_3     race_3: RACE OF RESPONDENT</span>
-<span id="cb6-21"><a href="#cb6-21"></a>satjob_1        <span class="kw">byte</span>    %8.0g      SATJOB_1   satjob_1: JOB OR HOUSEWORK</span>
-<span id="cb6-22"><a href="#cb6-22"></a>satjob_2        <span class="kw">byte</span>    %8.0g      SATJOB_2   satjob_2: JOB OR HOUSEWORK</span>
-<span id="cb6-23"><a href="#cb6-23"></a>satjob_3        <span class="kw">byte</span>    %8.0g      SATJOB_3   satjob_3: JOB OR HOUSEWORK</span>
-<span id="cb6-24"><a href="#cb6-24"></a>ID              <span class="kw">float</span>   %9.0g                 </span>
-<span id="cb6-25"><a href="#cb6-25"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb6-26"><a href="#cb6-26"></a>Sorted <span class="kw">by</span>: </span>
-<span id="cb6-27"><a href="#cb6-27"></a>     Note: Dataset has changed since <span class="fu">last</span> saved.</span></code></pre></div>
+<span id="cb6-3"><a href="#cb6-3"></a>Contains <span class="kw">data</span> from GSS_panel2010w123_R6 - stata.dta</span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="kw">obs</span>:         2,044                          </span>
+<span id="cb6-5"><a href="#cb6-5"></a> vars:            13                          5 Jul 2020 13:27</span>
+<span id="cb6-6"><a href="#cb6-6"></a> <span class="kw">size</span>:        32,704                          </span>
+<span id="cb6-7"><a href="#cb6-7"></a>──────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-8"><a href="#cb6-8"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>──────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-11"><a href="#cb6-11"></a>educ_1          <span class="kw">byte</span>    %8.0g      EDUC_1     educ_1: HIGHEST YEAR OF SCHOOL COMPLETED</span>
+<span id="cb6-12"><a href="#cb6-12"></a>educ_2          <span class="kw">byte</span>    %8.0g      EDUC_2     educ_2: HIGHEST YEAR OF SCHOOL COMPLETED</span>
+<span id="cb6-13"><a href="#cb6-13"></a>educ_3          <span class="kw">byte</span>    %8.0g      EDUC_3     educ_3: HIGHEST YEAR OF SCHOOL COMPLETED</span>
+<span id="cb6-14"><a href="#cb6-14"></a>incom16_1       <span class="kw">byte</span>    %8.0g      INCOM16    incom16_1: RS FAMILY INCOME WHEN 16 YRS OLD</span>
+<span id="cb6-15"><a href="#cb6-15"></a>incom16_2       <span class="kw">byte</span>    %8.0g      V1318_A    incom16_2: RS FAMILY INCOME WHEN 16 YRS OLD</span>
+<span id="cb6-16"><a href="#cb6-16"></a>incom16_3       <span class="kw">byte</span>    %8.0g      V1319_A    incom16_3: RS FAMILY INCOME WHEN 16 YRS OLD</span>
+<span id="cb6-17"><a href="#cb6-17"></a>race_1          <span class="kw">byte</span>    %8.0g      RACE_1     race_1: RACE OF RESPONDENT</span>
+<span id="cb6-18"><a href="#cb6-18"></a>race_2          <span class="kw">byte</span>    %8.0g      RACE_2     race_2: RACE OF RESPONDENT</span>
+<span id="cb6-19"><a href="#cb6-19"></a>race_3          <span class="kw">byte</span>    %8.0g      RACE_3     race_3: RACE OF RESPONDENT</span>
+<span id="cb6-20"><a href="#cb6-20"></a>satjob_1        <span class="kw">byte</span>    %8.0g      SATJOB_1   satjob_1: JOB OR HOUSEWORK</span>
+<span id="cb6-21"><a href="#cb6-21"></a>satjob_2        <span class="kw">byte</span>    %8.0g      SATJOB_2   satjob_2: JOB OR HOUSEWORK</span>
+<span id="cb6-22"><a href="#cb6-22"></a>satjob_3        <span class="kw">byte</span>    %8.0g      SATJOB_3   satjob_3: JOB OR HOUSEWORK</span>
+<span id="cb6-23"><a href="#cb6-23"></a>ID              <span class="kw">float</span>   %9.0g                 </span>
+<span id="cb6-24"><a href="#cb6-24"></a>──────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-25"><a href="#cb6-25"></a>Sorted <span class="kw">by</span>: </span>
+<span id="cb6-26"><a href="#cb6-26"></a>     Note: Dataset has changed since <span class="fu">last</span> saved.</span></code></pre></div>
 </div><div id="codebook-for-selected-variables" class="slide section level2">
 <h1>Codebook For Selected Variable(s)</h1>
 <div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">codebook</span> satjob_3</span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb7-4"><a href="#cb7-4"></a>satjob_3                                                          satjob_3: JOB OR HOUSEWORK</span>
-<span id="cb7-5"><a href="#cb7-5"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb7-3"><a href="#cb7-3"></a>──────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb7-4"><a href="#cb7-4"></a>satjob_3                                                                satjob_3: JOB OR HOUSEWORK</span>
+<span id="cb7-5"><a href="#cb7-5"></a>──────────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb7-6"><a href="#cb7-6"></a></span>
 <span id="cb7-7"><a href="#cb7-7"></a>                  <span class="dv">type</span>:  <span class="kw">numeric</span> (<span class="kw">byte</span>)</span>
 <span id="cb7-8"><a href="#cb7-8"></a>                 <span class="kw">label</span>:  SATJOB_3</span>
@@ -317,28 +315,27 @@ Andy Grogan-Kaylor
 <span id="cb21-22"><a href="#cb21-22"></a>Estimation method  = <span class="kw">ml</span></span>
 <span id="cb21-23"><a href="#cb21-23"></a>Log likelihood     = -3673.4342</span>
 <span id="cb21-24"><a href="#cb21-24"></a></span>
-<span id="cb21-25"><a href="#cb21-25"></a>─────────────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb21-26"><a href="#cb21-26"></a>                     │                 OIM</span>
-<span id="cb21-27"><a href="#cb21-27"></a>                     │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
-<span id="cb21-28"><a href="#cb21-28"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb21-29"><a href="#cb21-29"></a>Structural           │</span>
-<span id="cb21-30"><a href="#cb21-30"></a>  satjob_3           │</span>
-<span id="cb21-31"><a href="#cb21-31"></a>      twelve_years_2 │  -.0722619   .1575751    -0.46   0.647    -.3811034    .2365795</span>
-<span id="cb21-32"><a href="#cb21-32"></a>           incom16_2 │  -.0024625   .0304497    -0.08   0.936    -.0621428    .0572177</span>
-<span id="cb21-33"><a href="#cb21-33"></a>               <span class="dt">_cons</span> │   1.734644   .1378498    12.58   0.000     1.464464    2.004825</span>
-<span id="cb21-34"><a href="#cb21-34"></a>  ───────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb21-35"><a href="#cb21-35"></a>  twelve_years_3     │</span>
-<span id="cb21-36"><a href="#cb21-36"></a>           incom16_2 │   .0607781   .0108369     5.61   0.000     .0395381    .0820181</span>
-<span id="cb21-37"><a href="#cb21-37"></a>            satjob_2 │  -.0054737   .0149476    -0.37   0.714    -.0347704    .0238231</span>
-<span id="cb21-38"><a href="#cb21-38"></a>               <span class="dt">_cons</span> │   .7396908   .0427695    17.29   0.000     .6558642    .8235175</span>
-<span id="cb21-39"><a href="#cb21-39"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb21-40"><a href="#cb21-40"></a>      <span class="kw">var</span>(<span class="fu">e</span>.satjob_3)│   .6046871   .0288304                      .5507404    .6639181</span>
-<span id="cb21-41"><a href="#cb21-41"></a><span class="kw">var</span>(<span class="fu">e</span>.twelve_years_3)│   .0868092   .0041385                      .0790653    .0953116</span>
-<span id="cb21-42"><a href="#cb21-42"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb21-43"><a href="#cb21-43"></a>      cov(<span class="fu">e</span>.satjob_3,│</span>
-<span id="cb21-44"><a href="#cb21-44"></a>    <span class="fu">e</span>.twelve_years_3)│   .0016217   .0154575     0.10   0.916    -.0286744    .0319178</span>
-<span id="cb21-45"><a href="#cb21-45"></a>─────────────────────┴────────────────────────────────────────────────────────────────</span>
-<span id="cb21-46"><a href="#cb21-46"></a>LR <span class="kw">test</span> <span class="kw">of</span> <span class="kw">model</span> vs. saturated: <span class="fu">chi2</span>(2)   =    968.48, Prob &gt; <span class="fu">chi2</span> = 0.0000</span></code></pre></div>
+<span id="cb21-25"><a href="#cb21-25"></a>────────────────────────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb21-26"><a href="#cb21-26"></a>                                │                 OIM</span>
+<span id="cb21-27"><a href="#cb21-27"></a>                                │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
+<span id="cb21-28"><a href="#cb21-28"></a>────────────────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb21-29"><a href="#cb21-29"></a>Structural                      │</span>
+<span id="cb21-30"><a href="#cb21-30"></a>  satjob_3                      │</span>
+<span id="cb21-31"><a href="#cb21-31"></a>                 twelve_years_2 │  -.0722619   .1575751    -0.46   0.647    -.3811034    .2365795</span>
+<span id="cb21-32"><a href="#cb21-32"></a>                      incom16_2 │  -.0024625   .0304497    -0.08   0.936    -.0621428    .0572177</span>
+<span id="cb21-33"><a href="#cb21-33"></a>                          <span class="dt">_cons</span> │   1.734644   .1378498    12.58   0.000     1.464464    2.004825</span>
+<span id="cb21-34"><a href="#cb21-34"></a>  ──────────────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb21-35"><a href="#cb21-35"></a>  twelve_years_3                │</span>
+<span id="cb21-36"><a href="#cb21-36"></a>                      incom16_2 │   .0607781   .0108369     5.61   0.000     .0395381    .0820181</span>
+<span id="cb21-37"><a href="#cb21-37"></a>                       satjob_2 │  -.0054737   .0149476    -0.37   0.714    -.0347704    .0238231</span>
+<span id="cb21-38"><a href="#cb21-38"></a>                          <span class="dt">_cons</span> │   .7396908   .0427695    17.29   0.000     .6558642    .8235175</span>
+<span id="cb21-39"><a href="#cb21-39"></a>────────────────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb21-40"><a href="#cb21-40"></a>                 <span class="kw">var</span>(<span class="fu">e</span>.satjob_3)│   .6046871   .0288304                      .5507404    .6639181</span>
+<span id="cb21-41"><a href="#cb21-41"></a>           <span class="kw">var</span>(<span class="fu">e</span>.twelve_years_3)│   .0868092   .0041385                      .0790653    .0953116</span>
+<span id="cb21-42"><a href="#cb21-42"></a>────────────────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb21-43"><a href="#cb21-43"></a>cov(<span class="fu">e</span>.satjob_3,<span class="fu">e</span>.twelve_years_3)│   .0016217   .0154575     0.10   0.916    -.0286744    .0319178</span>
+<span id="cb21-44"><a href="#cb21-44"></a>────────────────────────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb21-45"><a href="#cb21-45"></a>LR <span class="kw">test</span> <span class="kw">of</span> <span class="kw">model</span> vs. saturated: <span class="fu">chi2</span>(2)   =    968.48, Prob &gt; <span class="fu">chi2</span> = 0.0000</span></code></pre></div>
 </div>
 <div id="analyses-relying-on-long-data" class="title-slide slide section level1"><h1>Analyses Relying On Long Data</h1></div><div id="reshape-the-data" class="slide section level2">
 <h1>Reshape The Data</h1>
@@ -506,6 +503,7 @@ Andy Grogan-Kaylor
 </div><div id="difference-in-difference-model" class="slide section level2">
 <h1>Difference In Difference Model</h1>
 </div>
+<div id="combinations-of-models" class="title-slide slide section level1"><h1>Combinations of Models</h1><p>e.g. Difference in difference + propensity scores</p></div>
 <div id="references" class="title-slide slide section level1"><h1>References</h1><p>Holland, P. W. (1986). Statistics and Causal Inference. <em>Journal of the American Statistical Association</em>, 81(396), 945–960. https://doi.org/10.1080/01621459.1986.10478354</p>
 <div class="section footnotes" role="doc-endnotes">
 <hr />

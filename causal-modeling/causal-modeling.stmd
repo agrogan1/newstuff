@@ -39,7 +39,7 @@ Hence, for this particular data, we are exploring:
 
 ## Get Data
 
-    use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w123_R6 - stata.dta", clear
+    use "GSS_panel2010w123_R6 - stata.dta", clear
 
 ## ID Variable
 
@@ -150,6 +150,10 @@ Hence, for this particular data, we are exploring:
 	mixed satjob wave educ_mean educ_deviation incom16 i.race || ID:
 
 ## Difference In Difference Model
+
+# Combinations of Models
+
+e.g. Difference in difference + propensity scores
 
 # References
 

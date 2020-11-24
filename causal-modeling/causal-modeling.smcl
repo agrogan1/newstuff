@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/causal-modeling/causal-modeling.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}29 Sep 2020, 13:17:03
+ {txt}opened on:  {res}24 Nov 2020, 08:23:14
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}29 Sep 2020
+{res}24 Nov 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}13:17:03
+{res}08:23:14
 {txt}
 {com}. //_3
 . clear all
@@ -21,7 +21,7 @@
 {res}/Users/agrogan/Desktop/newstuff/causal-modeling
 {txt}
 {com}. //_5
-. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w123_R6 - stata.dta", clear
+. use "GSS_panel2010w123_R6 - stata.dta", clear
 {txt}
 {com}. //_6
 . generate ID = id_1
@@ -32,7 +32,7 @@
 {com}. //_8
 . describe
 
-{txt}Contains data from {res}/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey Panel Data/GSS_panel2010w123_R6 - stata.dta
+{txt}Contains data from {res}GSS_panel2010w123_R6 - stata.dta
 {txt}  obs:{res}         2,044                          
 {txt} vars:{res}            13                          5 Jul 2020 13:27
 {txt} size:{res}        32,704                          
@@ -222,27 +222,26 @@ Iteration 3:{space 3}log likelihood = {res:-3673.4342}
 {txt}{col 1}Estimation method{col 20}= {res}ml
 {txt}{col 1}Log likelihood{col 20}= {res}-3673.4342
 
-{txt}{hline 21}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 22}{c |}{col 34}      OIM
-{col 22}{c |}      Coef.{col 34}   Std. Err.{col 46}      z{col 54}   P>|z|{col 62}     [95% Con{col 75}f. Interval]
-{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}{res}Structural          {col 22}{txt}{c |}
-{space 2}{col 3}satjob_3          {col 22}{c |}
-{space 6}twelve_years_2 {c |}{col 22}{res}{space 2}-.0722619{col 34}{space 2} .1575751{col 45}{space 1}   -0.46{col 54}{space 3}0.647{col 62}{space 4}-.3811034{col 75}{space 3} .2365795
-{txt}{space 11}incom16_2 {c |}{col 22}{res}{space 2}-.0024625{col 34}{space 2} .0304497{col 45}{space 1}   -0.08{col 54}{space 3}0.936{col 62}{space 4}-.0621428{col 75}{space 3} .0572177
-{txt}{space 15}_cons {c |}{col 22}{res}{space 2} 1.734644{col 34}{space 2} .1378498{col 45}{space 1}   12.58{col 54}{space 3}0.000{col 62}{space 4} 1.464464{col 75}{space 3} 2.004825
-{space 2}{txt}{hline 19}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 2}{col 3}twelve_years_3    {col 22}{c |}
-{space 11}incom16_2 {c |}{col 22}{res}{space 2} .0607781{col 34}{space 2} .0108369{col 45}{space 1}    5.61{col 54}{space 3}0.000{col 62}{space 4} .0395381{col 75}{space 3} .0820181
-{txt}{space 12}satjob_2 {c |}{col 22}{res}{space 2}-.0054737{col 34}{space 2} .0149476{col 45}{space 1}   -0.37{col 54}{space 3}0.714{col 62}{space 4}-.0347704{col 75}{space 3} .0238231
-{txt}{space 15}_cons {c |}{col 22}{res}{space 2} .7396908{col 34}{space 2} .0427695{col 45}{space 1}   17.29{col 54}{space 3}0.000{col 62}{space 4} .6558642{col 75}{space 3} .8235175
-{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-      var(e.satjob_3){c |}{col 22}{res}{space 2} .6046871{col 34}{space 2} .0288304{col 62}{space 4} .5507404{col 75}{space 3} .6639181
-{txt}var(e.twelve_years_3){c |}{col 22}{res}{space 2} .0868092{col 34}{space 2} .0041385{col 62}{space 4} .0790653{col 75}{space 3} .0953116
-{txt}{hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-      cov(e.satjob_3,{c |}
-    e.twelve_years_3){c |}{col 22}{res}{space 2} .0016217{col 34}{space 2} .0154575{col 45}{space 1}    0.10{col 54}{space 3}0.916{col 62}{space 4}-.0286744{col 75}{space 3} .0319178
-{txt}{hline 21}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 32}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 33}{c |}{col 45}      OIM
+{col 33}{c |}      Coef.{col 45}   Std. Err.{col 57}      z{col 65}   P>|z|{col 73}     [95% Con{col 86}f. Interval]
+{hline 32}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}{res}Structural                     {col 33}{txt}{c |}
+{space 2}{col 3}satjob_3                     {col 33}{c |}
+{space 17}twelve_years_2 {c |}{col 33}{res}{space 2}-.0722619{col 45}{space 2} .1575751{col 56}{space 1}   -0.46{col 65}{space 3}0.647{col 73}{space 4}-.3811034{col 86}{space 3} .2365795
+{txt}{space 22}incom16_2 {c |}{col 33}{res}{space 2}-.0024625{col 45}{space 2} .0304497{col 56}{space 1}   -0.08{col 65}{space 3}0.936{col 73}{space 4}-.0621428{col 86}{space 3} .0572177
+{txt}{space 26}_cons {c |}{col 33}{res}{space 2} 1.734644{col 45}{space 2} .1378498{col 56}{space 1}   12.58{col 65}{space 3}0.000{col 73}{space 4} 1.464464{col 86}{space 3} 2.004825
+{space 2}{txt}{hline 30}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 2}{col 3}twelve_years_3               {col 33}{c |}
+{space 22}incom16_2 {c |}{col 33}{res}{space 2} .0607781{col 45}{space 2} .0108369{col 56}{space 1}    5.61{col 65}{space 3}0.000{col 73}{space 4} .0395381{col 86}{space 3} .0820181
+{txt}{space 23}satjob_2 {c |}{col 33}{res}{space 2}-.0054737{col 45}{space 2} .0149476{col 56}{space 1}   -0.37{col 65}{space 3}0.714{col 73}{space 4}-.0347704{col 86}{space 3} .0238231
+{txt}{space 26}_cons {c |}{col 33}{res}{space 2} .7396908{col 45}{space 2} .0427695{col 56}{space 1}   17.29{col 65}{space 3}0.000{col 73}{space 4} .6558642{col 86}{space 3} .8235175
+{txt}{hline 32}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+                 var(e.satjob_3){c |}{col 33}{res}{space 2} .6046871{col 45}{space 2} .0288304{col 73}{space 4} .5507404{col 86}{space 3} .6639181
+{txt}           var(e.twelve_years_3){c |}{col 33}{res}{space 2} .0868092{col 45}{space 2} .0041385{col 73}{space 4} .0790653{col 86}{space 3} .0953116
+{txt}{hline 32}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+cov(e.satjob_3,e.twelve_years_3){c |}{col 33}{res}{space 2} .0016217{col 45}{space 2} .0154575{col 56}{space 1}    0.10{col 65}{space 3}0.916{col 73}{space 4}-.0286744{col 86}{space 3} .0319178
+{txt}{hline 32}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 LR test of model vs. saturated: chi2({res:2})   = {res:   968.48}, Prob > chi2 = {res}0.0000
 {txt}
 {com}. //_24
@@ -420,7 +419,7 @@ LR test vs. linear model:{col 27}{help j_chibar##|_new:chibar2(01) =} {res}323.0
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/causal-modeling/causal-modeling.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}29 Sep 2020, 13:17:14
+ {txt}closed on:  {res}24 Nov 2020, 08:23:29
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
