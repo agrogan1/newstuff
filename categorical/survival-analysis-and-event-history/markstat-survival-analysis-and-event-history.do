@@ -6,15 +6,27 @@ clear all
 
 cd "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history"
 
-doedit "survival-analysis-and-event-history.stmd"
+* MAIN FILE
 
-* doedit stata.sty
+doedit "survival-analysis-and-event-history.stmd"
 
 markstat using "survival-analysis-and-event-history.stmd", mathjax // HTML
 
 graph close _all
 
 markstat using "survival-analysis-and-event-history.stmd", pdf // PDF
+
+graph close _all
+
+* SIMULATED SURVIVAL DATA
+
+doedit "simulated-survival-data.stmd"
+
+markstat using "simulated-survival-data.stmd", mathjax // HTML
+
+graph close _all
+
+markstat using "simulated-survival-data.stmd", pdf // PDF
 
 graph close _all
 
