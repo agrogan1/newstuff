@@ -1,0 +1,99 @@
+% Simulated Survival Data
+% Andy Grogan-Kaylor
+% `s c(current_date)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+
+# Introduction
+
+Below you will find a simulated data set that might help you think about constructing a data set for survival analysis, or event history analysis.   
+
+> These simulated data represent a common situation in which a *categorical status* (like a diagnosis of depression or PTSD) is observed at different time points.
+
+> An *event* is defined as a (relatively sudden) change from a status of 0 to a status of 1.
+
+## Get The Data
+
+    clear all
+	
+	use "simulated-survival-data.dta", clear
+
+> In this example, we are going to think about how to take a data set of *statuses* and turn it into a data set of *events*.
+
+## Look At The Data
+
+> Notice how this is a *wide* data set. Every individual has a *single row of data*, and information on **status** at each of the timepoints is contained in the *same row*.
+	
+	list
+	
+## Notice How Individual Status Changes Over Time.
+
+1. Status never changes for individual 1. The event never occurs for individual 1. Individual 1's event time is therefore *censored*.
+2. Status changes at wave 2 for individual 2. The event therefore occurs for individual 2 at wave 2. Individual 2's event time is therefore *observed*.
+3. Status changes at wave 3 for individual 3. The event is therefore conceptualized as occurring for individual 3 at wave 3. Individual 3's event time is therefore *observed*.
+
+# How Do We Turn This Data Set Into A Data Set of Event Times?
+
+First, we want to make sure that it is appropriate to conceptualize this data set of individuals as a data set for whom the event has not yet occurred. 
+
+Second, we want to create an *event time* out of these *status changes*.
+
+Our code might look something as follows.
+
+> I am assuming in the code below that waves are 1 year apart, and you might want to adjust your code accordingly if waves are differentially spaced.
+
+## Generate an Event Time
+
+    * initialize to longest time
+	
+    * censored observations will have this value
+
+    generate event_time = 3
+	
+	* change event time to 2 if status2 == 2
+	* change event time to 1 if status1 == 1
+	
+	* notice that I am doing this in reverse order
+	* to capture the earliest event time
+	
+	replace event_time = 2 if status2 == 1 // event time is 2 if status 2 is 1
+
+    replace event_time = 1 if status1 == 1 // event time is 1 if status 1 is 1
+
+## Generate A Failure (Censoring) Indicator
+
+    * failure becomes 1 for those 
+    * for whom event occurred at some timepoint
+
+    generate failure = 0 // initialize
+	
+	replace failure = 1 if status1 == 1 | status2 == 1 | status3 == 1 // change failure to 1 if any status variable == 1
+	
+You can see that our data now have an event time, and a censoring status.
+
+	list, abbreviate(10) // list out the data
+	
+## `stset` the data
+
+Inspection of the results from the stset command indicates that the data appears to have been `stset` correctly.
+
+    stset event_time, failure(failure == 1)
+	
+# Graph of Survival Function
+
+    sts graph, scheme(michigan)
+	
+	graph export simulated-survival-data.png, width(1000) replace
+
+![Kaplan-Meier Survivor Function](simulated-survival-data.png){width=50%}
+	
+	
+	
+	
+	
+	
+
