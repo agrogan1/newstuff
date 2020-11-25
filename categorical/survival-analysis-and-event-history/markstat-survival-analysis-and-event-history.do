@@ -1,5 +1,5 @@
 **************************************************
-* survival analysis and event history
+* SURVIVAL ANALYSIS AND EVENT HISTORY
 **************************************************
 
 clear all
