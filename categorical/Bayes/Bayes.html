@@ -58,10 +58,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Bayesian Categorical Data Analysis</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">22 Jul 2020 19:49:56</p>
+<p class="date">27 Nov 2020 11:02:13</p>
 </header>
 <h1 id="introduction">Introduction</h1>
-<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 <pre class='stata'>. clear all
 </pre>
 <h1 id="the-importance-of-thinking-about-prior-information">The Importance of Thinking About Prior Information</h1>
@@ -277,8 +277,8 @@ working class  │ -.2257059   .1359429    .01095  -.2304211  -.4719162   .05604
 Note: Default priors are used for model parameters.
 </pre>
 <h2 id="blocking-may-improve-estimation">Blocking May Improve Estimation</h2>
-<pre class='stata'>. * bayes, block({liberal:i.race}): logit liberal i.race i.class // blocking may improve 
-> estimation
+<pre class='stata'>. * bayes, block({liberal:i.race}): logit liberal i.race i.class // blocking may improve estimatio
+> n
 </pre>
 <h2 id="bayesian-logistic-regression-with-priors">Bayesian Logistic Regression With Priors</h2>
 <p>Priors:</p>

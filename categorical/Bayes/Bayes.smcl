@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/Bayes/Bayes.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}22 Jul 2020, 19:49:56
+ {txt}opened on:  {res}27 Nov 2020, 11:02:13
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}22 Jul 2020
+{res}27 Nov 2020
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}19:49:56
+{res}11:02:13
 {txt}
 {com}. //_3
 . clear all
@@ -248,7 +248,7 @@ working class  {c |}{col 16}{res}{space 1}-.3129757{col 27}{space 2} .1321655{co
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/Bayes/Bayes.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}22 Jul 2020, 19:50:53
+ {txt}closed on:  {res}27 Nov 2020, 11:03:24
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
