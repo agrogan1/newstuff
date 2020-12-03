@@ -1,0 +1,10 @@
+.title-slide { 
+  color: #c5050c;
+  background-color: #f7f7f7; 
+}
+.title-slide h1 {
+    color: #c5050c;
+}
+pre {
+  white-space: pre-wrap;
+}
