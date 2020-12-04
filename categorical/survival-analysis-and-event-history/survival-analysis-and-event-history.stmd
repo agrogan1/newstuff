@@ -20,7 +20,7 @@ geometry: margin=1 in
 
 * Implementations differ; formulas are our friends
 
-* $h(t) \sim x1 + x2 + \text{etc.} ...$: formula (effect on hazard (instantaneous rate of occurrence))
+* $h(t) = x1 + x2 + \text{etc.} ...$: formula (effect on hazard (instantaneous rate of occurrence))
 
 # The "Hospital Bed Problem"
 
