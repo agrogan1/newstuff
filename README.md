@@ -52,8 +52,9 @@ New stuff that is going to get moved somewhere else at some point.
 
 * [Xaringan Slide Show Themes](./xaringan-themes)
 
-## Blog-ish Posts
 
-* [Blog-ish Posts](https://agrogan1.github.io/newstuff/myposts)
+
+
+
 
 
