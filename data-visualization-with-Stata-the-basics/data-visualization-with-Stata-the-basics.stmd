@@ -10,7 +10,7 @@ geometry: margin=.5in
 
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 
-99% of data visualization work sometimes seems to consist of creating bar graphs (`graph bar y, over(x)`) and scatterplots (`twoway scatter y x`). (For the sake of completeness, I am also going to mention histograms (`histogram x`).)  
+99% of data visualization work sometimes seems to consist of creating bar graphs (`graph bar y, over(x)`) and scatterplots (`twoway scatter y x`). (For the sake of completeness, I am also going to mention histograms (`histogram x`).)  I am not a particular fan of Stata's default graph schemes, so I am going to make use of the graph scheme entitled `s1color`.
 
 This is a quick guide to these ideas using the [Palmer Penguins Data](https://github.com/allisonhorst/palmerpenguins/blob/master/README.md).
 
@@ -19,6 +19,8 @@ This is a quick guide to these ideas using the [Palmer Penguins Data](https://gi
     clear all
 
     use "https://github.com/agrogan1/newstuff/raw/master/data-visualization-with-Stata-the-basics/penguins.dta", clear
+	
+	set scheme s1color // use s1color scheme
 	
 # Histogram: `histogram`
 
