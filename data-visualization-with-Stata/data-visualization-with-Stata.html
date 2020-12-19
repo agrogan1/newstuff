@@ -57,7 +57,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Data Visualization With Stata</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">12 Nov 2020</p>
+<p class="date">19 Dec 2020</p>
 </header>
 <h1 id="introduction">Introduction</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -205,7 +205,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <img src="mybargraph3.png" style="width:50.0%" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location</figcaption>
 </figure>
 <h1 id="schemes">Schemes</h1>
-<p>Stata <em>graph schemes</em> can substantially improve the look of a graph. Built in graph schemes include <code>sj</code> and <code>economist</code> and <code>s1rcolor</code>.</p>
+<p>Stata <em>graph schemes</em> can substantially improve the look of a graph. Built in graph schemes include <code>s1color</code>, the default scheme <code>s2color</code>, <code>sj</code>, <code>economist</code> and <code>s1rcolor</code>.</p>
 <p><code>lean2</code> (type <code>findit lean2</code> in the Stata Command Window) is a user written scheme that is very helpful when preparing graphics for publication. I have written a <a href="https://agrogan1.github.io/Stata/">Stata Michigan graph scheme</a> that can be installed. <code>burd</code> is another user written graph scheme that <em>somewhat</em> replicates the look of <code>ggplot</code>.</p>
 <h2 id="continuous-by-continuous-1">Continuous by Continuous</h2>
 <pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age") scheme(michigan)
@@ -224,13 +224,13 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <figure>
 <img src="myscatterL.png" style="width:50.0%" alt="" /><figcaption>Scatterplot Of Tree Height By Age With lean2 Graph Scheme</figcaption>
 </figure>
-<pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age") scheme(s1rcolor)
+<pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age") scheme(s1color)
 </pre>
 <pre class='stata'>. graph export myscatterS.png, width(1000) replace
 (file myscatterS.png written in PNG format)
 </pre>
 <figure>
-<img src="myscatterS.png" style="width:50.0%" alt="" /><figcaption>Scatterplot Of Tree Height By Age With s1rcolor Graph Scheme</figcaption>
+<img src="myscatterS.png" style="width:50.0%" alt="" /><figcaption>Scatterplot Of Tree Height By Age With s1color Graph Scheme</figcaption>
 </figure>
 <pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age") scheme(burd) msymbol(o) graphregion(
 > lcolor(none))
@@ -261,13 +261,13 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <figure>
 <img src="mybarL.png" style="width:50.0%" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location With lean2 Graph Scheme</figcaption>
 </figure>
-<pre class='stata'>. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(s1rcolor)
+<pre class='stata'>. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(s1color)
 </pre>
 <pre class='stata'>. graph export mybarS.png, width(1000) replace
 (file mybarS.png written in PNG format)
 </pre>
 <figure>
-<img src="mybarS.png" style="width:50.0%" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location With s1rcolor Graph Scheme</figcaption>
+<img src="mybarS.png" style="width:50.0%" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location With s1color Graph Scheme</figcaption>
 </figure>
 <pre class='stata'>. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(burd) graphregi
 > on(lcolor(none))
