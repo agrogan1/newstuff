@@ -8,7 +8,7 @@ Dichotomous dependent variables are important to data analysis. Dichotomous depe
 
 Logistic regression is an important tool for predicting dichotomous dependent variables. 
 
-There is some discussion / debate as to whether linear models (OLS) may be appropriate for dichotomous dependent variables—but as the above diagram suggests, [linear models may not have the appropriate functional form to predict a dichotomous dependent variable; may offer predictions of probabilities that are out of range; and may calculate standard errors incorrectly](https://agrogan1.github.io/newstuff/categorical/LPM-logistic/LPM-logistic.html).
+There is some discussion / debate as to whether linear models (OLS) may be appropriate for dichotomous dependent variables—but as the above diagram suggests, [linear models may not have the appropriate functional form to predict a dichotomous dependent variable; may offer predictions of probabilities that are out of range; and may calculate standard errors incorrectly](https://agrogan1.github.io/newstuff/categorical/LPM-and-logistic/LPM-and-logistic.html).
 
 Logistic regression and odds ratios are the most commonly used tools to predict dichotomous outcomes. [Mathematically odds ratios may be relatively straightforward to understand](https://agrogan.shinyapps.io/exploring_logistic_regression/#section-logistic-regression) as $e^\beta$ (the exponentiated beta coefficients). Less commonly do we have the visual intuition that [odds ratios are a statement about the *overall shape* of the logistic curve](https://agrogan.shinyapps.io/exploring_logistic_regression/#section-visualize-a-logistic-regression).
 
