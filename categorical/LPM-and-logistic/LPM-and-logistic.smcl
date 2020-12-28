@@ -1,0 +1,136 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/LPM-and-logistic/LPM-and-logistic.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}28 Dec 2020, 08:53:39
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}28 Dec 2020
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}08:53:39
+{txt}
+{com}. //_3
+. clear all
+{res}{txt}
+{com}. //_4
+. use http://www.stata-press.com/data/r15/margex, clear // artificial data from Stata
+{txt}(Artificial data for margins)
+
+{com}. //_5
+. twoway (lowess outcome age) (lfit outcome age), ///
+> title("Outcome By Age") ///
+> legend(order(1 "lowess smoother" 2 "linear fit")) ///
+> scheme(michigan)
+{res}{txt}
+{com}. //_6
+. graph export mygraph0.png, width(1000) replace
+{txt}(file /Users/agrogan/Desktop/newstuff/categorical/LPM-and-logistic/mygraph0.png written in PNG format)
+
+{com}. //_7
+. tabulate outcome // outcome is dichotomous
+
+    {txt}outcome {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      2,491       83.03       83.03
+{txt}          1 {c |}{res}        509       16.97      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      3,000      100.00
+{txt}
+{com}. //_8
+. regress outcome sex##c.age i.group // linear probability model
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     3,000
+{txt}{hline 13}{c +}{hline 34}   F(5, 2994)      = {res}   138.49
+{txt}       Model {c |} {res}  79.386424         5  15.8772848   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 343.253243     2,994  .114647042   {txt}R-squared       ={res}    0.1878
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1865
+{txt}       Total {c |} {res} 422.639667     2,999  .140926865   {txt}Root MSE        =   {res}  .3386
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     outcome{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}sex {c |}
+{space 5}female  {c |}{col 14}{res}{space 2}-.2320346{col 26}{space 2} .0489015{col 37}{space 1}   -4.74{col 46}{space 3}0.000{col 54}{space 4}-.3279185{col 67}{space 3}-.1361508
+{txt}{space 9}age {c |}{col 14}{res}{space 2} .0061307{col 26}{space 2} .0008814{col 37}{space 1}    6.96{col 46}{space 3}0.000{col 54}{space 4} .0044025{col 67}{space 3} .0078589
+{txt}{space 12} {c |}
+{space 3}sex#c.age {c |}
+{space 5}female  {c |}{col 14}{res}{space 2} .0072707{col 26}{space 2} .0011613{col 37}{space 1}    6.26{col 46}{space 3}0.000{col 54}{space 4} .0049936{col 67}{space 3} .0095477
+{txt}{space 12} {c |}
+{space 7}group {c |}
+{space 10}2  {c |}{col 14}{res}{space 2}-.0888273{col 26}{space 2} .0164698{col 37}{space 1}   -5.39{col 46}{space 3}0.000{col 54}{space 4}-.1211206{col 67}{space 3}-.0565339
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}-.1034404{col 26}{space 2} .0220694{col 37}{space 1}   -4.69{col 46}{space 3}0.000{col 54}{space 4}-.1467131{col 67}{space 3}-.0601676
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-.0597978{col 26}{space 2} .0401266{col 37}{space 1}   -1.49{col 46}{space 3}0.136{col 54}{space 4}-.1384763{col 67}{space 3} .0188806
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_9
+. predict yhat_LPM // predicted probabilities
+{txt}(option {bf:xb} assumed; fitted values)
+
+{com}. //_10
+. twoway scatter yhat_LPM age, ///
+> title("Predicted Probabilities from Linear Probability Model") ///
+> scheme(michigan)
+{res}{txt}
+{com}. //_11
+. graph export myLPM.png, width(1000) replace
+{txt}(file /Users/agrogan/Desktop/newstuff/categorical/LPM-and-logistic/myLPM.png written in PNG format)
+
+{com}. //_12
+. logit outcome sex##c.age i.group // logistic regression model
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-1366.0718}  
+Iteration 1:{space 3}log likelihood = {res: -1118.129}  
+Iteration 2:{space 3}log likelihood = {res:-1070.8227}  
+Iteration 3:{space 3}log likelihood = {res:-1068.0102}  
+Iteration 4:{space 3}log likelihood = {res:  -1067.99}  
+Iteration 5:{space 3}log likelihood = {res:  -1067.99}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     3,000
+{txt}{col 49}LR chi2({res}5{txt}){col 67}= {res}    596.16
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log likelihood = {res}  -1067.99{txt}{col 49}Pseudo R2{col 67}= {res}    0.2182
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     outcome{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}sex {c |}
+{space 5}female  {c |}{col 14}{res}{space 2} .5565025{col 26}{space 2} .6488407{col 37}{space 1}    0.86{col 46}{space 3}0.391{col 54}{space 4}-.7152019{col 67}{space 3} 1.828207
+{txt}{space 9}age {c |}{col 14}{res}{space 2} .0910807{col 26}{space 2} .0113215{col 37}{space 1}    8.04{col 46}{space 3}0.000{col 54}{space 4} .0688909{col 67}{space 3} .1132704
+{txt}{space 12} {c |}
+{space 3}sex#c.age {c |}
+{space 5}female  {c |}{col 14}{res}{space 2} -.001211{col 26}{space 2} .0134012{col 37}{space 1}   -0.09{col 46}{space 3}0.928{col 54}{space 4}-.0274769{col 67}{space 3}  .025055
+{txt}{space 12} {c |}
+{space 7}group {c |}
+{space 10}2  {c |}{col 14}{res}{space 2}-.5854237{col 26}{space 2} .1349791{col 37}{space 1}   -4.34{col 46}{space 3}0.000{col 54}{space 4}-.8499779{col 67}{space 3}-.3208696
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}-1.355227{col 26}{space 2} .2965301{col 37}{space 1}   -4.57{col 46}{space 3}0.000{col 54}{space 4}-1.936416{col 67}{space 3}-.7740391
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-5.592272{col 26}{space 2} .5583131{col 37}{space 1}  -10.02{col 46}{space 3}0.000{col 54}{space 4}-6.686545{col 67}{space 3}-4.497998
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_13
+. predict yhat_logistic // predicted probabilities
+{txt}(option {bf:pr} assumed; Pr(outcome))
+
+{com}. //_14
+. twoway scatter yhat_logistic age, ///
+> title("Predicted Probabilities from Logistic Regression Model") ///
+> scheme(michigan)
+{res}{txt}
+{com}. //_15
+. graph export mylogistic.png, width(1000) replace
+{txt}(file /Users/agrogan/Desktop/newstuff/categorical/LPM-and-logistic/mylogistic.png written in PNG format)
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/LPM-and-logistic/LPM-and-logistic.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}28 Dec 2020, 08:53:49
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

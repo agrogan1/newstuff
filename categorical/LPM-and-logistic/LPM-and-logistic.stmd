@@ -1,0 +1,84 @@
+% Linear Probability Model and Logistic Regression
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+
+# Introduction
+
+The *Linear Probability Model* (LPM) is often discussed as an alternative to *logistic* regression. Essentially, the LPM is a linear model with a *dichotomous* dependent variable.
+
+# Setup
+
+    clear all
+
+    use http://www.stata-press.com/data/r15/margex, clear // artificial data from Stata
+	
+# Background
+
+> I read through a number of references to develop this handout, especially the excellent book on Categorical Data Analysis by Long and Freese, and the always excellent Stata documentation. As I was finishing up this handout, I came across a superb handout by Richard Williams (referenced below), which does a better and more thorough job of explaining these issues than this short handout. You are encouraged to look it up.
+
+*Broadly speaking* the Linear Probability Model is likely to give similar results to the logistic regression model: $\beta$ coefficients are likely to have the same directions and similar statistical significances. 
+
+However, as one compares these approaches *more closely*. the Linear Probability Model is arguably incorrect on several grounds, some of which are illustrated in the figure below: 
+
+    twoway (lowess outcome age) (lfit outcome age), ///
+	title("Outcome By Age") ///
+	legend(order(1 "lowess smoother" 2 "linear fit")) ///
+	scheme(michigan)
+	
+	graph export mygraph0.png, width(1000) replace
+
+![Lowess Smoother and Linear Fit Of Outcome By Age](mygraph0.png)
+
+1. Marginal effects are mis-stated: The smoother indicates that the relationship of outcome and age is curvilinear. Thus, the effect on $y$ of a 1 unit increase in $x$ is different for different values of $x$.
+2. Predictions can be implausible: By definition, negative probabilities are clearly impossible. However the linear fit predicts negative probabilities of the outcome for lower values of age.
+3. Data with a dichotomous outcome are by definition heteroskedastic. The LPM (unless corrections are applied) makes assumptions of homoskedasticity. Thus, inferences about statistical significance--or the lack thereof--are likely to be incorrect.
+
+> These differences in results are likely to become more salient the more one pays *detailed attention* to marginal effects for different values of the independent variables, and to predicted probabilities for different values of the independent variables.
+
+# Compare LPM and Logistic Regression In More Detail
+
+## Confirm That Outcome Is Dichotomous
+
+    tabulate outcome // outcome is dichotomous
+
+## Linear Probability Model
+
+    regress outcome sex##c.age i.group // linear probability model
+
+    predict yhat_LPM // predicted probabilities
+
+    twoway scatter yhat_LPM age, ///
+    title("Predicted Probabilities from Linear Probability Model") ///
+    scheme(michigan)
+	
+	graph export myLPM.png, width(1000) replace
+
+![Predicted Values from Linear Probability Model](myLPM.png)
+
+## Logistic Regression
+
+    logit outcome sex##c.age i.group // logistic regression model
+
+    predict yhat_logistic // predicted probabilities
+
+    twoway scatter yhat_logistic age, ///
+    title("Predicted Probabilities from Logistic Regression Model") ///
+    scheme(michigan)
+
+	graph export mylogistic.png, width(1000) replace
+
+![Predicted Values from Linear Probability Model](mylogistic.png)
+
+# References
+
+Long, J. S., & Freese, J. (2014). *Regression Models for Categorical Dependent Variables Using Stata (3rd ed.)*. College Station, TX: Stata Press.
+
+StataCorp. 2019. *Stata 16 Base Reference Manual*. College Station, TX: Stata Press.
+
+Williams, R. (2015). *Logistic Regression, Part I: Problems with the Linear Probability Model (LPM)*. South Bend, IN.

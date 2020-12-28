@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Linear Probability Model and Logistic Regression</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Linear Probability Model and Logistic Regression</h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">28 Dec 2020 08:53:15</p>
+</header>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+<h1 id="introduction">Introduction</h1>
+<p>The <em>Linear Probability Model</em> (LPM) is often discussed as an alternative to <em>logistic</em> regression. Essentially, the LPM is a linear model with a <em>dichotomous</em> dependent variable.</p>
+<h1 id="setup">Setup</h1>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. use http://www.stata-press.com/data/r15/margex, clear // artificial data from Stata
+(Artificial data for margins)
+</pre>
+<h1 id="background">Background</h1>
+<blockquote>
+<p>I read through a number of references to develop this handout, especially the excellent book on Categorical Data Analysis by Long and Freese, and the always excellent Stata documentation. As I was finishing up this handout, I came across a superb handout by Richard Williams (referenced below), which does a better and more thorough job of explaining these issues than this short handout. You are encouraged to look it up.</p>
+</blockquote>
+<p><em>Broadly speaking</em> the Linear Probability Model is likely to give similar results to the logistic regression model: <span class="math inline">\(\beta\)</span> coefficients are likely to have the same directions and similar statistical significances.</p>
+<p>However, as one compares these approaches <em>more closely</em>. the Linear Probability Model is arguably incorrect on several grounds, some of which are illustrated in the figure below:</p>
+<pre class='stata'>. twoway (lowess outcome age) (lfit outcome age), ///
+> title("Outcome By Age") ///
+> legend(order(1 "lowess smoother" 2 "linear fit")) ///
+> scheme(michigan)
+</pre>
+<pre class='stata'>. graph export mygraph0.png, width(1000) replace
+(file /Users/agrogan/Desktop/newstuff/categorical/LPM-and-logistic/mygraph0.png written in PN
+> G format)
+</pre>
+<figure>
+<img src="mygraph0.png" alt="" /><figcaption>Lowess Smoother and Linear Fit Of Outcome By Age</figcaption>
+</figure>
+<ol type="1">
+<li>Marginal effects are mis-stated: The smoother indicates that the relationship of outcome and age is curvilinear. Thus, the effect on <span class="math inline">\(y\)</span> of a 1 unit increase in <span class="math inline">\(x\)</span> is different for different values of <span class="math inline">\(x\)</span>.</li>
+<li>Predictions can be implausible: By definition, negative probabilities are clearly impossible. However the linear fit predicts negative probabilities of the outcome for lower values of age.</li>
+<li>Data with a dichotomous outcome are by definition heteroskedastic. The LPM (unless corrections are applied) makes assumptions of homoskedasticity. Thus, inferences about statistical significance–or the lack thereof–are likely to be incorrect.</li>
+</ol>
+<blockquote>
+<p>These differences in results are likely to become more salient the more one pays <em>detailed attention</em> to marginal effects for different values of the independent variables, and to predicted probabilities for different values of the independent variables.</p>
+</blockquote>
+<h1 id="compare-lpm-and-logistic-regression-in-more-detail">Compare LPM and Logistic Regression In More Detail</h1>
+<h2 id="confirm-that-outcome-is-dichotomous">Confirm That Outcome Is Dichotomous</h2>
+<pre class='stata'>. tabulate outcome // outcome is dichotomous
+
+    outcome │      Freq.     Percent        Cum.
+────────────┼───────────────────────────────────
+          0 │      2,491       83.03       83.03
+          1 │        509       16.97      100.00
+────────────┼───────────────────────────────────
+      Total │      3,000      100.00
+</pre>
+<h2 id="linear-probability-model">Linear Probability Model</h2>
+<pre class='stata'>. regress outcome sex##c.age i.group // linear probability model
+
+      Source │       SS           df       MS      Number of obs   =     3,000
+─────────────┼──────────────────────────────────   F(5, 2994)      =    138.49
+       Model │   79.386424         5  15.8772848   Prob > F        =    0.0000
+    Residual │  343.253243     2,994  .114647042   R-squared       =    0.1878
+─────────────┼──────────────────────────────────   Adj R-squared   =    0.1865
+       Total │  422.639667     2,999  .140926865   Root MSE        =     .3386
+
+─────────────┬────────────────────────────────────────────────────────────────
+     outcome │      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+         sex │
+     female  │  -.2320346   .0489015    -4.74   0.000    -.3279185   -.1361508
+         age │   .0061307   .0008814     6.96   0.000     .0044025    .0078589
+             │
+   sex#c.age │
+     female  │   .0072707   .0011613     6.26   0.000     .0049936    .0095477
+             │
+       group │
+          2  │  -.0888273   .0164698    -5.39   0.000    -.1211206   -.0565339
+          3  │  -.1034404   .0220694    -4.69   0.000    -.1467131   -.0601676
+             │
+       _cons │  -.0597978   .0401266    -1.49   0.136    -.1384763    .0188806
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<pre class='stata'>. predict yhat_LPM // predicted probabilities
+(option xb assumed; fitted values)
+</pre>
+<pre class='stata'>. twoway scatter yhat_LPM age, ///
+> title("Predicted Probabilities from Linear Probability Model") ///
+> scheme(michigan)
+</pre>
+<pre class='stata'>. graph export myLPM.png, width(1000) replace
+(file /Users/agrogan/Desktop/newstuff/categorical/LPM-and-logistic/myLPM.png written in PNG f
+> ormat)
+</pre>
+<figure>
+<img src="myLPM.png" alt="" /><figcaption>Predicted Values from Linear Probability Model</figcaption>
+</figure>
+<h2 id="logistic-regression">Logistic Regression</h2>
+<pre class='stata'>. logit outcome sex##c.age i.group // logistic regression model
+
+Iteration 0:   log likelihood = -1366.0718  
+Iteration 1:   log likelihood =  -1118.129  
+Iteration 2:   log likelihood = -1070.8227  
+Iteration 3:   log likelihood = -1068.0102  
+Iteration 4:   log likelihood =   -1067.99  
+Iteration 5:   log likelihood =   -1067.99  
+
+Logistic regression                             Number of obs     =      3,000
+                                                LR chi2(5)        =     596.16
+                                                Prob > chi2       =     0.0000
+Log likelihood =   -1067.99                     Pseudo R2         =     0.2182
+
+─────────────┬────────────────────────────────────────────────────────────────
+     outcome │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+         sex │
+     female  │   .5565025   .6488407     0.86   0.391    -.7152019    1.828207
+         age │   .0910807   .0113215     8.04   0.000     .0688909    .1132704
+             │
+   sex#c.age │
+     female  │   -.001211   .0134012    -0.09   0.928    -.0274769     .025055
+             │
+       group │
+          2  │  -.5854237   .1349791    -4.34   0.000    -.8499779   -.3208696
+          3  │  -1.355227   .2965301    -4.57   0.000    -1.936416   -.7740391
+             │
+       _cons │  -5.592272   .5583131   -10.02   0.000    -6.686545   -4.497998
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<pre class='stata'>. predict yhat_logistic // predicted probabilities
+(option pr assumed; Pr(outcome))
+</pre>
+<pre class='stata'>. twoway scatter yhat_logistic age, ///
+> title("Predicted Probabilities from Logistic Regression Model") ///
+> scheme(michigan)
+</pre>
+<pre class='stata'>. graph export mylogistic.png, width(1000) replace
+(file /Users/agrogan/Desktop/newstuff/categorical/LPM-and-logistic/mylogistic.png written in 
+> PNG format)
+</pre>
+<figure>
+<img src="mylogistic.png" alt="" /><figcaption>Predicted Values from Linear Probability Model</figcaption>
+</figure>
+<h1 id="references">References</h1>
+<p>Long, J. S., &amp; Freese, J. (2014). <em>Regression Models for Categorical Dependent Variables Using Stata (3rd ed.)</em>. College Station, TX: Stata Press.</p>
+<p>StataCorp. 2019. <em>Stata 16 Base Reference Manual</em>. College Station, TX: Stata Press.</p>
+<p>Williams, R. (2015). <em>Logistic Regression, Part I: Problems with the Linear Probability Model (LPM)</em>. South Bend, IN.</p>
+</body>
+</html>
