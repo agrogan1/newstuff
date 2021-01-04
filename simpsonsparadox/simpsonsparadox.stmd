@@ -14,6 +14,8 @@ Simpson's paradox occurs when a bivariate association is reversed in a multivari
 
 ![Palmer Penguins Illustration from @allison_horst](lter_penguins.png){width=30%} 
 
+To begin, a little definition of penguin terminology is in order. Note the diagram defining culmen depth below.
+
 ![Culmen Depth from @allison_horst](culmen_depth.png){width=20%}
 
 # Setup
@@ -26,9 +28,13 @@ Simpson's paradox occurs when a bivariate association is reversed in a multivari
 
 # Bivariate
 
-    twoway (scatter culmen_depth_mm body_mass_g) (lfit culmen_depth_mm body_mass_g), scheme(michigan)
+    twoway (scatter culmen_depth_mm body_mass_g) ///
+	(lfit culmen_depth_mm body_mass_g), ///
+	title("Culmen Depth by Body Mass") ///
+	caption("Palmer Penguin Data") ///
+	scheme(michigan)
 	
-	graph export mygraph1.png, width(500) replace
+	graph export mygraph1.png, width(1000) replace
 	
 ![Scatterplot and Linear Fit](mygraph1.png){width=50%}
 
@@ -36,9 +42,14 @@ Simpson's paradox occurs when a bivariate association is reversed in a multivari
 
 # Multivariate
 
-    twoway (scatter culmen_depth_mm body_mass_g) (lfit culmen_depth_mm body_mass_g), by(species) scheme(michigan)
+    twoway (scatter culmen_depth_mm body_mass_g) ///
+	(lfit culmen_depth_mm body_mass_g), ///
+	by(species, title("Culmen Depth by Body Mass") caption("Palmer Penguin Data")) ///
+	scheme(michigan)
 	
-	graph export mygraph2.png, width(500) replace
+	graph export mygraph2.png, width(1000) replace
+	
+> The association is reversed when we take into account multiple variables.
 	
 ![Scatterplot and Linear Fit](mygraph2.png){width=50%}
 

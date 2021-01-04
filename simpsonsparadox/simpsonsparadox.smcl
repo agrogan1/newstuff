@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/simpsonsparadox/simpsonsparadox.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}17 Sep 2020, 13:59:29
+ {txt}opened on:  {res} 4 Jan 2021, 14:29:31
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}17 Sep 2020
+{res} 4 Jan 2021
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}13:59:29
+{res}14:29:31
 {txt}
 {com}. //_3
 . clear all
@@ -24,11 +24,15 @@
 . use "penguins.dta"
 {txt}
 {com}. //_6
-. twoway (scatter culmen_depth_mm body_mass_g) (lfit culmen_depth_mm body_mass_g), scheme(michigan)
+. twoway (scatter culmen_depth_mm body_mass_g) ///
+> (lfit culmen_depth_mm body_mass_g), ///
+> title("Culmen Depth by Body Mass") ///
+> caption("Palmer Penguin Data") ///
+> scheme(michigan)
 {res}{txt}
 {com}. //_7
-. graph export mygraph1.png, width(500) replace
-{txt}(file mygraph1.png written in PNG format)
+. graph export mygraph1.png, width(1000) replace
+{txt}(file /Users/agrogan/Desktop/newstuff/simpsonsparadox/mygraph1.png written in PNG format)
 
 {com}. //_8
 . regress culmen_depth_mm body_mass_g
@@ -48,11 +52,14 @@
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
 {com}. //_9
-. twoway (scatter culmen_depth_mm body_mass_g) (lfit culmen_depth_mm body_mass_g), by(species) scheme(michigan)
+. twoway (scatter culmen_depth_mm body_mass_g) ///
+> (lfit culmen_depth_mm body_mass_g), ///
+> by(species, title("Culmen Depth by Body Mass") caption("Palmer Penguin Data")) ///
+> scheme(michigan)
 {res}{txt}
 {com}. //_10
-. graph export mygraph2.png, width(500) replace
-{txt}(file mygraph2.png written in PNG format)
+. graph export mygraph2.png, width(1000) replace
+{txt}(file /Users/agrogan/Desktop/newstuff/simpsonsparadox/mygraph2.png written in PNG format)
 
 {com}. //_11
 . regress culmen_depth_mm body_mass_g species
@@ -77,7 +84,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/simpsonsparadox/simpsonsparadox.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}17 Sep 2020, 13:59:33
+ {txt}closed on:  {res} 4 Jan 2021, 14:29:37
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

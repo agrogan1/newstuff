@@ -10,7 +10,7 @@ markstat using "simpsonsparadox.stmd", mathjax // HTML
 
 graph close _all
 
-markstat using "simpsonsparadox.stmd", nodo pdf // PDF
+markstat using "simpsonsparadox.stmd", pdf // PDF
 
 graph close _all
 
