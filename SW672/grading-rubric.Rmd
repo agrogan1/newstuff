@@ -18,13 +18,11 @@ output:
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .title-slide { 
-  color: #ffcb05;
-  background-color: #00274C; 
-  background-image: url("campus.png");
-  background-size: cover;
+  color: white;
+  background-color: black; 
 }
 .title-slide h1 {
-    color: #ffcb05;
+    color: white;
     font-weight: bold;
 }
 pre {
