@@ -1,12 +1,18 @@
-## Social Service Agency
+# Simulated Data From Social Service Agency
 
-[Dataviz exercise](https://agrogan1.github.io/newstuff/social-service-agency/social-service-agency.pdf) with *Simulated* Social Service Agency data.
+*Simulated* data for use in classes on Research Methods, Statistics and Data Visualization.
 
-The data contain the following (simulated) variables:  "ID", "age", "gender", "program", "mental_health_T1", "mental_health_T2", "latitude", "longitude".
+The data contain the following (*simulated*) variables:  "ID", "age", "gender", "program", "mental_health_T1", "mental_health_T2", "latitude", "longitude".
 
 The *mental health* variables are scaled to have an average of 100. Lower numbers indicate lower mental health, while higher numbers indicate higher mental health.
 
 There are some differences in *mental health* status in the data and an interesting exercise could be to use software like Excel, Tableau or R to try to see which factors predict these differences.
+
+## Dataviz Exercise
+
+[Dataviz exercise](https://agrogan1.github.io/newstuff/social-service-agency/social-service-agency.pdf) with *Simulated* Social Service Agency data.
+
+## Dataset
 
 > The Excel formatted version of this data may be the most readily useful: [https://agrogan1.github.io/newstuff/social-service-agency/social-service-agency.xlsx](https://agrogan1.github.io/newstuff/social-service-agency/social-service-agency.xlsx).
 
