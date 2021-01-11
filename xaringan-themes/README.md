@@ -2,6 +2,7 @@
 
 ### University of Michigan Xaringan Theme
 
+* [RMarkdown Document](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/MichiganTest.Rmd) [[Knit to HTML](https://agrogan1.github.io/newstuff/xaringan-themes/MichiganTest.html)]
 * [michigan.css](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/michigan.css)
 * [michigan-fonts.css](https://github.com/agrogan1/newstuff/blob/master/xaringan-themes/michigan-fonts.css)
 
