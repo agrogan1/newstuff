@@ -1,6 +1,6 @@
 ---
 title: "Grading Rubric"
-subtitle: "SW672"
+subtitle: "SW 672"
 author: "Andy Grogan-Kaylor"
 institute: "University of Michigan"
 date: "`r Sys.Date()`"
@@ -37,7 +37,7 @@ body {
 blockquote {
   background: #FFFFFF;
   color: #000;
-  border-left: 5px solid #ffcb05;
+  border-left: 5px solid #EC1F27;
   margin: 1.5em 10px;
   padding: 0.5em 10px;
 }
@@ -59,6 +59,12 @@ xaringanExtra::use_tile_view()
 
 ```
 
+# Navigation
+
+* Use the <span style="font-size:100px">&#8678;</span> and <span style="font-size:100px">&#8680;</span> keys to move through the presentation.
+* Press *o* for *panel overview*.
+
+---
 # The Basics
 
 ```{r, fig.height=2, fig.width=4}
