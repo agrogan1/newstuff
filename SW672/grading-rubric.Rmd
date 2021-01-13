@@ -117,7 +117,7 @@ aggdata <- aggregate(B,
 barplot(aggdata$x,
         main = "A Is Associated With B", 
         ylab = "Mean of B",
-        col = rainbow(9),
+        col = c("red", "black"),
         names.arg = c("A Is Low",
                       "A Is High"),
         cex.names = 1.0)
@@ -126,7 +126,8 @@ barplot(aggdata$x,
 
 
 ---
-# A Conceptual Focus (Grading Rubric 1)
+# A Conceptual Focus 
+## (Grading Rubric 1)
 
 * Disparities or Injustices: How does membership in **A** affect the chances of outcome **B**?
 
@@ -137,7 +138,8 @@ barplot(aggdata$x,
 ---
 class: animated, slideInRight
 
-# Think Carefully About Design Elements (Grading Rubric 2)
+# Think Carefully About Design Elements 
+## (Grading Rubric 2)
 
 1. Geometry: bars; lines; points; etc.
 2. Use of color
@@ -150,7 +152,7 @@ x <- round(rnorm(100, 100, 10), digits = 0)
 
 ```
 
-```{r, eval=TRUE, fig.height=3}
+```{r, eval=TRUE, fig.height=3, fig.retina=2}
 
 library(ggplot2)
 
@@ -180,7 +182,8 @@ ggplot(data = NULL,
 
 
 ---
-# Wrap Your Visual In A Narrative (Grading Rubric 3)
+# Wrap Your Visual In A Narrative 
+## (Grading Rubric 3)
 
 ```{r, fig.height=2, fig.width=4}
 
@@ -212,7 +215,7 @@ and / or ...
 
 * Why is *B* important? Is *B* prevalent? Widespread? Serious?
 
---
+---
 
 * If *A* is connected to *B*, this means: __________
 
@@ -229,7 +232,8 @@ and / or ...
 ---
 class: animated, slideInRight
 
-# The Difficult Stuff (Which I Am Still Figuring Out Best Practices For)
+# The Difficult Stuff 
+## (Which I Am Still Figuring Out Best Practices For)
 
 > NOT REQUIRED
 
