@@ -126,7 +126,7 @@ barplot(aggdata$x,
 
 
 ---
-# A Conceptual Focus
+# A Conceptual Focus (Grading Rubric 1)
 
 * Disparities or Injustices: How does membership in **A** affect the chances of outcome **B**?
 
@@ -134,14 +134,10 @@ barplot(aggdata$x,
 
 * Effect of a Policy or Intervention: Do those who receive treatment or policy **A** have a different outcome **B**?
 
---
-
-* Political Participation: How does membership in **A** affect the chances of voting or candidate or policy **B**?
-
 ---
 class: animated, slideInRight
 
-# Think Carefully About Design Elements
+# Think Carefully About Design Elements (Grading Rubric 2)
 
 1. Geometry: bars; lines; points; etc.
 2. Use of color
@@ -184,7 +180,7 @@ ggplot(data = NULL,
 
 
 ---
-# Wrap Your Visual In A Narrative
+# Wrap Your Visual In A Narrative (Grading Rubric 3)
 
 ```{r, fig.height=2, fig.width=4}
 
@@ -212,6 +208,8 @@ digraph boxes_and_circles {
 
 --
 
+and / or ...
+
 * Why is *B* important? Is *B* prevalent? Widespread? Serious?
 
 --
@@ -220,7 +218,13 @@ digraph boxes_and_circles {
 
 --
 
+and / or ...
+
 * If *A* is not connected to *B*, this means: __________
+
+--
+
+* These findings suggest the following intervention / treatment / policy / advocacy effort: __________
 
 ---
 class: animated, slideInRight
