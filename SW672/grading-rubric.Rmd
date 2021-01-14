@@ -241,7 +241,7 @@ class: center, emphasized
 
 We have a saying in Chile: criticizing a musician is easy, but it is more difficult "when you have a guitar in your hand."
 
--Cesar Hidalgo
+-César Hidalgo (L’Université Fédérale Toulouse Midi-Pyrénées)
 
 ---
 class: animated, slideInRight
