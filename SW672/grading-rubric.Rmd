@@ -44,6 +44,13 @@ blockquote {
 .author, .date {
   font-family: 'Montserrat', sans-serif;
 }
+.emphasized {
+  background-color: black;
+  color: white;
+  font-size: 200%;
+  text-align: center;
+  text-shadow: 0 0 20px #333;
+}
 
 ```
 
@@ -230,10 +237,18 @@ and / or ...
 * These findings suggest the following intervention / treatment / policy / advocacy effort: __________
 
 ---
+class: center, emphasized
+
+We have a saying in Chile: criticizing a musician is easy, but it is more difficult "when you have a guitar in your hand."
+
+-Cesar Hidalgo
+
+---
 class: animated, slideInRight
 
 # The Difficult Stuff 
-## (Which I Am Still Figuring Out Best Practices For)
+
+(Which I Am Still Figuring Out Best Practices For)
 
 > NOT REQUIRED
 
@@ -244,6 +259,10 @@ class: animated, slideInRight
 * Bayes Theorem (Does thinking about the prior information affect the conclusions we draw?): [https://agrogan.shinyapps.io/Thinking-Through-Bayes/](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
 
 
+---
+class: center, emphasized
+
+# Questions? 
 
 
 
