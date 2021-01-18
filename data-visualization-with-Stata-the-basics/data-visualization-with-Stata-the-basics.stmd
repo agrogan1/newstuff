@@ -16,17 +16,23 @@ This is a quick guide to these ideas using the [Palmer Penguins Data](https://gi
 
 ![Palmer Penguins Illustration from @allison_horst](lter_penguins.png){width=20%}  ![Culmen Depth from @allison_horst](culmen_depth.png){width=20%}
 
+```s
     clear all
 
     use "https://github.com/agrogan1/newstuff/raw/master/data-visualization-with-Stata-the-basics/penguins.dta", clear
 	
-	set scheme s1color // use s1color scheme
+    set scheme s1color // use s1color scheme
+```    
 	
 # Histogram: `histogram`
 
+```s
     histogram body_mass_g, title("Body Mass of Penguins")
-	
-	graph export myhistogram.png, width(1000) replace
+```
+
+```s/
+    graph export myhistogram.png, width(1000) replace
+```
 
 ![histogram](myhistogram.png){width=25%}
 
@@ -35,24 +41,35 @@ This is a quick guide to these ideas using the [Palmer Penguins Data](https://gi
 
 ## Counting Up Numbers In Each Group
 
+```s
     graph bar, over(species) title("Penguin Species")
-	
-	graph export mybar1.png, width(1000) replace
+```
 
+```s/
+    graph export mybar1.png, width(1000) replace
+```
 ![bar graph](mybar1.png){width=25%}
 
 ## Average Of A Continuous Variable Across Groups
 
+```s
     graph bar body_mass_g, over(species) title("Body Mass of Penguin Species")
-	
-	graph export mybar2.png, width(1000) replace
+```
+
+```s/
+    graph export mybar2.png, width(1000) replace
+```
 
 ![bar graph](mybar2.png){width=25%}
 
 # Scatterplot: `twoway scatter`
 
+```s
     twoway scatter culmen_length_mm body_mass_g, title("Penguin Culmen Length by Body Mass")
-	
-	graph export myscatter.png, width(1000) replace
+```
+
+```s/
+    graph export myscatter.png, width(1000) replace
+```
 
 ![scatterplot](myscatter.png){width=25%}
