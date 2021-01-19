@@ -67,7 +67,7 @@ blockquote {
 
 # Lesson Plan
 
-* Attendance
+* Attendance (To "take attendance", can we go around the *Zoom Room* and everyone say their name?)
 
 --
 
