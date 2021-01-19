@@ -3,56 +3,52 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}19 Dec 2020, 15:05:39
+ {txt}opened on:  {res}19 Jan 2021, 11:20:21
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}19 Dec 2020
+{res}19 Jan 2021
 {txt}
 {com}. //_2
 . clear all
 {res}{txt}
-{com}. //_3
+{com}. 
 . use "https://github.com/agrogan1/newstuff/raw/master/data-visualization-with-Stata-the-basics/penguins.dta", clear
 {txt}
-{com}. //_4
+{com}.     
 . set scheme s1color // use s1color scheme
 {txt}
-{com}. //_5
+{com}. //_3
 . histogram body_mass_g, title("Body Mass of Penguins")
 {txt}(bin={res}18{txt}, start={res}2700{txt}, width={res}200{txt})
 {res}{txt}
-{com}. //_6
-. graph export myhistogram.png, width(1000) replace
-{txt}(file myhistogram.png written in PNG format)
-
-{com}. //_7
+{com}. //_4q
+. quietly: graph export myhistogram.png, width(1000) replace
+{txt}
+{com}. //_5
 . graph bar, over(species) title("Penguin Species")
 {res}{txt}
-{com}. //_8
-. graph export mybar1.png, width(1000) replace
-{txt}(file mybar1.png written in PNG format)
-
-{com}. //_9
+{com}. //_6q
+. quietly: graph export mybar1.png, width(1000) replace
+{txt}
+{com}. //_7
 . graph bar body_mass_g, over(species) title("Body Mass of Penguin Species")
 {res}{txt}
-{com}. //_10
-. graph export mybar2.png, width(1000) replace
-{txt}(file mybar2.png written in PNG format)
-
-{com}. //_11
+{com}. //_8q
+. quietly: graph export mybar2.png, width(1000) replace
+{txt}
+{com}. //_9
 . twoway scatter culmen_length_mm body_mass_g, title("Penguin Culmen Length by Body Mass")
 {res}{txt}
-{com}. //_12
-. graph export myscatter.png, width(1000) replace
-{txt}(file myscatter.png written in PNG format)
-
+{com}. //_10q
+. quietly: graph export myscatter.png, width(1000) replace
+{txt}
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}19 Dec 2020, 15:05:45
+ {txt}closed on:  {res}19 Jan 2021, 11:20:27
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
