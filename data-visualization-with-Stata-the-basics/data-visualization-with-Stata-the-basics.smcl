@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}19 Jan 2021, 11:20:21
+ {txt}opened on:  {res}20 Jan 2021, 13:05:39
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}19 Jan 2021
+{res}20 Jan 2021
 {txt}
 {com}. //_2
 . clear all
@@ -15,32 +15,32 @@
 {com}. 
 . use "https://github.com/agrogan1/newstuff/raw/master/data-visualization-with-Stata-the-basics/penguins.dta", clear
 {txt}
-{com}.     
+{com}. //_3
 . set scheme s1color // use s1color scheme
 {txt}
-{com}. //_3
+{com}. //_4
 . histogram body_mass_g, title("Body Mass of Penguins")
 {txt}(bin={res}18{txt}, start={res}2700{txt}, width={res}200{txt})
 {res}{txt}
-{com}. //_4q
+{com}. //_5q
 . quietly: graph export myhistogram.png, width(1000) replace
 {txt}
-{com}. //_5
+{com}. //_6
 . graph bar, over(species) title("Penguin Species")
 {res}{txt}
-{com}. //_6q
+{com}. //_7q
 . quietly: graph export mybar1.png, width(1000) replace
 {txt}
-{com}. //_7
+{com}. //_8
 . graph bar body_mass_g, over(species) title("Body Mass of Penguin Species")
 {res}{txt}
-{com}. //_8q
+{com}. //_9q
 . quietly: graph export mybar2.png, width(1000) replace
 {txt}
-{com}. //_9
+{com}. //_10
 . twoway scatter culmen_length_mm body_mass_g, title("Penguin Culmen Length by Body Mass")
 {res}{txt}
-{com}. //_10q
+{com}. //_11q
 . quietly: graph export myscatter.png, width(1000) replace
 {txt}
 {com}. //_^
@@ -48,7 +48,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}19 Jan 2021, 11:20:27
+ {txt}closed on:  {res}20 Jan 2021, 13:05:47
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
