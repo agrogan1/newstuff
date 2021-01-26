@@ -34,8 +34,17 @@ knitr::opts_chunk$set(echo = TRUE,
 
 load("GSS2014.Rdata") # make sure you are in the right directory
 
-GSS2014$poorhealth <- GSS2014$health
+GSS2014$health <- factor(GSS2014$health,
+                             levels = c(1,2,3,4),
+                             labels = c("Excellent",
+                                        "Good",
+                                        "Fair",
+                                        "Poor"))
 
+GSS2014$depress <- factor(GSS2014$depress,
+                          levels = c(1,2),
+                          labels = c("Yes Depression",
+                                     "No Depression"))
 ```
 
 ## Why R?
@@ -79,14 +88,14 @@ library(plotly) # this is a helpful comment
 p <- plot_ly(GSS2014, # the data I am using
              x = ~coninc, # income in CONSTANT $
              y = ~depress, # depression
-             color = ~poorhealth, # color by poorhealth
-             z = ~poorhealth, # poor health
+             color = ~health, # color by poorhealth
+             z = ~health, # poor health
              type = "scatter3d", # 3D scatterplot
              mode = "markers")
 
 ```
 
-```{r, echo = FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r, fig.height=6, echo = FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 
 htmltools::tagList(list(as_widget(p))) # code provided by plotly.org
                    
