@@ -75,13 +75,29 @@ scatter3d(GSS2014$coninc,
 
 ```
 
-```{r, echo=FALSE, eval=FALSE}
+```{r}
 
-rglwidget()
+library(ggplot2)
+
+library(plotly)
+
+myplot <- ggplot(subset(GSS2014, 
+                        !is.na(health)), # health is not missing
+                 aes(x = health, # x is health
+                     y = coninc, # y is income
+                     color = health)) + # color is health
+  geom_jitter() + # draw jittered points
+  geom_boxplot() + # draw boxplots
+  labs(title = "Health And Income",
+       y = "Income in Constant $",
+       x = "Health")
+
+ggplotly(myplot)
 
 ```
 
-```{r, echo = TRUE, eval=TRUE, warning=FALSE, message=FALSE}
+
+```{r, echo = FALSE, eval=FALSE, warning=FALSE, message=FALSE}
 
 library(plotly) # this is a helpful comment
 
@@ -95,7 +111,7 @@ p <- plot_ly(GSS2014, # the data I am using
 
 ```
 
-```{r, fig.height=6, echo = FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+```{r, fig.height=6, echo = FALSE, eval=FALSE, warning=FALSE, message=FALSE}
 
 htmltools::tagList(list(as_widget(p))) # code provided by plotly.org
                    
