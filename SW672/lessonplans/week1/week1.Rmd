@@ -80,7 +80,7 @@ blockquote {
 --
 
     + Why?
-    + [Grading Rubric](../grading-rubric.html)
+    + [Grading Rubric](https://agrogan1.github.io/newstuff/SW672/grading-rubric.html)
     + Syllabus
     
 --
