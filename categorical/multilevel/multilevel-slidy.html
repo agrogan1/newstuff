@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>2 Nov 2020 12:40:36</p>
+<p>9 Feb 2021 14:49:56</p>
 </div>
 <div id="motivating-example" class="title-slide slide section level1"><h1>Motivating Example</h1></div><div id="high-school-and-beyond-data" class="slide section level2">
 <h1>High School and Beyond Data</h1>
@@ -109,20 +109,19 @@ Andy Grogan-Kaylor
 <span id="cb2-3"><a href="#cb2-3"></a>Contains <span class="kw">data</span> from hsb.dta</span>
 <span id="cb2-4"><a href="#cb2-4"></a>  <span class="kw">obs</span>:         7,185                          </span>
 <span id="cb2-5"><a href="#cb2-5"></a> vars:             7                          27 Oct 2020 21:35</span>
-<span id="cb2-6"><a href="#cb2-6"></a> <span class="kw">size</span>:       143,700                          </span>
-<span id="cb2-7"><a href="#cb2-7"></a>──────────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb2-8"><a href="#cb2-8"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>──────────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb2-11"><a href="#cb2-11"></a>female          <span class="kw">byte</span>    %8.0g                 female</span>
-<span id="cb2-12"><a href="#cb2-12"></a>ses             <span class="kw">float</span>   %9.0g                 socioeconomic status</span>
-<span id="cb2-13"><a href="#cb2-13"></a>mathach         <span class="kw">float</span>   %9.0g                 math achievement</span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="kw">size</span>            <span class="kw">int</span>     %8.0g                 school <span class="kw">size</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>sector          <span class="kw">byte</span>    %8.0g                 Catholic vs. Public</span>
-<span id="cb2-16"><a href="#cb2-16"></a>schoolid        <span class="kw">float</span>   %9.0g                 School ID</span>
-<span id="cb2-17"><a href="#cb2-17"></a>mathgroup       <span class="kw">float</span>   %9.0g                 math <span class="fu">group</span> (Hi / Lo)</span>
-<span id="cb2-18"><a href="#cb2-18"></a>──────────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb2-19"><a href="#cb2-19"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
+<span id="cb2-6"><a href="#cb2-6"></a>───────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-7"><a href="#cb2-7"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>───────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-10"><a href="#cb2-10"></a>female          <span class="kw">byte</span>    %8.0g                 female</span>
+<span id="cb2-11"><a href="#cb2-11"></a>ses             <span class="kw">float</span>   %9.0g                 socioeconomic status</span>
+<span id="cb2-12"><a href="#cb2-12"></a>mathach         <span class="kw">float</span>   %9.0g                 math achievement</span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="kw">size</span>            <span class="kw">int</span>     %8.0g                 school <span class="kw">size</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>sector          <span class="kw">byte</span>    %8.0g                 Catholic vs. Public</span>
+<span id="cb2-15"><a href="#cb2-15"></a>schoolid        <span class="kw">float</span>   %9.0g                 School ID</span>
+<span id="cb2-16"><a href="#cb2-16"></a>mathgroup       <span class="kw">float</span>   %9.0g                 math <span class="fu">group</span> (Hi / Lo)</span>
+<span id="cb2-17"><a href="#cb2-17"></a>───────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-18"><a href="#cb2-18"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">summarize</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
 <span id="cb3-3"><a href="#cb3-3"></a>    Variable │        Obs        Mean    Std. Dev.       Min        Max</span>
@@ -140,7 +139,8 @@ Andy Grogan-Kaylor
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">histogram</span> ses, <span class="dv">scheme</span>(michigan)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>(<span class="bn">bin</span>=38, <span class="bn">start</span>=-3.7579999, <span class="kw">width</span>=.16973684)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myhistogram.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>(file myhistogram.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a>(file /Users/agrogan/Desktop/newstuff/categorical/multilevel/myhistogram.png written <span class="kw">in</span> PNG</span>
+<span id="cb5-3"><a href="#cb5-3"></a>&gt;  <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="myhistogram.png" alt="" />
 <p class="caption">Histogram of SES</p>
@@ -158,7 +158,8 @@ Andy Grogan-Kaylor
 <span id="cb8-2"><a href="#cb8-2"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;SES and Mean SES Are Correlated&quot;</span>) sub(<span class="st">&quot;But Not Equivalent&quot;</span>) <span class="co">///</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myscatter.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>(file myscatter.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb9-2"><a href="#cb9-2"></a>(file /Users/agrogan/Desktop/newstuff/categorical/multilevel/myscatter.png written <span class="kw">in</span> PNG f</span>
+<span id="cb9-3"><a href="#cb9-3"></a>&gt; ormat)</span></code></pre></div>
 <div class="figure">
 <img src="myscatter.png" alt="" />
 <p class="caption">Scatterplot of SES and Mean SES by School</p>
@@ -266,7 +267,8 @@ Andy Grogan-Kaylor
 <span id="cb14-6"><a href="#cb14-6"></a>&gt; <span class="bn">legend</span>(<span class="kw">order</span>(1 <span class="st">&quot;random intercept 0&quot;</span> 2 <span class="st">&quot;random intercept +1&quot;</span> 3 <span class="st">&quot;random intercept -1&quot;</span>)) <span class="co">///</span></span>
 <span id="cb14-7"><a href="#cb14-7"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myMLM.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>(file myMLM.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb15-2"><a href="#cb15-2"></a>(file /Users/agrogan/Desktop/newstuff/categorical/multilevel/myMLM.png written <span class="kw">in</span> PNG forma</span>
+<span id="cb15-3"><a href="#cb15-3"></a>&gt; t)</span></code></pre></div>
 <div class="figure">
 <img src="myMLM.png" alt="" />
 <p class="caption">Simulated MLM of School Data</p>
@@ -314,9 +316,9 @@ Andy Grogan-Kaylor
 <p>Mathematics is the art of giving the same name to different things. —Henri Poincaré</p>
 </blockquote></div>
 <div id="developing-some-notation" class="title-slide slide section level1"><h1>Developing Some Notation</h1><p>Our notation for logistic regression model is:</p>
-<p><span class="math display">\[ \ln \Big( \frac{p(outcome)}{1 - p(outcome)} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... \]</span></p>
+<p><span class="math display">\[ \ln \Big( \frac{p(\text{outcome})}{1 - p(\text{outcome})} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... \]</span></p>
 <p>which after <em>exponentiating</em> both sides, and some rearrangement, can be written:</p>
-<p><span class="math display">\[ p(outcome) = \frac{e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...}}{1 +e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...}} = \]</span></p>
+<p><span class="math display">\[ p(\text{outcome}) = \frac{e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...}}{1 +e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...}} = \]</span></p>
 <p><span class="math display">\[ F(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...) \]</span></p>
 <p>where <span class="math inline">\(F(z) = \frac{e^z}{1 + e^z}\)</span>, which is the logistic distribution.</p>
 <p>So in adapting this notation for the multilevel context, we are ultimately going to write the notation for the multilevel logistic regression model as:</p>

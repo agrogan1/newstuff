@@ -88,13 +88,13 @@ Multilevel modeling is useful in a number of situations with clustering.
 Our notation for logistic regression model is:
 
 $$
-    \ln \Big( \frac{p(outcome)}{1 - p(outcome)} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...
+    \ln \Big( \frac{p(\text{outcome})}{1 - p(\text{outcome})} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...
 $$
 
 which after *exponentiating* both sides, and some rearrangement, can be written:
 
 $$
-    p(outcome) = \frac{e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...}}{1 +e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...}} =
+    p(\text{outcome}) = \frac{e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...}}{1 +e^{\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...}} =
 $$
 
 $$
