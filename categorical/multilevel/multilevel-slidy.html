@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>9 Feb 2021 14:49:56</p>
+<p>12 Feb 2021 17:21:48</p>
 </div>
 <div id="motivating-example" class="title-slide slide section level1"><h1>Motivating Example</h1></div><div id="high-school-and-beyond-data" class="slide section level2">
 <h1>High School and Beyond Data</h1>
@@ -109,10 +109,10 @@ Andy Grogan-Kaylor
 <span id="cb2-3"><a href="#cb2-3"></a>Contains <span class="kw">data</span> from hsb.dta</span>
 <span id="cb2-4"><a href="#cb2-4"></a>  <span class="kw">obs</span>:         7,185                          </span>
 <span id="cb2-5"><a href="#cb2-5"></a> vars:             7                          27 Oct 2020 21:35</span>
-<span id="cb2-6"><a href="#cb2-6"></a>───────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-6"><a href="#cb2-6"></a>────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb2-7"><a href="#cb2-7"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>───────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-9"><a href="#cb2-9"></a>────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb2-10"><a href="#cb2-10"></a>female          <span class="kw">byte</span>    %8.0g                 female</span>
 <span id="cb2-11"><a href="#cb2-11"></a>ses             <span class="kw">float</span>   %9.0g                 socioeconomic status</span>
 <span id="cb2-12"><a href="#cb2-12"></a>mathach         <span class="kw">float</span>   %9.0g                 math achievement</span>
@@ -120,7 +120,7 @@ Andy Grogan-Kaylor
 <span id="cb2-14"><a href="#cb2-14"></a>sector          <span class="kw">byte</span>    %8.0g                 Catholic vs. Public</span>
 <span id="cb2-15"><a href="#cb2-15"></a>schoolid        <span class="kw">float</span>   %9.0g                 School ID</span>
 <span id="cb2-16"><a href="#cb2-16"></a>mathgroup       <span class="kw">float</span>   %9.0g                 math <span class="fu">group</span> (Hi / Lo)</span>
-<span id="cb2-17"><a href="#cb2-17"></a>───────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-17"><a href="#cb2-17"></a>────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb2-18"><a href="#cb2-18"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">summarize</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
@@ -139,8 +139,8 @@ Andy Grogan-Kaylor
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">histogram</span> ses, <span class="dv">scheme</span>(michigan)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>(<span class="bn">bin</span>=38, <span class="bn">start</span>=-3.7579999, <span class="kw">width</span>=.16973684)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myhistogram.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>(file /Users/agrogan/Desktop/newstuff/categorical/multilevel/myhistogram.png written <span class="kw">in</span> PNG</span>
-<span id="cb5-3"><a href="#cb5-3"></a>&gt;  <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a>(file /Users/agrogan/Desktop/newstuff/categorical/multilevel/myhistogram.png written</span>
+<span id="cb5-3"><a href="#cb5-3"></a>&gt;  <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="myhistogram.png" alt="" />
 <p class="caption">Histogram of SES</p>
@@ -158,8 +158,8 @@ Andy Grogan-Kaylor
 <span id="cb8-2"><a href="#cb8-2"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;SES and Mean SES Are Correlated&quot;</span>) sub(<span class="st">&quot;But Not Equivalent&quot;</span>) <span class="co">///</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myscatter.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>(file /Users/agrogan/Desktop/newstuff/categorical/multilevel/myscatter.png written <span class="kw">in</span> PNG f</span>
-<span id="cb9-3"><a href="#cb9-3"></a>&gt; ormat)</span></code></pre></div>
+<span id="cb9-2"><a href="#cb9-2"></a>(file /Users/agrogan/Desktop/newstuff/categorical/multilevel/myscatter.png written i</span>
+<span id="cb9-3"><a href="#cb9-3"></a>&gt; n PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="myscatter.png" alt="" />
 <p class="caption">Scatterplot of SES and Mean SES by School</p>
@@ -259,16 +259,18 @@ Andy Grogan-Kaylor
 <span id="cb12-9"><a href="#cb12-9"></a>─────────────────────────────┴────────────────────────────────────────────────</span></code></pre></div>
 </div>
 <div id="visualizing-the-idea-of-a-random-intercept" class="title-slide slide section level1"><h1>Visualizing The Idea Of A Random Intercept</h1><div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">twoway</span> (<span class="kw">function</span> <span class="fu">y</span> = <span class="kw">logistic</span>(x), <span class="kw">range</span>(-5 5)) <span class="co">/// first school; random intercept 0</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>&gt; (<span class="kw">function</span> <span class="fu">y</span> = <span class="kw">logistic</span>(x + 1), <span class="kw">range</span>(-5 5)) <span class="co">/// second school; random intercept 1</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>&gt; (<span class="kw">function</span> <span class="fu">y</span> = <span class="kw">logistic</span>(x - 1), <span class="kw">range</span>(-5 5)), <span class="co">/// third school; random intercept -1</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;Three Hypothetical Schools&quot;</span>) <span class="co">///</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a>&gt; sub(<span class="st">&quot;With Different Random Intercepts&quot;</span>) <span class="co">///</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a>&gt; <span class="bn">legend</span>(<span class="kw">order</span>(1 <span class="st">&quot;random intercept 0&quot;</span> 2 <span class="st">&quot;random intercept +1&quot;</span> 3 <span class="st">&quot;random intercept -1&quot;</span>)) <span class="co">///</span></span>
-<span id="cb14-7"><a href="#cb14-7"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">twoway</span> (<span class="kw">function</span> <span class="fu">y</span> = <span class="kw">logistic</span>(x), <span class="kw">range</span>(-5 5)) <span class="co">/// first school; random intercept </span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>&gt; 0</span>
+<span id="cb14-3"><a href="#cb14-3"></a>&gt; (<span class="kw">function</span> <span class="fu">y</span> = <span class="kw">logistic</span>(x + 1), <span class="kw">range</span>(-5 5)) <span class="co">/// second school; random intercept 1</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>&gt; (<span class="kw">function</span> <span class="fu">y</span> = <span class="kw">logistic</span>(x - 1), <span class="kw">range</span>(-5 5)), <span class="co">/// third school; random intercept -1</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;Three Hypothetical Schools&quot;</span>) <span class="co">///</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>&gt; sub(<span class="st">&quot;With Different Random Intercepts&quot;</span>) <span class="co">///</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>&gt; <span class="bn">legend</span>(<span class="kw">order</span>(1 <span class="st">&quot;random intercept 0&quot;</span> 2 <span class="st">&quot;random intercept +1&quot;</span> 3 <span class="st">&quot;random intercept -1</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="st">&gt; &quot;</span>)) <span class="co">///</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myMLM.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>(file /Users/agrogan/Desktop/newstuff/categorical/multilevel/myMLM.png written <span class="kw">in</span> PNG forma</span>
-<span id="cb15-3"><a href="#cb15-3"></a>&gt; t)</span></code></pre></div>
+<span id="cb15-2"><a href="#cb15-2"></a>(file /Users/agrogan/Desktop/newstuff/categorical/multilevel/myMLM.png written <span class="kw">in</span> PN</span>
+<span id="cb15-3"><a href="#cb15-3"></a>&gt; G <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="myMLM.png" alt="" />
 <p class="caption">Simulated MLM of School Data</p>
@@ -322,7 +324,7 @@ Andy Grogan-Kaylor
 <p><span class="math display">\[ F(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ...) \]</span></p>
 <p>where <span class="math inline">\(F(z) = \frac{e^z}{1 + e^z}\)</span>, which is the logistic distribution.</p>
 <p>So in adapting this notation for the multilevel context, we are ultimately going to write the notation for the multilevel logistic regression model as:</p>
-<p><span class="math inline">\(p(outcome | \text{unique intercept for each unit}) = F(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + u_{0j})\)</span></p></div>
+<p><span class="math inline">\(p(\text{outcome} | \text{unique intercept for each unit}) = F(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + u_{0j})\)</span></p></div>
 <div id="stata-commands" class="title-slide slide section level1"><h1>Stata Commands</h1><blockquote>
 <p>Multilevel models have complicated likelihoods. As we move toward the middle to end of this table, models may have difficulty converging.</p>
 </blockquote>

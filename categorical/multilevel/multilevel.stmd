@@ -105,7 +105,7 @@ where $F(z) = \frac{e^z}{1 + e^z}$, which is the logistic distribution.
 
 So in adapting this notation for the multilevel context, we are ultimately going to write the notation for the multilevel logistic regression model as:
 
-$p(outcome | \text{unique intercept for each unit}) = F(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + u_{0j})$
+$p(\text{outcome} | \text{unique intercept for each unit}) = F(\beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + u_{0j})$
 
 # Stata Commands
 
