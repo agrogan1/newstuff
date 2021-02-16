@@ -29,7 +29,6 @@ New stuff that is going to get moved somewhere else at some point.
 ### Causal Modeling
 
 * [Multiple Approaches to Causal Modeling Using Black Spruce Data](https://agrogan1.github.io/newstuff/spruce/spruce-slidy.html)
-* [Causal Modeling With General Social Service Data Using Multiple Approaches](https://agrogan1.github.io/newstuff/causal-modeling/causal-modeling-slidy.html)
 
 ### Multilevel Modeling
 
