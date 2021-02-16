@@ -1,0 +1,61 @@
+% Simulation of Simpson's Paradox With Palmer Penguin Data
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+# Background
+
+Simpson's paradox occurs when a bivariate association is reversed in a multivariate model. This example using the Palmer Penguins Data was inspired by a tweet by Andrew Heiss.
+
+![Palmer Penguins Illustration from @allison_horst](lter_penguins.png){width=30%} 
+
+To begin, a little definition of penguin terminology is in order. Note the diagram defining culmen depth below.
+
+![Culmen Depth from @allison_horst](culmen_depth.png){width=20%}
+
+# Setup
+
+    clear all
+
+    cd "/Users/agrogan/Desktop/newstuff/simpsons-paradox-palmer-penguins"
+
+    use "penguins.dta"
+
+# Bivariate
+
+    twoway (scatter culmen_depth_mm body_mass_g) ///
+	(lfit culmen_depth_mm body_mass_g), ///
+	title("Culmen Depth by Body Mass") ///
+	caption("Palmer Penguin Data") ///
+	scheme(michigan)
+	
+	graph export mygraph1.png, width(1000) replace
+	
+![Scatterplot and Linear Fit](mygraph1.png){width=50%}
+
+    regress culmen_depth_mm body_mass_g
+
+# Multivariate
+
+    twoway (scatter culmen_depth_mm body_mass_g) ///
+	(lfit culmen_depth_mm body_mass_g), ///
+	by(species, title("Culmen Depth by Body Mass") caption("Palmer Penguin Data")) ///
+	scheme(michigan)
+	
+	graph export mygraph2.png, width(1000) replace
+	
+> The association is reversed when we take into account multiple variables.
+	
+![Scatterplot and Linear Fit](mygraph2.png){width=50%}
+
+    regress culmen_depth_mm body_mass_g species
+
+	
+	
+	
+
