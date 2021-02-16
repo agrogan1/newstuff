@@ -38,7 +38,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 ### Simpson's Paradox
 
-* [Demonstration of Simpson's Paradox With Palmer Penguin Data](https://agrogan1.github.io/newstuff/simpsonsparadox/simpsonsparadox.html)
+* [Demonstration of Simpson's Paradox With Palmer Penguin Data](https://agrogan1.github.io/newstuff/simpsonsparadox/simpsons-paradox-palmer-penguins.html)
 
 ## Simulated Data
 
