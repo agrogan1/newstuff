@@ -2,19 +2,20 @@
 title: "Goodnight R"
 author: "Andy Grogan-Kaylor"
 output: 
-  slidy_presentation:
+  slidy_presentation: 
     fig_caption: yes
     css: goodnight-R.css
     footer: Andrew Grogan-Kaylor
     highlight: haddock
     theme: default
+    incremental: yes
 subtitle: "(with thanks to @olgarithmic)"
 ---
 
 # Goodnight R
 
-* In the great green room
-* There was someone coding alone
+* In the great green room 
+* There was someone coding alone 
 * And a red balloon `r emo::ji("balloon")`
 * And a picture of the cow `r emo::ji("cow")`jumping over the moon `r emo::ji("moon")`.
 * And there were three little bears `r emo::ji("bear")` `r emo::ji("bear")` `r emo::ji("bear")` sitting on chairs
