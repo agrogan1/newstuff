@@ -3,29 +3,32 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}21 Oct 2020, 15:48:12
+ {txt}opened on:  {res}25 Feb 2021, 17:03:58
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}21 Oct 2020
+{res}25 Feb 2021
 {txt}
 {com}. //_2
+. display c(current_time)
+{res}17:03:58
+{txt}
+{com}. //_3
 . clear all
 {res}{txt}
-{com}. //_3
+{com}. //_4
 . graph close _all
 {txt}
-{com}. //_4
+{com}. //_5
 . use http://www.stata-press.com/data/r15/margex, clear
 {txt}(Artificial data for margins)
 
-{com}. //_5
+{com}. //_6
 . describe
 
 {txt}Contains data from {res}http://www.stata-press.com/data/r15/margex.dta
 {txt}  obs:{res}         3,000                          Artificial data for margins
 {txt} vars:{res}            11                          27 Nov 2016 14:27
-{txt} size:{res}        78,000                          
 {txt}{hline}
               storage   display    value
 variable name   type    format     label      variable label
@@ -44,7 +47,7 @@ variable name   type    format     label      variable label
 {txt}{hline}
 Sorted by: {res}group
 {txt}
-{com}. //_6
+{com}. //_7
 . logit outcome sex##c.age i.group
 
 {res}{txt}Iteration 0:{space 3}log likelihood = {res:-1366.0718}  
@@ -76,11 +79,11 @@ Iteration 5:{space 3}log likelihood = {res:  -1067.99}
 {space 7}_cons {c |}{col 14}{res}{space 2}-5.592272{col 26}{space 2} .5583131{col 37}{space 1}  -10.02{col 46}{space 3}0.000{col 54}{space 4}-6.686545{col 67}{space 3}-4.497998
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_7
+{com}. //_8
 . margins sex, at(age = (20 30 40 50 60))
 {res}
 {txt}Predictive margins{col 49}Number of obs{col 67}= {res}     3,000
-{txt}Model VCE{col 14}: {res}OIM
+{txt}{col 1}Model VCE{col 14}: {res}OIM
 
 {txt}{p2colset 1 14 16 2}{...}
 {p2col:Expression}:{space 1}{res:Pr(outcome), predict()}{p_end}
@@ -123,7 +126,7 @@ Iteration 5:{space 3}log likelihood = {res:  -1067.99}
 {txt}{space 3}5#female  {c |}{col 14}{res}{space 2} .4614446{col 26}{space 2} .0314754{col 37}{space 1}   14.66{col 46}{space 3}0.000{col 54}{space 4} .3997539{col 67}{space 3} .5231353
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
-{com}. //_8
+{com}. //_9
 . marginsplot, ///
 > scheme(michigan) /// michigan graph scheme
 > plotopts(msize(vlarge)) /// larger plotting symbols
@@ -132,15 +135,15 @@ Iteration 5:{space 3}log likelihood = {res:  -1067.99}
 {res}
 {text}{p 2 6 2}Variables that uniquely identify margins: age sex{p_end}
 {res}{txt}
-{com}. //_9
-. graph export mymarginsplot.png, width(500) replace
-{txt}(file mymarginsplot.png written in PNG format)
-
 {com}. //_10
+. graph export mymarginsplot.png, width(500) replace
+{txt}(file /Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/mymarginsplot.png written in PNG format)
+
+{com}. //_11
 . margins sex, at(age = (20 30 40 50 60)) post
 {res}
 {txt}Predictive margins{col 49}Number of obs{col 67}= {res}     3,000
-{txt}Model VCE{col 14}: {res}OIM
+{txt}{col 1}Model VCE{col 14}: {res}OIM
 
 {txt}{p2colset 1 14 16 2}{...}
 {p2col:Expression}:{space 1}{res:Pr(outcome), predict()}{p_end}
@@ -183,11 +186,11 @@ Iteration 5:{space 3}log likelihood = {res:  -1067.99}
 {txt}{space 3}5#female  {c |}{col 14}{res}{space 2} .4614446{col 26}{space 2} .0314754{col 37}{space 1}   14.66{col 46}{space 3}0.000{col 54}{space 4} .3997539{col 67}{space 3} .5231353
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}{txt}
-{com}. //_11
+{com}. //_12
 . margins, coeflegend
 
 {txt}Predictive margins{col 49}Number of obs{col 67}= {res}     3,000
-{txt}Model VCE{col 14}: {res}OIM
+{txt}{col 1}Model VCE{col 14}: {res}OIM
 
 {txt}{p2colset 1 14 16 2}{...}
 {p2col:Expression}:{space 1}{res:Pr(outcome), predict()}{p_end}
@@ -229,7 +232,7 @@ Iteration 5:{space 3}log likelihood = {res:  -1067.99}
 {space 3}5#female  {c |}{col 14}{res}{space 2} .4614446{col 26}{txt}  _b[5._at#1.sex]
 {hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_12
+{com}. //_13
 . test _b[1bn._at#0bn.sex] = _b[1bn._at#1.sex] // male and female at age 20
 
 {p 0 7}{space 1}{text:( 1)}{space 1} {res}1bn._at#0bn.sex - 1bn._at#1.sex = 0{p_end}
@@ -237,7 +240,7 @@ Iteration 5:{space 3}log likelihood = {res:  -1067.99}
 {txt}{col 12}chi2(  1) ={res}    1.99
 {txt}{col 10}Prob > chi2 =  {res}  0.1583
 {txt}
-{com}. //_13
+{com}. //_14
 . test  _b[5._at#0bn.sex] =  _b[5._at#1.sex] // male and female at age 60
 
 {p 0 7}{space 1}{text:( 1)}{space 1} {res}5._at#0bn.sex - 5._at#1.sex = 0{p_end}
@@ -245,7 +248,7 @@ Iteration 5:{space 3}log likelihood = {res:  -1067.99}
 {txt}{col 12}chi2(  1) ={res}    5.16
 {txt}{col 10}Prob > chi2 =  {res}  0.0232
 {txt}
-{com}. //_14
+{com}. //_15
 . test _b[1bn._at#1.sex] - _b[1bn._at#0bn.sex] = _b[5._at#1.sex] - _b[5._at#0bn.sex] // test equivalence of the differences
 
 {p 0 7}{space 1}{text:( 1)}{space 1}{space 1}{res}- 1bn._at#0bn.sex + 1bn._at#1.sex + 5._at#0bn.sex - 5._at#1.sex = 0{p_end}
@@ -258,7 +261,7 @@ Iteration 5:{space 3}log likelihood = {res:  -1067.99}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}21 Oct 2020, 15:48:14
+ {txt}closed on:  {res}25 Feb 2021, 17:04:04
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

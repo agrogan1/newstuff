@@ -15,8 +15,8 @@ graph close _all
 
 * pandoc
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css"  "/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.html" -o "/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2-slidy.html" 
+* ! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css"  "/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.html" -o "/Users/agrogan/Desktop/newstuff/categorical/logistic-interactions-2/logistic-interactions-2-slidy.html" 
 
-doedit "../MathJax-CDN.txt"
+* doedit "../MathJax-CDN.txt"
 
-doedit "logistic-interactions-2-slidy.html"
+* doedit "logistic-interactions-2-slidy.html"

@@ -1,14 +1,15 @@
 % Interactions in Logistic Regression
 % Andy Grogan-Kaylor
-% `s c(current_date)`
+% `s c(current_date)` `s c(current_time)`
+
 
 ---
 geometry: margin=1 in
 ---
 
-# Background
-
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+# Background
 
 The purpose of this tutorial is to illustrate the idea that in *logistic regression*, the $\beta$ parameter for an interaction term may not accurately characterize the underlying interactive relationships. 
 
@@ -19,6 +20,34 @@ $$
 $$ 
 
 > In the above formula, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
+
+# Some Calculus (Not Essential To The Discussion)
+
+<span id="dots">...</span>
+
+<span id="more">Imagine a linear model: $$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 * x_2 + e_i$$ Here (following Ai and Norton (2003)): $$\frac{\partial y}{\partial x_1 \partial x_2} = \beta_3$$ In contrast, for the logistic model, the quantity: $$\frac{\partial \text{logit} (y)}{\partial x_1 \partial x_2}$$ does not have such a straightforward solution, and--for the purposes of this discussion--is not simply equal to $\beta_3$.</span>
+
+<button onclick="myFunction()" id="myBtn">Read more</button>
+
+<style>#more {display: none;}</style>
+
+<script>
+function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+  dots.style.display = "inline";
+  btnText.innerHTML = "Read more";
+  moreText.style.display = "none";
+  } else {
+  dots.style.display = "none";
+  btnText.innerHTML = "Read less";
+  moreText.style.display = "inline";
+  }
+}
+</script>
 
 # Get The Data
 
