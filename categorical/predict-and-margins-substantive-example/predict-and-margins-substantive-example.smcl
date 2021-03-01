@@ -1,0 +1,160 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins-substantive-example/predict-and-margins-substantive-example.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 1 Mar 2021, 08:09:21
+{txt}
+{com}. //_1
+. display c(current_date)
+{res} 1 Mar 2021
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}08:09:21
+{txt}
+{com}. //_3
+. clear all
+{res}{txt}
+{com}. //_4
+. cd "/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins-substantive-example"
+{res}/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins-substantive-example
+{txt}
+{com}. //_5
+. use "NSCH_ACES.dta", clear
+{txt}
+{com}. //_6
+. describe depress ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R
+
+              {txt}storage   display    value
+variable name   type    format     label      variable label
+{hline}
+{p 0 48}{res}{bind:depress        }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of k2q32b (Depression Currently){p_end}
+{p 0 48}{bind:ace1R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace1 (Hard to Cover Basics Like Food or Housing){p_end}
+{p 0 48}{bind:ace3R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace3 (Child Experienced - Parent or Guardian Divorced){p_end}
+{p 0 48}{bind:ace4R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace4 (Child Experienced - Parent or Guardian Died){p_end}
+{p 0 48}{bind:ace5R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace5 (Child Experienced - Parent or Guardian Time in Jail){p_end}
+{p 0 48}{bind:ace6R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace6 (Child Experienced - Adults Slap, Hit, Kick, Punch Others){p_end}
+{p 0 48}{bind:ace7R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace7 (Child Experienced - Victim of Violence){p_end}
+{p 0 48}{bind:ace8R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace8 (Child Experienced - Lived with Mentally Ill){p_end}
+{p 0 48}{bind:ace9R          }{txt}{bind: byte    }{bind:{txt}%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}RECODE of ace9 (Child Experienced - Lived with Person with Alcohol/Drug Problem){p_end}
+{txt}
+{com}. //_7
+. logit depress ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R i.sc_race_r i.sc_sex, or
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-760.76202}  
+Iteration 1:{space 3}log likelihood = {res:-739.43605}  
+Iteration 2:{space 3}log likelihood = {res:  -739.012}  
+Iteration 3:{space 3}log likelihood = {res:-739.01149}  
+Iteration 4:{space 3}log likelihood = {res:-739.01149}  
+{res}
+{txt}Logistic regression{col 49}Number of obs{col 67}= {res}     1,442
+{txt}{col 49}LR chi2({res}15{txt}){col 67}= {res}     43.50
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0001
+{txt}Log likelihood = {res}-739.01149{txt}{col 49}Pseudo R2{col 67}= {res}    0.0286
+
+{txt}{hline 36}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}                            depress{col 37}{c |} Odds Ratio{col 49}   Std. Err.{col 61}      z{col 69}   P>|z|{col 77}     [95% Con{col 90}f. Interval]
+{hline 36}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 30}ace1R {c |}{col 37}{res}{space 2} 1.275539{col 49}{space 2}  .177745{col 60}{space 1}    1.75{col 69}{space 3}0.081{col 77}{space 4}  .970688{col 90}{space 3}  1.67613
+{txt}{space 30}ace3R {c |}{col 37}{res}{space 2} .8328396{col 49}{space 2} .1225773{col 60}{space 1}   -1.24{col 69}{space 3}0.214{col 77}{space 4} .6241393{col 90}{space 3} 1.111325
+{txt}{space 30}ace4R {c |}{col 37}{res}{space 2}  1.03589{col 49}{space 2} .2559531{col 60}{space 1}    0.14{col 69}{space 3}0.887{col 77}{space 4} .6382551{col 90}{space 3} 1.681253
+{txt}{space 30}ace5R {c |}{col 37}{res}{space 2} 1.238661{col 49}{space 2} .2620121{col 60}{space 1}    1.01{col 69}{space 3}0.312{col 77}{space 4} .8182749{col 90}{space 3}  1.87502
+{txt}{space 30}ace6R {c |}{col 37}{res}{space 2} 1.242079{col 49}{space 2}  .284433{col 60}{space 1}    0.95{col 69}{space 3}0.344{col 77}{space 4} .7929142{col 90}{space 3} 1.945684
+{txt}{space 30}ace7R {c |}{col 37}{res}{space 2} 1.438336{col 49}{space 2} .3249996{col 60}{space 1}    1.61{col 69}{space 3}0.108{col 77}{space 4} .9236915{col 90}{space 3}  2.23972
+{txt}{space 30}ace8R {c |}{col 37}{res}{space 2} 1.931751{col 49}{space 2} .3179664{col 60}{space 1}    4.00{col 69}{space 3}0.000{col 77}{space 4} 1.399082{col 90}{space 3} 2.667221
+{txt}{space 30}ace9R {c |}{col 37}{res}{space 2} .6476801{col 49}{space 2} .1088199{col 60}{space 1}   -2.59{col 69}{space 3}0.010{col 77}{space 4} .4659572{col 90}{space 3} .9002747
+{txt}{space 35} {c |}
+{space 26}sc_race_r {c |}
+{space 3}Black or African American alone  {c |}{col 37}{res}{space 2} 1.150371{col 49}{space 2} .3258065{col 60}{space 1}    0.49{col 69}{space 3}0.621{col 77}{space 4} .6603312{col 90}{space 3} 2.004075
+{txt}American Indian or Alaska Native..  {c |}{col 37}{res}{space 2} .7002442{col 49}{space 2} .4236335{col 60}{space 1}   -0.59{col 69}{space 3}0.556{col 77}{space 4}  .213939{col 90}{space 3} 2.291971
+{txt}{space 23}Asian alone  {c |}{col 37}{res}{space 2} 1.222781{col 49}{space 2} .5325791{col 60}{space 1}    0.46{col 69}{space 3}0.644{col 77}{space 4} .5207269{col 90}{space 3} 2.871358
+{txt}Native Hawaiian and Other Pacifi..  {c |}{col 37}{res}{space 2} .2318806{col 49}{space 2} .3550441{col 60}{space 1}   -0.95{col 69}{space 3}0.340{col 77}{space 4} .0115331{col 90}{space 3} 4.662103
+{txt}{space 13}Some Other Race alone  {c |}{col 37}{res}{space 2} .7923493{col 49}{space 2} .3360807{col 60}{space 1}   -0.55{col 69}{space 3}0.583{col 77}{space 4} .3450431{col 90}{space 3} 1.819533
+{txt}{space 17}Two or More Races  {c |}{col 37}{res}{space 2} .7852821{col 49}{space 2} .1983556{col 60}{space 1}   -0.96{col 69}{space 3}0.339{col 77}{space 4} .4786515{col 90}{space 3} 1.288345
+{txt}{space 35} {c |}
+{space 29}sc_sex {c |}
+{space 28}Female  {c |}{col 37}{res}{space 2}  1.36572{col 49}{space 2} .1769313{col 60}{space 1}    2.41{col 69}{space 3}0.016{col 77}{space 4} 1.059466{col 90}{space 3} 1.760501
+{txt}{space 30}_cons {c |}{col 37}{res}{space 2} 2.357814{col 49}{space 2} .3247614{col 60}{space 1}    6.23{col 69}{space 3}0.000{col 77}{space 4} 1.799975{col 90}{space 3} 3.088536
+{txt}{hline 36}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {res:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. //_8
+. predict yhat
+{txt}(option {bf:pr} assumed; Pr(depress))
+(1,558 missing values generated)
+
+{com}. //_9
+. tabulate sc_race_r, summarize(yhat)
+
+    {txt}Race of {c |}
+   Selected {c |}
+     Child, {c |}       Summary of Pr(depress)
+   Detailed {c |}        Mean   Std. Dev.       Freq.
+{hline 12}{c +}{hline 36}
+  White alo {c |}  {res} .75045109   .05197594      22,445
+  {txt}Black or  {c |}  {res} .78322165   .04940146       1,881
+  {txt}American  {c |}  {res} .69508786   .07204945         235
+  {txt}Asian alo {c |}  {res} .78128584   .03714901       1,377
+  {txt}Native Ha {c |}  {res} .40799774   .06911794          73
+  {txt}Some Othe {c |}  {res} .71235484   .05558899         763
+  {txt}Two or Mo {c |}  {res} .70971281   .06233783       2,198
+{txt}{hline 12}{c +}{hline 36}
+      Total {c |}  {res} .74863835   .05781597      28,972
+{txt}
+{com}. //_10
+. graph bar yhat, ///
+> over(sc_race_r, label(angle(forty_five))) ///
+> title("Predicted Probability of Depression") ///
+> scheme(michigan)
+{res}{txt}
+{com}. //_11
+. graph export mybar.png, width(500) replace
+{txt}(file /Users/agrogan/Desktop/newstuff/categorical/predict-and-margins-substantive-example/mybar.png written in PNG format)
+
+{com}. //_12
+. margins sc_race_r // predictive margins 
+{res}
+{txt}Predictive margins{col 49}Number of obs{col 67}= {res}     1,442
+{txt}{col 1}Model VCE{col 14}: {res}OIM
+
+{txt}{p2colset 1 14 16 2}{...}
+{p2col:Expression}:{space 1}{res:Pr(depress), predict()}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 36}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 37}{c |}{col 49} Delta-method
+{col 37}{c |}     Margin{col 49}   Std. Err.{col 61}      z{col 69}   P>|z|{col 77}     [95% Con{col 90}f. Interval]
+{hline 36}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 26}sc_race_r {c |}
+{space 23}White alone  {c |}{col 37}{res}{space 2} .7819423{col 49}{space 2}  .011883{col 60}{space 1}   65.80{col 69}{space 3}0.000{col 77}{space 4}  .758652{col 90}{space 3} .8052326
+{txt}{space 3}Black or African American alone  {c |}{col 37}{res}{space 2} .8043012{col 49}{space 2} .0419853{col 60}{space 1}   19.16{col 69}{space 3}0.000{col 77}{space 4} .7220115{col 90}{space 3} .8865909
+{txt}American Indian or Alaska Native..  {c |}{col 37}{res}{space 2} .7173792{col 49}{space 2} .1176945{col 60}{space 1}    6.10{col 69}{space 3}0.000{col 77}{space 4} .4867023{col 90}{space 3} .9480561
+{txt}{space 23}Asian alone  {c |}{col 37}{res}{space 2} .8135006{col 49}{space 2} .0635869{col 60}{space 1}   12.79{col 69}{space 3}0.000{col 77}{space 4} .6888727{col 90}{space 3} .9381286
+{txt}Native Hawaiian and Other Pacifi..  {c |}{col 37}{res}{space 2} .4675318{col 49}{space 2} .3641302{col 60}{space 1}    1.28{col 69}{space 3}0.199{col 77}{space 4}-.2461503{col 90}{space 3} 1.181214
+{txt}{space 13}Some Other Race alone  {c |}{col 37}{res}{space 2} .7409869{col 49}{space 2} .0777287{col 60}{space 1}    9.53{col 69}{space 3}0.000{col 77}{space 4} .5886414{col 90}{space 3} .8933323
+{txt}{space 17}Two or More Races  {c |}{col 37}{res}{space 2} .7393176{col 49}{space 2} .0451682{col 60}{space 1}   16.37{col 69}{space 3}0.000{col 77}{space 4} .6507896{col 90}{space 3} .8278456
+{txt}{hline 36}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_13
+. marginsplot, ///
+> title("Predicted Probability of Depression") ///
+> ylabel(, labsize(small) angle(horizontal)) ///
+> xlabel(, angle(forty_five)) ///
+> scheme(michigan)
+{res}
+{text}{p 2 6 2}Variables that uniquely identify margins: sc_race_r{p_end}
+{res}{txt}
+{com}. //_14
+. graph export mymargins.png, width(500) replace
+{txt}(file /Users/agrogan/Desktop/newstuff/categorical/predict-and-margins-substantive-example/mymargins.png written in PNG format)
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins-substantive-example/predict-and-margins-substantive-example.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 1 Mar 2021, 08:09:28
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
