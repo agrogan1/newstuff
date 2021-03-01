@@ -18,7 +18,7 @@ The data are an extract of the *National Survey of Children's Health, 2018*. The
 
     clear all
 
-    cd "/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins"
+    cd "/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins-substantive-example"
 
     use "NSCH_ACES.dta", clear
 

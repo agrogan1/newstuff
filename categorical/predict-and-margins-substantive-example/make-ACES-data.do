@@ -2,7 +2,7 @@
 
 clear all
 
-cd "/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins"
+cd "/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins-substantive-example"
 
 use "/Users/agrogan/Box Sync/DATA WAREHOUSE/nsch_2018_topical_Stata/nsch_2018_topical.dta"
 
