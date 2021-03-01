@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>predict and margins</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><code>predict</code> and <code>margins</code></h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">1 Mar 2021 08:10:11</p>
+</header>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+<h1 id="background">Background</h1>
+<p>Odds ratios, or coefficients showing the association of the independent variables with the log odds, represent the most immediate output of a logistic regression. However, for a variety of reasons, it may make sense to not only report odds ratios, but also to investigate predicted probabilities.</p>
+<h1 id="get-the-data">Get The Data</h1>
+<p>We start by obtaining <em>simulated data</em> from StataCorp.</p>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. graph close _all
+</pre>
+<pre class='stata'>. use http://www.stata-press.com/data/r15/margex, clear
+(Artificial data for margins)
+</pre>
+<h1 id="describe-the-data">Describe The Data</h1>
+<p>The variables are as follows:</p>
+<pre class='stata'>. describe
+
+Contains data from http://www.stata-press.com/data/r15/margex.dta
+  obs:         3,000                          Artificial data for margins
+ vars:            11                          27 Nov 2016 14:27
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+              storage   display    value
+variable name   type    format     label      variable label
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+y               float   %6.1f                 
+outcome         byte    %2.0f                 
+sex             byte    %6.0f      sexlbl     
+group           byte    %2.0f                 
+age             float   %3.0f                 
+distance        float   %6.2f                 
+ycn             float   %6.1f                 
+yc              float   %6.1f                 
+treatment       byte    %2.0f                 
+agegroup        byte    %8.0g      agelab     
+arm             byte    %8.0g                 
+──────────────────────────────────────────────────────────────────────────────────────────────────────
+Sorted by: group
+</pre>
+<h1 id="estimate-logistic-regression-logit">Estimate Logistic Regression (<code>logit</code>)</h1>
+<p>We then run a logistic regression model in which <code>outcome</code> is the dependent variable. <code>sex</code>, <code>age</code> and <code>group</code> are the independent variables.</p>
+<pre class='stata'>. logit outcome i.sex c.age i.group, or
+
+Iteration 0:   log likelihood = -1366.0718  
+Iteration 1:   log likelihood = -1111.4595  
+Iteration 2:   log likelihood =  -1069.588  
+Iteration 3:   log likelihood =      -1068  
+Iteration 4:   log likelihood = -1067.9941  
+Iteration 5:   log likelihood = -1067.9941  
+
+Logistic regression                             Number of obs     =      3,000
+                                                LR chi2(4)        =     596.16
+                                                Prob > chi2       =     0.0000
+Log likelihood = -1067.9941                     Pseudo R2         =     0.2182
+
+─────────────┬────────────────────────────────────────────────────────────────
+     outcome │ Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+         sex │
+     female  │    1.64734    .221973     3.70   0.000      1.26499    2.145258
+         age │    1.09444   .0070921    13.93   0.000     1.080628    1.108429
+             │
+       group │
+          2  │   .5568139   .0751806    -4.34   0.000     .4273478     .725502
+          3  │   .2566074   .0747822    -4.67   0.000     .1449462    .4542885
+             │
+       _cons │   .0038757   .0013558   -15.87   0.000     .0019524    .0076933
+─────────────┴────────────────────────────────────────────────────────────────
+Note: _cons estimates baseline odds.
+</pre>
+<h1 id="margins-margins">Margins (<code>margins</code>)</h1>
+<p>We use the <code>margins</code> command to estimate predicted probabilities at different values of <code>sex</code> and <code>age</code>.</p>
+<pre class='stata'>. margins sex, at(age = (20 30 40 50 60))
+
+Predictive margins                              Number of obs     =      3,000
+Model VCE    : OIM
+
+Expression   : Pr(outcome), predict()
+
+1._at        : age             =          20
+
+2._at        : age             =          30
+
+3._at        : age             =          40
+
+4._at        : age             =          50
+
+5._at        : age             =          60
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │            Delta-method
+             │     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
+─────────────┼────────────────────────────────────────────────────────────────
+     _at#sex │
+     1#male  │   .0153934   .0031264     4.92   0.000     .0092657    .0215211
+   1#female  │   .0250609   .0046143     5.43   0.000     .0160171    .0341048
+     2#male  │   .0369626   .0054588     6.77   0.000     .0262635    .0476616
+   2#female  │   .0592151   .0072711     8.14   0.000     .0449639    .0734663
+     3#male  │   .0856677   .0088815     9.65   0.000     .0682603    .1030751
+   3#female  │   .1325688   .0097333    13.62   0.000     .1134919    .1516458
+     4#male  │   .1844578    .015461    11.93   0.000     .1541547    .2147608
+   4#female  │   .2677423    .015609    17.15   0.000     .2371493    .2983353
+     5#male  │    .349279    .029326    11.91   0.000     .2918012    .4067569
+   5#female  │   .4622129   .0303129    15.25   0.000     .4028007    .5216251
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h1 id="plotting-margins-marginsplot">Plotting Margins (<code>marginsplot</code>)</h1>
+<p><code>margins</code> provides a lot of results, which can be difficult to understand. Therefore, we use <code>marginsplot</code> to <em>plot</em> these <code>margins</code> results. The key command is <code>marginsplot</code>, which could be used on its own. I have simply added the <a href="https://agrogan1.github.io/Stata/">Michigan graph scheme</a>, as well as some options to improve the graphic design of the plot.</p>
+<pre class='stata'>. marginsplot, scheme(michigan)
+
+  Variables that uniquely identify margins: age sex
+</pre>
+<pre class='stata'>. graph export mymarginsplot.png, width(500) replace
+(file /Users/agrogan/Desktop/newstuff/categorical/predict-and-margins/mymarginsplot.png written in PNG
+>  format)
+</pre>
+<figure>
+<img src="mymarginsplot.png" alt="" /><figcaption>Graph of Predicted Margins</figcaption>
+</figure>
+<h1 id="predicted-probabilities-predict">Predicted Probabilities (<code>predict</code>)</h1>
+<p>Predicted probabilities are <em>each participant’s individual predicted probability</em> of experiencing depression based upon the independent variables included in the model. We often denote such predicted probabilities with <span class="math inline">\(\hat{y}\)</span></p>
+<pre class='stata'>. predict yhat
+(option pr assumed; Pr(outcome))
+</pre>
+<p><code>yhat</code> is a variable in the data, just like any other variable, and we can tabulate and graph it.</p>
+<pre class='stata'>. twoway (lowess yhat age if sex == 0) ///
+> (lowess yhat age if sex == 1), ///
+> title("Predicted Probabilities of Outcome") ///
+> legend(order(1 "male" 2 "female")) ///
+> scheme(michigan)
+</pre>
+<pre class='stata'>. graph export mytwoway.png, width(500) replace
+(file /Users/agrogan/Desktop/newstuff/categorical/predict-and-margins/mytwoway.png written in PNG form
+> at)
+</pre>
+<figure>
+<img src="mytwoway.png" alt="" /><figcaption>Bar Graph of Predicted Probabilities</figcaption>
+</figure>
+</body>
+</html>

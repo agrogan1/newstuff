@@ -1,0 +1,73 @@
+% `predict` and `margins`
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+
+# Background
+
+Odds ratios, or coefficients showing the association of the independent variables with the log odds, represent the most immediate output of a logistic regression. However, for a variety of reasons, it may make sense to not only report odds ratios, but also to investigate predicted probabilities.
+
+# Get The Data
+
+We start by obtaining *simulated data* from StataCorp. 
+
+    clear all
+
+    graph close _all
+
+    use http://www.stata-press.com/data/r15/margex, clear
+	
+# Describe The Data
+	
+The variables are as follows: 
+
+    describe
+
+# Estimate Logistic Regression (`logit`)
+
+We then run a logistic regression model in which `outcome` is the dependent variable. `sex`, `age` and `group` are the independent variables. 
+
+    logit outcome i.sex c.age i.group, or
+
+# Margins (`margins`)
+
+We use the `margins` command to estimate predicted probabilities at different values of `sex` and `age`. 
+
+    margins sex, at(age = (20 30 40 50 60))
+
+# Plotting Margins (`marginsplot`)
+
+`margins` provides a lot of results, which can be difficult to understand. Therefore, we use `marginsplot` to *plot* these `margins` results. The key command is `marginsplot`, which could be used on its own. I have simply added the [Michigan graph scheme](https://agrogan1.github.io/Stata/), as well as some options to improve the graphic design of the plot.
+
+    marginsplot, scheme(michigan)
+	
+	graph export mymarginsplot.png, width(500) replace
+
+![Graph of Predicted Margins](mymarginsplot.png)
+
+# Predicted Probabilities (`predict`)
+
+Predicted probabilities are *each participant's individual predicted probability* of experiencing depression based upon the independent variables included in the model.  We often denote such predicted probabilities with $\hat{y}$
+
+    predict yhat
+
+`yhat` is a variable in the data, just like any other variable, and we can tabulate and graph it.
+
+    twoway (lowess yhat age if sex == 0) ///
+	(lowess yhat age if sex == 1), ///
+	title("Predicted Probabilities of Outcome") ///
+	legend(order(1 "male" 2 "female")) ///
+	scheme(michigan)
+	
+	graph export mytwoway.png, width(500) replace
+
+![Bar Graph of Predicted Probabilities](mytwoway.png)
+
+
+
+
