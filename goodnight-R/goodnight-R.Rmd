@@ -5,6 +5,7 @@ date: '`r Sys.Date()`'
 output: 
   slidy_presentation: 
     fig_caption: yes
+    fig_height: 4
     css: goodnight-R.css
     footer: Andrew Grogan-Kaylor
     highlight: haddock
@@ -27,7 +28,6 @@ subtitle: "(with thanks to @olgarithmic)"
 * And the person who was coding was whispering, "Hush." `r emo::ji("shushing face")`
 
 # Goodnight columns, goodnight rows, {data-background=#559955}
-
 
 ```{r setup, include=FALSE}
 
@@ -118,11 +118,19 @@ ggplot(data=NULL,
   geom_smooth(formula = y~sin(x)) +
   scale_color_viridis_c() +
   labs(title="An Overfitted Line",
-       subtitle = "That Follows The Data Too Closely") 
+       subtitle = "That Follows The Data Too Closely",
+       caption = "What Does This Even Mean?") 
 
 ```
 
 # Goodnight anxiety and frustrated thoughts, {data-background=#559955}
+
+```{r}
+
+knitr::include_graphics("cat.gif")
+
+```
+
 
 # Goodnight inconclusive plots. {data-background=#559955}
 
@@ -142,4 +150,4 @@ ggplot(data=NULL,
 ```
 
 
-# Goodnight R {data-background=#559955}
+# Goodnight R {#nextsteps}

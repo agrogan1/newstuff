@@ -30,9 +30,9 @@ blockquote {
   padding: 0.5em 10px;
 }
 #nextsteps {
-   color: black;
-   background-color: #FFFF00;
-   text-align: left;
+   color: white;
+   background-color: #000000;
+   text-align: center;
    font-size: 125%;
 }
 #majorsection {
