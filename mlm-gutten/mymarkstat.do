@@ -8,8 +8,8 @@ markstat using "mlm-gutten.stmd", mathjax // HTML
 
 graph close _all
 
-* markstat using "mlm-gutten.stmd", docx // Word
+markstat using "mlm-gutten.stmd", docx // Word
 
-markstat using "mlm-gutten.stmd", pdf // PDF
+* markstat using "mlm-gutten.stmd", pdf // PDF
 
 graph close _all

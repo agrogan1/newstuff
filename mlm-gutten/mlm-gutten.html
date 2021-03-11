@@ -58,13 +58,13 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Multilevel Models with the Von Guttenberg Tree Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">31 Aug 2020 17:41:21</p>
+<p class="date">11 Mar 2021 09:04:04</p>
 </header>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <figure>
 <img src="fotolia-small.jpg" alt="" /><figcaption>Norway Spruce and Larch Forest in Austrian Alps, https://ec.europa.eu/jrc/en/research-topic/forestry/qr-tree-project/norway-spruce</figcaption>
 </figure>
-<h1 id="data-source">Data Source</h1>
+<h1 id="data-source">Data Source 🌲</h1>
 <p>The data used in this example are derived from the R package <em>Functions and Datasets for “Forest Analytics with R”</em>.</p>
 <p>According to the documentation, the source of these data are: “von Guttenberg’s Norway spruce (Picea abies [L.] Karst) tree measurement data.”</p>
 <figure>
@@ -74,10 +74,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <blockquote>
 <p>“The data are measures from 107 trees. The trees were selected as being of average size from healthy and well stocked stands in the Alps.”</p>
 </blockquote>
-<pre class='stata'>.     use gutten.dta, clear
+<pre class='stata'>. use gutten.dta, clear
 </pre>
 <p><code>use "https://github.com/agrogan1/newstuff/raw/master/mlm-R2-gutten/gutten.dta", clear</code> should work to obtain the data over the web. Please let me know if it does not.</p>
-<h1 id="variables">Variables</h1>
+<h1 id="variables">Variables 🌲</h1>
 <p><code>site</code> Growth <em>quality</em> class of the tree’s habitat. 5 levels.</p>
 <p><code>location</code> Distinguishes tree <em>location</em>. 7 levels.</p>
 <p><code>tree</code> An identifier for the tree within location.</p>
@@ -94,20 +94,21 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <p><code>volume</code> Tree volume.</p>
 <p><code>age.bh</code> Tree age taken at 1.3 m.</p>
 <p><code>tree.ID</code> A factor uniquely identifying the tree.</p>
-<h1 id="your-quantitative-forestry-tasks-should-you-choose-to-accept-them">Your Quantitative Forestry Tasks (Should You Choose To Accept Them)</h1>
+<h1 id="your-quantitative-forestry-tasks-should-you-choose-to-accept-them">Your Quantitative Forestry Tasks (Should You Choose To Accept Them) 🌲</h1>
 <p>I clearly need to learn more about quantitative approaches to forestry, but I would like to model tree height as a function of tree age (measured at base), site, and location.</p>
-<h1 id="spaghetti-plot">Spaghetti Plot</h1>
+<h1 id="spaghetti-plot">Spaghetti Plot 🌲</h1>
 <p>Use <code>spagplot</code> to examine these relationships. Remember that the <code>spagplot</code> syntax is <code>spagplot y x, id(id)</code>. What is the most appropriate id variable here?</p>
 <pre class='stata'>. spagplot height ageCENTERED, id(tree_ID) scheme(michigan)
 </pre>
 <pre class='stata'>. graph export myspagplot.png, width(500) replace
-(file myspagplot.png written in PNG format)
+(file /Users/agrogan/Desktop/newstuff/mlm-gutten/myspagplot.png written in PNG
+>  format)
 </pre>
 <p><code>spagplot height ageCENTERED, id(tree_ID) scheme(s1rcolor)</code> also works well here.</p>
 <figure>
 <img src="myspagplot.png" alt="" /><figcaption>Spaghetti Plot of Predicted Height by Age</figcaption>
 </figure>
-<h1 id="multilevel-models">Multilevel Models</h1>
+<h1 id="multilevel-models">Multilevel Models 🌲</h1>
 <h2 id="unconditional-model">Unconditional Model</h2>
 <p>Run an unconditional model with <code>mixed</code>. What Stata syntax do you use? What is the corresponding equation? What question is this syntax and equation asking and answering? Calculate the ICC. What does this number tell you?</p>
 <h2 id="conditional-model">Conditional Model</h2>
