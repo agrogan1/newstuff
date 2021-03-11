@@ -125,7 +125,7 @@ myhistogram <- myoutcome +
   labs(subtitle = "Histogram")
 
 mybeeswarm <- myoutcome + 
-  geom_beeswarm(aes(y = 1), 
+  geom_beeswarm(aes(y = 1),
                 size = .25,
                 groupOnX = FALSE,
                 color = michigancolors("arboretum blue")) +
