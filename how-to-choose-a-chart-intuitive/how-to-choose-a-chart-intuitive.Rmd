@@ -3,18 +3,6 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
-  html_document:
-    fig_width: 10
-    highlight: haddock
-    code_download: yes
-  bookdown::epub_book: 
-    stylesheet: UM.css 
-    cover_image: intuitive-guide.png
-    fig_width: 7
-    fig_height: 4
   bookdown::gitbook:
     split_by: none
     highlight: haddock
@@ -24,6 +12,18 @@ output:
       download:
       - how-to-choose-a-chart-intuitive.pdf
       - how-to-choose-a-chart-intuitive.epub
+  html_document:
+    fig_width: 10
+    highlight: haddock
+    code_download: yes
+  bookdown::epub_book: 
+    stylesheet: UM.css 
+    cover_image: intuitive-guide.png
+    fig_width: 7
+    fig_height: 4
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
 mainfont: Futura
 fontsize: 12pt
 classoption: landscape
@@ -135,6 +135,13 @@ mybeeswarm <- myoutcome +
   theme(axis.text.y = element_blank(),
         axis.ticks.y = element_blank())
 
+mydotplot <- myoutcome + 
+  geom_dotplot(dotsize = .1) +
+  labs(subtitle = "Dot Plot",
+       caption = "Every point is an individual.",
+       y = "") +
+  theme(axis.text.y = element_blank())
+
 mycomparison <- myoutcome + 
   geom_histogram(aes(fill = group, color = group)) + 
   facet_wrap(~group, 
@@ -229,6 +236,7 @@ save(myhistogram,
      mybar,
      mycomparisonC,
      mybeeswarm,
+     mydotplot,
      myscatterplot,
      mylongitudinal,
      file = "how-to-choose-a-chart.RData")
@@ -240,7 +248,7 @@ save(myhistogram,
 
 # stitch the plots together with patchwork
 
-p0 <- myhistogram + mycomparison + mybeeswarm +
+p0 <- myhistogram + mycomparison + mydotplot +
   mybar + mycomparisonC + mylongitudinal +
   plot_layout(ncol = 3, nrow = 2, widths = 1)
 
