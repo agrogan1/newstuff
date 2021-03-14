@@ -3,15 +3,9 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  bookdown::gitbook:
-    split_by: none
-    highlight: haddock
-    config:
-      toc:
-        collapse: none
-      download:
-      - how-to-choose-a-chart-intuitive.pdf
-      - how-to-choose-a-chart-intuitive.epub
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
   html_document:
     fig_width: 10
     highlight: haddock
@@ -21,9 +15,15 @@ output:
     cover_image: intuitive-guide.png
     fig_width: 7
     fig_height: 4
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
+  bookdown::gitbook:
+    split_by: none
+    highlight: haddock
+    config:
+      toc:
+        collapse: none
+      download:
+      - how-to-choose-a-chart-intuitive.pdf
+      - how-to-choose-a-chart-intuitive.epub
 mainfont: Futura
 fontsize: 12pt
 classoption: landscape
@@ -117,7 +117,8 @@ myoutcome <- ggplot(data = mydata,
 
 # other plots, many of which build upon first plot
 
-mydensity <- myoutcome + geom_density() +
+mydensity <- myoutcome + 
+  geom_density(alpha = .5) +
   labs(subtitle = "Density Plot")
 
 myhistogram <- myoutcome + 
@@ -126,7 +127,7 @@ myhistogram <- myoutcome +
 
 mybeeswarm <- myoutcome + 
   geom_beeswarm(aes(y = 1),
-                size = .25,
+                size = .2,
                 groupOnX = FALSE,
                 color = michigancolors("arboretum blue")) +
   labs(subtitle = "Beeswarm Plot",
@@ -136,7 +137,8 @@ mybeeswarm <- myoutcome +
         axis.ticks.y = element_blank())
 
 mydotplot <- myoutcome + 
-  geom_dotplot(dotsize = .1) +
+  geom_dotplot(dotsize = .75,
+               fill = michigancolors("wave field green")) +
   labs(subtitle = "Dot Plot",
        caption = "Every point is an individual.",
        y = "") +
@@ -248,7 +250,7 @@ save(myhistogram,
 
 # stitch the plots together with patchwork
 
-p0 <- myhistogram + mycomparison + mydotplot +
+p0 <- myhistogram + mycomparison + mybeeswarm +
   mybar + mycomparisonC + mylongitudinal +
   plot_layout(ncol = 3, nrow = 2, widths = 1)
 
