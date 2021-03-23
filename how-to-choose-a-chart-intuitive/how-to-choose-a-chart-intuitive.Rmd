@@ -3,18 +3,6 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
-  html_document:
-    fig_width: 10
-    highlight: haddock
-    code_download: yes
-  bookdown::epub_book: 
-    stylesheet: UM.css 
-    cover_image: intuitive-guide.png
-    fig_width: 7
-    fig_height: 4
   bookdown::gitbook:
     split_by: none
     highlight: haddock
@@ -24,6 +12,18 @@ output:
       download:
       - how-to-choose-a-chart-intuitive.pdf
       - how-to-choose-a-chart-intuitive.epub
+  html_document:
+    fig_width: 10
+    highlight: haddock
+    code_download: yes
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
+  bookdown::epub_book: 
+    stylesheet: UM.css 
+    cover_image: intuitive-guide.png
+    fig_width: 7
+    fig_height: 4
 mainfont: Futura
 fontsize: 12pt
 classoption: landscape
@@ -39,6 +39,8 @@ knitr::opts_chunk$set(echo = FALSE,
 library(ggplot2) # beautiful graphs
 
 library(ggbeeswarm) # beeswarm geometry
+
+library(ggdist) # distribution geometries
 
 library(patchwork) # stitch ggplots together
 
@@ -142,6 +144,12 @@ mydotplot <- myoutcome +
   labs(subtitle = "Dot Plot",
        caption = "Every point is an individual.",
        y = "") +
+  theme(axis.text.y = element_blank())
+
+mydotplot2 <- myoutcome +
+  stat_dots(color = michigancolors("arboretum blue")) +
+  labs(subtitle = "Dot Plot",
+       caption = "Every point is an individual.") +
   theme(axis.text.y = element_blank())
 
 mycomparison <- myoutcome + 
@@ -250,7 +258,7 @@ save(myhistogram,
 
 # stitch the plots together with patchwork
 
-p0 <- myhistogram + mycomparison + mybeeswarm +
+p0 <- myhistogram + mycomparison + mydotplot2 +
   mybar + mycomparisonC + mylongitudinal +
   plot_layout(ncol = 3, nrow = 2, widths = 1)
 
