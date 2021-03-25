@@ -1,0 +1,123 @@
+---
+title: "Risks and Odds (2)"
+author: "Andy Grogan-Kaylor"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    toc: yes
+    toc_float: FALSE
+    highlight: haddock
+    theme: flatly
+  distill::distill_article:
+    highlight: haddock
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+
+```
+
+
+```{r}
+
+library(plotly)
+
+library(DT)
+
+library(crosstalk)
+
+library(shiny)
+
+```
+
+
+```{r}
+
+events <- rep(100, 10)
+
+x_happens <- seq(10, 100, 10)
+
+risk <- x_happens / events
+
+odds <- ((x_happens / events)) / ((100 - x_happens) / events)
+
+odds <- round(odds, 2)
+
+mydata <- data.frame(events, x_happens, risk, odds)
+
+```
+
+# Risk
+
+Let's think about risk: 
+
+$$\text{risk} = P(\text{event}) = \frac{\text{number of events that happened}}{\text{number of events that happened} + \text{number of events that didn't happen}}$$
+
+# Odds
+
+The odds are the probability that an event happened divided by the probability that it did not happen
+
+$$\text{odds} = \frac{P(\text{event happened})}{P(\text{event didn't happen})}$$
+
+$$= \frac{\frac{\text{number of events}}{\text{number of events} + \text{number of non-events}}}{\frac{\text{number of non-events}}{\text{number of events} + \text{number of non-events}}}$$
+
+which incidentally reduces to
+
+$$= \frac{\text{number of events}}{\text{number of non-events}}$$
+
+# Visualize The Risk And Odds
+
+Imagine an *Event X*. This event could be entering a program, exiting a program, or getting a diagnosis of a mental health or physical health condition. 
+
+Click on the table below and/or hover over the graph below to explore various scenarios.
+
+```{r}
+
+hk <- highlight_key(mydata)
+
+p1 <- plot_ly(hk,
+              marker = list(size = 10),
+              width = "55%") %>% 
+  highlight() %>%
+  add_trace(x = ~x_happens, 
+            y = ~risk,
+            text = ~paste("X Happens", x_happens, "times",
+                          "\n",
+                          "Risk = ", x_happens, "/100 = ", risk),
+            hoverinfo = 'text') %>%
+  add_trace(x = ~x_happens, 
+            y = ~odds, 
+            text = ~paste("X Happens", x_happens, "times",
+                          "\n",
+                          "Odds = ", x_happens, "/", 100 - x_happens, " = ", odds),
+            hoverinfo = 'text') %>%
+  layout(title = "Risks and Odds",
+         showlegend = FALSE) 
+
+t1 <- DT::datatable(hk, 
+                    class="compact",
+                    width = "100%",
+                    rownames = FALSE,
+                    caption = 'Risks and Odds',
+                    colnames = c('Total Events', 
+                                 'How Many Times Does X Happen?', 
+                                 'Risk', 
+                                 'Odds'),
+                    options = list(dom = 't', 
+                                   scrollX = T))
+
+filter_slider("s1", 
+              "How many times does X happen?", 
+              hk, 
+              column = ~x_happens,
+              step = 10)
+
+bscols(t1, p1, widths = c(4, 2))
+
+
+```
+
