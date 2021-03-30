@@ -2,7 +2,7 @@
 
 *Simulated* data for use in classes on Research Methods, Statistics and Data Visualization.
 
-The data contain the following (*simulated*) variables:  "ID", "age", "gender", "program", "mental_health_T1", "mental_health_T2", "latitude", "longitude".
+The data contain the following (*simulated*) variables:  "ID", "age", "gender", "race_ethnicity", "family_income", "program", "mental_health_T1", "mental_health_T2", "latitude", "longitude".
 
 The *mental health* variables are scaled to have an average of 100. Lower numbers indicate lower mental health, while higher numbers indicate higher mental health.
 
