@@ -81,7 +81,7 @@ library(rpivotTable)
 rpivotTable::rpivotTable(clients,
                          rendererName = "Bar Chart",
                          aggregatorName = "Median",
-                         vals = "mental_health_T1",
+                         vals = "mental_health_T2",
                          rows = c("program"))
 
 ```
