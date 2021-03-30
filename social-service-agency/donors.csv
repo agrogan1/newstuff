@@ -1,73 +1,81 @@
 "ID","age","gender","neighborhood","annual_donation"
-"zsOLrlK",49.8198368379955,"Male","Neighborhood A",183
-"QMBlN2p",38.3975470011904,"Male","Neighborhood A",171
-"vsMEeoP",34.599650796559,"Male","Neighborhood A",199
-"uxG1BoO",46.5233899979209,"Female","Neighborhood B",1199
-"zPpDJhV",31.1996776071722,"Male","Neighborhood A",407
-"G1vKWkh",31.4771214375055,"Other Identity","Neighborhood A",150
-"h11xLTd",45.8040887014908,"Female","Neighborhood A",406
-"FRpAP6S",32.0683173442986,"Other Identity","Neighborhood A",53
-"oirpNsD",35.8842996966645,"Male","Neighborhood A",298
-"aWRItHk",33.1578120678,"Male","Neighborhood A",150
-"DHVP1zo",42.8796885771831,"Female","Neighborhood A",423
-"QUGqKga",51.8914565143096,"Male","Neighborhood B",1351
-"qhrATyn",51.0072746594625,"Other Identity","Neighborhood A",225
-"H6IZovs",47.5178008905847,"Other Identity","Neighborhood B",1480
-"vUy9XHg",50.2864863842673,"Male","Neighborhood A",89
-"S9tgLad",56.6102442118233,"Female","Neighborhood A",221
-"0jsh6mQ",40.1643644728858,"Male","Neighborhood A",87
-"m2m8ACj",36.8205097952018,"Female","Neighborhood A",123
-"qh4Omqd",31.2688146399937,"Other Identity","Neighborhood A",76
-"TmhVaBL",35.2611416640405,"Male","Neighborhood A",119
-"6iq0dWv",38.1191707586529,"Female","Neighborhood A",190
-"qg03nGi",34.494452344492,"Female","Neighborhood A",167
-"C5kfPso",39.0743806163253,"Female","Neighborhood A",268
-"bk57qj2",48.259093858863,"Male","Neighborhood A",97
-"XSWzBHi",39.1060064490302,"Male","Neighborhood A",66
-"GJuuWnu",34.4116362634661,"Female","Neighborhood A",287
-"0D02AYG",40.5104162993548,"Male","Neighborhood A",483
-"4zEZjuV",33.7809782940333,"Other Identity","Neighborhood A",90
-"S7alRuZ",37.2939070989145,"Female","Neighborhood A",438
-"HY86bYS",33.3355848576971,"Female","Neighborhood A",442
-"NVM7huJ",35.1724757240153,"Other Identity","Neighborhood A",224
-"W0rnLgc",37.8603184611307,"Other Identity","Neighborhood A",323
-"cBYafKQ",32.5190139933343,"Female","Neighborhood A",55
-"ClO3JOZ",32.4287661881745,"Female","Neighborhood A",194
-"twx8svh",50.1767687106414,"Male","Neighborhood A",192
-"IGuyfLG",35.2364639644582,"Female","Neighborhood A",243
-"YjPv3QI",38.5166428463057,"Female","Neighborhood A",210
-"SFj4H2G",37.3056584199684,"Female","Neighborhood A",330
-"8E5xVps",41.107439437311,"Other Identity","Neighborhood A",60
-"3LgdVkk",33.0206146806934,"Female","Neighborhood A",179
-"1TbaTD1",40.160706223651,"Male","Neighborhood B",1102
-"ki81SKl",40.9239915921135,"Female","Neighborhood A",370
-"ZYR1Ex4",30.1547643738361,"Male","Neighborhood A",400
-"6kCb7Gj",33.6462477383818,"Other Identity","Neighborhood A",124
-"XWpvcK4",43.8226114034413,"Female","Neighborhood A",264
-"YAnSD8B",35.9484040855738,"Male","Neighborhood A",351
-"WjR1em1",49.3973392956651,"Female","Neighborhood A",84
-"WMJfLZU",47.5518482799331,"Other Identity","Neighborhood A",310
-"FVcwLqe",33.3350601112193,"Female","Neighborhood A",169
-"7uFQdK7",31.7288095125079,"Male","Neighborhood A",102
-"fi2AvV8",46.9844716859808,"Other Identity","Neighborhood B",1416
-"M6T57LQ",31.6280172878974,"Male","Neighborhood A",160
-"VL7Mla3",41.3291198184937,"Female","Neighborhood A",273
-"0VK1U3y",30.8023470657811,"Male","Neighborhood B",1266
-"lHFmlue",38.4303755428564,"Female","Neighborhood A",65
-"gRuKi6x",37.336046525424,"Female","Neighborhood A",160
-"VZoiAiL",44.0678999836773,"Female","Neighborhood A",492
-"zwUNIPZ",53.0279618207596,"Female","Neighborhood A",66
-"cvL0XHR",45.0551346818535,"Other Identity","Neighborhood B",1527
-"5WzYuqI",41.3095890327716,"Other Identity","Neighborhood A",446
-"sJC1XV1",36.7608171657222,"Other Identity","Neighborhood A",372
-"GqtRgvQ",42.0787477213676,"Female","Neighborhood B",1148
-"vegDhI7",49.4912155713288,"Female","Neighborhood A",141
-"qRsYk3Y",36.290393383089,"Female","Neighborhood A",320
-"D31vNZR",42.9379967017429,"Male","Neighborhood B",1112
-"AozOj5w",37.6007391912794,"Male","Neighborhood A",284
-"VIRhPBn",41.6848775811783,"Male","Neighborhood A",112
-"tCd7ovI",50.7844250018687,"Male","Neighborhood A",62
-"lXcaoNp",58.1588701283157,"Female","Neighborhood A",146
-"zQ8BAqG",38.8807929140784,"Female","Neighborhood B",1097
-"PWlTM1P",45.5595029821133,"Other Identity","Neighborhood A",254
-"FmRAZvd",49.6529481265614,"Male","Neighborhood A",164
+"rIlTxfM",54.2988309356879,"Male","Neighborhood A",60
+"KUbokOQ",37.5543951006578,"Male","Neighborhood A",98
+"ksGEKpd",35.9899146525146,"Female","Neighborhood A",256
+"TokbALD",31.321461974054,"Male","Neighborhood A",63
+"SS6vuYl",53.4316972824323,"Male","Neighborhood A",381
+"xDvAUym",35.731422290839,"Female","Neighborhood B",1202
+"Mu6c2Gw",51.681124320932,"Female","Neighborhood A",248
+"CTMrwC4",33.5744955633454,"Female","Neighborhood A",437
+"Ig0dN6n",40.9361455411815,"Female","Neighborhood A",131
+"gY6LauB",39.4194750691376,"Other Identity","Neighborhood A",85
+"IcYjaiV",42.3474947744848,"Female","Neighborhood A",202
+"JdFLUjM",31.6398379291831,"Male","Neighborhood A",99
+"fYij7Td",34.1155200749445,"Female","Neighborhood A",74
+"cEV1quw",45.5336517512005,"Female","Neighborhood A",131
+"DhAfDEm",31.0972685017138,"Other Identity","Neighborhood A",339
+"mUycvve",37.5127923395259,"Female","Neighborhood A",256
+"UNPcmM2",46.1441697448767,"Female","Neighborhood A",392
+"t41HihZ",49.6582354813114,"Other Identity","Neighborhood A",151
+"uyhvZhe",30.5740726700438,"Female","Neighborhood B",1488
+"UzdU12x",44.6548121697521,"Female","Neighborhood B",1108
+"vSfFuRZ",38.2783869470972,"Male","Neighborhood A",125
+"fh6Eez3",34.428234267342,"Male","Neighborhood A",159
+"07YhPv6",46.5369253778775,"Other Identity","Neighborhood A",251
+"S2xNgnu",31.591954775523,"Other Identity","Neighborhood A",267
+"n6wS6iY",49.9658390942365,"Male","Neighborhood A",327
+"7k56ICk",31.0592576529577,"Male","Neighborhood B",1329
+"tUNXyUM",38.8428311672077,"Female","Neighborhood A",69
+"BMEXLjR",43.1461123339458,"Male","Neighborhood A",164
+"CmfFZok",33.5267984225903,"Male","Neighborhood A",175
+"uPlzaT1",33.3971523119226,"Male","Neighborhood A",464
+"5QbsG4g",34.7286077239123,"Male","Neighborhood B",1080
+"AtT0Xff",30.6303845103237,"Male","Neighborhood B",1382
+"jZpaKXr",39.4376062097103,"Female","Neighborhood B",1410
+"U1AxOSC",47.8777985988665,"Other Identity","Neighborhood A",304
+"HxP140S",38.3467092115351,"Female","Neighborhood A",371
+"a5xLMjh",39.3812414467852,"Male","Neighborhood A",234
+"Eki2Wbs",39.3711262346796,"Male","Neighborhood A",168
+"8FwriuE",32.4663824472141,"Female","Neighborhood A",79
+"jkIyUc7",38.5024129138663,"Male","Neighborhood A",342
+"ATuS2Z8",31.0896112816107,"Male","Neighborhood B",1087
+"Q3NImsF",36.5008862748957,"Male","Neighborhood A",370
+"xNwaFga",44.7382631084152,"Male","Neighborhood A",75
+"5fcIACd",40.7948590252039,"Female","Neighborhood A",184
+"dafWYFZ",30.2090807924619,"Female","Neighborhood A",270
+"P96lSyI",34.2206214444636,"Other Identity","Neighborhood A",406
+"vF1sMmj",52.048849445575,"Male","Neighborhood A",235
+"LzN9yxC",46.6390039428015,"Other Identity","Neighborhood A",115
+"MVf9IDc",36.1957381824534,"Female","Neighborhood A",173
+"OLA0P7t",32.0746376811537,"Male","Neighborhood A",335
+"QhWrcHP",36.7303367881721,"Male","Neighborhood A",81
+"Hg9IoO5",34.9311071963478,"Male","Neighborhood A",85
+"b5nMuFm",49.3286954797902,"Male","Neighborhood B",1089
+"9az6M9o",32.0028505400676,"Male","Neighborhood A",243
+"5Erstvr",39.1738688288038,"Female","Neighborhood A",186
+"pS4s891",49.370415281073,"Female","Neighborhood A",300
+"GQrFmRp",36.1693879585909,"Female","Neighborhood A",85
+"6WUUUc4",37.4202482216531,"Other Identity","Neighborhood A",134
+"uy5XjVp",45.0447370508791,"Female","Neighborhood A",95
+"FWEzVyL",37.455298339496,"Male","Neighborhood A",221
+"34XFK9o",32.144710474338,"Other Identity","Neighborhood A",190
+"O30QMRa",34.4963135139485,"Female","Neighborhood A",217
+"jzF1yJk",40.7064915326367,"Female","Neighborhood A",70
+"uT4FMKk",43.453771164347,"Male","Neighborhood A",277
+"XPi5yWs",37.2483395996544,"Male","Neighborhood A",293
+"anqLzSi",33.901333205575,"Female","Neighborhood A",115
+"9dpGWDE",34.2749806685941,"Female","Neighborhood A",225
+"vRpeJqz",37.9132867138398,"Male","Neighborhood B",1381
+"eB60h8K",35.781183406113,"Female","Neighborhood A",449
+"n6lK1k6",35.9560502209972,"Male","Neighborhood A",437
+"Wmf6DCJ",39.4551205746726,"Male","Neighborhood A",237
+"0FfxIze",47.3528438410396,"Female","Neighborhood A",390
+"CKPZmpz",37.9837651744335,"Other Identity","Neighborhood A",171
+"7bj03Rp",32.5030071034921,"Other Identity","Neighborhood A",75
+"df2NCej",34.9179742572002,"Male","Neighborhood A",70
+"ROWG2Wl",45.6945676319711,"Female","Neighborhood A",478
+"xthhuZH",46.2582863438549,"Male","Neighborhood A",61
+"jJeTNFQ",32.8084339944398,"Other Identity","Neighborhood A",95
+"HBv0kta",41.952056633172,"Female","Neighborhood A",251
+"hRDLhFb",36.8030652099698,"Male","Neighborhood A",166
+"XkLoXqf",33.0819765844788,"Male","Neighborhood A",478
