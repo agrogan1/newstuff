@@ -16,14 +16,14 @@ output:
     fig_width: 10
     highlight: haddock
     code_download: yes
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
   bookdown::epub_book: 
     stylesheet: UM.css 
     cover_image: intuitive-guide.png
     fig_width: 7
     fig_height: 4
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
 mainfont: Futura
 fontsize: 12pt
 classoption: landscape
@@ -68,7 +68,7 @@ outcome <- ifelse(group == "Group B",
                   outcome + 1.5,
                   outcome)
 
-outcomeC <- ifelse(outcome >= quantile(outcome, c(.50)),
+outcomeC <- ifelse(outcome >= quantile(outcome, c(.60)),
                    1,
                    0)
 
@@ -162,11 +162,11 @@ mycomparison <- myoutcome +
         axis.text.y = element_text(size = rel(.5)))
 
 mybar <- ggplot(data = mydata,
-                aes(x = group,
-                    fill = group)) +
+                aes(x = outcomeC,
+                    fill = outcomeC)) +
   geom_bar(color = michigancolors("angell hall ash")) +
   scale_fill_manual(values = michigancolors()) +
-  labs(title = "How Many People \nAre In Each Group?",
+  labs(title = "How Many People \nExperience Each Outcome?",
        subtitle = "Bar Chart",
        x = "Group",
        y = "Count") +
@@ -176,7 +176,7 @@ mybar <- ggplot(data = mydata,
 
 mycomparisonC <- ggplot(data = mydata,
                         aes(x = outcomeC,
-                            fill = group)) +
+                            fill = outcomeC)) +
   geom_bar(color = michigancolors("angell hall ash")) + 
   facet_wrap(~group,
              ncol = 2, 
