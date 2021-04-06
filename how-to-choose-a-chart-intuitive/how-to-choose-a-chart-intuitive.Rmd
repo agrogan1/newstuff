@@ -3,15 +3,10 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  bookdown::gitbook:
-    split_by: none
-    highlight: haddock
-    config:
-      toc:
-        collapse: none
-      download:
-      - how-to-choose-a-chart-intuitive.pdf
-      - how-to-choose-a-chart-intuitive.epub
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
+    fig_height: 8
   html_document:
     fig_width: 10
     highlight: haddock
@@ -20,13 +15,20 @@ output:
     stylesheet: UM.css 
     cover_image: intuitive-guide.png
     fig_width: 7
-    fig_height: 4
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
+    fig_height: 8
+  bookdown::gitbook:
+    split_by: none
+    highlight: haddock
+    fig_height: 8
+    config:
+      toc:
+        collapse: none
+      download:
+      - how-to-choose-a-chart-intuitive.pdf
+      - how-to-choose-a-chart-intuitive.epub
 mainfont: Futura
 fontsize: 12pt
-classoption: landscape
+classoption: portrait
 geometry: margin=.5in
 ---
 
@@ -258,9 +260,10 @@ save(myhistogram,
 
 # stitch the plots together with patchwork
 
-p0 <- myhistogram + mycomparison + mydotplot2 +
-  mybar + mycomparisonC + mylongitudinal +
-  plot_layout(ncol = 3, nrow = 2, widths = 1)
+p0 <- myhistogram + mycomparison  +
+  mybar + mycomparisonC + 
+  mydotplot2 + mylongitudinal +
+  plot_layout(ncol = 2, nrow = 3, widths = 1)
 
 p0 # replay
 
