@@ -1,6 +1,6 @@
 % Multiple Approaches to Causal Modeling Using Black Spruce Data
 % Andy Grogan-Kaylor
-% `s c(current_date)` `s c(current_time)`
+% {{.1}} {{.2}}
 
 # Background 🌲
 
@@ -40,37 +40,19 @@ Hence, for this particular data, we are exploring:
 
 ## Get Data
 
-```s
-    clear all
-		
-	use spruce.dta, clear
-```
+
+{{3}}
+
 
 ## Dataset Description
 
-```s/
-    label variable Tree "Tree number"
+
+{{4}}
+
     
-	label variable Competition "C (competition), CR (competition removed)"
-    
-	label variable Fertilizer "F (fertilized), NF (not fertilized)"
-    
-	label variable Height0 "Height (cm) of seedling at planting"
-    
-	label variable Height5 "Height (cm) of seedling at year 5"
-    
-	label variable Diameter0 "Diameter (cm) of seedling at planting"
-        
-	label variable Diameter5 "Diameter (cm) of seedling at year 5"
-    
-	label variable Ht_change "Change (cm) in height"
-    
-	label variable Di_change "Change (cm) in diameter"	
-```
-	
-```s
-	describe	
-```
+
+{{5}}
+
 
 # Spruce Data And Causal Criteria 🌲
 
@@ -78,34 +60,9 @@ Let's consider in turn each of the criteria for causality.
 
 1. Empirically, *fertilizer* is correlated with *tree height*.
 
-```s/
 
-    /*
-    label define fertilizer 1 "Fertilizer" 2 "No Fertilizer"
-	
-	label values Fertilizer fertilizer
-	
-	dotplot Height5, over(Fertilizer) ///
-	title("Tree Height by Fertilizer") ///
-	xtitle("Fertilizer") xlabel("none") ///
-	ytitle("Tree Height At Year 5") ///
-	msymbol(none) mlabel(mylabel) ///
-	scheme(michigan)
-    */
-	
-	* generate mylabel = "🌲"
-	
-    twoway (scatter Height5 Fertilizer if Fertilizer == 1) ///
-	(scatter Height5 Fertilizer if Fertilizer == 2), ///
-	title("Tree Height by Fertilizer") ///
-	xtitle("Fertilizer") xlabel("none") ///
-	ytitle("Tree Height At Year 5") ///
-	legend(order(1 "Fertilizer" 2 "No Fertilizer")) ///
-	scheme(michigan)
-	
-	quietly: graph export myscatter.png, width(500) replace
+{{6}}
 
-```
 
 ![Scatterplot of Tree Height At Year 5 By Fertilizer Use](myscatter.png){width=25%}
 
@@ -124,10 +81,10 @@ More colloquially, the t test compares the differences between the two groups in
 
 A t test does *not* control for any additional variable(s).
 
-```s
-    ttest Height5, by(Fertilizer)
-```
-> The association of fertilizer with tree height is `s %5.2f r(mu_2)-r(mu_1)`.
+
+{{7}}
+
+> The association of fertilizer with tree height is {{.8}}.
 
 ## OLS Regression
 
@@ -139,11 +96,11 @@ Here $x_{1i}$ is the treatment variable of interest.
 
 A regression controls for the additional observed variables ($x_{ki}$) that are included in the model.
 
-```s
-    regress Height5 Fertilizer Height0 Competition
-```
 
-> The association of fertilizer with tree height is `s %5.2f _b[Fertilizer]`.
+{{9}}
+
+
+> The association of fertilizer with tree height is {{.10}}.
 
 ## Propensity Scores
 
@@ -151,59 +108,32 @@ The propensity score estimates the probability of being administered the treatme
 
 A propensity score analysis controls for the additional observed variables that are included in the model.
 
-```s
-    teffects psmatch (Height5) (Fertilizer Height0 Competition)
-```
 
-```s/
-    matrix b = e(b) // get matrix of coefficients
-```
-> The association of fertilizer with tree height is `s %5.2f b[1,1]`.
+{{11}}
+
+
+
+{{12}}
+
+> The association of fertilizer with tree height is {{.13}}.
 
 ### Assess Balance of Propensity Score Model [^Cuartas]
 
 [^Cuartas]: With many thanks to Jorge Cuartas for ideas for some of this code.
 
-```s
-	tebalance density, ///
-	scheme(michigan)
 
-	graph export mydensity.png, width(500) replace
-```
+{{14}}
 
-```s/
 
-    /*
-    recode Fertilizer (2=1)(1=0), generate(F) // recode as 1/0
-	
-    logit F Height0 Competition // logit model of propensity score
-	
-	predict pscore // predict propensity score
-	
-	twoway (kdensity pscore if F == 1) /// 
-	(kdensity pscore if F == 0), ///
-	title("Assessing Balance of Propensity Score") ///
-	xtitle("Propensity Score") ///
-	ytitle("Density") /// 
-	legend(order(1 "Fertilizer" 2 "No Fertilizer")) ///
-	scheme(michigan)
-	*/
 
-```
+{{15}}
+
 
 ![Density Plot of Propensity Score](mydensity.png)
 
-```s/
 
-    /*
-    * alternative syntax with psmatch2
+{{16}}
 
-    psmatch2 F Height0 Competition, out(Height5) n(2) com
-
-    pstest, both
-    */
-
-```
 
 # References 🌲
 
@@ -212,5 +142,5 @@ Camill, P., Chihara, L., Adams, B., Andreassi, C., Barry, A. N. N., Kalim, S., �
 Chihara, L. M., & Hesterberg, T. C. (2018). *Mathematical Statistics with Resampling and R*. https://doi.org/10.1002/9781119505969
 
 Holland, P. W. (1986). Statistics and Causal Inference. *Journal of the American Statistical Association*, 81(396), 945–960. https://doi.org/10.1080/01621459.1986.10478354
-	
-	
+    
+    

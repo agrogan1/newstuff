@@ -99,19 +99,22 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>9 Sep 2020 10:21:48</p>
+<p>12 Apr 2021 15:43:55</p>
 </div>
-<div id="background-r.1" class="title-slide slide section level1"><h1>Background 🌲</h1><p>Chihara and Hesterberg (2018) provide a data set concerning the growth of Black Spruce Trees. According to these authors:</p>
+<div id="background" class="title-slide slide section level1"><h1>Background 🌲</h1><blockquote>
+<p>In web slide versions of this material press <code>b</code> for bigger text and <code>s</code> for smaller text.</p>
+</blockquote>
+<p>Chihara and Hesterberg (2018) provide a data set concerning the growth of Black Spruce Trees. According to these authors:</p>
 <blockquote>
 <p>“Black spruce (Picea mariana) is a species of a slow-growing coniferous tree found across the northern part of North America. It is commonly found on wet organic soils. In a study conducted in the 1990s, a biologist interested in factors affecting the growth of the black spruce planted its seedlings on sites located in boreal peatlands in northern Manitoba, Canada (Camil et al. (2010)). The data set Spruce contains a part of the data from the study (Table 1.8). Seventy-two black spruce seedlings were planted in four plots under varying conditions (fertilizer–no fertilizer, competition–no competition), and their heights and diameters were measured over the course of 5 years. The researcher wanted to see whether the addition of fertilizer or the removal of competition from other plants (by weeding) affected the growth of these seedlings.”</p>
 </blockquote></div>
-<div id="the-research-question-r.2" class="title-slide slide section level1"><h1>The Research Question 🌲</h1><blockquote>
+<div id="the-research-question" class="title-slide slide section level1"><h1>The Research Question 🌲</h1><blockquote>
 <p>We are going to consider the <em>potentially causal</em> estimate of the effect of <em>fertilizer</em> on <em>tree height at year 5</em>. Along the way we will give brief attention to the advantages and disadvantages of each approach. Because of the research design, we have strong reasons to consider <em>fertilizer</em> as having a causal effect on <em>tree height</em> but we will nonetheless explore this question using a variety of statistical models.</p>
 </blockquote>
 <blockquote>
 <p>A secondary purpose of this document is to demonstrate that Stata syntax makes it easy to test and compare multiple statistical models because of the uniform Stata syntax, which is almost always: <code>command variable(s), options</code>.</p>
 </blockquote></div>
-<div id="causality-r.3" class="title-slide slide section level1"><h1>Causality 🌲</h1><p><img src="causality.png" /></p>
+<div id="causality" class="title-slide slide section level1"><h1>Causality 🌲</h1><p><img src="causality.png" /></p>
 <p>A variable <span class="math inline">\(x\)</span> can only be considered to have <em>causal</em> association with <span class="math inline">\(y\)</span> if the following conditions are met (Holland, 1986):</p>
 <ol class="incremental" style="list-style-type: decimal">
 <li><span class="math inline">\(x\)</span> is correlated with <span class="math inline">\(y\)</span>.</li>
@@ -124,15 +127,12 @@ Andy Grogan-Kaylor
 <p>What happens to the association of <em>fertilizer</em> and <em>tree height</em> when we control for possible confounding variables <span class="math inline">\(z\)</span> using various statistical strategies?</p>
 </blockquote>
 <p>(For more interactive exploration of these ideas, see <a href="https://agrogan.shinyapps.io/causality/?_inputs_&amp;sidebarCollapsed=false&amp;y=%22tree%20height%22&amp;sidebarItemExpanded=null&amp;x=%22fertilizer%22&amp;z=%22alternative%20explanation%22">this demo</a>).</p></div>
-<div id="setup-r.4" class="title-slide slide section level1"><h1>Setup 🌲</h1></div><div id="get-data" class="slide section level2">
+<div id="setup" class="title-slide slide section level1"><h1>Setup 🌲</h1></div><div id="get-data" class="slide section level2">
 <h1>Get Data</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>.     </span>
-<span id="cb1-4"><a href="#cb1-4"></a>. <span class="kw">quietly</span>: cd <span class="st">&quot;/Users/agrogan/Desktop/newstuff/spruce&quot;</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a></span>
-<span id="cb1-6"><a href="#cb1-6"></a>.     </span>
-<span id="cb1-7"><a href="#cb1-7"></a>. <span class="kw">use</span> spruce.dta, <span class="kw">clear</span></span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3"></a>.         </span>
+<span id="cb1-4"><a href="#cb1-4"></a>. <span class="kw">use</span> spruce.dta, <span class="kw">clear</span></span></code></pre></div>
 </div><div id="dataset-description" class="slide section level2">
 <h1>Dataset Description</h1>
 <div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">describe</span>    </span>
@@ -140,14 +140,14 @@ Andy Grogan-Kaylor
 <span id="cb2-3"><a href="#cb2-3"></a>Contains <span class="kw">data</span> from spruce.dta</span>
 <span id="cb2-4"><a href="#cb2-4"></a>  <span class="kw">obs</span>:            72                          </span>
 <span id="cb2-5"><a href="#cb2-5"></a> vars:             9                          26 Apr 2020 12:18</span>
-<span id="cb2-6"><a href="#cb2-6"></a> <span class="kw">size</span>:         4,320                          </span>
-<span id="cb2-7"><a href="#cb2-7"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb2-8"><a href="#cb2-8"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb2-11"><a href="#cb2-11"></a>Tree            <span class="kw">long</span>    %12.0g                Tree number</span>
-<span id="cb2-12"><a href="#cb2-12"></a>Competition     <span class="kw">long</span>    %12.0g     Competition</span>
-<span id="cb2-13"><a href="#cb2-13"></a>                                              C (competition), CR (competition removed)</span>
+<span id="cb2-6"><a href="#cb2-6"></a>────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-7"><a href="#cb2-7"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-10"><a href="#cb2-10"></a>Tree            <span class="kw">long</span>    %12.0g                Tree number</span>
+<span id="cb2-11"><a href="#cb2-11"></a>Competition     <span class="kw">long</span>    %12.0g     Competition</span>
+<span id="cb2-12"><a href="#cb2-12"></a>                                              C (competition), CR (competition</span>
+<span id="cb2-13"><a href="#cb2-13"></a>                                                removed)</span>
 <span id="cb2-14"><a href="#cb2-14"></a>Fertilizer      <span class="kw">long</span>    %12.0g     Fertilizer</span>
 <span id="cb2-15"><a href="#cb2-15"></a>                                              <span class="fu">F</span> (fertilized), NF (<span class="kw">not</span> fertilized)</span>
 <span id="cb2-16"><a href="#cb2-16"></a>Height0         <span class="kw">double</span>  %10.0g                Height (cm) <span class="kw">of</span> seedling <span class="fu">at</span> planting</span>
@@ -156,10 +156,10 @@ Andy Grogan-Kaylor
 <span id="cb2-19"><a href="#cb2-19"></a>Diameter5       <span class="kw">double</span>  %10.0g                Diameter (cm) <span class="kw">of</span> seedling <span class="fu">at</span> <span class="fu">year</span> 5</span>
 <span id="cb2-20"><a href="#cb2-20"></a>Ht_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> height</span>
 <span id="cb2-21"><a href="#cb2-21"></a>Di_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> diameter</span>
-<span id="cb2-22"><a href="#cb2-22"></a>─────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-22"><a href="#cb2-22"></a>────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb2-23"><a href="#cb2-23"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
 </div>
-<div id="spruce-data-and-causal-criteria-r.5" class="title-slide slide section level1"><h1>Spruce Data And Causal Criteria 🌲</h1><p>Let’s consider in turn each of the criteria for causality.</p>
+<div id="spruce-data-and-causal-criteria" class="title-slide slide section level1"><h1>Spruce Data And Causal Criteria 🌲</h1><p>Let’s consider in turn each of the criteria for causality.</p>
 <ol class="incremental" style="list-style-type: decimal">
 <li>Empirically, <em>fertilizer</em> is correlated with <em>tree height</em>.</li>
 </ol>
@@ -171,7 +171,7 @@ Andy Grogan-Kaylor
 <li>From the research design, we know that <em>fertilizer</em> comes prior to <em>tree height at year 5</em>.</li>
 <li>We are going to use various statistical strategies–detailed below–to assess whether the association of <em>fertilizer</em> and <em>tree height</em> can be accounted for by any third variable.</li>
 </ol></div>
-<div id="analyses-r.6" class="title-slide slide section level1"><h1>Analyses 🌲</h1></div><div id="t-test" class="slide section level2">
+<div id="analyses" class="title-slide slide section level1"><h1>Analyses 🌲</h1></div><div id="t-test" class="slide section level2">
 <h1>t Test</h1>
 <p>A t test compares the difference between the means of two groups to the standard error of the difference between means.</p>
 <p>Formally, <span class="math inline">\(t = \frac{\bar{x}_2 - \bar{x}_1}{s}\)</span> where s is the standard error of the estimate of the mean.</p>
@@ -252,13 +252,13 @@ Andy Grogan-Kaylor
 <span id="cb6-4"><a href="#cb6-4"></a></span>
 <span id="cb6-5"><a href="#cb6-5"></a>. </span>
 <span id="cb6-6"><a href="#cb6-6"></a>. <span class="kw">graph</span> <span class="kw">export</span> mydensity.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>(file mydensity.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb6-7"><a href="#cb6-7"></a>(file /Users/agrogan/Desktop/newstuff/spruce/mydensity.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
 <div class="figure">
 <img src="mydensity.png" alt="" />
 <p class="caption">Density Plot of Propensity Score</p>
 </div>
 </div>
-<div id="references-r.7" class="title-slide slide section level1"><h1>References 🌲</h1><p>Camill, P., Chihara, L., Adams, B., Andreassi, C., Barry, A. N. N., Kalim, S., … Rafert, G. (2010). Early life history transitions and recruitment of Picea mariana in thawed boreal permafrost peatlands. <em>Ecology</em>. https://doi.org/10.1890/08-1839.1</p>
+<div id="references" class="title-slide slide section level1"><h1>References 🌲</h1><p>Camill, P., Chihara, L., Adams, B., Andreassi, C., Barry, A. N. N., Kalim, S., … Rafert, G. (2010). Early life history transitions and recruitment of Picea mariana in thawed boreal permafrost peatlands. <em>Ecology</em>. https://doi.org/10.1890/08-1839.1</p>
 <p>Chihara, L. M., &amp; Hesterberg, T. C. (2018). <em>Mathematical Statistics with Resampling and R</em>. https://doi.org/10.1002/9781119505969</p>
 <p>Holland, P. W. (1986). Statistics and Causal Inference. <em>Journal of the American Statistical Association</em>, 81(396), 945–960. https://doi.org/10.1080/01621459.1986.10478354</p>
 <div class="section footnotes" role="doc-endnotes">

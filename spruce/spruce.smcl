@@ -3,23 +3,20 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 9 Sep 2020, 10:22:11
+ {txt}opened on:  {res}12 Apr 2021, 15:44:55
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 9 Sep 2020
+{res}12 Apr 2021
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}10:22:11
+{res}15:44:55
 {txt}
 {com}. //_3
 . clear all
 {res}{txt}
-{com}.     
-. quietly: cd "/Users/agrogan/Desktop/newstuff/spruce"
-{txt}
-{com}.     
+{com}.         
 . use spruce.dta, clear
 {txt}
 {com}. //_4q
@@ -55,7 +52,6 @@
 {txt}Contains data from {res}spruce.dta
 {txt}  obs:{res}            72                          
 {txt} vars:{res}             9                          26 Apr 2020 12:18
-{txt} size:{res}         4,320                          
 {txt}{hline}
               storage   display    value
 variable name   type    format     label      variable label
@@ -180,7 +176,7 @@ combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
 {res}{txt}
 {com}. 
 . graph export mydensity.png, width(500) replace
-{txt}(file mydensity.png written in PNG format)
+{txt}(file /Users/agrogan/Desktop/newstuff/spruce/mydensity.png written in PNG format)
 
 {com}. //_15q
 . 
@@ -215,7 +211,7 @@ combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 9 Sep 2020, 10:22:16
+ {txt}closed on:  {res}12 Apr 2021, 15:45:03
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
