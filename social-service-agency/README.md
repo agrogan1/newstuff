@@ -1,5 +1,7 @@
 # Simulated Data From Social Service Agency
 
+![Mental Health By Program](slopegraph.png)
+
 *Simulated* data for use in classes on Research Methods, Statistics and Data Visualization.
 
 The data contain the following (*simulated*) variables:  "ID", "age", "gender", "race_ethnicity", "family_income", "program", "mental_health_T1", "mental_health_T2", "latitude", "longitude".
