@@ -31,7 +31,7 @@ clients %>%
        y = "Mental Health",
        caption = "Higher Scores Represent Better Mental Health") +
   scale_color_viridis_d() +
-  ylim(50,110) +
+  ylim(80,110) +
   theme_minimal() 
 
 # ggsave("slopegraph.png",
