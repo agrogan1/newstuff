@@ -57,7 +57,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Data Visualization With Stata</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">19 Dec 2020</p>
+<p class="date">1 May 2021</p>
 </header>
 <h1 id="introduction">Introduction</h1>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
@@ -163,7 +163,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 (bin=30, start=1.5, width=1.4)
 </pre>
 <pre class='stata'>. graph export myhistogram.png, width(1000) replace
-(file myhistogram.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/myhistogram.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="myhistogram.png" style="width:50.0%" alt="" /><figcaption>Histogram Of Tree Height</figcaption>
@@ -172,7 +173,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. graph bar, over(location) title("Tree Location")
 </pre>
 <pre class='stata'>. graph export mybargraph.png, width(1000) replace
-(file mybargraph.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/mybargraph.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="mybargraph.png" style="width:50.0%" alt="" /><figcaption>Bar Graph Of Tree Location</figcaption>
@@ -181,7 +183,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age")
 </pre>
 <pre class='stata'>. graph export myscatter.png, width(1000) replace
-(file myscatter.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/myscatter.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="myscatter.png" style="width:50.0%" alt="" /><figcaption>Scatterplot Of Tree Height By Age</figcaption>
@@ -190,7 +193,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. graph bar, over(site) over(location) title("Tree Site Growth Quality by Location")
 </pre>
 <pre class='stata'>. graph export mybargraph2.png, width(1000) replace
-(file mybargraph2.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/mybargraph2.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="mybargraph2.png" style="width:50.0%" alt="" /><figcaption>Bar Graph Of Tree Site By Location</figcaption>
@@ -199,7 +203,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. graph bar height, over(location) title("Tree Height by Location")
 </pre>
 <pre class='stata'>. graph export mybargraph3.png, width(1000) replace
-(file mybargraph3.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/mybargraph3.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="mybargraph3.png" style="width:50.0%" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location</figcaption>
@@ -211,7 +216,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age") scheme(michigan)
 </pre>
 <pre class='stata'>. graph export myscatterM.png, width(1000) replace
-(file myscatterM.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/myscatterM.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="myscatterM.png" style="width:50.0%" alt="" /><figcaption>Scatterplot Of Tree Height By Age With Michigan Graph Scheme</figcaption>
@@ -219,7 +225,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age") scheme(lean2) msymbol(o)
 </pre>
 <pre class='stata'>. graph export myscatterL.png, width(1000) replace
-(file myscatterL.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/myscatterL.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="myscatterL.png" style="width:50.0%" alt="" /><figcaption>Scatterplot Of Tree Height By Age With lean2 Graph Scheme</figcaption>
@@ -227,7 +234,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. twoway scatter height age_base, title("Tree Height by Age") scheme(s1color)
 </pre>
 <pre class='stata'>. graph export myscatterS.png, width(1000) replace
-(file myscatterS.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/myscatterS.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="myscatterS.png" style="width:50.0%" alt="" /><figcaption>Scatterplot Of Tree Height By Age With s1color Graph Scheme</figcaption>
@@ -236,7 +244,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 > lcolor(none))
 </pre>
 <pre class='stata'>. graph export myscatterB.png, width(1000) replace
-(file myscatterB.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/myscatterB.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="myscatterB.png" style="width:50.0%" alt="" /><figcaption>Scatterplot Of Tree Height By Age With burd Graph Scheme</figcaption>
@@ -248,7 +257,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(michigan)
 </pre>
 <pre class='stata'>. graph export mybarM.png, width(1000) replace
-(file mybarM.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/mybarM.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="mybarM.png" style="width:50.0%" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location With Michigan Graph Scheme</figcaption>
@@ -256,7 +266,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(lean2)
 </pre>
 <pre class='stata'>. graph export mybarL.png, width(1000) replace
-(file mybarL.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/mybarL.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="mybarL.png" style="width:50.0%" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location With lean2 Graph Scheme</figcaption>
@@ -264,7 +275,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. graph bar height, over(location) asyvars title("Tree Height by Location") scheme(s1color)
 </pre>
 <pre class='stata'>. graph export mybarS.png, width(1000) replace
-(file mybarS.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/mybarS.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="mybarS.png" style="width:50.0%" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location With s1color Graph Scheme</figcaption>
@@ -273,7 +285,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 > on(lcolor(none))
 </pre>
 <pre class='stata'>. graph export mybarB.png, width(1000) replace
-(file mybarB.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/data-visualization-with-Stata/mybarB.png saved as PNG
+    format
 </pre>
 <figure>
 <img src="mybarB.png" style="width:50.0%" alt="" /><figcaption>Bar Graph Of Mean Tree Height By Location With burd Graph Scheme</figcaption>

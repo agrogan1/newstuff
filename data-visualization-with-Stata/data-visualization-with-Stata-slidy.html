@@ -96,7 +96,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>19 Dec 2020</p>
+<p>1 May 2021</p>
 </div>
 <div id="introduction" class="title-slide slide section level1"><h1>Introduction</h1><ul class="incremental">
 <li>Stata is a powerful and intuitive data analysis program.</li>
@@ -193,7 +193,8 @@ Andy Grogan-Kaylor
 <div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">histogram</span> height, <span class="bn">title</span>(<span class="st">&quot;Tree Height&quot;</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>(<span class="bn">bin</span>=30, <span class="bn">start</span>=1.5, <span class="kw">width</span>=1.4)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myhistogram.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>(file myhistogram.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/myhistogram.png saved <span class="kw">as</span> PNG</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="myhistogram.png" alt="" />
 <p class="caption">Histogram Of Tree Height</p>
@@ -202,7 +203,8 @@ Andy Grogan-Kaylor
 <h1>One Categorical Thing At A Time</h1>
 <div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span>, <span class="bn">over</span>(location) <span class="bn">title</span>(<span class="st">&quot;Tree Location&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybargraph.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>(file mybargraph.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/mybargraph.png saved <span class="kw">as</span> PNG</span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="mybargraph.png" alt="" />
 <p class="caption">Bar Graph Of Tree Location</p>
@@ -211,7 +213,8 @@ Andy Grogan-Kaylor
 <h1>Continuous by Continuous</h1>
 <div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> height age_base, <span class="bn">title</span>(<span class="st">&quot;Tree Height by Age&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myscatter.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>(file myscatter.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb9-2"><a href="#cb9-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/myscatter.png saved <span class="kw">as</span> PNG</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="myscatter.png" alt="" />
 <p class="caption">Scatterplot Of Tree Height By Age</p>
@@ -220,7 +223,8 @@ Andy Grogan-Kaylor
 <h1>Categorical by Categorical</h1>
 <div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span>, <span class="bn">over</span>(site) <span class="bn">over</span>(location) <span class="bn">title</span>(<span class="st">&quot;Tree Site Growth Quality by Location&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybargraph2.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>(file mybargraph2.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb11-2"><a href="#cb11-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/mybargraph2.png saved <span class="kw">as</span> PNG</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="mybargraph2.png" alt="" />
 <p class="caption">Bar Graph Of Tree Site By Location</p>
@@ -229,7 +233,8 @@ Andy Grogan-Kaylor
 <h1>Continuous by Categorical</h1>
 <div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> height, <span class="bn">over</span>(location) <span class="bn">title</span>(<span class="st">&quot;Tree Height by Location&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybargraph3.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>(file mybargraph3.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb13-2"><a href="#cb13-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/mybargraph3.png saved <span class="kw">as</span> PNG</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="mybargraph3.png" alt="" />
 <p class="caption">Bar Graph Of Mean Tree Height By Location</p>
@@ -240,21 +245,24 @@ Andy Grogan-Kaylor
 <h1>Continuous by Continuous</h1>
 <div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> height age_base, <span class="bn">title</span>(<span class="st">&quot;Tree Height by Age&quot;</span>) <span class="dv">scheme</span>(michigan)</span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myscatterM.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>(file myscatterM.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb15-2"><a href="#cb15-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/myscatterM.png saved <span class="kw">as</span> PNG</span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="myscatterM.png" alt="" />
 <p class="caption">Scatterplot Of Tree Height By Age With Michigan Graph Scheme</p>
 </div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> height age_base, <span class="bn">title</span>(<span class="st">&quot;Tree Height by Age&quot;</span>) <span class="dv">scheme</span>(lean2) <span class="bn">msymbol</span>(o)</span></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myscatterL.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>(file myscatterL.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb17-2"><a href="#cb17-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/myscatterL.png saved <span class="kw">as</span> PNG</span>
+<span id="cb17-3"><a href="#cb17-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="myscatterL.png" alt="" />
 <p class="caption">Scatterplot Of Tree Height By Age With lean2 Graph Scheme</p>
 </div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> height age_base, <span class="bn">title</span>(<span class="st">&quot;Tree Height by Age&quot;</span>) <span class="dv">scheme</span>(s1color)</span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myscatterS.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>(file myscatterS.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb19-2"><a href="#cb19-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/myscatterS.png saved <span class="kw">as</span> PNG</span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="myscatterS.png" alt="" />
 <p class="caption">Scatterplot Of Tree Height By Age With s1color Graph Scheme</p>
@@ -262,7 +270,8 @@ Andy Grogan-Kaylor
 <div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1"></a>. <span class="kw">twoway</span> <span class="kw">scatter</span> height age_base, <span class="bn">title</span>(<span class="st">&quot;Tree Height by Age&quot;</span>) <span class="dv">scheme</span>(burd) <span class="bn">msymbol</span>(o) graphregion(</span>
 <span id="cb20-2"><a href="#cb20-2"></a>&gt; lcolor(<span class="kw">none</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> myscatterB.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>(file myscatterB.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb21-2"><a href="#cb21-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/myscatterB.png saved <span class="kw">as</span> PNG</span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="myscatterB.png" alt="" />
 <p class="caption">Scatterplot Of Tree Height By Age With burd Graph Scheme</p>
@@ -274,21 +283,24 @@ Andy Grogan-Kaylor
 </blockquote>
 <div class="sourceCode" id="cb22"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> height, <span class="bn">over</span>(location) asyvars <span class="bn">title</span>(<span class="st">&quot;Tree Height by Location&quot;</span>) <span class="dv">scheme</span>(michigan)</span></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybarM.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>(file mybarM.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb23-2"><a href="#cb23-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/mybarM.png saved <span class="kw">as</span> PNG</span>
+<span id="cb23-3"><a href="#cb23-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="mybarM.png" alt="" />
 <p class="caption">Bar Graph Of Mean Tree Height By Location With Michigan Graph Scheme</p>
 </div>
 <div class="sourceCode" id="cb24"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> height, <span class="bn">over</span>(location) asyvars <span class="bn">title</span>(<span class="st">&quot;Tree Height by Location&quot;</span>) <span class="dv">scheme</span>(lean2)</span></code></pre></div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybarL.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>(file mybarL.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb25-2"><a href="#cb25-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/mybarL.png saved <span class="kw">as</span> PNG</span>
+<span id="cb25-3"><a href="#cb25-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="mybarL.png" alt="" />
 <p class="caption">Bar Graph Of Mean Tree Height By Location With lean2 Graph Scheme</p>
 </div>
 <div class="sourceCode" id="cb26"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> height, <span class="bn">over</span>(location) asyvars <span class="bn">title</span>(<span class="st">&quot;Tree Height by Location&quot;</span>) <span class="dv">scheme</span>(s1color)</span></code></pre></div>
 <div class="sourceCode" id="cb27"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybarS.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>(file mybarS.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb27-2"><a href="#cb27-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/mybarS.png saved <span class="kw">as</span> PNG</span>
+<span id="cb27-3"><a href="#cb27-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="mybarS.png" alt="" />
 <p class="caption">Bar Graph Of Mean Tree Height By Location With s1color Graph Scheme</p>
@@ -296,7 +308,8 @@ Andy Grogan-Kaylor
 <div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> height, <span class="bn">over</span>(location) asyvars <span class="bn">title</span>(<span class="st">&quot;Tree Height by Location&quot;</span>) <span class="dv">scheme</span>(burd) graphregi</span>
 <span id="cb28-2"><a href="#cb28-2"></a>&gt; <span class="kw">on</span>(lcolor(<span class="kw">none</span>))</span></code></pre></div>
 <div class="sourceCode" id="cb29"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mybarB.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>(file mybarB.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<span id="cb29-2"><a href="#cb29-2"></a>file /Users/agrogan/Desktop/newstuff/<span class="kw">data</span>-visualization-with-Stata/mybarB.png saved <span class="kw">as</span> PNG</span>
+<span id="cb29-3"><a href="#cb29-3"></a>    <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="mybarB.png" alt="" />
 <p class="caption">Bar Graph Of Mean Tree Height By Location With burd Graph Scheme</p>

@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}20 Jan 2021, 13:05:39
+ {txt}opened on:  {res} 1 May 2021, 13:08:44
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}20 Jan 2021
+{res} 1 May 2021
 {txt}
 {com}. //_2
 . clear all
@@ -48,7 +48,7 @@
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}20 Jan 2021, 13:05:47
+ {txt}closed on:  {res} 1 May 2021, 13:08:51
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
