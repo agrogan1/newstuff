@@ -30,6 +30,8 @@ library(tibble)
 
 library(dplyr)
 
+library(foreign)
+
 ```
 
 
@@ -69,11 +71,21 @@ censored <- factor(censored,
 
 # tibble
 
+# data required for animation
+
 mydata <- tibble::tibble(id, t, event_time, event, censored)
 
 mydata2 <- mydata %>%
   filter(t == 1) %>%
   select(id, event_time, censored)
+
+```
+
+```{r}
+
+write.dta(mydata, file = "event-history-multiple-records.dta")
+
+write.dta(mydata2, file = "event-history-single-record.dta")
 
 ```
 
