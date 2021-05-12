@@ -16,6 +16,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 ### Bayesian Statistics
 
+* [Bayes Theorem Applied To Data Analysis](./Bayes-theorem/Bayes-theorem.html)
 * A *kinda new*, *kinda old* resource: [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
 
 ### Categorical Data Analysis 
