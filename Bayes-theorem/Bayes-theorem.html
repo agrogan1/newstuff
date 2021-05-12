@@ -4,13 +4,12 @@
     <title>Bayes Theorem</title>
     <meta charset="utf-8" />
     <meta name="author" content="Andy Grogan-Kaylor" />
-    <meta name="date" content="2020-10-30" />
+    <meta name="date" content="2021-05-12" />
+    <script src="libs/header-attrs-2.8/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
     <link href="libs/tile-view-0.2.3/tile-view.css" rel="stylesheet" />
     <script src="libs/tile-view-0.2.3/tile-view.js"></script>
-    <script src="libs/tone-13.8.34/Tone.js"></script>
-    <script src="libs/slide-tone-0.2.3/slide-tone.js"></script>
     <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
     <link href="libs/shareon-1.4.1/shareon.min.css" rel="stylesheet" />
     <script src="libs/shareon-1.4.1/shareon.min.js"></script>
@@ -25,7 +24,7 @@ class: center, middle, inverse, title-slide
 ## Applied To Data Analysis
 ### Andy Grogan-Kaylor
 ### University of Michigan
-### 2020-10-30
+### 2021-05-12
 
 ---
 
@@ -66,7 +65,6 @@ blockquote {
 
 * Use the &lt;span style="font-size:100px"&gt;&amp;#8678;&lt;/span&gt; and &lt;span style="font-size:100px"&gt;&amp;#8680;&lt;/span&gt; keys to move through the presentation.
 * Press *o* for *panel overview*.
-* This presentation plays a *tone* when each new item appears. Turn the volume down if you find these tones annoying.
 
 ---
 # Derivation
@@ -110,27 +108,14 @@ From the definition of conditional probability:
 ---
 # Bayes Theorem:
 
-`\(P(D|H) = \frac{P(H|D)P(D)}{P(H)}\)` 
+`\(P(H|D) = \frac{P(D|H) P(H)}{P(D)}\)` 
 
 --
 # In Words:
 
 `\(\text{posterior} \propto \text{likelihood} \times \text{prior}\)` 
 
----
-# Expanded Versions
 
---
-
-`\(P(D|H) = \frac{P(H|D)P(D)}{P(H|D)P(D) + P(H|\neg D)P(\neg D)}\)` 
-
---
-
-`\(P(D|H) = \frac{P(H|D)P(D)}{\Sigma P(H|D_i)P(D_i)}\)`
-
---
-
-`\(P(D|H) = \frac{P(H|D)P(D)}{\int P(H|D_i)P(D_i) dD}\)`
 
 ---
 # Example 
@@ -139,9 +124,9 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 
 --
 
-|                          | D=1 (effect)        | D=0 (no effect)    |
+|  Data (D)                | D=1 (effect)        | D=0 (no effect)    |
 |:-------------------------|:--------------------|:-------------------|
-| Data (D)                 | 100 effects         | 900 non-effects    |
+| Hypothesis (H)           | 100 effects         | 900 non-effects    |
 | H=1 (conclude effect)    | 80 true positives   | 45 false positives |
 | H=0 (conclude no effect) | 20 false negatives  | 855 true negatives |
 
@@ -153,7 +138,7 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 class: center, top
 # Visualization
 
-&lt;img src="Bayes-theorem_files/figure-html/unnamed-chunk-2-1.png" width="80%" /&gt;
+&lt;img src="Bayes-theorem_files/figure-html/unnamed-chunk-3-1.png" width="80%" /&gt;
 
 
 ---
@@ -192,6 +177,9 @@ class: center, top
 --
 
 * Notice how the Bayesian approach lets us estimate the probability of different hypotheses given the data. In some cases, this may afford us the opportunity to accept our null hypothesis `\(H_0\)`.
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

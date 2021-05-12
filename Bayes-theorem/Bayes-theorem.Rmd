@@ -51,7 +51,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 xaringanExtra::use_tile_view()
 
-xaringanExtra::use_slide_tone()
+# xaringanExtra::use_slide_tone()
 
 xaringanExtra::use_share_again()
 
@@ -61,7 +61,6 @@ xaringanExtra::use_share_again()
 
 * Use the <span style="font-size:100px">&#8678;</span> and <span style="font-size:100px">&#8680;</span> keys to move through the presentation.
 * Press *o* for *panel overview*.
-* This presentation plays a *tone* when each new item appears. Turn the volume down if you find these tones annoying.
 
 ---
 # Derivation
@@ -105,27 +104,29 @@ $P(D|H)P(H) = P(H|D)P(D)$
 ---
 # Bayes Theorem:
 
-$P(D|H) = \frac{P(H|D)P(D)}{P(H)}$ 
+$P(H|D) = \frac{P(D|H) P(H)}{P(D)}$ 
 
 --
 # In Words:
 
 $\text{posterior} \propto \text{likelihood} \times \text{prior}$ 
 
----
+```{r, echo=FALSE, eval=FALSE}
+
 # Expanded Versions
 
---
-
-$P(D|H) = \frac{P(H|D)P(D)}{P(H|D)P(D) + P(H|\neg D)P(\neg D)}$ 
+$P(H|D) = \frac{P(D|H)P(H)}{P(D|H)P(D) + P(D|\neg H)P(\neg D)}$ 
 
 --
-
+  
 $P(D|H) = \frac{P(H|D)P(D)}{\Sigma P(H|D_i)P(D_i)}$
-
+  
 --
 
 $P(D|H) = \frac{P(H|D)P(D)}{\int P(H|D_i)P(D_i) dD}$
+
+
+```
 
 ---
 # Example 
@@ -134,9 +135,9 @@ Consider an example using 1,000 hypothetical studies. We imagine that only 10% o
 
 --
 
-|                          | D=1 (effect)        | D=0 (no effect)    |
+|  Data (D)                | D=1 (effect)        | D=0 (no effect)    |
 |:-------------------------|:--------------------|:-------------------|
-| Data (D)                 | 100 effects         | 900 non-effects    |
+| Hypothesis (H)           | 100 effects         | 900 non-effects    |
 | H=1 (conclude effect)    | 80 true positives   | 45 false positives |
 | H=0 (conclude no effect) | 20 false negatives  | 855 true negatives |
 
@@ -205,7 +206,8 @@ p1 <- Bayesdata %>%
   theme(plot.title = element_text(size=rel(3)),
         legend.text = element_text(size = rel(1)),
         aspect.ratio = .5) +
-  theme_ipsum_rc(grid="") +
+  # theme_ipsum_rc(grid="") +
+  theme_minimal() +
   theme_enhance_waffle() 
 
 p1 
