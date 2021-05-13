@@ -9,85 +9,85 @@
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>Survival Analysis and Event History</title>
   <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
     href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
-   href="../UNslidy.css" />
+   href="../UMslidy.css" />
   <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
     charset="utf-8" type="text/javascript"></script>
-	<script type="text/javascript" async
+  <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+  </script>	
 </head>
 <body>
 <div class="slide titlepage">
@@ -96,19 +96,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Andy Grogan-Kaylor
   </p>
 </div>
-<div class="slide section level1">
+<div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>4 Dec 2020</p>
+<p>13 May 2021</p>
 </div>
-<div id="introduction" class="slide section level1">
+<div id="introduction" class="title-slide slide section level1">
 <h1>Introduction</h1>
 <blockquote>
 <p>“Survival analysis is a key technique in data-driven decision-making, which is now central to public interest because of COVID-19. Applying the correct technique for the specific question at hand is crucial for credible public health inferences. If you are interested in assessing how a risk factor or a potential treatment affects the progression of a disease—such as how long a patient takes to recover—then survival analysis techniques come into play. Survival analysis deeply respects the ultimate source of its data, often the disease experience or even the life and death of human patients. It seeks to exploit every last drop of information that this experience can render for saving lives—in particular, not only whether patients survived, but how long, and why. And it strives to do so with minimal assumptions, so that the data are truly driving the decision.”</p>
 </blockquote>
 <p>—SAS Corporation</p>
 </div>
-<div id="key-concepts" class="slide section level1">
+
+<div id="key-concepts" class="title-slide slide section level1">
 <h1>Key Concepts</h1>
 <blockquote>
 <p>WHO CARES how we measure time? Isn’t it self-evident?</p>
@@ -118,7 +119,8 @@ Andy Grogan-Kaylor
 <li><p><span class="math inline">\(h(t) = x1 + x2 + \text{etc.} ...\)</span>: formula (effect on hazard (instantaneous rate of occurrence))</p></li>
 </ul>
 </div>
-<div id="the-hospital-bed-problem" class="slide section level1">
+
+<div id="the-hospital-bed-problem" class="title-slide slide section level1">
 <h1>The “Hospital Bed Problem”</h1>
 <ul class="incremental">
 <li><p>Imagine a <em>Hypothetical Hospital</em></p></li>
@@ -129,62 +131,75 @@ Andy Grogan-Kaylor
 <blockquote>
 <p>Is this a hospital that serves mostly long-term, or short term patients?</p>
 </blockquote>
-<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">set</span> <span class="kw">obs</span> 52 <span class="co">// 52 hypothetical obervations</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>number <span class="kw">of</span> observations (_N) was 0, now 52</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">generate</span> id = <span class="dt">_n</span> <span class="co">// set id = to observation #</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">generate</span> weeks = 52</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">replace</span> weeks = 1 <span class="kw">if</span> id == 52</span>
-<span id="cb5-2"><a href="#cb5-2"></a>(1 <span class="fu">real</span> change made)</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">twoway</span> (<span class="kw">scatter</span> id weeks <span class="kw">if</span> weeks == 52, msize(small)) <span class="co">/// staying 52 weeks</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>&gt; (<span class="kw">scatter</span> id weeks <span class="kw">if</span> weeks == 1, msize(small)), <span class="co">/// staying 1 week</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;Hypothetical Hospital&quot;</span>) <span class="co">///</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>&gt; <span class="bn">legend</span>(<span class="kw">on</span> <span class="kw">order</span>(1 <span class="st">&quot;long term&quot;</span> 2 <span class="st">&quot;short term&quot;</span>)) <span class="co">///</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>&gt; <span class="bn">xtitle</span>(<span class="st">&quot;week of discharge&quot;</span>) <span class="co">///</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>&gt; <span class="kw">ylabel</span>(1(1)52, labels <span class="bn">labsize</span>(tiny) angle(horizontal) noticks <span class="bn">nogrid</span>) <span class="co">/// </span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> hospital_bed_problem.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>(file hospital_bed_problem.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">set</span> <span class="kw">obs</span> 52 <span class="co">// 52 hypothetical obervations</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Number <span class="kw">of</span> observations (_N) was 0, now 52.</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">generate</span> id = <span class="dt">_n</span> <span class="co">// set id = to observation #</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">generate</span> weeks = 52</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">replace</span> weeks = 1 <span class="kw">if</span> id == 52</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(1 <span class="fu">real</span> change made)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">twoway</span> (<span class="kw">scatter</span> id weeks <span class="kw">if</span> weeks == 52, msize(small)) <span class="co">/// staying 52 weeks</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>&gt; (<span class="kw">scatter</span> id weeks <span class="kw">if</span> weeks == 1, msize(small)), <span class="co">/// staying 1 week</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;Hypothetical Hospital&quot;</span>) <span class="co">///</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">legend</span>(<span class="kw">on</span> <span class="kw">order</span>(1 <span class="st">&quot;long term&quot;</span> 2 <span class="st">&quot;short term&quot;</span>)) <span class="co">///</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">xtitle</span>(<span class="st">&quot;week of discharge&quot;</span>) <span class="co">///</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>&gt; <span class="kw">ylabel</span>(1(1)52, labels <span class="bn">labsize</span>(tiny) angle(horizontal) noticks <span class="bn">nogrid</span>) <span class="co">/// </span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> hospital_bed_problem.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>file</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/hospital_bed_p</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    &gt; roblem.png saved <span class="kw">as</span> PNG <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="hospital_bed_problem.png" alt="" />
 <p class="caption">Illustration of Hospital Bed Problem</p>
 </div>
 </div>
-<div id="how-to-measure-length-of-stay-1" class="slide section level1">
+
+<div id="how-to-measure-length-of-stay-1" class="title-slide slide section level1">
 <h1>How To Measure Length of Stay (1)</h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">set</span> <span class="kw">obs</span> 25 <span class="co">// 25 hypothetical obervations</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>number <span class="kw">of</span> observations (_N) was 0, now 25</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">generate</span> id = <span class="dt">_n</span> <span class="co">// set id = to observation #</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. <span class="kw">generate</span> time = runiform(1, 100) <span class="co">// random times</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">generate</span> censored = time &gt; 75 <span class="co">// censored if time &gt; 75</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">twoway</span> (<span class="kw">scatter</span> id time <span class="kw">if</span> censored == 0) <span class="co">///</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>&gt; (<span class="kw">scatter</span> id time <span class="kw">if</span> censored == 1), <span class="co">///</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;Hypothetical Timing of Events&quot;</span>) <span class="co">///</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>&gt; <span class="bn">subtitle</span>(<span class="st">&quot;Think About Different Kinds of Events&quot;</span>) <span class="co">///</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>&gt; <span class="kw">note</span>(<span class="st">&quot;Study Ends At Time 75&quot;</span>) <span class="co">///</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>&gt; <span class="bn">legend</span>(<span class="kw">on</span> <span class="kw">order</span>(1 <span class="st">&quot;not censored&quot;</span> 2 <span class="st">&quot;censored&quot;</span>)) <span class="co">///</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>&gt; <span class="bn">xline</span>(75, lcolor(<span class="st">&quot;red&quot;</span>)) <span class="co">/// censoring line at 75</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a>&gt; <span class="kw">ylabel</span>(1(1)25, <span class="bn">labsize</span>(vsmall) angle(horizontal)) <span class="co">/// lines from 1 to 25</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> timing_of_events.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>(file timing_of_events.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">set</span> <span class="kw">obs</span> 25 <span class="co">// 25 hypothetical obervations</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Number <span class="kw">of</span> observations (_N) was 0, now 25.</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">generate</span> id = <span class="dt">_n</span> <span class="co">// set id = to observation #</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">generate</span> time = runiform(1, 100) <span class="co">// random times</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">generate</span> censored = time &gt; 75 <span class="co">// censored if time &gt; 75</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">twoway</span> (<span class="kw">scatter</span> id time <span class="kw">if</span> censored == 0) <span class="co">///</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>&gt; (<span class="kw">scatter</span> id time <span class="kw">if</span> censored == 1), <span class="co">///</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;Hypothetical Timing of Events&quot;</span>) <span class="co">///</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">subtitle</span>(<span class="st">&quot;Think About Different Kinds of Events&quot;</span>) <span class="co">///</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>&gt; <span class="kw">note</span>(<span class="st">&quot;Study Ends At Time 75&quot;</span>) <span class="co">///</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">legend</span>(<span class="kw">on</span> <span class="kw">order</span>(1 <span class="st">&quot;not censored&quot;</span> 2 <span class="st">&quot;censored&quot;</span>)) <span class="co">///</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">xline</span>(75, lcolor(<span class="st">&quot;red&quot;</span>)) <span class="co">/// censoring line at 75</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>&gt; <span class="kw">ylabel</span>(1(1)25, <span class="bn">labsize</span>(vsmall) angle(horizontal)) <span class="co">/// lines from 1 to 25</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> timing_of_events.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>file</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/timing_of_even</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    &gt; ts.png saved <span class="kw">as</span> PNG <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="timing_of_events.png" alt="" />
 <p class="caption">Timing Of Events</p>
 </div>
-<h2 id="animated">Animated</h2>
+</div>
+<div id="animated" class="slide section level2">
+<h1>Animated</h1>
 <p>See <a href="./times-events-and-censoring.html">times-events-and-censoring.html</a></p>
 </div>
-<div id="how-to-measure-length-of-stay-2" class="slide section level1">
+
+<div id="how-to-measure-length-of-stay-2" class="title-slide slide section level1">
 <h1>How To Measure Length of Stay (2)</h1>
-<h2 id="event-happened-within-a-specified-time-yesno">Event happened within a specified time (yes/no)</h2>
+
+</div>
+<div id="event-happened-within-a-specified-time-yesno" class="slide section level2">
+<h1>Event happened within a specified time (yes/no)</h1>
 <p><span class="math display">\[ \ln(\frac{P(\text{event})}{1-P(\text{event})}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
 <ul class="incremental">
 <li>Statistically accurate, but we lose information on <em>when</em> the event happened.</li>
 <li>Statistically <em>less efficient</em>.</li>
 </ul>
-<h2 id="time-until-event">Time until Event</h2>
+</div>
+<div id="time-until-event" class="slide section level2">
+<h1>Time until Event</h1>
 <p><span class="math display">\[ \text{time until event} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + e_i \]</span></p>
 <ul class="incremental">
 <li>What to do with events that haven’t happened yet? (Censoring)</li>
@@ -192,15 +207,18 @@ Andy Grogan-Kaylor
 <li>Code as 0. Possible bias. They might happen at some point.</li>
 <li>Code as <code>time of censoring</code>. Possible bias. They might never happen. They might happen much later.</li>
 </ul>
-<h2 id="hazard-risk-of-event-occurence">Hazard (Risk) of Event Occurence</h2>
+</div>
+<div id="hazard-risk-of-event-occurence" class="slide section level2">
+<h1>Hazard (Risk) of Event Occurence</h1>
 <h3 id="a-more-heuristic-definition">A more heuristic definition:</h3>
 <p><span class="math display">\[ h(t) = \lim_{\delta\to 0} \frac{\text{probability of having an event before time } t + \delta}{\delta} \]</span></p>
-<p>This definition per Johnson &amp; Shih (2007)<a href="#fn1" id="fnref1" class="footnote-ref"><sup>1</sup></a></p>
+<p>This definition per Johnson &amp; Shih (2007)</p>
 <h3 id="a-more-formal-definition">A more formal definition:</h3>
 <p><span class="math display">\[ h(t) = \lim_{\Delta t \to 0} \frac{P(t \le T &lt; t + \Delta t | T &gt; t)}{\Delta t} \]</span></p>
-<p>This definition per Ragnar Frisch Centre for Economic Research (2020)<a href="#fn2" id="fnref2" class="footnote-ref"><sup>2</sup></a></p>
+<p>This definition per Ragnar Frisch Centre for Economic Research (2020)</p>
 </div>
-<div id="a-policy-example-welfare-reform-1996" class="slide section level1">
+
+<div id="a-policy-example-welfare-reform-1996" class="title-slide slide section level1">
 <h1>A Policy Example (Welfare Reform, 1996)</h1>
 <p>From LaDonna Pavetti (1995)</p>
 <ul class="incremental">
@@ -208,75 +226,85 @@ Andy Grogan-Kaylor
 <li>new entrants (percent)</li>
 <li>all current recipients at a point in time (percent)</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1"></a>. <span class="kw">use</span> Pavetti.dta</span>
-<span id="cb16-2"><a href="#cb16-2"></a>(Written <span class="kw">by</span> R.              )</span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1"></a>. <span class="ot">list</span>, abbreviate(25) <span class="co">// list out the data</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a></span>
-<span id="cb17-3"><a href="#cb17-3"></a>     ┌─────────────────────────────────────────────────┐</span>
-<span id="cb17-4"><a href="#cb17-4"></a>     │    time   new_entrants   all_current_recipients │</span>
-<span id="cb17-5"><a href="#cb17-5"></a>     ├─────────────────────────────────────────────────┤</span>
-<span id="cb17-6"><a href="#cb17-6"></a>  1. │    1-12           27.4                      4.5 │</span>
-<span id="cb17-7"><a href="#cb17-7"></a>  2. │   13-24           14.8                      4.8 │</span>
-<span id="cb17-8"><a href="#cb17-8"></a>  3. │   25-36             10                      4.9 │</span>
-<span id="cb17-9"><a href="#cb17-9"></a>  4. │   37-48            7.7                        5 │</span>
-<span id="cb17-10"><a href="#cb17-10"></a>  5. │   49-60            5.5                      4.5 │</span>
-<span id="cb17-11"><a href="#cb17-11"></a>     ├─────────────────────────────────────────────────┤</span>
-<span id="cb17-12"><a href="#cb17-12"></a>  6. │ Over 60           34.6                     76.3 │</span>
-<span id="cb17-13"><a href="#cb17-13"></a>     └─────────────────────────────────────────────────┘</span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> (asis) all_current_recipients, <span class="co">/// this particular set of options was difficult to fig</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>&gt; ure out!</span>
-<span id="cb18-3"><a href="#cb18-3"></a>&gt; asyvars <span class="co">///</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a>&gt; <span class="bn">over</span>(time) <span class="co">///</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;All Current Recipients&quot;</span>) <span class="co">///</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a>&gt; sub(<span class="st">&quot;By Months On Caseload&quot;</span>) <span class="co">///</span></span>
-<span id="cb18-7"><a href="#cb18-7"></a>&gt; <span class="bn">ytitle</span>(<span class="st">&quot;percent&quot;</span>) <span class="co">///</span></span>
-<span id="cb18-8"><a href="#cb18-8"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> all_current_recipients.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>(file all_current_recipients.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">use</span> Pavetti.dta</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>(Written <span class="kw">by</span> R.              )</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>. <span class="ot">list</span>, abbreviate(25) <span class="co">// list out the data</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>     ┌─────────────────────────────────────────────────┐</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>     │    time   new_entrants   all_current_recipients │</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>     ├─────────────────────────────────────────────────┤</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  1. │    1-12           27.4                      4.5 │</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  2. │   13-24           14.8                      4.8 │</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  3. │   25-36             10                      4.9 │</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  4. │   37-48            7.7                        5 │</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  5. │   49-60            5.5                      4.5 │</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>     ├─────────────────────────────────────────────────┤</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  6. │ Over 60           34.6                     76.3 │</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>     └─────────────────────────────────────────────────┘</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> (asis) all_current_recipients, <span class="co">/// this particular set of options was difficult to figur</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>&gt; <span class="fu">e</span> out!</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>&gt; asyvars <span class="co">///</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">over</span>(time) <span class="co">///</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;All Current Recipients&quot;</span>) <span class="co">///</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>&gt; sub(<span class="st">&quot;By Months On Caseload&quot;</span>) <span class="co">///</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">ytitle</span>(<span class="st">&quot;percent&quot;</span>) <span class="co">///</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> all_current_recipients.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>file</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/all_current_re</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    &gt; cipients.png saved <span class="kw">as</span> PNG <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="all_current_recipients.png" alt="" />
 <p class="caption">All Current Recipients by Months on Caseload</p>
 </div>
 </div>
-<div id="welfare-reform-2" class="slide section level1">
+
+<div id="welfare-reform-2" class="title-slide slide section level1">
 <h1>Welfare Reform (2)</h1>
-<div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> (asis) new_entrants, <span class="co">///</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>&gt; asyvars <span class="co">///</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>&gt; <span class="bn">over</span>(time) <span class="co">///</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;New Recipients&quot;</span>) <span class="co">///</span></span>
-<span id="cb20-5"><a href="#cb20-5"></a>&gt; sub(<span class="st">&quot;By Months On Caseload&quot;</span>) <span class="co">///</span></span>
-<span id="cb20-6"><a href="#cb20-6"></a>&gt; <span class="bn">ytitle</span>(<span class="st">&quot;percent&quot;</span>) <span class="co">///</span></span>
-<span id="cb20-7"><a href="#cb20-7"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> new_recipients.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>(file new_recipients.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="bn">bar</span> (asis) new_entrants, <span class="co">///</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>&gt; asyvars <span class="co">///</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">over</span>(time) <span class="co">///</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">title</span>(<span class="st">&quot;New Recipients&quot;</span>) <span class="co">///</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>&gt; sub(<span class="st">&quot;By Months On Caseload&quot;</span>) <span class="co">///</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>&gt; <span class="bn">ytitle</span>(<span class="st">&quot;percent&quot;</span>) <span class="co">///</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>&gt; <span class="dv">scheme</span>(michigan)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> new_recipients.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>file</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/new_recipients</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    &gt; .png saved <span class="kw">as</span> PNG <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="new_recipients.png" alt="" />
 <p class="caption">New Recipients by Months on Caseload</p>
 </div>
 </div>
-<div id="musicians-and-mortality-1" class="slide section level1">
+
+<div id="musicians-and-mortality-1" class="title-slide slide section level1">
 <h1>Musicians and Mortality (1)</h1>
 <div class="figure">
 <img src="music-to-die-for.png" alt="" />
 <p class="caption">Music To Die For</p>
 </div>
 </div>
-<div id="musicians-and-mortality-2" class="slide section level1">
+
+<div id="musicians-and-mortality-2" class="title-slide slide section level1">
 <h1>Musicians and Mortality (2)</h1>
 <div class="figure">
 <img src="musician_mortality.jpeg" alt="" />
 <p class="caption">Musician Mortality</p>
 </div>
 </div>
-<div id="cox-proportional-hazards-model" class="slide section level1">
+
+<div id="cox-proportional-hazards-model" class="title-slide slide section level1">
 <h1>Cox Proportional Hazards Model</h1>
+
 </div>
-<div id="formula" class="slide section level1">
+
+<div id="formula" class="title-slide slide section level1">
 <h1>Formula</h1>
 <p><span class="math inline">\(h(t)\)</span> the rate of occurrence.</p>
 <p><span class="math display">\[ h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta} \]</span></p>
-<p>This definition per Johnson &amp; Shih (2007)<a href="#fn3" id="fnref3" class="footnote-ref"><sup>3</sup></a></p>
+<p>This definition per Johnson &amp; Shih (2007).</p>
 <p><span class="math display">\[ h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.} \]</span></p>
 <blockquote>
 <p>We don’t directly estimate the hazard, but estimate the effect of covariates on the hazard.</p>
@@ -285,143 +313,150 @@ Andy Grogan-Kaylor
 <p>The event (birth, death, program entry, program departure) is coded as 1, so we are estimating the association of the covariates with event occurrence.</p>
 </blockquote>
 </div>
-<div id="cox-proportional-hazards-model-in-stata" class="slide section level1">
+
+<div id="cox-proportional-hazards-model-in-stata" class="title-slide slide section level1">
 <h1>Cox Proportional Hazards Model in Stata</h1>
 <blockquote>
 <p>Using a data set referenced frequently in Stata <code>help</code> and Stata YouTube Videos</p>
 </blockquote>
-<div class="sourceCode" id="cb22"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1"></a>. <span class="kw">webuse</span> drugtr <span class="co">// demonstration data set from Stata</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>(Patient Survival <span class="kw">in</span> Drug Trial)</span></code></pre></div>
-<h2 id="setup-of-data">Setup of Data</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1"></a>. <span class="kw">stset</span> <span class="co">// show st setup of data</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>-&gt; <span class="kw">stset</span> studytime, failure(died)</span>
-<span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a>     failure event:  died != 0 &amp; died &lt; .</span>
-<span id="cb24-5"><a href="#cb24-5"></a><span class="kw">obs</span>. time interval:  (0, studytime]</span>
-<span id="cb24-6"><a href="#cb24-6"></a> <span class="kw">exit</span> <span class="kw">on</span> <span class="kw">or</span> before:  failure</span>
-<span id="cb24-7"><a href="#cb24-7"></a></span>
-<span id="cb24-8"><a href="#cb24-8"></a>──────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb24-9"><a href="#cb24-9"></a>         48  <span class="kw">total</span> observations</span>
-<span id="cb24-10"><a href="#cb24-10"></a>          0  exclusions</span>
-<span id="cb24-11"><a href="#cb24-11"></a>──────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb24-12"><a href="#cb24-12"></a>         48  observations remaining, representing</span>
-<span id="cb24-13"><a href="#cb24-13"></a>         31  failures <span class="kw">in</span> single-record/single-failure <span class="kw">data</span></span>
-<span id="cb24-14"><a href="#cb24-14"></a>        744  <span class="kw">total</span> analysis time <span class="fu">at</span> risk and under observation</span>
-<span id="cb24-15"><a href="#cb24-15"></a>                                                <span class="fu">at</span> risk from t =         0</span>
-<span id="cb24-16"><a href="#cb24-16"></a>                                     earliest observed entry t =         0</span>
-<span id="cb24-17"><a href="#cb24-17"></a>                                          <span class="fu">last</span> observed <span class="kw">exit</span> t =        39</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1"></a>. <span class="kw">describe</span> <span class="co">// show variables in data</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a></span>
-<span id="cb25-3"><a href="#cb25-3"></a>Contains <span class="kw">data</span> from http:<span class="co">//www.stata-press.com/data/r15/drugtr.dta</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a>  <span class="kw">obs</span>:            48                          Patient Survival <span class="kw">in</span> Drug Trial</span>
-<span id="cb25-5"><a href="#cb25-5"></a> vars:             8                          3 Mar 2016 02:12</span>
-<span id="cb25-6"><a href="#cb25-6"></a> <span class="kw">size</span>:           384                          </span>
-<span id="cb25-7"><a href="#cb25-7"></a>──────────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb25-8"><a href="#cb25-8"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
-<span id="cb25-9"><a href="#cb25-9"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
-<span id="cb25-10"><a href="#cb25-10"></a>──────────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb25-11"><a href="#cb25-11"></a>studytime       <span class="kw">byte</span>    %8.0g                 Months to death <span class="kw">or</span> <span class="kw">end</span> <span class="kw">of</span> <span class="fu">exp</span>.</span>
-<span id="cb25-12"><a href="#cb25-12"></a>died            <span class="kw">byte</span>    %8.0g                 1 <span class="kw">if</span> patient died</span>
-<span id="cb25-13"><a href="#cb25-13"></a>drug            <span class="kw">byte</span>    %8.0g                 Drug <span class="dv">type</span> (0=placebo)</span>
-<span id="cb25-14"><a href="#cb25-14"></a>age             <span class="kw">byte</span>    %8.0g                 Patient&#39;s age <span class="fu">at</span> <span class="bn">start</span> <span class="kw">of</span> <span class="fu">exp</span>.</span>
-<span id="cb25-15"><a href="#cb25-15"></a>_st             <span class="kw">byte</span>    %8.0g                 1 <span class="kw">if</span> record is to <span class="kw">be</span> used; 0 otherwise</span>
-<span id="cb25-16"><a href="#cb25-16"></a>_d              <span class="kw">byte</span>    %8.0g                 1 <span class="kw">if</span> failure; 0 <span class="kw">if</span> censored</span>
-<span id="cb25-17"><a href="#cb25-17"></a>_t              <span class="kw">byte</span>    %10.0g                analysis time when record <span class="fu">ends</span></span>
-<span id="cb25-18"><a href="#cb25-18"></a>_t0             <span class="kw">byte</span>    %10.0g                analysis time when record begins</span>
-<span id="cb25-19"><a href="#cb25-19"></a>──────────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb25-20"><a href="#cb25-20"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
-<h2 id="kaplan-meier-survivor-function-per-gabriela-ortiz-stata">Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">webuse</span> drugtr <span class="co">// demonstration data set from Stata</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>(Patient survival <span class="kw">in</span> drug trial)</span></code></pre></div>
+</div>
+<div id="setup-of-data" class="slide section level2">
+<h1>Setup of Data</h1>
+<div class="sourceCode" id="cb24"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">stset</span> <span class="co">// show st setup of data</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>-&gt; <span class="kw">stset</span> studytime, failure(died)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>Survival-time <span class="kw">data</span> settings</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>         Failure event: died!=0 &amp; died&lt;.</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>Observed time interval: (0, studytime]</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>     Exit <span class="kw">on</span> <span class="kw">or</span> before: failure</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>──────────────────────────────────────────────────────────────────────────</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>         48  <span class="kw">total</span> observations</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>          0  exclusions</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>──────────────────────────────────────────────────────────────────────────</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>         48  observations remaining, representing</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>         31  failures <span class="kw">in</span> single-record/single-failure <span class="kw">data</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>        744  <span class="kw">total</span> analysis time <span class="fu">at</span> risk and under observation</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>                                                At risk from t =         0</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>                                     Earliest observed entry t =         0</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>                                          Last observed <span class="kw">exit</span> t =        39</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">describe</span> <span class="co">// show variables in data</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Contains <span class="kw">data</span> from https:<span class="co">//www.stata-press.com/data/r17/drugtr.dta</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a> Observations:            48                  Patient survival <span class="kw">in</span> drug trial</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    Variables:             8                  3 Mar 2020 02:12</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>Variable      Storage   Display    Value</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="bn">name</span>         <span class="dv">type</span>    <span class="kw">format</span>    <span class="kw">label</span>      Variable <span class="kw">label</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>studytime       <span class="kw">byte</span>    %8.0g                 Months to death <span class="kw">or</span> <span class="kw">end</span> <span class="kw">of</span> <span class="fu">exp</span>.</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>died            <span class="kw">byte</span>    %8.0g                 1 <span class="kw">if</span> patient died</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>drug            <span class="kw">byte</span>    %8.0g                 Drug <span class="dv">type</span> (0=placebo)</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>age             <span class="kw">byte</span>    %8.0g                 Patient&#39;s age <span class="fu">at</span> <span class="bn">start</span> <span class="kw">of</span> <span class="fu">exp</span>.</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>_st             <span class="kw">byte</span>    %8.0g                 1 <span class="kw">if</span> record is to <span class="kw">be</span> used; 0 otherwise</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>_d              <span class="kw">byte</span>    %8.0g                 1 <span class="kw">if</span> failure; 0 <span class="kw">if</span> censored</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>_t              <span class="kw">byte</span>    %10.0g                Analysis time when record <span class="fu">ends</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>_t0             <span class="kw">byte</span>    %10.0g                Analysis time when record begins</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
+</div>
+<div id="kaplan-meier-survivor-function-per-gabriela-ortiz-stata" class="slide section level2">
+<h1>Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)</h1>
 <p><span class="math display">\[ S(t)=Pr(T&gt;t) \]</span></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1"></a>. <span class="kw">sts</span> <span class="kw">graph</span>, <span class="dv">scheme</span>(michigan) <span class="co">// Kaplan-Meier Survivor Function</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a></span>
-<span id="cb26-3"><a href="#cb26-3"></a>         failure _d:  died</span>
-<span id="cb26-4"><a href="#cb26-4"></a>   analysis time _t:  studytime</span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> survival0.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>(file survival0.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">sts</span> <span class="kw">graph</span>, <span class="dv">scheme</span>(michigan) <span class="co">// Kaplan-Meier Survivor Function</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        Failure _d: died</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  Analysis time _t: studytime</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> survival0.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival0.png</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    saved <span class="kw">as</span> PNG <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="survival0.png" alt="" />
 <p class="caption">Kaplan-Meier Survivor Function</p>
 </div>
-<h2 id="cox-proportional-hazards-model-1">Cox Proportional Hazards Model</h2>
-<div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1"></a>. <span class="kw">stcox</span> age drug <span class="co">// run Cox Proportional Hazards Model</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a></span>
-<span id="cb28-3"><a href="#cb28-3"></a>         failure _d:  died</span>
-<span id="cb28-4"><a href="#cb28-4"></a>   analysis time _t:  studytime</span>
-<span id="cb28-5"><a href="#cb28-5"></a></span>
-<span id="cb28-6"><a href="#cb28-6"></a>Iteration 0:   <span class="fu">log</span> likelihood = -99.911448</span>
-<span id="cb28-7"><a href="#cb28-7"></a>Iteration 1:   <span class="fu">log</span> likelihood = -83.551879</span>
-<span id="cb28-8"><a href="#cb28-8"></a>Iteration 2:   <span class="fu">log</span> likelihood = -83.324009</span>
-<span id="cb28-9"><a href="#cb28-9"></a>Iteration 3:   <span class="fu">log</span> likelihood = -83.323546</span>
-<span id="cb28-10"><a href="#cb28-10"></a>Refining <span class="kw">estimates</span>:</span>
-<span id="cb28-11"><a href="#cb28-11"></a>Iteration 0:   <span class="fu">log</span> likelihood = -83.323546</span>
-<span id="cb28-12"><a href="#cb28-12"></a></span>
-<span id="cb28-13"><a href="#cb28-13"></a>Cox regression -- Breslow method <span class="kw">for</span> ties</span>
-<span id="cb28-14"><a href="#cb28-14"></a></span>
-<span id="cb28-15"><a href="#cb28-15"></a>No. <span class="kw">of</span> subjects =           48                  Number <span class="kw">of</span> <span class="kw">obs</span>    =          48</span>
-<span id="cb28-16"><a href="#cb28-16"></a>No. <span class="kw">of</span> failures =           31</span>
-<span id="cb28-17"><a href="#cb28-17"></a>Time <span class="fu">at</span> risk    =          744</span>
-<span id="cb28-18"><a href="#cb28-18"></a>                                                LR <span class="fu">chi2</span>(2)       =       33.18</span>
-<span id="cb28-19"><a href="#cb28-19"></a>Log likelihood  =   -83.323546                  Prob &gt; <span class="fu">chi2</span>      =      0.0000</span>
-<span id="cb28-20"><a href="#cb28-20"></a></span>
-<span id="cb28-21"><a href="#cb28-21"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb28-22"><a href="#cb28-22"></a>          _t │ Haz. Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
-<span id="cb28-23"><a href="#cb28-23"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb28-24"><a href="#cb28-24"></a>         age │   1.120325   .0417711     3.05   0.002     1.041375     1.20526</span>
-<span id="cb28-25"><a href="#cb28-25"></a>        drug │   .1048772   .0477017    -4.96   0.000     .0430057    .2557622</span>
-<span id="cb28-26"><a href="#cb28-26"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
-<h2 id="graph-survival-curves">Graph Survival Curves</h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1"></a>. <span class="kw">stcurve</span>, survival <span class="dv">scheme</span>(michigan) <span class="co">// survival curve</span></span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> survival1.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>(file survival1.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+</div>
+<div id="cox-proportional-hazards-model-1" class="slide section level2">
+<h1>Cox Proportional Hazards Model</h1>
+<div class="sourceCode" id="cb28"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">stcox</span> age drug <span class="co">// run Cox Proportional Hazards Model</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        Failure _d: died</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  Analysis time _t: studytime</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>Iteration 0:   <span class="fu">log</span> likelihood = -99.911448</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>Iteration 1:   <span class="fu">log</span> likelihood = -83.551879</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>Iteration 2:   <span class="fu">log</span> likelihood = -83.324009</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>Iteration 3:   <span class="fu">log</span> likelihood = -83.323546</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>Refining <span class="kw">estimates</span>:</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>Iteration 0:   <span class="fu">log</span> likelihood = -83.323546</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>Cox regression with Breslow method <span class="kw">for</span> ties</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>No. <span class="kw">of</span> subjects =  48                                   Number <span class="kw">of</span> <span class="kw">obs</span> =     48</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>No. <span class="kw">of</span> failures =  31</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>Time <span class="fu">at</span> risk    = 744</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>                                                        LR <span class="fu">chi2</span>(2)    =  33.18</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>Log likelihood = -83.323546                             Prob &gt; <span class="fu">chi2</span>   = 0.0000</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>          _t │ Haz. <span class="kw">ratio</span>   Std. err.      z    P&gt;|z|     [95% conf. interval]</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>         age │   1.120325   .0417711     3.05   0.002     1.041375     1.20526</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>        drug │   .1048772   .0477017    -4.96   0.000     .0430057    .2557622</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+</div>
+<div id="graph-survival-curves" class="slide section level2">
+<h1>Graph Survival Curves</h1>
+<div class="sourceCode" id="cb29"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">stcurve</span>, survival <span class="dv">scheme</span>(michigan) <span class="co">// survival curve</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> survival1.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival1.png</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    saved <span class="kw">as</span> PNG <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="survival1.png" alt="" />
 <p class="caption">Survival Curve</p>
 </div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb31-1"><a href="#cb31-1"></a>. <span class="kw">stcurve</span>, survival at1(drug=0) at2(drug=1) <span class="dv">scheme</span>(michigan) <span class="co">// survival curve by group</span></span></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb32-1"><a href="#cb32-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> survival2.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>(file survival2.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">stcurve</span>, survival at1(drug=0) at2(drug=1) <span class="dv">scheme</span>(michigan) <span class="co">// survival curve by group</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> survival2.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival2.png</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    saved <span class="kw">as</span> PNG <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="survival2.png" alt="" />
 <p class="caption">Survival Curve by Drug Group</p>
 </div>
 </div>
-<div id="proportional-hazards-assumption" class="slide section level1">
+
+<div id="proportional-hazards-assumption" class="title-slide slide section level1">
 <h1>Proportional Hazards Assumption</h1>
-<div class="sourceCode" id="cb33"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb33-1"><a href="#cb33-1"></a>. <span class="kw">estat</span> phtest <span class="co">// formal test of PH assumption</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a></span>
-<span id="cb33-3"><a href="#cb33-3"></a>      Test <span class="kw">of</span> proportional-hazards assumption</span>
-<span id="cb33-4"><a href="#cb33-4"></a></span>
-<span id="cb33-5"><a href="#cb33-5"></a>      Time:  Time</span>
-<span id="cb33-6"><a href="#cb33-6"></a>      ────────────┬───────────────────────────────────────────────────</span>
-<span id="cb33-7"><a href="#cb33-7"></a>                  │                      <span class="fu">chi2</span>       df       Prob&gt;<span class="fu">chi2</span></span>
-<span id="cb33-8"><a href="#cb33-8"></a>      ────────────┼───────────────────────────────────────────────────</span>
-<span id="cb33-9"><a href="#cb33-9"></a>      <span class="kw">global</span> <span class="kw">test</span> │                      0.43        2         0.8064</span>
-<span id="cb33-10"><a href="#cb33-10"></a>      ────────────┴───────────────────────────────────────────────────</span></code></pre></div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb34-1"><a href="#cb34-1"></a>. <span class="kw">stphplot</span>, <span class="kw">by</span>(drug) <span class="dv">scheme</span>(michigan) <span class="co">// graphical test of PH assumption</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a></span>
-<span id="cb34-3"><a href="#cb34-3"></a>         failure _d:  died</span>
-<span id="cb34-4"><a href="#cb34-4"></a>   analysis time _t:  studytime</span></code></pre></div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb35-1"><a href="#cb35-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> ph.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
-<span id="cb35-2"><a href="#cb35-2"></a>(file ph.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">estat</span> phtest <span class="co">// formal test of PH assumption</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>Test <span class="kw">of</span> proportional-hazards assumption</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>Time <span class="kw">function</span>: Analysis time</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>─────────────┬──────────────────────────────────</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>             │     <span class="fu">chi2</span>       df       Prob&gt;<span class="fu">chi2</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>─────────────┼──────────────────────────────────</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a> Global <span class="kw">test</span> │     0.43        2          0.8064</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>─────────────┴──────────────────────────────────</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">stphplot</span>, <span class="kw">by</span>(drug) <span class="dv">scheme</span>(michigan) <span class="co">// graphical test of PH assumption</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>        Failure _d: died</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  Analysis time _t: studytime</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> ph.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/ph.png saved</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">as</span> PNG <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="ph.png" alt="" />
 <p class="caption">Graphical Assessment of Proportional Hazards Assumptions</p>
 </div>
-<div class="section footnotes" role="doc-endnotes">
-<hr />
-<ol class="incremental">
-<li><div id="fn1">
-<p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4<a href="#fnref1" class="footnote-back">↩︎</a></p>
-</div></li>
-<li><div id="fn2">
-<p>Ragnar Frisch Centre for Economic Research (2020). Event History Analysis, Survival Analysis, Duration Analysis ,Transition Data Analysis, Hazard Rate Analysis. Oslo, Norway.<a href="#fnref2" class="footnote-back">↩︎</a></p>
-</div></li>
-<li><div id="fn3">
-<p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4<a href="#fnref3" class="footnote-back">↩︎</a></p>
-</div></li>
-</ol>
 </div>
+
+<div id="references" class="title-slide slide section level1">
+<h1>References</h1>
+<p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4</p>
+<p>Ragnar Frisch Centre for Economic Research (2020). Event History Analysis, Survival Analysis, Duration Analysis ,Transition Data Analysis, Hazard Rate Analysis. Oslo, Norway.</p>
 </div>
 </body>
 </html>

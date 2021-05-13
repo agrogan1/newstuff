@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 4 Dec 2020, 09:42:20
+ {txt}opened on:  {res}13 May 2021, 13:34:42
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 4 Dec 2020
+{res}13 May 2021
 {txt}
 {com}. //_2
 . clear all
@@ -15,8 +15,8 @@
 {com}. //_3
 . set obs 52 // 52 hypothetical obervations
 {txt}{p}
-number of observations (_N)  was 0,
-now 52
+Number of observations ({bf:_N}) was 0,
+now 52.
 {p_end}
 
 {com}. //_4
@@ -40,7 +40,13 @@ now 52
 {res}{txt}
 {com}. //_8
 . graph export hospital_bed_problem.png, width(1000) replace
-{txt}(file hospital_bed_problem.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/hospital_bed_problem.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_9
 . clear all
@@ -48,8 +54,8 @@ now 52
 {com}. //_10
 . set obs 25 // 25 hypothetical obervations
 {txt}{p}
-number of observations (_N)  was 0,
-now 25
+Number of observations ({bf:_N}) was 0,
+now 25.
 {p_end}
 
 {com}. //_11
@@ -74,7 +80,13 @@ now 25
 {res}{txt}
 {com}. //_15
 . graph export timing_of_events.png, width(1000) replace
-{txt}(file timing_of_events.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/timing_of_events.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_16
 . clear all
@@ -109,7 +121,13 @@ now 25
 {res}{txt}
 {com}. //_20
 . graph export all_current_recipients.png, width(1000) replace
-{txt}(file all_current_recipients.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/all_current_recipients.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_21
 . graph bar (asis) new_entrants, ///
@@ -122,44 +140,51 @@ now 25
 {res}{txt}
 {com}. //_22
 . graph export new_recipients.png, width(1000) replace
-{txt}(file new_recipients.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/new_recipients.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_23
 . clear all
 {res}{txt}
 {com}. //_24
 . webuse drugtr // demonstration data set from Stata
-{txt}(Patient Survival in Drug Trial)
+{txt}(Patient survival in drug trial)
 
 {com}. //_25
 . stset // show st setup of data
 {txt}-> stset studytime, failure(died)
 
-     failure event:  {res}died != 0 & died < .
-{txt}obs. time interval:  {res}(0, studytime]
-{txt} exit on or before:  {res}failure
+Survival-time data settings
 
-{txt}{hline 78}
+{col 10}Failure event: {res}died!=0 & died<.
+{col 1}{txt}Observed time interval: {res}(0, studytime]
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
 {res}         48{txt}  total observations
 {res}          0{txt}  exclusions
-{hline 78}
+{hline 74}
 {res}         48{txt}  observations remaining, representing
 {res}         31{txt}  failures in single-record/single-failure data
 {res}        744{txt}  total analysis time at risk and under observation
-                                                at risk from t = {res}        0
-                                     {txt}earliest observed entry t = {res}        0
-                                          {txt}last observed exit t = {res}       39
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res}        0
+                                          {txt}Last observed exit t = {res}       39
 {txt}
 {com}. //_26
 . describe // show variables in data
 
-{txt}Contains data from {res}http://www.stata-press.com/data/r15/drugtr.dta
-{txt}  obs:{res}            48                          Patient Survival in Drug Trial
-{txt} vars:{res}             8                          3 Mar 2016 02:12
-{txt} size:{res}           384                          
+{txt}Contains data from {res}https://www.stata-press.com/data/r17/drugtr.dta
+{txt} Observations:{res}            48                  Patient survival in drug trial
+{txt}    Variables:{res}             8                  3 Mar 2020 02:12
 {txt}{hline}
-              storage   display    value
-variable name   type    format     label      variable label
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
 {hline}
 {p 0 48}{res}{bind:studytime      }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}Months to death or end of exp.{p_end}
 {p 0 48}{bind:died           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}1 if patient died{p_end}
@@ -167,26 +192,32 @@ variable name   type    format     label      variable label
 {p 0 48}{bind:age            }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}Patient's age at start of exp.{p_end}
 {p 0 48}{bind:_st            }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}1 if record is to be used; 0 otherwise{p_end}
 {p 0 48}{bind:_d             }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}1 if failure; 0 if censored{p_end}
-{p 0 48}{bind:_t             }{txt}{bind: byte    }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}analysis time when record ends{p_end}
-{p 0 48}{bind:_t0            }{txt}{bind: byte    }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}analysis time when record begins{p_end}
+{p 0 48}{bind:_t             }{txt}{bind: byte    }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Analysis time when record ends{p_end}
+{p 0 48}{bind:_t0            }{txt}{bind: byte    }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Analysis time when record begins{p_end}
 {txt}{hline}
 Sorted by: 
 
 {com}. //_27
 . sts graph, scheme(michigan) // Kaplan-Meier Survivor Function
 
-         {txt}failure _d:  {res}died
-   {txt}analysis time _t:  {res}studytime
+{col 9}{txt}Failure {bf:_d}: {res}died
+{col 3}{txt}Analysis time {bf:_t}: {res}studytime
 {txt}
 {com}. //_28
 . graph export survival0.png, width(1000) replace
-{txt}(file survival0.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival0.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_29
 . stcox age drug // run Cox Proportional Hazards Model
 
-         {txt}failure _d:  {res}died
-   {txt}analysis time _t:  {res}studytime
+{col 9}{txt}Failure {bf:_d}: {res}died
+{col 3}{txt}Analysis time {bf:_t}: {res}studytime
 
 {txt}Iteration 0:   log likelihood = {res}-99.911448
 {txt}Iteration 1:   log likelihood = {res}-83.551879
@@ -195,16 +226,16 @@ Sorted by:
 {txt}Refining estimates:
 Iteration 0:   log likelihood = {res}-83.323546
 
-{txt}Cox regression -- Breslow method for ties
+{txt}Cox regression with Breslow method for ties
 
-No. of subjects = {res}          48                  {txt}Number of obs    =  {res}        48
-{txt}No. of failures = {res}          31
-{txt}Time at risk    = {res}         744
-                                                {txt}LR chi2({res}2{txt})       =  {res}     33.18
-{txt}Log likelihood  =   {res}-83.323546                  {txt}Prob > chi2      =  {res}    0.0000
+No. of subjects = {res}{ralign 3:48}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:48}
+{txt}No. of failures = {res}{ralign 3:31}
+{txt}Time at risk    = {res}{ralign 3:744}
+{col 57}{txt}{lalign 13:LR chi2({res:2})} = {res}{ralign 6:33.18}
+{txt}Log likelihood = {res}-83.323546{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
 
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}          _t{col 14}{c |} Haz. Ratio{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 9}age {c |}{col 14}{res}{space 2} 1.120325{col 26}{space 2} .0417711{col 37}{space 1}    3.05{col 46}{space 3}0.002{col 54}{space 4} 1.041375{col 67}{space 3}  1.20526
 {txt}{space 8}drug {c |}{col 14}{res}{space 2} .1048772{col 26}{space 2} .0477017{col 37}{space 1}   -4.96{col 46}{space 3}0.000{col 54}{space 4} .0430057{col 67}{space 3} .2557622
@@ -215,43 +246,61 @@ No. of subjects = {res}          48                  {txt}Number of obs    =  {r
 {res}{txt}
 {com}. //_31
 . graph export survival1.png, width(1000) replace
-{txt}(file survival1.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival1.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_32
 . stcurve, survival at1(drug=0) at2(drug=1) scheme(michigan) // survival curve by group
 {res}{txt}
 {com}. //_33
 . graph export survival2.png, width(1000) replace
-{txt}(file survival2.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival2.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_34
 . estat phtest // formal test of PH assumption
 
-{txt}      Test of proportional-hazards assumption
+{txt}Test of proportional-hazards assumption
 
-      Time:  {res}Time
-{txt}      {hline 12}{c TT}{hline 51}
-                  {c |}                      chi2       df       Prob>chi2
-      {hline 12}{c +}{hline 51}
-      global test {c |}{res}{col 37}     0.43{col 50}    2{col 64}0.8064
-{txt}      {hline 12}{c BT}{hline 51}
+Time function: Analysis time
+{hline 13}{c TT}{hline 34}
+             {c |}     chi2       df       Prob>chi2
+{hline 13}{c +}{hline 34}
+ Global test {c |}{res}{col 15}     0.43{col 28}    2{col 43}0.8064
+{txt}{hline 13}{c BT}{hline 34}
 
 {com}. //_35
 . stphplot, by(drug) scheme(michigan) // graphical test of PH assumption
 
-         {txt}failure _d:  {res}died
-   {txt}analysis time _t:  {res}studytime
+{col 9}{txt}Failure {bf:_d}: {res}died
+{col 3}{txt}Analysis time {bf:_t}: {res}studytime
 {txt}
 {com}. //_36
 . graph export ph.png, width(1000) replace
-{txt}(file ph.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/ph.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 4 Dec 2020, 09:42:33
+ {txt}closed on:  {res}13 May 2021, 13:34:57
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

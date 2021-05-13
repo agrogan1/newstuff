@@ -44,12 +44,144 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>Survival Analysis and Event History</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -58,7 +190,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Survival Analysis and Event History</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">4 Dec 2020</p>
+<p class="date">13 May 2021</p>
 </header>
 <style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <h1 id="introduction">Introduction</h1>
@@ -87,7 +219,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. clear all
 </pre>
 <pre class='stata'>. set obs 52 // 52 hypothetical obervations
-number of observations (_N) was 0, now 52
+Number of observations (_N) was 0, now 52.
 </pre>
 <pre class='stata'>. generate id = _n // set id = to observation #
 </pre>
@@ -105,16 +237,18 @@ number of observations (_N) was 0, now 52
 > scheme(michigan)
 </pre>
 <pre class='stata'>. graph export hospital_bed_problem.png, width(1000) replace
-(file hospital_bed_problem.png written in PNG format)
+file
+    /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/hospital_bed_p
+    > roblem.png saved as PNG format
 </pre>
 <figure>
-<img src="hospital_bed_problem.png" style="width:50.0%" alt="" /><figcaption>Illustration of Hospital Bed Problem</figcaption>
+<img src="hospital_bed_problem.png" style="width:50.0%" alt="Illustration of Hospital Bed Problem" /><figcaption aria-hidden="true">Illustration of Hospital Bed Problem</figcaption>
 </figure>
 <h1 id="how-to-measure-length-of-stay-1">How To Measure Length of Stay (1)</h1>
 <pre class='stata'>. clear all
 </pre>
 <pre class='stata'>. set obs 25 // 25 hypothetical obervations
-number of observations (_N) was 0, now 25
+Number of observations (_N) was 0, now 25.
 </pre>
 <pre class='stata'>. generate id = _n // set id = to observation #
 </pre>
@@ -133,10 +267,12 @@ number of observations (_N) was 0, now 25
 > scheme(michigan)
 </pre>
 <pre class='stata'>. graph export timing_of_events.png, width(1000) replace
-(file timing_of_events.png written in PNG format)
+file
+    /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/timing_of_even
+    > ts.png saved as PNG format
 </pre>
 <figure>
-<img src="timing_of_events.png" style="width:50.0%" alt="" /><figcaption>Timing Of Events</figcaption>
+<img src="timing_of_events.png" style="width:50.0%" alt="Timing Of Events" /><figcaption aria-hidden="true">Timing Of Events</figcaption>
 </figure>
 <h2 id="animated">Animated</h2>
 <p>See <a href="./times-events-and-censoring.html">times-events-and-censoring.html</a></p>
@@ -164,12 +300,12 @@ number of observations (_N) was 0, now 25
 <p><span class="math display">\[
     h(t) = \lim_{\delta\to 0} \frac{\text{probability of having an event before time } t + \delta}{\delta}
 \]</span></p>
-<p>This definition per Johnson &amp; Shih (2007)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>This definition per Johnson &amp; Shih (2007)</p>
 <h3 id="a-more-formal-definition">A more formal definition:</h3>
 <p><span class="math display">\[
     h(t) = \lim_{\Delta t \to 0} \frac{P(t \le T &lt; t + \Delta t | T &gt; t)}{\Delta t}
 \]</span></p>
-<p>This definition per Ragnar Frisch Centre for Economic Research (2020)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>This definition per Ragnar Frisch Centre for Economic Research (2020)</p>
 <h1 id="a-policy-example-welfare-reform-1996">A Policy Example (Welfare Reform, 1996)</h1>
 <p>From LaDonna Pavetti (1995)</p>
 <ul>
@@ -196,8 +332,8 @@ number of observations (_N) was 0, now 25
   6. │ Over 60           34.6                     76.3 │
      └─────────────────────────────────────────────────┘
 </pre>
-<pre class='stata'>. graph bar (asis) all_current_recipients, /// this particular set of options was difficult to fig
-> ure out!
+<pre class='stata'>. graph bar (asis) all_current_recipients, /// this particular set of options was difficult to figur
+> e out!
 > asyvars ///
 > over(time) ///
 > title("All Current Recipients") ///
@@ -206,10 +342,12 @@ number of observations (_N) was 0, now 25
 > scheme(michigan)
 </pre>
 <pre class='stata'>. graph export all_current_recipients.png, width(1000) replace
-(file all_current_recipients.png written in PNG format)
+file
+    /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/all_current_re
+    > cipients.png saved as PNG format
 </pre>
 <figure>
-<img src="all_current_recipients.png" style="width:50.0%" alt="" /><figcaption>All Current Recipients by Months on Caseload</figcaption>
+<img src="all_current_recipients.png" style="width:50.0%" alt="All Current Recipients by Months on Caseload" /><figcaption aria-hidden="true">All Current Recipients by Months on Caseload</figcaption>
 </figure>
 <h1 id="welfare-reform-2">Welfare Reform (2)</h1>
 <pre class='stata'>. graph bar (asis) new_entrants, ///
@@ -221,18 +359,20 @@ number of observations (_N) was 0, now 25
 > scheme(michigan)
 </pre>
 <pre class='stata'>. graph export new_recipients.png, width(1000) replace
-(file new_recipients.png written in PNG format)
+file
+    /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/new_recipients
+    > .png saved as PNG format
 </pre>
 <figure>
-<img src="new_recipients.png" style="width:50.0%" alt="" /><figcaption>New Recipients by Months on Caseload</figcaption>
+<img src="new_recipients.png" style="width:50.0%" alt="New Recipients by Months on Caseload" /><figcaption aria-hidden="true">New Recipients by Months on Caseload</figcaption>
 </figure>
 <h1 id="musicians-and-mortality-1">Musicians and Mortality (1)</h1>
 <figure>
-<img src="music-to-die-for.png" style="width:50.0%" alt="" /><figcaption>Music To Die For</figcaption>
+<img src="music-to-die-for.png" style="width:50.0%" alt="Music To Die For" /><figcaption aria-hidden="true">Music To Die For</figcaption>
 </figure>
 <h1 id="musicians-and-mortality-2">Musicians and Mortality (2)</h1>
 <figure>
-<img src="musician_mortality.jpeg" style="width:50.0%" alt="" /><figcaption>Musician Mortality</figcaption>
+<img src="musician_mortality.jpeg" style="width:50.0%" alt="Musician Mortality" /><figcaption aria-hidden="true">Musician Mortality</figcaption>
 </figure>
 <h1 id="cox-proportional-hazards-model">Cox Proportional Hazards Model</h1>
 <h1 id="formula">Formula</h1>
@@ -240,7 +380,7 @@ number of observations (_N) was 0, now 25
 <p><span class="math display">\[
     h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
 \]</span></p>
-<p>This definition per Johnson &amp; Shih (2007)<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>This definition per Johnson &amp; Shih (2007).</p>
 <p><span class="math display">\[
     h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}
 \]</span></p>
@@ -257,46 +397,47 @@ number of observations (_N) was 0, now 25
 <pre class='stata'>. clear all
 </pre>
 <pre class='stata'>. webuse drugtr // demonstration data set from Stata
-(Patient Survival in Drug Trial)
+(Patient survival in drug trial)
 </pre>
 <h2 id="setup-of-data">Setup of Data</h2>
 <pre class='stata'>. stset // show st setup of data
 -> stset studytime, failure(died)
 
-     failure event:  died != 0 &amp; died &lt; .
-obs. time interval:  (0, studytime]
- exit on or before:  failure
+Survival-time data settings
 
-──────────────────────────────────────────────────────────────────────────────
+         Failure event: died!=0 &amp; died&lt;.
+Observed time interval: (0, studytime]
+     Exit on or before: failure
+
+──────────────────────────────────────────────────────────────────────────
          48  total observations
           0  exclusions
-──────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────
          48  observations remaining, representing
          31  failures in single-record/single-failure data
         744  total analysis time at risk and under observation
-                                                at risk from t =         0
-                                     earliest observed entry t =         0
-                                          last observed exit t =        39
+                                                At risk from t =         0
+                                     Earliest observed entry t =         0
+                                          Last observed exit t =        39
 </pre>
 <pre class='stata'>. describe // show variables in data
 
-Contains data from http://www.stata-press.com/data/r15/drugtr.dta
-  obs:            48                          Patient Survival in Drug Trial
- vars:             8                          3 Mar 2016 02:12
- size:           384                          
-──────────────────────────────────────────────────────────────────────────────────────────────────
-              storage   display    value
-variable name   type    format     label      variable label
-──────────────────────────────────────────────────────────────────────────────────────────────────
+Contains data from https://www.stata-press.com/data/r17/drugtr.dta
+ Observations:            48                  Patient survival in drug trial
+    Variables:             8                  3 Mar 2020 02:12
+────────────────────────────────────────────────────────────────────────────────────────────────────
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+────────────────────────────────────────────────────────────────────────────────────────────────────
 studytime       byte    %8.0g                 Months to death or end of exp.
 died            byte    %8.0g                 1 if patient died
 drug            byte    %8.0g                 Drug type (0=placebo)
 age             byte    %8.0g                 Patient's age at start of exp.
 _st             byte    %8.0g                 1 if record is to be used; 0 otherwise
 _d              byte    %8.0g                 1 if failure; 0 if censored
-_t              byte    %10.0g                analysis time when record ends
-_t0             byte    %10.0g                analysis time when record begins
-──────────────────────────────────────────────────────────────────────────────────────────────────
+_t              byte    %10.0g                Analysis time when record ends
+_t0             byte    %10.0g                Analysis time when record begins
+────────────────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
 <h2 id="kaplan-meier-survivor-function-per-gabriela-ortiz-stata">Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)</h2>
@@ -305,20 +446,21 @@ Sorted by:
 \]</span></p>
 <pre class='stata'>. sts graph, scheme(michigan) // Kaplan-Meier Survivor Function
 
-         failure _d:  died
-   analysis time _t:  studytime
+        Failure _d: died
+  Analysis time _t: studytime
 </pre>
 <pre class='stata'>. graph export survival0.png, width(1000) replace
-(file survival0.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival0.png
+    saved as PNG format
 </pre>
 <figure>
-<img src="survival0.png" style="width:50.0%" alt="" /><figcaption>Kaplan-Meier Survivor Function</figcaption>
+<img src="survival0.png" style="width:50.0%" alt="Kaplan-Meier Survivor Function" /><figcaption aria-hidden="true">Kaplan-Meier Survivor Function</figcaption>
 </figure>
 <h2 id="cox-proportional-hazards-model-1">Cox Proportional Hazards Model</h2>
 <pre class='stata'>. stcox age drug // run Cox Proportional Hazards Model
 
-         failure _d:  died
-   analysis time _t:  studytime
+        Failure _d: died
+  Analysis time _t: studytime
 
 Iteration 0:   log likelihood = -99.911448
 Iteration 1:   log likelihood = -83.551879
@@ -327,16 +469,16 @@ Iteration 3:   log likelihood = -83.323546
 Refining estimates:
 Iteration 0:   log likelihood = -83.323546
 
-Cox regression -- Breslow method for ties
+Cox regression with Breslow method for ties
 
-No. of subjects =           48                  Number of obs    =          48
-No. of failures =           31
-Time at risk    =          744
-                                                LR chi2(2)       =       33.18
-Log likelihood  =   -83.323546                  Prob > chi2      =      0.0000
+No. of subjects =  48                                   Number of obs =     48
+No. of failures =  31
+Time at risk    = 744
+                                                        LR chi2(2)    =  33.18
+Log likelihood = -83.323546                             Prob > chi2   = 0.0000
 
 ─────────────┬────────────────────────────────────────────────────────────────
-          _t │ Haz. Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+          _t │ Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
 ─────────────┼────────────────────────────────────────────────────────────────
          age │   1.120325   .0417711     3.05   0.002     1.041375     1.20526
         drug │   .1048772   .0477017    -4.96   0.000     .0430057    .2557622
@@ -346,49 +488,47 @@ Log likelihood  =   -83.323546                  Prob > chi2      =      0.0000
 <pre class='stata'>. stcurve, survival scheme(michigan) // survival curve
 </pre>
 <pre class='stata'>. graph export survival1.png, width(1000) replace
-(file survival1.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival1.png
+    saved as PNG format
 </pre>
 <figure>
-<img src="survival1.png" style="width:50.0%" alt="" /><figcaption>Survival Curve</figcaption>
+<img src="survival1.png" style="width:50.0%" alt="Survival Curve" /><figcaption aria-hidden="true">Survival Curve</figcaption>
 </figure>
 <pre class='stata'>. stcurve, survival at1(drug=0) at2(drug=1) scheme(michigan) // survival curve by group
 </pre>
 <pre class='stata'>. graph export survival2.png, width(1000) replace
-(file survival2.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival2.png
+    saved as PNG format
 </pre>
 <figure>
-<img src="survival2.png" style="width:50.0%" alt="" /><figcaption>Survival Curve by Drug Group</figcaption>
+<img src="survival2.png" style="width:50.0%" alt="Survival Curve by Drug Group" /><figcaption aria-hidden="true">Survival Curve by Drug Group</figcaption>
 </figure>
 <h1 id="proportional-hazards-assumption">Proportional Hazards Assumption</h1>
 <pre class='stata'>. estat phtest // formal test of PH assumption
 
-      Test of proportional-hazards assumption
+Test of proportional-hazards assumption
 
-      Time:  Time
-      ────────────┬───────────────────────────────────────────────────
-                  │                      chi2       df       Prob>chi2
-      ────────────┼───────────────────────────────────────────────────
-      global test │                      0.43        2         0.8064
-      ────────────┴───────────────────────────────────────────────────
+Time function: Analysis time
+─────────────┬──────────────────────────────────
+             │     chi2       df       Prob>chi2
+─────────────┼──────────────────────────────────
+ Global test │     0.43        2          0.8064
+─────────────┴──────────────────────────────────
 </pre>
 <pre class='stata'>. stphplot, by(drug) scheme(michigan) // graphical test of PH assumption
 
-         failure _d:  died
-   analysis time _t:  studytime
+        Failure _d: died
+  Analysis time _t: studytime
 </pre>
 <pre class='stata'>. graph export ph.png, width(1000) replace
-(file ph.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/ph.png saved
+    as PNG format
 </pre>
 <figure>
-<img src="ph.png" style="width:50.0%" alt="" /><figcaption>Graphical Assessment of Proportional Hazards Assumptions</figcaption>
+<img src="ph.png" style="width:50.0%" alt="Graphical Assessment of Proportional Hazards Assumptions" /><figcaption aria-hidden="true">Graphical Assessment of Proportional Hazards Assumptions</figcaption>
 </figure>
-<section class="footnotes" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1" role="doc-endnote"><p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Ragnar Frisch Centre for Economic Research (2020). Event History Analysis, Survival Analysis, Duration Analysis ,Transition Data Analysis, Hazard Rate Analysis. Oslo, Norway.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
+<h1 id="references">References</h1>
+<p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4</p>
+<p>Ragnar Frisch Centre for Economic Research (2020). Event History Analysis, Survival Analysis, Duration Analysis ,Transition Data Analysis, Hazard Rate Analysis. Oslo, Norway.</p>
 </body>
 </html>
