@@ -2,13 +2,13 @@
 
 ![Mental Health By Program](slopegraph.png)
 
-*Simulated* data for use in classes on Research Methods, Statistics and Data Visualization.
+*Simulated* data for use in classes on Program Evaluation, Research Methods, Statistics and Data Visualization.
 
 The data contain the following (*simulated*) variables:  "ID", "age", "gender", "race_ethnicity", "family_income", "program", "mental_health_T1", "mental_health_T2", "latitude", "longitude".
 
 The *mental health* variables are scaled to have an average of 100. Lower numbers indicate lower mental health, while higher numbers indicate higher mental health.
 
-There are some differences in *mental health* status in the data and an interesting exercise could be to use software like Excel, Tableau or R to try to see which factors predict these differences.
+There are some differences in *mental health* status in the data and an interesting exercise could be to use software like Excel, Google Sheets, Tableau or R to try to see which factors predict these differences.
 
 ## Dataviz Exercise
 
