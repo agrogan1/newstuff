@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Cox Proportional Hazards Model</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Cox Proportional Hazards Model</h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">20 May 2021</p>
+</header>
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<h1 id="cox-proportional-hazards-model">Cox Proportional Hazards Model</h1>
+<h1 id="formula">Formula</h1>
+<p><span class="math inline">\(h(t)\)</span> the rate of occurrence.</p>
+<p><span class="math display">\[
+    h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
+\]</span></p>
+<p>This definition per Johnson &amp; Shih (2007).</p>
+<p><span class="math display">\[
+    h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}
+\]</span></p>
+<blockquote>
+<p>We don’t directly estimate the hazard, but estimate the effect of covariates on the hazard.</p>
+</blockquote>
+<blockquote>
+<p>The event (birth, death, program entry, program departure) is coded as 1, so we are estimating the association of the covariates with event occurrence.</p>
+</blockquote>
+<h1 id="cox-proportional-hazards-model-in-stata">Cox Proportional Hazards Model in Stata</h1>
+<blockquote>
+<p>Using a data set referenced frequently in Stata <code>help</code> and Stata YouTube Videos</p>
+</blockquote>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. webuse drugtr // demonstration data set from Stata
+(Patient survival in drug trial)
+</pre>
+<h2 id="setup-of-data">Setup of Data</h2>
+<pre class='stata'>. stset // show st setup of data
+-> stset studytime, failure(died)
+
+Survival-time data settings
+
+         Failure event: died!=0 &amp; died&lt;.
+Observed time interval: (0, studytime]
+     Exit on or before: failure
+
+──────────────────────────────────────────────────────────────────────────
+         48  total observations
+          0  exclusions
+──────────────────────────────────────────────────────────────────────────
+         48  observations remaining, representing
+         31  failures in single-record/single-failure data
+        744  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =         0
+                                          Last observed exit t =        39
+</pre>
+<pre class='stata'>. describe // show variables in data
+
+Contains data from https://www.stata-press.com/data/r17/drugtr.dta
+ Observations:            48                  Patient survival in drug trial
+    Variables:             8                  3 Mar 2020 02:12
+────────────────────────────────────────────────────────────────────────────────────────────────────
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+────────────────────────────────────────────────────────────────────────────────────────────────────
+studytime       byte    %8.0g                 Months to death or end of exp.
+died            byte    %8.0g                 1 if patient died
+drug            byte    %8.0g                 Drug type (0=placebo)
+age             byte    %8.0g                 Patient's age at start of exp.
+_st             byte    %8.0g                 1 if record is to be used; 0 otherwise
+_d              byte    %8.0g                 1 if failure; 0 if censored
+_t              byte    %10.0g                Analysis time when record ends
+_t0             byte    %10.0g                Analysis time when record begins
+────────────────────────────────────────────────────────────────────────────────────────────────────
+Sorted by: 
+</pre>
+<h2 id="kaplan-meier-survivor-function-per-gabriela-ortiz-stata">Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)</h2>
+<p><span class="math display">\[
+    S(t)=Pr(T&gt;t)
+\]</span></p>
+<pre class='stata'>. sts graph, scheme(michigan) // Kaplan-Meier Survivor Function
+
+        Failure _d: died
+  Analysis time _t: studytime
+</pre>
+<pre class='stata'>. graph export survival0.png, width(1000) replace
+file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival0.png
+    saved as PNG format
+</pre>
+<figure>
+<img src="survival0.png" style="width:50.0%" alt="Kaplan-Meier Survivor Function" /><figcaption aria-hidden="true">Kaplan-Meier Survivor Function</figcaption>
+</figure>
+<h2 id="cox-proportional-hazards-model-1">Cox Proportional Hazards Model</h2>
+<pre class='stata'>. stcox age drug // run Cox Proportional Hazards Model
+
+        Failure _d: died
+  Analysis time _t: studytime
+
+Iteration 0:   log likelihood = -99.911448
+Iteration 1:   log likelihood = -83.551879
+Iteration 2:   log likelihood = -83.324009
+Iteration 3:   log likelihood = -83.323546
+Refining estimates:
+Iteration 0:   log likelihood = -83.323546
+
+Cox regression with Breslow method for ties
+
+No. of subjects =  48                                   Number of obs =     48
+No. of failures =  31
+Time at risk    = 744
+                                                        LR chi2(2)    =  33.18
+Log likelihood = -83.323546                             Prob > chi2   = 0.0000
+
+─────────────┬────────────────────────────────────────────────────────────────
+          _t │ Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+         age │   1.120325   .0417711     3.05   0.002     1.041375     1.20526
+        drug │   .1048772   .0477017    -4.96   0.000     .0430057    .2557622
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h2 id="graph-survival-curves">Graph Survival Curves</h2>
+<pre class='stata'>. stcurve, survival scheme(michigan) // survival curve
+</pre>
+<pre class='stata'>. graph export survival1.png, width(1000) replace
+file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival1.png
+    saved as PNG format
+</pre>
+<figure>
+<img src="survival1.png" style="width:50.0%" alt="Survival Curve" /><figcaption aria-hidden="true">Survival Curve</figcaption>
+</figure>
+<pre class='stata'>. stcurve, survival at1(drug=0) at2(drug=1) scheme(michigan) // survival curve by group
+</pre>
+<pre class='stata'>. graph export survival2.png, width(1000) replace
+file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival2.png
+    saved as PNG format
+</pre>
+<figure>
+<img src="survival2.png" style="width:50.0%" alt="Survival Curve by Drug Group" /><figcaption aria-hidden="true">Survival Curve by Drug Group</figcaption>
+</figure>
+<h1 id="proportional-hazards-assumption">Proportional Hazards Assumption</h1>
+<pre class='stata'>. estat phtest // formal test of PH assumption
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+─────────────┬──────────────────────────────────
+             │     chi2       df       Prob>chi2
+─────────────┼──────────────────────────────────
+ Global test │     0.43        2          0.8064
+─────────────┴──────────────────────────────────
+</pre>
+<pre class='stata'>. stphplot, by(drug) scheme(michigan) // graphical test of PH assumption
+
+        Failure _d: died
+  Analysis time _t: studytime
+</pre>
+<pre class='stata'>. graph export ph.png, width(1000) replace
+file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/ph.png saved
+    as PNG format
+</pre>
+<figure>
+<img src="ph.png" style="width:50.0%" alt="Graphical Assessment of Proportional Hazards Assumptions" /><figcaption aria-hidden="true">Graphical Assessment of Proportional Hazards Assumptions</figcaption>
+</figure>
+<h1 id="references">References</h1>
+<p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4</p>
+<p>Ragnar Frisch Centre for Economic Research (2020). Event History Analysis, Survival Analysis, Duration Analysis ,Transition Data Analysis, Hazard Rate Analysis. Oslo, Norway.</p>
+</body>
+</html>

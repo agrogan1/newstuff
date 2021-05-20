@@ -1,0 +1,92 @@
+% Cox Proportional Hazards Model
+% Andy Grogan-Kaylor
+% `s c(current_date)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+# Cox Proportional Hazards Model 
+
+# Formula
+
+$h(t)$ the rate of occurrence.
+
+$$
+    h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
+$$ 
+
+This definition per Johnson & Shih (2007). 
+
+$$
+    h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}
+$$
+
+> We don't directly estimate the hazard, but estimate the effect of covariates on the hazard.
+
+> The event (birth, death, program entry, program departure) is coded as 1, so we are estimating the association of the covariates with event occurrence.
+
+# Cox Proportional Hazards Model in Stata
+
+> Using a data set referenced frequently in Stata `help` and Stata YouTube Videos
+
+    clear all
+
+    webuse drugtr // demonstration data set from Stata
+
+## Setup of Data
+	
+	stset // show st setup of data
+	
+	describe // show variables in data
+	
+## Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)
+
+$$
+    S(t)=Pr(T>t)
+$$
+	
+	sts graph, scheme(michigan) // Kaplan-Meier Survivor Function
+	
+	graph export survival0.png, width(1000) replace
+
+![Kaplan-Meier Survivor Function](survival0.png){width=50%}
+	
+## Cox Proportional Hazards Model
+	
+    stcox age drug // run Cox Proportional Hazards Model
+	
+## Graph Survival Curves
+	
+    stcurve, survival scheme(michigan) // survival curve
+	
+	graph export survival1.png, width(1000) replace
+
+![Survival Curve](survival1.png){width=50%}
+	
+    stcurve, survival at1(drug=0) at2(drug=1) scheme(michigan) // survival curve by group
+	
+	graph export survival2.png, width(1000) replace
+
+![Survival Curve by Drug Group](survival2.png){width=50%}
+
+# Proportional Hazards Assumption
+
+    estat phtest // formal test of PH assumption
+
+    stphplot, by(drug) scheme(michigan) // graphical test of PH assumption
+	
+	graph export ph.png, width(1000) replace
+	
+![Graphical Assessment of Proportional Hazards Assumptions](ph.png){width=50%}
+
+# References
+
+Johnson, L. L., & Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin & F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4
+
+Ragnar Frisch Centre for Economic Research (2020). Event History Analysis, Survival Analysis, Duration Analysis ,Transition Data Analysis, Hazard Rate Analysis. Oslo, Norway.
+
+
+
