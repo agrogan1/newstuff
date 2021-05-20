@@ -37,6 +37,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
 * [Survival Analysis And Event History](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history-slidy.html) | [PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.pdf)
     + [Times, Events And Censoring](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/times-events-and-censoring.html)
     + [Reformatting Longitudinal Data As Survival Data](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.html)
+    + [Cox Proportional Hazards Model](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model-slidy.html) | [PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.pdf)
 
 Andrew Grogan-Kaylor ([GitHub](https://agrogan1.github.io/), [New GitHub](https://agrogan1.github.io/newstuff)) | [agrogan@umich.edu](agrogan@umich.edu)
 
