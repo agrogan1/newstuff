@@ -100,7 +100,7 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>15 Jun 2021 12:39:44</p>
+<p>15 Jun 2021 17:34:45</p>
 </div>
 <div id="background" class="title-slide slide section level1">
 <h1>Background 🌲</h1>
@@ -254,7 +254,7 @@ Andy Grogan-Kaylor
 </div>
 <div id="propensity-scores-teffects-psmatch-y-t-x1-x2" class="slide section level2">
 <h1>Propensity Scores (<code>teffects psmatch (y) (t x1 x2)</code>)</h1>
-<p>The propensity score estimates the probability of being administered the treatment, in this example, <em>fertilizer</em>. Treatment observations are matched to the most similar comparison group observation in terms of this probability, and an average difference is calculated.</p>
+<p>The propensity score uses a logistic regression to estimate the predicted probability of being administered the treatment (<code>t</code> in the above syntax), in this example, <em>fertilizer</em>. Treatment observations are matched to the most similar comparison group observation in terms of this probability, and an average difference is calculated.</p>
 <p>A propensity score analysis controls for the additional observed variables that are included in the model.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>. teffects psmatch (Height5) (Fertilizer Height0 Competition)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -273,10 +273,10 @@ Andy Grogan-Kaylor
 <blockquote>
 <p>The association of fertilizer with tree height is -12.71.</p>
 </blockquote>
-<h3 id="assess-balance-of-propensity-score-model">Assess Balance of Propensity Score Model*</h3>
-<ul class="incremental">
-<li>With many thanks to Jorge Cuartas for ideas for some of this code.</li>
-</ul>
+<h3 id="assess-balance-of-propensity-score-model">Assess Balance of Propensity Score Model</h3>
+<blockquote>
+<p>With many thanks to Jorge Cuartas for ideas for some of this code.</p>
+</blockquote>
 <div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>. tebalance density, <span class="co">///</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>&gt; <span class="dv">scheme</span>(michigan)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>(refitting the <span class="kw">model</span> <span class="kw">using</span> the <span class="kw">generate</span>() option)</span>

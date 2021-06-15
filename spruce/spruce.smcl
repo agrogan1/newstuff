@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}15 Jun 2021, 12:41:19
+ {txt}opened on:  {res}15 Jun 2021, 17:34:53
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}12:41:19
+{res}17:34:53
 {txt}
 {com}. //_3
 . clear all
@@ -217,7 +217,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}15 Jun 2021, 12:41:26
+ {txt}closed on:  {res}15 Jun 2021, 17:35:00
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

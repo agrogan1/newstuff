@@ -147,7 +147,7 @@ A regression controls for the additional observed variables ($x_{ki}$) that are 
 
 ## Propensity Scores (`teffects psmatch (y) (t x1 x2)`)
 
-The propensity score estimates the probability of being administered the treatment, in this example, *fertilizer*. Treatment observations are matched to the most similar comparison group observation in terms of this probability, and an average difference is calculated.
+The propensity score uses a logistic regression to estimate the predicted probability of being administered the treatment (`t` in the above syntax), in this example, *fertilizer*. Treatment observations are matched to the most similar comparison group observation in terms of this probability, and an average difference is calculated.
 
 A propensity score analysis controls for the additional observed variables that are included in the model.
 
@@ -160,9 +160,9 @@ A propensity score analysis controls for the additional observed variables that 
 ```
 > The association of fertilizer with tree height is `s %5.2f b[1,1]`.
 
-### Assess Balance of Propensity Score Model*
+### Assess Balance of Propensity Score Model
 
-* With many thanks to Jorge Cuartas for ideas for some of this code.
+> With many thanks to Jorge Cuartas for ideas for some of this code.
 
 ```s
 	tebalance density, ///

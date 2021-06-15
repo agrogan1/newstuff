@@ -190,7 +190,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Multiple Approaches to Causal Modeling Using Black Spruce Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">15 Jun 2021 12:39:44</p>
+<p class="date">15 Jun 2021 17:34:45</p>
 </header>
 <h1 id="background">Background 🌲</h1>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color:red}</style>
@@ -322,7 +322,7 @@ H0: diff = 0                                     Degrees of freedom =       70
 <p>The association of fertilizer with tree height is -14.72.</p>
 </blockquote>
 <h2 id="propensity-scores-teffects-psmatch-y-t-x1-x2">Propensity Scores (<code>teffects psmatch (y) (t x1 x2)</code>)</h2>
-<p>The propensity score estimates the probability of being administered the treatment, in this example, <em>fertilizer</em>. Treatment observations are matched to the most similar comparison group observation in terms of this probability, and an average difference is calculated.</p>
+<p>The propensity score uses a logistic regression to estimate the predicted probability of being administered the treatment (<code>t</code> in the above syntax), in this example, <em>fertilizer</em>. Treatment observations are matched to the most similar comparison group observation in terms of this probability, and an average difference is calculated.</p>
 <p>A propensity score analysis controls for the additional observed variables that are included in the model.</p>
 <pre class='stata'>. teffects psmatch (Height5) (Fertilizer Height0 Competition)
 
@@ -343,10 +343,10 @@ ATE          │
 <blockquote>
 <p>The association of fertilizer with tree height is -12.71.</p>
 </blockquote>
-<h3 id="assess-balance-of-propensity-score-model">Assess Balance of Propensity Score Model*</h3>
-<ul>
-<li>With many thanks to Jorge Cuartas for ideas for some of this code.</li>
-</ul>
+<h3 id="assess-balance-of-propensity-score-model">Assess Balance of Propensity Score Model</h3>
+<blockquote>
+<p>With many thanks to Jorge Cuartas for ideas for some of this code.</p>
+</blockquote>
 <pre class='stata'>. tebalance density, ///
 > scheme(michigan)
 (refitting the model using the generate() option)
