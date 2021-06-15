@@ -44,12 +44,144 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>Multiple Approaches to Causal Modeling Using Black Spruce Data</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -58,10 +190,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Multiple Approaches to Causal Modeling Using Black Spruce Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">12 Apr 2021 15:43:55</p>
+<p class="date">15 Jun 2021 12:39:44</p>
 </header>
 <h1 id="background">Background 🌲</h1>
-<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color:red}</style>
 <blockquote>
 <p>In web slide versions of this material press <code>b</code> for bigger text and <code>s</code> for smaller text.</p>
 </blockquote>
@@ -102,16 +234,15 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. describe    
 
 Contains data from spruce.dta
-  obs:            72                          
- vars:             9                          26 Apr 2020 12:18
-────────────────────────────────────────────────────────────────────────────────────
-              storage   display    value
-variable name   type    format     label      variable label
-────────────────────────────────────────────────────────────────────────────────────
+ Observations:            72                  
+    Variables:             9                  26 Apr 2020 12:18
+────────────────────────────────────────────────────────────────────────────────────────────────────
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+────────────────────────────────────────────────────────────────────────────────────────────────────
 Tree            long    %12.0g                Tree number
 Competition     long    %12.0g     Competition
-                                              C (competition), CR (competition
-                                                removed)
+                                              C (competition), CR (competition removed)
 Fertilizer      long    %12.0g     Fertilizer
                                               F (fertilized), NF (not fertilized)
 Height0         double  %10.0g                Height (cm) of seedling at planting
@@ -120,7 +251,7 @@ Diameter0       double  %10.0g                Diameter (cm) of seedling at plant
 Diameter5       double  %10.0g                Diameter (cm) of seedling at year 5
 Ht_change       double  %10.0g                Change (cm) in height
 Di_change       double  %10.0g                Change (cm) in diameter
-────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
 <h1 id="spruce-data-and-causal-criteria">Spruce Data And Causal Criteria 🌲</h1>
@@ -130,14 +261,14 @@ Sorted by:
 </ol>
 
 <figure>
-<img src="myscatter.png" style="width:25.0%" alt="" /><figcaption>Scatterplot of Tree Height At Year 5 By Fertilizer Use</figcaption>
+<img src="myscatter.png" style="width:25.0%" alt="Scatterplot of Tree Height At Year 5 By Fertilizer Use" /><figcaption aria-hidden="true">Scatterplot of Tree Height At Year 5 By Fertilizer Use</figcaption>
 </figure>
 <ol start="2" type="1">
 <li>From the research design, we know that <em>fertilizer</em> comes prior to <em>tree height at year 5</em>.</li>
 <li>We are going to use various statistical strategies–detailed below–to assess whether the association of <em>fertilizer</em> and <em>tree height</em> can be accounted for by any third variable.</li>
 </ol>
 <h1 id="analyses">Analyses 🌲</h1>
-<h2 id="t-test">t Test</h2>
+<h2 id="t-test-ttest-y-byx">t Test (<code>ttest y, by(x)</code>)</h2>
 <p>A t test compares the difference between the means of two groups to the standard error of the difference between means.</p>
 <p>Formally, <span class="math inline">\(t = \frac{\bar{x}_2 - \bar{x}_1}{s}\)</span> where s is the standard error of the estimate of the mean.</p>
 <p>More colloquially, the t test compares the differences between the two groups in standard error units.</p>
@@ -146,17 +277,17 @@ Sorted by:
 
 Two-sample t test with equal variances
 ─────────┬────────────────────────────────────────────────────────────────────
-Variable │     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]
+Variable │     Obs        Mean    Std. err.   Std. dev.   [95% conf. interval]
 ─────────┼────────────────────────────────────────────────────────────────────
        F │      36    52.89167    1.396079    8.376476    50.05747    55.72586
       NF │      36    38.11944    1.465226    8.791354    35.14488    41.09401
 ─────────┼────────────────────────────────────────────────────────────────────
-combined │      72    45.50556    1.333392    11.31421    42.84685    48.16426
+Combined │      72    45.50556    1.333392    11.31421    42.84685    48.16426
 ─────────┼────────────────────────────────────────────────────────────────────
     diff │            14.77222    2.023839                 10.7358    18.80864
 ─────────┴────────────────────────────────────────────────────────────────────
     diff = mean(F) - mean(NF)                                     t =   7.2991
-Ho: diff = 0                                     degrees of freedom =       70
+H0: diff = 0                                     Degrees of freedom =       70
 
     Ha: diff &lt; 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T &lt; t) = 1.0000         Pr(|T| > |t|) = 0.0000          Pr(T > t) = 0.0000
@@ -164,7 +295,7 @@ Ho: diff = 0                                     degrees of freedom =       70
 <blockquote>
 <p>The association of fertilizer with tree height is -14.77.</p>
 </blockquote>
-<h2 id="ols-regression">OLS Regression</h2>
+<h2 id="ols-regression-regress-y-x1-x2-x3">OLS Regression (<code>regress y x1 x2 x3</code>)</h2>
 <p>A regression estimates the association of a 1 unit change in each of the independent variables with change in the dependent variable, while accounting for all of the other independent variables in the model.</p>
 <p><span class="math inline">\(y_i = \beta_0 + \beta_1 x_{1i} + \Sigma \beta_k x_{ki} + e_i\)</span></p>
 <p>Here <span class="math inline">\(x_{1i}\)</span> is the treatment variable of interest.</p>
@@ -179,7 +310,7 @@ Ho: diff = 0                                     degrees of freedom =       70
        Total │  9088.79778        71  128.011236   Root MSE        =    6.4141
 
 ─────────────┬────────────────────────────────────────────────────────────────
-     Height5 │      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+     Height5 │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
 ─────────────┼────────────────────────────────────────────────────────────────
   Fertilizer │  -14.71947   1.511991    -9.74   0.000    -17.73661   -11.70234
      Height0 │   .8631456    .374817     2.30   0.024       .11521    1.611081
@@ -190,7 +321,7 @@ Ho: diff = 0                                     degrees of freedom =       70
 <blockquote>
 <p>The association of fertilizer with tree height is -14.72.</p>
 </blockquote>
-<h2 id="propensity-scores">Propensity Scores</h2>
+<h2 id="propensity-scores-teffects-psmatch-y-t-x1-x2">Propensity Scores (<code>teffects psmatch (y) (t x1 x2)</code>)</h2>
 <p>The propensity score estimates the probability of being administered the treatment, in this example, <em>fertilizer</em>. Treatment observations are matched to the most similar comparison group observation in terms of this probability, and an average difference is calculated.</p>
 <p>A propensity score analysis controls for the additional observed variables that are included in the model.</p>
 <pre class='stata'>. teffects psmatch (Height5) (Fertilizer Height0 Competition)
@@ -200,8 +331,8 @@ Estimator      : propensity-score matching     Matches: requested =          1
 Outcome model  : matching                                     min =          1
 Treatment model: logit                                        max =          3
 ─────────────┬────────────────────────────────────────────────────────────────
-             │              AI Robust
-     Height5 │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+             │              AI robust
+     Height5 │ Coefficient  std. err.      z    P>|z|     [95% conf. interval]
 ─────────────┼────────────────────────────────────────────────────────────────
 ATE          │
   Fertilizer │
@@ -212,29 +343,26 @@ ATE          │
 <blockquote>
 <p>The association of fertilizer with tree height is -12.71.</p>
 </blockquote>
-<h3 id="assess-balance-of-propensity-score-model-cuartas">Assess Balance of Propensity Score Model <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h3>
+<h3 id="assess-balance-of-propensity-score-model">Assess Balance of Propensity Score Model*</h3>
+<ul>
+<li>With many thanks to Jorge Cuartas for ideas for some of this code.</li>
+</ul>
 <pre class='stata'>. tebalance density, ///
 > scheme(michigan)
-note: refitting the model using the generate() option
+(refitting the model using the generate() option)
 
 . 
 . graph export mydensity.png, width(500) replace
-(file /Users/agrogan/Desktop/newstuff/spruce/mydensity.png written in PNG format)
+file /Users/agrogan/Desktop/newstuff/spruce/mydensity.png saved as PNG format
 </pre>
 
 <figure>
-<img src="mydensity.png" alt="" /><figcaption>Density Plot of Propensity Score</figcaption>
+<img src="mydensity.png" alt="Density Plot of Propensity Score" /><figcaption aria-hidden="true">Density Plot of Propensity Score</figcaption>
 </figure>
 
 <h1 id="references">References 🌲</h1>
 <p>Camill, P., Chihara, L., Adams, B., Andreassi, C., Barry, A. N. N., Kalim, S., … Rafert, G. (2010). Early life history transitions and recruitment of Picea mariana in thawed boreal permafrost peatlands. <em>Ecology</em>. https://doi.org/10.1890/08-1839.1</p>
 <p>Chihara, L. M., &amp; Hesterberg, T. C. (2018). <em>Mathematical Statistics with Resampling and R</em>. https://doi.org/10.1002/9781119505969</p>
 <p>Holland, P. W. (1986). Statistics and Causal Inference. <em>Journal of the American Statistical Association</em>, 81(396), 945–960. https://doi.org/10.1080/01621459.1986.10478354</p>
-<section class="footnotes" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1" role="doc-endnote"><p>With many thanks to Jorge Cuartas for ideas for some of this code.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
 </body>
 </html>

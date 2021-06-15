@@ -9,75 +9,76 @@
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>Multiple Approaches to Causal Modeling Using Black Spruce Data</title>
   <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
     href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
@@ -99,22 +100,32 @@ Andy Grogan-Kaylor
 <div class="slide section level2">
 
 <p>Andy Grogan-Kaylor</p>
-<p>12 Apr 2021 15:43:55</p>
+<p>15 Jun 2021 12:39:44</p>
 </div>
-<div id="background" class="title-slide slide section level1"><h1>Background 🌲</h1><blockquote>
+<div id="background" class="title-slide slide section level1">
+<h1>Background 🌲</h1>
+<blockquote>
 <p>In web slide versions of this material press <code>b</code> for bigger text and <code>s</code> for smaller text.</p>
 </blockquote>
 <p>Chihara and Hesterberg (2018) provide a data set concerning the growth of Black Spruce Trees. According to these authors:</p>
 <blockquote>
 <p>“Black spruce (Picea mariana) is a species of a slow-growing coniferous tree found across the northern part of North America. It is commonly found on wet organic soils. In a study conducted in the 1990s, a biologist interested in factors affecting the growth of the black spruce planted its seedlings on sites located in boreal peatlands in northern Manitoba, Canada (Camil et al. (2010)). The data set Spruce contains a part of the data from the study (Table 1.8). Seventy-two black spruce seedlings were planted in four plots under varying conditions (fertilizer–no fertilizer, competition–no competition), and their heights and diameters were measured over the course of 5 years. The researcher wanted to see whether the addition of fertilizer or the removal of competition from other plants (by weeding) affected the growth of these seedlings.”</p>
-</blockquote></div>
-<div id="the-research-question" class="title-slide slide section level1"><h1>The Research Question 🌲</h1><blockquote>
+</blockquote>
+</div>
+
+<div id="the-research-question" class="title-slide slide section level1">
+<h1>The Research Question 🌲</h1>
+<blockquote>
 <p>We are going to consider the <em>potentially causal</em> estimate of the effect of <em>fertilizer</em> on <em>tree height at year 5</em>. Along the way we will give brief attention to the advantages and disadvantages of each approach. Because of the research design, we have strong reasons to consider <em>fertilizer</em> as having a causal effect on <em>tree height</em> but we will nonetheless explore this question using a variety of statistical models.</p>
 </blockquote>
 <blockquote>
 <p>A secondary purpose of this document is to demonstrate that Stata syntax makes it easy to test and compare multiple statistical models because of the uniform Stata syntax, which is almost always: <code>command variable(s), options</code>.</p>
-</blockquote></div>
-<div id="causality" class="title-slide slide section level1"><h1>Causality 🌲</h1><p><img src="causality.png" /></p>
+</blockquote>
+</div>
+
+<div id="causality" class="title-slide slide section level1">
+<h1>Causality 🌲</h1>
+<p><img src="causality.png" /></p>
 <p>A variable <span class="math inline">\(x\)</span> can only be considered to have <em>causal</em> association with <span class="math inline">\(y\)</span> if the following conditions are met (Holland, 1986):</p>
 <ol class="incremental" style="list-style-type: decimal">
 <li><span class="math inline">\(x\)</span> is correlated with <span class="math inline">\(y\)</span>.</li>
@@ -126,40 +137,49 @@ Andy Grogan-Kaylor
 <blockquote>
 <p>What happens to the association of <em>fertilizer</em> and <em>tree height</em> when we control for possible confounding variables <span class="math inline">\(z\)</span> using various statistical strategies?</p>
 </blockquote>
-<p>(For more interactive exploration of these ideas, see <a href="https://agrogan.shinyapps.io/causality/?_inputs_&amp;sidebarCollapsed=false&amp;y=%22tree%20height%22&amp;sidebarItemExpanded=null&amp;x=%22fertilizer%22&amp;z=%22alternative%20explanation%22">this demo</a>).</p></div>
-<div id="setup" class="title-slide slide section level1"><h1>Setup 🌲</h1></div><div id="get-data" class="slide section level2">
-<h1>Get Data</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>.         </span>
-<span id="cb1-4"><a href="#cb1-4"></a>. <span class="kw">use</span> spruce.dta, <span class="kw">clear</span></span></code></pre></div>
-</div><div id="dataset-description" class="slide section level2">
-<h1>Dataset Description</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">describe</span>    </span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>Contains <span class="kw">data</span> from spruce.dta</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="kw">obs</span>:            72                          </span>
-<span id="cb2-5"><a href="#cb2-5"></a> vars:             9                          26 Apr 2020 12:18</span>
-<span id="cb2-6"><a href="#cb2-6"></a>────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb2-7"><a href="#cb2-7"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb2-10"><a href="#cb2-10"></a>Tree            <span class="kw">long</span>    %12.0g                Tree number</span>
-<span id="cb2-11"><a href="#cb2-11"></a>Competition     <span class="kw">long</span>    %12.0g     Competition</span>
-<span id="cb2-12"><a href="#cb2-12"></a>                                              C (competition), CR (competition</span>
-<span id="cb2-13"><a href="#cb2-13"></a>                                                removed)</span>
-<span id="cb2-14"><a href="#cb2-14"></a>Fertilizer      <span class="kw">long</span>    %12.0g     Fertilizer</span>
-<span id="cb2-15"><a href="#cb2-15"></a>                                              <span class="fu">F</span> (fertilized), NF (<span class="kw">not</span> fertilized)</span>
-<span id="cb2-16"><a href="#cb2-16"></a>Height0         <span class="kw">double</span>  %10.0g                Height (cm) <span class="kw">of</span> seedling <span class="fu">at</span> planting</span>
-<span id="cb2-17"><a href="#cb2-17"></a>Height5         <span class="kw">double</span>  %10.0g                Height (cm) <span class="kw">of</span> seedling <span class="fu">at</span> <span class="fu">year</span> 5</span>
-<span id="cb2-18"><a href="#cb2-18"></a>Diameter0       <span class="kw">double</span>  %10.0g                Diameter (cm) <span class="kw">of</span> seedling <span class="fu">at</span> planting</span>
-<span id="cb2-19"><a href="#cb2-19"></a>Diameter5       <span class="kw">double</span>  %10.0g                Diameter (cm) <span class="kw">of</span> seedling <span class="fu">at</span> <span class="fu">year</span> 5</span>
-<span id="cb2-20"><a href="#cb2-20"></a>Ht_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> height</span>
-<span id="cb2-21"><a href="#cb2-21"></a>Di_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> diameter</span>
-<span id="cb2-22"><a href="#cb2-22"></a>────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb2-23"><a href="#cb2-23"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
+<p>(For more interactive exploration of these ideas, see <a href="https://agrogan.shinyapps.io/causality/?_inputs_&amp;sidebarCollapsed=false&amp;y=%22tree%20height%22&amp;sidebarItemExpanded=null&amp;x=%22fertilizer%22&amp;z=%22alternative%20explanation%22">this demo</a>).</p>
 </div>
-<div id="spruce-data-and-causal-criteria" class="title-slide slide section level1"><h1>Spruce Data And Causal Criteria 🌲</h1><p>Let’s consider in turn each of the criteria for causality.</p>
+
+<div id="setup" class="title-slide slide section level1">
+<h1>Setup 🌲</h1>
+
+</div>
+<div id="get-data" class="slide section level2">
+<h1>Get Data</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>.         </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>. <span class="kw">use</span> spruce.dta, <span class="kw">clear</span></span></code></pre></div>
+</div>
+<div id="dataset-description" class="slide section level2">
+<h1>Dataset Description</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">describe</span>    </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Contains <span class="kw">data</span> from spruce.dta</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> Observations:            72                  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    Variables:             9                  26 Apr 2020 12:18</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Variable      Storage   Display    Value</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="bn">name</span>         <span class="dv">type</span>    <span class="kw">format</span>    <span class="kw">label</span>      Variable <span class="kw">label</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>Tree            <span class="kw">long</span>    %12.0g                Tree number</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Competition     <span class="kw">long</span>    %12.0g     Competition</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                                              C (competition), CR (competition removed)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>Fertilizer      <span class="kw">long</span>    %12.0g     Fertilizer</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                                              <span class="fu">F</span> (fertilized), NF (<span class="kw">not</span> fertilized)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>Height0         <span class="kw">double</span>  %10.0g                Height (cm) <span class="kw">of</span> seedling <span class="fu">at</span> planting</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>Height5         <span class="kw">double</span>  %10.0g                Height (cm) <span class="kw">of</span> seedling <span class="fu">at</span> <span class="fu">year</span> 5</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>Diameter0       <span class="kw">double</span>  %10.0g                Diameter (cm) <span class="kw">of</span> seedling <span class="fu">at</span> planting</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>Diameter5       <span class="kw">double</span>  %10.0g                Diameter (cm) <span class="kw">of</span> seedling <span class="fu">at</span> <span class="fu">year</span> 5</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>Ht_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> height</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>Di_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> diameter</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
+</div>
+
+<div id="spruce-data-and-causal-criteria" class="title-slide slide section level1">
+<h1>Spruce Data And Causal Criteria 🌲</h1>
+<p>Let’s consider in turn each of the criteria for causality.</p>
 <ol class="incremental" style="list-style-type: decimal">
 <li>Empirically, <em>fertilizer</em> is correlated with <em>tree height</em>.</li>
 </ol>
@@ -170,104 +190,111 @@ Andy Grogan-Kaylor
 <ol class="incremental" start="2" style="list-style-type: decimal">
 <li>From the research design, we know that <em>fertilizer</em> comes prior to <em>tree height at year 5</em>.</li>
 <li>We are going to use various statistical strategies–detailed below–to assess whether the association of <em>fertilizer</em> and <em>tree height</em> can be accounted for by any third variable.</li>
-</ol></div>
-<div id="analyses" class="title-slide slide section level1"><h1>Analyses 🌲</h1></div><div id="t-test" class="slide section level2">
-<h1>t Test</h1>
+</ol>
+</div>
+
+<div id="analyses" class="title-slide slide section level1">
+<h1>Analyses 🌲</h1>
+
+</div>
+<div id="t-test-ttest-y-byx" class="slide section level2">
+<h1>t Test (<code>ttest y, by(x)</code>)</h1>
 <p>A t test compares the difference between the means of two groups to the standard error of the difference between means.</p>
 <p>Formally, <span class="math inline">\(t = \frac{\bar{x}_2 - \bar{x}_1}{s}\)</span> where s is the standard error of the estimate of the mean.</p>
 <p>More colloquially, the t test compares the differences between the two groups in standard error units.</p>
 <p>A t test does <em>not</em> control for any additional variable(s).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">ttest</span> Height5, <span class="kw">by</span>(Fertilizer)</span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>Two-<span class="kw">sample</span> t <span class="kw">test</span> with equal variances</span>
-<span id="cb3-4"><a href="#cb3-4"></a>─────────┬────────────────────────────────────────────────────────────────────</span>
-<span id="cb3-5"><a href="#cb3-5"></a>Variable │     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]</span>
-<span id="cb3-6"><a href="#cb3-6"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
-<span id="cb3-7"><a href="#cb3-7"></a>       <span class="fu">F</span> │      36    52.89167    1.396079    8.376476    50.05747    55.72586</span>
-<span id="cb3-8"><a href="#cb3-8"></a>      NF │      36    38.11944    1.465226    8.791354    35.14488    41.09401</span>
-<span id="cb3-9"><a href="#cb3-9"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
-<span id="cb3-10"><a href="#cb3-10"></a>combined │      72    45.50556    1.333392    11.31421    42.84685    48.16426</span>
-<span id="cb3-11"><a href="#cb3-11"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
-<span id="cb3-12"><a href="#cb3-12"></a>    <span class="fu">diff</span> │            14.77222    2.023839                 10.7358    18.80864</span>
-<span id="cb3-13"><a href="#cb3-13"></a>─────────┴────────────────────────────────────────────────────────────────────</span>
-<span id="cb3-14"><a href="#cb3-14"></a>    <span class="fu">diff</span> = <span class="kw">mean</span>(<span class="fu">F</span>) - <span class="kw">mean</span>(NF)                                     t =   7.2991</span>
-<span id="cb3-15"><a href="#cb3-15"></a>Ho: <span class="fu">diff</span> = 0                                     degrees <span class="kw">of</span> freedom =       70</span>
-<span id="cb3-16"><a href="#cb3-16"></a></span>
-<span id="cb3-17"><a href="#cb3-17"></a>    Ha: <span class="fu">diff</span> &lt; 0                 Ha: <span class="fu">diff</span> != 0                 Ha: <span class="fu">diff</span> &gt; 0</span>
-<span id="cb3-18"><a href="#cb3-18"></a> Pr(T &lt; t) = 1.0000         Pr(|T| &gt; |t|) = 0.0000          Pr(T &gt; t) = 0.0000</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">ttest</span> Height5, <span class="kw">by</span>(Fertilizer)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Two-<span class="kw">sample</span> t <span class="kw">test</span> with equal variances</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>─────────┬────────────────────────────────────────────────────────────────────</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Variable │     Obs        Mean    Std. err.   Std. <span class="kw">dev</span>.   [95% conf. interval]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">F</span> │      36    52.89167    1.396079    8.376476    50.05747    55.72586</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      NF │      36    38.11944    1.465226    8.791354    35.14488    41.09401</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>Combined │      72    45.50556    1.333392    11.31421    42.84685    48.16426</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>─────────┼────────────────────────────────────────────────────────────────────</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span> │            14.77222    2.023839                 10.7358    18.80864</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>─────────┴────────────────────────────────────────────────────────────────────</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span> = <span class="kw">mean</span>(<span class="fu">F</span>) - <span class="kw">mean</span>(NF)                                     t =   7.2991</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>H0: <span class="fu">diff</span> = 0                                     Degrees <span class="kw">of</span> freedom =       70</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    Ha: <span class="fu">diff</span> &lt; 0                 Ha: <span class="fu">diff</span> != 0                 Ha: <span class="fu">diff</span> &gt; 0</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a> Pr(T &lt; t) = 1.0000         Pr(|T| &gt; |t|) = 0.0000          Pr(T &gt; t) = 0.0000</span></code></pre></div>
 <blockquote>
 <p>The association of fertilizer with tree height is -14.77.</p>
 </blockquote>
-</div><div id="ols-regression" class="slide section level2">
-<h1>OLS Regression</h1>
+</div>
+<div id="ols-regression-regress-y-x1-x2-x3" class="slide section level2">
+<h1>OLS Regression (<code>regress y x1 x2 x3</code>)</h1>
 <p>A regression estimates the association of a 1 unit change in each of the independent variables with change in the dependent variable, while accounting for all of the other independent variables in the model.</p>
 <p><span class="math inline">\(y_i = \beta_0 + \beta_1 x_{1i} + \Sigma \beta_k x_{ki} + e_i\)</span></p>
 <p>Here <span class="math inline">\(x_{1i}\)</span> is the treatment variable of interest.</p>
 <p>A regression controls for the additional observed variables (<span class="math inline">\(x_{ki}\)</span>) that are included in the model.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">regress</span> Height5 Fertilizer Height0 Competition</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>      Source │       SS           df       MS      Number <span class="kw">of</span> <span class="kw">obs</span>   =        72</span>
-<span id="cb4-4"><a href="#cb4-4"></a>─────────────┼──────────────────────────────────   <span class="fu">F</span>(3, 68)        =     50.97</span>
-<span id="cb4-5"><a href="#cb4-5"></a>       Model │  6291.23189         3   2097.0773   Prob &gt; <span class="fu">F</span>        =    0.0000</span>
-<span id="cb4-6"><a href="#cb4-6"></a>    Residual │  2797.56589        68  41.1406748   R-squared       =    0.6922</span>
-<span id="cb4-7"><a href="#cb4-7"></a>─────────────┼──────────────────────────────────   Adj R-squared   =    0.6786</span>
-<span id="cb4-8"><a href="#cb4-8"></a>       Total │  9088.79778        71  128.011236   Root MSE        =    6.4141</span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb4-11"><a href="#cb4-11"></a>     Height5 │      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]</span>
-<span id="cb4-12"><a href="#cb4-12"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb4-13"><a href="#cb4-13"></a>  Fertilizer │  -14.71947   1.511991    -9.74   0.000    -17.73661   -11.70234</span>
-<span id="cb4-14"><a href="#cb4-14"></a>     Height0 │   .8631456    .374817     2.30   0.024       .11521    1.611081</span>
-<span id="cb4-15"><a href="#cb4-15"></a> Competition │   10.52346    1.52143     6.92   0.000      7.48749    13.55942</span>
-<span id="cb4-16"><a href="#cb4-16"></a>       <span class="dt">_cons</span> │   39.22163   6.189971     6.34   0.000     26.86974    51.57353</span>
-<span id="cb4-17"><a href="#cb4-17"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">regress</span> Height5 Fertilizer Height0 Competition</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>      Source │       SS           df       MS      Number <span class="kw">of</span> <span class="kw">obs</span>   =        72</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>─────────────┼──────────────────────────────────   <span class="fu">F</span>(3, 68)        =     50.97</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       Model │  6291.23189         3   2097.0773   Prob &gt; <span class="fu">F</span>        =    0.0000</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    Residual │  2797.56589        68  41.1406748   R-squared       =    0.6922</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>─────────────┼──────────────────────────────────   Adj R-squared   =    0.6786</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>       Total │  9088.79778        71  128.011236   Root MSE        =    6.4141</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>     Height5 │ Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  Fertilizer │  -14.71947   1.511991    -9.74   0.000    -17.73661   -11.70234</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>     Height0 │   .8631456    .374817     2.30   0.024       .11521    1.611081</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a> Competition │   10.52346    1.52143     6.92   0.000      7.48749    13.55942</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>       <span class="dt">_cons</span> │   39.22163   6.189971     6.34   0.000     26.86974    51.57353</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
 <blockquote>
 <p>The association of fertilizer with tree height is -14.72.</p>
 </blockquote>
-</div><div id="propensity-scores" class="slide section level2">
-<h1>Propensity Scores</h1>
+</div>
+<div id="propensity-scores-teffects-psmatch-y-t-x1-x2" class="slide section level2">
+<h1>Propensity Scores (<code>teffects psmatch (y) (t x1 x2)</code>)</h1>
 <p>The propensity score estimates the probability of being administered the treatment, in this example, <em>fertilizer</em>. Treatment observations are matched to the most similar comparison group observation in terms of this probability, and an average difference is calculated.</p>
 <p>A propensity score analysis controls for the additional observed variables that are included in the model.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. teffects psmatch (Height5) (Fertilizer Height0 Competition)</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a>Treatment-<span class="kw">effects</span> estimation                   Number <span class="kw">of</span> <span class="kw">obs</span>      =         72</span>
-<span id="cb5-4"><a href="#cb5-4"></a>Estimator      : propensity-<span class="kw">score</span> matching     Matches: requested =          1</span>
-<span id="cb5-5"><a href="#cb5-5"></a>Outcome <span class="kw">model</span>  : matching                                     <span class="fu">min</span> =          1</span>
-<span id="cb5-6"><a href="#cb5-6"></a>Treatment <span class="kw">model</span>: <span class="kw">logit</span>                                        <span class="fu">max</span> =          3</span>
-<span id="cb5-7"><a href="#cb5-7"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb5-8"><a href="#cb5-8"></a>             │              AI Robust</span>
-<span id="cb5-9"><a href="#cb5-9"></a>     Height5 │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
-<span id="cb5-10"><a href="#cb5-10"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb5-11"><a href="#cb5-11"></a>ATE          │</span>
-<span id="cb5-12"><a href="#cb5-12"></a>  Fertilizer │</span>
-<span id="cb5-13"><a href="#cb5-13"></a>  (NF vs <span class="fu">F</span>)  │  -12.71019   1.988531    -6.39   0.000    -16.60763   -8.812737</span>
-<span id="cb5-14"><a href="#cb5-14"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>. teffects psmatch (Height5) (Fertilizer Height0 Competition)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Treatment-<span class="kw">effects</span> estimation                   Number <span class="kw">of</span> <span class="kw">obs</span>      =         72</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Estimator      : propensity-<span class="kw">score</span> matching     Matches: requested =          1</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Outcome <span class="kw">model</span>  : matching                                     <span class="fu">min</span> =          1</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Treatment <span class="kw">model</span>: <span class="kw">logit</span>                                        <span class="fu">max</span> =          3</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>             │              AI <span class="kw">robust</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>     Height5 │ Coefficient  <span class="fu">std</span>. err.      z    P&gt;|z|     [95% conf. interval]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ATE          │</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  Fertilizer │</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  (NF vs <span class="fu">F</span>)  │  -12.71019   1.988531    -6.39   0.000    -16.60763   -8.812737</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
 <blockquote>
 <p>The association of fertilizer with tree height is -12.71.</p>
 </blockquote>
-<h3 id="assess-balance-of-propensity-score-model-cuartas">Assess Balance of Propensity Score Model <a href="#fn1" id="fnref1" class="footnote-ref"><sup>1</sup></a></h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. tebalance density, <span class="co">///</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>&gt; <span class="dv">scheme</span>(michigan)</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="kw">note</span>: refitting the <span class="kw">model</span> <span class="kw">using</span> the <span class="kw">generate</span>() option</span>
-<span id="cb6-4"><a href="#cb6-4"></a></span>
-<span id="cb6-5"><a href="#cb6-5"></a>. </span>
-<span id="cb6-6"><a href="#cb6-6"></a>. <span class="kw">graph</span> <span class="kw">export</span> mydensity.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>(file /Users/agrogan/Desktop/newstuff/spruce/mydensity.png written <span class="kw">in</span> PNG <span class="kw">format</span>)</span></code></pre></div>
+<h3 id="assess-balance-of-propensity-score-model">Assess Balance of Propensity Score Model*</h3>
+<ul class="incremental">
+<li>With many thanks to Jorge Cuartas for ideas for some of this code.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>. tebalance density, <span class="co">///</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>&gt; <span class="dv">scheme</span>(michigan)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>(refitting the <span class="kw">model</span> <span class="kw">using</span> the <span class="kw">generate</span>() option)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>. </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mydensity.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>file /Users/agrogan/Desktop/newstuff/spruce/mydensity.png saved <span class="kw">as</span> PNG <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="mydensity.png" alt="" />
 <p class="caption">Density Plot of Propensity Score</p>
 </div>
 </div>
-<div id="references" class="title-slide slide section level1"><h1>References 🌲</h1><p>Camill, P., Chihara, L., Adams, B., Andreassi, C., Barry, A. N. N., Kalim, S., … Rafert, G. (2010). Early life history transitions and recruitment of Picea mariana in thawed boreal permafrost peatlands. <em>Ecology</em>. https://doi.org/10.1890/08-1839.1</p>
+
+<div id="references" class="title-slide slide section level1">
+<h1>References 🌲</h1>
+<p>Camill, P., Chihara, L., Adams, B., Andreassi, C., Barry, A. N. N., Kalim, S., … Rafert, G. (2010). Early life history transitions and recruitment of Picea mariana in thawed boreal permafrost peatlands. <em>Ecology</em>. https://doi.org/10.1890/08-1839.1</p>
 <p>Chihara, L. M., &amp; Hesterberg, T. C. (2018). <em>Mathematical Statistics with Resampling and R</em>. https://doi.org/10.1002/9781119505969</p>
 <p>Holland, P. W. (1986). Statistics and Causal Inference. <em>Journal of the American Statistical Association</em>, 81(396), 945–960. https://doi.org/10.1080/01621459.1986.10478354</p>
-<div class="section footnotes" role="doc-endnotes">
-<hr />
-<ol class="incremental">
-<li><div id="fn1">
-<p>With many thanks to Jorge Cuartas for ideas for some of this code.<a href="#fnref1" class="footnote-back">↩︎</a></p>
-</div></li>
-</ol>
-</div></div>
+</div>
 </body>
 </html>

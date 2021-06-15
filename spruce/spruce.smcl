@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}12 Apr 2021, 15:44:55
+ {txt}opened on:  {res}15 Jun 2021, 12:41:19
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}12 Apr 2021
+{res}15 Jun 2021
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}15:44:55
+{res}12:41:19
 {txt}
 {com}. //_3
 . clear all
@@ -50,11 +50,11 @@
 . describe    
 
 {txt}Contains data from {res}spruce.dta
-{txt}  obs:{res}            72                          
-{txt} vars:{res}             9                          26 Apr 2020 12:18
+{txt} Observations:{res}            72                  
+{txt}    Variables:{res}             9                  26 Apr 2020 12:18
 {txt}{hline}
-              storage   display    value
-variable name   type    format     label      variable label
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
 {hline}
 {p 0 48}{res}{bind:Tree           }{txt}{bind: long    }{bind:{txt}%12.0g    }{space 1}{bind:         }{bind:  }{res}{res}Tree number{p_end}
 {p 0 48}{bind:Competition    }{txt}{bind: long    }{bind:{txt}%12.0g    }{space 1}{txt}Competition{p_end}
@@ -104,17 +104,17 @@ Sorted by:
 
 {txt}Two-sample t test with equal variances
 {hline 9}{c TT}{hline 68}
-Variable{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+Variable{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. err.{col 47}Std. dev.{col 59}[95% conf. interval]
 {hline 9}{c +}{hline 68}
        F {c |}{res}{col 12}     36{col 22} 52.89167{col 34} 1.396079{col 46} 8.376476{col 58} 50.05747{col 70} 55.72586
       {txt}NF {c |}{res}{col 12}     36{col 22} 38.11944{col 34} 1.465226{col 46} 8.791354{col 58} 35.14488{col 70} 41.09401
 {txt}{hline 9}{c +}{hline 68}
-combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.31421{col 58} 42.84685{col 70} 48.16426
+Combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.31421{col 58} 42.84685{col 70} 48.16426
 {txt}{hline 9}{c +}{hline 68}
     diff {c |}{res}{col 22} 14.77222{col 34} 2.023839{col 58}  10.7358{col 70} 18.80864
 {txt}{hline 9}{c BT}{hline 68}
     diff = mean({res}F{txt}) - mean({res}NF{txt})                                     t = {res}  7.2991
-{txt}Ho: diff = 0                                     degrees of freedom = {res}      70
+{txt}H0: diff = 0                                     Degrees of freedom = {res}      70
 
     {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
@@ -134,7 +134,7 @@ combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
 {txt}       Total {c |} {res} 9088.79778        71  128.011236   {txt}Root MSE        =   {res} 6.4141
 
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}     Height5{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{col 1}     Height5{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 2}Fertilizer {c |}{col 14}{res}{space 2}-14.71947{col 26}{space 2} 1.511991{col 37}{space 1}   -9.74{col 46}{space 3}0.000{col 54}{space 4}-17.73661{col 67}{space 3}-11.70234
 {txt}{space 5}Height0 {c |}{col 14}{res}{space 2} .8631456{col 26}{space 2}  .374817{col 37}{space 1}    2.30{col 46}{space 3}0.024{col 54}{space 4}   .11521{col 67}{space 3} 1.611081
@@ -154,8 +154,8 @@ combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
 {txt:Outcome model}{col 16}:{res: matching}{txt}{col 63}min {col 67}= {res}         1
 {txt:Treatment model}{col 16}:{res: logit}{col 63}{txt:max }{col 67}{txt:=}          3
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 14}{c |}{col 26}   AI Robust
-{col 1}     Height5{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{col 14}{c |}{col 26}   AI robust
+{col 1}     Height5{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}ATE          {txt}{c |}
 {space 2}Fertilizer {c |}
@@ -172,11 +172,17 @@ combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
 {com}. //_14
 . tebalance density, ///
 > scheme(michigan)
-{txt}{p 0 6 2}note: refitting the model using the {bf:generate()} option{p_end}
+{txt}(refitting the model using the {bf:generate()} option)
 {res}{txt}
 {com}. 
 . graph export mydensity.png, width(500) replace
-{txt}(file /Users/agrogan/Desktop/newstuff/spruce/mydensity.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/spruce/mydensity.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_15q
 . 
@@ -211,7 +217,7 @@ combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}12 Apr 2021, 15:45:03
+ {txt}closed on:  {res}15 Jun 2021, 12:41:26
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
