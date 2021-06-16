@@ -36,7 +36,6 @@ graph close _all
 
 ! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --webtex -i -t slidy --slide-level=2 --css spruceslidy.css "/Users/agrogan/Desktop/newstuff/spruce/spruce.html" -o "/Users/agrogan/Desktop/newstuff/spruce/spruce-slidy.html"
 
-
 doedit "MathJax-CDN.txt"
 
 doedit "spruce-slidy.html"
