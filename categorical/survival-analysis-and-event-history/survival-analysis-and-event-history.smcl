@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}20 May 2021, 10:05:47
+ {txt}opened on:  {res}18 Jun 2021, 14:50:13
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}20 May 2021
+{res}18 Jun 2021
 {txt}
 {com}. //_2
 . clear all
@@ -153,7 +153,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}20 May 2021, 10:05:56
+ {txt}closed on:  {res}18 Jun 2021, 14:50:23
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

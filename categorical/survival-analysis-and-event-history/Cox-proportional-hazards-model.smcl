@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}20 May 2021, 10:06:37
+ {txt}opened on:  {res}18 Jun 2021, 14:49:19
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}20 May 2021
+{res}18 Jun 2021
 {txt}
 {com}. //_2
 . clear all
@@ -161,7 +161,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}20 May 2021, 10:06:45
+ {txt}closed on:  {res}18 Jun 2021, 14:49:26
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
