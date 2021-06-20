@@ -1,0 +1,67 @@
+% Cox Model With Time Varying Covariates
+% Andy Grogan-Kaylor
+% `s c(current_date)`
+
+---
+geometry: margin=1 in
+---
+
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+
+# Introduction
+
+The Cox Proportional Hazards Model is an important model in *event history and survival analysis*. One important aspect of the Cox Model is its ability to include *time varying covariates*, covariates whose value changes over time.
+
+> The example below draws heavily from--but is slightly adapted from--the Stata `help stcox` file.
+
+# Get Data
+
+    use https://www.stata-press.com/data/r17/drugtr2, clear // simulated drug data
+	
+Per the Stata documentation:
+
+> "Consider a dataset consisting of 45 observations on recovery time from walking pneumonia. Recovery time (in days) is recorded in the variable time, and there are measurements on the covariates age, drug1, and drug2, where drug1 and drug2 interact a choice of treatment with initial dosage level. The study was terminated after 30 days, so those who had not recovered by that time were censored (cured = 0)."
+
+# `stset` The Data
+
+    stset time, failure(cured) // set up data for survival analysis
+
+# Model 1: Drugs Are *Time Invariant* Covariates
+
+    stcox age drug1 drug2 // Cox model
+
+    est store M1 // store estimates
+
+# Model 2: Drugs Are *Time Varying Covariates*
+
+    stcox age, tvc(drug1 drug2) // Cox model
+
+    est store M2 // store estimates
+
+# Model 3: Drugs Are *Time Varying Covariates* (*Manually Specified*)
+
+    generate id=_n // multiple record data needs an id
+
+    streset, id(id) // `streset` the data
+
+    stsplit, at(failures) // split data at each recovery time
+
+    generate drug1emt = drug1 * _t // manual interaction of drug1 and time
+
+    generate drug2emt = drug2 * _t // manual interaction of drug2 and time
+
+    stcox age drug1emt drug2emt // Cox model
+
+    est store M3 // store estimates
+
+# Nice Table of Estimates to Compare Models
+
+    est table M1 M2 M3, star equations(1)
+
+
+
+
+
+
+
+

@@ -1,0 +1,203 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}20 Jun 2021, 14:46:57
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}20 Jun 2021
+{txt}
+{com}. //_2
+. use https://www.stata-press.com/data/r17/drugtr2, clear // simulated drug data
+{txt}
+{com}. //_3
+. stset time, failure(cured) // set up data for survival analysis
+
+{txt}Survival-time data settings
+
+{col 10}Failure event: {res}cured!=0 & cured<.
+{col 1}{txt}Observed time interval: {res}(0, time]
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}         45{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}         45{txt}  observations remaining, representing
+{res}         36{txt}  failures in single-record/single-failure data
+{res}      677.9{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res}        0
+                                          {txt}Last observed exit t = {res}       30
+{txt}
+{com}. //_4
+. stcox age drug1 drug2 // Cox model
+
+{col 9}{txt}Failure {bf:_d}: {res}cured
+{col 3}{txt}Analysis time {bf:_t}: {res}time
+
+{txt}Iteration 0:   log likelihood = {res}-116.54385
+{txt}Iteration 1:   log likelihood = {res}-102.77311
+{txt}Iteration 2:   log likelihood = {res}-101.92794
+{txt}Iteration 3:   log likelihood = {res}-101.92504
+{txt}Iteration 4:   log likelihood = {res}-101.92504
+{txt}Refining estimates:
+Iteration 0:   log likelihood = {res}-101.92504
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 5:45}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:45}
+{txt}No. of failures = {res}{ralign 5:36}
+{txt}Time at risk    = {res}{ralign 5:677.9}
+{col 57}{txt}{lalign 13:LR chi2({res:3})} = {res}{ralign 6:29.24}
+{txt}Log likelihood = {res}-101.92504{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .8759449{col 26}{space 2} .0253259{col 37}{space 1}   -4.58{col 46}{space 3}0.000{col 54}{space 4} .8276873{col 67}{space 3} .9270162
+{txt}{space 7}drug1 {c |}{col 14}{res}{space 2} 1.008482{col 26}{space 2} .0043249{col 37}{space 1}    1.97{col 46}{space 3}0.049{col 54}{space 4} 1.000041{col 67}{space 3} 1.016994
+{txt}{space 7}drug2 {c |}{col 14}{res}{space 2}  1.00189{col 26}{space 2} .0047971{col 37}{space 1}    0.39{col 46}{space 3}0.693{col 54}{space 4} .9925323{col 67}{space 3} 1.011337
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_5
+. est store M1 // store estimates
+{txt}
+{com}. //_6
+. stcox age, tvc(drug1 drug2) // Cox model
+
+{col 9}{txt}Failure {bf:_d}: {res}cured
+{col 3}{txt}Analysis time {bf:_t}: {res}time
+
+{txt}Iteration 0:   log likelihood = {res}-116.54385
+{txt}Iteration 1:   log likelihood = {res}-104.50191
+{txt}Iteration 2:   log likelihood = {res}-103.87961
+{txt}Iteration 3:   log likelihood = {res}-103.87525
+{txt}Iteration 4:   log likelihood = {res}-103.87525
+{txt}Refining estimates:
+Iteration 0:   log likelihood = {res}-103.87525
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 5:45}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:45}
+{txt}No. of failures = {res}{ralign 5:36}
+{txt}Time at risk    = {res}{ralign 5:677.9}
+{col 57}{txt}{lalign 13:LR chi2({res:3})} = {res}{ralign 6:25.34}
+{txt}Log likelihood = {res}-103.87525{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}main         {txt}{c |}
+{space 9}age {c |}{col 14}{res}{space 2} .8786593{col 26}{space 2} .0250789{col 37}{space 1}   -4.53{col 46}{space 3}0.000{col 54}{space 4} .8308552{col 67}{space 3} .9292139
+{txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}tvc          {txt}{c |}
+{space 7}drug1 {c |}{col 14}{res}{space 2} 1.000272{col 26}{space 2}  .000335{col 37}{space 1}    0.81{col 46}{space 3}0.416{col 54}{space 4} .9996161{col 67}{space 3} 1.000929
+{txt}{space 7}drug2 {c |}{col 14}{res}{space 2} .9998618{col 26}{space 2}  .000364{col 37}{space 1}   -0.38{col 46}{space 3}0.704{col 54}{space 4} .9991486{col 67}{space 3} 1.000576
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 0 78}Note: Variables in {bf:tvc}{txt} equation interacted with {bf:_t}.{p_end}
+
+{com}. //_7
+. est store M2 // store estimates
+{txt}
+{com}. //_8
+. generate id=_n // multiple record data needs an id
+{txt}
+{com}. //_9
+. streset, id(id) // `streset` the data
+{txt}-> stset time, id(id) failure(cured)
+
+Survival-time data settings
+
+{col 12}ID variable: {res}id
+{col 10}{txt}Failure event: {res}cured!=0 & cured<.
+{col 1}{txt}Observed time interval: {res}(time[_n-1], time]
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}         45{txt}  total observations
+{res}          0{txt}  exclusions
+{hline 74}
+{res}         45{txt}  observations remaining, representing
+{res}         45{txt}  subjects
+{res}         36{txt}  failures in single-failure-per-subject data
+{res}      677.9{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res}        0
+                                          {txt}Last observed exit t = {res}       30
+{txt}
+{com}. //_10
+. stsplit, at(failures) // split data at each recovery time
+{txt}(31 failure times)
+(812 observations (episodes) created)
+
+{com}. //_11
+. generate drug1emt = drug1 * _t // manual interaction of drug1 and time
+{txt}
+{com}. //_12
+. generate drug2emt = drug2 * _t // manual interaction of drug2 and time
+{txt}
+{com}. //_13
+. stcox age drug1emt drug2emt // Cox model
+
+{col 9}{txt}Failure {bf:_d}: {res}cured
+{col 3}{txt}Analysis time {bf:_t}: {res}time
+{col 8}{txt}ID variable: {res}id
+
+{txt}Iteration 0:   log likelihood = {res}-116.54385
+{txt}Iteration 1:   log likelihood = {res}-104.50191
+{txt}Iteration 2:   log likelihood = {res}-103.87961
+{txt}Iteration 3:   log likelihood = {res}-103.87525
+{txt}Iteration 4:   log likelihood = {res}-103.87525
+{txt}Refining estimates:
+Iteration 0:   log likelihood = {res}-103.87525
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 5:45}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:857}
+{txt}No. of failures = {res}{ralign 5:36}
+{txt}Time at risk    = {res}{ralign 5:677.9}
+{col 57}{txt}{lalign 13:LR chi2({res:3})} = {res}{ralign 6:25.34}
+{txt}Log likelihood = {res}-103.87525{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0000}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          _t{col 14}{c |} Haz. ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .8786593{col 26}{space 2} .0250789{col 37}{space 1}   -4.53{col 46}{space 3}0.000{col 54}{space 4} .8308552{col 67}{space 3} .9292139
+{txt}{space 4}drug1emt {c |}{col 14}{res}{space 2} 1.000272{col 26}{space 2}  .000335{col 37}{space 1}    0.81{col 46}{space 3}0.416{col 54}{space 4} .9996161{col 67}{space 3} 1.000929
+{txt}{space 4}drug2emt {c |}{col 14}{res}{space 2} .9998618{col 26}{space 2}  .000364{col 37}{space 1}   -0.38{col 46}{space 3}0.704{col 54}{space 4} .9991486{col 67}{space 3} 1.000576
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_14
+. est store M3 // store estimates
+{txt}
+{com}. //_15
+. est table M1 M2 M3, star equations(1)
+{res}
+{txt}{hline 12}{c -}{c TT}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{ralign 12:Variable} {c |} {center 13:M1} {space 1} {center 13:M2} {space 1} {center 13:M3} {space 1}
+{hline 12}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}#1           {txt}{c |}{res}
+{txt}{space 9}age {c |}{res} {ralign 10:-.13245204}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.12935802}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.12935802}{lalign 3:***}{txt} {space 1}
+{res}{txt}{space 7}drug1 {c |}{res} {ralign 10:.00844606}{lalign 3:*}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 7}drug2 {c |}{res} {ralign 10:.00188866}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 4}drug1emt {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.0002724}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 4}drug2emt {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.00013819}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 12}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}tvc          {txt}{c |}{res}
+{txt}{space 7}drug1 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.0002724}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 7}drug2 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.00013819}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 12}{c -}{c BT}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{ralign 62:Legend: * p<0.05; ** p<0.01; *** p<0.001}
+{res}{txt}
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}20 Jun 2021, 14:46:58
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
