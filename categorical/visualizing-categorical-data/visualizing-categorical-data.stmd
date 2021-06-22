@@ -76,7 +76,7 @@ We try a bar graph.
 
     graph bar [fweight = Count], over(Outcome) /// 
 	asyvars /// different colors for bars
-	blabel(bar, format(%9.4g)) /// bars labelled with bar height
+	blabel(bar, format(%9.4g) size(medium)) /// bars labelled with bar height
 	yscale(range(0 100)) /// y scale from 0 to 100
 	by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
 	scheme(michigan) // Michigan graph scheme

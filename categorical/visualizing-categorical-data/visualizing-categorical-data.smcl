@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}22 Jun 2021, 15:20:23
+ {txt}opened on:  {res}22 Jun 2021, 16:40:27
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}15:20:23
+{res}16:40:27
 {txt}
 {com}. //_3
 . use "FrenchSkiiers.dta", clear
@@ -84,7 +84,7 @@ format
 {com}. //_9
 . graph bar [fweight = Count], over(Outcome) /// 
 > asyvars /// different colors for bars
-> blabel(bar, format(%9.4g)) /// bars labelled with bar height
+> blabel(bar, format(%9.4g) size(medium)) /// bars labelled with bar height
 > yscale(range(0 100)) /// y scale from 0 to 100
 > by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
 > scheme(michigan) // Michigan graph scheme
@@ -121,7 +121,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}22 Jun 2021, 15:20:32
+ {txt}closed on:  {res}22 Jun 2021, 16:40:36
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
