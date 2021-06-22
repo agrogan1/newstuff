@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}22 Jun 2021, 13:23:35
+ {txt}opened on:  {res}22 Jun 2021, 15:20:23
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}13:23:35
+{res}15:20:23
 {txt}
 {com}. //_3
 . use "FrenchSkiiers.dta", clear
@@ -57,7 +57,7 @@ format
 
 {com}. //_7
 . spineplot Outcome Tx [fweight=Count], ///
-> bar2(fintensity(%100)) ///
+> bar2(fintensity(%100)) /// set intensity for bar 2
 > title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
 > note("Allocation to Treament vs. Placebo is Roughly Equal" "Fewer Colds Among Those Recieving Treatment") /// note
 > xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
@@ -121,7 +121,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}22 Jun 2021, 13:23:44
+ {txt}closed on:  {res}22 Jun 2021, 15:20:32
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -53,7 +53,7 @@ We add options to clarify the spineplot, which have the unfortunate effect of ma
 Observe especially that we have added `note()`'s to the graph to clarify the meaning of the spineplot.
 
 	spineplot Outcome Tx [fweight=Count], ///
-	bar2(fintensity(%100)) ///
+	bar2(fintensity(%100)) /// set intensity for bar 2
 	title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
 	note("Allocation to Treament vs. Placebo is Roughly Equal" "Fewer Colds Among Those Recieving Treatment") /// note
 	xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
