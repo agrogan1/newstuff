@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}22 Jun 2021, 10:47:09
+ {txt}opened on:  {res}22 Jun 2021, 13:23:35
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}10:47:09
+{res}13:23:35
 {txt}
 {com}. //_3
 . use "FrenchSkiiers.dta", clear
@@ -57,19 +57,14 @@ format
 
 {com}. //_7
 . spineplot Outcome Tx [fweight=Count], ///
-> bar1(fintensity(%100)) bar2(fintensity(%100)) ///
+> bar2(fintensity(%100)) ///
 > title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
 > note("Allocation to Treament vs. Placebo is Roughly Equal" "Fewer Colds Among Those Recieving Treatment") /// note
 > xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
 > xtitle(" ", axis(1)) /// blank x title on axis(1)
 > ytitle("Outcome", axis(2)) /// ytitle on axis(2)
-> text(Count) /// add Count variable to boxes
+> text(Count, mlabcolor(black)) /// add Count variable to boxes
 > scheme(michigan) // Michigan graph scheme
-{p 0 4 2}
-{txt}(note:  named style
-% 100 not found in class
-intensity,  default attributes used)
-{p_end}
 {p 0 4 2}
 {txt}(note:  named style
 % 100 not found in class
@@ -107,7 +102,8 @@ format
 {com}. //_11
 . graph pie [fweight = Count], over(Outcome) ///
 > by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
-> plabel(_all percent, place(0) box fcolor(white) bmargin(vlarge)) /// label with percentages; placed in center of slice
+> plabel(1 percent, place(0) color(white)) /// label with percentages; placed in center of slice
+> plabel(2 percent, place(0)) /// label with percentages; placed in center of slice
 > scheme(michigan) // Michigan graph scheme
 {res}{txt}
 {com}. //_12
@@ -125,7 +121,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}22 Jun 2021, 10:47:17
+ {txt}closed on:  {res}22 Jun 2021, 13:23:44
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

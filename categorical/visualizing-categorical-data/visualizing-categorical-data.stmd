@@ -53,13 +53,13 @@ We add options to clarify the spineplot, which have the unfortunate effect of ma
 Observe especially that we have added `note()`'s to the graph to clarify the meaning of the spineplot.
 
 	spineplot Outcome Tx [fweight=Count], ///
-	bar1(fintensity(%100)) bar2(fintensity(%100)) ///
+	bar2(fintensity(%100)) ///
 	title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
 	note("Allocation to Treament vs. Placebo is Roughly Equal" "Fewer Colds Among Those Recieving Treatment") /// note
 	xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
 	xtitle(" ", axis(1)) /// blank x title on axis(1)
 	ytitle("Outcome", axis(2)) /// ytitle on axis(2)
-	text(Count) /// add Count variable to boxes
+	text(Count, mlabcolor(black)) /// add Count variable to boxes
 	scheme(michigan) // Michigan graph scheme
 	
     graph export myspineplot2.png, width(1000) replace
@@ -91,7 +91,8 @@ We try a bar graph.
 
     graph pie [fweight = Count], over(Outcome) ///
 	by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
-	plabel(_all percent, place(0) box fcolor(white) bmargin(vlarge)) /// label with percentages; placed in center of slice
+	plabel(1 percent, place(0) color(white)) /// label with percentages; placed in center of slice
+	plabel(2 percent, place(0)) /// label with percentages; placed in center of slice
 	scheme(michigan) // Michigan graph scheme
 
     graph export mypie2.png, width(1000) replace
