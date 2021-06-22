@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}11 Nov 2020, 11:30:05
+ {txt}opened on:  {res}22 Jun 2021, 10:47:09
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}11 Nov 2020
+{res}22 Jun 2021
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}11:30:05
+{res}10:47:09
 {txt}
 {com}. //_3
 . use "FrenchSkiiers.dta", clear
@@ -47,10 +47,17 @@
 {res}{txt}
 {com}. //_6
 . graph export myspineplot1.png, width(1000) replace
-{txt}(file myspineplot1.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/myspineplot1.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_7
 . spineplot Outcome Tx [fweight=Count], ///
+> bar1(fintensity(%100)) bar2(fintensity(%100)) ///
 > title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
 > note("Allocation to Treament vs. Placebo is Roughly Equal" "Fewer Colds Among Those Recieving Treatment") /// note
 > xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
@@ -58,10 +65,26 @@
 > ytitle("Outcome", axis(2)) /// ytitle on axis(2)
 > text(Count) /// add Count variable to boxes
 > scheme(michigan) // Michigan graph scheme
+{p 0 4 2}
+{txt}(note:  named style
+% 100 not found in class
+intensity,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+% 100 not found in class
+intensity,  default attributes used)
+{p_end}
 {res}{txt}
 {com}. //_8
 . graph export myspineplot2.png, width(1000) replace
-{txt}(file myspineplot2.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/myspineplot2.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_9
 . graph bar [fweight = Count], over(Outcome) /// 
@@ -73,25 +96,36 @@
 {res}{txt}
 {com}. //_10
 . graph export mybargraph1.png, width(1000) replace
-{txt}(file mybargraph1.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/mybargraph1.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_11
 . graph pie [fweight = Count], over(Outcome) ///
 > by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
-> pie(1, color(ltblue)) /// slice 1 is light blue to improve legibility
-> plabel(_all percent) /// label with percentages
+> plabel(_all percent, place(0) box fcolor(white) bmargin(vlarge)) /// label with percentages; placed in center of slice
 > scheme(michigan) // Michigan graph scheme
 {res}{txt}
 {com}. //_12
 . graph export mypie2.png, width(1000) replace
-{txt}(file mypie2.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/mypie2.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}11 Nov 2020, 11:30:10
+ {txt}closed on:  {res}22 Jun 2021, 10:47:17
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

@@ -6,7 +6,7 @@
 geometry: margin=1 in
 ---
 
-<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 
 # Background
 
@@ -53,6 +53,7 @@ We add options to clarify the spineplot, which have the unfortunate effect of ma
 Observe especially that we have added `note()`'s to the graph to clarify the meaning of the spineplot.
 
 	spineplot Outcome Tx [fweight=Count], ///
+	bar1(fintensity(%100)) bar2(fintensity(%100)) ///
 	title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
 	note("Allocation to Treament vs. Placebo is Roughly Equal" "Fewer Colds Among Those Recieving Treatment") /// note
 	xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
@@ -90,8 +91,7 @@ We try a bar graph.
 
     graph pie [fweight = Count], over(Outcome) ///
 	by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
-	pie(1, color(ltblue)) /// slice 1 is light blue to improve legibility
-	plabel(_all percent) /// label with percentages
+	plabel(_all percent, place(0) box fcolor(white) bmargin(vlarge)) /// label with percentages; placed in center of slice
 	scheme(michigan) // Michigan graph scheme
 
     graph export mypie2.png, width(1000) replace
