@@ -1,0 +1,181 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-inherently-interactive\logistic-inherently-interactive.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}29 Jun 2021, 14:07:13
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}29 Jun 2021
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}14:07:13
+{txt}
+{com}. //_3
+. use http://www.stata-press.com/data/r15/margex, clear // simulated data for margins
+{txt}(Artificial data for margins)
+
+{com}. //_4
+. regress outcome age i.group // linear model with only main effects, no interactions
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     3,000
+{txt}{hline 13}{c +}{hline 34}   F(3, 2996)      = {res}   208.92
+{txt}       Model {c |} {res} 73.1197372         3  24.3732457   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 349.519929     2,996  .116662193   {txt}R-squared       ={res}    0.1730
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1722
+{txt}       Total {c |} {res} 422.639667     2,999  .140926865   {txt}Root MSE        =   {res} .34156
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     outcome{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0099798{col 26}{space 2}  .000643{col 37}{space 1}   15.52{col 46}{space 3}0.000{col 54}{space 4} .0087191{col 67}{space 3} .0112405
+{txt}{space 12} {c |}
+{space 7}group {c |}
+{space 10}2  {c |}{col 14}{res}{space 2}-.1244143{col 26}{space 2} .0152899{col 37}{space 1}   -8.14{col 46}{space 3}0.000{col 54}{space 4}-.1543941{col 67}{space 3}-.0944345
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}-.1325247{col 26}{space 2} .0193249{col 37}{space 1}   -6.86{col 46}{space 3}0.000{col 54}{space 4}-.1704162{col 67}{space 3}-.0946332
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-.1509829{col 26}{space 2} .0316164{col 37}{space 1}   -4.78{col 46}{space 3}0.000{col 54}{space 4}-.2129749{col 67}{space 3}-.0889909
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_5
+. margins group, at(age = (20(10)60)) // calculate margins
+{res}
+{txt}Adjusted predictions{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,000}
+{txt}{col 1}Model VCE: {res:OLS}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Linear prediction, predict()}{p_end}
+{p2colreset}{...}
+{lalign 7:1._at: }{space 0}{lalign 3:age} = {res:{ralign 2:20}}
+{lalign 7:2._at: }{space 0}{lalign 3:age} = {res:{ralign 2:30}}
+{lalign 7:3._at: }{space 0}{lalign 3:age} = {res:{ralign 2:40}}
+{lalign 7:4._at: }{space 0}{lalign 3:age} = {res:{ralign 2:50}}
+{lalign 7:5._at: }{space 0}{lalign 3:age} = {res:{ralign 2:60}}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}_at#group {c |}
+{space 8}1 1  {c |}{col 14}{res}{space 2} .0486131{col 26}{space 2} .0198096{col 37}{space 1}    2.45{col 46}{space 3}0.014{col 54}{space 4} .0097713{col 67}{space 3} .0874549
+{txt}{space 8}1 2  {c |}{col 14}{res}{space 2}-.0758012{col 26}{space 2} .0153896{col 37}{space 1}   -4.93{col 46}{space 3}0.000{col 54}{space 4}-.1059765{col 67}{space 3}-.0456258
+{txt}{space 8}1 3  {c |}{col 14}{res}{space 2}-.0839116{col 26}{space 2} .0147861{col 37}{space 1}   -5.68{col 46}{space 3}0.000{col 54}{space 4}-.1129036{col 67}{space 3}-.0549196
+{txt}{space 8}2 1  {c |}{col 14}{res}{space 2} .1484111{col 26}{space 2} .0145895{col 37}{space 1}   10.17{col 46}{space 3}0.000{col 54}{space 4} .1198048{col 67}{space 3} .1770175
+{txt}{space 8}2 2  {c |}{col 14}{res}{space 2} .0239968{col 26}{space 2}  .011409{col 37}{space 1}    2.10{col 46}{space 3}0.036{col 54}{space 4} .0016266{col 67}{space 3} .0463671
+{txt}{space 8}2 3  {c |}{col 14}{res}{space 2} .0158864{col 26}{space 2} .0130784{col 37}{space 1}    1.21{col 46}{space 3}0.225{col 54}{space 4}-.0097571{col 67}{space 3}   .04153
+{txt}{space 8}3 1  {c |}{col 14}{res}{space 2} .2482091{col 26}{space 2} .0107686{col 37}{space 1}   23.05{col 46}{space 3}0.000{col 54}{space 4} .2270946{col 67}{space 3} .2693236
+{txt}{space 8}3 2  {c |}{col 14}{res}{space 2} .1237948{col 26}{space 2} .0103038{col 37}{space 1}   12.01{col 46}{space 3}0.000{col 54}{space 4} .1035917{col 67}{space 3}  .143998
+{txt}{space 8}3 3  {c |}{col 14}{res}{space 2} .1156844{col 26}{space 2} .0143575{col 37}{space 1}    8.06{col 46}{space 3}0.000{col 54}{space 4} .0875329{col 67}{space 3} .1438359
+{txt}{space 8}4 1  {c |}{col 14}{res}{space 2} .3480071{col 26}{space 2} .0100871{col 37}{space 1}   34.50{col 46}{space 3}0.000{col 54}{space 4} .3282287{col 67}{space 3} .3677855
+{txt}{space 8}4 2  {c |}{col 14}{res}{space 2} .2235928{col 26}{space 2} .0128393{col 37}{space 1}   17.41{col 46}{space 3}0.000{col 54}{space 4}  .198418{col 67}{space 3} .2487677
+{txt}{space 8}4 3  {c |}{col 14}{res}{space 2} .2154824{col 26}{space 2} .0179975{col 37}{space 1}   11.97{col 46}{space 3}0.000{col 54}{space 4} .1801938{col 67}{space 3} .2507711
+{txt}{space 8}5 1  {c |}{col 14}{res}{space 2} .4478051{col 26}{space 2} .0130467{col 37}{space 1}   34.32{col 46}{space 3}0.000{col 54}{space 4} .4222237{col 67}{space 3} .4733865
+{txt}{space 8}5 2  {c |}{col 14}{res}{space 2} .3233908{col 26}{space 2} .0174988{col 37}{space 1}   18.48{col 46}{space 3}0.000{col 54}{space 4} .2890799{col 67}{space 3} .3577017
+{txt}{space 8}5 3  {c |}{col 14}{res}{space 2} .3152804{col 26}{space 2} .0228989{col 37}{space 1}   13.77{col 46}{space 3}0.000{col 54}{space 4} .2703813{col 67}{space 3} .3601795
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_6
+. marginsplot, scheme(michigan) // marginsplot
+{res}
+{text}{p 0 0 2}Variables that uniquely identify margins: {bf:age group}{p_end}
+{res}{txt}
+{com}. //_7
+. graph export mymarginplot1.png, width(500) replace
+{txt}{p 0 4 2}
+file {bf}
+mymarginplot1.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_8
+. logit outcome age i.group // logistic model with only main effects, no interactions
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-1366.0718}  
+Iteration 1:{space 3}log likelihood = {res:-1117.4597}  
+Iteration 2:{space 3}log likelihood = {res:-1076.5953}  
+Iteration 3:{space 3}log likelihood = {res:-1075.0192}  
+Iteration 4:{space 3}log likelihood = {res:-1075.0132}  
+Iteration 5:{space 3}log likelihood = {res:-1075.0132}  
+{res}
+{txt}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:3,000}
+{txt}{col 57}{lalign 13:LR chi2({res:3})}{col 70} = {res}{ralign 6:582.12}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}Log likelihood = {res:-1075.0132}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2131}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     outcome{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0904989{col 26}{space 2}  .006473{col 37}{space 1}   13.98{col 46}{space 3}0.000{col 54}{space 4} .0778121{col 67}{space 3} .1031857
+{txt}{space 12} {c |}
+{space 7}group {c |}
+{space 10}2  {c |}{col 14}{res}{space 2}-.7701431{col 26}{space 2} .1262704{col 37}{space 1}   -6.10{col 46}{space 3}0.000{col 54}{space 4}-1.017629{col 67}{space 3}-.5226576
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}-1.723107{col 26}{space 2} .2740705{col 37}{space 1}   -6.29{col 46}{space 3}0.000{col 54}{space 4}-2.260275{col 67}{space 3}-1.185938
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-5.150287{col 26}{space 2} .3293441{col 37}{space 1}  -15.64{col 46}{space 3}0.000{col 54}{space 4} -5.79579{col 67}{space 3}-4.504784
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_9
+. margins group, at(age = (20(10)60)) // calculate margins
+{res}
+{txt}Adjusted predictions{col 58}{lalign 13:Number of obs}{col 71} = {res}{ralign 5:3,000}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(outcome), predict()}{p_end}
+{p2colreset}{...}
+{lalign 7:1._at: }{space 0}{lalign 3:age} = {res:{ralign 2:20}}
+{lalign 7:2._at: }{space 0}{lalign 3:age} = {res:{ralign 2:30}}
+{lalign 7:3._at: }{space 0}{lalign 3:age} = {res:{ralign 2:40}}
+{lalign 7:4._at: }{space 0}{lalign 3:age} = {res:{ralign 2:50}}
+{lalign 7:5._at: }{space 0}{lalign 3:age} = {res:{ralign 2:60}}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}     Margin{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}_at#group {c |}
+{space 8}1 1  {c |}{col 14}{res}{space 2} .0342139{col 26}{space 2} .0067462{col 37}{space 1}    5.07{col 46}{space 3}0.000{col 54}{space 4} .0209916{col 67}{space 3} .0474362
+{txt}{space 8}1 2  {c |}{col 14}{res}{space 2} .0161357{col 26}{space 2} .0030183{col 37}{space 1}    5.35{col 46}{space 3}0.000{col 54}{space 4} .0102199{col 67}{space 3} .0220515
+{txt}{space 8}1 3  {c |}{col 14}{res}{space 2} .0062842{col 26}{space 2} .0017771{col 37}{space 1}    3.54{col 46}{space 3}0.000{col 54}{space 4} .0028011{col 67}{space 3} .0097672
+{txt}{space 8}2 1  {c |}{col 14}{res}{space 2} .0805187{col 26}{space 2} .0106928{col 37}{space 1}    7.53{col 46}{space 3}0.000{col 54}{space 4} .0595612{col 67}{space 3} .1014761
+{txt}{space 8}2 2  {c |}{col 14}{res}{space 2} .0389606{col 26}{space 2} .0052426{col 37}{space 1}    7.43{col 46}{space 3}0.000{col 54}{space 4} .0286854{col 67}{space 3} .0492359
+{txt}{space 8}2 3  {c |}{col 14}{res}{space 2} .0153915{col 26}{space 2} .0039878{col 37}{space 1}    3.86{col 46}{space 3}0.000{col 54}{space 4} .0075756{col 67}{space 3} .0232074
+{txt}{space 8}3 1  {c |}{col 14}{res}{space 2} .1779452{col 26}{space 2}   .01342{col 37}{space 1}   13.26{col 46}{space 3}0.000{col 54}{space 4} .1516424{col 67}{space 3} .2042479
+{txt}{space 8}3 2  {c |}{col 14}{res}{space 2} .0910836{col 26}{space 2} .0088552{col 37}{space 1}   10.29{col 46}{space 3}0.000{col 54}{space 4} .0737278{col 67}{space 3} .1084394
+{txt}{space 8}3 3  {c |}{col 14}{res}{space 2} .0372035{col 26}{space 2} .0091939{col 37}{space 1}    4.05{col 46}{space 3}0.000{col 54}{space 4} .0191838{col 67}{space 3} .0552233
+{txt}{space 8}4 1  {c |}{col 14}{res}{space 2} .3485673{col 26}{space 2} .0149823{col 37}{space 1}   23.27{col 46}{space 3}0.000{col 54}{space 4} .3192025{col 67}{space 3}  .377932
+{txt}{space 8}4 2  {c |}{col 14}{res}{space 2} .1985334{col 26}{space 2} .0171799{col 37}{space 1}   11.56{col 46}{space 3}0.000{col 54}{space 4} .1648614{col 67}{space 3} .2322054
+{txt}{space 8}4 3  {c |}{col 14}{res}{space 2} .0871891{col 26}{space 2} .0211918{col 37}{space 1}    4.11{col 46}{space 3}0.000{col 54}{space 4} .0456539{col 67}{space 3} .1287243
+{txt}{space 8}5 1  {c |}{col 14}{res}{space 2} .5694594{col 26}{space 2} .0228297{col 37}{space 1}   24.94{col 46}{space 3}0.000{col 54}{space 4} .5247141{col 67}{space 3} .6142047
+{txt}{space 8}5 2  {c |}{col 14}{res}{space 2} .3797765{col 26}{space 2}  .033522{col 37}{space 1}   11.33{col 46}{space 3}0.000{col 54}{space 4} .3140745{col 67}{space 3} .4454784
+{txt}{space 8}5 3  {c |}{col 14}{res}{space 2}   .19101{col 26}{space 2} .0448654{col 37}{space 1}    4.26{col 46}{space 3}0.000{col 54}{space 4} .1030754{col 67}{space 3} .2789447
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_10
+. marginsplot, scheme(michigan) // marginsplot
+{res}
+{text}{p 0 0 2}Variables that uniquely identify margins: {bf:age group}{p_end}
+{res}{txt}
+{com}. //_11
+. graph export mymarginplot2.png, width(500) replace
+{txt}{p 0 4 2}
+file {bf}
+mymarginplot2.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-inherently-interactive\logistic-inherently-interactive.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}29 Jun 2021, 14:07:17
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

@@ -1,0 +1,64 @@
+% Logistic Regression Models Are Inherently Interactive
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+> DRAFT VERSION: COMMENTS, QUESTIONS AND CORRECTIONS WELCOME.
+
+# Background
+
+In another handout, we have disussed the idea that interactions in logistic regression models require careful interpretation. In this handout, we discuss the idea that, because logistic regression models are inherently non-linear--marginal change depends upon the value of the *x's*--logistic regression models may have an *interactive* quality, even when no interaction is directly specified.
+
+# Get Data
+
+    use http://www.stata-press.com/data/r15/margex, clear // simulated data for margins
+
+# Linear Model With No Interaction
+
+## Regression
+
+    regress outcome age i.group // linear model with only main effects, no interactions
+	
+## Calculate Margins	
+	
+	margins group, at(age = (20(10)60)) // calculate margins
+	
+## Plot Margins
+	
+	marginsplot, scheme(michigan) // marginsplot
+	
+	graph export mymarginplot1.png, width(500) replace
+
+![Margins Plot From Linear Model With No Interaction](mymarginplot1.png)
+
+> We see that, in accordance with the model that has no interactions, there are parallel regression lines for the different groups.
+
+# Logistic Model With No Interaction
+
+## Regression
+
+    logit outcome age i.group // logistic model with only main effects, no interactions
+
+## Calculate Margins
+
+	margins group, at(age = (20(10)60)) // calculate margins
+
+## Plot Margins
+	
+	marginsplot, scheme(michigan) // marginsplot
+	
+	graph export mymarginplot2.png, width(500) replace
+
+![Margins Plot From Logistic Model With No Interaction](mymarginplot2.png)
+	
+> We see that, despite with the model that has no interactions, there are non-parallel (and non-linear) regression lines for the different groups.
+	
+	
+
+
