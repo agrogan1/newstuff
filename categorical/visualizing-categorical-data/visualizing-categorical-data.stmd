@@ -102,7 +102,20 @@ We try a bar graph.
 > The pie chart also tells a *very* clear story about *outcomes*. Similar to the bar plot, however, the pie chart *does not* make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.
 
 	
-	
+// 	generate mylabel = "✔️"
+//     replace mylabel = "⭕" in 1
+//     replace mylabel = "⭕" in 3
+//	
+// 	expand Count
+//	
+// 	sort Tx Outcome
+//	
+// 	egen x = seq(), from(1) to(30)
+//	
+//     egen y = seq(), from(1) to(10) block(10)
+//	
+// 	twoway scatter y x if Tx == 0, mlabel(mylabel) msymbol(none) /// 
+// 	scheme(michigan)
 	
 	
 	
