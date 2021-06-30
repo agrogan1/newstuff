@@ -40,6 +40,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
     + [Reformatting Longitudinal Data As Survival Data](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.html)
     + [Cox Proportional Hazards Model](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model-slidy.html) | [PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.pdf)
     + [Cox Proportional Hazards Model With Time Varying Covariates](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.html) | [PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.pdf)
+    + [More on the Cox Proportional Hazards Model](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.html) | [PDF](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.pdf)
 
 Andrew Grogan-Kaylor ([GitHub](https://agrogan1.github.io/), [New GitHub](https://agrogan1.github.io/newstuff)) | [agrogan@umich.edu](agrogan@umich.edu)
 
