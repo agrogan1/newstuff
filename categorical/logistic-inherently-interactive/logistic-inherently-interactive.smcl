@@ -1,17 +1,17 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-inherently-interactive\logistic-inherently-interactive.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-inherently-interactive/logistic-inherently-interactive.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}29 Jun 2021, 14:07:13
+ {txt}opened on:  {res}30 Jun 2021, 09:15:15
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}29 Jun 2021
+{res}30 Jun 2021
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}14:07:13
+{res}09:15:15
 {txt}
 {com}. //_3
 . use http://www.stata-press.com/data/r15/margex, clear // simulated data for margins
@@ -85,7 +85,7 @@
 . graph export mymarginplot1.png, width(500) replace
 {txt}{p 0 4 2}
 file {bf}
-mymarginplot1.png{rm}
+/Users/agrogan/Desktop/newstuff/categorical/logistic-inherently-interactive/mymarginplot1.png{rm}
 saved as
 PNG
 format
@@ -164,7 +164,7 @@ Iteration 5:{space 3}log likelihood = {res:-1075.0132}
 . graph export mymarginplot2.png, width(500) replace
 {txt}{p 0 4 2}
 file {bf}
-mymarginplot2.png{rm}
+/Users/agrogan/Desktop/newstuff/categorical/logistic-inherently-interactive/mymarginplot2.png{rm}
 saved as
 PNG
 format
@@ -173,9 +173,9 @@ format
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-inherently-interactive\logistic-inherently-interactive.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-inherently-interactive/logistic-inherently-interactive.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}29 Jun 2021, 14:07:17
+ {txt}closed on:  {res}30 Jun 2021, 09:15:19
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

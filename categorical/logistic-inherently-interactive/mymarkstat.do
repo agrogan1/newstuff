@@ -6,6 +6,8 @@ clear all
 
 cd "C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-inherently-interactive" // Windows
 
+cd "/Users/agrogan/Desktop/newstuff/categorical/logistic-inherently-interactive" // Mac
+
 * edit 
 
 doedit "logistic-inherently-interactive.stmd"

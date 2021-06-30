@@ -7,13 +7,13 @@
 geometry: margin=1 in
 ---
 
-<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 
 > DRAFT VERSION: COMMENTS, QUESTIONS AND CORRECTIONS WELCOME.
 
 # Background
 
-In another handout, we have disussed the idea that interactions in logistic regression models require careful interpretation. In this handout, we discuss the idea that, because logistic regression models are inherently non-linear--marginal change depends upon the value of the *x's*--logistic regression models may have an *interactive* quality, even when no interaction is directly specified.
+In another handout, we have discussed the idea that interactions in logistic regression models require careful interpretation. In this handout, we discuss the idea that, because logistic regression models are inherently non-linear--marginal change depends upon the value of the *x's*--logistic regression models may have an *interactive* quality, even when no interaction is directly specified.
 
 # Get Data
 
