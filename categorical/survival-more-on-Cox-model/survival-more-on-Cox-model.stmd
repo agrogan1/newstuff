@@ -1,0 +1,45 @@
+% More On The Cox Proportional Hazards Model
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+
+---
+geometry: margin=1 in
+---
+
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+
+> DRAFT VERSION: COMMENTS, QUESTIONS AND CORRECTIONS WELCOME.
+
+# Background
+
+> This handout draws on ideas that appear in many textbooks and sets of notes on survival analysis. I have seen them most clearly presented in notes (nd) by Professor Ronghui Xu and *An Introduction to Event History Analysis* (2007) from The Oxford Summer School. However, I present these ideas using the notation preferred by Paul Allison, and by the Stata documentation, which I think is more clear.
+
+# The Hazard
+
+Per Paul Allison:
+
+For a single covariate.
+
+$$\ln(h(t)) = a(t) + \beta_1 x_1$$
+
+# Some Algebra (Per Oxford Summer School)
+
+Then 
+
+$$h(t) = e^{a(t) + \beta_1 x_1}$$
+
+Then
+
+$$h(t) = e^{a(t)} e^{\beta_1 x_1}$$
+
+> Per ideas presented by Professor Xu, and elsewhere, we note that "the baseline hazard depends on *t* but not on the covariates," and, as we will see below, "the hazard ratio, depends on the covariates, but not on *t*.
+
+# The Hazard Ratio (Per Allison and The Oxford Summer School)
+
+We use a dichotomous covariate for the sake of illustration.
+
+$$\text{HR} = \frac{h(t)|x = 1}{h(t)|x = 0} =$$
+$$\frac{e^{a(t)} e^{\beta_1 \times 1}}{e^{a(t)} e^{\beta_1 \times 0}} = $$
+
+$$\frac{e^{\beta_1}}{e^0} = e^{\beta_1}$$
