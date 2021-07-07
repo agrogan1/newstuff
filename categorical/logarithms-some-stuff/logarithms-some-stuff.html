@@ -1,0 +1,35 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="stmarkdown.css">
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+</head>
+<h1><a href="#some-stuff-about-logarithms" id="some-stuff-about-logarithms">Some Stuff About Logarithms</a></h1>
+<h2><a href="#introduction" id="introduction">Introduction</a></h2>
+<p>We consider the logarithm. One very simple way to present the logarithm is to use the constant $e$.</p>
+<p>Let&rsquo;s first consider the exponential function with base $e$, $y = e^x$</p>
+<pre><code>. twoway function y = exp(x), title(&quot;Exponential Function&quot;) range(-10 10) 
+
+</code></pre>
+<p><img src="exponential.svg" ></p>
+<p>If $y = e^x$, then $\ln(y) = x$.</p>
+<h2><a href="#graphing-logarithmic-function" id="graphing-logarithmic-function">Graphing Logarithmic Function</a></h2>
+<p>Note that in the equation above, we are taking the logarithm of $y$. To get some quick sense of how the logarithm behaves, we are going to graph $y = \ln(x)$.</p>
+<pre><code>. twoway function y = ln(x), title(&quot;Logarithmic Function&quot;) range(-10 10)
+
+</code></pre>
+<p><img src="logarithmic.svg" ></p>
+<h2><a href="#logistic-regression" id="logistic-regression">Logistic Regression</a></h2>
+<p>In logistic regression, which we are discussing in more detail in this course, we consider the <em>odds</em> of our outcome:</p>
+<p>$$\frac{p(y)}{1-p(y)}$$</p>
+<p>We will be working with the <em>log odds</em>:</p>
+<p>$$\ln(\frac{p(y)}{1-p(y)})$$</p>
+<p>To graph these <em>log odds</em>, we need to solve for $p(y)$:</p>
+<p>$$p(y) = \frac{e^x}{1 + e^x}$$</p>
+<pre><code>. twoway function y = exp(x)/(1 + exp(x)), title(&quot;Logistic Function&quot;) range(-10 10)
+
+</code></pre>
+<p><img src="logistic.svg" ></p>

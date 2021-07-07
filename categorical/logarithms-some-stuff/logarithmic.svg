@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- This is a Stata 17.0 generated SVG file (http://www.stata.com) -->
+
+<svg version="1.1" width="6.00in" height="4.00in" viewBox="0 0 4320 2880" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>Stata Graph - Graph</desc>
+	<rect x="0" y="0" width="4320" height="2880" style="fill:#FFFFFF;stroke:none"/>
+	<rect x="0.00" y="0.00" width="4320.00" height="2880.00" style="fill:#FFFFFF"/>
+	<rect x="2.88" y="2.88" width="4314.24" height="2874.24" style="fill:none;stroke:#FFFFFF;stroke-width:5.76"/>
+	<rect x="492.35" y="309.96" width="3726.81" height="2100.09" style="fill:#FFFFFF"/>
+	<rect x="495.22" y="312.84" width="3721.05" height="2094.33" style="fill:none;stroke:#FFFFFF;stroke-width:5.76"/>
+	<line x1="492.35" y1="2346.74" x2="4219.15" y2="2346.74" style="stroke:#000000;stroke-width:3.00"/>
+	<line x1="492.35" y1="1720.47" x2="4219.15" y2="1720.47" style="stroke:#000000;stroke-width:3.00"/>
+	<line x1="492.35" y1="1094.19" x2="4219.15" y2="1094.19" style="stroke:#000000;stroke-width:3.00"/>
+	<line x1="492.35" y1="468.05" x2="4219.15" y2="468.05" style="stroke:#000000;stroke-width:3.00"/>
+	<path d=" M2361.69 2158.28 L2373.70 1814.29 L2385.86 1654.32 L2397.87 1549.01 L2409.89 1470.31 L2421.90 1407.40 L2433.91 1355.15 L2446.07 1310.33 L2458.08 1271.18 L2470.09 1236.35 L2482.11 1205.03 L2494.13 1176.54 L2506.14 1150.35 L2518.29 1126.32 L2530.30 1103.91 L2542.32 1082.99 L2554.34 1063.41 L2566.35 1045.05 L2578.50 1027.64 L2590.51 1011.17 L2602.53 995.51 L2614.55 980.52 L2626.56 966.35 L2638.71 952.71 L2650.72 939.61 L2662.74 927.19 L2674.76 915.04 L2686.77 903.43 L2698.78 892.36 L2710.93 881.56 L2722.95 871.03 L2734.97 860.91 L2746.98 851.19 L2758.99 841.74 L2771.14 832.42 L2783.16 823.51 L2795.18 814.87 L2807.19 806.37 L2819.20 798.13 L2831.36 790.17 L2843.37 782.34 L2855.39 774.64 L2867.40 767.22 L2879.41 759.93 L2891.43 752.77 L2903.58 745.89 L2915.59 739.00 L2927.61 732.39 L2939.63 725.77 L2951.64 719.43 L2963.79 713.22 L2975.80 707.01 L2987.82 701.07 L2999.84 695.13 L3011.85 689.32 L3023.86 683.65 L3036.01 677.98 L3048.03 672.58 L3060.05 667.18 L3072.06 661.78 L3084.07 656.65 L3096.22 651.52 L3108.24 646.39 L3120.26 641.40 L3132.27 636.53 L3144.28 631.81 L3156.43 626.95 L3168.45 622.36 L3180.47 617.77 L3192.48 613.18 L3204.49 608.72 L3216.51 604.27 L3228.66 599.95 L3240.68 595.63 L3252.69 591.44 L3264.70 587.26 L3276.72 583.07 L3288.87 579.02 L3300.89 575.11 L3312.90 571.06 L3324.91 567.14 L3336.93 563.36 L3349.08 559.45 L3361.09 555.67 L3373.11 552.02 L3385.13 548.24 L3397.14 544.73 L3409.16 541.09 L3421.30 537.58 L3433.32 533.93 L3445.34 530.56 L3457.35 527.05 L3469.36 523.67 L3481.51 520.30 L3493.53 516.92 L3505.55 513.68 L3517.56 510.44 L3529.57 507.20 L3541.72 503.96 L3553.74 500.86 L3565.76 497.75 L3577.77 494.65 L3589.78 491.54 L3601.80 488.44 L3613.95 485.47 L3625.97 482.50 L3637.98 479.53 L3649.99 476.56 L3662.01 473.72 L3674.16 470.89 L3686.18 468.05 L3698.19 465.22 L3710.20 462.38 L3722.22 459.55 L3734.37 456.85 L3746.39 454.15 L3758.40 451.45 L3770.41 448.75 L3782.43 446.05 L3794.45 443.48 L3806.59 440.92 L3818.61 438.22 L3830.63 435.65 L3842.64 433.22 L3854.66 430.66 L3866.80 428.09 L3878.82 425.66 L3890.84 423.23 L3902.85 420.80 L3914.86 418.37 L3926.88 415.94 L3939.03 413.51 L3951.05 411.08 L3963.06 408.79 L3975.07 406.49 L3987.09 404.20 L3999.24 401.77 L4011.26 399.61 L4023.27 397.31 L4035.28 395.02 L4047.30 392.72 L4059.45 390.56 L4071.47 388.40 L4083.48 386.11 L4095.49 383.95 L4107.51 381.79 L4119.52 379.76 L4131.68 377.60 L4143.69 375.44 L4155.70 373.28" stroke-linejoin="round" style="fill:none;stroke:#1A476F;stroke-width:23.04"/>
+	<line x1="492.35" y1="2410.06" x2="492.35" y2="309.96" style="stroke:#000000;stroke-width:5.76"/>
+	<line x1="492.35" y1="2346.74" x2="452.38" y2="2346.74" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="432.40" y="2381.79" style="font-family:'Helvetica';font-size:100.03px;fill:#000000" text-anchor="end">-4</text>
+	<line x1="492.35" y1="1720.47" x2="452.38" y2="1720.47" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="432.40" y="1755.51" style="font-family:'Helvetica';font-size:100.03px;fill:#000000" text-anchor="end">-2</text>
+	<line x1="492.35" y1="1094.19" x2="452.38" y2="1094.19" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="432.40" y="1129.24" style="font-family:'Helvetica';font-size:100.03px;fill:#000000" text-anchor="end">0</text>
+	<line x1="492.35" y1="468.05" x2="452.38" y2="468.05" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="432.40" y="503.10" style="font-family:'Helvetica';font-size:100.03px;fill:#000000" text-anchor="end">2</text>
+	<text x="232.34" y="1360.01" style="font-family:'Helvetica';font-size:110.03px;fill:#000000" transform="rotate(-90 232.34,1360.01)" text-anchor="middle">y</text>
+	<line x1="492.35" y1="2410.06" x2="4219.15" y2="2410.06" style="stroke:#000000;stroke-width:5.76"/>
+	<line x1="555.79" y1="2410.06" x2="555.79" y2="2450.02" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="555.79" y="2540.09" style="font-family:'Helvetica';font-size:100.03px;fill:#000000" text-anchor="middle">-10</text>
+	<line x1="1455.70" y1="2410.06" x2="1455.70" y2="2450.02" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="1455.70" y="2540.09" style="font-family:'Helvetica';font-size:100.03px;fill:#000000" text-anchor="middle">-5</text>
+	<line x1="2355.75" y1="2410.06" x2="2355.75" y2="2450.02" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="2355.75" y="2540.09" style="font-family:'Helvetica';font-size:100.03px;fill:#000000" text-anchor="middle">0</text>
+	<line x1="3255.80" y1="2410.06" x2="3255.80" y2="2450.02" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="3255.80" y="2540.09" style="font-family:'Helvetica';font-size:100.03px;fill:#000000" text-anchor="middle">5</text>
+	<line x1="4155.84" y1="2410.06" x2="4155.84" y2="2450.02" style="stroke:#000000;stroke-width:5.76"/>
+	<text x="4155.84" y="2540.09" style="font-family:'Helvetica';font-size:100.03px;fill:#000000" text-anchor="middle">10</text>
+	<text x="2355.75" y="2691.54" style="font-family:'Helvetica';font-size:110.03px;fill:#000000" text-anchor="middle">x</text>
+	<text x="2355.75" y="233.34" style="font-family:'Helvetica';font-size:140.00px;fill:#000000" text-anchor="middle">Logarithmic Function</text>
+</svg>

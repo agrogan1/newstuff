@@ -1,0 +1,62 @@
+<<dd_version: 2>>
+<<dd_include: header.txt >>
+
+Some Stuff About Logarithms
+===============================================================
+
+<<dd_do:quietly>>
+set scheme michigan
+<</dd_do>>
+
+## Introduction
+
+We consider the logarithm. One very simple way to present the logarithm is to use the constant $e$.
+
+Let's first consider the exponential function with base $e$, $y = e^x$
+
+~~~~
+<<dd_do>>
+twoway function y = exp(x), title("Exponential Function") range(-10 10) 
+<</dd_do>>
+~~~~
+
+<<dd_graph: replace saving(exponential)>>
+
+If $y = e^x$, then $\ln(y) = x$.
+
+## Graphing Logarithmic Function
+
+Note that in the equation above, we are taking the logarithm of $y$. To get some quick sense of how the logarithm behaves, we are going to graph $y = \ln(x)$.
+
+~~~~
+<<dd_do>>
+twoway function y = ln(x), title("Logarithmic Function") range(-10 10)
+<</dd_do>>
+~~~~
+
+<<dd_graph: replace saving(logarithmic)>>
+
+## Logistic Regression
+
+In logistic regression, which we are discussing in more detail in this course, we consider the *odds* of our outcome: 
+
+$$\frac{p(y)}{1-p(y)}$$
+
+We will be working with the *log odds*:
+
+$$\ln(\frac{p(y)}{1-p(y)})$$
+
+To graph these *log odds*, we need to solve for $p(y)$:
+
+$$p(y) = \frac{e^x}{1 + e^x}$$
+
+~~~~
+<<dd_do>>
+twoway function y = exp(x)/(1 + exp(x)), title("Logistic Function") range(-10 10)
+<</dd_do>>
+~~~~
+
+<<dd_graph: replace saving(logistic)>>
+
+
+
