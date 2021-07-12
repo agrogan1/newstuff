@@ -1,9 +1,9 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\visualizing-categorical-data\visualizing-categorical-data.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}12 Jul 2021, 12:31:24
+ {txt}opened on:  {res}12 Jul 2021, 12:41:37
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}12:31:24
+{res}12:41:37
 {txt}
 {com}. //_3
 . use "FrenchSkiiers.dta", clear
@@ -49,7 +49,7 @@
 . graph export myspineplot1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-myspineplot1.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspineplot1.png{rm}
 saved as
 PNG
 format
@@ -76,7 +76,7 @@ intensity,  default attributes used)
 . graph export myspineplot2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-myspineplot2.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspineplot2.png{rm}
 saved as
 PNG
 format
@@ -94,7 +94,7 @@ format
 . graph export mybargraph1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mybargraph1.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mybargraph1.png{rm}
 saved as
 PNG
 format
@@ -111,7 +111,7 @@ format
 . graph export mypie2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mypie2.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mypie2.png{rm}
 saved as
 PNG
 format
@@ -120,9 +120,9 @@ format
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\visualizing-categorical-data\visualizing-categorical-data.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}12 Jul 2021, 12:31:30
+ {txt}closed on:  {res}12 Jul 2021, 12:41:45
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

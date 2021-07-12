@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 <style>
 /* CSS for Markstat 2.0 using Pandoc 2.0 */
@@ -38,19 +38,159 @@ tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
 tbody tr:last-child  td {padding-bottom:6px;}
 table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </style>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>Visualizing Categorical Data With French Skiiers Data</title>
-  <style type="text/css">code{white-space: pre;}</style>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<div id="header">
+<header id="title-block-header">
 <h1 class="title">Visualizing Categorical Data With French Skiiers Data</h1>
-<h2 class="author">Andy Grogan-Kaylor</h2>
-<h3 class="date">12 Jul 2021 12:30:38</h3>
-</div>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">12 Jul 2021 12:41:01</p>
+</header>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 <h1 id="background">Background</h1>
 <p>Visualizing categorical data presents its own unique challenges. Creating graphs may be easy, but creating graphs that effectively tell a story, or impart a message, may require additional effort.</p>
@@ -101,11 +241,15 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 
 . 
 . graph export myspineplot1.png, width(1000) replace
-file myspineplot1.png saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspineplot1.p
+    > ng saved as PNG format
 </pre>
-<p><img src="myspineplot1.png" alt="Spine Plot or Mosaic Plot" />{width=50%}</p>
+<figure>
+<img src="myspineplot1.png" style="width:50.0%" alt="Spine Plot or Mosaic Plot" /><figcaption aria-hidden="true">Spine Plot or Mosaic Plot</figcaption>
+</figure>
 <p>We add options to clarify the spineplot, which have the unfortunate effect of making the syntax more complicated and less intuitive. Hopefully, however we still see the core syntax of <code>spineplot Outcome Tx</code> is still there, and everything after the <code>,</code> is just options.</p>
-<p>Observe especially that we have added <code>note()</code>'s to the graph to clarify the meaning of the spineplot.</p>
+<p>Observe especially that we have added <code>note()</code>’s to the graph to clarify the meaning of the spineplot.</p>
 <pre class='stata'>. spineplot Outcome Tx [fweight=Count], ///
 > bar2(fintensity(%100)) /// set intensity for bar 2
 > title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
@@ -120,11 +264,15 @@ file myspineplot1.png saved as PNG format
 
 .     
 . graph export myspineplot2.png, width(1000) replace
-file myspineplot2.png saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspineplot2.p
+    > ng saved as PNG format
 </pre>
-<p><img src="myspineplot2.png" alt="Spine Plot or Mosaic Plot" />{width=50%}</p>
+<figure>
+<img src="myspineplot2.png" style="width:50.0%" alt="Spine Plot or Mosaic Plot" /><figcaption aria-hidden="true">Spine Plot or Mosaic Plot</figcaption>
+</figure>
 <blockquote>
-<p>The spineplot makes clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the spineplot would have made this clear as well.</p>
+<p>The spineplot makes clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the spineplot would have made this clear as well.</p>
 </blockquote>
 <blockquote>
 <p>With enough annotations, the spineplot <em>may</em> make it clear that the treatment appears to result in a lower rate of colds than the placebo.</p>
@@ -140,9 +288,13 @@ file myspineplot2.png saved as PNG format
 
 .     
 . graph export mybargraph1.png, width(1000) replace
-file mybargraph1.png saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mybargraph1.pn
+    > g saved as PNG format
 </pre>
-<p><img src="mybargraph1.png" alt="Bar Graph" />{width=50%}</p>
+<figure>
+<img src="mybargraph1.png" style="width:50.0%" alt="Bar Graph" /><figcaption aria-hidden="true">Bar Graph</figcaption>
+</figure>
 <blockquote>
 <p>The bar graph tells a <em>very</em> clear story about <em>outcomes</em>. However, this version of a bar graph <em>does not</em> make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.</p>
 </blockquote>
@@ -155,14 +307,25 @@ file mybargraph1.png saved as PNG format
 
 . 
 . graph export mypie2.png, width(1000) replace
-file mypie2.png saved as PNG format
+file /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mypie2.png
+    saved as PNG format
 </pre>
-<p><img src="mypie2.png" alt="Pie Chart" />{width=50%}</p>
+<figure>
+<img src="mypie2.png" style="width:50.0%" alt="Pie Chart" /><figcaption aria-hidden="true">Pie Chart</figcaption>
+</figure>
 <blockquote>
 <p>The pie chart also tells a <em>very</em> clear story about <em>outcomes</em>. Similar to the bar plot, however, the pie chart <em>does not</em> make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.</p>
 </blockquote>
 <h1 id="waffle-chart">Waffle Chart</h1>
 <p>Lastly, we try a waffle chart, which requires the use of R and the <code>waffle</code> library. The R script used to generate the figure below is <a href="./mywaffle.R">here</a>.</p>
-<p><img src="mywaffle.png" alt="Waffle Chart" />{width=50%}</p>
+<figure>
+<img src="mywaffle.png" style="width:50.0%" alt="Waffle Chart" /><figcaption aria-hidden="true">Waffle Chart</figcaption>
+</figure>
+<blockquote>
+<p>The waffle chart is very visually appealing. With enough inspection, the waffle chart <em>may</em> make clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the waffle chart would have made this clear as well.</p>
+</blockquote>
+<blockquote>
+<p>As with the spineplot, with enough annotations, the waffle chart <em>may</em> make it clear that the treatment appears to result in a lower rate of colds than the placebo.</p>
+</blockquote>
 </body>
 </html>
