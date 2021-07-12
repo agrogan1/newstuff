@@ -28,13 +28,17 @@ We also add options to various graphs to make them more informative.
 
 We use the *French Skiiers* data.
 
+```s
     use "FrenchSkiiers.dta", clear
+```
 	
 # 2 X 2 Table
 
 A 2 X 2 Table may be helpful
 
+```s
     tabulate Outcome Tx [fweight=Count], row col
+```
 	
 We note from the column percentages that allocation to the placebo or treament (ascorbic acid) was roughly 50% in each group (1 subject dropped out of the study). We further note from the within column percentages that 22.14% of those receiving the placebo got colds while only 12.23% of those receiving ascorbic acid got colds.
 
@@ -42,9 +46,11 @@ We note from the column percentages that allocation to the placebo or treament (
 
 A basic *spineplot* is illusrative of the *spineplot* idea, but perhaps not as informative as it might be.
 
+```s
     spineplot Outcome Tx [fweight=Count]
 
 	graph export myspineplot1.png, width(1000) replace
+```
 
 ![Spine Plot or Mosaic Plot](myspineplot1.png){width=50%}
 
@@ -52,10 +58,12 @@ We add options to clarify the spineplot, which have the unfortunate effect of ma
 
 Observe especially that we have added `note()`'s to the graph to clarify the meaning of the spineplot.
 
+```s
 	spineplot Outcome Tx [fweight=Count], ///
 	bar2(fintensity(%100)) /// set intensity for bar 2
 	title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
-	note("Allocation to Treament vs. Placebo is Roughly Equal" "Fewer Colds Among Those Recieving Treatment") /// note
+	note("Allocation to Treament vs. Placebo is Roughly Equal" ///
+	"Fewer Colds Among Those Recieving Treatment") /// note
 	xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
 	xtitle(" ", axis(1)) /// blank x title on axis(1)
 	ytitle("Outcome", axis(2)) /// ytitle on axis(2)
@@ -63,6 +71,7 @@ Observe especially that we have added `note()`'s to the graph to clarify the mea
 	scheme(michigan) // Michigan graph scheme
 	
     graph export myspineplot2.png, width(1000) replace
+```
 
 ![Spine Plot or Mosaic Plot](myspineplot2.png){width=50%}
 
@@ -74,6 +83,7 @@ Observe especially that we have added `note()`'s to the graph to clarify the mea
 
 We try a bar graph. 
 
+```s
     graph bar [fweight = Count], over(Outcome) /// 
 	asyvars /// different colors for bars
 	blabel(bar, format(%9.4g) size(medium)) /// bars labelled with bar height
@@ -82,6 +92,7 @@ We try a bar graph.
 	scheme(michigan) // Michigan graph scheme
 	
     graph export mybargraph1.png, width(1000) replace
+```
 
 ![Bar Graph](mybargraph1.png){width=50%}
 
@@ -89,6 +100,7 @@ We try a bar graph.
 
 # Pie Chart
 
+```s
     graph pie [fweight = Count], over(Outcome) ///
 	by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
 	plabel(1 percent, place(0) color(white)) /// label with percentages; placed in center of slice
@@ -96,26 +108,13 @@ We try a bar graph.
 	scheme(michigan) // Michigan graph scheme
 
     graph export mypie2.png, width(1000) replace
-
+```
 ![Pie Chart](mypie2.png){width=50%}
 	
 > The pie chart also tells a *very* clear story about *outcomes*. Similar to the bar plot, however, the pie chart *does not* make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.
 
-	
-// 	generate mylabel = "✔️"
-//     replace mylabel = "⭕" in 1
-//     replace mylabel = "⭕" in 3
-//	
-// 	expand Count
-//	
-// 	sort Tx Outcome
-//	
-// 	egen x = seq(), from(1) to(30)
-//	
-//     egen y = seq(), from(1) to(10) block(10)
-//	
-// 	twoway scatter y x if Tx == 0, mlabel(mylabel) msymbol(none) /// 
-// 	scheme(michigan)
-	
-	
-	
+# Waffle Chart
+
+Lastly, we try a waffle chart, which requires the use of R and the `waffle` library. The R script used to generate the figure below is [here](./mywaffle.R).
+
+![Waffle Chart](mywaffle.png){width=50%}	

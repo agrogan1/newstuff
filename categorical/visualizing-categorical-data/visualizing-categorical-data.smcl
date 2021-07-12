@@ -1,17 +1,17 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\visualizing-categorical-data\visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}22 Jun 2021, 16:40:27
+ {txt}opened on:  {res}12 Jul 2021, 12:31:24
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}22 Jun 2021
+{res}12 Jul 2021
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}16:40:27
+{res}12:31:24
 {txt}
 {com}. //_3
 . use "FrenchSkiiers.dta", clear
@@ -45,21 +45,22 @@
 {com}. //_5
 . spineplot Outcome Tx [fweight=Count]
 {res}{txt}
-{com}. //_6
+{com}. 
 . graph export myspineplot1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/myspineplot1.png{rm}
+myspineplot1.png{rm}
 saved as
 PNG
 format
 {p_end}
 
-{com}. //_7
+{com}. //_6
 . spineplot Outcome Tx [fweight=Count], ///
 > bar2(fintensity(%100)) /// set intensity for bar 2
 > title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
-> note("Allocation to Treament vs. Placebo is Roughly Equal" "Fewer Colds Among Those Recieving Treatment") /// note
+> note("Allocation to Treament vs. Placebo is Roughly Equal" ///
+> "Fewer Colds Among Those Recieving Treatment") /// note
 > xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
 > xtitle(" ", axis(1)) /// blank x title on axis(1)
 > ytitle("Outcome", axis(2)) /// ytitle on axis(2)
@@ -71,17 +72,17 @@ format
 intensity,  default attributes used)
 {p_end}
 {res}{txt}
-{com}. //_8
+{com}.     
 . graph export myspineplot2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/myspineplot2.png{rm}
+myspineplot2.png{rm}
 saved as
 PNG
 format
 {p_end}
 
-{com}. //_9
+{com}. //_7
 . graph bar [fweight = Count], over(Outcome) /// 
 > asyvars /// different colors for bars
 > blabel(bar, format(%9.4g) size(medium)) /// bars labelled with bar height
@@ -89,28 +90,28 @@ format
 > by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
 > scheme(michigan) // Michigan graph scheme
 {res}{txt}
-{com}. //_10
+{com}.     
 . graph export mybargraph1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/mybargraph1.png{rm}
+mybargraph1.png{rm}
 saved as
 PNG
 format
 {p_end}
 
-{com}. //_11
+{com}. //_8
 . graph pie [fweight = Count], over(Outcome) ///
 > by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
 > plabel(1 percent, place(0) color(white)) /// label with percentages; placed in center of slice
 > plabel(2 percent, place(0)) /// label with percentages; placed in center of slice
 > scheme(michigan) // Michigan graph scheme
 {res}{txt}
-{com}. //_12
+{com}. 
 . graph export mypie2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/mypie2.png{rm}
+mypie2.png{rm}
 saved as
 PNG
 format
@@ -119,9 +120,9 @@ format
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\visualizing-categorical-data\visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}22 Jun 2021, 16:40:36
+ {txt}closed on:  {res}12 Jul 2021, 12:31:30
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
