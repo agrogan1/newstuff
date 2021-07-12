@@ -118,3 +118,11 @@ We try a bar graph.
 Lastly, we try a waffle chart, which requires the use of R and the `waffle` library. The R script used to generate the figure below is [here](./mywaffle.R).
 
 ![Waffle Chart](mywaffle.png){width=50%}	
+
+> The waffle chart is very visually appealing. With enough inspection, the waffle chart *may* make clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the waffle chart would have made this clear as well.
+
+> As with the spineplot, with enough annotations, the waffle chart *may* make it clear that the treatment appears to result in a lower rate of colds than the placebo.
+
+
+
+
