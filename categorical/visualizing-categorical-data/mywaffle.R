@@ -15,7 +15,7 @@ waffle(parts, colors = c(michigancolors("blue"),
                          michigancolors("maize"),
                          michigancolors("wave field green"),
                          michigancolors("tappan red"))) +
-  labs(title = "French Skiiers") 
+  labs(title = "Fewer Colds Among Those Recieving Ascorbic Acid") 
 
 ggsave("./categorical/visualizing-categorical-data/mywaffle.png")
 
