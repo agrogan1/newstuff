@@ -1,5 +1,3 @@
-setwd("C:/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data")
-
 library(waffle)
 
 library(michigancolors)
@@ -19,6 +17,6 @@ waffle(parts, colors = c(michigancolors("blue"),
                          michigancolors("tappan red"))) +
   labs(title = "French Skiiers") 
 
-ggsave("mywaffle.png")
+ggsave("./categorical/visualizing-categorical-data/mywaffle.png")
 
 
