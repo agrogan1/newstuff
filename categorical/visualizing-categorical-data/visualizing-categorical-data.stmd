@@ -44,7 +44,7 @@ We note from the column percentages that allocation to the placebo or treament (
 
 # Spineplot (Mosaic Plot)
 
-A basic *Spineplot*, more often called a *Mosaic Plot* is illustrative of the *spineplot* idea, but perhaps not as informative as it might be.
+A *Spineplot*, more often called a *Mosaic Plot* is illustrative of these 2 X 2 relationships. A basic *spineplot* demonstrates the *spineplot* idea, but perhaps not as informative as it might be.
 
 ```s
     spineplot Outcome Tx [fweight=Count]
