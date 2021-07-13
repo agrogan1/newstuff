@@ -189,7 +189,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Visualizing Categorical Data With French Skiiers Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">12 Jul 2021 21:11:13</p>
+<p class="date">13 Jul 2021 13:12:31</p>
 </header>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 <h1 id="background">Background</h1>
@@ -235,8 +235,8 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
            │    100.00     100.00 │    100.00 
 </pre>
 <p>We note from the column percentages that allocation to the placebo or treament (ascorbic acid) was roughly 50% in each group (1 subject dropped out of the study). We further note from the within column percentages that 22.14% of those receiving the placebo got colds while only 12.23% of those receiving ascorbic acid got colds.</p>
-<h1 id="spineplot-mosaicplot">Spineplot (MosaicPlot)</h1>
-<p>A basic <em>spineplot</em> is illusrative of the <em>spineplot</em> idea, but perhaps not as informative as it might be.</p>
+<h1 id="spineplot-mosaic-plot">Spineplot (Mosaic Plot)</h1>
+<p>A basic <em>Spineplot</em>, more often called a <em>Mosaic Plot</em> is illustrative of the <em>spineplot</em> idea, but perhaps not as informative as it might be.</p>
 <pre class='stata'>. spineplot Outcome Tx [fweight=Count]
 
 . 
@@ -319,13 +319,10 @@ file /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-
 <h1 id="waffle-chart">Waffle Chart</h1>
 <p>Lastly, we try a waffle chart, which requires the use of R and the <code>waffle</code> library. The R script used to generate the figure below is <a href="./mywaffle.R">here</a>.</p>
 <figure>
-<img src="mywaffle.png" style="width:50.0%" alt="Waffle Chart" /><figcaption aria-hidden="true">Waffle Chart</figcaption>
+<img src="mywaffle.png" style="width:75.0%" alt="Waffle Chart" /><figcaption aria-hidden="true">Waffle Chart</figcaption>
 </figure>
 <blockquote>
-<p>The waffle chart is very visually appealing. With enough inspection, the waffle chart <em>may</em> make clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the waffle chart would have made this clear as well.</p>
-</blockquote>
-<blockquote>
-<p>As with the spineplot, with enough annotations, the waffle chart <em>may</em> make it clear that the treatment appears to result in a lower rate of colds than the placebo.</p>
+<p>The waffle chart is very visually appealing. With enough inspection, the waffle chart <em>may</em> make clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the waffle chart would have made this clear as well. As with the spineplot (mosaic plot), with enough annotations, the waffle chart <em>may</em> make it clear that the treatment appears to result in a lower rate of colds than the placebo.</p>
 </blockquote>
 </body>
 </html>

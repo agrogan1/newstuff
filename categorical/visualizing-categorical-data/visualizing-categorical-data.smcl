@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}12 Jul 2021, 21:11:38
+ {txt}opened on:  {res}13 Jul 2021, 13:13:32
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}12 Jul 2021
+{res}13 Jul 2021
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}21:11:38
+{res}13:13:32
 {txt}
 {com}. //_3
 . use "FrenchSkiiers.dta", clear
@@ -122,7 +122,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}12 Jul 2021, 21:11:46
+ {txt}closed on:  {res}13 Jul 2021, 13:13:39
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

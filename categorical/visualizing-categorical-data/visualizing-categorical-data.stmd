@@ -42,9 +42,9 @@ A 2 X 2 Table may be helpful
 	
 We note from the column percentages that allocation to the placebo or treament (ascorbic acid) was roughly 50% in each group (1 subject dropped out of the study). We further note from the within column percentages that 22.14% of those receiving the placebo got colds while only 12.23% of those receiving ascorbic acid got colds.
 
-# Spineplot (MosaicPlot)
+# Spineplot (Mosaic Plot)
 
-A basic *spineplot* is illusrative of the *spineplot* idea, but perhaps not as informative as it might be.
+A basic *Spineplot*, more often called a *Mosaic Plot* is illustrative of the *spineplot* idea, but perhaps not as informative as it might be.
 
 ```s
     spineplot Outcome Tx [fweight=Count]
@@ -117,11 +117,9 @@ We try a bar graph.
 
 Lastly, we try a waffle chart, which requires the use of R and the `waffle` library. The R script used to generate the figure below is [here](./mywaffle.R).
 
-![Waffle Chart](mywaffle.png){width=50%}	
+![Waffle Chart](mywaffle.png){width=75%}	
 
-> The waffle chart is very visually appealing. With enough inspection, the waffle chart *may* make clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the waffle chart would have made this clear as well.
-
-> As with the spineplot, with enough annotations, the waffle chart *may* make it clear that the treatment appears to result in a lower rate of colds than the placebo.
+> The waffle chart is very visually appealing. With enough inspection, the waffle chart *may* make clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the waffle chart would have made this clear as well. As with the spineplot (mosaic plot), with enough annotations, the waffle chart *may* make it clear that the treatment appears to result in a lower rate of colds than the placebo.
 
 
 
