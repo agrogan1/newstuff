@@ -93,7 +93,7 @@ rows(2) iscale(.5)  ///
 scheme(michigan) ///
 name(overall, replace)
 
-graph export "overall.png", replace
+graph export "categorical-overview.png", replace
 
 * v2
 
