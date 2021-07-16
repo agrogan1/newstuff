@@ -20,6 +20,14 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+```{css}
+
+blockquote { 
+  border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;
+  }
+
+```
+
 ```{r}
 
 library(ggplot2)
@@ -201,7 +209,7 @@ save(x, y, myprobability, y2, y3, x3,
 
 > <span style="background-color:cyan">Instruction will be conducted in Stata, so basic knowledge of descriptive statistics and OLS in Stata is a prerequisite.</span>
 
-Researchers are most commonly aware of methods that are suitable for continuous dependent variables (e.g. mental health scores), such as the use of ordinary least squares regression. However, many outcomes of interest to social workers, and other social researchers, are decidedly not continuous, but are dichotomous or binary in nature: birth; death; entered the program versus did not enter the program; left the program versus stayed in the program; received a particular diagnosis; did not receive a diagnosis; whether a voter voted for a particular candidate or position; conflict or protest began; conflict or protest ended[^discuss]. Many researchers are familiar with the basics of logistic regression, yet do not have a grounding in some of the intricacies of logistic regression, such as generating predicted probabilities, or using interaction terms in a categorical model, which can lead to clearer and more accurate reporting of results. Further, the basic logistic regression model serves as the foundation for a wide variety of more advanced statistical approaches that can help advance social work research. Study of the logistic regression model can lead to variations of logistic regression such as logistic regression for ordered variables, or multinomial logistic regression where are more than two categories of the outcome variable (e.g. multiple forms of family violence). An understanding of logistic regression also helps to motivate understanding of models for count data such as the Poisson and negative binomial model suitable for studying counts of events such as incidence of disease or incidence of violence. Lastly, categorical data model serve as the foundation for event history models that are used to study the timing of events, such as the timing of program entry, program departure, or receipt of a diagnosis.
+Researchers are most commonly aware of methods that are suitable for continuous dependent variables (e.g. mental health scores), such as the use of ordinary least squares regression. However, many outcomes of interest to social workers, and other social researchers, are decidedly not continuous, but are dichotomous or binary in nature: birth; death; entered the program versus did not enter the program; left the program versus stayed in the program; received a particular diagnosis; did not receive a diagnosis; whether a voter voted for a particular candidate or position; conflict or protest began; conflict or protest ended[^discuss]. Many researchers are familiar with the basics of logistic regression, yet do not have a grounding in some of the intricacies of logistic regression, such as generating predicted probabilities, or using interaction terms in a categorical model, which can lead to clearer and more accurate reporting of results. Further, the basic logistic regression model serves as the foundation for a wide variety of more advanced statistical approaches that can help advance social research. Study of the logistic regression model can lead to variations of logistic regression such as logistic regression for ordered variables, or multinomial logistic regression where are more than two categories of the outcome variable (e.g. multiple forms of family violence). An understanding of logistic regression also helps to motivate understanding of models for count data such as the Poisson and negative binomial model suitable for studying counts of events such as incidence of disease or incidence of violence. Lastly, categorical data model serve as the foundation for event history models that are used to study the timing of events, such as the timing of program entry, program departure, receipt of a diagnosis, or the timing of conflict or protest.
 
 > In this course I try to thread the needle between exploring the statistical intricacies of these models, and discussing how a better understanding of categorical data analysis can help us make more accurate conclusions about the substantive issues that we care about.
 
