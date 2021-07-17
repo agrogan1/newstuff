@@ -36,12 +36,12 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
     + A *kinda new*, *kinda old* resource: [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
     + [Bayes Theorem Applied To Data Analysis](https://agrogan1.github.io/newstuff/Bayes-theorem/Bayes-theorem.html)
     + [Accepting The Null Hypothesis](https://agrogan1.github.io/Bayes/accepting-H0/accepting-H0.html)
-* [Survival Analysis And Event History](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history-slidy.html) | [PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.pdf)
+* [Survival Analysis And Event History](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history-slidy.html)  [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.pdf)]
     + [Times, Events And Censoring](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/times-events-and-censoring.html)
     + [Reformatting Longitudinal Data As Survival Data](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.html)
-    + [Cox Proportional Hazards Model](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model-slidy.html) | [PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.pdf)
-    + [Cox Proportional Hazards Model With Time Varying Covariates](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.html) | [PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.pdf)
-    + [More on the Cox Proportional Hazards Model](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.html) | [PDF](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.pdf)
+    + [Cox Proportional Hazards Model](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.pdf)]
+    + [Cox Proportional Hazards Model With Time Varying Covariates](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.pdf)]
+    + [More on the Cox Proportional Hazards Model](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.pdf)]
 
 Andrew Grogan-Kaylor ([GitHub](https://agrogan1.github.io/), [New GitHub](https://agrogan1.github.io/newstuff)) | [agrogan@umich.edu](agrogan@umich.edu)
 
