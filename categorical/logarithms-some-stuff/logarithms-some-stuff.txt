@@ -58,5 +58,16 @@ twoway function y = exp(x)/(1 + exp(x)), title("Logistic Function") range(-10 10
 
 <<dd_graph: replace saving(logistic)>>
 
+## Logarithmic Spiral
+
+An interesting sidenote is that the logarithm forms the basis of the logarithmic spiral. The equation for a logarithmic spiral in polar coordinates is: $r = ae^{b \theta}$, where $\theta$ is the angle, $r$ is the radius, and $a$ and $b$ are constants. 
+
+<img src="..\desmos-graph.png" alt="Desmos Graph Logarithmic Spiral" width="400" height="400">
+
+Logarithmic spirals can be found in nature in the *nautilus shell*, and in *sunflowers*.
+
+<img src="..\NautilusCutawayLogarithmicSpiral.jpg" alt="Nautilus Shell, Courtesy Wikipedia" width="400" height="300"> <img src="..\Sunflower_sky_backdrop.jpg" alt="Sunflower, Courtesy Wikipedia" width="300" height="300">
+
+
 
 
