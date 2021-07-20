@@ -5,13 +5,13 @@ title: Time Varying Covariates
 # Time Varying Covariates in Survival Analysis
 
 -------------------------------------------------------------
-Variable      Discrete Time Model     Cox Model
-------------- ----------------------- -------------------------
-Time          Yes                     Yes
+Variable         Discrete Time Model     Cox Model
+-------------    ----------------------- -------------------------
+Time             Yes                     Yes
 Invariant
 Variables
 
-Time          Yes                     Yes
+Time             Yes                     Yes
 Varying
 Variables
 That Are
@@ -21,22 +21,23 @@ Correlated
 With Time
 
 
-Time          
-Varying
+*Time                          
+Varying                            
 Variables
-That *Are*
+That Are
 Perfectly
 Correlated
-With Time
+With Time*
 
-Main          Yes?                     No
+Main             Yes?                     No
 Effect
-
-Interaction   Yes                     Yes
+                                  
+Interaction      Yes                      Yes
 With 
 Time
 (e.g. to
 test for
 proportional
-hazards)
+hazards in
+Cox Model)
 -------------------------------------------------------------
