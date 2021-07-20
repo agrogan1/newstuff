@@ -2,7 +2,7 @@
 title: Categorical Data Analysis
 ---
 
-![Models Discussed In This Course](categorical-overview.png)
+![Models Discussed In This Course](categorical-overview-banner.png)
 
 New stuff for a course on *Categorical Data Analysis* that is going to get moved somewhere else at some point.
 
