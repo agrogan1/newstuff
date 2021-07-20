@@ -66,14 +66,14 @@ twoway (function y = -1 * x^2, range(0 10) lcolor("0 178 169")) /// Taubman teal
 (function y =  -.5 *x^2, range(0 10) lcolor("47 101 167")), /// Arboretum blue
 title("Survival Function") ///
 xtitle("Time") ytitle("Survival Curve") ylabel(none) ///
-legend(order(1 "Group 1" 2 "Group 2")) ///
+legend(order(1 "Group 1" 2 "Group 2") rows(1) position(7) ring(0)) ///
 name(survival, replace)
 
 twoway (function y =  x^2, range(0 10) lcolor("0 178 169")) /// Taubman teal
 (function y =  .5 *x^2, range(0 10) lcolor("47 101 167")), /// Arboretum blue
 title("Hazard Function") ///
 xtitle("Time") ytitle("Hazard") ylabel(none) ///
-legend(order(1 "Group 1" 2 "Group 2")) ///
+legend(order(1 "Group 1" 2 "Group 2") rows(1) position(10) ring(0)) ///
 name(hazard, replace)
 
 graph combine survival hazard, ///
@@ -94,6 +94,15 @@ scheme(michigan) ///
 name(overall, replace)
 
 graph export "categorical-overview.png", replace
+
+graph combine logit ologit mlogit poisson eventhistory, ///
+rows(1) iscale(.7) xsize(4) ysize(1) ///
+/* title("Models Discussed In This Course") */ ///
+scheme(michigan) ///
+name(banner, replace)
+
+graph export "categorical-overview-banner.png", replace
+
 
 * v2
 
