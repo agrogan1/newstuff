@@ -73,7 +73,7 @@ Observe especially that we have added `note()`'s to the graph to clarify the mea
     graph export myspineplot2.png, width(1000) replace
 ```
 
-![Spine Plot or Mosaic Plot](myspineplot2.png){width=50%}
+![Spine Plot or Mosaic Plot](myspineplot2.png){width=75%}
 
 > The spineplot makes clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the spineplot would have made this clear as well.
 
