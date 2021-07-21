@@ -31,7 +31,8 @@ ggplot(FrenchSkiiers,
   geom_alluvium(aes(fill = outcome), # alluvia; flows
                 alpha = .75) +
   geom_stratum(width = 1/3, # end "strata"
-               fill = "grey", 
+               fill = "grey", # color fill
+               color = "black", # outline color
                color = "grey") +
   geom_label(stat = "stratum", # textual labels
              aes(label = after_stat(stratum))) +
