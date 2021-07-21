@@ -115,12 +115,19 @@ We try a bar graph.
 
 # Waffle Chart
 
-Lastly, we try a waffle chart, which requires the use of R and the `waffle` library. The R script used to generate the figure below is [here](./mywaffle.R).
+Then, we try a waffle chart, which requires the use of R and the `waffle` library. The R script used to generate the figure below is [here](./mywaffle.R).
 
 ![Waffle Chart](mywaffle.png){width=75%}	
 
 > The waffle chart is very visually appealing. With enough inspection, the waffle chart *may* make clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the waffle chart would have made this clear as well. As with the spineplot (mosaic plot), with enough annotations, the waffle chart *may* make it clear that the treatment appears to result in a lower rate of colds than the placebo.
 
+# Alluvial Diagram
+
+Finally, we try an alluvial diagram, which requires the use of R and the `ggalluvial` library. The R script used to generate the figure below is [here](./myalluvial.R).
+
+![Alluvial Diagram](myalluvial.png){width=50%}	
+
+> The alluvial diagram is also very visually appealing, but may also not be the most clear presentation of information. With enough inspection, the alluvial chart *may* make clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the alluvial chart would have made this clear as well. As with the spineplot (mosaic plot), with enough annotations, the alluvial chart *may* make it clear that the treatment appears to result in a lower rate of colds than the placebo. Using `ggalluvial` it is difficult to add annotations for counts or percentages to the alluvial diagram, but these could be added in post-production with software like Adobe Illustrator.
 
 
 

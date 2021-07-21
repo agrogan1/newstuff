@@ -189,7 +189,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Visualizing Categorical Data With French Skiiers Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">20 Jul 2021 12:52:34</p>
+<p class="date">21 Jul 2021 11:54:46</p>
 </header>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 <h1 id="background">Background</h1>
@@ -241,8 +241,9 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 
 . 
 . graph export myspineplot1.png, width(1000) replace
-file /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspineplot1.png saved as PNG
-    format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspinep
+    > lot1.png saved as PNG format
 </pre>
 <figure>
 <img src="myspineplot1.png" style="width:50.0%" alt="Spine Plot or Mosaic Plot" /><figcaption aria-hidden="true">Spine Plot or Mosaic Plot</figcaption>
@@ -263,8 +264,9 @@ file /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-
 
 .     
 . graph export myspineplot2.png, width(1000) replace
-file /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspineplot2.png saved as PNG
-    format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspinep
+    > lot2.png saved as PNG format
 </pre>
 <figure>
 <img src="myspineplot2.png" style="width:75.0%" alt="Spine Plot or Mosaic Plot" /><figcaption aria-hidden="true">Spine Plot or Mosaic Plot</figcaption>
@@ -281,13 +283,15 @@ file /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-
 > asyvars /// different colors for bars
 > blabel(bar, format(%9.4g) size(medium)) /// bars labelled with bar height
 > yscale(range(0 100)) /// y scale from 0 to 100
-> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
+> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by comman
+> d)
 > scheme(michigan) // Michigan graph scheme
 
 .     
 . graph export mybargraph1.png, width(1000) replace
-file /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mybargraph1.png saved as PNG
-    format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mybargra
+    > ph1.png saved as PNG format
 </pre>
 <figure>
 <img src="mybargraph1.png" style="width:50.0%" alt="Bar Graph" /><figcaption aria-hidden="true">Bar Graph</figcaption>
@@ -297,15 +301,18 @@ file /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-
 </blockquote>
 <h1 id="pie-chart">Pie Chart</h1>
 <pre class='stata'>. graph pie [fweight = Count], over(Outcome) ///
-> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
-> plabel(1 percent, place(0) color(white)) /// label with percentages; placed in center of slice
+> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by comman
+> d)
+> plabel(1 percent, place(0) color(white)) /// label with percentages; placed in center of sli
+> ce
 > plabel(2 percent, place(0)) /// label with percentages; placed in center of slice
 > scheme(michigan) // Michigan graph scheme
 
 . 
 . graph export mypie2.png, width(1000) replace
-file /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mypie2.png saved as PNG
-    format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mypie2.p
+    > ng saved as PNG format
 </pre>
 <figure>
 <img src="mypie2.png" style="width:50.0%" alt="Pie Chart" /><figcaption aria-hidden="true">Pie Chart</figcaption>
@@ -314,12 +321,20 @@ file /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-
 <p>The pie chart also tells a <em>very</em> clear story about <em>outcomes</em>. Similar to the bar plot, however, the pie chart <em>does not</em> make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.</p>
 </blockquote>
 <h1 id="waffle-chart">Waffle Chart</h1>
-<p>Lastly, we try a waffle chart, which requires the use of R and the <code>waffle</code> library. The R script used to generate the figure below is <a href="./mywaffle.R">here</a>.</p>
+<p>Then, we try a waffle chart, which requires the use of R and the <code>waffle</code> library. The R script used to generate the figure below is <a href="./mywaffle.R">here</a>.</p>
 <figure>
 <img src="mywaffle.png" style="width:75.0%" alt="Waffle Chart" /><figcaption aria-hidden="true">Waffle Chart</figcaption>
 </figure>
 <blockquote>
 <p>The waffle chart is very visually appealing. With enough inspection, the waffle chart <em>may</em> make clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the waffle chart would have made this clear as well. As with the spineplot (mosaic plot), with enough annotations, the waffle chart <em>may</em> make it clear that the treatment appears to result in a lower rate of colds than the placebo.</p>
+</blockquote>
+<h1 id="alluvial-diagram">Alluvial Diagram</h1>
+<p>Finally, we try an alluvial diagram, which requires the use of R and the <code>ggalluvial</code> library. The R script used to generate the figure below is <a href="./myalluvial.R">here</a>.</p>
+<figure>
+<img src="myalluvial.png" style="width:50.0%" alt="Alluvial Diagram" /><figcaption aria-hidden="true">Alluvial Diagram</figcaption>
+</figure>
+<blockquote>
+<p>The alluvial diagram is also very visually appealing, but may also not be the most clear presentation of information. With enough inspection, the alluvial chart <em>may</em> make clear that the allocation to the treatment vs. placebo was roughly 50/50. Note, that if the allocation had not been 50/50 the alluvial chart would have made this clear as well. As with the spineplot (mosaic plot), with enough annotations, the alluvial chart <em>may</em> make it clear that the treatment appears to result in a lower rate of colds than the placebo. Using <code>ggalluvial</code> it is difficult to add annotations for counts or percentages to the alluvial diagram, but these could be added in post-production with software like Adobe Illustrator.</p>
 </blockquote>
 </body>
 </html>
