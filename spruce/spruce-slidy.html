@@ -97,10 +97,10 @@
 Andy Grogan-Kaylor
   </p>
 </div>
-<div class="slide section level2">
+<div class="slide section level3">
 
 <p>Andy Grogan-Kaylor</p>
-<p>15 Jun 2021 17:34:45</p>
+<p>27 Jul 2021 12:13:36</p>
 </div>
 <div id="background" class="title-slide slide section level1">
 <h1>Background 🌲</h1>
@@ -144,24 +144,25 @@ Andy Grogan-Kaylor
 <h1>Setup 🌲</h1>
 
 </div>
-<div id="get-data" class="slide section level2">
+<div id="get-data" class="title-slide slide section level2">
 <h1>Get Data</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>.         </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>. <span class="kw">use</span> spruce.dta, <span class="kw">clear</span></span></code></pre></div>
 </div>
-<div id="dataset-description" class="slide section level2">
+
+<div id="dataset-description" class="title-slide slide section level2">
 <h1>Dataset Description</h1>
 <div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">describe</span>    </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Contains <span class="kw">data</span> from spruce.dta</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> Observations:            72                  </span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    Variables:             9                  26 Apr 2020 12:18</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>──────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Variable      Storage   Display    Value</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="bn">name</span>         <span class="dv">type</span>    <span class="kw">format</span>    <span class="kw">label</span>      Variable <span class="kw">label</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>──────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>Tree            <span class="kw">long</span>    %12.0g                Tree number</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Competition     <span class="kw">long</span>    %12.0g     Competition</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                                              C (competition), CR (competition removed)</span>
@@ -173,9 +174,10 @@ Andy Grogan-Kaylor
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>Diameter5       <span class="kw">double</span>  %10.0g                Diameter (cm) <span class="kw">of</span> seedling <span class="fu">at</span> <span class="fu">year</span> 5</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>Ht_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> height</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>Di_change       <span class="kw">double</span>  %10.0g                Change (cm) <span class="kw">in</span> diameter</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>──────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
 </div>
+
 
 <div id="spruce-data-and-causal-criteria" class="title-slide slide section level1">
 <h1>Spruce Data And Causal Criteria 🌲</h1>
@@ -197,7 +199,7 @@ Andy Grogan-Kaylor
 <h1>Analyses 🌲</h1>
 
 </div>
-<div id="t-test-ttest-y-byx" class="slide section level2">
+<div id="t-test-ttest-y-byx" class="title-slide slide section level2">
 <h1>t Test (<code>ttest y, by(x)</code>)</h1>
 <p>A t test compares the difference between the means of two groups to the standard error of the difference between means.</p>
 <p>Formally, <span class="math inline">\(t = \frac{\bar{x}_2 - \bar{x}_1}{s}\)</span> where s is the standard error of the estimate of the mean.</p>
@@ -225,7 +227,8 @@ Andy Grogan-Kaylor
 <p>The association of fertilizer with tree height is -14.77.</p>
 </blockquote>
 </div>
-<div id="ols-regression-regress-y-x1-x2-x3" class="slide section level2">
+
+<div id="ols-regression-regress-y-x1-x2-x3" class="title-slide slide section level2">
 <h1>OLS Regression (<code>regress y x1 x2 x3</code>)</h1>
 <p>A regression estimates the association of a 1 unit change in each of the independent variables with change in the dependent variable, while accounting for all of the other independent variables in the model.</p>
 <p><span class="math inline">\(y_i = \beta_0 + \beta_1 x_{1i} + \Sigma \beta_k x_{ki} + e_i\)</span></p>
@@ -252,7 +255,8 @@ Andy Grogan-Kaylor
 <p>The association of fertilizer with tree height is -14.72.</p>
 </blockquote>
 </div>
-<div id="propensity-scores-teffects-psmatch-y-t-x1-x2" class="slide section level2">
+
+<div id="propensity-scores-teffects-psmatch-y-t-x1-x2" class="title-slide slide section level2">
 <h1>Propensity Scores (<code>teffects psmatch (y) (t x1 x2)</code>)</h1>
 <p>The propensity score uses a logistic regression to estimate the predicted probability of being administered the treatment (<code>t</code> in the above syntax), in this example, <em>fertilizer</em>. Treatment observations are matched to the most similar comparison group observation in terms of this probability, and an average difference is calculated.</p>
 <p>A propensity score analysis controls for the additional observed variables that are included in the model.</p>
@@ -273,7 +277,9 @@ Andy Grogan-Kaylor
 <blockquote>
 <p>The association of fertilizer with tree height is -12.71.</p>
 </blockquote>
-<h3 id="assess-balance-of-propensity-score-model">Assess Balance of Propensity Score Model</h3>
+</div>
+<div id="assess-balance-of-propensity-score-model" class="slide section level3">
+<h1>Assess Balance of Propensity Score Model</h1>
 <blockquote>
 <p>With many thanks to Jorge Cuartas for ideas for some of this code.</p>
 </blockquote>
@@ -283,12 +289,13 @@ Andy Grogan-Kaylor
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>. </span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>. <span class="kw">graph</span> <span class="kw">export</span> mydensity.png, <span class="kw">width</span>(500) <span class="kw">replace</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>file /Users/agrogan/Desktop/newstuff/spruce/mydensity.png saved <span class="kw">as</span> PNG <span class="kw">format</span></span></code></pre></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>file /Users/agrogan/Desktop/GitHub/newstuff/spruce/mydensity.png saved <span class="kw">as</span> PNG <span class="kw">format</span></span></code></pre></div>
 <div class="figure">
 <img src="mydensity.png" alt="" />
 <p class="caption">Density Plot of Propensity Score</p>
 </div>
 </div>
+
 
 <div id="references" class="title-slide slide section level1">
 <h1>References 🌲</h1>

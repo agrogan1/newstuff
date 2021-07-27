@@ -4,7 +4,7 @@ clear all
 
 * change to correct directory
 
-cd "/Users/agrogan/Desktop/newstuff/spruce"
+cd "/Users/agrogan/Desktop/GitHub/newstuff/spruce" // Mac
 
 * open *.stmd file
 
@@ -34,7 +34,7 @@ graph close _all
 
 * pandoc
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --webtex -i -t slidy --slide-level=2 --css spruceslidy.css "/Users/agrogan/Desktop/newstuff/spruce/spruce.html" -o "/Users/agrogan/Desktop/newstuff/spruce/spruce-slidy.html"
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --webtex -i -t slidy --slide-level=3 --css spruceslidy.css "/Users/agrogan/Desktop/GitHub/newstuff/spruce/spruce.html" -o "/Users/agrogan/Desktop/GitHub/newstuff/spruce/spruce-slidy.html"
 
 doedit "MathJax-CDN.txt"
 

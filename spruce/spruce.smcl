@@ -1,17 +1,17 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}15 Jun 2021, 17:34:53
+ {txt}opened on:  {res}27 Jul 2021, 12:13:36
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}15 Jun 2021
+{res}27 Jul 2021
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}17:34:53
+{res}12:13:36
 {txt}
 {com}. //_3
 . clear all
@@ -178,7 +178,7 @@ Combined {c |}{res}{col 12}     72{col 22} 45.50556{col 34} 1.333392{col 46} 11.
 . graph export mydensity.png, width(500) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/newstuff/spruce/mydensity.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/spruce/mydensity.png{rm}
 saved as
 PNG
 format
@@ -215,9 +215,9 @@ format
 . //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/spruce/spruce.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/spruce/spruce.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}15 Jun 2021, 17:35:00
+ {txt}closed on:  {res}27 Jul 2021, 12:13:44
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
