@@ -22,11 +22,17 @@
 
 </code></pre>
 <p><img src="logarithmic.svg" ></p>
+<h2><a href="#categorical-data-analysis" id="categorical-data-analysis">Categorical Data Analysis</a></h2>
+<p>In categorical data analysis&ndash;in general&ndash;we are often thinking about some equation like $\ln(y) = \beta x$. This is equivalent to $y = e^{\beta x}$ so many models&ndash;particularly later in the course&ndash;will have us thinking about <em>exponential</em> relationships.</p>
+<pre><code>. twoway function y = exp(x), title(&quot;Exponential Function&quot;) range(-10 10) 
+
+</code></pre>
+<p><img src="exponential2.svg" ></p>
 <h2><a href="#logistic-regression" id="logistic-regression">Logistic Regression</a></h2>
-<p>In logistic regression, which we are discussing in more detail in this course, we consider the <em>odds</em> of our outcome:</p>
+<p>In logistic regression, which we are discussing in more detail in this course, we in particular focus on the <em>odds</em> of our outcome:</p>
 <p>$$\frac{p(y)}{1-p(y)}$$</p>
 <p>We will be working with the <em>log odds</em>:</p>
-<p>$$\ln(\frac{p(y)}{1-p(y)})$$</p>
+<p>$$\ln(\frac{p(y)}{1-p(y)}) = x$$</p>
 <p>To graph these <em>log odds</em>, we need to solve for $p(y)$:</p>
 <p>$$p(y) = \frac{e^x}{1 + e^x}$$</p>
 <pre><code>. twoway function y = exp(x)/(1 + exp(x)), title(&quot;Logistic Function&quot;) range(-10 10)

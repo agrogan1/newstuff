@@ -36,15 +36,27 @@ twoway function y = ln(x), title("Logarithmic Function") range(-10 10)
 
 <<dd_graph: replace saving(logarithmic)>>
 
+## Categorical Data Analysis
+
+In categorical data analysis--in general--we are often thinking about some equation like $\ln(y) = \beta x$. This is equivalent to $y = e^{\beta x}$ so many models--particularly later in the course--will have us thinking about *exponential* relationships.
+
+~~~~
+<<dd_do>>
+twoway function y = exp(x), title("Exponential Function") range(-10 10) 
+<</dd_do>>
+~~~~
+
+<<dd_graph: replace saving(exponential2)>>
+
 ## Logistic Regression
 
-In logistic regression, which we are discussing in more detail in this course, we consider the *odds* of our outcome: 
+In logistic regression, which we are discussing in more detail in this course, we in particular focus on the *odds* of our outcome: 
 
 $$\frac{p(y)}{1-p(y)}$$
 
 We will be working with the *log odds*:
 
-$$\ln(\frac{p(y)}{1-p(y)})$$
+$$\ln(\frac{p(y)}{1-p(y)}) = x$$
 
 To graph these *log odds*, we need to solve for $p(y)$:
 

@@ -1,6 +1,8 @@
 * render file using dyndoc
 
-cd "C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logarithms-some-stuff\"
+cd "C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logarithms-some-stuff\" // Windows
+
+cd "/Users/agrogan/Desktop/GitHub/newstuff/categorical/logarithms-some-stuff" // Mac
 
 doedit "logarithms-some-stuff.txt" // edit
 
