@@ -217,6 +217,13 @@ Researchers are most commonly aware of methods that are suitable for continuous 
 
 <aside>
 Our organizing question: "What is the chance that bad thing *x* will happen? What is the chance that good thing *y* will happen?
+
+
+```{r, fig.cap="The Nautilus Shell: Simple Seeming Questions Contain Hidden Complexities"}
+
+knitr::include_graphics("NautilusCutawayLogarithmicSpiral.jpg")
+
+```
 </aside>
 
 > In this course I try to thread the needle between exploring the statistical intricacies of these models, and discussing how a better understanding of categorical data analysis can help us make more accurate conclusions about the substantive issues that we care about.
