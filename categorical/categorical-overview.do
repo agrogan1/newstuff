@@ -1,5 +1,9 @@
 * Create Image of Models Being Used This Semester
 
+clear all
+
+cd "/Users/agrogan/Desktop/GitHub/newstuff/categorical"
+
 set scheme michigan // set graph scheme
 
 * logistic regression
