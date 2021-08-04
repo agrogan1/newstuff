@@ -13,7 +13,7 @@ range(-10 10) ///
 lcolor("0 39 76") /// blue
 lwidth(vthick) ///
 title("Logistic Regression") ///
-ytitle("What is the probability of the outcome?") ///
+ytitle("What is the probability" "of the outcome?") ///
 name(logit, replace) 
 
 * ordinal logistic regression
@@ -23,7 +23,7 @@ range(-10 10) ///
 lcolor("255 203 5") /// maize
 lwidth(vthick) ///
 title("Ordinal Logistic Regression") ///
-ytitle("What is the probability of a higher value" "rather than a lower value?") ///
+ytitle("What is the probability of a" "higher value" "rather than a lower value?") ///
 name(ologit, replace)
 
 * multinomial logistic regression
@@ -76,20 +76,20 @@ twoway (function y = -1 * x^2, range(0 10) lcolor("0 178 169") lwidth(vthick)) /
 (function y =  -.5 *x^2, range(0 10) lcolor("47 101 167") lwidth(vthick)), /// Arboretum blue
 title("Survival Function") ///
 xtitle("Time") ytitle("Survival Curve") ylabel(none) ///
-legend(order(1 "Group 1" 2 "Group 2") rows(1) position(7) ring(0)) ///
+legend(order(1 "Group 1" 2 "Group 2") rows(2) position(7) ring(0)) ///
 name(survival, replace)
 
 twoway (function y =  x^2, range(0 10) lcolor("0 178 169") lwidth(vthick)) /// Taubman teal
 (function y =  .5 *x^2, range(0 10) lcolor("47 101 167") lwidth(vthick)), /// Arboretum blue
 title("Hazard Function") ///
 xtitle("Time") ytitle("Hazard") ylabel(none) ///
-legend(order(1 "Group 1" 2 "Group 2") rows(1) position(10) ring(0)) ///
+legend(order(1 "Group 1" 2 "Group 2") rows(2) position(10) ring(0)) ///
 name(hazard, replace)
 
 graph combine survival hazard, ///
 title("Event History Analysis") ///
 subtitle("What is the hazard of the outcome over the course of time?") ///
-rows(2) ///
+rows(1) ///
 scheme(michigan) ///
 name(eventhistory, replace)
 
@@ -98,7 +98,7 @@ name(eventhistory, replace)
 * v1
 
 graph combine logit ologit mlogit poisson eventhistory, ///
-rows(2) iscale(.5) ysize(2) ///
+rows(2) iscale(.75) ysize(2) ///
 /* title("Models Discussed In This Course") */ ///
 scheme(michigan) ///
 name(overall, replace)
