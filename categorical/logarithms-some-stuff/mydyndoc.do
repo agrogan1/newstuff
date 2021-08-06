@@ -16,4 +16,4 @@ graph close _all // close graphs
 //
 // docx2pdf "some-stuff-about-logarithms.docx", replace
 
-! del *.svg // cleanup
+* ! del *.svg // cleanup
