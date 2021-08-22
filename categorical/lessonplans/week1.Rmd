@@ -29,12 +29,14 @@ options(htmltools.dir.version = FALSE)
   background-size: cover;
 }
 .title-slide h1 {
-    color: #ffcb05;
+    color: black;
     font-weight: bold;
+    background-color: #ffcb05; 
 }
 .title-slide h2, .title-slide h3 {
-    color: #ffcb05;
+    color: black;
     font-weight: bold;
+    background-color: #ffcb05; 
 }
 pre {
   white-space: pre-wrap;
@@ -56,7 +58,7 @@ body {
 
 # To Begin
 
-> <span style="background-color: #FFFF00">These are difficult times: Let's think creatively about how to connect, and to reach out and support each other.</span>
+> <span style="background-color: #FFFF00">These continue to be difficult times: Let's think creatively about how to connect, and to reach out and support each other.</span>
 
 ---
 # Lesson Plan
