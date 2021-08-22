@@ -44,10 +44,142 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>A Review of Descriptive Statistics, OLS and an Introduction to Stata</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
@@ -57,10 +189,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">A Review of Descriptive Statistics, OLS and an Introduction to Stata</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">28 Oct 2020</p>
+<p class="date">22 Aug 2021</p>
 </header>
 <h1 id="social-service-agency-data">Social Service Agency Data</h1>
-<style>h1 {color: black;} h2 {color: black} blockquote {border-left: 5px solid #EC1F27; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>body {max-width: 90%} h1 {color: black;} h2 {color: black} blockquote {border-left: 5px solid #EC1F27; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <blockquote>
 <p>Simulated data on social service clients</p>
 </blockquote>
@@ -70,13 +202,12 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <pre class='stata'>. describe
 
 Contains data from clients.dta
-  obs:           521                          Simulated Clients
- vars:             8                          3 Jun 2020 15:14
- size:        29,176                          
-────────────────────────────────────────────────────────────────────────────────────────────────
-              storage   display    value
-variable name   type    format     label      variable label
-────────────────────────────────────────────────────────────────────────────────────────────────
+ Observations:           521                  Simulated Clients
+    Variables:             8                  3 Jun 2020 15:14
+──────────────────────────────────────────────────────────────────────────────────────────────
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+──────────────────────────────────────────────────────────────────────────────────────────────
 ID              double  %9.0g                 ID
 age             double  %9.0g                 age
 gender          long    %9.0g      gender     gender
@@ -85,7 +216,7 @@ mental_health~1 double  %9.0g                 mental_health_T1
 mental_health~2 double  %9.0g                 mental_health_T2
 latitude        double  %9.0g                 latitude
 longitude       double  %9.0g                 longitude
-────────────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
 <h1 id="one-line-stata">One Line Stata</h1>
@@ -103,7 +234,7 @@ Sorted by:
 </ul>
 <h1 id="the-stata-interface">The Stata Interface</h1>
 <figure>
-<img src="Slide1.png" alt="" /><figcaption>The Stata Interface</figcaption>
+<img src="Slide1.png" alt="The Stata Interface" /><figcaption aria-hidden="true">The Stata Interface</figcaption>
 </figure>
 <h1 id="measures-of-central-tendency">Measures of Central Tendency</h1>
 <ul>
@@ -114,7 +245,7 @@ Sorted by:
 </ul>
 <pre class='stata'>. summarize 
 
-    Variable │        Obs        Mean    Std. Dev.       Min        Max
+    Variable │        Obs        Mean    Std. dev.       Min        Max
 ─────────────┼─────────────────────────────────────────────────────────
           ID │        521    2965.449     1158.32       1005       4989
          age │        521     28.0438    7.047373   18.05584   45.45653
@@ -134,10 +265,10 @@ mental_hea~2 │        521    98.87066    7.423767   79.57518   118.2272
  1%     18.17739       18.05584
  5%     18.72159       18.05992
 10%     19.54324       18.10945       Obs                 521
-25%     22.37428       18.13374       Sum of Wgt.         521
+25%     22.37428       18.13374       Sum of wgt.         521
 
 50%     26.61352                      Mean            28.0438
-                        Largest       Std. Dev.      7.047373
+                        Largest       Std. dev.      7.047373
 75%     32.88188       44.35607
 90%     38.46387       44.78399       Variance       49.66547
 95%     41.26977       45.30344       Skewness       .5501433
@@ -151,19 +282,23 @@ mental_hea~2 │        521    98.87066    7.423767   79.57518   118.2272
 (bin=22, start=80.937087, width=1.2562034)
 </pre>
 <pre class='stata'>. graph export myhistogram.png, width(500) replace
-(file myhistogram.png written in PNG format)
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/review-stats-intro-stata/myhistogram.
+    > png saved as PNG format
 </pre>
 <figure>
-<img src="myhistogram.png" alt="" /><figcaption>histogram of mental health</figcaption>
+<img src="myhistogram.png" alt="histogram of mental health" /><figcaption aria-hidden="true">histogram of mental health</figcaption>
 </figure>
 <h1 id="comparing-continuous-and-continuous-variables">Comparing Continuous and Continuous Variables</h1>
 <pre class='stata'>. twoway scatter mental_health_T1 age, msymbol(o) scheme(burd)
 </pre>
 <pre class='stata'>. graph export myscatter.png, width(500) replace
-(file myscatter.png written in PNG format)
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/review-stats-intro-stata/myscatter.pn
+    > g saved as PNG format
 </pre>
 <figure>
-<img src="myscatter.png" alt="" /><figcaption>scatterplot of age and mental health</figcaption>
+<img src="myscatter.png" alt="scatterplot of age and mental health" /><figcaption aria-hidden="true">scatterplot of age and mental health</figcaption>
 </figure>
 <h2 id="correlation">Correlation</h2>
 <pre class='stata'>. pwcorr mental_health_T1 age, sig
@@ -181,10 +316,12 @@ mental_hea~1 │   1.0000
 <pre class='stata'>. graph bar mental_health_T2, over(program) scheme(burd)
 </pre>
 <pre class='stata'>. graph export mybargraph.png, width(500) replace
-(file mybargraph.png written in PNG format)
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/review-stats-intro-stata/mybargraph.p
+    > ng saved as PNG format
 </pre>
 <figure>
-<img src="mybargraph.png" alt="" /><figcaption>bar graph of mental health at time 2</figcaption>
+<img src="mybargraph.png" alt="bar graph of mental health at time 2" /><figcaption aria-hidden="true">bar graph of mental health at time 2</figcaption>
 </figure>
 <h2 id="t-test">t-test</h2>
 <pre class='stata'>. preserve // preserve data set
@@ -196,17 +333,17 @@ mental_hea~1 │   1.0000
 
 Two-sample t test with equal variances
 ─────────┬────────────────────────────────────────────────────────────────────
-   Group │     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]
+   Group │     Obs        Mean    Std. err.   Std. dev.   [95% conf. interval]
 ─────────┼────────────────────────────────────────────────────────────────────
  Program │     111     94.7963    .4969934     5.23615    93.81138    95.78123
  Program │     209    105.3512    .3562424    5.150136    104.6489    106.0535
 ─────────┼────────────────────────────────────────────────────────────────────
-combined │     320      101.69    .4033737    7.215767    100.8964    102.4836
+Combined │     320      101.69    .4033737    7.215767    100.8964    102.4836
 ─────────┼────────────────────────────────────────────────────────────────────
     diff │           -10.55491    .6083793               -11.75187   -9.357953
 ─────────┴────────────────────────────────────────────────────────────────────
     diff = mean(Program) - mean(Program)                          t = -17.3492
-Ho: diff = 0                                     degrees of freedom =      318
+H0: diff = 0                                     Degrees of freedom =      318
 
     Ha: diff &lt; 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T &lt; t) = 0.0000         Pr(|T| > |t|) = 0.0000          Pr(T > t) = 1.0000
@@ -217,7 +354,7 @@ Ho: diff = 0                                     degrees of freedom =      318
 <pre class='stata'>. oneway mental_health_T2 program, tabulate // oneway analysis of variance
 
             │     Summary of mental_health_T2
-    program │        Mean   Std. Dev.       Freq.
+    program │        Mean   Std. dev.       Freq.
 ────────────┼────────────────────────────────────
   Program A │   94.796305   5.2361502         111
   Program B │   105.35121   5.1501362         209
@@ -226,7 +363,7 @@ Ho: diff = 0                                     degrees of freedom =      318
 ────────────┼────────────────────────────────────
       Total │   98.870656   7.4237673         521
 
-                        Analysis of Variance
+                        Analysis of variance
     Source              SS         df      MS            F     Prob > F
 ────────────────────────────────────────────────────────────────────────
 Between groups      14689.6155      3   4896.53849    181.23     0.0000
@@ -234,7 +371,7 @@ Between groups      14689.6155      3   4896.53849    181.23     0.0000
 ────────────────────────────────────────────────────────────────────────
     Total           28658.4065    520   55.1123202
 
-Bartlett's test for equal variances:  chi2(3) =   0.1991  Prob>chi2 = 0.978
+Bartlett's equal-variances test: chi2(3) =   0.1991    Prob>chi2 = 0.978
 </pre>
 <blockquote>
 <p>Importantly, <code>,tabulate</code> gives us a table of results.</p>
@@ -255,7 +392,7 @@ Bartlett's test for equal variances:  chi2(3) =   0.1991  Prob>chi2 = 0.978
        Total │  28658.4065       520  55.1123202   Root MSE        =    5.2003
 
 ─────────────────┬────────────────────────────────────────────────────────────────
-mental_health_T2 │      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+mental_health_T2 │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
 ─────────────────┼────────────────────────────────────────────────────────────────
 mental_health_T1 │  -.0327405    .044321    -0.74   0.460    -.1198123    .0543314
                  │
@@ -281,7 +418,7 @@ mental_health_T1 │  -.0327405    .044321    -0.74   0.460    -.1198123    .054
        Total │  28658.4065       520  55.1123202   Root MSE        =    5.2081
 
 ───────────────────────────┬────────────────────────────────────────────────────────────────
-          mental_health_T2 │      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+          mental_health_T2 │ Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
 ───────────────────────────┼────────────────────────────────────────────────────────────────
           mental_health_T1 │   .0038108   .0940124     0.04   0.968    -.1808858    .1885074
                            │
