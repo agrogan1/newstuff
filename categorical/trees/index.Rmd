@@ -179,9 +179,9 @@ digraph boxes_and_circles {
 
 > What do we do if we have prior information about any of these statistical models?
 
-# <mark>Timing of Events (scroll down &#8681;)</mark>
+# <mark>Longitudinal Models (scroll down &#8681;)</mark>
 
-## Categorical Models for Longitudinal Data
+## Multilevel Categorical Models for Longitudinal Data
 
 ```{r}
 
