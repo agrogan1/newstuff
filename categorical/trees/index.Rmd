@@ -181,6 +181,49 @@ digraph boxes_and_circles {
 
 # <mark>Timing of Events (scroll down &#8681;)</mark>
 
+## Categorical Models for Longitudinal Data
+
+```{r}
+
+N <- 10 # sample size
+
+T <- 100 # number of timepoints
+
+id <- rep(seq(1, N), each = T) # id's 1 to N
+
+t <- rep(seq(1, T), N) # timepoints 1 to T
+
+outcome <- rbinom(N * T, 1, .10)
+
+mydata1 <- tibble::tibble(id, t, outcome)
+
+```
+
+```{r, echo=FALSE}
+
+pal <- c("black", "orange") # color palette
+
+p1 <- plot_ly(data = mydata1, # use mydata1
+              x = ~t, # x is t (time)
+              y = ~id, # y is id
+              frame = ~t, # frames based on t (time)
+              text = ~outcome,
+              type = 'scatter',
+              mode = 'marker',
+              color = ~outcome, 
+              colors = pal, # use color palette
+              symbol = 'star-triangle-up', 
+              symbols = 'star-triangle-up',
+              marker = list(size = 20)) %>% # marker size
+  layout(title = 'Hypothetical Timing of Tree Fire Damage') 
+
+# %>%
+#   animation_opts(3000) 
+
+p1 # replay
+
+```
+
 ## Survival and Event History Models
 
 ```{r, echo=FALSE}
@@ -217,7 +260,7 @@ censored <- factor(censored,
 
 # tibble
 
-mydata <- tibble::tibble(id, t, event_time, event, censored)
+mydata2 <- tibble::tibble(id, t, event_time, event, censored)
 
 
 ```
@@ -226,7 +269,7 @@ mydata <- tibble::tibble(id, t, event_time, event, censored)
 
 pal <- c("green", "darkgreen") # color palette
 
-p2 <- plot_ly(data = mydata, # use mydata
+p2 <- plot_ly(data = mydata2, # use mydata
               x = ~t, # x is t (time)
               y = ~id, # y is id
               frame = ~t, # frames based on t (time)
