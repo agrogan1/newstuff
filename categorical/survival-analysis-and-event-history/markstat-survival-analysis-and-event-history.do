@@ -4,7 +4,7 @@
 
 clear all
 
-cd "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history"
+cd "/Users/agrogan/Desktop/Github/newstuff/categorical/survival-analysis-and-event-history"
 
 * MAIN FILE
 
@@ -45,9 +45,9 @@ graph close _all
 
 * pandoc
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" --slide-level=2 "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.html" -o "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history-slidy.html" 
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../spruceslidy.css" --slide-level=2 "/Users/agrogan/Desktop/Github/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history.html" -o "/Users/agrogan/Desktop/Github/newstuff/categorical/survival-analysis-and-event-history/survival-analysis-and-event-history-slidy.html" 
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" --slide-level=2 "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.html" -o "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model-slidy.html" 
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../spruceslidy.css" --slide-level=2 "/Users/agrogan/Desktop/Github/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.html" -o "/Users/agrogan/Desktop/Github/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model-slidy.html" 
 
 doedit "../MathJax-CDN.txt"
 
