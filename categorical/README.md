@@ -16,6 +16,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
     + [Visualizing Categorical Data](https://agrogan1.github.io/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.pdf)]
 * [Logistic Regression](https://agrogan1.github.io/newstuff/categorical/logistic-regression/logistic-regression-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/logistic-regression/logistic-regression.pdf)]
     + [Some Stuff About Logarithms](https://agrogan1.github.io/newstuff/categorical/logarithms-some-stuff/logarithms-some-stuff.html)
+    + [A Diagram Of Some Basic "Intuitions" About The Logistic Curve](https://agrogan1.github.io/newstuff/categorical/logistic-curve-intuitions.pdf)
     + [Logistic Regression: The Basics](https://agrogan1.github.io/newstuff/categorical/logistic-regression-the-basics/logistic-regression-the-basics.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/logistic-regression-the-basics/logistic-regression-the-basics.pdf)]
      + [Maximum Likelihood Estimation](https://agrogan1.github.io/teaching/likelihood-and-log-likelihood/likelihood-and-log-likelihood.html)
      + [Changes In Predicted Probabilities Are Different At Different Values Of The Independent Variables](https://agrogan1.github.io/newstuff/categorical/logistic-regression-and-predicted-probabilities/logistic-regression-and-predicted-probabilities.pdf) 
