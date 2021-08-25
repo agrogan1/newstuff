@@ -32,7 +32,6 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
 * [Count Regression Models](https://agrogan1.github.io/newstuff/categorical/count-regression/count-regression-slidy.html) [[Word](https://agrogan1.github.io/newstuff/categorical/count-regression/count-regression.docx)]
     + [Comparing Statistical Models](https://agrogan1.github.io/newstuff/categorical/comparing-models/comparing-models.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/comparing-models/comparing-models.pdf)]
 * [Multilevel Models For Categorical Data](https://agrogan1.github.io/newstuff/categorical/multilevel/multilevel-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/multilevel/multilevel.pdf)]
-* [Propensity Score Models](https://agrogan1.github.io/newstuff/spruce/spruce-slidy.html) [[Word](https://agrogan1.github.io/newstuff/spruce/spruce.docx)] (included in a larger set of materials on *causal modeling*). 
 * [Bayesian Categorical Data Analysis](https://agrogan1.github.io/newstuff/categorical/Bayes/Bayes-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/Bayes/Bayes.pdf)]
     + A *kinda new*, *kinda old* resource: [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
     + [Bayes Theorem Applied To Data Analysis](https://agrogan1.github.io/newstuff/Bayes-theorem/Bayes-theorem.html)
