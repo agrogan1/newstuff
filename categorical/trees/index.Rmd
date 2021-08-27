@@ -127,9 +127,11 @@ digraph boxes_and_circles {
 
   # several 'edge' statements
   
-  soil -> good_fair_poor
-  competition -> good_fair_poor
-  sunlight -> good_fair_poor
+  soil -> good
+  competition -> good
+  sunlight -> good
+  good -> fair
+  fair -> poor
 }
 ")
 ```
