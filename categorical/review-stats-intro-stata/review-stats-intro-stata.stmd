@@ -8,7 +8,7 @@ geometry: margin=1 in
 
 # Social Service Agency Data
 
-<style>body {max-width: 90%} h1 {color: black;} h2 {color: black} blockquote {border-left: 5px solid #EC1F27; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>body {max-width: 90%} h1 {color: black;} h2 {color: black} blockquote {border-left: 5px solid #FFCB05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 
 > Simulated data on social service clients
 

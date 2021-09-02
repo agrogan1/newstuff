@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}22 Aug 2021, 15:16:04
+ {txt}opened on:  {res} 2 Sep 2021, 14:48:30
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}22 Aug 2021
+{res} 2 Sep 2021
 {txt}
 {com}. //_2
 . use clients.dta, clear // use (get) the data
@@ -228,7 +228,7 @@ program#c.mental_health_T1 {c |}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}22 Aug 2021, 15:16:08
+ {txt}closed on:  {res} 2 Sep 2021, 14:48:34
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
