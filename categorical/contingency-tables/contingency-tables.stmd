@@ -8,7 +8,7 @@ geometry: margin=1 in
 
 # Key Concepts and Commands
 
-<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>body {max-width: 90%;} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 
 * Matrices of data
 * Probabilities, risks, and odds
@@ -17,9 +17,9 @@ geometry: margin=1 in
 
 # Flipping Two Coins
 
-![Forthcoming Coin Emoji From Apple](the-crazy-ones.jpg){ width=10% } 
+![Coin Emoji From Apple](the-crazy-ones.jpg){ width=10% } 
 
-![Forthcoming Coin Emoji From Apple](the-crazy-ones.jpg){ width=10% }
+![Coin Emoji From Apple](the-crazy-ones.jpg){ width=10% }
 
 
 # Setup
@@ -273,8 +273,10 @@ $RR =\frac{\text{risk in exposed}}{\text{risk in not exposed}} = \frac{a/(a+b)}{
 
 # Calculating a Risk Ratio
 
-    tabulate Tx Outcome [fweight = Count]
-	
+    tabulate Outcome Tx [fweight = Count]
+
+	tabulate Outcome Tx [fweight = Count], col
+
 	display 31/140
 
 	display 17/139

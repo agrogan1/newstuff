@@ -1,13 +1,13 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}19 Sep 2020, 12:51:48
+ {txt}opened on:  {res} 8 Sep 2021, 14:45:07
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}19 Sep 2020
+{res} 8 Sep 2021
 {txt}
 {com}. //_2
 . clear all
@@ -28,8 +28,8 @@
 {com}. //_6
 . set obs 1000 // 1000 observations
 {txt}{p}
-number of observations (_N)  was 0,
-now 1,000
+Number of observations ({bf:_N}) was 0,
+now 1,000.
 {p_end}
 
 {com}. //_7
@@ -58,7 +58,13 @@ now 1,000
 {res}{txt}
 {com}. //_15
 . graph export unhelpfulgraph.png, width(500) replace
-{txt}(file unhelpfulgraph.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/contingency-tables/unhelpfulgraph.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_16
 . tabulate nickel quarter, row col
@@ -95,28 +101,52 @@ heads for nickel {c |}{res}       377        379 {txt}{c |}{res}       756
 {res}{txt}
 {com}. //_20
 . graph export nickel-quarter.png, width(500) replace
-{txt}(file nickel-quarter.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/contingency-tables/nickel-quarter.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_21
 . graph bar, over(quarter) over(nickel) scheme(burd)
 {res}{txt}
 {com}. //_22
 . graph export nickel-quarter-bar1.png, width(500) replace
-{txt}(file nickel-quarter-bar1.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/contingency-tables/nickel-quarter-bar1.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_23
 . graph bar, over(quarter) over(nickel) scheme(burd) asyvars
 {res}{txt}
 {com}. //_24
 . graph export nickel-quarter-bar2.png, width(500) replace
-{txt}(file nickel-quarter-bar2.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/contingency-tables/nickel-quarter-bar2.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_25
 . graph hbar, over(quarter) over(nickel) scheme(burd) asyvars
 {res}{txt}
 {com}. //_26
 . graph export nickel-quarter-bar3.png, width(500) replace
-{txt}(file nickel-quarter-bar3.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/contingency-tables/nickel-quarter-bar3.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_27
 . clear all
@@ -143,8 +173,8 @@ heads for nickel {c |}{res}       377        379 {txt}{c |}{res}       756
 {txt}number of observations will be reset to 2
 Press any key to continue, or Break to abort
 {p}
-number of observations (_N)  was 0,
-now 2
+Number of observations ({bf:_N}) was 0,
+now 2.
 {p_end}
 
 {com}. //_33
@@ -177,14 +207,26 @@ now 2
 {res}{txt}
 {com}. //_37
 . graph export FrenchSkiiers1.png, width(500) replace
-{txt}(file FrenchSkiiers1.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/contingency-tables/FrenchSkiiers1.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_38
 . spineplot Outcome Tx [fweight=Count], scheme(burd) // order matters to interpretability
 {res}{txt}
 {com}. //_39
 . graph export FrenchSkiiers2.png, width(500) replace
-{txt}(file FrenchSkiiers2.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/contingency-tables/FrenchSkiiers2.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_40
 . tabulate Tx Outcome [fweight = Count], cell row col
@@ -309,41 +351,63 @@ Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139
 {txt}          Pearson chi2({res}1{txt}) = {res}  4.8114  {txt} Pr = {res}0.028
 {txt}
 {com}. //_57
-. tabulate Tx Outcome [fweight = Count]
+. tabulate Outcome Tx [fweight = Count]
 
-              {txt}{c |}        Outcome
-           Tx {c |}   No Cold       Cold {c |}     Total
-{hline 14}{c +}{hline 22}{c +}{hline 10}
-      Placebo {c |}{res}       109         31 {txt}{c |}{res}       140 
-{txt}Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139 
-{txt}{hline 14}{c +}{hline 22}{c +}{hline 10}
-        Total {c |}{res}       231         48 {txt}{c |}{res}       279 
+           {txt}{c |}          Tx
+   Outcome {c |}   Placebo  Ascorbic  {c |}     Total
+{hline 11}{c +}{hline 22}{c +}{hline 10}
+   No Cold {c |}{res}       109        122 {txt}{c |}{res}       231 
+{txt}      Cold {c |}{res}        31         17 {txt}{c |}{res}        48 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+     Total {c |}{res}       140        139 {txt}{c |}{res}       279 
 {txt}
 {com}. //_58
+. tabulate Outcome Tx [fweight = Count], col
+{txt}
+{c TLC}{hline 19}{c TRC}
+{c |} Key{col 21}{c |}
+{c LT}{hline 19}{c RT}
+{c |}{space 5}{it:frequency}{col 21}{c |}
+{c |}{space 1}{it:column percentage}{col 21}{c |}
+{c BLC}{hline 19}{c BRC}
+
+           {c |}          Tx
+   Outcome {c |}   Placebo  Ascorbic  {c |}     Total
+{hline 11}{c +}{hline 22}{c +}{hline 10}
+   No Cold {c |}{res}       109        122 {txt}{c |}{res}       231 
+           {txt}{c |}{res}     77.86      87.77 {txt}{c |}{res}     82.80 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+      Cold {c |}{res}        31         17 {txt}{c |}{res}        48 
+           {txt}{c |}{res}     22.14      12.23 {txt}{c |}{res}     17.20 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+     Total {c |}{res}       140        139 {txt}{c |}{res}       279 
+           {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
+{txt}
+{com}. //_59
 . display 31/140
 {res}.22142857
 {txt}
-{com}. //_59
+{com}. //_60
 . display 17/139
 {res}.12230216
 {txt}
-{com}. //_60
+{com}. //_61
 . display (17/139) / (31/140)
 {res}.55233233
 {txt}
-{com}. //_61
+{com}. //_62
 . csi 17 31 122 109 // also has an intuitive dialog box
 
 {txt}{col 18}{c |}   Exposed   Unexposed  {c |}      Total
-{hline 17}{c +}{hline 24}{c +}{hline 12}
+{hline 17}{c +}{hline 24}{c +}{hline 11}
            Cases {c |} {res}       17          31{txt}  {c |}  {res}       48
         {txt}Noncases {c |} {res}      122         109{txt}  {c |}  {res}      231
-{txt}{hline 17}{c +}{hline 24}{c +}{hline 12}
+{txt}{hline 17}{c +}{hline 24}{c +}{hline 11}
 {col 12}Total {c |} {res}      139         140{txt}  {c |}  {res}      279
 {txt}{col 18}{c |}{col 43}{c |}
             Risk {c |} {res} .1223022    .2214286{txt}  {c |}  {res}  .172043
 {txt}{col 18}{c |}{col 43}{c |}
-{col 18}{c |}      Point estimate    {c |}    [95% Conf. Interval]
+{col 18}{c |}      Point estimate    {c |}    [95% conf. interval]
 {col 18}{c LT}{hline 24}{c +}{hline 24}
  Risk difference {c |} {res}{col 27}-.0991264{txt}{col 43}{c |}   {res}-.1868592   -.0113937{txt} 
       Risk ratio {c |} {res}{col 27} .5523323{txt}{col 43}{c |}   {res} .3209178    .9506203{txt} 
@@ -352,7 +416,7 @@ Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139
 {col 18}{c BLC}{hline 24}{c BT}{hline 24}
 {col 22}          chi2(1) ={res}     4.81{txt}  Pr>chi2 ={res} 0.0283
 {txt}
-{com}. //_62
+{com}. //_63
 . tabulate Tx Outcome [fweight = Count]
 
               {txt}{c |}        Outcome
@@ -363,23 +427,23 @@ Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139
 {txt}{hline 14}{c +}{hline 22}{c +}{hline 10}
         Total {c |}{res}       231         48 {txt}{c |}{res}       279 
 {txt}
-{com}. //_63
+{com}. //_64
 . display (17 * 109)/(122 * 31)
 {res}.48995241
 {txt}
-{com}. //_64
+{com}. //_65
 . csi 17 31 122 109, or // also has an intuitive dialog box
 
 {txt}{col 18}{c |}   Exposed   Unexposed  {c |}      Total
-{hline 17}{c +}{hline 24}{c +}{hline 12}
+{hline 17}{c +}{hline 24}{c +}{hline 11}
            Cases {c |} {res}       17          31{txt}  {c |}  {res}       48
         {txt}Noncases {c |} {res}      122         109{txt}  {c |}  {res}      231
-{txt}{hline 17}{c +}{hline 24}{c +}{hline 12}
+{txt}{hline 17}{c +}{hline 24}{c +}{hline 11}
 {col 12}Total {c |} {res}      139         140{txt}  {c |}  {res}      279
 {txt}{col 18}{c |}{col 43}{c |}
             Risk {c |} {res} .1223022    .2214286{txt}  {c |}  {res}  .172043
 {txt}{col 18}{c |}{col 43}{c |}
-{col 18}{c |}      Point estimate    {c |}    [95% Conf. Interval]
+{col 18}{c |}      Point estimate    {c |}    [95% conf. interval]
 {col 18}{c LT}{hline 24}{c +}{hline 24}
  Risk difference {c |} {res}{col 27}-.0991264{txt}{col 43}{c |}   {res}-.1868592   -.0113937{txt} 
       Risk ratio {c |} {res}{col 27} .5523323{txt}{col 43}{c |}   {res} .3209178    .9506203{txt} 
@@ -392,9 +456,9 @@ Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/contingency-tables/contingency-tables.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}19 Sep 2020, 12:52:03
+ {txt}closed on:  {res} 8 Sep 2021, 14:45:24
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
