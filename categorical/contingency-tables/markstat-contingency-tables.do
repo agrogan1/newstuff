@@ -1,5 +1,7 @@
 * contingency tables
 
+clear all
+
 cd "/Users/agrogan/Desktop/Github/newstuff/categorical/contingency-tables" // Mac
 
 doedit contingency-tables.stmd
@@ -22,16 +24,18 @@ graph close _all
 
 * graph close _all
 
-* markstat using contingency-tables.stmd, docx // Word
+markstat using contingency-tables.stmd, docx // Word
 
-* graph close _all
+graph close _all
 
 * pandoc
 
-* cd 
+* slidy 
 
 ! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" "/Users/agrogan/Desktop/Github/newstuff/categorical/contingency-tables/contingency-tables.html" -o "/Users/agrogan/Desktop/Github/newstuff/categorical/contingency-tables/contingency-tables-slidy.html" 
 
 doedit "../MathJax-CDN.txt"
 
 doedit "contingency-tables-slidy.html"
+
+
