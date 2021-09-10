@@ -7,7 +7,7 @@
 geometry: margin=1 in
 ---
 
-<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>body {max-width: 90%;} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 
 # Background
 
@@ -91,9 +91,9 @@ We use the `margins` command to estimate predicted probabilities at different va
 	plot1opts(lcolor(navy)) /// line for first group is navy
 	plot2opts(lcolor(gold)) // line for second group is gold
 	
-    graph export mymarginsplot.png, width(500) replace
+    graph export mymarginsplot.png, width(1000) replace
 	
-![Margins Plot](mymarginsplot.png)	
+![Margins Plot](mymarginsplot.png){ width=75% } 	
 
 # Rerun `margins`, Posting Results
 
@@ -109,18 +109,22 @@ We follow up by using the `margins` command with the `coeflegend` option to see 
 
 # Testing Margins Against Each Other
 
-Lastly, we test the margins at age 20 for men and women, and again at age 60 for men and women. 
+Lastly, we test the margins at age 20 for men and women, and again at ages 50 and 60 for men and women. 
 
-> We note that the original regression parameter for the interaction term was not statistically significant. Indeed, the margins at age 20 are not statistically significantly different by sex. However, at age 60, there is a statistically significant difference by sex. 
+> We note that the original regression parameter for the interaction term was not statistically significant. Indeed, the margins at age 20 are not statistically significantly different by sex. However, at ages 50 & 60, there is a statistically significant difference by sex. 
 
     test _b[1bn._at#0bn.sex] = _b[1bn._at#1.sex] // male and female at age 20
-
-    test  _b[5._at#0bn.sex] =  _b[5._at#1.sex] // male and female at age 60
 	
-> There is some suggestion that the difference of the differences is statistically significant, but this statistical significance is only marginal [pun intended].
+	test _b[4._at#0bn.sex] = _b[4._at#1.sex] // male and female at age 50
+
+    test _b[5._at#0bn.sex] =  _b[5._at#1.sex] // male and female at age 60
+	
+> There is some suggestion that the *difference of the differences* is statistically significant. This statistical significance is only marginal [pun intended] at age 60, but truly statistically significant at age 50.
 
     test _b[1bn._at#1.sex] - _b[1bn._at#0bn.sex] = _b[5._at#1.sex] - _b[5._at#0bn.sex] // test equivalence of the differences
 	
+	test _b[1bn._at#1.sex] - _b[1bn._at#0bn.sex] = _b[4._at#1.sex] - _b[4._at#0bn.sex] // test equivalence of the differences
+
 # References
 
 Ai, C., & Norton, E. C. (2003). Interaction terms in logit and probit models. *Economics Letters*. [https://doi.org/10.1016/S0165-1765(03)00032-6](https://doi.org/10.1016/S0165-1765(03)00032-6)
