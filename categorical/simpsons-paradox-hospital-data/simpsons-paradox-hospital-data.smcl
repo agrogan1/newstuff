@@ -1,29 +1,25 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/simpsons-paradox-hospital-data/simpsons-paradox-hospital-data.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\simpsons-paradox-hospital-data\simpsons-paradox-hospital-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 2 Nov 2020, 12:36:46
+ {txt}opened on:  {res}11 Sep 2021, 13:29:53
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 2 Nov 2020
+{res}11 Sep 2021
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}12:36:46
+{res}13:29:53
 {txt}
 {com}. //_3
 . clear all
 {res}{txt}
 {com}. //_4
-. cd "/Users/agrogan/Desktop/newstuff/categorical/simpsons-paradox-hospital-data"
-{res}/Users/agrogan/Desktop/newstuff/categorical/simpsons-paradox-hospital-data
+. use "https://github.com/agrogan1/newstuff/blob/master/categorical/simpsons-paradox-hospital-data/hospitaldata.dta?raw=true"
 {txt}
 {com}. //_5
-. use "hospitaldata.dta"
-{txt}
-{com}. //_6
 . list
 {txt}
      {c TLC}{hline 10}{c -}{hline 13}{c -}{hline 9}{c -}{hline 7}{c TRC}
@@ -40,7 +36,7 @@
   8. {c |} {res}  normal   more severe   failure      16 {txt}{c |}
      {c BLC}{hline 10}{c -}{hline 13}{c -}{hline 9}{c -}{hline 7}{c BRC}
 
-{com}. //_7
+{com}. //_6
 . tabulate hospital outcome [fweight = count], row 
 {txt}
 {c TLC}{hline 16}{c TRC}
@@ -62,17 +58,23 @@
      Total {c |}{res}        82        118 {txt}{c |}{res}       200 
            {txt}{c |}{res}     41.00      59.00 {txt}{c |}{res}    100.00 
 {txt}
-{com}. //_8
+{com}. //_7
 . graph bar (count) [fweight = count], over(outcome) over(hospital) blabel(bar) title("Hospital Outcomes") scheme(michigan)
 {res}{txt}
-{com}. //_9
+{com}. //_8
 . graph export bivariategraph.png, width(1000) replace
-{txt}(file bivariategraph.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+bivariategraph.png{rm}
+saved as
+PNG
+format
+{p_end}
 
-{com}. //_10
+{com}. //_9
 . generate severity_hospital = severity + " " + hospital // concatenate severity + hospital type
 {txt}
-{com}. //_11
+{com}. //_10
 . tabulate severity_hospital outcome [fweight=count], row 
 {txt}
 {c TLC}{hline 16}{c TRC}
@@ -100,7 +102,7 @@ more severe normal {c |}{res}        16          4 {txt}{c |}{res}        20
              Total {c |}{res}        82        118 {txt}{c |}{res}       200 
                    {txt}{c |}{res}     41.00      59.00 {txt}{c |}{res}    100.00 
 {txt}
-{com}. //_12
+{com}. //_11
 . graph bar [fweight = count] if severity == "less severe", ///
 > title(Less Severe) ///
 > over(outcome) ///
@@ -109,7 +111,7 @@ more severe normal {c |}{res}        16          4 {txt}{c |}{res}        20
 > scheme(michigan) ///
 > name(lesssevere, replace)
 {res}{txt}
-{com}. //_13
+{com}. //_12
 . graph bar [fweight = count] if severity == "more severe", ///
 > title(More Severe) ///
 > over(outcome) ///
@@ -118,19 +120,25 @@ more severe normal {c |}{res}        16          4 {txt}{c |}{res}        20
 > scheme(michigan) ///
 > name(moresevere, replace)
 {res}{txt}
-{com}. //_14
+{com}. //_13
 . graph combine lesssevere moresevere, title(Hospital Outcomes) scheme(michigan)
 {res}{txt}
-{com}. //_15
+{com}. //_14
 . graph export multivariategraph.png, width(1000) replace
-{txt}(file multivariategraph.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+multivariategraph.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/simpsons-paradox-hospital-data/simpsons-paradox-hospital-data.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\simpsons-paradox-hospital-data\simpsons-paradox-hospital-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 2 Nov 2020, 12:36:55
+ {txt}closed on:  {res}11 Sep 2021, 13:30:01
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

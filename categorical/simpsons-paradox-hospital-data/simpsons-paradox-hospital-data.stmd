@@ -16,9 +16,7 @@ geometry: margin=1 in
 
     clear all
 
-    cd "/Users/agrogan/Desktop/newstuff/categorical/simpsons-paradox-hospital-data"
-
-    use "hospitaldata.dta"
+    use "https://github.com/agrogan1/newstuff/blob/master/categorical/simpsons-paradox-hospital-data/hospitaldata.dta?raw=true"
 	
 	list
 	
