@@ -3,18 +3,18 @@ title: "How To Choose A Chart: An Intuitive Guide"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: 
-    fig_width: 10
-    latex_engine: xelatex
+  bookdown::epub_book: 
+    stylesheet: UM.css 
+    cover_image: intuitive-guide.png
+    fig_width: 7
     fig_height: 8
   html_document:
     fig_width: 10
     highlight: haddock
     code_download: yes
-  bookdown::epub_book: 
-    stylesheet: UM.css 
-    cover_image: intuitive-guide.png
-    fig_width: 7
+  pdf_document: 
+    fig_width: 10
+    latex_engine: xelatex
     fig_height: 8
   bookdown::gitbook:
     split_by: none
@@ -149,7 +149,7 @@ mydotplot <- myoutcome +
   theme(axis.text.y = element_blank())
 
 mydotplot2 <- myoutcome +
-  stat_dots(color = michigancolors("arboretum blue")) +
+  stat_dots(color = michigancolors("ann arbor amethyst")) +
   labs(subtitle = "Dot Plot",
        caption = "Every point is an individual.") +
   theme(axis.text.y = element_blank())
@@ -167,10 +167,11 @@ mybar <- ggplot(data = mydata,
                 aes(x = outcomeC,
                     fill = outcomeC)) +
   geom_bar(color = michigancolors("angell hall ash")) +
-  scale_fill_manual(values = michigancolors()) +
+  scale_fill_manual(values = c(michigancolors("taubman teal"),
+                               michigancolors("arboretum blue"))) +
   labs(title = "How Many People \nExperience Each Outcome?",
        subtitle = "Bar Chart",
-       x = "Group",
+       x = "",
        y = "Count") +
   theme_minimal() +
   theme(legend.position = "none",
@@ -183,7 +184,8 @@ mycomparisonC <- ggplot(data = mydata,
   facet_wrap(~group,
              ncol = 2, 
              strip.position = "top") +
-  scale_fill_manual(values = michigancolors()) +
+  scale_fill_manual(values = c(michigancolors("taubman teal"),
+                               michigancolors("arboretum blue"))) +
   labs(title = "How Many People \nExperience Each Outcome?",
        subtitle = "Bar Chart With Comparison",
        x = "",
@@ -229,6 +231,7 @@ mylongitudinal <- ggplot(mydata,
   scale_color_manual(values = michigancolors("wave field green")) +
   labs(title = "Is the Outcome \nChanging Over Time?",
        subtitle = "Scatterplot",
+       caption = "Every point is an individual.",
        x = "Time",
        y = "Outcome") +
   theme_minimal() +
