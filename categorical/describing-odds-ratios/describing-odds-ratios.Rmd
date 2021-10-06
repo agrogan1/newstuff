@@ -1,0 +1,65 @@
+---
+title: "Describing Odds Ratios"
+author: "Andy Grogan-Kaylor"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    fig_height: 3
+    highlight: haddock
+    latex_engine: xelatex
+  distill::distill_article:
+    highlight: haddock
+    toc: yes
+    fig_height: 6
+subtitle: 'Draft: Comments Welcome'
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Describing Odds Ratios
+
+-------------------------------------------------------------
+Odds Ratio for Group A   Interpretations
+Compared to Another
+Group
+------------------------ ------------------------------------
+.25                       The odds of the outcome for Group A
+                          were 25% of the odds of the other 
+                          group.
+                          
+                          The odds of the outcome for Group A
+                          were 75% lower than for the other 
+                          group.
+                                    
+1.0                       The odds of the outcome for Group A
+                          were equivalent to (the same as)
+                          the odds for the other group.
+                          
+                          There was no difference between Group A
+                          and the other group.
+                          
+1.5                       The odds of the outcome for Group A
+                          were 1.5 times those for the other 
+                          group.
+                          
+                          The odds of the outcome for Group A
+                          were 50% higher than for the other 
+                          group.
+                          
+2.0                       The odds of the outcome for Group A 
+                          were 100% higher than those for the
+                          other group. (technically correct,
+                          but deceptive?)
+                          
+                          The odds of the outcome for Group A                               were 2.0 (twice) those for the other
+                          group.
+                          
+2.5                       The odds of the outcome for Group A
+                          were 2.5 times those for the other 
+                          group.
+-------------------------------------------------------------
+
