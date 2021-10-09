@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Using Poisson Regression for Binary Outcomes</title>
+  <style type="text/css">code{white-space: pre;}</style>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px; max-width:45em;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+td {padding:0 0 0 0} /* override */
+table:not([class]) th { padding:4px 6px } 
+table:not([class]) td { padding:4px 6px } 
+table:not([class]) thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+table:not([class]) thead tr:last-child  th {padding-bottom:6px}
+table:not([class]) tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+table:not([class]) tbody tr:last-child  td {padding-bottom:6px;}
+table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Using Poisson Regression for Binary Outcomes</h1>
+<h2 class="author">Andy Grogan-Kaylor</h2>
+<h3 class="date">9 Oct 2021 12:13:25</h3>
+</div>
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+<h1 id="introduction">Introduction</h1>
+<p>Logistic regression is the most frequently used model for binary outcomes. Logistic regression provides odds ratios, which while somewhat intuitive, may be misunderstood. Notably, odds ratios overstate the strength of the relationship that is implied by risk ratios.</p>
+<p>Thus, a number of authors, including XXX have suggested that Poisson regression, which directly provides risk ratios, can be employed for binary outcomes. XXX indicate that the standard errors of the Poisson model will need to be adjusted.</p>
+<p>This handout draws closely on the outline and presentation of ideas provided by XXX at IDRE, although the data source and variables are used are very different.</p>
+<h1 id="get-data">Get Data</h1>
+<p>We are using data from the U.S. Census Pulse Surveys</p>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. use "../data/Andy_June_5.10.21_1pc.dta"
+</pre>
+<h1 id="manage-data">Manage Data</h1>
+<pre class='stata'>. recode Anxious6 (0/1 = 0)(2/3 = 1)(. = .), generate(Anxiety6)
+(383 differences between Anxious6 and Anxiety6)
+</pre>
+<pre class='stata'>. tabulate Anxiety6
+
+  RECODE of │
+   Anxious6 │
+  (ANXIOUS) │      Freq.     Percent        Cum.
+────────────┼───────────────────────────────────
+          0 │        376       66.55       66.55
+          1 │        189       33.45      100.00
+────────────┼───────────────────────────────────
+      Total │        565      100.00
+</pre>
+<h1 id="logistic-regression">Logistic Regression</h1>
+<h2 id="logit-command"><code>logit</code> Command</h2>
+<pre class='stata'>. logit Anxiety6 Sex6 i.Race6 Age6 Income6, or // logistic regression with odds ratios
+
+Iteration 0:   log likelihood = -339.85845  
+Iteration 1:   log likelihood = -327.09157  
+Iteration 2:   log likelihood = -326.88691  
+Iteration 3:   log likelihood = -326.88668  
+Iteration 4:   log likelihood = -326.88668  
+
+Logistic regression                                     Number of obs =    529
+                                                        LR chi2(6)    =  25.94
+                                                        Prob > chi2   = 0.0002
+Log likelihood = -326.88668                             Pseudo R2     = 0.0382
+
+─────────────┬────────────────────────────────────────────────────────────────
+    Anxiety6 │ Odds ratio   Std. err.      z    P>|z|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        Sex6 │   .6825173   .1366386    -1.91   0.056     .4610041    1.010468
+             │
+       Race6 │
+Black alone  │   1.009843    .362237     0.03   0.978     .4999449    2.039789
+Asian alone  │   .3294345   .1654222    -2.21   0.027     .1231252    .8814373
+      Other  │   .4120474   .2162551    -1.69   0.091     .1473027    1.152614
+             │
+        Age6 │   .9891521   .0080552    -1.34   0.180     .9734895    1.005067
+     Income6 │     .87352   .0402027    -2.94   0.003     .7981736     .955979
+       _cons │   2.001622   .8446585     1.64   0.100     .8753591     4.57697
+─────────────┴────────────────────────────────────────────────────────────────
+Note: _cons estimates baseline odds.
+</pre>
+<pre class='stata'>. est store logit // store estimates
+</pre>
+<h2 id="glm-command"><code>glm</code> Command</h2>
+<pre class='stata'>. glm Anxiety6 Sex6 i.Race6 Age6 Income6, family(binomial) link(logit) 
+
+Iteration 0:   log likelihood = -327.29333  
+Iteration 1:   log likelihood = -326.88686  
+Iteration 2:   log likelihood = -326.88668  
+Iteration 3:   log likelihood = -326.88668  
+
+Generalized linear models                         Number of obs   =        529
+Optimization     : ML                             Residual df     =        522
+                                                  Scale parameter =          1
+Deviance         =  653.7733688                   (1/df) Deviance =   1.252439
+Pearson          =  529.2756818                   (1/df) Pearson  =   1.013938
+
+Variance function: V(u) = u*(1-u/1)               [Binomial]
+Link function    : g(u) = ln(u/(1-u))             [Logit]
+
+                                                  AIC             =   1.262332
+Log likelihood   = -326.8866844                   BIC             =  -2619.683
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │                 OIM
+    Anxiety6 │ Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        Sex6 │  -.3819675    .200198    -1.91   0.056    -.7743484    .0104135
+             │
+       Race6 │
+Black alone  │   .0097944   .3587065     0.03   0.978    -.6932573    .7128462
+Asian alone  │  -1.110378     .50214    -2.21   0.027    -2.094554   -.1262014
+      Other  │  -.8866169   .5248305    -1.69   0.091    -1.915266     .142032
+             │
+        Age6 │  -.0109071   .0081436    -1.34   0.180    -.0268682     .005054
+     Income6 │  -.1352242   .0460238    -2.94   0.003    -.2254291   -.0450193
+       _cons │   .6939581   .4219869     1.64   0.100    -.1331211    1.521037
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<pre class='stata'>. est store glm_logit // store estimates
+</pre>
+<h2 id="compare-logit-and-glm-approaches">Compare <code>logit</code> and <code>glm</code> Approaches</h2>
+<pre class='stata'>. est table logit glm_logit, b(%9.3f) star // nice table of estimates
+
+─────────────┬──────────────────────────────
+    Variable │    logit        glm_logit    
+─────────────┼──────────────────────────────
+        Sex6 │    -0.382         -0.382     
+             │
+       Race6 │
+Black alone  │     0.010          0.010     
+Asian alone  │    -1.110*        -1.110*    
+      Other  │    -0.887         -0.887     
+             │
+        Age6 │    -0.011         -0.011     
+     Income6 │    -0.135**       -0.135**   
+       _cons │     0.694          0.694     
+─────────────┴──────────────────────────────
+    Legend: * p&lt;0.05; ** p&lt;0.01; *** p&lt;0.001
+</pre>
+<h1 id="poisson-regression">Poisson Regression</h1>
+<h2 id="poisson-command"><code>poisson</code> Command</h2>
+<pre class='stata'>. poisson Anxiety6 Sex6 i.Race6 Age6 Income6, irr vce(robust)
+
+Iteration 0:   log pseudolikelihood = -366.52369  
+Iteration 1:   log pseudolikelihood = -366.52156  
+Iteration 2:   log pseudolikelihood = -366.52156  
+
+Poisson regression                                      Number of obs =    529
+                                                        Wald chi2(6)  =  24.16
+                                                        Prob > chi2   = 0.0005
+Log pseudolikelihood = -366.52156                       Pseudo R2     = 0.0229
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │               Robust
+    Anxiety6 │        IRR   std. err.      z    P>|z|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        Sex6 │   .7797372    .104779    -1.85   0.064      .599192    1.014683
+             │
+       Race6 │
+Black alone  │    1.00453   .2111003     0.02   0.983     .6654021    1.516497
+Asian alone  │   .4401884   .1834773    -1.97   0.049     .1944665     .996397
+      Other  │   .5482769   .2225452    -1.48   0.139     .2474559    1.214792
+             │
+        Age6 │   .9933699   .0048809    -1.35   0.176     .9838495    1.002982
+     Income6 │   .9192285   .0254323    -3.04   0.002     .8707096    .9704511
+       _cons │   .7778068   .1849814    -1.06   0.291     .4880174    1.239676
+─────────────┴────────────────────────────────────────────────────────────────
+Note: _cons estimates baseline incidence rate.
+</pre>
+<pre class='stata'>. est store poisson // store estimates
+</pre>
+<h2 id="glm-command-1"><code>glm</code> Command</h2>
+<pre class='stata'>. glm Anxiety6 Sex6 i.Race6 Age6 Income6, link(log) family(poisson) eform vce(robust)
+
+Iteration 0:   log pseudolikelihood = -371.42226  
+Iteration 1:   log pseudolikelihood = -366.52249  
+Iteration 2:   log pseudolikelihood = -366.52156  
+Iteration 3:   log pseudolikelihood = -366.52156  
+
+Generalized linear models                         Number of obs   =        529
+Optimization     : ML                             Residual df     =        522
+                                                  Scale parameter =          1
+Deviance         =  371.0431126                   (1/df) Deviance =   .7108106
+Pearson          =  347.5824434                   (1/df) Pearson  =   .6658667
+
+Variance function: V(u) = u                       [Poisson]
+Link function    : g(u) = ln(u)                   [Log]
+
+                                                  AIC             =    1.41218
+Log pseudolikelihood = -366.5215563               BIC             =  -2902.413
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │               Robust
+    Anxiety6 │        IRR   std. err.      z    P>|z|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        Sex6 │   .7797372    .104779    -1.85   0.064      .599192    1.014683
+             │
+       Race6 │
+Black alone  │    1.00453   .2111003     0.02   0.983     .6654021    1.516497
+Asian alone  │   .4401884   .1834773    -1.97   0.049     .1944665     .996397
+      Other  │   .5482769   .2225452    -1.48   0.139     .2474559    1.214792
+             │
+        Age6 │   .9933699   .0048809    -1.35   0.176     .9838495    1.002982
+     Income6 │   .9192285   .0254323    -3.04   0.002     .8707096    .9704511
+       _cons │   .7778068   .1849814    -1.06   0.291     .4880174    1.239676
+─────────────┴────────────────────────────────────────────────────────────────
+Note: _cons estimates baseline incidence rate.
+</pre>
+<pre class='stata'>. est store glm_poisson // store estimates
+</pre>
+<h2 id="compare-poisson-and-glm-approaches">Compare <code>poisson</code> and <code>glm</code> Approaches</h2>
+<pre class='stata'>. est table poisson glm_poisson, b(%9.3f) star // nice table of estimates
+
+─────────────┬──────────────────────────────
+    Variable │   poisson      glm_poisson   
+─────────────┼──────────────────────────────
+        Sex6 │    -0.249         -0.249     
+             │
+       Race6 │
+Black alone  │     0.005          0.005     
+Asian alone  │    -0.821*        -0.821*    
+      Other  │    -0.601         -0.601     
+             │
+        Age6 │    -0.007         -0.007     
+     Income6 │    -0.084**       -0.084**   
+       _cons │    -0.251         -0.251     
+─────────────┴──────────────────────────────
+    Legend: * p&lt;0.05; ** p&lt;0.01; *** p&lt;0.001
+</pre>
+<h1 id="compare-logistic-regression-and-poisson-regression">Compare Logistic Regression and Poisson Regression</h1>
+<pre class='stata'>. est table logit glm_logit poisson glm_poisson, b(%9.3f) star // nice table of estimates
+
+─────────────┬────────────────────────────────────────────────────────────
+    Variable │    logit        glm_logit       poisson      glm_poisson   
+─────────────┼────────────────────────────────────────────────────────────
+        Sex6 │    -0.382         -0.382         -0.249         -0.249     
+             │
+       Race6 │
+Black alone  │     0.010          0.010          0.005          0.005     
+Asian alone  │    -1.110*        -1.110*        -0.821*        -0.821*    
+      Other  │    -0.887         -0.887         -0.601         -0.601     
+             │
+        Age6 │    -0.011         -0.011         -0.007         -0.007     
+     Income6 │    -0.135**       -0.135**       -0.084**       -0.084**   
+       _cons │     0.694          0.694         -0.251         -0.251     
+─────────────┴────────────────────────────────────────────────────────────
+                                  Legend: * p&lt;0.05; ** p&lt;0.01; *** p&lt;0.001
+</pre>
+<h1 id="get-an-estimate-of-risk-change-from-logit-models">Get An Estimate of Risk Change From Logit Models</h1>
+<h2 id="re-run-the-logistic-regression-model">Re-Run the Logistic Regression Model</h2>
+<pre class='stata'>. logit Anxiety6 Sex6 i.Race6 Age6 Income6, or // re-run our logit model
+
+Iteration 0:   log likelihood = -339.85845  
+Iteration 1:   log likelihood = -327.09157  
+Iteration 2:   log likelihood = -326.88691  
+Iteration 3:   log likelihood = -326.88668  
+Iteration 4:   log likelihood = -326.88668  
+
+Logistic regression                                     Number of obs =    529
+                                                        LR chi2(6)    =  25.94
+                                                        Prob > chi2   = 0.0002
+Log likelihood = -326.88668                             Pseudo R2     = 0.0382
+
+─────────────┬────────────────────────────────────────────────────────────────
+    Anxiety6 │ Odds ratio   Std. err.      z    P>|z|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+        Sex6 │   .6825173   .1366386    -1.91   0.056     .4610041    1.010468
+             │
+       Race6 │
+Black alone  │   1.009843    .362237     0.03   0.978     .4999449    2.039789
+Asian alone  │   .3294345   .1654222    -2.21   0.027     .1231252    .8814373
+      Other  │   .4120474   .2162551    -1.69   0.091     .1473027    1.152614
+             │
+        Age6 │   .9891521   .0080552    -1.34   0.180     .9734895    1.005067
+     Income6 │     .87352   .0402027    -2.94   0.003     .7981736     .955979
+       _cons │   2.001622   .8446585     1.64   0.100     .8753591     4.57697
+─────────────┴────────────────────────────────────────────────────────────────
+Note: _cons estimates baseline odds.
+</pre>
+<h2 id="estimate-margins">Estimate Margins</h2>
+<p>We use the <code>eydx</code> option to get a <em>proportional</em> change in y for a unit change in x.</p>
+<pre class='stata'>. margins, eydx(Income6) // proportional change in y for a change in x
+
+Average marginal effects                                   Number of obs = 529
+Model VCE: OIM
+
+Expression: Pr(Anxiety6), predict()
+ey/dx wrt:  Income6
+
+─────────────┬────────────────────────────────────────────────────────────────
+             │            Delta-method
+             │      ey/dx   std. err.      z    P>|z|     [95% conf. interval]
+─────────────┼────────────────────────────────────────────────────────────────
+     Income6 │  -.0889566   .0303987    -2.93   0.003    -.1485369   -.0293763
+─────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<h1 id="references">References</h1>
+<p>Viera, A. J. (2008). Odds ratios and risk ratios: What's the difference and why does it matter? <em>Southern Medical Journal</em>. https://doi.org/10.1097/SMJ.0b013e31817a7ee4</p>
+</body>
+</html>

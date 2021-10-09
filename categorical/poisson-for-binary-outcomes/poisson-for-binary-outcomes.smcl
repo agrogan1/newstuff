@@ -1,0 +1,295 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\poisson-for-binary-outcomes\poisson-for-binary-outcomes.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 9 Oct 2021, 12:13:25
+{txt}
+{com}. //_1
+. display c(current_date)
+{res} 9 Oct 2021
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}12:13:25
+{txt}
+{com}. //_3
+. clear all
+{res}{txt}
+{com}. //_4
+. use "../data/Andy_June_5.10.21_1pc.dta"
+{txt}
+{com}. //_5
+. recode Anxious6 (0/1 = 0)(2/3 = 1)(. = .), generate(Anxiety6)
+{txt}(383 differences between {bf:Anxious6} and {bf:Anxiety6})
+
+{com}. //_6
+. tabulate Anxiety6
+
+  {txt}RECODE of {c |}
+   Anxious6 {c |}
+  (ANXIOUS) {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        376       66.55       66.55
+{txt}          1 {c |}{res}        189       33.45      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}        565      100.00
+{txt}
+{com}. //_7
+. logit Anxiety6 Sex6 i.Race6 Age6 Income6, or // logistic regression with odds ratios
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-339.85845}  
+Iteration 1:{space 3}log likelihood = {res:-327.09157}  
+Iteration 2:{space 3}log likelihood = {res:-326.88691}  
+Iteration 3:{space 3}log likelihood = {res:-326.88668}  
+Iteration 4:{space 3}log likelihood = {res:-326.88668}  
+{res}
+{txt}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:529}
+{txt}{col 57}{lalign 13:LR chi2({res:6})}{col 70} = {res}{ralign 6:25.94}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0002}
+{txt}Log likelihood = {res:-326.88668}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0382}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    Anxiety6{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}Sex6 {c |}{col 14}{res}{space 2} .6825173{col 26}{space 2} .1366386{col 37}{space 1}   -1.91{col 46}{space 3}0.056{col 54}{space 4} .4610041{col 67}{space 3} 1.010468
+{txt}{space 12} {c |}
+{space 7}Race6 {c |}
+Black alone  {c |}{col 14}{res}{space 2} 1.009843{col 26}{space 2}  .362237{col 37}{space 1}    0.03{col 46}{space 3}0.978{col 54}{space 4} .4999449{col 67}{space 3} 2.039789
+{txt}Asian alone  {c |}{col 14}{res}{space 2} .3294345{col 26}{space 2} .1654222{col 37}{space 1}   -2.21{col 46}{space 3}0.027{col 54}{space 4} .1231252{col 67}{space 3} .8814373
+{txt}{space 6}Other  {c |}{col 14}{res}{space 2} .4120474{col 26}{space 2} .2162551{col 37}{space 1}   -1.69{col 46}{space 3}0.091{col 54}{space 4} .1473027{col 67}{space 3} 1.152614
+{txt}{space 12} {c |}
+{space 8}Age6 {c |}{col 14}{res}{space 2} .9891521{col 26}{space 2} .0080552{col 37}{space 1}   -1.34{col 46}{space 3}0.180{col 54}{space 4} .9734895{col 67}{space 3} 1.005067
+{txt}{space 5}Income6 {c |}{col 14}{res}{space 2}   .87352{col 26}{space 2} .0402027{col 37}{space 1}   -2.94{col 46}{space 3}0.003{col 54}{space 4} .7981736{col 67}{space 3}  .955979
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.001622{col 26}{space 2} .8446585{col 37}{space 1}    1.64{col 46}{space 3}0.100{col 54}{space 4} .8753591{col 67}{space 3}  4.57697
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. //_8
+. est store logit // store estimates
+{txt}
+{com}. //_9
+. glm Anxiety6 Sex6 i.Race6 Age6 Income6, family(binomial) link(logit) 
+{res}
+{txt}Iteration 0:{space 3}log likelihood = {res:-327.29333}  
+Iteration 1:{space 3}log likelihood = {res:-326.88686}  
+Iteration 2:{space 3}log likelihood = {res:-326.88668}  
+Iteration 3:{space 3}log likelihood = {res:-326.88668}  
+{res}
+{txt}Generalized linear models{col 51}Number of obs{col 67}={col 69}{res}       529
+{txt}Optimization     : {res}ML{txt}{col 51}Residual df{col 67}={col 69}{res}       522
+{col 20}{txt}{col 51}Scale parameter{col 67}={col 70}{res}        1
+{txt}Deviance{col 18}={res}{col 20} 653.7733688{txt}{col 51}(1/df) Deviance{col 67}={res}{col 70} 1.252439
+{txt}Pearson{col 18}={res}{col 20} 529.2756818{txt}{col 51}(1/df) Pearson{col 67}={res}{col 70} 1.013938
+
+{txt}Variance function: {res}V(u) = {col 27}u*(1-u/1){col 51}{txt}[{res}Binomial{txt}]
+Link function    : {res}g(u) = {col 27}ln(u/(1-u)){col 51}{txt}[{res}Logit{txt}]
+
+{col 51}{help j_glmic##|_new:AIC}{col 67}={res}{col 70} 1.262332
+{txt}Log likelihood{col 18}= {res}-326.8866844{txt}{col 51}{help j_glmic##|_new:BIC}{col 67}={res}{col 70}-2619.683
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}      OIM
+{col 1}    Anxiety6{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}Sex6 {c |}{col 14}{res}{space 2}-.3819675{col 26}{space 2}  .200198{col 37}{space 1}   -1.91{col 46}{space 3}0.056{col 54}{space 4}-.7743484{col 67}{space 3} .0104135
+{txt}{space 12} {c |}
+{space 7}Race6 {c |}
+Black alone  {c |}{col 14}{res}{space 2} .0097944{col 26}{space 2} .3587065{col 37}{space 1}    0.03{col 46}{space 3}0.978{col 54}{space 4}-.6932573{col 67}{space 3} .7128462
+{txt}Asian alone  {c |}{col 14}{res}{space 2}-1.110378{col 26}{space 2}   .50214{col 37}{space 1}   -2.21{col 46}{space 3}0.027{col 54}{space 4}-2.094554{col 67}{space 3}-.1262014
+{txt}{space 6}Other  {c |}{col 14}{res}{space 2}-.8866169{col 26}{space 2} .5248305{col 37}{space 1}   -1.69{col 46}{space 3}0.091{col 54}{space 4}-1.915266{col 67}{space 3}  .142032
+{txt}{space 12} {c |}
+{space 8}Age6 {c |}{col 14}{res}{space 2}-.0109071{col 26}{space 2} .0081436{col 37}{space 1}   -1.34{col 46}{space 3}0.180{col 54}{space 4}-.0268682{col 67}{space 3}  .005054
+{txt}{space 5}Income6 {c |}{col 14}{res}{space 2}-.1352242{col 26}{space 2} .0460238{col 37}{space 1}   -2.94{col 46}{space 3}0.003{col 54}{space 4}-.2254291{col 67}{space 3}-.0450193
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .6939581{col 26}{space 2} .4219869{col 37}{space 1}    1.64{col 46}{space 3}0.100{col 54}{space 4}-.1331211{col 67}{space 3} 1.521037
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_10
+. est store glm_logit // store estimates
+{txt}
+{com}. //_11
+. est table logit glm_logit, b(%9.3f) star // nice table of estimates
+{res}
+{txt}{hline 12}{c -}{c TT}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}
+{ralign 12:Variable} {c |} {center 12:logit} {space 1} {center 12:glm_logit} {space 1}
+{hline 12}{c -}{c +}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}
+{res}{txt}{space 8}Sex6 {c |}{res} {ralign 9:-0.382}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.382}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 12} {c |}
+{space 7}Race6 {c |}
+Black alone  {c |}{res} {ralign 9:0.010}{lalign 3:}{txt} {space 1}{res} {ralign 9:0.010}{lalign 3:}{txt} {space 1}
+{res}{txt}Asian alone  {c |}{res} {ralign 9:-1.110}{lalign 3:*}{txt} {space 1}{res} {ralign 9:-1.110}{lalign 3:*}{txt} {space 1}
+{res}{txt}{space 6}Other  {c |}{res} {ralign 9:-0.887}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.887}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 12} {c |}
+{space 8}Age6 {c |}{res} {ralign 9:-0.011}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.011}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 5}Income6 {c |}{res} {ralign 9:-0.135}{lalign 3:**}{txt} {space 1}{res} {ralign 9:-0.135}{lalign 3:**}{txt} {space 1}
+{res}{txt}{space 7}_cons {c |}{res} {ralign 9:0.694}{lalign 3:}{txt} {space 1}{res} {ralign 9:0.694}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 12}{c -}{c BT}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}
+{ralign 44:Legend: * p<0.05; ** p<0.01; *** p<0.001}
+{res}{txt}
+{com}. //_12
+. poisson Anxiety6 Sex6 i.Race6 Age6 Income6, irr vce(robust)
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-366.52369}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-366.52156}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-366.52156}  
+{res}
+{txt}Poisson regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:529}
+{txt}{col 57}{lalign 13:Wald chi2({res:6})}{col 70} = {res}{ralign 6:24.16}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0005}
+{txt}Log pseudolikelihood = {res:-366.52156}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0229}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}    Anxiety6{col 14}{c |}        IRR{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}Sex6 {c |}{col 14}{res}{space 2} .7797372{col 26}{space 2}  .104779{col 37}{space 1}   -1.85{col 46}{space 3}0.064{col 54}{space 4}  .599192{col 67}{space 3} 1.014683
+{txt}{space 12} {c |}
+{space 7}Race6 {c |}
+Black alone  {c |}{col 14}{res}{space 2}  1.00453{col 26}{space 2} .2111003{col 37}{space 1}    0.02{col 46}{space 3}0.983{col 54}{space 4} .6654021{col 67}{space 3} 1.516497
+{txt}Asian alone  {c |}{col 14}{res}{space 2} .4401884{col 26}{space 2} .1834773{col 37}{space 1}   -1.97{col 46}{space 3}0.049{col 54}{space 4} .1944665{col 67}{space 3}  .996397
+{txt}{space 6}Other  {c |}{col 14}{res}{space 2} .5482769{col 26}{space 2} .2225452{col 37}{space 1}   -1.48{col 46}{space 3}0.139{col 54}{space 4} .2474559{col 67}{space 3} 1.214792
+{txt}{space 12} {c |}
+{space 8}Age6 {c |}{col 14}{res}{space 2} .9933699{col 26}{space 2} .0048809{col 37}{space 1}   -1.35{col 46}{space 3}0.176{col 54}{space 4} .9838495{col 67}{space 3} 1.002982
+{txt}{space 5}Income6 {c |}{col 14}{res}{space 2} .9192285{col 26}{space 2} .0254323{col 37}{space 1}   -3.04{col 46}{space 3}0.002{col 54}{space 4} .8707096{col 67}{space 3} .9704511
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .7778068{col 26}{space 2} .1849814{col 37}{space 1}   -1.06{col 46}{space 3}0.291{col 54}{space 4} .4880174{col 67}{space 3} 1.239676
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline incidence rate{txt}.{p_end}
+
+{com}. //_13
+. est store poisson // store estimates
+{txt}
+{com}. //_14
+. glm Anxiety6 Sex6 i.Race6 Age6 Income6, link(log) family(poisson) eform vce(robust)
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-371.42226}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-366.52249}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-366.52156}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-366.52156}  
+{res}
+{txt}Generalized linear models{col 51}Number of obs{col 67}={col 69}{res}       529
+{txt}Optimization     : {res}ML{txt}{col 51}Residual df{col 67}={col 69}{res}       522
+{col 20}{txt}{col 51}Scale parameter{col 67}={col 70}{res}        1
+{txt}Deviance{col 18}={res}{col 20} 371.0431126{txt}{col 51}(1/df) Deviance{col 67}={res}{col 70} .7108106
+{txt}Pearson{col 18}={res}{col 20} 347.5824434{txt}{col 51}(1/df) Pearson{col 67}={res}{col 70} .6658667
+
+{txt}Variance function: {res}V(u) = {col 27}u{col 51}{txt}[{res}Poisson{txt}]
+Link function    : {res}g(u) = {col 27}ln(u){col 51}{txt}[{res}Log{txt}]
+
+{col 51}{help j_glmic##|_new:AIC}{col 67}={res}{col 70}  1.41218
+{txt}Log pseudolikelihood{col 22}= {res}-366.5215563{txt}{col 51}{help j_glmic##|_new:BIC}{col 67}={res}{col 70}-2902.413
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}    Anxiety6{col 14}{c |}        IRR{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}Sex6 {c |}{col 14}{res}{space 2} .7797372{col 26}{space 2}  .104779{col 37}{space 1}   -1.85{col 46}{space 3}0.064{col 54}{space 4}  .599192{col 67}{space 3} 1.014683
+{txt}{space 12} {c |}
+{space 7}Race6 {c |}
+Black alone  {c |}{col 14}{res}{space 2}  1.00453{col 26}{space 2} .2111003{col 37}{space 1}    0.02{col 46}{space 3}0.983{col 54}{space 4} .6654021{col 67}{space 3} 1.516497
+{txt}Asian alone  {c |}{col 14}{res}{space 2} .4401884{col 26}{space 2} .1834773{col 37}{space 1}   -1.97{col 46}{space 3}0.049{col 54}{space 4} .1944665{col 67}{space 3}  .996397
+{txt}{space 6}Other  {c |}{col 14}{res}{space 2} .5482769{col 26}{space 2} .2225452{col 37}{space 1}   -1.48{col 46}{space 3}0.139{col 54}{space 4} .2474559{col 67}{space 3} 1.214792
+{txt}{space 12} {c |}
+{space 8}Age6 {c |}{col 14}{res}{space 2} .9933699{col 26}{space 2} .0048809{col 37}{space 1}   -1.35{col 46}{space 3}0.176{col 54}{space 4} .9838495{col 67}{space 3} 1.002982
+{txt}{space 5}Income6 {c |}{col 14}{res}{space 2} .9192285{col 26}{space 2} .0254323{col 37}{space 1}   -3.04{col 46}{space 3}0.002{col 54}{space 4} .8707096{col 67}{space 3} .9704511
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .7778068{col 26}{space 2} .1849814{col 37}{space 1}   -1.06{col 46}{space 3}0.291{col 54}{space 4} .4880174{col 67}{space 3} 1.239676
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline incidence rate{txt}.{p_end}
+
+{com}. //_15
+. est store glm_poisson // store estimates
+{txt}
+{com}. //_16
+. est table poisson glm_poisson, b(%9.3f) star // nice table of estimates
+{res}
+{txt}{hline 12}{c -}{c TT}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}
+{ralign 12:Variable} {c |} {center 12:poisson} {space 1} {center 12:glm_poisson} {space 1}
+{hline 12}{c -}{c +}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}
+{res}{txt}{space 8}Sex6 {c |}{res} {ralign 9:-0.249}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.249}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 12} {c |}
+{space 7}Race6 {c |}
+Black alone  {c |}{res} {ralign 9:0.005}{lalign 3:}{txt} {space 1}{res} {ralign 9:0.005}{lalign 3:}{txt} {space 1}
+{res}{txt}Asian alone  {c |}{res} {ralign 9:-0.821}{lalign 3:*}{txt} {space 1}{res} {ralign 9:-0.821}{lalign 3:*}{txt} {space 1}
+{res}{txt}{space 6}Other  {c |}{res} {ralign 9:-0.601}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.601}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 12} {c |}
+{space 8}Age6 {c |}{res} {ralign 9:-0.007}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.007}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 5}Income6 {c |}{res} {ralign 9:-0.084}{lalign 3:**}{txt} {space 1}{res} {ralign 9:-0.084}{lalign 3:**}{txt} {space 1}
+{res}{txt}{space 7}_cons {c |}{res} {ralign 9:-0.251}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.251}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 12}{c -}{c BT}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}
+{ralign 44:Legend: * p<0.05; ** p<0.01; *** p<0.001}
+{res}{txt}
+{com}. //_17
+. est table logit glm_logit poisson glm_poisson, b(%9.3f) star // nice table of estimates
+{res}
+{txt}{hline 12}{c -}{c TT}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}
+{ralign 12:Variable} {c |} {center 12:logit} {space 1} {center 12:glm_logit} {space 1} {center 12:poisson} {space 1} {center 12:glm_poisson} {space 1}
+{hline 12}{c -}{c +}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}
+{res}{txt}{space 8}Sex6 {c |}{res} {ralign 9:-0.382}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.382}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.249}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.249}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 12} {c |}
+{space 7}Race6 {c |}
+Black alone  {c |}{res} {ralign 9:0.010}{lalign 3:}{txt} {space 1}{res} {ralign 9:0.010}{lalign 3:}{txt} {space 1}{res} {ralign 9:0.005}{lalign 3:}{txt} {space 1}{res} {ralign 9:0.005}{lalign 3:}{txt} {space 1}
+{res}{txt}Asian alone  {c |}{res} {ralign 9:-1.110}{lalign 3:*}{txt} {space 1}{res} {ralign 9:-1.110}{lalign 3:*}{txt} {space 1}{res} {ralign 9:-0.821}{lalign 3:*}{txt} {space 1}{res} {ralign 9:-0.821}{lalign 3:*}{txt} {space 1}
+{res}{txt}{space 6}Other  {c |}{res} {ralign 9:-0.887}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.887}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.601}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.601}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 12} {c |}
+{space 8}Age6 {c |}{res} {ralign 9:-0.011}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.011}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.007}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.007}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 5}Income6 {c |}{res} {ralign 9:-0.135}{lalign 3:**}{txt} {space 1}{res} {ralign 9:-0.135}{lalign 3:**}{txt} {space 1}{res} {ralign 9:-0.084}{lalign 3:**}{txt} {space 1}{res} {ralign 9:-0.084}{lalign 3:**}{txt} {space 1}
+{res}{txt}{space 7}_cons {c |}{res} {ralign 9:0.694}{lalign 3:}{txt} {space 1}{res} {ralign 9:0.694}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.251}{lalign 3:}{txt} {space 1}{res} {ralign 9:-0.251}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 12}{c -}{c BT}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}{c -}{hline 12}{c -}{c -}
+{ralign 74:Legend: * p<0.05; ** p<0.01; *** p<0.001}
+{res}{txt}
+{com}. //_18
+. logit Anxiety6 Sex6 i.Race6 Age6 Income6, or // re-run our logit model
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-339.85845}  
+Iteration 1:{space 3}log likelihood = {res:-327.09157}  
+Iteration 2:{space 3}log likelihood = {res:-326.88691}  
+Iteration 3:{space 3}log likelihood = {res:-326.88668}  
+Iteration 4:{space 3}log likelihood = {res:-326.88668}  
+{res}
+{txt}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:529}
+{txt}{col 57}{lalign 13:LR chi2({res:6})}{col 70} = {res}{ralign 6:25.94}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0002}
+{txt}Log likelihood = {res:-326.88668}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0382}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    Anxiety6{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}Sex6 {c |}{col 14}{res}{space 2} .6825173{col 26}{space 2} .1366386{col 37}{space 1}   -1.91{col 46}{space 3}0.056{col 54}{space 4} .4610041{col 67}{space 3} 1.010468
+{txt}{space 12} {c |}
+{space 7}Race6 {c |}
+Black alone  {c |}{col 14}{res}{space 2} 1.009843{col 26}{space 2}  .362237{col 37}{space 1}    0.03{col 46}{space 3}0.978{col 54}{space 4} .4999449{col 67}{space 3} 2.039789
+{txt}Asian alone  {c |}{col 14}{res}{space 2} .3294345{col 26}{space 2} .1654222{col 37}{space 1}   -2.21{col 46}{space 3}0.027{col 54}{space 4} .1231252{col 67}{space 3} .8814373
+{txt}{space 6}Other  {c |}{col 14}{res}{space 2} .4120474{col 26}{space 2} .2162551{col 37}{space 1}   -1.69{col 46}{space 3}0.091{col 54}{space 4} .1473027{col 67}{space 3} 1.152614
+{txt}{space 12} {c |}
+{space 8}Age6 {c |}{col 14}{res}{space 2} .9891521{col 26}{space 2} .0080552{col 37}{space 1}   -1.34{col 46}{space 3}0.180{col 54}{space 4} .9734895{col 67}{space 3} 1.005067
+{txt}{space 5}Income6 {c |}{col 14}{res}{space 2}   .87352{col 26}{space 2} .0402027{col 37}{space 1}   -2.94{col 46}{space 3}0.003{col 54}{space 4} .7981736{col 67}{space 3}  .955979
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.001622{col 26}{space 2} .8446585{col 37}{space 1}    1.64{col 46}{space 3}0.100{col 54}{space 4} .8753591{col 67}{space 3}  4.57697
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+
+{com}. //_19
+. margins, eydx(Income6) // proportional change in y for a change in x
+{res}
+{txt}Average marginal effects{col 60}{lalign 13:Number of obs}{col 73} = {res}{ralign 3:529}
+{txt}{col 1}Model VCE: {res:OIM}
+
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(Anxiety6), predict()}{p_end}
+{p2col:ey/dx wrt:}{res:Income6}{p_end}
+{p2colreset}{...}
+
+{res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26} Delta-method
+{col 14}{c |}      ey/dx{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}Income6 {c |}{col 14}{res}{space 2}-.0889566{col 26}{space 2} .0303987{col 37}{space 1}   -2.93{col 46}{space 3}0.003{col 54}{space 4}-.1485369{col 67}{space 3}-.0293763
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\poisson-for-binary-outcomes\poisson-for-binary-outcomes.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 9 Oct 2021, 12:13:29
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

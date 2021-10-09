@@ -1,0 +1,91 @@
+% Using Poisson Regression for Binary Outcomes
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+
+
+# Introduction
+
+Logistic regression is the most frequently used model for binary outcomes. Logistic regression provides odds ratios, which while somewhat intuitive, may be misunderstood. Notably, odds ratios overstate the strength of the relationship that is implied by risk ratios.
+
+Thus, a number of authors, including XXX have suggested that Poisson regression, which directly provides risk ratios, can be employed for binary outcomes. XXX indicate that the standard errors of the Poisson model will need to be adjusted. 
+
+This handout draws closely on the outline and presentation of ideas provided by XXX at IDRE, although the data source and variables are used are very different.
+
+# Get Data
+
+We are using data from the U.S. Census Pulse Surveys
+
+    clear all
+
+    use "../data/Andy_June_5.10.21_1pc.dta"
+
+# Manage Data
+
+    recode Anxious6 (0/1 = 0)(2/3 = 1)(. = .), generate(Anxiety6)
+
+    tabulate Anxiety6
+
+# Logistic Regression
+
+## `logit` Command
+
+    logit Anxiety6 Sex6 i.Race6 Age6 Income6, or // logistic regression with odds ratios
+
+    est store logit // store estimates
+
+## `glm` Command
+
+    glm Anxiety6 Sex6 i.Race6 Age6 Income6, family(binomial) link(logit) 
+
+    est store glm_logit // store estimates
+
+## Compare `logit` and `glm` Approaches
+
+    est table logit glm_logit, b(%9.3f) star // nice table of estimates
+
+# Poisson Regression
+
+## `poisson` Command
+
+    poisson Anxiety6 Sex6 i.Race6 Age6 Income6, irr vce(robust)
+
+	est store poisson // store estimates
+	
+## `glm` Command	
+
+    glm Anxiety6 Sex6 i.Race6 Age6 Income6, link(log) family(poisson) eform vce(robust)
+
+    est store glm_poisson // store estimates
+
+## Compare `poisson` and `glm` Approaches
+
+    est table poisson glm_poisson, b(%9.3f) star // nice table of estimates
+
+# Compare Logistic Regression and Poisson Regression
+
+    est table logit glm_logit poisson glm_poisson, b(%9.3f) star // nice table of estimates
+
+# Get An Estimate of Risk Change From Logit Models
+
+## Re-Run the Logistic Regression Model
+
+    logit Anxiety6 Sex6 i.Race6 Age6 Income6, or // re-run our logit model
+	
+## Estimate Margins 
+
+We use the `eydx` option to get a *proportional* change in y for a unit change in x.
+
+    margins, eydx(Income6) // proportional change in y for a change in x
+
+# References
+
+Viera, A. J. (2008). Odds ratios and risk ratios: What's the difference and why does it matter? *Southern Medical Journal*. https://doi.org/10.1097/SMJ.0b013e31817a7ee4
+
+
+
