@@ -44,12 +44,144 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>Ordinal and Multinomial Logistic Regression</title>
   <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -58,12 +190,12 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Ordinal and Multinomial Logistic Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">19 Oct 2020</p>
+<p class="date">11 Oct 2021</p>
 </header>
 <h1 id="meta-background">Meta-Background</h1>
-<style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
+<style>body {max-width: 90%;} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <figure>
-<img src="twitter-ordinal-annotated.PNG" style="width:20.0%" alt="" /><figcaption>Tweet About Ordinal Models</figcaption>
+<img src="twitter-ordinal-annotated.PNG" style="width:20.0%" alt="Tweet About Ordinal Models" /><figcaption aria-hidden="true">Tweet About Ordinal Models</figcaption>
 </figure>
 <h1 id="key-concepts-and-commands">Key Concepts and Commands</h1>
 <ul>
@@ -91,7 +223,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </pre>
 <pre class='stata'>. set maxvar 10000 // increase number of allowable variables
 </pre>
-<pre class='stata'>. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
+<pre class='stata'>. use "GSSsmall.DTA", clear
 </pre>
 <pre class='stata'>. keep polviews sex maeduc paeduc age degree coninc
 </pre>
@@ -101,13 +233,12 @@ file GSSsmall.dta saved
 <pre class='stata'>. describe // describe the data
 
 Contains data from GSSsmall.dta
-  obs:        64,814                          
- vars:             7                          19 Oct 2020 07:59
- size:       907,396                          
-─────────────────────────────────────────────────────────────────────────────────────────────
-              storage   display    value
-variable name   type    format     label      variable label
-─────────────────────────────────────────────────────────────────────────────────────────────
+ Observations:        64,814                  
+    Variables:             7                  11 Oct 2021 10:51
+────────────────────────────────────────────────────────────────────────────────────────────
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+────────────────────────────────────────────────────────────────────────────────────────────
 age             byte    %8.0g      AGE        age of respondent
 paeduc          byte    %8.0g      LABK       highest year school completed, father
 maeduc          byte    %8.0g      LABK       highest year school completed, mother
@@ -115,7 +246,7 @@ degree          byte    %8.0g      LABL       r's highest degree
 sex             byte    %8.0g      SEX        respondents sex
 polviews        byte    %8.0g      POLVIEWS   think of self as liberal or conservative
 coninc          double  %12.0g     LABIH      family income in constant dollars
-─────────────────────────────────────────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
 <h1 id="thinking-about-your-data-and-data-wrangling">Thinking About Your Data and Data Wrangling</h1>
@@ -125,7 +256,7 @@ Sorted by:
 <h1 id="descriptive-statistics">Descriptive Statistics</h1>
 <pre class='stata'>. summarize 
 
-    Variable │        Obs        Mean    Std. Dev.       Min        Max
+    Variable │        Obs        Mean    Std. dev.       Min        Max
 ─────────────┼─────────────────────────────────────────────────────────
          age │     64,586    46.09936     17.5347         18         89
       paeduc │     45,837    10.71026    4.342689          0         20
@@ -154,9 +285,6 @@ extrmly conservative │      1,832        3.31      100.00
 </pre>
 <h1 id="the-ordinal-model-k-categoriesstata">The Ordinal Model (<em>k categories</em>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h1>
 <p><span class="math display">\[
-    p_{ij} = Pr \Big( k_{i-1} &lt; x_j \beta &lt;= k_i \Big)
-\]</span></p>
-<p><span class="math display">\[
     \ln \left( \frac{p(y \le k)}{p(y &gt; k)} \right) = \beta_0 + \beta_1 x_1 + ... 
 \]</span></p>
 <h1 id="ordinal-regression">Ordinal Regression</h1>
@@ -167,13 +295,13 @@ Iteration 1:   log likelihood = -83369.429
 Iteration 2:   log likelihood = -83368.485  
 Iteration 3:   log likelihood = -83368.485  
 
-Ordered logistic regression                     Number of obs     =     50,049
-                                                LR chi2(4)        =    1053.15
-                                                Prob > chi2       =     0.0000
-Log likelihood = -83368.485                     Pseudo R2         =     0.0063
+Ordered logistic regression                            Number of obs =  50,049
+                                                       LR chi2(4)    = 1053.15
+                                                       Prob > chi2   =  0.0000
+Log likelihood = -83368.485                            Pseudo R2     =  0.0063
 
 ─────────────┬────────────────────────────────────────────────────────────────
-    polviews │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+    polviews │ Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
 ─────────────┼────────────────────────────────────────────────────────────────
          sex │   -.129234   .0162348    -7.96   0.000    -.1610536   -.0974144
          age │   .0116653   .0004737    24.63   0.000     .0107369    .0125937
@@ -199,13 +327,13 @@ Iteration 1:   log likelihood = -83369.429
 Iteration 2:   log likelihood = -83368.485  
 Iteration 3:   log likelihood = -83368.485  
 
-Ordered logistic regression                     Number of obs     =     50,049
-                                                LR chi2(4)        =    1053.15
-                                                Prob > chi2       =     0.0000
-Log likelihood = -83368.485                     Pseudo R2         =     0.0063
+Ordered logistic regression                            Number of obs =  50,049
+                                                       LR chi2(4)    = 1053.15
+                                                       Prob > chi2   =  0.0000
+Log likelihood = -83368.485                            Pseudo R2     =  0.0063
 
 ─────────────┬────────────────────────────────────────────────────────────────
-    polviews │ Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+    polviews │ Odds ratio   Std. err.      z    P>|z|     [95% conf. interval]
 ─────────────┼────────────────────────────────────────────────────────────────
          sex │   .8787683   .0142666    -7.96   0.000     .8512464      .90718
          age │   1.011734   .0004792    24.63   0.000     1.010795    1.012673
@@ -219,21 +347,22 @@ Log likelihood = -83368.485                     Pseudo R2         =     0.0063
        /cut5 │   1.916652     .03824                      1.841703    1.991601
        /cut6 │   3.826484   .0447146                      3.738845    3.914123
 ─────────────┴────────────────────────────────────────────────────────────────
-Note: Estimates are transformed only in the first equation.
+Note: Estimates are transformed only in the first equation to odds ratios.
 </pre>
 <h1 id="the-proportional-odds-assumption-and-the-brant-test">The Proportional Odds Assumption And The Brant Test</h1>
 <pre class='stata'>. brant
 
-Brant test of parallel regression assumption
+Brant Test of Parallel Regression Assumption
 
-              │       chi2     p>chi2      df
- ─────────────+──────────────────────────────
-          All │    1456.59      0.000      20
- ─────────────+──────────────────────────────
-          sex │     108.03      0.000       5
-          age │     120.63      0.000       5
-       degree │     835.26      0.000       5
-       coninc │      67.78      0.000       5
+    Variable │      chi2   p>chi2    df
+─────────────┼──────────────────────────
+         All │   1456.60    0.000    20
+─────────────┼──────────────────────────
+         sex │    108.03    0.000     5
+         age │    120.63    0.000     5
+      degree │    835.27    0.000     5
+      coninc │     67.79    0.000     5
+─────────────┴──────────────────────────
 
 A significant test statistic provides evidence that the parallel
 regression assumption has been violated.
@@ -259,13 +388,13 @@ Iteration 1:   log likelihood = -82700.548
 Iteration 2:   log likelihood = -82694.595  
 Iteration 3:   log likelihood = -82694.594  
 
-Multinomial logistic regression                 Number of obs     =     50,049
-                                                LR chi2(24)       =    2400.93
-                                                Prob > chi2       =     0.0000
-Log likelihood = -82694.594                     Pseudo R2         =     0.0143
+Multinomial logistic regression                        Number of obs =  50,049
+                                                       LR chi2(24)   = 2400.93
+                                                       Prob > chi2   =  0.0000
+Log likelihood = -82694.594                            Pseudo R2     =  0.0143
 
 ─────────────────────┬────────────────────────────────────────────────────────────────
-            polviews │      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+            polviews │ Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
 ─────────────────────┼────────────────────────────────────────────────────────────────
 extremely_liberal    │
                  sex │
@@ -321,13 +450,13 @@ extrmly_conservative │
 <h1 id="exponentiating-coefficients">Exponentiating Coefficients</h1>
 <pre class='stata'>. mlogit, rr
 
-Multinomial logistic regression                 Number of obs     =     50,049
-                                                LR chi2(24)       =    2400.93
-                                                Prob > chi2       =     0.0000
-Log likelihood = -82694.594                     Pseudo R2         =     0.0143
+Multinomial logistic regression                        Number of obs =  50,049
+                                                       LR chi2(24)   = 2400.93
+                                                       Prob > chi2   =  0.0000
+Log likelihood = -82694.594                            Pseudo R2     =  0.0143
 
 ─────────────────────┬────────────────────────────────────────────────────────────────
-            polviews │        RRR   Std. Err.      z    P>|z|     [95% Conf. Interval]
+            polviews │        RRR   Std. err.      z    P>|z|     [95% conf. interval]
 ─────────────────────┼────────────────────────────────────────────────────────────────
 extremely_liberal    │
                  sex │
@@ -384,14 +513,14 @@ Note: _cons estimates baseline relative risk for each outcome.
 <h1 id="predicted-probabilities">Predicted Probabilities</h1>
 <pre class='stata'>. margins sex, predict(outcome(1)) // predicted probabilities by sex; y = 1
 
-Predictive margins                              Number of obs     =     50,049
-Model VCE    : OIM
+Predictive margins                                      Number of obs = 50,049
+Model VCE: OIM
 
-Expression   : Pr(polviews==extremely_liberal), predict(outcome(1))
+Expression: Pr(polviews==extremely_liberal), predict(outcome(1))
 
 ─────────────┬────────────────────────────────────────────────────────────────
              │            Delta-method
-             │     Margin   Std. Err.      z    P>|z|     [95% Conf. Interval]
+             │     Margin   std. err.      z    P>|z|     [95% conf. interval]
 ─────────────┼────────────────────────────────────────────────────────────────
          sex │
        male  │   .0325114    .001187    27.39   0.000     .0301849    .0348378

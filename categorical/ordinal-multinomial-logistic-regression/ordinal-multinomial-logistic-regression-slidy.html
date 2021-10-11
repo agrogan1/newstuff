@@ -9,75 +9,75 @@
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>Ordinal and Multinomial Logistic Regression</title>
   <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" type="text/css" media="screen, projection, print"
     href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
@@ -99,7 +99,7 @@ Andy Grogan-Kaylor
 <div class="slide section level1">
 
 <p>Andy Grogan-Kaylor</p>
-<p>19 Oct 2020</p>
+<p>11 Oct 2021</p>
 </div>
 <div id="meta-background" class="slide section level1">
 <h1>Meta-Background</h1>
@@ -131,31 +131,30 @@ Andy Grogan-Kaylor
 </div>
 <div id="get-the-data-general-social-survey" class="slide section level1">
 <h1>Get The Data (General Social Survey)</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1"></a>. <span class="kw">set</span> <span class="dv">maxvar</span> 10000 <span class="co">// increase number of allowable variables</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1"></a>. <span class="kw">use</span> <span class="st">&quot;/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1"></a>. <span class="kw">keep</span> polviews sex maeduc paeduc age degree coninc</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1"></a>. <span class="kw">save</span> GSSsmall.dta, <span class="kw">replace</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>file GSSsmall.dta saved</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1"></a>. <span class="kw">describe</span> <span class="co">// describe the data</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a>Contains <span class="kw">data</span> from GSSsmall.dta</span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="kw">obs</span>:        64,814                          </span>
-<span id="cb6-5"><a href="#cb6-5"></a> vars:             7                          19 Oct 2020 07:59</span>
-<span id="cb6-6"><a href="#cb6-6"></a> <span class="kw">size</span>:       907,396                          </span>
-<span id="cb6-7"><a href="#cb6-7"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb6-8"><a href="#cb6-8"></a>              storage   <span class="kw">display</span>    <span class="ot">value</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="kw">variable</span> <span class="bn">name</span>   <span class="dv">type</span>    <span class="kw">format</span>     <span class="kw">label</span>      <span class="kw">variable</span> <span class="kw">label</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb6-11"><a href="#cb6-11"></a>age             <span class="kw">byte</span>    %8.0g      AGE        age <span class="kw">of</span> respondent</span>
-<span id="cb6-12"><a href="#cb6-12"></a>paeduc          <span class="kw">byte</span>    %8.0g      LABK       highest <span class="fu">year</span> school completed, father</span>
-<span id="cb6-13"><a href="#cb6-13"></a>maeduc          <span class="kw">byte</span>    %8.0g      LABK       highest <span class="fu">year</span> school completed, mother</span>
-<span id="cb6-14"><a href="#cb6-14"></a>degree          <span class="kw">byte</span>    %8.0g      LABL       r&#39;s highest degree</span>
-<span id="cb6-15"><a href="#cb6-15"></a>sex             <span class="kw">byte</span>    %8.0g      SEX        respondents sex</span>
-<span id="cb6-16"><a href="#cb6-16"></a>polviews        <span class="kw">byte</span>    %8.0g      POLVIEWS   think <span class="kw">of</span> self <span class="kw">as</span> liberal <span class="kw">or</span> conservative</span>
-<span id="cb6-17"><a href="#cb6-17"></a>coninc          <span class="kw">double</span>  %12.0g     LABIH      <span class="kw">family</span> income <span class="kw">in</span> constant dollars</span>
-<span id="cb6-18"><a href="#cb6-18"></a>─────────────────────────────────────────────────────────────────────────────────────────────</span>
-<span id="cb6-19"><a href="#cb6-19"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">set</span> <span class="dv">maxvar</span> 10000 <span class="co">// increase number of allowable variables</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">use</span> <span class="st">&quot;GSSsmall.DTA&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">keep</span> polviews sex maeduc paeduc age degree coninc</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">save</span> GSSsmall.dta, <span class="kw">replace</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>file GSSsmall.dta saved</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">describe</span> <span class="co">// describe the data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Contains <span class="kw">data</span> from GSSsmall.dta</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a> Observations:        64,814                  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    Variables:             7                  11 Oct 2021 10:51</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>Variable      Storage   Display    Value</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="bn">name</span>         <span class="dv">type</span>    <span class="kw">format</span>    <span class="kw">label</span>      Variable <span class="kw">label</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>age             <span class="kw">byte</span>    %8.0g      AGE        age <span class="kw">of</span> respondent</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>paeduc          <span class="kw">byte</span>    %8.0g      LABK       highest <span class="fu">year</span> school completed, father</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>maeduc          <span class="kw">byte</span>    %8.0g      LABK       highest <span class="fu">year</span> school completed, mother</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>degree          <span class="kw">byte</span>    %8.0g      LABL       r&#39;s highest degree</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>sex             <span class="kw">byte</span>    %8.0g      SEX        respondents sex</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>polviews        <span class="kw">byte</span>    %8.0g      POLVIEWS   think <span class="kw">of</span> self <span class="kw">as</span> liberal <span class="kw">or</span> conservative</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>coninc          <span class="kw">double</span>  %12.0g     LABIH      <span class="kw">family</span> income <span class="kw">in</span> constant dollars</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>Sorted <span class="kw">by</span>: </span></code></pre></div>
 </div>
 <div id="thinking-about-your-data-and-data-wrangling" class="slide section level1">
 <h1>Thinking About Your Data and Data Wrangling</h1>
@@ -165,120 +164,120 @@ Andy Grogan-Kaylor
 </div>
 <div id="descriptive-statistics" class="slide section level1">
 <h1>Descriptive Statistics</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1"></a>. <span class="kw">summarize</span> </span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a>    Variable │        Obs        Mean    Std. Dev.       Min        Max</span>
-<span id="cb7-4"><a href="#cb7-4"></a>─────────────┼─────────────────────────────────────────────────────────</span>
-<span id="cb7-5"><a href="#cb7-5"></a>         age │     64,586    46.09936     17.5347         18         89</span>
-<span id="cb7-6"><a href="#cb7-6"></a>      paeduc │     45,837    10.71026    4.342689          0         20</span>
-<span id="cb7-7"><a href="#cb7-7"></a>      maeduc │     53,870    10.85365    3.768792          0         20</span>
-<span id="cb7-8"><a href="#cb7-8"></a>      degree │     64,641     1.35858    1.175289          0          4</span>
-<span id="cb7-9"><a href="#cb7-9"></a>         sex │     64,814    1.558521    .4965673          1          2</span>
-<span id="cb7-10"><a href="#cb7-10"></a>─────────────┼─────────────────────────────────────────────────────────</span>
-<span id="cb7-11"><a href="#cb7-11"></a>    polviews │     55,328    4.100528    1.382474          1          7</span>
-<span id="cb7-12"><a href="#cb7-12"></a>      coninc │     58,294    45028.17       36791      350.5     180386</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1"></a>. <span class="kw">tabulate</span> polviews</span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a>    think <span class="kw">of</span> self <span class="kw">as</span> │</span>
-<span id="cb8-4"><a href="#cb8-4"></a>          liberal <span class="kw">or</span> │</span>
-<span id="cb8-5"><a href="#cb8-5"></a>        conservative │      Freq.     Percent        Cum.</span>
-<span id="cb8-6"><a href="#cb8-6"></a>─────────────────────┼───────────────────────────────────</span>
-<span id="cb8-7"><a href="#cb8-7"></a>   extremely liberal │      1,682        3.04        3.04</span>
-<span id="cb8-8"><a href="#cb8-8"></a>             liberal │      6,514       11.77       14.81</span>
-<span id="cb8-9"><a href="#cb8-9"></a>    slightly liberal │      7,010       12.67       27.48</span>
-<span id="cb8-10"><a href="#cb8-10"></a>            moderate │     21,370       38.62       66.11</span>
-<span id="cb8-11"><a href="#cb8-11"></a>slghtly conservative │      8,690       15.71       81.81</span>
-<span id="cb8-12"><a href="#cb8-12"></a>        conservative │      8,230       14.87       96.69</span>
-<span id="cb8-13"><a href="#cb8-13"></a>extrmly conservative │      1,832        3.31      100.00</span>
-<span id="cb8-14"><a href="#cb8-14"></a>─────────────────────┼───────────────────────────────────</span>
-<span id="cb8-15"><a href="#cb8-15"></a>               Total │     55,328      100.00</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">summarize</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    Variable │        Obs        Mean    Std. <span class="kw">dev</span>.       Min        Max</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>─────────────┼─────────────────────────────────────────────────────────</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>         age │     64,586    46.09936     17.5347         18         89</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      paeduc │     45,837    10.71026    4.342689          0         20</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      maeduc │     53,870    10.85365    3.768792          0         20</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      degree │     64,641     1.35858    1.175289          0          4</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>         sex │     64,814    1.558521    .4965673          1          2</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>─────────────┼─────────────────────────────────────────────────────────</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    polviews │     55,328    4.100528    1.382474          1          7</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      coninc │     58,294    45028.17       36791      350.5     180386</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">tabulate</span> polviews</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    think <span class="kw">of</span> self <span class="kw">as</span> │</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          liberal <span class="kw">or</span> │</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        conservative │      Freq.     Percent        Cum.</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>─────────────────────┼───────────────────────────────────</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>   extremely liberal │      1,682        3.04        3.04</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>             liberal │      6,514       11.77       14.81</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    slightly liberal │      7,010       12.67       27.48</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            moderate │     21,370       38.62       66.11</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>slghtly conservative │      8,690       15.71       81.81</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        conservative │      8,230       14.87       96.69</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>extrmly conservative │      1,832        3.31      100.00</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>─────────────────────┼───────────────────────────────────</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>               Total │     55,328      100.00</span></code></pre></div>
 </div>
 <div id="the-ordinal-model-k-categoriesstata" class="slide section level1">
 <h1>The Ordinal Model (<em>k categories</em>)<a href="#fn1" id="fnref1" class="footnote-ref"><sup>1</sup></a></h1>
-<p><span class="math display">\[ p_{ij} = Pr \Big( k_{i-1} &lt; x_j \beta &lt;= k_i \Big) \]</span></p>
 <p><span class="math display">\[ \ln \left( \frac{p(y \le k)}{p(y &gt; k)} \right) = \beta_0 + \beta_1 x_1 + ... \]</span></p>
 </div>
 <div id="ordinal-regression" class="slide section level1">
 <h1>Ordinal Regression</h1>
-<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1"></a>. <span class="kw">ologit</span> polviews sex age degree coninc</span>
-<span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>Iteration 0:   <span class="fu">log</span> likelihood = -83895.058  </span>
-<span id="cb9-4"><a href="#cb9-4"></a>Iteration 1:   <span class="fu">log</span> likelihood = -83369.429  </span>
-<span id="cb9-5"><a href="#cb9-5"></a>Iteration 2:   <span class="fu">log</span> likelihood = -83368.485  </span>
-<span id="cb9-6"><a href="#cb9-6"></a>Iteration 3:   <span class="fu">log</span> likelihood = -83368.485  </span>
-<span id="cb9-7"><a href="#cb9-7"></a></span>
-<span id="cb9-8"><a href="#cb9-8"></a>Ordered <span class="kw">logistic</span> regression                     Number <span class="kw">of</span> <span class="kw">obs</span>     =     50,049</span>
-<span id="cb9-9"><a href="#cb9-9"></a>                                                LR <span class="fu">chi2</span>(4)        =    1053.15</span>
-<span id="cb9-10"><a href="#cb9-10"></a>                                                Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
-<span id="cb9-11"><a href="#cb9-11"></a>Log likelihood = -83368.485                     Pseudo R2         =     0.0063</span>
-<span id="cb9-12"><a href="#cb9-12"></a></span>
-<span id="cb9-13"><a href="#cb9-13"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb9-14"><a href="#cb9-14"></a>    polviews │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
-<span id="cb9-15"><a href="#cb9-15"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb9-16"><a href="#cb9-16"></a>         sex │   -.129234   .0162348    -7.96   0.000    -.1610536   -.0974144</span>
-<span id="cb9-17"><a href="#cb9-17"></a>         age │   .0116653   .0004737    24.63   0.000     .0107369    .0125937</span>
-<span id="cb9-18"><a href="#cb9-18"></a>      degree │  -.1062661   .0076242   -13.94   0.000    -.1212093    -.091323</span>
-<span id="cb9-19"><a href="#cb9-19"></a>      coninc │   3.99e-06   2.42e-07    16.52   0.000     3.52e-06    4.46e-06</span>
-<span id="cb9-20"><a href="#cb9-20"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb9-21"><a href="#cb9-21"></a>       /cut1 │  -3.116098   .0440989                     -3.202531   -3.029666</span>
-<span id="cb9-22"><a href="#cb9-22"></a>       /cut2 │  -1.389623   .0379027                     -1.463911   -1.315335</span>
-<span id="cb9-23"><a href="#cb9-23"></a>       /cut3 │  -.5941761   .0372164                     -.6671188   -.5212333</span>
-<span id="cb9-24"><a href="#cb9-24"></a>       /cut4 │   1.050951    .037438                      .9775742    1.124329</span>
-<span id="cb9-25"><a href="#cb9-25"></a>       /cut5 │   1.916652     .03824                      1.841703    1.991601</span>
-<span id="cb9-26"><a href="#cb9-26"></a>       /cut6 │   3.826484   .0447146                      3.738845    3.914123</span>
-<span id="cb9-27"><a href="#cb9-27"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">ologit</span> polviews sex age degree coninc</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Iteration 0:   <span class="fu">log</span> likelihood = -83895.058  </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Iteration 1:   <span class="fu">log</span> likelihood = -83369.429  </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Iteration 2:   <span class="fu">log</span> likelihood = -83368.485  </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Iteration 3:   <span class="fu">log</span> likelihood = -83368.485  </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Ordered <span class="kw">logistic</span> regression                            Number <span class="kw">of</span> <span class="kw">obs</span> =  50,049</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                                                       LR <span class="fu">chi2</span>(4)    = 1053.15</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                                                       Prob &gt; <span class="fu">chi2</span>   =  0.0000</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>Log likelihood = -83368.485                            Pseudo R2     =  0.0063</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    polviews │ Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>         sex │   -.129234   .0162348    -7.96   0.000    -.1610536   -.0974144</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>         age │   .0116653   .0004737    24.63   0.000     .0107369    .0125937</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>      degree │  -.1062661   .0076242   -13.94   0.000    -.1212093    -.091323</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      coninc │   3.99e-06   2.42e-07    16.52   0.000     3.52e-06    4.46e-06</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>       /cut1 │  -3.116098   .0440989                     -3.202531   -3.029666</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>       /cut2 │  -1.389623   .0379027                     -1.463911   -1.315335</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>       /cut3 │  -.5941761   .0372164                     -.6671188   -.5212333</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>       /cut4 │   1.050951    .037438                      .9775742    1.124329</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>       /cut5 │   1.916652     .03824                      1.841703    1.991601</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>       /cut6 │   3.826484   .0447146                      3.738845    3.914123</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
 <blockquote>
 <p>Many commands for regression of categorical dependent variables in R <em>do not provide p values</em>, and an extra step has to be taken to get p values. This is <em>not</em> a problem in Stata!</p>
 </blockquote>
 </div>
 <div id="exponentiating-coefficients-ebeta" class="slide section level1">
 <h1>Exponentiating Coefficients: <span class="math inline">\(e^\beta\)</span></h1>
-<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1"></a>. <span class="kw">ologit</span> polviews sex age degree coninc, <span class="kw">or</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a></span>
-<span id="cb10-3"><a href="#cb10-3"></a>Iteration 0:   <span class="fu">log</span> likelihood = -83895.058  </span>
-<span id="cb10-4"><a href="#cb10-4"></a>Iteration 1:   <span class="fu">log</span> likelihood = -83369.429  </span>
-<span id="cb10-5"><a href="#cb10-5"></a>Iteration 2:   <span class="fu">log</span> likelihood = -83368.485  </span>
-<span id="cb10-6"><a href="#cb10-6"></a>Iteration 3:   <span class="fu">log</span> likelihood = -83368.485  </span>
-<span id="cb10-7"><a href="#cb10-7"></a></span>
-<span id="cb10-8"><a href="#cb10-8"></a>Ordered <span class="kw">logistic</span> regression                     Number <span class="kw">of</span> <span class="kw">obs</span>     =     50,049</span>
-<span id="cb10-9"><a href="#cb10-9"></a>                                                LR <span class="fu">chi2</span>(4)        =    1053.15</span>
-<span id="cb10-10"><a href="#cb10-10"></a>                                                Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
-<span id="cb10-11"><a href="#cb10-11"></a>Log likelihood = -83368.485                     Pseudo R2         =     0.0063</span>
-<span id="cb10-12"><a href="#cb10-12"></a></span>
-<span id="cb10-13"><a href="#cb10-13"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb10-14"><a href="#cb10-14"></a>    polviews │ Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
-<span id="cb10-15"><a href="#cb10-15"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb10-16"><a href="#cb10-16"></a>         sex │   .8787683   .0142666    -7.96   0.000     .8512464      .90718</span>
-<span id="cb10-17"><a href="#cb10-17"></a>         age │   1.011734   .0004792    24.63   0.000     1.010795    1.012673</span>
-<span id="cb10-18"><a href="#cb10-18"></a>      degree │   .8991853   .0068555   -13.94   0.000     .8858486    .9127228</span>
-<span id="cb10-19"><a href="#cb10-19"></a>      coninc │   1.000004   2.42e-07    16.52   0.000     1.000004    1.000004</span>
-<span id="cb10-20"><a href="#cb10-20"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb10-21"><a href="#cb10-21"></a>       /cut1 │  -3.116098   .0440989                     -3.202531   -3.029666</span>
-<span id="cb10-22"><a href="#cb10-22"></a>       /cut2 │  -1.389623   .0379027                     -1.463911   -1.315335</span>
-<span id="cb10-23"><a href="#cb10-23"></a>       /cut3 │  -.5941761   .0372164                     -.6671188   -.5212333</span>
-<span id="cb10-24"><a href="#cb10-24"></a>       /cut4 │   1.050951    .037438                      .9775742    1.124329</span>
-<span id="cb10-25"><a href="#cb10-25"></a>       /cut5 │   1.916652     .03824                      1.841703    1.991601</span>
-<span id="cb10-26"><a href="#cb10-26"></a>       /cut6 │   3.826484   .0447146                      3.738845    3.914123</span>
-<span id="cb10-27"><a href="#cb10-27"></a>─────────────┴────────────────────────────────────────────────────────────────</span>
-<span id="cb10-28"><a href="#cb10-28"></a>Note: Estimates are transformed only <span class="kw">in</span> the first equation.</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">ologit</span> polviews sex age degree coninc, <span class="kw">or</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Iteration 0:   <span class="fu">log</span> likelihood = -83895.058  </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Iteration 1:   <span class="fu">log</span> likelihood = -83369.429  </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Iteration 2:   <span class="fu">log</span> likelihood = -83368.485  </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Iteration 3:   <span class="fu">log</span> likelihood = -83368.485  </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>Ordered <span class="kw">logistic</span> regression                            Number <span class="kw">of</span> <span class="kw">obs</span> =  50,049</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                                                       LR <span class="fu">chi2</span>(4)    = 1053.15</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                                                       Prob &gt; <span class="fu">chi2</span>   =  0.0000</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>Log likelihood = -83368.485                            Pseudo R2     =  0.0063</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    polviews │ Odds <span class="kw">ratio</span>   Std. err.      z    P&gt;|z|     [95% conf. interval]</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>         sex │   .8787683   .0142666    -7.96   0.000     .8512464      .90718</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>         age │   1.011734   .0004792    24.63   0.000     1.010795    1.012673</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>      degree │   .8991853   .0068555   -13.94   0.000     .8858486    .9127228</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>      coninc │   1.000004   2.42e-07    16.52   0.000     1.000004    1.000004</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>       /cut1 │  -3.116098   .0440989                     -3.202531   -3.029666</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>       /cut2 │  -1.389623   .0379027                     -1.463911   -1.315335</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>       /cut3 │  -.5941761   .0372164                     -.6671188   -.5212333</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>       /cut4 │   1.050951    .037438                      .9775742    1.124329</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>       /cut5 │   1.916652     .03824                      1.841703    1.991601</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>       /cut6 │   3.826484   .0447146                      3.738845    3.914123</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>─────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>Note: Estimates are transformed only <span class="kw">in</span> the first equation to odds ratios.</span></code></pre></div>
 </div>
 <div id="the-proportional-odds-assumption-and-the-brant-test" class="slide section level1">
 <h1>The Proportional Odds Assumption And The Brant Test</h1>
-<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1"></a>. brant</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a>Brant <span class="kw">test</span> <span class="kw">of</span> parallel regression assumption</span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a>              │       <span class="fu">chi2</span>     <span class="kw">p</span>&gt;<span class="fu">chi2</span>      df</span>
-<span id="cb11-6"><a href="#cb11-6"></a> ─────────────+──────────────────────────────</span>
-<span id="cb11-7"><a href="#cb11-7"></a>          All │    1456.59      0.000      20</span>
-<span id="cb11-8"><a href="#cb11-8"></a> ─────────────+──────────────────────────────</span>
-<span id="cb11-9"><a href="#cb11-9"></a>          sex │     108.03      0.000       5</span>
-<span id="cb11-10"><a href="#cb11-10"></a>          age │     120.63      0.000       5</span>
-<span id="cb11-11"><a href="#cb11-11"></a>       degree │     835.26      0.000       5</span>
-<span id="cb11-12"><a href="#cb11-12"></a>       coninc │      67.78      0.000       5</span>
-<span id="cb11-13"><a href="#cb11-13"></a></span>
-<span id="cb11-14"><a href="#cb11-14"></a>A significant <span class="kw">test</span> statistic provides evidence that the parallel</span>
-<span id="cb11-15"><a href="#cb11-15"></a>regression assumption has been violated.</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>. brant</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>Brant Test <span class="kw">of</span> Parallel Regression Assumption</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    Variable │      <span class="fu">chi2</span>   <span class="kw">p</span>&gt;<span class="fu">chi2</span>    df</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>─────────────┼──────────────────────────</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>         All │   1456.60    0.000    20</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>─────────────┼──────────────────────────</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>         sex │    108.03    0.000     5</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>         age │    120.63    0.000     5</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>      degree │    835.27    0.000     5</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>      coninc │     67.79    0.000     5</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>─────────────┴──────────────────────────</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>A significant <span class="kw">test</span> statistic provides evidence that the parallel</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>regression assumption has been violated.</span></code></pre></div>
 </div>
 <div id="the-multinomial-model" class="slide section level1">
 <h1>The Multinomial Model</h1>
@@ -289,153 +288,153 @@ Andy Grogan-Kaylor
 </div>
 <div id="estimation" class="slide section level1">
 <h1>Estimation</h1>
-<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1"></a>. <span class="kw">mlogit</span> polviews i.sex age degree coninc</span>
-<span id="cb12-2"><a href="#cb12-2"></a></span>
-<span id="cb12-3"><a href="#cb12-3"></a>Iteration 0:   <span class="fu">log</span> likelihood = -83895.058  </span>
-<span id="cb12-4"><a href="#cb12-4"></a>Iteration 1:   <span class="fu">log</span> likelihood = -82700.548  </span>
-<span id="cb12-5"><a href="#cb12-5"></a>Iteration 2:   <span class="fu">log</span> likelihood = -82694.595  </span>
-<span id="cb12-6"><a href="#cb12-6"></a>Iteration 3:   <span class="fu">log</span> likelihood = -82694.594  </span>
-<span id="cb12-7"><a href="#cb12-7"></a></span>
-<span id="cb12-8"><a href="#cb12-8"></a>Multinomial <span class="kw">logistic</span> regression                 Number <span class="kw">of</span> <span class="kw">obs</span>     =     50,049</span>
-<span id="cb12-9"><a href="#cb12-9"></a>                                                LR <span class="fu">chi2</span>(24)       =    2400.93</span>
-<span id="cb12-10"><a href="#cb12-10"></a>                                                Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
-<span id="cb12-11"><a href="#cb12-11"></a>Log likelihood = -82694.594                     Pseudo R2         =     0.0143</span>
-<span id="cb12-12"><a href="#cb12-12"></a></span>
-<span id="cb12-13"><a href="#cb12-13"></a>─────────────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb12-14"><a href="#cb12-14"></a>            polviews │      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
-<span id="cb12-15"><a href="#cb12-15"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb12-16"><a href="#cb12-16"></a>extremely_liberal    │</span>
-<span id="cb12-17"><a href="#cb12-17"></a>                 sex │</span>
-<span id="cb12-18"><a href="#cb12-18"></a>             female  │  -.2153043   .0534275    -4.03   0.000    -.3200202   -.1105883</span>
-<span id="cb12-19"><a href="#cb12-19"></a>                 age │  -.0051601   .0015774    -3.27   0.001    -.0082517   -.0020685</span>
-<span id="cb12-20"><a href="#cb12-20"></a>              degree │   .3607061   .0234865    15.36   0.000     .3146735    .4067387</span>
-<span id="cb12-21"><a href="#cb12-21"></a>              coninc │  -6.68e-06   8.90e-07    -7.51   0.000    -8.43e-06   -4.94e-06</span>
-<span id="cb12-22"><a href="#cb12-22"></a>               <span class="dt">_cons</span> │   -2.40105   .0904486   -26.55   0.000    -2.578326   -2.223774</span>
-<span id="cb12-23"><a href="#cb12-23"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb12-24"><a href="#cb12-24"></a>liberal              │</span>
-<span id="cb12-25"><a href="#cb12-25"></a>                 sex │</span>
-<span id="cb12-26"><a href="#cb12-26"></a>             female  │  -.0770042   .0302144    -2.55   0.011    -.1362233   -.0177851</span>
-<span id="cb12-27"><a href="#cb12-27"></a>                 age │  -.0077271   .0009041    -8.55   0.000    -.0094991   -.0059551</span>
-<span id="cb12-28"><a href="#cb12-28"></a>              degree │   .3615385   .0134905    26.80   0.000     .3350977    .3879794</span>
-<span id="cb12-29"><a href="#cb12-29"></a>              coninc │  -2.36e-06   4.59e-07    -5.14   0.000    -3.26e-06   -1.46e-06</span>
-<span id="cb12-30"><a href="#cb12-30"></a>               <span class="dt">_cons</span> │  -1.195919   .0513843   -23.27   0.000     -1.29663   -1.095207</span>
-<span id="cb12-31"><a href="#cb12-31"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb12-32"><a href="#cb12-32"></a>slightly_liberal     │</span>
-<span id="cb12-33"><a href="#cb12-33"></a>                 sex │</span>
-<span id="cb12-34"><a href="#cb12-34"></a>             female  │  -.1016619   .0292053    -3.48   0.000    -.1589032   -.0444206</span>
-<span id="cb12-35"><a href="#cb12-35"></a>                 age │  -.0099768   .0008799   -11.34   0.000    -.0117014   -.0082521</span>
-<span id="cb12-36"><a href="#cb12-36"></a>              degree │   .2358701   .0134562    17.53   0.000     .2094964    .2622438</span>
-<span id="cb12-37"><a href="#cb12-37"></a>              coninc │  -1.94e-07   4.37e-07    -0.44   0.658    -1.05e-06    6.63e-07</span>
-<span id="cb12-38"><a href="#cb12-38"></a>               <span class="dt">_cons</span> │    -.90455   .0494119   -18.31   0.000    -1.001396   -.8077044</span>
-<span id="cb12-39"><a href="#cb12-39"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb12-40"><a href="#cb12-40"></a>moderate             │  (base outcome)</span>
-<span id="cb12-41"><a href="#cb12-41"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb12-42"><a href="#cb12-42"></a>slghtly_conservative │</span>
-<span id="cb12-43"><a href="#cb12-43"></a>                 sex │</span>
-<span id="cb12-44"><a href="#cb12-44"></a>             female  │  -.2630355   .0270206    -9.73   0.000     -.315995    -.210076</span>
-<span id="cb12-45"><a href="#cb12-45"></a>                 age │   .0012542   .0007943     1.58   0.114    -.0003026     .002811</span>
-<span id="cb12-46"><a href="#cb12-46"></a>              degree │   .1963805    .012493    15.72   0.000     .1718947    .2208663</span>
-<span id="cb12-47"><a href="#cb12-47"></a>              coninc │   3.39e-06   3.86e-07     8.79   0.000     2.63e-06    4.15e-06</span>
-<span id="cb12-48"><a href="#cb12-48"></a>               <span class="dt">_cons</span> │  -1.221032   .0467118   -26.14   0.000    -1.312585   -1.129479</span>
-<span id="cb12-49"><a href="#cb12-49"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb12-50"><a href="#cb12-50"></a>conservative         │</span>
-<span id="cb12-51"><a href="#cb12-51"></a>                 sex │</span>
-<span id="cb12-52"><a href="#cb12-52"></a>             female  │  -.2625249   .0278997    -9.41   0.000    -.3172073   -.2078426</span>
-<span id="cb12-53"><a href="#cb12-53"></a>                 age │   .0128524    .000801    16.05   0.000     .0112825    .0144224</span>
-<span id="cb12-54"><a href="#cb12-54"></a>              degree │    .152561   .0129671    11.77   0.000      .127146     .177976</span>
-<span id="cb12-55"><a href="#cb12-55"></a>              coninc │   3.87e-06   3.97e-07     9.75   0.000     3.09e-06    4.65e-06</span>
-<span id="cb12-56"><a href="#cb12-56"></a>               <span class="dt">_cons</span> │  -1.813802   .0496044   -36.57   0.000    -1.911025   -1.716579</span>
-<span id="cb12-57"><a href="#cb12-57"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb12-58"><a href="#cb12-58"></a>extrmly_conservative │</span>
-<span id="cb12-59"><a href="#cb12-59"></a>                 sex │</span>
-<span id="cb12-60"><a href="#cb12-60"></a>             female  │  -.3790287   .0530006    -7.15   0.000     -.482908   -.2751493</span>
-<span id="cb12-61"><a href="#cb12-61"></a>                 age │   .0150308   .0014834    10.13   0.000     .0121235    .0179381</span>
-<span id="cb12-62"><a href="#cb12-62"></a>              degree │    .004062   .0262081     0.15   0.877    -.0473049     .055429</span>
-<span id="cb12-63"><a href="#cb12-63"></a>              coninc │   3.35e-07   8.19e-07     0.41   0.682    -1.27e-06    1.94e-06</span>
-<span id="cb12-64"><a href="#cb12-64"></a>               <span class="dt">_cons</span> │  -3.040997   .0945989   -32.15   0.000    -3.226407   -2.855587</span>
-<span id="cb12-65"><a href="#cb12-65"></a>─────────────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">mlogit</span> polviews i.sex age degree coninc</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Iteration 0:   <span class="fu">log</span> likelihood = -83895.058  </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Iteration 1:   <span class="fu">log</span> likelihood = -82700.548  </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>Iteration 2:   <span class="fu">log</span> likelihood = -82694.595  </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>Iteration 3:   <span class="fu">log</span> likelihood = -82694.594  </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>Multinomial <span class="kw">logistic</span> regression                        Number <span class="kw">of</span> <span class="kw">obs</span> =  50,049</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                                                       LR <span class="fu">chi2</span>(24)   = 2400.93</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                                                       Prob &gt; <span class="fu">chi2</span>   =  0.0000</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>Log likelihood = -82694.594                            Pseudo R2     =  0.0143</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>─────────────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            polviews │ Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>extremely_liberal    │</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>             female  │  -.2153043   .0534275    -4.03   0.000    -.3200202   -.1105883</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>                 age │  -.0051601   .0015774    -3.27   0.001    -.0082517   -.0020685</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>              degree │   .3607061   .0234865    15.36   0.000     .3146735    .4067387</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>              coninc │  -6.68e-06   8.90e-07    -7.51   0.000    -8.43e-06   -4.94e-06</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │   -2.40105   .0904486   -26.55   0.000    -2.578326   -2.223774</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>liberal              │</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>             female  │  -.0770042   .0302144    -2.55   0.011    -.1362233   -.0177851</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>                 age │  -.0077271   .0009041    -8.55   0.000    -.0094991   -.0059551</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>              degree │   .3615385   .0134905    26.80   0.000     .3350977    .3879794</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>              coninc │  -2.36e-06   4.59e-07    -5.14   0.000    -3.26e-06   -1.46e-06</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │  -1.195919   .0513843   -23.27   0.000     -1.29663   -1.095207</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>slightly_liberal     │</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>             female  │  -.1016619   .0292053    -3.48   0.000    -.1589032   -.0444206</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>                 age │  -.0099768   .0008799   -11.34   0.000    -.0117014   -.0082521</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>              degree │   .2358701   .0134562    17.53   0.000     .2094964    .2622438</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>              coninc │  -1.94e-07   4.37e-07    -0.44   0.658    -1.05e-06    6.63e-07</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │    -.90455   .0494119   -18.31   0.000    -1.001396   -.8077044</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>moderate             │  (base outcome)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>slghtly_conservative │</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>             female  │  -.2630355   .0270206    -9.73   0.000     -.315995    -.210076</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>                 age │   .0012542   .0007943     1.58   0.114    -.0003026     .002811</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>              degree │   .1963805    .012493    15.72   0.000     .1718947    .2208663</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>              coninc │   3.39e-06   3.86e-07     8.79   0.000     2.63e-06    4.15e-06</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │  -1.221032   .0467118   -26.14   0.000    -1.312585   -1.129479</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>conservative         │</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>             female  │  -.2625249   .0278997    -9.41   0.000    -.3172073   -.2078426</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>                 age │   .0128524    .000801    16.05   0.000     .0112825    .0144224</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>              degree │    .152561   .0129671    11.77   0.000      .127146     .177976</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>              coninc │   3.87e-06   3.97e-07     9.75   0.000     3.09e-06    4.65e-06</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │  -1.813802   .0496044   -36.57   0.000    -1.911025   -1.716579</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>extrmly_conservative │</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>             female  │  -.3790287   .0530006    -7.15   0.000     -.482908   -.2751493</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>                 age │   .0150308   .0014834    10.13   0.000     .0121235    .0179381</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>              degree │    .004062   .0262081     0.15   0.877    -.0473049     .055429</span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>              coninc │   3.35e-07   8.19e-07     0.41   0.682    -1.27e-06    1.94e-06</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │  -3.040997   .0945989   -32.15   0.000    -3.226407   -2.855587</span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>─────────────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
 </div>
 <div id="exponentiating-coefficients" class="slide section level1">
 <h1>Exponentiating Coefficients</h1>
-<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1"></a>. <span class="kw">mlogit</span>, rr</span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>Multinomial <span class="kw">logistic</span> regression                 Number <span class="kw">of</span> <span class="kw">obs</span>     =     50,049</span>
-<span id="cb13-4"><a href="#cb13-4"></a>                                                LR <span class="fu">chi2</span>(24)       =    2400.93</span>
-<span id="cb13-5"><a href="#cb13-5"></a>                                                Prob &gt; <span class="fu">chi2</span>       =     0.0000</span>
-<span id="cb13-6"><a href="#cb13-6"></a>Log likelihood = -82694.594                     Pseudo R2         =     0.0143</span>
-<span id="cb13-7"><a href="#cb13-7"></a></span>
-<span id="cb13-8"><a href="#cb13-8"></a>─────────────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb13-9"><a href="#cb13-9"></a>            polviews │        RRR   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
-<span id="cb13-10"><a href="#cb13-10"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb13-11"><a href="#cb13-11"></a>extremely_liberal    │</span>
-<span id="cb13-12"><a href="#cb13-12"></a>                 sex │</span>
-<span id="cb13-13"><a href="#cb13-13"></a>             female  │   .8062961   .0430784    -4.03   0.000     .7261343    .8953073</span>
-<span id="cb13-14"><a href="#cb13-14"></a>                 age │   .9948532   .0015693    -3.27   0.001     .9917823    .9979336</span>
-<span id="cb13-15"><a href="#cb13-15"></a>              degree │   1.434342   .0336876    15.36   0.000     1.369812    1.501912</span>
-<span id="cb13-16"><a href="#cb13-16"></a>              coninc │   .9999933   8.90e-07    -7.51   0.000     .9999916    .9999951</span>
-<span id="cb13-17"><a href="#cb13-17"></a>               <span class="dt">_cons</span> │   .0906228   .0081967   -26.55   0.000      .075901       .1082</span>
-<span id="cb13-18"><a href="#cb13-18"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb13-19"><a href="#cb13-19"></a>liberal              │</span>
-<span id="cb13-20"><a href="#cb13-20"></a>                 sex │</span>
-<span id="cb13-21"><a href="#cb13-21"></a>             female  │    .925886   .0279751    -2.55   0.011     .8726477    .9823721</span>
-<span id="cb13-22"><a href="#cb13-22"></a>                 age │   .9923027   .0008971    -8.55   0.000     .9905458    .9940626</span>
-<span id="cb13-23"><a href="#cb13-23"></a>              degree │   1.435536   .0193661    26.80   0.000     1.398077    1.473999</span>
-<span id="cb13-24"><a href="#cb13-24"></a>              coninc │   .9999976   4.59e-07    -5.14   0.000     .9999967    .9999985</span>
-<span id="cb13-25"><a href="#cb13-25"></a>               <span class="dt">_cons</span> │   .3024259     .01554   -23.27   0.000     .2734517    .3344702</span>
-<span id="cb13-26"><a href="#cb13-26"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb13-27"><a href="#cb13-27"></a>slightly_liberal     │</span>
-<span id="cb13-28"><a href="#cb13-28"></a>                 sex │</span>
-<span id="cb13-29"><a href="#cb13-29"></a>             female  │   .9033349   .0263822    -3.48   0.000     .8530789    .9565515</span>
-<span id="cb13-30"><a href="#cb13-30"></a>                 age │   .9900729   .0008712   -11.34   0.000     .9883668    .9917818</span>
-<span id="cb13-31"><a href="#cb13-31"></a>              degree │    1.26601   .0170357    17.53   0.000     1.233057    1.299843</span>
-<span id="cb13-32"><a href="#cb13-32"></a>              coninc │   .9999998   4.37e-07    -0.44   0.658     .9999989    1.000001</span>
-<span id="cb13-33"><a href="#cb13-33"></a>               <span class="dt">_cons</span> │    .404724   .0199982   -18.31   0.000     .3673664    .4458805</span>
-<span id="cb13-34"><a href="#cb13-34"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb13-35"><a href="#cb13-35"></a>moderate             │  (base outcome)</span>
-<span id="cb13-36"><a href="#cb13-36"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb13-37"><a href="#cb13-37"></a>slghtly_conservative │</span>
-<span id="cb13-38"><a href="#cb13-38"></a>                 sex │</span>
-<span id="cb13-39"><a href="#cb13-39"></a>             female  │   .7687146   .0207712    -9.73   0.000     .7290631    .8105226</span>
-<span id="cb13-40"><a href="#cb13-40"></a>                 age │   1.001255   .0007953     1.58   0.114     .9996975    1.002815</span>
-<span id="cb13-41"><a href="#cb13-41"></a>              degree │    1.21699   .0152038    15.72   0.000     1.187553    1.247157</span>
-<span id="cb13-42"><a href="#cb13-42"></a>              coninc │   1.000003   3.86e-07     8.79   0.000     1.000003    1.000004</span>
-<span id="cb13-43"><a href="#cb13-43"></a>               <span class="dt">_cons</span> │   .2949256   .0137765   -26.14   0.000     .2691234    .3232017</span>
-<span id="cb13-44"><a href="#cb13-44"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb13-45"><a href="#cb13-45"></a>conservative         │</span>
-<span id="cb13-46"><a href="#cb13-46"></a>                 sex │</span>
-<span id="cb13-47"><a href="#cb13-47"></a>             female  │   .7691072   .0214578    -9.41   0.000     .7281798    .8123349</span>
-<span id="cb13-48"><a href="#cb13-48"></a>                 age │   1.012935   .0008114    16.05   0.000     1.011346    1.014527</span>
-<span id="cb13-49"><a href="#cb13-49"></a>              degree │   1.164814   .0151042    11.77   0.000     1.135583    1.194797</span>
-<span id="cb13-50"><a href="#cb13-50"></a>              coninc │   1.000004   3.97e-07     9.75   0.000     1.000003    1.000005</span>
-<span id="cb13-51"><a href="#cb13-51"></a>               <span class="dt">_cons</span> │   .1630332   .0080872   -36.57   0.000     .1479287    .1796798</span>
-<span id="cb13-52"><a href="#cb13-52"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb13-53"><a href="#cb13-53"></a>extrmly_conservative │</span>
-<span id="cb13-54"><a href="#cb13-54"></a>                 sex │</span>
-<span id="cb13-55"><a href="#cb13-55"></a>             female  │    .684526   .0362803    -7.15   0.000     .6169866    .7594587</span>
-<span id="cb13-56"><a href="#cb13-56"></a>                 age │   1.015144   .0015058    10.13   0.000     1.012197      1.0181</span>
-<span id="cb13-57"><a href="#cb13-57"></a>              degree │    1.00407   .0263148     0.15   0.877     .9537966    1.056994</span>
-<span id="cb13-58"><a href="#cb13-58"></a>              coninc │          1   8.19e-07     0.41   0.682     .9999987    1.000002</span>
-<span id="cb13-59"><a href="#cb13-59"></a>               <span class="dt">_cons</span> │   .0477872   .0045206   -32.15   0.000     .0396999    .0575221</span>
-<span id="cb13-60"><a href="#cb13-60"></a>─────────────────────┴────────────────────────────────────────────────────────────────</span>
-<span id="cb13-61"><a href="#cb13-61"></a>Note: <span class="dt">_cons</span> <span class="kw">estimates</span> baseline relative risk <span class="kw">for</span> each outcome.</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">mlogit</span>, rr</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>Multinomial <span class="kw">logistic</span> regression                        Number <span class="kw">of</span> <span class="kw">obs</span> =  50,049</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                                                       LR <span class="fu">chi2</span>(24)   = 2400.93</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                                                       Prob &gt; <span class="fu">chi2</span>   =  0.0000</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>Log likelihood = -82694.594                            Pseudo R2     =  0.0143</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>─────────────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>            polviews │        RRR   Std. err.      z    P&gt;|z|     [95% conf. interval]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>extremely_liberal    │</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>             female  │   .8062961   .0430784    -4.03   0.000     .7261343    .8953073</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>                 age │   .9948532   .0015693    -3.27   0.001     .9917823    .9979336</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>              degree │   1.434342   .0336876    15.36   0.000     1.369812    1.501912</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>              coninc │   .9999933   8.90e-07    -7.51   0.000     .9999916    .9999951</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │   .0906228   .0081967   -26.55   0.000      .075901       .1082</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>liberal              │</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>             female  │    .925886   .0279751    -2.55   0.011     .8726477    .9823721</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>                 age │   .9923027   .0008971    -8.55   0.000     .9905458    .9940626</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>              degree │   1.435536   .0193661    26.80   0.000     1.398077    1.473999</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>              coninc │   .9999976   4.59e-07    -5.14   0.000     .9999967    .9999985</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │   .3024259     .01554   -23.27   0.000     .2734517    .3344702</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>slightly_liberal     │</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>             female  │   .9033349   .0263822    -3.48   0.000     .8530789    .9565515</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>                 age │   .9900729   .0008712   -11.34   0.000     .9883668    .9917818</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>              degree │    1.26601   .0170357    17.53   0.000     1.233057    1.299843</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>              coninc │   .9999998   4.37e-07    -0.44   0.658     .9999989    1.000001</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │    .404724   .0199982   -18.31   0.000     .3673664    .4458805</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>moderate             │  (base outcome)</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>slghtly_conservative │</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>             female  │   .7687146   .0207712    -9.73   0.000     .7290631    .8105226</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>                 age │   1.001255   .0007953     1.58   0.114     .9996975    1.002815</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>              degree │    1.21699   .0152038    15.72   0.000     1.187553    1.247157</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>              coninc │   1.000003   3.86e-07     8.79   0.000     1.000003    1.000004</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │   .2949256   .0137765   -26.14   0.000     .2691234    .3232017</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>conservative         │</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>             female  │   .7691072   .0214578    -9.41   0.000     .7281798    .8123349</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>                 age │   1.012935   .0008114    16.05   0.000     1.011346    1.014527</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>              degree │   1.164814   .0151042    11.77   0.000     1.135583    1.194797</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>              coninc │   1.000004   3.97e-07     9.75   0.000     1.000003    1.000005</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │   .1630332   .0080872   -36.57   0.000     .1479287    .1796798</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>extrmly_conservative │</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>                 sex │</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>             female  │    .684526   .0362803    -7.15   0.000     .6169866    .7594587</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>                 age │   1.015144   .0015058    10.13   0.000     1.012197      1.0181</span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>              degree │    1.00407   .0263148     0.15   0.877     .9537966    1.056994</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>              coninc │          1   8.19e-07     0.41   0.682     .9999987    1.000002</span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │   .0477872   .0045206   -32.15   0.000     .0396999    .0575221</span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>─────────────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>Note: <span class="dt">_cons</span> <span class="kw">estimates</span> baseline relative risk <span class="kw">for</span> each outcome.</span></code></pre></div>
 </div>
 <div id="predicted-probabilities" class="slide section level1">
 <h1>Predicted Probabilities</h1>
-<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1"></a>. margins sex, <span class="kw">predict</span>(outcome(1)) <span class="co">// predicted probabilities by sex; y = 1</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a></span>
-<span id="cb14-3"><a href="#cb14-3"></a>Predictive margins                              Number <span class="kw">of</span> <span class="kw">obs</span>     =     50,049</span>
-<span id="cb14-4"><a href="#cb14-4"></a>Model <span class="kw">VCE</span>    : OIM</span>
-<span id="cb14-5"><a href="#cb14-5"></a></span>
-<span id="cb14-6"><a href="#cb14-6"></a>Expression   : Pr(polviews==extremely_liberal), <span class="kw">predict</span>(outcome(1))</span>
-<span id="cb14-7"><a href="#cb14-7"></a></span>
-<span id="cb14-8"><a href="#cb14-8"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
-<span id="cb14-9"><a href="#cb14-9"></a>             │            Delta-method</span>
-<span id="cb14-10"><a href="#cb14-10"></a>             │     Margin   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]</span>
-<span id="cb14-11"><a href="#cb14-11"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
-<span id="cb14-12"><a href="#cb14-12"></a>         sex │</span>
-<span id="cb14-13"><a href="#cb14-13"></a>       male  │   .0325114    .001187    27.39   0.000     .0301849    .0348378</span>
-<span id="cb14-14"><a href="#cb14-14"></a>     female  │   .0295928   .0010205    29.00   0.000     .0275927     .031593</span>
-<span id="cb14-15"><a href="#cb14-15"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>. margins sex, <span class="kw">predict</span>(outcome(1)) <span class="co">// predicted probabilities by sex; y = 1</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>Predictive margins                                      Number <span class="kw">of</span> <span class="kw">obs</span> = 50,049</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>Model <span class="kw">VCE</span>: OIM</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>Expression: Pr(polviews==extremely_liberal), <span class="kw">predict</span>(outcome(1))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>─────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>             │            Delta-method</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>             │     Margin   <span class="fu">std</span>. err.      z    P&gt;|z|     [95% conf. interval]</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>─────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>         sex │</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>       male  │   .0325114    .001187    27.39   0.000     .0301849    .0348378</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>     female  │   .0295928   .0010205    29.00   0.000     .0275927     .031593</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>─────────────┴────────────────────────────────────────────────────────────────</span></code></pre></div>
 <div class="section footnotes" role="doc-endnotes">
 <hr />
 <ol class="incremental">

@@ -8,7 +8,7 @@ geometry: margin=1 in
 
 # Meta-Background
 
-<style>h1 {color: #00274C;} h2 {color: #2F65A7}</style>
+<style>body {max-width: 90%;} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 
 ![Tweet About Ordinal Models](twitter-ordinal-annotated.PNG){ width=20% }
 
@@ -41,7 +41,7 @@ $y(\text{3 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...$
 	
 	set maxvar 10000 // increase number of allowable variables
 	
-    use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
+    use "GSSsmall.DTA", clear
 		
 	keep polviews sex maeduc paeduc age degree coninc
 	
@@ -60,10 +60,6 @@ $y(\text{3 vs. 1}) = \beta_0 + \beta x_1 + \beta x_2 + ...$
 	tabulate polviews
 	
 # The Ordinal Model (*k categories*)[^Stata]
-
-$$
-    p_{ij} = Pr \Big( k_{i-1} < x_j \beta <= k_i \Big)
-$$
 
 [^Stata]: Per Stata documentation.
 

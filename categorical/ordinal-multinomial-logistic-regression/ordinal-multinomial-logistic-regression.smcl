@@ -1,13 +1,13 @@
 {smcl}
-{com}{sf}{ul off}{txt}{.-}
+{txt}{sf}{ul off}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}19 Oct 2020, 08:01:28
+ {txt}opened on:  {res}11 Oct 2021, 10:51:38
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}19 Oct 2020
+{res}11 Oct 2021
 {txt}
 {com}. //_2
 . clear all
@@ -17,25 +17,28 @@
 
 {txt}
 {com}. //_4
-. use "/Users/agrogan/Box Sync/DATA WAREHOUSE/General Social Survey/GSS7218_R1.DTA", clear
+. use "GSSsmall.DTA", clear
 {txt}
 {com}. //_5
 . keep polviews sex maeduc paeduc age degree coninc
 {txt}
 {com}. //_6
 . save GSSsmall.dta, replace
-{txt}file GSSsmall.dta saved
+{txt}{p 0 4 2}
+file {bf}
+GSSsmall.dta{rm}
+saved
+{p_end}
 
 {com}. //_7
 . describe // describe the data
 
 {txt}Contains data from {res}GSSsmall.dta
-{txt}  obs:{res}        64,814                          
-{txt} vars:{res}             7                          19 Oct 2020 08:01
-{txt} size:{res}       907,396                          
+{txt} Observations:{res}        64,814                  
+{txt}    Variables:{res}             7                  11 Oct 2021 10:51
 {txt}{hline}
-              storage   display    value
-variable name   type    format     label      variable label
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
 {hline}
 {p 0 48}{res}{bind:age            }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:AGE      }{bind:  }{res}{res}age of respondent{p_end}
 {p 0 48}{bind:paeduc         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:LABK     }{bind:  }{res}{res}highest year school completed, father{p_end}
@@ -50,7 +53,7 @@ Sorted by:
 {com}. //_8
 . summarize 
 
-{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
 {hline 13}{c +}{hline 57}
 {space 9}age {c |}{res}     64,586    46.09936     17.5347         18         89
 {txt}{space 6}paeduc {c |}{res}     45,837    10.71026    4.342689          0         20
@@ -86,13 +89,13 @@ Iteration 1:{space 3}log likelihood = {res:-83369.429}
 Iteration 2:{space 3}log likelihood = {res:-83368.485}  
 Iteration 3:{space 3}log likelihood = {res:-83368.485}  
 {res}
-{txt}Ordered logistic regression{col 49}Number of obs{col 67}= {res}    50,049
-{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}   1053.15
-{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-83368.485{txt}{col 49}Pseudo R2{col 67}= {res}    0.0063
+{txt}{col 1}Ordered logistic regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:50,049}
+{txt}{col 56}{lalign 13:LR chi2({res:4})}{col 69} = {res}{ralign 7:1053.15}
+{txt}{col 56}{lalign 13:Prob > chi2}{col 69} = {res}{ralign 7:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-83368.485}{txt}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0063}
 
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}    polviews{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{col 1}    polviews{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 9}sex {c |}{col 14}{res}{space 2} -.129234{col 26}{space 2} .0162348{col 37}{space 1}   -7.96{col 46}{space 3}0.000{col 54}{space 4}-.1610536{col 67}{space 3}-.0974144
 {txt}{space 9}age {c |}{col 14}{res}{space 2} .0116653{col 26}{space 2} .0004737{col 37}{space 1}   24.63{col 46}{space 3}0.000{col 54}{space 4} .0107369{col 67}{space 3} .0125937
@@ -115,13 +118,13 @@ Iteration 1:{space 3}log likelihood = {res:-83369.429}
 Iteration 2:{space 3}log likelihood = {res:-83368.485}  
 Iteration 3:{space 3}log likelihood = {res:-83368.485}  
 {res}
-{txt}Ordered logistic regression{col 49}Number of obs{col 67}= {res}    50,049
-{txt}{col 49}LR chi2({res}4{txt}){col 67}= {res}   1053.15
-{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-83368.485{txt}{col 49}Pseudo R2{col 67}= {res}    0.0063
+{txt}{col 1}Ordered logistic regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:50,049}
+{txt}{col 56}{lalign 13:LR chi2({res:4})}{col 69} = {res}{ralign 7:1053.15}
+{txt}{col 56}{lalign 13:Prob > chi2}{col 69} = {res}{ralign 7:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-83368.485}{txt}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0063}
 
 {txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}    polviews{col 14}{c |} Odds Ratio{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{col 1}    polviews{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 9}sex {c |}{col 14}{res}{space 2} .8787683{col 26}{space 2} .0142666{col 37}{space 1}   -7.96{col 46}{space 3}0.000{col 54}{space 4} .8512464{col 67}{space 3}   .90718
 {txt}{space 9}age {c |}{col 14}{res}{space 2} 1.011734{col 26}{space 2} .0004792{col 37}{space 1}   24.63{col 46}{space 3}0.000{col 54}{space 4} 1.010795{col 67}{space 3} 1.012673
@@ -135,21 +138,22 @@ Iteration 3:{space 3}log likelihood = {res:-83368.485}
 {txt}       /cut5 {c |}{col 14}{res}{space 2} 1.916652{col 26}{space 2}   .03824{col 54}{space 4} 1.841703{col 67}{space 3} 1.991601
 {txt}       /cut6 {c |}{col 14}{res}{space 2} 3.826484{col 26}{space 2} .0447146{col 54}{space 4} 3.738845{col 67}{space 3} 3.914123
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{p 0 6 2}Note: {help eform_option:Estimates are transformed} only in the first equation.{p_end}
+{p 0 6 2}Note: {help eform_option:Estimates are transformed} only in the first equation to odds ratios.{p_end}
 
 {com}. //_12
 . brant
-{res}
-{txt}{p 0 0 2}Brant test of parallel regression assumption{p_end}
 
-{space 1}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 10:chi2}{space 1}{space 1}{ralign 9:p>chi2}{space 1}{space 1}{ralign 6:df}{space 0}
-{space 1}{hline 13}{c   +}{hline 12}{hline 11}{hline 7}
-{space 1}{space 0}{ralign 12:All}{space 1}{c |}{space 1}{ralign 10:{res:{sf:   1456.59}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:    20}}}{space 0}
-{space 1}{hline 13}{c   +}{hline 12}{hline 11}{hline 7}
-{space 1}{space 0}{ralign 12:sex}{space 1}{c |}{space 1}{ralign 10:{res:{sf:    108.03}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
-{space 1}{space 0}{ralign 12:age}{space 1}{c |}{space 1}{ralign 10:{res:{sf:    120.63}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
-{space 1}{space 0}{ralign 12:degree}{space 1}{c |}{space 1}{ralign 10:{res:{sf:    835.26}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
-{space 1}{space 0}{ralign 12:coninc}{space 1}{c |}{space 1}{ralign 10:{res:{sf:     67.78}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
+{txt}Brant Test of Parallel Regression Assumption
+
+    Variable {c |}      chi2   p>chi2    df
+{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c +}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+         All {c |}{res}   1456.60    0.000    20
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c +}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+         sex{col 14}{c |}{res}    108.03    0.000     5
+         {txt}age{col 14}{c |}{res}    120.63    0.000     5
+      {txt}degree{col 14}{c |}{res}    835.27    0.000     5
+      {txt}coninc{col 14}{c |}{res}     67.79    0.000     5
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c BT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
 
 A significant test statistic provides evidence that the parallel
 regression assumption has been violated.
@@ -162,13 +166,13 @@ Iteration 1:{space 3}log likelihood = {res:-82700.548}
 Iteration 2:{space 3}log likelihood = {res:-82694.595}  
 Iteration 3:{space 3}log likelihood = {res:-82694.594}  
 {res}
-{txt}Multinomial logistic regression{col 49}Number of obs{col 67}= {res}    50,049
-{txt}{col 49}LR chi2({res}24{txt}){col 67}= {res}   2400.93
-{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-82694.594{txt}{col 49}Pseudo R2{col 67}= {res}    0.0143
+{txt}{col 1}Multinomial logistic regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:50,049}
+{txt}{col 56}{lalign 13:LR chi2({res:24})}{col 69} = {res}{ralign 7:2400.93}
+{txt}{col 56}{lalign 13:Prob > chi2}{col 69} = {res}{ralign 7:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-82694.594}{txt}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0143}
 
 {txt}{hline 21}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}            polviews{col 22}{c |}      Coef.{col 34}   Std. Err.{col 46}      z{col 54}   P>|z|{col 62}     [95% Con{col 75}f. Interval]
+{col 1}            polviews{col 22}{c |} Coefficient{col 34}  Std. err.{col 46}      z{col 54}   P>|z|{col 62}     [95% con{col 75}f. interval]
 {hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}extremely_liberal    {txt}{c |}
 {space 17}sex {c |}
@@ -224,13 +228,13 @@ Iteration 3:{space 3}log likelihood = {res:-82694.594}
 {com}. //_14
 . mlogit, rr
 
-{txt}Multinomial logistic regression{col 49}Number of obs{col 67}= {res}    50,049
-{txt}{col 49}LR chi2({res}24{txt}){col 67}= {res}   2400.93
-{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
-{txt}Log likelihood = {res}-82694.594{txt}{col 49}Pseudo R2{col 67}= {res}    0.0143
+{txt}{col 1}Multinomial logistic regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:50,049}
+{txt}{col 56}{lalign 13:LR chi2({res:24})}{col 69} = {res}{ralign 7:2400.93}
+{txt}{col 56}{lalign 13:Prob > chi2}{col 69} = {res}{ralign 7:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-82694.594}{txt}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0143}
 
 {txt}{hline 21}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}            polviews{col 22}{c |}        RRR{col 34}   Std. Err.{col 46}      z{col 54}   P>|z|{col 62}     [95% Con{col 75}f. Interval]
+{col 1}            polviews{col 22}{c |}        RRR{col 34}   Std. err.{col 46}      z{col 54}   P>|z|{col 62}     [95% con{col 75}f. interval]
 {hline 21}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {res}extremely_liberal    {txt}{c |}
 {space 17}sex {c |}
@@ -282,21 +286,21 @@ Iteration 3:{space 3}log likelihood = {res:-82694.594}
 {txt}{space 14}coninc {c |}{col 22}{res}{space 2}        1{col 34}{space 2} 8.19e-07{col 45}{space 1}    0.41{col 54}{space 3}0.682{col 62}{space 4} .9999987{col 75}{space 3} 1.000002
 {txt}{space 15}_cons {c |}{col 22}{res}{space 2} .0477872{col 34}{space 2} .0045206{col 45}{space 1}  -32.15{col 54}{space 3}0.000{col 62}{space 4} .0396999{col 75}{space 3} .0575221
 {txt}{hline 21}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{p 0 6 2}Note: {res:_cons} estimates baseline relative risk{txt} for each outcome{txt}.{p_end}
+{p 0 6 2}Note: {bf:_cons} estimates baseline relative risk{txt} for each outcome{txt}.{p_end}
 
 {com}. //_15
 . margins sex, predict(outcome(1)) // predicted probabilities by sex; y = 1
 {res}
-{txt}Predictive margins{col 49}Number of obs{col 67}= {res}    50,049
-{txt}Model VCE{col 14}: {res}OIM
+{txt}{col 1}Predictive margins{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:50,049}
+{txt}{col 1}Model VCE: {res:OIM}
 
-{txt}{p2colset 1 14 16 2}{...}
-{p2col:Expression}:{space 1}{res:Pr(polviews==extremely_liberal), predict(outcome(1))}{p_end}
+{txt}{p2colset 1 13 13 2}{...}
+{p2col:Expression:}{res:Pr(polviews==extremely_liberal), predict(outcome(1))}{p_end}
 {p2colreset}{...}
 
 {res}{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {col 14}{c |}{col 26} Delta-method
-{col 14}{c |}     Margin{col 26}   Std. Err.{col 38}      z{col 46}   P>|z|{col 54}     [95% Con{col 67}f. Interval]
+{col 14}{c |}     Margin{col 26}   std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
 {hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 9}sex {c |}
 {space 7}male  {c |}{col 14}{res}{space 2} .0325114{col 26}{space 2}  .001187{col 37}{space 1}   27.39{col 46}{space 3}0.000{col 54}{space 4} .0301849{col 67}{space 3} .0348378
@@ -306,9 +310,9 @@ Iteration 3:{space 3}log likelihood = {res:-82694.594}
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}19 Oct 2020, 08:01:48
+ {txt}closed on:  {res}11 Oct 2021, 10:51:48
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
