@@ -11,11 +11,11 @@ geometry: margin=1 in
 
 # Introduction
 
-Logistic regression is the most frequently used model for binary outcomes. Logistic regression provides odds ratios, which while somewhat intuitive, may be misunderstood. Notably, odds ratios overstate the strength of the relationship that is implied by risk ratios.
+Logistic regression is the most frequently used model for binary outcomes. Logistic regression provides odds ratios, which while somewhat intuitive, may be misunderstood. Notably, odds ratios overstate the strength of the relationship that is implied by risk ratios (Viera, 2008).
 
-Thus, a number of authors, including XXX have suggested that Poisson regression, which directly provides risk ratios, can be employed for binary outcomes. XXX indicate that the standard errors of the Poisson model will need to be adjusted. 
+Thus, a number of authors, including Zou (2004), have suggested that Poisson regression, which directly provides risk ratios, can be employed for binary outcomes. Zou (2004) indicates that the standard errors of the Poisson model will need to be adjusted. 
 
-This handout draws closely on the outline and presentation of ideas provided by XXX at IDRE, although the data source and variables are used are very different.
+This handout draws closely on the outline and presentation of ideas provided by Lindquist (n.d.) at IDRE, although the data source and variables are used are very different.
 
 # Get Data
 
@@ -85,7 +85,11 @@ We use the `eydx` option to get a *proportional* change in y for a unit change i
 
 # References
 
+Lindquist, K. (n.d.). How Can I Estimate Relative Risk Using Glm For Common Outcomes In Cohort Studies? | Stata FAQ. Retrieved November 10, 2021, from [https://stats.idre.ucla.edu/stata/faq/how-can-i-estimate-relative-risk-using-glm-for-common-outcomes-in-cohort-studies/](https://stats.idre.ucla.edu/stata/faq/how-can-i-estimate-relative-risk-using-glm-for-common-outcomes-in-cohort-studies/)
+
 Viera, A. J. (2008). Odds ratios and risk ratios: What's the difference and why does it matter? *Southern Medical Journal*. https://doi.org/10.1097/SMJ.0b013e31817a7ee4
+
+Zou, G. (2004). A Modified Poisson Regression Approach to Prospective Studies with Binary Data. *American Journal of Epidemiology*, 159(7), 702–706. https://doi.org/10.1093/aje/kwh090
 
 
 

@@ -51,13 +51,13 @@ table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid bl
 <div id="header">
 <h1 class="title">Using Poisson Regression for Binary Outcomes</h1>
 <h2 class="author">Andy Grogan-Kaylor</h2>
-<h3 class="date">9 Oct 2021 12:13:25</h3>
+<h3 class="date">11 Oct 2021 08:26:57</h3>
 </div>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 <h1 id="introduction">Introduction</h1>
-<p>Logistic regression is the most frequently used model for binary outcomes. Logistic regression provides odds ratios, which while somewhat intuitive, may be misunderstood. Notably, odds ratios overstate the strength of the relationship that is implied by risk ratios.</p>
-<p>Thus, a number of authors, including XXX have suggested that Poisson regression, which directly provides risk ratios, can be employed for binary outcomes. XXX indicate that the standard errors of the Poisson model will need to be adjusted.</p>
-<p>This handout draws closely on the outline and presentation of ideas provided by XXX at IDRE, although the data source and variables are used are very different.</p>
+<p>Logistic regression is the most frequently used model for binary outcomes. Logistic regression provides odds ratios, which while somewhat intuitive, may be misunderstood. Notably, odds ratios overstate the strength of the relationship that is implied by risk ratios (Viera, 2008).</p>
+<p>Thus, a number of authors, including Zou (2004), have suggested that Poisson regression, which directly provides risk ratios, can be employed for binary outcomes. Zou (2004) indicates that the standard errors of the Poisson model will need to be adjusted.</p>
+<p>This handout draws closely on the outline and presentation of ideas provided by Lindquist (n.d.) at IDRE, although the data source and variables are used are very different.</p>
 <h1 id="get-data">Get Data</h1>
 <p>We are using data from the U.S. Census Pulse Surveys</p>
 <pre class='stata'>. clear all
@@ -327,6 +327,8 @@ ey/dx wrt:  Income6
 ─────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <h1 id="references">References</h1>
+<p>Lindquist, K. (n.d.). How Can I Estimate Relative Risk Using Glm For Common Outcomes In Cohort Studies? | Stata FAQ. Retrieved November 10, 2021, from <a href="https://stats.idre.ucla.edu/stata/faq/how-can-i-estimate-relative-risk-using-glm-for-common-outcomes-in-cohort-studies/" class="uri">https://stats.idre.ucla.edu/stata/faq/how-can-i-estimate-relative-risk-using-glm-for-common-outcomes-in-cohort-studies/</a></p>
 <p>Viera, A. J. (2008). Odds ratios and risk ratios: What's the difference and why does it matter? <em>Southern Medical Journal</em>. https://doi.org/10.1097/SMJ.0b013e31817a7ee4</p>
+<p>Zou, G. (2004). A Modified Poisson Regression Approach to Prospective Studies with Binary Data. <em>American Journal of Epidemiology</em>, 159(7), 702–706. https://doi.org/10.1093/aje/kwh090</p>
 </body>
 </html>
