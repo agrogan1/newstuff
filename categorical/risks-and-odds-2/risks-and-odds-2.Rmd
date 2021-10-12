@@ -140,8 +140,7 @@ filter_slider("s1",
               column = ~x_happens,
               step = 10)
 
-bscols(t1, p1, widths = c(4, 2))
-
+bscols(t1, p1)
 
 ```
 
