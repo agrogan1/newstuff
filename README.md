@@ -6,9 +6,9 @@ New stuff that is going to get moved somewhere else at some point.
 
 ## Data Visualization
 
-* [How To Choose A Chart: An Intuitive Guide](https://agrogan1.github.io/newstuff/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.html) [[PDF](https://agrogan1.github.io/newstuff/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.pdf)] [[epub](https://agrogan1.github.io/newstuff/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.epub) ¯\\\_(ツ)_/¯]
-* [ggplot flipbook](https://agrogan1.github.io/newstuff/ggplot-flipbook/ggplot-flipbook.html#1): a *flipbook* based upon [2 Page ggplot](https://agrogan1.github.io/R/two-page-ggplot2/two-page-ggplot2.pdf)
-* [Data Visualization With Stata](https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.html) [[PDF](https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.pdf)] [[HTML Slides](https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html)] [[The Basics](./data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.html) ([PDF](./data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.pdf))]
+* [How To Choose A Chart: An Intuitive Guide](https://agrogan1.github.io/dataviz/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.html) [[PDF](https://agrogan1.github.io/dataviz/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.pdf)] [[epub](https://agrogan1.github.io/dataviz/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.epub) ¯\\\_(ツ)_/¯]
+* [ggplot flipbook](https://agrogan1.github.io/R/ggplot-flipbook/ggplot-flipbook.html#1): a *flipbook* based upon [2 Page ggplot](https://agrogan1.github.io/R/two-page-ggplot2/two-page-ggplot2.pdf)
+* [Data Visualization With Stata](https://agrogan1.github.io/Stata/data-visualization-with-Stata/data-visualization-with-Stata.html) [[PDF](https://agrogan1.github.io/Stata/data-visualization-with-Stata/data-visualization-with-Stata.pdf)] [[HTML Slides](https://agrogan1.github.io/Stata/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html)] [[The Basics](https://agrogan1.github.io/Stata/data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.html) ([PDF](https://agrogan1.github.io/Stata/data-visualization-with-Stata-the-basics/data-visualization-with-Stata-the-basics.pdf))]
 
 ## Statistics
 
@@ -18,7 +18,6 @@ New stuff that is going to get moved somewhere else at some point.
 
 ### Bayesian Statistics
 
-* [Bayes Theorem Applied To Data Analysis](./Bayes-theorem/Bayes-theorem.html)
 * A *kinda new*, *kinda old* resource: [Thinking Through Bayesian Ideas](https://agrogan.shinyapps.io/Thinking-Through-Bayes/)
 
 ### Categorical Data Analysis 
@@ -34,8 +33,8 @@ New stuff that is going to get moved somewhere else at some point.
 
 ### Multilevel Modeling
 
-* [Multilevel Models with the Von Guttenberg Tree Data](https://agrogan1.github.io/newstuff/mlm-gutten/mlm-gutten.html) [[PDF](https://agrogan1.github.io/newstuff/mlm-gutten/mlm-gutten.pdf)]
-* [Calculating R<sup>2</sup> For A Multilevel Model](https://agrogan1.github.io/newstuff/mlm-R2-gutten/mlm-R2-gutten.html)
+* [Multilevel Models with the Von Guttenberg Tree Data](https://agrogan1.github.io/multilevel/mlm-gutten/mlm-gutten.html) [[PDF](https://agrogan1.github.io/multilevel/mlm-gutten/mlm-gutten.pdf)]
+* [Calculating R<sup>2</sup> For A Multilevel Model](https://agrogan1.github.io/multilevel/mlm-R2-gutten/mlm-R2-gutten.html)
 
 ### Simpson's Paradox
 
