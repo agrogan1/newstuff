@@ -17,7 +17,7 @@
 
 . 
 . set obs 100 // 100 empty observations
-number of observations (_N) was 0, now 100
+Number of observations (_N) was 0, now 100.
 
 . 
 . generate x1 = rnormal(100, 10) // x1 has mean of 100, sd of 10
@@ -28,7 +28,7 @@ number of observations (_N) was 0, now 100
 . 
 . ci means x1 x2 // confidence intervals of the two variables overlap
 
-    Variable |        Obs        Mean    Std. Err.       [95% Conf. Interval]
+    Variable |        Obs        Mean    Std. err.       [95% conf. interval]
 -------------+---------------------------------------------------------------
           x1 |        100    98.74361    1.040009        96.68001    100.8072
           x2 |        100    101.9778    1.011382          99.971    103.9846
@@ -38,7 +38,7 @@ number of observations (_N) was 0, now 100
 
 Paired t test
 ------------------------------------------------------------------------------
-Variable |     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]
+Variable |     Obs        Mean    Std. err.   Std. dev.   [95% conf. interval]
 ---------+--------------------------------------------------------------------
       x1 |     100    98.74361    1.040009    10.40009    96.68001    100.8072
       x2 |     100    101.9778    1.011382    10.11382      99.971    103.9846
@@ -46,7 +46,7 @@ Variable |     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]
     diff |     100   -3.234191    1.414134    14.14134    -6.04014   -.4282415
 ------------------------------------------------------------------------------
      mean(diff) = mean(x1 - x2)                                   t =  -2.2870
- Ho: mean(diff) = 0                              degrees of freedom =       99
+ H0: mean(diff) = 0                              Degrees of freedom =       99
 
  Ha: mean(diff) &lt; 0           Ha: mean(diff) != 0           Ha: mean(diff) &gt; 0
  Pr(T &lt; t) = 0.0122         Pr(|T| &gt; |t|) = 0.0243          Pr(T &gt; t) = 0.9878
