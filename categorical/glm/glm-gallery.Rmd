@@ -52,6 +52,7 @@ rayshader::plot_gg(p1, zoom = .8)
 rglwidget()
  
 ```
+
 # Probit
 
 ```{r probit, fig.cap="Probit Curve"}

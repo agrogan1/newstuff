@@ -148,7 +148,7 @@ p3 <- mydata %>%
   geom_point() +
   scale_color_viridis_c() +
   labs(title = "Negative Binomial \nDistribution",
-       x = "x",
+       x = "events",
        y = "count") +
   theme_minimal() +
   theme(legend.position = "none")
