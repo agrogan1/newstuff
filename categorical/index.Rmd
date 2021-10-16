@@ -67,7 +67,9 @@ p1 <- ggplot(data = NULL,
        x = "x",
        y = "probability") +
   theme_minimal() + 
-  theme(legend.position = "none")
+  theme(legend.position = "none",
+        panel.background = element_rect(fill="white"),
+        plot.background = element_rect(fill="white"))
   
 # ggplotly(p1)
 
@@ -118,7 +120,9 @@ p2 <- ggplot(data = NULL,
        x = "x",
        y = "probability") +
   theme_minimal() + 
-  theme(legend.position = "none")
+  theme(legend.position = "none",
+        panel.background = element_rect(fill="white"),
+        plot.background = element_rect(fill="white"))
 
 p2
   
@@ -151,7 +155,9 @@ p3 <- mydata %>%
        x = "events",
        y = "count") +
   theme_minimal() +
-  theme(legend.position = "none")
+  theme(legend.position = "none",
+        panel.background = element_rect(fill="white"),
+        plot.background = element_rect(fill="white"))
 
 p3
 
@@ -171,7 +177,9 @@ p4 <- ggplot(data = NULL,
        x = "x",
        y = "count") +
   theme_minimal() +
-  theme(legend.position = "none")
+  theme(legend.position = "none",
+        panel.background = element_rect(fill="white"),
+        plot.background = element_rect(fill="white"))
 
 p4
   
