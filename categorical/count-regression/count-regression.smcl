@@ -1,9 +1,9 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\count-regression\count-regression.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}16 Oct 2021, 13:47:28
+ {txt}opened on:  {res}16 Oct 2021, 14:18:09
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -24,13 +24,13 @@ now 1,000.
 {txt}
 {com}. //_5
 . histogram x, title("Normally Distributed Random Variable") scheme(michigan)
-{txt}(bin={res}29{txt}, start={res}-2.7213843{txt}, width={res}.21384327{txt})
+{txt}(bin={res}29{txt}, start={res}-3.0796595{txt}, width={res}.24185289{txt})
 {res}{txt}
 {com}. //_6
 . graph export myhistogram.png, width(500) replace
 {txt}{p 0 4 2}
 file {bf}
-myhistogram.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/count-regression/myhistogram.png{rm}
 saved as
 PNG
 format
@@ -41,13 +41,13 @@ format
 {txt}
 {com}. //_8
 . histogram w, title("Poisson Distributed Random Variable") scheme(michigan)
-{txt}(bin={res}29{txt}, start={res}0{txt}, width={res}.10344828{txt})
+{txt}(bin={res}29{txt}, start={res}0{txt}, width={res}.13793103{txt})
 {res}{txt}
 {com}. //_9
 . graph export myhistogram2.png, width(500) replace
 {txt}{p 0 4 2}
 file {bf}
-myhistogram2.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/count-regression/myhistogram2.png{rm}
 saved as
 PNG
 format
@@ -71,8 +71,8 @@ now 20.
 {txt}
 {com}. //_14
 . expand mycount // create individual observations
-{txt}(8 zero counts ignored; observations not deleted)
-(13 observations created)
+{txt}(11 zero counts ignored; observations not deleted)
+(10 observations created)
 
 {com}. //_15
 . generate x = runiform(1,10) // random x coordinate
@@ -95,7 +95,7 @@ now 20.
 . graph export ducks.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-ducks.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/count-regression/ducks.png{rm}
 saved as
 PNG
 format
@@ -128,7 +128,7 @@ format
 . graph export fires.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-fires.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/count-regression/fires.png{rm}
 saved as
 PNG
 format
@@ -192,7 +192,7 @@ Sorted by:
 . graph export myhistogram3.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-myhistogram3.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/count-regression/myhistogram3.png{rm}
 saved as
 PNG
 format
@@ -205,58 +205,58 @@ format
 Iteration 1:{space 3}log likelihood = {res:-44758.999}  
 Iteration 2:{space 3}log likelihood = {res:-44758.999}  
 {res}
-{txt}Poisson regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:30,530}
+{txt}{col 1}Poisson regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:30,530}
 {txt}{col 56}{lalign 13:LR chi2({res:9})}{col 69} = {res}{ralign 7:2054.20}
 {txt}{col 56}{lalign 13:Prob > chi2}{col 69} = {res}{ralign 7:0.0000}
-{txt}Log likelihood = {res:-44758.999}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0224}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-44758.999}{txt}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0224}
 
-{txt}{hline 63}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}                                                      acecount{col 64}{c |} Coefficient{col 76}  Std. err.{col 88}      z{col 96}   P>|z|{col 104}     [95% con{col 117}f. interval]
-{hline 63}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 56}sc_sex {c |}{col 64}{res}{space 2} -.012823{col 76}{space 2} .0111291{col 87}{space 1}   -1.15{col 96}{space 3}0.249{col 104}{space 4}-.0346357{col 117}{space 3} .0089897
-{txt}{space 62} {c |}
-{space 53}sc_race_r {c |}
-{space 30}Black or African American alone  {c |}{col 64}{res}{space 2} .2662761{col 76}{space 2} .0196921{col 87}{space 1}   13.52{col 96}{space 3}0.000{col 104}{space 4} .2276802{col 117}{space 3} .3048719
-{txt}{space 23}American Indian or Alaska Native alone  {c |}{col 64}{res}{space 2} .5971063{col 76}{space 2} .0447201{col 87}{space 1}   13.35{col 96}{space 3}0.000{col 104}{space 4} .5094566{col 117}{space 3}  .684756
-{txt}{space 50}Asian alone  {c |}{col 64}{res}{space 2}-.6243821{col 76}{space 2} .0358521{col 87}{space 1}  -17.42{col 96}{space 3}0.000{col 104}{space 4}-.6946509{col 117}{space 3}-.5541134
-{txt}{space 13}Native Hawaiian and Other Pacific Islander alone  {c |}{col 64}{res}{space 2} .2067409{col 76}{space 2} .0969415{col 87}{space 1}    2.13{col 96}{space 3}0.033{col 104}{space 4} .0167392{col 117}{space 3} .3967427
-{txt}{space 40}Some Other Race alone  {c |}{col 64}{res}{space 2} .0675521{col 76}{space 2} .0324881{col 87}{space 1}    2.08{col 96}{space 3}0.038{col 104}{space 4} .0038765{col 117}{space 3} .1312277
-{txt}{space 44}Two or More Races  {c |}{col 64}{res}{space 2} .2818125{col 76}{space 2} .0190548{col 87}{space 1}   14.79{col 96}{space 3}0.000{col 104}{space 4} .2444658{col 117}{space 3} .3191593
-{txt}{space 62} {c |}
-{space 55}higrade {c |}
-High school (including vocational, trade, or business school)  {c |}{col 64}{res}{space 2} .0632486{col 76}{space 2} .0322397{col 87}{space 1}    1.96{col 96}{space 3}0.050{col 104}{space 4}   .00006{col 117}{space 3} .1264372
-{txt}{space 40}More than high school  {c |}{col 64}{res}{space 2}-.3786108{col 76}{space 2}  .030587{col 87}{space 1}  -12.38{col 96}{space 3}0.000{col 104}{space 4}-.4385602{col 117}{space 3}-.3186615
-{txt}{space 62} {c |}
-{space 57}_cons {c |}{col 64}{res}{space 2} .3399425{col 76}{space 2} .0345283{col 87}{space 1}    9.85{col 96}{space 3}0.000{col 104}{space 4} .2722683{col 117}{space 3} .4076166
-{txt}{hline 63}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 33}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}                        acecount{col 34}{c |} Coefficient{col 46}  Std. err.{col 58}      z{col 66}   P>|z|{col 74}     [95% con{col 87}f. interval]
+{hline 33}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 26}sc_sex {c |}{col 34}{res}{space 2} -.012823{col 46}{space 2} .0111291{col 57}{space 1}   -1.15{col 66}{space 3}0.249{col 74}{space 4}-.0346357{col 87}{space 3} .0089897
+{txt}{space 32} {c |}
+{space 23}sc_race_r {c |}
+Black or African American alone  {c |}{col 34}{res}{space 2} .2662761{col 46}{space 2} .0196921{col 57}{space 1}   13.52{col 66}{space 3}0.000{col 74}{space 4} .2276802{col 87}{space 3} .3048719
+{txt}American Indian or Alaska Nat..  {c |}{col 34}{res}{space 2} .5971063{col 46}{space 2} .0447201{col 57}{space 1}   13.35{col 66}{space 3}0.000{col 74}{space 4} .5094566{col 87}{space 3}  .684756
+{txt}{space 20}Asian alone  {c |}{col 34}{res}{space 2}-.6243821{col 46}{space 2} .0358521{col 57}{space 1}  -17.42{col 66}{space 3}0.000{col 74}{space 4}-.6946509{col 87}{space 3}-.5541134
+{txt}Native Hawaiian and Other Pac..  {c |}{col 34}{res}{space 2} .2067409{col 46}{space 2} .0969415{col 57}{space 1}    2.13{col 66}{space 3}0.033{col 74}{space 4} .0167392{col 87}{space 3} .3967427
+{txt}{space 10}Some Other Race alone  {c |}{col 34}{res}{space 2} .0675521{col 46}{space 2} .0324881{col 57}{space 1}    2.08{col 66}{space 3}0.038{col 74}{space 4} .0038765{col 87}{space 3} .1312277
+{txt}{space 14}Two or More Races  {c |}{col 34}{res}{space 2} .2818125{col 46}{space 2} .0190548{col 57}{space 1}   14.79{col 66}{space 3}0.000{col 74}{space 4} .2444658{col 87}{space 3} .3191593
+{txt}{space 32} {c |}
+{space 25}higrade {c |}
+High school (including vocat..)  {c |}{col 34}{res}{space 2} .0632486{col 46}{space 2} .0322397{col 57}{space 1}    1.96{col 66}{space 3}0.050{col 74}{space 4}   .00006{col 87}{space 3} .1264372
+{txt}{space 10}More than high school  {c |}{col 34}{res}{space 2}-.3786108{col 46}{space 2}  .030587{col 57}{space 1}  -12.38{col 66}{space 3}0.000{col 74}{space 4}-.4385602{col 87}{space 3}-.3186615
+{txt}{space 32} {c |}
+{space 27}_cons {c |}{col 34}{res}{space 2} .3399425{col 46}{space 2} .0345283{col 57}{space 1}    9.85{col 66}{space 3}0.000{col 74}{space 4} .2722683{col 87}{space 3} .4076166
+{txt}{hline 33}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
 {com}. //_33
 . poisson, irr
 
-{txt}Poisson regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:30,530}
+{txt}{col 1}Poisson regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:30,530}
 {txt}{col 56}{lalign 13:LR chi2({res:9})}{col 69} = {res}{ralign 7:2054.20}
 {txt}{col 56}{lalign 13:Prob > chi2}{col 69} = {res}{ralign 7:0.0000}
-{txt}Log likelihood = {res:-44758.999}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0224}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-44758.999}{txt}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0224}
 
-{txt}{hline 63}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}                                                      acecount{col 64}{c |}        IRR{col 76}   Std. err.{col 88}      z{col 96}   P>|z|{col 104}     [95% con{col 117}f. interval]
-{hline 63}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 56}sc_sex {c |}{col 64}{res}{space 2} .9872589{col 76}{space 2} .0109873{col 87}{space 1}   -1.15{col 96}{space 3}0.249{col 104}{space 4} .9659573{col 117}{space 3}  1.00903
-{txt}{space 62} {c |}
-{space 53}sc_race_r {c |}
-{space 30}Black or African American alone  {c |}{col 64}{res}{space 2} 1.305095{col 76}{space 2} .0257001{col 87}{space 1}   13.52{col 96}{space 3}0.000{col 104}{space 4} 1.255684{col 117}{space 3} 1.356451
-{txt}{space 23}American Indian or Alaska Native alone  {c |}{col 64}{res}{space 2} 1.816854{col 76}{space 2} .0812498{col 87}{space 1}   13.35{col 96}{space 3}0.000{col 104}{space 4} 1.664386{col 117}{space 3} 1.983288
-{txt}{space 50}Asian alone  {c |}{col 64}{res}{space 2} .5355922{col 76}{space 2} .0192021{col 87}{space 1}  -17.42{col 96}{space 3}0.000{col 104}{space 4} .4992487{col 117}{space 3} .5745815
-{txt}{space 13}Native Hawaiian and Other Pacific Islander alone  {c |}{col 64}{res}{space 2} 1.229664{col 76}{space 2} .1192054{col 87}{space 1}    2.13{col 96}{space 3}0.033{col 104}{space 4}  1.01688{col 117}{space 3} 1.486973
-{txt}{space 40}Some Other Race alone  {c |}{col 64}{res}{space 2} 1.069886{col 76}{space 2} .0347586{col 87}{space 1}    2.08{col 96}{space 3}0.038{col 104}{space 4} 1.003884{col 117}{space 3} 1.140227
-{txt}{space 44}Two or More Races  {c |}{col 64}{res}{space 2}  1.32553{col 76}{space 2} .0252577{col 87}{space 1}   14.79{col 96}{space 3}0.000{col 104}{space 4} 1.276939{col 117}{space 3}  1.37597
-{txt}{space 62} {c |}
-{space 55}higrade {c |}
-High school (including vocational, trade, or business school)  {c |}{col 64}{res}{space 2} 1.065292{col 76}{space 2} .0343446{col 87}{space 1}    1.96{col 96}{space 3}0.050{col 104}{space 4}  1.00006{col 117}{space 3} 1.134778
-{txt}{space 40}More than high school  {c |}{col 64}{res}{space 2} .6848121{col 76}{space 2} .0209463{col 87}{space 1}  -12.38{col 96}{space 3}0.000{col 104}{space 4} .6449644{col 117}{space 3} .7271216
-{txt}{space 62} {c |}
-{space 57}_cons {c |}{col 64}{res}{space 2} 1.404867{col 76}{space 2} .0485076{col 87}{space 1}    9.85{col 96}{space 3}0.000{col 104}{space 4} 1.312939{col 117}{space 3} 1.503231
-{txt}{hline 63}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 33}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}                        acecount{col 34}{c |}        IRR{col 46}   Std. err.{col 58}      z{col 66}   P>|z|{col 74}     [95% con{col 87}f. interval]
+{hline 33}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 26}sc_sex {c |}{col 34}{res}{space 2} .9872589{col 46}{space 2} .0109873{col 57}{space 1}   -1.15{col 66}{space 3}0.249{col 74}{space 4} .9659573{col 87}{space 3}  1.00903
+{txt}{space 32} {c |}
+{space 23}sc_race_r {c |}
+Black or African American alone  {c |}{col 34}{res}{space 2} 1.305095{col 46}{space 2} .0257001{col 57}{space 1}   13.52{col 66}{space 3}0.000{col 74}{space 4} 1.255684{col 87}{space 3} 1.356451
+{txt}American Indian or Alaska Nat..  {c |}{col 34}{res}{space 2} 1.816854{col 46}{space 2} .0812498{col 57}{space 1}   13.35{col 66}{space 3}0.000{col 74}{space 4} 1.664386{col 87}{space 3} 1.983288
+{txt}{space 20}Asian alone  {c |}{col 34}{res}{space 2} .5355922{col 46}{space 2} .0192021{col 57}{space 1}  -17.42{col 66}{space 3}0.000{col 74}{space 4} .4992487{col 87}{space 3} .5745815
+{txt}Native Hawaiian and Other Pac..  {c |}{col 34}{res}{space 2} 1.229664{col 46}{space 2} .1192054{col 57}{space 1}    2.13{col 66}{space 3}0.033{col 74}{space 4}  1.01688{col 87}{space 3} 1.486973
+{txt}{space 10}Some Other Race alone  {c |}{col 34}{res}{space 2} 1.069886{col 46}{space 2} .0347586{col 57}{space 1}    2.08{col 66}{space 3}0.038{col 74}{space 4} 1.003884{col 87}{space 3} 1.140227
+{txt}{space 14}Two or More Races  {c |}{col 34}{res}{space 2}  1.32553{col 46}{space 2} .0252577{col 57}{space 1}   14.79{col 66}{space 3}0.000{col 74}{space 4} 1.276939{col 87}{space 3}  1.37597
+{txt}{space 32} {c |}
+{space 25}higrade {c |}
+High school (including vocat..)  {c |}{col 34}{res}{space 2} 1.065292{col 46}{space 2} .0343446{col 57}{space 1}    1.96{col 66}{space 3}0.050{col 74}{space 4}  1.00006{col 87}{space 3} 1.134778
+{txt}{space 10}More than high school  {c |}{col 34}{res}{space 2} .6848121{col 46}{space 2} .0209463{col 57}{space 1}  -12.38{col 66}{space 3}0.000{col 74}{space 4} .6449644{col 87}{space 3} .7271216
+{txt}{space 32} {c |}
+{space 27}_cons {c |}{col 34}{res}{space 2} 1.404867{col 46}{space 2} .0485076{col 57}{space 1}    9.85{col 66}{space 3}0.000{col 74}{space 4} 1.312939{col 87}{space 3} 1.503231
+{txt}{hline 33}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 2}Note: {bf:_cons} estimates baseline incidence rate{txt}.{p_end}
 
 {com}. //_34
@@ -282,34 +282,34 @@ Iteration 1:{space 3}log likelihood = {res:-42775.936}
 Iteration 2:{space 3}log likelihood = {res:-42775.864}  
 Iteration 3:{space 3}log likelihood = {res:-42775.864}  
 {res}
-{txt}Negative binomial regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:30,530}
+{txt}{col 1}Negative binomial regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:30,530}
 {txt}{col 56}{lalign 13:LR chi2({res:9})}{col 69} = {res}{ralign 7:1231.77}
 {txt}{col 1}Dispersion: {res:mean}{col 56}{lalign 13:Prob > chi2}{col 69} = {res}{ralign 7:0.0000}
-{txt}Log likelihood = {res:-42775.864}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0142}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-42775.864}{txt}{col 56}{lalign 13:Pseudo R2}{col 69} = {res}{ralign 7:0.0142}
 
-{txt}{hline 63}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}                                                      acecount{col 64}{c |}        IRR{col 76}   Std. err.{col 88}      z{col 96}   P>|z|{col 104}     [95% con{col 117}f. interval]
-{hline 63}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 56}sc_sex {c |}{col 64}{res}{space 2} .9873253{col 76}{space 2} .0140708{col 87}{space 1}   -0.90{col 96}{space 3}0.371{col 104}{space 4} .9601287{col 117}{space 3} 1.015292
-{txt}{space 62} {c |}
-{space 53}sc_race_r {c |}
-{space 30}Black or African American alone  {c |}{col 64}{res}{space 2} 1.326253{col 76}{space 2} .0350126{col 87}{space 1}   10.70{col 96}{space 3}0.000{col 104}{space 4} 1.259374{col 117}{space 3} 1.396682
-{txt}{space 23}American Indian or Alaska Native alone  {c |}{col 64}{res}{space 2} 1.864104{col 76}{space 2} .1222717{col 87}{space 1}    9.49{col 96}{space 3}0.000{col 104}{space 4} 1.639221{col 117}{space 3} 2.119839
-{txt}{space 50}Asian alone  {c |}{col 64}{res}{space 2} .5378757{col 76}{space 2} .0222161{col 87}{space 1}  -15.01{col 96}{space 3}0.000{col 104}{space 4} .4960489{col 117}{space 3} .5832294
-{txt}{space 13}Native Hawaiian and Other Pacific Islander alone  {c |}{col 64}{res}{space 2} 1.244574{col 76}{space 2} .1624972{col 87}{space 1}    1.68{col 96}{space 3}0.094{col 104}{space 4} .9635716{col 117}{space 3} 1.607524
-{txt}{space 40}Some Other Race alone  {c |}{col 64}{res}{space 2} 1.083969{col 76}{space 2} .0459946{col 87}{space 1}    1.90{col 96}{space 3}0.057{col 104}{space 4} .9974679{col 117}{space 3} 1.177971
-{txt}{space 44}Two or More Races  {c |}{col 64}{res}{space 2} 1.325755{col 76}{space 2} .0336113{col 87}{space 1}   11.12{col 96}{space 3}0.000{col 104}{space 4} 1.261488{col 117}{space 3} 1.393296
-{txt}{space 62} {c |}
-{space 55}higrade {c |}
-High school (including vocational, trade, or business school)  {c |}{col 64}{res}{space 2}  1.06806{col 76}{space 2} .0468996{col 87}{space 1}    1.50{col 96}{space 3}0.134{col 104}{space 4}  .979983{col 117}{space 3} 1.164053
-{txt}{space 40}More than high school  {c |}{col 64}{res}{space 2} .6831897{col 76}{space 2} .0282212{col 87}{space 1}   -9.22{col 96}{space 3}0.000{col 104}{space 4} .6300572{col 117}{space 3}  .740803
-{txt}{space 62} {c |}
-{space 57}_cons {c |}{col 64}{res}{space 2} 1.403757{col 76}{space 2} .0647737{col 87}{space 1}    7.35{col 96}{space 3}0.000{col 104}{space 4} 1.282374{col 117}{space 3} 1.536629
-{txt}{hline 63}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 54}/lnalpha {c |}{col 64}{res}{space 2}-.5443067{col 76}{space 2} .0239625{col 104}{space 4}-.5912723{col 117}{space 3}-.4973411
-{txt}{hline 63}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-                                                         alpha {c |}{col 64}{res}{space 2} .5802439{col 76}{space 2} .0139041{col 104}{space 4} .5536224{col 117}{space 3} .6081455
-{txt}{hline 63}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 33}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}                        acecount{col 34}{c |}        IRR{col 46}   Std. err.{col 58}      z{col 66}   P>|z|{col 74}     [95% con{col 87}f. interval]
+{hline 33}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 26}sc_sex {c |}{col 34}{res}{space 2} .9873253{col 46}{space 2} .0140708{col 57}{space 1}   -0.90{col 66}{space 3}0.371{col 74}{space 4} .9601287{col 87}{space 3} 1.015292
+{txt}{space 32} {c |}
+{space 23}sc_race_r {c |}
+Black or African American alone  {c |}{col 34}{res}{space 2} 1.326253{col 46}{space 2} .0350126{col 57}{space 1}   10.70{col 66}{space 3}0.000{col 74}{space 4} 1.259374{col 87}{space 3} 1.396682
+{txt}American Indian or Alaska Nat..  {c |}{col 34}{res}{space 2} 1.864104{col 46}{space 2} .1222717{col 57}{space 1}    9.49{col 66}{space 3}0.000{col 74}{space 4} 1.639221{col 87}{space 3} 2.119839
+{txt}{space 20}Asian alone  {c |}{col 34}{res}{space 2} .5378757{col 46}{space 2} .0222161{col 57}{space 1}  -15.01{col 66}{space 3}0.000{col 74}{space 4} .4960489{col 87}{space 3} .5832294
+{txt}Native Hawaiian and Other Pac..  {c |}{col 34}{res}{space 2} 1.244574{col 46}{space 2} .1624972{col 57}{space 1}    1.68{col 66}{space 3}0.094{col 74}{space 4} .9635716{col 87}{space 3} 1.607524
+{txt}{space 10}Some Other Race alone  {c |}{col 34}{res}{space 2} 1.083969{col 46}{space 2} .0459946{col 57}{space 1}    1.90{col 66}{space 3}0.057{col 74}{space 4} .9974679{col 87}{space 3} 1.177971
+{txt}{space 14}Two or More Races  {c |}{col 34}{res}{space 2} 1.325755{col 46}{space 2} .0336113{col 57}{space 1}   11.12{col 66}{space 3}0.000{col 74}{space 4} 1.261488{col 87}{space 3} 1.393296
+{txt}{space 32} {c |}
+{space 25}higrade {c |}
+High school (including vocat..)  {c |}{col 34}{res}{space 2}  1.06806{col 46}{space 2} .0468996{col 57}{space 1}    1.50{col 66}{space 3}0.134{col 74}{space 4}  .979983{col 87}{space 3} 1.164053
+{txt}{space 10}More than high school  {c |}{col 34}{res}{space 2} .6831897{col 46}{space 2} .0282212{col 57}{space 1}   -9.22{col 66}{space 3}0.000{col 74}{space 4} .6300572{col 87}{space 3}  .740803
+{txt}{space 32} {c |}
+{space 27}_cons {c |}{col 34}{res}{space 2} 1.403757{col 46}{space 2} .0647737{col 57}{space 1}    7.35{col 66}{space 3}0.000{col 74}{space 4} 1.282374{col 87}{space 3} 1.536629
+{txt}{hline 33}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+                        /lnalpha {c |}{col 34}{res}{space 2}-.5443067{col 46}{space 2} .0239625{col 74}{space 4}-.5912723{col 87}{space 3}-.4973411
+{txt}{hline 33}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+                           alpha {c |}{col 34}{res}{space 2} .5802439{col 46}{space 2} .0139041{col 74}{space 4} .5536224{col 87}{space 3} .6081455
+{txt}{hline 33}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 2}Note: {help eform_option:Estimates are transformed} only in the first equation to incidence-rate ratios.{p_end}
 {p 0 6 2}Note: {bf:_cons} estimates baseline incidence rate{txt}.{p_end}
 LR test of alpha=0: {help j_chibar##|_new:chibar2(01) = }{res}3966.27{col 56}{txt}Prob >= chibar2 = {res}0.000
@@ -326,7 +326,7 @@ LR test of alpha=0: {help j_chibar##|_new:chibar2(01) = }{res}3966.27{col 56}{tx
 . graph export myyhats.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-myyhats.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/count-regression/myyhats.png{rm}
 saved as
 PNG
 format
@@ -335,9 +335,9 @@ format
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\count-regression\count-regression.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/count-regression/count-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}16 Oct 2021, 13:47:48
+ {txt}closed on:  {res}16 Oct 2021, 14:18:37
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
