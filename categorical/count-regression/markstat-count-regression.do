@@ -4,7 +4,7 @@
 
 clear all
 
-cd "/Users/agrogan/Desktop/newstuff/categorical/count-regression"
+cd "/Users/agrogan/Desktop/Github/newstuff/categorical/count-regression"
 
 doedit count-regression.stmd
 
@@ -32,7 +32,7 @@ graph close _all
 
 * pandoc
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --slide-level=2 --css "../UMslidy.css"  "/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression.html" -o "/Users/agrogan/Desktop/newstuff/categorical/count-regression/count-regression-slidy.html" 
+! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --slide-level=2 --css "../UMslidy.css"  "/Users/agrogan/Desktop/Github/newstuff/categorical/count-regression/count-regression.html" -o "/Users/agrogan/Desktop/Github/newstuff/categorical/count-regression/count-regression-slidy.html" 
 
 doedit "../MathJax-CDN.txt"
 

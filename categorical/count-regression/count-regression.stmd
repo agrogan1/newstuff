@@ -24,11 +24,11 @@ $y = \ln(count): 1, 2, 3, \text{etc.}$
 
 ![The Count and Friends](../images/Sesame-Street-optimize.gif){ width=20% }
 
-# Historical Examples of Count Data `r emo::ji("horse")` `r emo::ji("phone")` `r emo::ji("hospital")`
+# Historical Examples of Count Data 🐎 ☎️ 🏥
 
-* `r emo::ji("horse")` Deaths from horsekicks in the Prussian Army
-* `r emo::ji("phone")` Calls to a call center (business, crisis hotline, etc.) 
-*  `r emo::ji("hospital")` Arrivals at the Emergency Room 
+* 🐎 Deaths from horsekicks in the Prussian Army
+* ☎️ Calls to a call center (business, crisis hotline, etc.) 
+* 🏥 Arrivals at the Emergency Room 
 
 From the Stata documentation: 
 
@@ -36,14 +36,14 @@ From the Stata documentation:
 (Thorndike 1926); and disease incidence, typically with respect to time, but occasionally with respect to space."
 
 
-# Other Canonical Examples of Count Data `r emo::ji("tree")` `r emo::ji("sick")` 
+# Other Canonical Examples of Count Data 🌳🤒
 
-* `r emo::ji("plant")` `r emo::ji("tree")` `r emo::ji("plant")` Plants / trees in a field
-* `r emo::ji("sick")` `r emo::ji("sick")` `r emo::ji("sick")` Cases of disease / unit area
+* 🌳🌳🌳 Plants / trees in a field
+* 🤒🤒🤒 Cases of disease / unit area
 
 # Poisson Distribution
 
-## Theorizing about the Poisson `r emo::ji("fish")` `r emo::ji("fish")` `r emo::ji("fish")` `r emo::ji("palm_tree")` `r emo::ji("evergreen_tree")` `r emo::ji("deciduous_tree")`
+## Theorizing about the Poisson 🐟🐟🐟 🌲🌲🌲
 
 > The Poisson distribution is a modified form of the binomial distribution that is useful for the analysis of phenomena characterized by discrete, rare events.  For example, in a study of the distribution of a rare plant among a number of quadrats, a majority of plots may contain no specimens, a smaller number a single plant, and still smaller numbers two, three, or more plants.  If a single plant per quadrat is expected, the mean µ = 1 and the "0" and "1" classes occur at 37% each, the "2" class at 18%, the "3" class at 6%, and larger classes take up the remaining 2%.  The characteristic test for a Poisson is that the variance equals the mean, which in the plant example means that the rare plant is randomly distributed.  Note, that, In the distributions above, as the mean $\mu$ increases towards 10, the distribution approaches normality.
 
@@ -100,8 +100,7 @@ $$
 
 ![histogram of random Poisson variable](myhistogram2.png)
 
-## Poisson is the Natural Form for Observations Distributed in Time or Space `r emo::ji("building")` `r emo::ji("building")` `r emo::ji("building")` `r emo::ji("time")` `r emo::ji("time")` `r emo::ji("time")`
-
+## Poisson is the Natural Form for Observations Distributed in Time or Space 🏛️🏛️🏛️ ⏳⏳⏳
 $$ 
     x \sim Poisson(\lambda)
 $$
@@ -165,7 +164,7 @@ The data are an extract of the *National Survey of Children's Health, 2018*. The
 
     clear all
 	
-	use "../predict-and-margins/NSCH_ACES.dta", clear
+	use "../predict-and-margins-substantive-example/NSCH_ACES.dta", clear
 	
 	describe
 	
