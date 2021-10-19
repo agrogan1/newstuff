@@ -1,9 +1,9 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\comparing-models\comparing-models.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/comparing-models/comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}19 Oct 2021, 09:32:46
+ {txt}opened on:  {res}19 Oct 2021, 11:43:32
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -11,7 +11,7 @@
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}09:32:46
+{res}11:43:32
 {txt}
 {com}. //_3
 . clear all
@@ -83,16 +83,35 @@ High school (inc..)  {c |}{res} {ralign 10:.10021068}{lalign 3:}{txt} {space 1}{
 {res}{txt}{space 20} {c |}
 {space 15}_cons {c |}{res} {ralign 10:1.411494}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.33994246}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.33915207}{lalign 3:***}{txt} {space 1}
 {res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{space 15}/cut1 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.78624597}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut2 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.65037457}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut3 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:1.5299647}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut4 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.2019291}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut5 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.8850071}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut6 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:3.6106908}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut7 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:4.4853373}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut8 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:5.9106719}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut9 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:7.5036903}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 12}/lnalpha {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.54430672}{lalign 3:***}{txt} {space 1}
+{res}{txt}{res}cut1                 {txt}{c |}{res}
+{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.78624597}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}cut2                 {txt}{c |}{res}
+{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.65037457}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}cut3                 {txt}{c |}{res}
+{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:1.5299647}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}cut4                 {txt}{c |}{res}
+{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.2019291}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}cut5                 {txt}{c |}{res}
+{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.8850071}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}cut6                 {txt}{c |}{res}
+{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:3.6106908}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}cut7                 {txt}{c |}{res}
+{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:4.4853373}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}cut8                 {txt}{c |}{res}
+{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:5.9106719}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}cut9                 {txt}{c |}{res}
+{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:7.5036903}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}lnalpha              {txt}{c |}{res}
+{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.54430672}{lalign 3:***}{txt} {space 1}
 {res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
 {res}{lalign 20:Statistics}{txt} {c |} {center 13:} {space 1} {center 13:} {space 1} {center 13:} {space 1} {center 13:} {space 1}
 {res}{txt}{ralign 20:N} {c |}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}
@@ -105,9 +124,9 @@ High school (inc..)  {c |}{res} {ralign 10:.10021068}{lalign 3:}{txt} {space 1}{
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\comparing-models\comparing-models.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/comparing-models/comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}19 Oct 2021, 09:32:51
+ {txt}closed on:  {res}19 Oct 2021, 11:43:39
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
