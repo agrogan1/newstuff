@@ -8,7 +8,7 @@ geometry: margin=1 in
 
 # Introduction 
 
-<style>h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;}</style>
+<style>body {max-width: 90%;} h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;}</style>
 
 In this example, we explore the predictors of the *count of Adverse Childhood Experiences* (ACES) that children experience. Using the *general linear model* framework, we could conceivably compare different statistical models on several grounds.
 
@@ -25,7 +25,7 @@ In this example, we explore the predictors of the *count of Adverse Childhood Ex
 |:--|:--|:---|:--|:---|
 | OLS | `regress` | Continuous dependent variable | $-\infty < y < \infty$ | y is a linear function of the x's |
 | Logistic Regression | `logit` | Binary dependent variable | $y = 0 \text{ or } 1$ | $\ln \big( \frac{p(y)}{1-p(y)} \big)$ is a linear function of x's |
-| Ordinal logistic regression | `ologit` | Ordered dependent variable where distance between categories does not matter | $-\infty < y < \infty$ | $\ln \big( \frac{p(y \text{ higher category})}{p(y \text{ lower categories})} \big)$ is a linear function of x's |
+| Ordinal logistic regression | `ologit` | Ordered dependent variable where distance between categories does not matter | $-\infty < y < \infty$ | $\ln \big( \frac{p(y \text{ this level of the outcome})}{p(y \text{ not this level of the outcome})} \big)$ is a linear function of x's |
 | Multinomial Logistic Regression | `mlogit` | Dependent variable with multiple unordered categories | $-\infty < y < \infty$ | $\ln \big( \frac{p(y \text{ another category})}{p(y \text{ reference category})} \big)$ is a linear function of x's |
 | Poisson Regression | `poisson` | Dependent variable representing a count | $y \text{ is integer} \geq 0$ | $\ln(y \text{ (count)})$ is a linear function of x's |
  Negative Binomial Regression | `nbreg` | Dependent variable representing a count |$y \text{ is integer} \geq 0$ | $\ln(y \text{ (count)})$ is a linear function of x's |

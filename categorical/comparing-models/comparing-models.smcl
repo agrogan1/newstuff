@@ -1,17 +1,17 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/comparing-models/comparing-models.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\comparing-models\comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}27 Oct 2020, 11:37:44
+ {txt}opened on:  {res}19 Oct 2021, 09:32:46
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}27 Oct 2020
+{res}19 Oct 2021
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}11:37:44
+{res}09:32:46
 {txt}
 {com}. //_3
 . clear all
@@ -25,8 +25,8 @@
 {com}. //_6
 . describe acecount sc_sex sc_race_r higrade
 
-              {txt}storage   display    value
-variable name   type    format     label      variable label
+{txt}Variable      Storage   Display    Value
+    name         type    format    label      Variable label
 {hline}
 {p 0 48}{res}{bind:acecount       }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R ace10R == 1{p_end}
 {p 0 48}{bind:sc_sex         }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{txt}sc_sex_lab{p_end}
@@ -83,35 +83,16 @@ High school (inc..)  {c |}{res} {ralign 10:.10021068}{lalign 3:}{txt} {space 1}{
 {res}{txt}{space 20} {c |}
 {space 15}_cons {c |}{res} {ralign 10:1.411494}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.33994246}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.33915207}{lalign 3:***}{txt} {space 1}
 {res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{res}cut1                 {txt}{c |}{res}
-{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.78624597}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{res}cut2                 {txt}{c |}{res}
-{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.65037457}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{res}cut3                 {txt}{c |}{res}
-{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:1.5299647}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{res}cut4                 {txt}{c |}{res}
-{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.2019291}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{res}cut5                 {txt}{c |}{res}
-{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.8850071}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{res}cut6                 {txt}{c |}{res}
-{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:3.6106908}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{res}cut7                 {txt}{c |}{res}
-{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:4.4853373}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{res}cut8                 {txt}{c |}{res}
-{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:5.9106719}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{res}cut9                 {txt}{c |}{res}
-{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:7.5036903}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{res}lnalpha              {txt}{c |}{res}
-{txt}{space 15}_cons {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.54430672}{lalign 3:***}{txt} {space 1}
+{res}{txt}{space 15}/cut1 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.78624597}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 15}/cut2 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.65037457}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 15}/cut3 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:1.5299647}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 15}/cut4 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.2019291}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 15}/cut5 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.8850071}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 15}/cut6 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:3.6106908}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 15}/cut7 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:4.4853373}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 15}/cut8 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:5.9106719}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 15}/cut9 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:7.5036903}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 12}/lnalpha {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.54430672}{lalign 3:***}{txt} {space 1}
 {res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
 {res}{lalign 20:Statistics}{txt} {c |} {center 13:} {space 1} {center 13:} {space 1} {center 13:} {space 1} {center 13:} {space 1}
 {res}{txt}{ralign 20:N} {c |}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}
@@ -119,14 +100,14 @@ High school (inc..)  {c |}{res} {ralign 10:.10021068}{lalign 3:}{txt} {space 1}{
 {res}{txt}{ralign 20:aic} {c |}{res} {ralign 10:104700.93}{lalign 3:}{txt} {space 1}{res} {ralign 10:84939.175}{lalign 3:}{txt} {space 1}{res} {ralign 10:89537.999}{lalign 3:}{txt} {space 1}{res} {ralign 10:85573.728}{lalign 3:}{txt} {space 1}
 {res}{txt}{ralign 20:bic} {c |}{res} {ralign 10:104784.19}{lalign 3:}{txt} {space 1}{res} {ralign 10:85089.052}{lalign 3:}{txt} {space 1}{res} {ralign 10:89621.263}{lalign 3:}{txt} {space 1}{res} {ralign 10:85665.319}{lalign 3:}{txt} {space 1}
 {res}{txt}{hline 20}{c -}{c BT}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{ralign 86:legend: * p<0.05; ** p<0.01; *** p<0.001}
+{ralign 86:Legend: * p<0.05; ** p<0.01; *** p<0.001}
 {res}{txt}
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/comparing-models/comparing-models.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\comparing-models\comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}27 Oct 2020, 11:37:48
+ {txt}closed on:  {res}19 Oct 2021, 09:32:51
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
