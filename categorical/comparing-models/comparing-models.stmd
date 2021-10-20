@@ -8,7 +8,7 @@ geometry: margin=1 in
 
 # Introduction 
 
-<style>body {max-width: 90%;} h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;}</style>
+<style>body {max-width: 90%;} h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;} tr:nth-child(even){background-color: #f2f2f2;} tr:hover {background-color: #ddd;} th{background-color: #FFCB05;}</style>
 
 In this example, we explore the predictors of the *count of Adverse Childhood Experiences* (ACES) that children experience. Using the *general linear model* framework, we could conceivably compare different statistical models on several grounds.
 
@@ -21,14 +21,21 @@ In this example, we explore the predictors of the *count of Adverse Childhood Ex
 
 # Theoretical and Functional Concerns
 
-| Statistical Model | Stata Command | Theoretical Rationale | Functional Form of Dependent Variable | Functional Form of Entire Model |
-|:--|:--|:---|:--|:---|
-| OLS | `regress` | Continuous dependent variable | $-\infty < y < \infty$ | y is a linear function of the x's |
-| Logistic Regression | `logit` | Binary dependent variable | $y = 0 \text{ or } 1$ | $\ln \big( \frac{p(y)}{1-p(y)} \big)$ is a linear function of x's |
-| Ordinal logistic regression | `ologit` | Ordered dependent variable where distance between categories does not matter | $-\infty < y < \infty$ | $\ln \big( \frac{p(y \text{ this level of the outcome})}{p(y \text{ not this level of the outcome})} \big)$ is a linear function of x's |
-| Multinomial Logistic Regression | `mlogit` | Dependent variable with multiple unordered categories | $-\infty < y < \infty$ | $\ln \big( \frac{p(y \text{ another category})}{p(y \text{ reference category})} \big)$ is a linear function of x's |
-| Poisson Regression | `poisson` | Dependent variable representing a count | $y \text{ is integer} \geq 0$ | $\ln(y \text{ (count)})$ is a linear function of x's |
- Negative Binomial Regression | `nbreg` | Dependent variable representing a count |$y \text{ is integer} \geq 0$ | $\ln(y \text{ (count)})$ is a linear function of x's |
+
+| Statistical Model | Stata Command | Theoretical Rationale | Functional Form of Dependent Variable | Functional Form of Model | Coefficients Imply |
+|:--|:---|:---|:--|:---|:---|
+| OLS | `regress` | Continuous dependent variable | $-\infty < y < \infty$ | y is a linear function of the x's | A 1 unit change in x is associated with a $\beta$ change in y | 
+| Logistic Regression | `logit` | Binary dependent variable | $y = 0 \text{ or } 1$ | $\ln \big( \frac{p(y)}{1-p(y)} \big)$ is a linear function of x's | A 1 unit change in x is associated with a $\beta$ change in the log odds of y |
+| | `logit, or` | | | | A 1 unit change in x is associated with a $e^{\beta}$ change in the OR |
+| Ordinal logistic regression | `ologit` | Ordered dependent variable where distance between categories does not matter | $-\infty < y < \infty$ | $\ln \big( \frac{p(y \text{ this level of the outcome})}{p(y \text{ not this level of the outcome})} \big)$ is a linear function of x's | A 1 unit change in x is associated with a $\beta$ change in the log odds of y | 
+| | `ologit, or` | | | | A 1 unit change in x is associated with a $e^{\beta}$ change in the OR |
+| Multinomial Logistic Regression | `mlogit` | Dependent variable with multiple unordered categories | $-\infty < y < \infty$ | $\ln \big( \frac{p(y \text{ another category})}{p(y \text{ reference category})} \big)$ is a linear function of x's | A 1 unit change in x is associated with a $\beta$ change in the log risk ratio of y | 
+| | `mlogit, rr` | | | | A 1 unit change in x is associated with a $e^{\beta}$ change in the RR |
+| Poisson Regression | `poisson` | Dependent variable representing a count | $y \text{ is integer} \geq 0$ | $\ln(y_\text{count})$ is a linear function of x's | A 1 unit change in x is associated with a $\beta$ change in the log count of y | 
+| | `poisson, irr` | | | | A 1 unit change in x is associated with a $e^{\beta}$ change in the IRR |
+ Negative Binomial Regression | `nbreg` | Dependent variable representing a count |$y \text{ is integer} \geq 0$ | $\ln(y_\text{count})$ is a linear function of x's | A 1 unit change in x is associated with a $\beta$ change in the log count of y | 
+| | `nbreg, irr` | | | | A 1 unit change in x is associated with a $e^{\beta}$ change in the IRR |
+
 
 # Assessing Model Fit
 
