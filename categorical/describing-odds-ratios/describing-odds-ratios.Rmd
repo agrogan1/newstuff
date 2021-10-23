@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{css, echo=FALSE, eval=TRUE}
 
 tr:hover{
-  background-color: #ddd;
+  background-color: #FFFF00;
 } 
 
 ```
