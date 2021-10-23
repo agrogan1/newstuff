@@ -9,7 +9,7 @@ output:
     latex_engine: xelatex
   distill::distill_article:
     highlight: haddock
-    toc: yes
+    toc: no
     fig_height: 6
 subtitle: 'Draft: Comments Welcome'
 ---
@@ -17,6 +17,14 @@ subtitle: 'Draft: Comments Welcome'
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(echo = TRUE)
+ 
+```
+
+```{css, echo=FALSE, eval=TRUE}
+
+tr:hover{
+  background-color: #ddd;
+} 
 
 ```
 
@@ -53,13 +61,20 @@ Group
 2.0                       The odds of the outcome for Group A 
                           were 100% higher than those for the
                           other group. (technically correct,
-                          but deceptive?)
+                          but at the very least confusing?)
                           
-                          The odds of the outcome for Group A                               were 2.0 (twice) those for the other
+                          The odds of the outcome for Group A
+                          were 2.0 (twice) those for the other
                           group.
                           
 2.5                       The odds of the outcome for Group A
                           were 2.5 times those for the other 
                           group.
+                          
+                          The odds of the outcome for Group A
+                          were 150% higher than for the other
+                          group. (technically correct,
+                          but at the very least confusing?)
+                          
 -------------------------------------------------------------
 
