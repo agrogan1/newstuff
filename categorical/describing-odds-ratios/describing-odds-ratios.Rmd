@@ -3,14 +3,14 @@ title: "Describing Odds Ratios"
 author: "Andy Grogan-Kaylor"
 date: "`r Sys.Date()`"
 output:
-  pdf_document:
-    fig_height: 3
-    highlight: haddock
-    latex_engine: xelatex
   distill::distill_article:
     highlight: haddock
     toc: no
     fig_height: 6
+  pdf_document:
+    fig_height: 3
+    highlight: haddock
+    latex_engine: xelatex
 subtitle: 'Draft: Comments Welcome'
 ---
 
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{css, echo=FALSE, eval=TRUE}
 
 tr:hover{
-  background-color: #FFFF00;
+  background-color: #FFCB05;
 } 
 
 ```
