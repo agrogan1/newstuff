@@ -1,6 +1,6 @@
 * Risks and Odds
 
-cd "/Users/agrogan/Desktop/newstuff/categorical/risks-and-odds"
+cd "/Users/agrogan/Desktop/Github/newstuff/categorical/risks-and-odds"
 
 doedit "risks-and-odds.stmd"
 

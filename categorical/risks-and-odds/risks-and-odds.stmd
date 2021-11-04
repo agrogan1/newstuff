@@ -12,7 +12,7 @@ geometry: margin=1 in
 
 # Setup
 
-<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} p{font-size: 115%} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 
     clear all
 	
@@ -90,10 +90,11 @@ We can even graph this.
     twoway scatter odds risk_event_happened event_happened, ///
 	title("Risk and Odds") ///
 	xtitle("How many times out of 100 did this happen?") ///
-	scheme(michigan)
+	scheme(michigan) ///
+	legend(pos(3) order(1 "odds" 2 "risk"))
 
-	quietly: graph export myscatter.png, width(500) replace
+	quietly: graph export myscatter.png, width(1000) replace
 
-![Risk and Odds](myscatter.png)
+![Risk and Odds](myscatter.png){width=75%}
 
 
