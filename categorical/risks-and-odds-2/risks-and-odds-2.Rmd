@@ -134,11 +134,11 @@ t1 <- DT::datatable(hk,
                     options = list(dom = 't', 
                                    scrollX = T))
 
-filter_slider("s1", 
-              "How many times does X happen?", 
-              hk, 
-              column = ~x_happens,
-              step = 10)
+# filter_slider("s1", 
+#               "How many times does X happen?", 
+#               hk, 
+#               column = ~x_happens,
+#               step = 10)
 
 bscols(t1, p1)
 
