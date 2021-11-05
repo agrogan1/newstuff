@@ -46,7 +46,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 ## Mapping
 
-* [Can Mapping in R Really Be This Easy?](https://agrogan1.github.io/newstuff/can-mapping-in-R-be-this-easy/can-mapping-in-R-be-this-easy.html)
+* [Can Mapping in R Really Be This Easy?](https://agrogan1.github.io/dataviz/can-mapping-in-R-be-this-easy/can-mapping-in-R-be-this-easy.html)
 
 ## RMarkdown
 
