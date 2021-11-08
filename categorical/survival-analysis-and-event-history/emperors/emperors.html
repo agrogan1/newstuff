@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Event History Analysis With Roman Emperor's Data</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px; max-width:45em;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+td {padding:0 0 0 0} /* override */
+table:not([class]) th { padding:4px 6px } 
+table:not([class]) td { padding:4px 6px } 
+table:not([class]) thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+table:not([class]) thead tr:last-child  th {padding-bottom:6px}
+table:not([class]) tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+table:not([class]) tbody tr:last-child  td {padding-bottom:6px;}
+table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Event History Analysis With Roman Emperor's Data</h1>
+<h2 class="author">Andy Grogan-Kaylor</h2>
+<h3 class="date">8 Nov 2021</h3>
+</div>
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<h1 id="introduction">Introduction</h1>
+<p>This example uses data on the ages of death of Roman Emperors. Source unclear.</p>
+<h1 id="get-data">Get Data</h1>
+<pre class='stata'>. clear all
+</pre>
+<pre class='stata'>. import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv
+> "
+(encoding automatically selected: ISO-8859-1)
+(16 vars, 68 obs)
+</pre>
+<h1 id="date-wrangling">Date Wrangling</h1>
+<pre class='stata'>. * we can't use the date() function 
+. * because it does not work
+. * with dates prior to 100AD
+</pre>
+<pre class='stata'>. * generate birthdate = date(birth, "YMD")
+</pre>
+<pre class='stata'>. * generate deathdate = date(death, "YMD")
+</pre>
+<pre class='stata'>. generate birthyear = real(substr(birth, 1, 4)) // convert first 4 characters to real number
+(5 missing values generated)
+</pre>
+<pre class='stata'>. generate deathyear = real(substr(death, 1, 4)) // convert first 4 characters to real number
+</pre>
+<pre class='stata'>. * browse name name_full birth birthyear death deathyear
+</pre>
+<pre class='stata'>. generate age = deathyear - birthyear
+(5 missing values generated)
+</pre>
+<pre class='stata'>. * need to recalculate age for those born in BCE
+</pre>
+<pre class='stata'>. encode cause, generate(causeNUMERIC) // numeric version of cause of death
+</pre>
+<pre class='stata'>. codebook causeNUMERIC // show values of causeNUMERIC
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+causeNUMERIC                                                                                                                             (unlabeled)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+                  Type: Numeric (long)
+                 Label: causeNUMERIC
+
+                 Range: [1,7]                         Units: 1
+         Unique values: 7                         Missing .: 0/68
+
+            Tabulation: Freq.   Numeric  Label
+                           25         1  Assassination
+                            1         2  Captivity
+                            5         3  Died in Battle
+                            8         4  Execution
+                           21         5  Natural Causes
+                            5         6  Suicide
+                            3         7  Unknown
+</pre>
+<h1 id="stset-the-data"><code>stset</code> The Data</h1>
+<p>We need to <code>stset</code> the data so that Stata knows that this is survival data with special characteristics. For those of you have used other commands, this is similar to using <code>svyset</code> or <code>xtset</code>.</p>
+<p>The most commonly used syntax is something like <code>stset timevar, failure(failvar) id(id)</code> <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<blockquote>
+<p>There are many ways to specify <code>failvar</code>, we outline the most straightforward. Consult Stata help for your exact situation.</p>
+</blockquote>
+<pre class='stata'>. stset age // stset the data
+
+Survival-time data settings
+
+         Failure event: (assumed to fail at time=age)
+Observed time interval: (0, age]
+     Exit on or before: failure
+
+──────────────────────────────────────────────────────────────────────────
+         68  total observations
+          5  event time missing (age>=.)                    PROBABLE ERROR
+          2  observations end on or before enter()
+──────────────────────────────────────────────────────────────────────────
+         61  observations remaining, representing
+         61  failures in single-record/single-failure data
+      2,984  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =         0
+                                          Last observed exit t =        79
+</pre>
+<h1 id="kaplan-meier-survivor-function-per-gabriela-ortiz-stata">Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)</h1>
+<p><span class="math display">\[S(t)=Pr(T&gt;t)\]</span></p>
+<pre class='stata'>. sts graph, scheme(michigan)
+
+        Failure _d: 1 (meaning all fail)
+  Analysis time _t: age
+</pre>
+<pre class='stata'>. graph export mysurvival0.png, width(1000) replace
+file mysurvival0.png saved as PNG format
+</pre>
+<p><img src="mysurvival0.png" alt="Survival Curve" />{width=50%}</p>
+<pre class='stata'>. sts graph, by(causeNUMERIC) scheme(michigan) // survival curve by cause of death
+
+        Failure _d: 1 (meaning all fail)
+  Analysis time _t: age
+</pre>
+<pre class='stata'>. graph export mysurvival1.png, width(1000) replace
+file mysurvival1.png saved as PNG format
+</pre>
+<p><img src="mysurvival1.png" alt="Survival Curve by Cause of Death" />{width=50%}</p>
+<pre class='stata'>. sts graph, by(causeNUMERIC) scheme(michigan) legend(pos(6) col(2)) // survival curve w better legend
+
+        Failure _d: 1 (meaning all fail)
+  Analysis time _t: age
+</pre>
+<pre class='stata'>. graph export mysurvival2.png, width(1000) replace
+file mysurvival2.png saved as PNG format
+</pre>
+<p><img src="mysurvival2.png" alt="Survival Curve With Better Legend" />{width=50%}</p>
+<h1 id="cox-proportional-hazards-model">Cox Proportional Hazards Model</h1>
+<pre class='stata'>. stcox ib5.causeNUMERIC // Cox model
+
+        Failure _d: 1 (meaning all fail)
+  Analysis time _t: age
+
+Iteration 0:   log likelihood = -194.21354
+Iteration 1:   log likelihood = -190.65797
+Iteration 2:   log likelihood = -190.29078
+Iteration 3:   log likelihood = -190.28555
+Iteration 4:   log likelihood = -190.28555
+Refining estimates:
+Iteration 0:   log likelihood = -190.28555
+
+Cox regression with Breslow method for ties
+
+No. of subjects =    61                                 Number of obs =     61
+No. of failures =    61
+Time at risk    = 2,984
+                                                        LR chi2(6)    =   7.86
+Log likelihood = -190.28555                             Prob > chi2   = 0.2488
+
+────────────────┬────────────────────────────────────────────────────────────────
+             _t │ Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+────────────────┼────────────────────────────────────────────────────────────────
+   causeNUMERIC │
+ Assassination  │   1.887601   .6005266     2.00   0.046     1.011828    3.521387
+     Captivity  │   .5304672   .5462988    -0.62   0.538     .0704779    3.992675
+Died in Battle  │   3.344775   1.901632     2.12   0.034     1.097556    10.19313
+     Execution  │   1.506054   .6319318     0.98   0.329     .6617307    3.427677
+       Suicide  │   .9063985   .5055625    -0.18   0.860     .3037693    2.704547
+       Unknown  │    1.33605   1.378549     0.28   0.779     .1768254    10.09487
+────────────────┴────────────────────────────────────────────────────────────────
+</pre>
+<pre class='stata'>. stcurve, survival at(causeNUMERIC=(1(1)7)) ///
+> scheme(michigan) // basic survival curve by causeNUMERIC
+</pre>
+<pre class='stata'>. graph export mycox1.png, width(1000) replace
+file mycox1.png saved as PNG format
+</pre>
+<p><img src="mycox1.png" alt="Survival Curve From Cox Model" />{width=50%}</p>
+<pre class='stata'>. stcurve, survival ///
+> at(causeNUMERIC=(1(1)7)) ///
+> caption("Roman Emperors Data") ///
+> legend(order(1 "Assasination" 2 "Captivity" 3 "Died in Battle" /// 
+> 4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) ///
+> scheme(michigan) // more nicely formatted survival curve
+</pre>
+<pre class='stata'>. graph export mycox2.png, width(1000) replace
+file mycox2.png saved as PNG format
+</pre>
+<p><img src="mycox2.png" alt="Survival Curve From Cox Model" />{width=50%}</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>failvair is often something like <code>died</code>.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+</body>
+</html>

@@ -16,7 +16,7 @@ This example uses data on the ages of death of Roman Emperors. Source unclear.
 
     clear all
 
-    import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors.csv"
+    import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
 
 # Date Wrangling
 
@@ -48,7 +48,7 @@ We need to `stset` the data so that Stata knows that this is survival data with 
 
 The most commonly used syntax is something like `stset timevar, failure(failvar) id(id)` [^failvar]
 
-[^failvar]: failvair is often something like `died`.
+[^failvar]: `failvair` is often something like `died`.
 
 > There are many ways to specify `failvar`, we outline the most straightforward. Consult Stata help for your exact situation.
 
@@ -58,9 +58,23 @@ The most commonly used syntax is something like `stset timevar, failure(failvar)
 
 $$S(t)=Pr(T>t)$$
 
-    sts graph, by(causeNUMERIC) scheme(michigan) // survival curve
+    sts graph, scheme(michigan)
+	
+	graph export mysurvival0.png, width(1000) replace
+
+![Survival Curve](mysurvival0.png){width=50%}
+
+    sts graph, by(causeNUMERIC) scheme(michigan) // survival curve by cause of death
+	
+    graph export mysurvival1.png, width(1000) replace
+
+![Survival Curve by Cause of Death](mysurvival1.png){width=50%}
 
     sts graph, by(causeNUMERIC) scheme(michigan) legend(pos(6) col(2)) // survival curve w better legend
+	
+    graph export mysurvival2.png, width(1000) replace
+
+![Survival Curve With Better Legend](mysurvival2.png){width=50%}
 
 # Cox Proportional Hazards Model
 
@@ -69,6 +83,10 @@ $$S(t)=Pr(T>t)$$
     stcurve, survival at(causeNUMERIC=(1(1)7)) ///
     scheme(michigan) // basic survival curve by causeNUMERIC
 
+    graph export mycox1.png, width(1000) replace
+
+![Survival Curve From Cox Model](mycox1.png){width=50%}
+
     stcurve, survival ///
     at(causeNUMERIC=(1(1)7)) ///
     caption("Roman Emperors Data") ///
@@ -76,6 +94,9 @@ $$S(t)=Pr(T>t)$$
     4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) ///
     scheme(michigan) // more nicely formatted survival curve
 
+    graph export mycox2.png, width(1000) replace
+
+![Survival Curve From Cox Model](mycox2.png){width=50%}
 
 
 

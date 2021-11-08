@@ -1,0 +1,211 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 8 Nov 2021, 13:41:10
+{txt}
+{com}. //_1
+. display c(current_date)
+{res} 8 Nov 2021
+{txt}
+{com}. //_2
+. clear all
+{res}{txt}
+{com}. //_3
+. import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
+{res}{txt}(encoding automatically selected: ISO-8859-1)
+{text}(16 vars, 68 obs)
+
+{com}. //_4
+. * we can't use the date() function 
+. * because it does not work
+. * with dates prior to 100AD
+. //_5
+. * generate birthdate = date(birth, "YMD")
+. //_6
+. * generate deathdate = date(death, "YMD")
+. //_7
+. generate birthyear = real(substr(birth, 1, 4)) // convert first 4 characters to real number
+{txt}(5 missing values generated)
+
+{com}. //_8
+. generate deathyear = real(substr(death, 1, 4)) // convert first 4 characters to real number
+{txt}
+{com}. //_9
+. * browse name name_full birth birthyear death deathyear
+. //_10
+. generate age = deathyear - birthyear
+{txt}(5 missing values generated)
+
+{com}. //_11
+. * need to recalculate age for those born in BCE
+. //_12
+. encode cause, generate(causeNUMERIC) // numeric version of cause of death
+{txt}
+{com}. //_13
+. codebook causeNUMERIC // show values of causeNUMERIC
+
+{txt}{hline}
+{res}causeNUMERIC{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}Type: Numeric ({res}long{txt})
+{ralign 22:Label}: {res:causeNUMERIC}
+
+{col 18}Range: [{res}1{txt},{res}7{txt}]{col 55}Units: {res}1
+{col 10}{txt}Unique values: {res}7{col 51}{txt}Missing .: {res}0{txt}/{res}68
+
+{txt}{col 13}Tabulation: Freq.   Numeric  Label
+{col 20}{res}        25{col 32}       1{col 42}{txt}Assassination
+{col 20}{res}         1{col 32}       2{col 42}{txt}Captivity
+{col 20}{res}         5{col 32}       3{col 42}{txt}Died in Battle
+{col 20}{res}         8{col 32}       4{col 42}{txt}Execution
+{col 20}{res}        21{col 32}       5{col 42}{txt}Natural Causes
+{col 20}{res}         5{col 32}       6{col 42}{txt}Suicide
+{col 20}{res}         3{col 32}       7{col 42}{txt}Unknown
+
+{com}. //_14
+. stset age // stset the data
+
+{txt}Survival-time data settings
+
+{col 10}Failure event: {res}(assumed to fail at time=age)
+{col 1}{txt}Observed time interval: {res}(0, age]
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
+{res}         68{txt}  total observations
+{res}          5{txt}  event time missing (age>=.){col 61}PROBABLE ERROR
+{res}          2{txt}  observations end on or before {bf:enter()}
+{hline 74}
+{res}         61{txt}  observations remaining, representing
+{res}         61{txt}  failures in single-record/single-failure data
+{res}      2,984{txt}  total analysis time at risk and under observation
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res}        0
+                                          {txt}Last observed exit t = {res}       79
+{txt}
+{com}. //_15
+. sts graph, scheme(michigan)
+
+{col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
+{col 3}Analysis time {bf:_t}: {res}age
+{txt}
+{com}. //_16
+. graph export mysurvival0.png, width(1000) replace
+{txt}{p 0 4 2}
+file {bf}
+mysurvival0.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_17
+. sts graph, by(causeNUMERIC) scheme(michigan) // survival curve by cause of death
+
+{col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
+{col 3}Analysis time {bf:_t}: {res}age
+{txt}
+{com}. //_18
+. graph export mysurvival1.png, width(1000) replace
+{txt}{p 0 4 2}
+file {bf}
+mysurvival1.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_19
+. sts graph, by(causeNUMERIC) scheme(michigan) legend(pos(6) col(2)) // survival curve w better legend
+
+{col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
+{col 3}Analysis time {bf:_t}: {res}age
+{txt}
+{com}. //_20
+. graph export mysurvival2.png, width(1000) replace
+{txt}{p 0 4 2}
+file {bf}
+mysurvival2.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_21
+. stcox ib5.causeNUMERIC // Cox model
+
+{col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
+{col 3}Analysis time {bf:_t}: {res}age
+
+{txt}Iteration 0:   log likelihood = {res}-194.21354
+{txt}Iteration 1:   log likelihood = {res}-190.65797
+{txt}Iteration 2:   log likelihood = {res}-190.29078
+{txt}Iteration 3:   log likelihood = {res}-190.28555
+{txt}Iteration 4:   log likelihood = {res}-190.28555
+{txt}Refining estimates:
+Iteration 0:   log likelihood = {res}-190.28555
+
+{txt}Cox regression with Breslow method for ties
+
+No. of subjects = {res}{ralign 5:61}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:61}
+{txt}No. of failures = {res}{ralign 5:61}
+{txt}Time at risk    = {res}{ralign 5:2,984}
+{col 57}{txt}{lalign 13:LR chi2({res:6})} = {res}{ralign 6:7.86}
+{txt}Log likelihood = {res}-190.28555{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.2488}
+
+{txt}{hline 16}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}             _t{col 17}{c |} Haz. ratio{col 29}   Std. err.{col 41}      z{col 49}   P>|z|{col 57}     [95% con{col 70}f. interval]
+{hline 16}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}causeNUMERIC {c |}
+{space 1}Assassination  {c |}{col 17}{res}{space 2} 1.887601{col 29}{space 2} .6005266{col 40}{space 1}    2.00{col 49}{space 3}0.046{col 57}{space 4} 1.011828{col 70}{space 3} 3.521387
+{txt}{space 5}Captivity  {c |}{col 17}{res}{space 2} .5304672{col 29}{space 2} .5462988{col 40}{space 1}   -0.62{col 49}{space 3}0.538{col 57}{space 4} .0704779{col 70}{space 3} 3.992675
+{txt}Died in Battle  {c |}{col 17}{res}{space 2} 3.344775{col 29}{space 2} 1.901632{col 40}{space 1}    2.12{col 49}{space 3}0.034{col 57}{space 4} 1.097556{col 70}{space 3} 10.19313
+{txt}{space 5}Execution  {c |}{col 17}{res}{space 2} 1.506054{col 29}{space 2} .6319318{col 40}{space 1}    0.98{col 49}{space 3}0.329{col 57}{space 4} .6617307{col 70}{space 3} 3.427677
+{txt}{space 7}Suicide  {c |}{col 17}{res}{space 2} .9063985{col 29}{space 2} .5055625{col 40}{space 1}   -0.18{col 49}{space 3}0.860{col 57}{space 4} .3037693{col 70}{space 3} 2.704547
+{txt}{space 7}Unknown  {c |}{col 17}{res}{space 2}  1.33605{col 29}{space 2} 1.378549{col 40}{space 1}    0.28{col 49}{space 3}0.779{col 57}{space 4} .1768254{col 70}{space 3} 10.09487
+{txt}{hline 16}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. //_22
+. stcurve, survival at(causeNUMERIC=(1(1)7)) ///
+> scheme(michigan) // basic survival curve by causeNUMERIC
+{res}{txt}
+{com}. //_23
+. graph export mycox1.png, width(1000) replace
+{txt}{p 0 4 2}
+file {bf}
+mycox1.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_24
+. stcurve, survival ///
+> at(causeNUMERIC=(1(1)7)) ///
+> caption("Roman Emperors Data") ///
+> legend(order(1 "Assasination" 2 "Captivity" 3 "Died in Battle" /// 
+> 4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) ///
+> scheme(michigan) // more nicely formatted survival curve
+{res}{txt}
+{com}. //_25
+. graph export mycox2.png, width(1000) replace
+{txt}{p 0 4 2}
+file {bf}
+mycox2.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 8 Nov 2021, 13:41:20
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
