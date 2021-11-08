@@ -70,7 +70,9 @@ $$S(t)=Pr(T>t)$$
 
 ![Survival Curve by Cause of Death](mysurvival1.png){width=50%}
 
-    sts graph, by(causeNUMERIC) scheme(michigan) legend(pos(6) col(2)) // survival curve w better legend
+    sts graph, by(causeNUMERIC) scheme(michigan) ///
+    legend(pos(6) col(2) order(1 "Assasination" 2 "Captivity" 3 "Died in Battle" /// 
+    4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) // survival curve w better legend
 	
     graph export mysurvival2.png, width(1000) replace
 

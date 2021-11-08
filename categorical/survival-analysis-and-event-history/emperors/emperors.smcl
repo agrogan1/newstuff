@@ -1,9 +1,9 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 8 Nov 2021, 13:41:10
+ {txt}opened on:  {res} 8 Nov 2021, 14:04:25
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -14,8 +14,7 @@
 {res}{txt}
 {com}. //_3
 . import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
-{res}{txt}(encoding automatically selected: ISO-8859-1)
-{text}(16 vars, 68 obs)
+{res}{text}(16 vars, 68 obs)
 
 {com}. //_4
 . * we can't use the date() function 
@@ -96,7 +95,7 @@
 . graph export mysurvival0.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mysurvival0.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival0.png{rm}
 saved as
 PNG
 format
@@ -112,14 +111,16 @@ format
 . graph export mysurvival1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mysurvival1.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival1.png{rm}
 saved as
 PNG
 format
 {p_end}
 
 {com}. //_19
-. sts graph, by(causeNUMERIC) scheme(michigan) legend(pos(6) col(2)) // survival curve w better legend
+. sts graph, by(causeNUMERIC) scheme(michigan) ///
+> legend(pos(6) col(2) order(1 "Assasination" 2 "Captivity" 3 "Died in Battle" /// 
+> 4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) // survival curve w better legend
 
 {col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
 {col 3}Analysis time {bf:_t}: {res}age
@@ -128,7 +129,7 @@ format
 . graph export mysurvival2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mysurvival2.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival2.png{rm}
 saved as
 PNG
 format
@@ -176,7 +177,7 @@ No. of subjects = {res}{ralign 5:61}{col 57}{txt}{lalign 13:Number of obs} = {re
 . graph export mycox1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mycox1.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mycox1.png{rm}
 saved as
 PNG
 format
@@ -194,7 +195,7 @@ format
 . graph export mycox2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mycox2.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mycox2.png{rm}
 saved as
 PNG
 format
@@ -203,9 +204,9 @@ format
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 8 Nov 2021, 13:41:20
+ {txt}closed on:  {res} 8 Nov 2021, 14:04:36
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
