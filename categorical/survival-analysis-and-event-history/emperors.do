@@ -28,6 +28,16 @@ codebook causeNUMERIC // show values of causeNUMERIC
 
 stset age // stset the data
 
+sts graph, by(causeNUMERIC) scheme(michigan) // survival curve
+
+* Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)
+
+$$
+    S(t)=Pr(T>t)
+$$
+
+sts graph, by(causeNUMERIC) scheme(michigan) legend(pos(6) col(2)) // survival curve w better legend
+
 stcox ib5.causeNUMERIC // Cox model
 
 stcurve, survival at(causeNUMERIC=(1(1)7)) ///
