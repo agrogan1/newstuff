@@ -1,0 +1,83 @@
+% Event History Analysis With Roman Emperor's Data
+% Andy Grogan-Kaylor
+% `s c(current_date)`
+
+---
+geometry: margin=1 in
+---
+
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+
+# Introduction
+
+This example uses data on the ages of death of Roman Emperors. Source unclear.
+
+# Get Data
+
+    clear all
+
+    import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors.csv"
+
+# Date Wrangling
+
+    * we can't use the date() function 
+    * because it does not work
+    * with dates prior to 100AD
+
+    * generate birthdate = date(birth, "YMD")
+
+    * generate deathdate = date(death, "YMD")
+
+    generate birthyear = real(substr(birth, 1, 4)) // convert first 4 characters to real number
+
+    generate deathyear = real(substr(death, 1, 4)) // convert first 4 characters to real number
+
+    * browse name name_full birth birthyear death deathyear
+
+    generate age = deathyear - birthyear
+
+    * need to recalculate age for those born in BCE
+
+    encode cause, generate(causeNUMERIC) // numeric version of cause of death
+
+    codebook causeNUMERIC // show values of causeNUMERIC
+
+# `stset` The Data
+
+We need to `stset` the data so that Stata knows that this is survival data with special characteristics. For those of you have used other commands, this is similar to using `svyset` or `xtset`.
+
+The most commonly used syntax is something like `stset timevar, failure(failvar) id(id)` [^failvar]
+
+[^failvar]: failvair is often something like `died`.
+
+> There are many ways to specify `failvar`, we outline the most straightforward. Consult Stata help for your exact situation.
+
+    stset age // stset the data
+
+# Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)
+
+$$S(t)=Pr(T>t)$$
+
+    sts graph, by(causeNUMERIC) scheme(michigan) // survival curve
+
+    sts graph, by(causeNUMERIC) scheme(michigan) legend(pos(6) col(2)) // survival curve w better legend
+
+# Cox Proportional Hazards Model
+
+    stcox ib5.causeNUMERIC // Cox model
+
+    stcurve, survival at(causeNUMERIC=(1(1)7)) ///
+    scheme(michigan) // basic survival curve by causeNUMERIC
+
+    stcurve, survival ///
+    at(causeNUMERIC=(1(1)7)) ///
+    caption("Roman Emperors Data") ///
+    legend(order(1 "Assasination" 2 "Captivity" 3 "Died in Battle" /// 
+    4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) ///
+    scheme(michigan) // more nicely formatted survival curve
+
+
+
+
+
+
