@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 8 Nov 2021, 14:04:25
+ {txt}opened on:  {res} 9 Nov 2021, 13:08:13
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 8 Nov 2021
+{res} 9 Nov 2021
 {txt}
 {com}. //_2
 . clear all
@@ -206,7 +206,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 8 Nov 2021, 14:04:36
+ {txt}closed on:  {res} 9 Nov 2021, 13:08:27
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
