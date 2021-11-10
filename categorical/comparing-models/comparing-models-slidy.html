@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Comparing Statistical Models</title>
+  <style type="text/css">
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+   href="../UMslidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+	<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Comparing Statistical Models</h1>
+  <p class="author">
+Andy Grogan-Kaylor
+  </p>
+</div>
+<div id="header">
+<div id="comparing-statistical-models" class="slide section level1 title">
+<h1 class="title">Comparing Statistical Models</h1>
+<h2 class="author" id="andy-grogan-kaylor">Andy Grogan-Kaylor</h2>
+<h3 class="date" id="nov-2021-113847">8 Nov 2021 11:38:47</h3>
+</div>
+</div>
+<div id="introduction" class="slide section level1">
+<h1>Introduction</h1>
+<p>In this example, we explore the predictors of the <em>count of Adverse Childhood Experiences</em> (ACES) that children experience. Using the <em>general linear model</em> framework, we could conceivably compare different statistical models on several grounds.</p>
+<ol class="incremental" style="list-style-type: decimal">
+<li>Theoretical plausibility</li>
+<li>Functional form of the dependent variable</li>
+<li>Functional form of the entire model</li>
+<li>Statistical criteria of fit.</li>
+</ol>
+<blockquote>
+<p>Frequently, there is no one correct way to analyze data, and different statistical approaches need to be weighed on multiple criteria to ascertain which approach(es) is / are appropriate.</p>
+</blockquote>
+</div>
+<div id="theoretical-and-functional-concerns" class="slide section level1">
+<h1>Theoretical and Functional Concerns</h1>
+<table>
+<thead>
+<tr class="header header">
+<th align="left">Statistical Model</th>
+<th align="left">Stata Command</th>
+<th align="left">Theoretical Rationale</th>
+<th align="left">Functional Form of Dependent Variable</th>
+<th align="left">Functional Form of Model</th>
+<th align="left">Coefficients Imply</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd odd">
+<td align="left">OLS</td>
+<td align="left"><code>regress</code></td>
+<td align="left">Continuous dependent variable</td>
+<td align="left"><span class="math inline">\(-\infty &lt; y &lt; \infty\)</span></td>
+<td align="left">y is a linear function of the x's</td>
+<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in y</td>
+</tr>
+<tr class="even even">
+<td align="left">Logistic Regression</td>
+<td align="left"><code>logit</code></td>
+<td align="left">Binary dependent variable</td>
+<td align="left"><span class="math inline">\(y = 0 \text{ or } 1\)</span></td>
+<td align="left"><span class="math inline">\(\ln \big( \frac{p(y)}{1-p(y)} \big)\)</span> is a linear function of x's</td>
+<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in the log odds of y</td>
+</tr>
+<tr class="odd odd">
+<td align="left"></td>
+<td align="left"><code>logit, or</code></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(e^{\beta}\)</span> change in the OR</td>
+</tr>
+<tr class="even even">
+<td align="left">Ordinal logistic regression</td>
+<td align="left"><code>ologit</code></td>
+<td align="left">Ordered dependent variable where distance between categories does not matter</td>
+<td align="left"><span class="math inline">\(-\infty &lt; y &lt; \infty\)</span></td>
+<td align="left"><span class="math inline">\(\ln \big( \frac{p(y \text{ this level of the outcome})}{p(y \text{ not this level of the outcome})} \big)\)</span> is a linear function of x's</td>
+<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in the log odds of y</td>
+</tr>
+<tr class="odd odd">
+<td align="left"></td>
+<td align="left"><code>ologit, or</code></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(e^{\beta}\)</span> change in the OR</td>
+</tr>
+<tr class="even even">
+<td align="left">Multinomial Logistic Regression</td>
+<td align="left"><code>mlogit</code></td>
+<td align="left">Dependent variable with multiple unordered categories</td>
+<td align="left"><span class="math inline">\(-\infty &lt; y &lt; \infty\)</span></td>
+<td align="left"><span class="math inline">\(\ln \big( \frac{p(y \text{ another category})}{p(y \text{ reference category})} \big)\)</span> is a linear function of x's</td>
+<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in the log risk ratio of y</td>
+</tr>
+<tr class="odd odd">
+<td align="left"></td>
+<td align="left"><code>mlogit, rr</code></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(e^{\beta}\)</span> change in the RR</td>
+</tr>
+<tr class="even even">
+<td align="left">Poisson Regression</td>
+<td align="left"><code>poisson</code></td>
+<td align="left">Dependent variable representing a count</td>
+<td align="left"><span class="math inline">\(y \text{ is integer} \geq 0\)</span></td>
+<td align="left"><span class="math inline">\(\ln(y_\text{count})\)</span> is a linear function of x's</td>
+<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in the log count of y</td>
+</tr>
+<tr class="odd odd">
+<td align="left"></td>
+<td align="left"><code>poisson, irr</code></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(e^{\beta}\)</span> change in the IRR</td>
+</tr>
+<tr class="even even">
+<td align="left">Negative Binomial Regression</td>
+<td align="left"><code>nbreg</code></td>
+<td align="left">Dependent variable representing a count</td>
+<td align="left"><span class="math inline">\(y \text{ is integer} \geq 0\)</span></td>
+<td align="left"><span class="math inline">\(\ln(y_\text{count})\)</span> is a linear function of x's</td>
+<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in the log count of y</td>
+</tr>
+<tr class="odd odd">
+<td align="left"></td>
+<td align="left"><code>nbreg, irr</code></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(e^{\beta}\)</span> change in the IRR</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="assessing-model-fit" class="slide section level1">
+<h1>Assessing Model Fit</h1>
+<h2 id="get-data-and-create-count-of-aces">Get Data And Create Count of ACEs</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">clear</span> <span class="ot">all</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">use</span> <span class="st">&quot;NSCH_ACES.dta&quot;</span>, <span class="kw">clear</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">egen</span> acecount = <span class="fu">anycount</span>(ace*R), <span class="kw">values</span>(1)  <span class="co">// generate count of ACES</span></span></code></pre></div>
+<h2 id="describe-the-data">Describe The Data</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">describe</span> acecount sc_sex sc_race_r higrade</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Variable      Storage   Display    Value</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bn">name</span>         <span class="dv">type</span>    <span class="kw">format</span>    <span class="kw">label</span>      Variable <span class="kw">label</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>acecount        <span class="kw">byte</span>    %8.0g                 ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R ace10R == 1</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>sc_sex          <span class="kw">byte</span>    %30.0g     sc_sex_lab</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                                              Sex <span class="kw">of</span> Selected Child</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>sc_race_r       <span class="kw">byte</span>    %48.0g     sc_race_r_lab</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                                              Race <span class="kw">of</span> Selected Child, Detailed</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>higrade         <span class="kw">byte</span>    %61.0g     higrade_lab</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                                              Highest Level <span class="kw">of</span> Education among Reported Adults</span></code></pre></div>
+<h2 id="explore-some-models">Explore Some Models</h2>
+<blockquote>
+<p>Only some of the above listed models are relevant. We use <code>quietly</code> to suppress model output at this stage.</p>
+</blockquote>
+<div class="sourceCode" id="cb5"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">quietly</span>: <span class="kw">regress</span> acecount sc_sex i.sc_race_r i.higrade <span class="co">// OLS</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">estimates</span> <span class="kw">store</span> OLS</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">quietly</span>: <span class="kw">ologit</span> acecount sc_sex i.sc_race_r i.higrade <span class="co">// ordinal logit</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">estimates</span> <span class="kw">store</span> ORDINAL</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">quietly</span>: <span class="kw">poisson</span> acecount sc_sex i.sc_race_r i.higrade <span class="co">// Poisson</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">estimates</span> <span class="kw">store</span> POISSON</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">quietly</span>: <span class="kw">nbreg</span> acecount sc_sex i.sc_race_r i.higrade <span class="co">// Negative Binomial</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">estimates</span> <span class="kw">store</span> NBREG</span></code></pre></div>
+<h2 id="compare-the-models-including-fit-measures">Compare The Models Including Fit Measures</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">estimates</span> <span class="kw">table</span> OLS ORDINAL POISSON NBREG, <span class="kw">var</span>(20) <span class="kw">star</span> <span class="kw">stats</span>(<span class="kw">N</span> ll aic bic) equations(1)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>─────────────────────┬────────────────────────────────────────────────────────────────</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>            Variable │      OLS           ORDINAL         POISSON          NBREG      </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>#1                   │</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>              sc_sex │ -.01358634      -.02856135      -.01282301       -.0127557     </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                     │</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>           sc_race_r │</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>Black <span class="kw">or</span> African ..  │  .32583464***    .47967243***    .26627607***    .28235733***  </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>American Indian o..  │  .88542522***    .88482406***    .59710627***    .62278046***  </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        Asian alone  │ -.46503425***   -.76002818***   -.62438214***   -.62012779***  </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>Native Hawaiian a..  │   .2516065       .35416681       .20674094*      .21879323     </span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>Some Other Race a..  │  .07433855       .14197623*      .06755212*      .08062919     </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  Two <span class="kw">or</span> More Races  │  .33035205***    .39265187***    .28181254***    .28198179***  </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                     │</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>             higrade │</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>High school (inc..)  │  .10021068       .17111252*      .06324858*      .06584405     </span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>More than high <span class="kw">sc</span>..  │ -.45113751***   -.62649139***   -.37861085***   -.38098265***  </span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>                     │</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>               <span class="dt">_cons</span> │   1.411494***                    .33994246***    .33915207***  </span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>               /cut1 │                 -.78624597***                                  </span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>               /cut2 │                  .65037457***                                  </span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>               /cut3 │                  1.5299647***                                  </span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>               /cut4 │                  2.2019291***                                  </span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>               /cut5 │                  2.8850071***                                  </span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>               /cut6 │                  3.6106908***                                  </span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>               /cut7 │                  4.4853373***                                  </span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>               /cut8 │                  5.9106719***                                  </span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>               /cut9 │                  7.5036903***                                  </span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>            /lnalpha │                                                 -.54430672***  </span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>─────────────────────┼────────────────────────────────────────────────────────────────</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>Statistics           │                                                                </span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>                   <span class="kw">N</span> │      30530           30530           30530           30530     </span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>                  ll │ -52340.464      -42451.588      -44758.999      -42775.864     </span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>                 aic │  104700.93       84939.175       89537.999       85573.728     </span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>                 bic │  104784.19       85089.052       89621.263       85665.319     </span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>─────────────────────┴────────────────────────────────────────────────────────────────</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>                                              Legend: * <span class="kw">p</span>&lt;0.05; ** <span class="kw">p</span>&lt;0.01; *** <span class="kw">p</span>&lt;0.001</span></code></pre></div>
+<p>In terms of <em>log-likelihood</em> a higher value indicates a better fit. We can also use the <em>Akaike Information Criterion</em> (AIC) and the <em>Bayesian Information Criterion</em> (BIC) to compare models. For AIC and BIC, lower values indicate a better fit.</p>
+<p>Thus, on strictly statistical grounds, the <em>ordinal</em> model would appear to provide the best fit, followed by the <em>negative binomial</em> model, the <em>Poisson</em> model, and the <em>OLS</em> model. However, we should note that the differences in fit between the <em>ordinal</em>, <em>negative binomial</em> and <em>Poisson</em> models are not exceptionally large. We would also worry that any differences in fit that we do see might be due to overfitting in this particular sample, or to capitalizing upon chance.</p>
+<p>Lastly, we'd worry that the ordinal model might not satisfy the <em>proportional hazards</em> assumption, and should examine this with a <code>brant</code> test.</p>
+<p>We need to balance these differences in fit against the fact that theoretically, a count data model seems more appropriate.</p>
+<p>In this case, we would most likely choose to proceed with a count regression model.</p>
+</div>
+</body>
+</html>
