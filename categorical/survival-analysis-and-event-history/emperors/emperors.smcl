@@ -1,20 +1,21 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 9 Nov 2021, 13:08:13
+ {txt}opened on:  {res}11 Nov 2021, 09:47:18
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 9 Nov 2021
+{res}11 Nov 2021
 {txt}
 {com}. //_2
 . clear all
 {res}{txt}
 {com}. //_3
 . import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
-{res}{text}(16 vars, 68 obs)
+{res}{txt}(encoding automatically selected: ISO-8859-1)
+{text}(16 vars, 68 obs)
 
 {com}. //_4
 . * we can't use the date() function 
@@ -43,7 +44,7 @@
 . encode cause, generate(causeNUMERIC) // numeric version of cause of death
 {txt}
 {com}. //_13
-. codebook causeNUMERIC // show values of causeNUMERIC
+. codebook causeNUMERIC if age != . // show values of causeNUMERIC for non missing ages
 
 {txt}{hline}
 {res}causeNUMERIC{right:(unlabeled)}
@@ -53,16 +54,16 @@
 {ralign 22:Label}: {res:causeNUMERIC}
 
 {col 18}Range: [{res}1{txt},{res}7{txt}]{col 55}Units: {res}1
-{col 10}{txt}Unique values: {res}7{col 51}{txt}Missing .: {res}0{txt}/{res}68
+{col 10}{txt}Unique values: {res}7{col 51}{txt}Missing .: {res}0{txt}/{res}63
 
 {txt}{col 13}Tabulation: Freq.   Numeric  Label
-{col 20}{res}        25{col 32}       1{col 42}{txt}Assassination
+{col 20}{res}        23{col 32}       1{col 42}{txt}Assassination
 {col 20}{res}         1{col 32}       2{col 42}{txt}Captivity
-{col 20}{res}         5{col 32}       3{col 42}{txt}Died in Battle
+{col 20}{res}         4{col 32}       3{col 42}{txt}Died in Battle
 {col 20}{res}         8{col 32}       4{col 42}{txt}Execution
 {col 20}{res}        21{col 32}       5{col 42}{txt}Natural Causes
 {col 20}{res}         5{col 32}       6{col 42}{txt}Suicide
-{col 20}{res}         3{col 32}       7{col 42}{txt}Unknown
+{col 20}{res}         1{col 32}       7{col 42}{txt}Unknown
 
 {com}. //_14
 . stset age // stset the data
@@ -95,7 +96,7 @@
 . graph export mysurvival0.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival0.png{rm}
+mysurvival0.png{rm}
 saved as
 PNG
 format
@@ -111,13 +112,26 @@ format
 . graph export mysurvival1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival1.png{rm}
+mysurvival1.png{rm}
 saved as
 PNG
 format
 {p_end}
 
 {com}. //_19
+. tabulate age causeNUMERIC if causeNUMERIC == 3
+
+           {txt}{c |} causeNUMER
+           {c |}     IC
+       age {c |} Died in B {c |}     Total
+{hline 11}{c +}{hline 11}{c +}{hline 10}
+        19 {c |}{res}         1 {txt}{c |}{res}         1 
+{txt}        32 {c |}{res}         1 {txt}{c |}{res}         1 
+{txt}        50 {c |}{res}         2 {txt}{c |}{res}         2 
+{txt}{hline 11}{c +}{hline 11}{c +}{hline 10}
+     Total {c |}{res}         4 {txt}{c |}{res}         4 
+{txt}
+{com}. //_20
 . sts graph, by(causeNUMERIC) scheme(michigan) ///
 > legend(pos(6) col(2) order(1 "Assasination" 2 "Captivity" 3 "Died in Battle" /// 
 > 4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) // survival curve w better legend
@@ -125,17 +139,17 @@ format
 {col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
 {col 3}Analysis time {bf:_t}: {res}age
 {txt}
-{com}. //_20
+{com}. //_21
 . graph export mysurvival2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival2.png{rm}
+mysurvival2.png{rm}
 saved as
 PNG
 format
 {p_end}
 
-{com}. //_21
+{com}. //_22
 . stcox ib5.causeNUMERIC // Cox model
 
 {col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
@@ -169,21 +183,21 @@ No. of subjects = {res}{ralign 5:61}{col 57}{txt}{lalign 13:Number of obs} = {re
 {txt}{space 7}Unknown  {c |}{col 17}{res}{space 2}  1.33605{col 29}{space 2} 1.378549{col 40}{space 1}    0.28{col 49}{space 3}0.779{col 57}{space 4} .1768254{col 70}{space 3} 10.09487
 {txt}{hline 16}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_22
+{com}. //_23
 . stcurve, survival at(causeNUMERIC=(1(1)7)) ///
 > scheme(michigan) // basic survival curve by causeNUMERIC
 {res}{txt}
-{com}. //_23
+{com}. //_24
 . graph export mycox1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mycox1.png{rm}
+mycox1.png{rm}
 saved as
 PNG
 format
 {p_end}
 
-{com}. //_24
+{com}. //_25
 . stcurve, survival ///
 > at(causeNUMERIC=(1(1)7)) ///
 > caption("Roman Emperors Data") ///
@@ -191,11 +205,11 @@ format
 > 4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) ///
 > scheme(michigan) // more nicely formatted survival curve
 {res}{txt}
-{com}. //_25
+{com}. //_26
 . graph export mycox2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mycox2.png{rm}
+mycox2.png{rm}
 saved as
 PNG
 format
@@ -204,9 +218,9 @@ format
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 9 Nov 2021, 13:08:27
+ {txt}closed on:  {res}11 Nov 2021, 09:47:26
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
