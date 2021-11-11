@@ -33,7 +33,9 @@ library(dplyr)
 library(foreign)
 
 ```
+# Introduction
 
+Think about a hypothetical event: e.g. *birth*, *death*, *partnering*, *marriage* or *commitment* to a partner, *entering a program*, *leaving a program*, *attaining a degree*, *first diagnosis of anxiety or depression*, etc.
 
 # Simulate Data
 
@@ -98,8 +100,6 @@ library(ggplot2)
 library(plotly)
 
 ```
-
-Think about a hypothetical event: e.g. *birth*, *death*, *marriage* or *commitment* to a partner, *entering a program*, *leaving a program*.
 
 Individuals in the animation below who have not yet experienced an event are indicated by a <span style="font-size: 150%">&#x25CF;</span>. 
 
