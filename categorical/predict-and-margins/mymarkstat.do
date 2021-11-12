@@ -2,7 +2,7 @@
 
 clear all
 
-cd "/Users/agrogan/Desktop/newstuff/categorical/predict-and-margins"
+cd "/Users/agrogan/Desktop/Github/newstuff/categorical/predict-and-margins"
 
 doedit "predict-and-margins.stmd"
 
