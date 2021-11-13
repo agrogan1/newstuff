@@ -32,19 +32,19 @@ d-article blockquote {
 
 ```{r}
 
-library(ggplot2)
+library(ggplot2) # beautiful graphs
 
-library(ggthemes)
+library(patchwork) # weave ggplots together
 
-library(dplyr)
+library(dplyr) # data wrangling
 
-library(plotly)
+library(plotly) # interactive graphs
 
-library(knitr)
+library(knitr) # Rmarkdown
 
-library(rgl)
-
-library(rayshader)
+library(rgl) # 3d graphics
+ 
+library(rayshader) # rayshading
 
 ```
 
@@ -57,20 +57,26 @@ y <- exp(x)/(1 + exp(x))
 
 myprobability <- round(y, digits = 5)
 
-p1 <- ggplot(data = NULL,
+# foundational logistic curve
+
+p0 <- ggplot(data = NULL,
              aes(x = x,
              y = myprobability,
              color = myprobability)) + 
   geom_point() +
   scale_color_viridis_c(name = "probability") +
-  labs(title = "Logistic Curve",
-       x = "x",
-       y = "probability") +
   theme_minimal() + 
   theme(legend.position = "none",
         panel.background = element_rect(fill="white"),
         plot.background = element_rect(fill="white"))
-  
+
+# logistic curve
+
+p1 <- p0 + 
+  labs(title = "Logistic Curve",
+       x = "x",
+       y = "probability") 
+
 # ggplotly(p1)
 
 ggsave(p1 + 
@@ -103,6 +109,13 @@ rayshader::plot_gg(p1, zoom = .8) %>%
                type = "orbit",
                frames = 360,
                fps = 30)
+
+```
+
+```{r, eval=FALSE}
+
+p1A <- p0 + p0 +
+   plot_annotation(title = "Multinomial Logistic Curve")
 
 ```
 
