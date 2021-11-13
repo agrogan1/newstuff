@@ -32,7 +32,10 @@ library(dplyr)
 
 library(foreign)
 
+library(pander)
+
 ```
+
 # Introduction
 
 Think about a hypothetical event: e.g. *birth*, *death*, *partnering*, *marriage* or *commitment* to a partner, *entering a program*, *leaving a program*, *attaining a degree*, *first diagnosis of anxiety or depression*, etc.
@@ -40,6 +43,8 @@ Think about a hypothetical event: e.g. *birth*, *death*, *partnering*, *marriage
 # Simulate Data
 
 ```{r}
+
+set.seed(2779) # random seed
 
 N <- 10 # sample size
 
@@ -169,5 +174,29 @@ datatable(mydata, caption = "Data in Multiple Record Form")
 
 ```
 
+## Survival Curve
+
+```{r}
+
+library("survival")
+
+library("survminer")
+
+```
+
+```{r}
+
+fit <- survfit(Surv(event_time, censored == "Not Censored") ~ 1, 
+               data = mydata2)
+
+# nice-ish survival curve
+
+ggsurvplot(fit,
+           conf.int = TRUE, # show CI
+           ggtheme = theme_minimal(),
+           palette = c("#00274C")) + # Michigan blue
+  labs(title = "Survival Curve") 
+
+```
 
 
