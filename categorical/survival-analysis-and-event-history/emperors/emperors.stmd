@@ -41,6 +41,10 @@ This example uses data on the ages of death of Roman Emperors. Source unclear.
     encode cause, generate(causeNUMERIC) // numeric version of cause of death
 
     codebook causeNUMERIC if age != . // show values of causeNUMERIC for non missing ages
+	
+	encode rise, generate(riseNUMERIC) // numeric version of cause of death
+	
+	codebook riseNUMERIC
 
 # `stset` The Data
 
@@ -90,7 +94,7 @@ We can then work to make the legend more informative.
 
 # Cox Proportional Hazards Model
 
-    stcox ib5.causeNUMERIC // Cox model
+    stcox ib5.causeNUMERIC ib5.riseNUMERIC // Cox model
 
     stcurve, survival at(causeNUMERIC=(1(1)7)) ///
     scheme(michigan) // basic survival curve by causeNUMERIC
@@ -110,7 +114,15 @@ We can then work to make the legend more informative.
 
 ![Survival Curve From Cox Model](mycox2.png){width=50%}
 
+# Proportional Hazards Assumption
 
+    estat phtest // formal test of PH assumption
+
+    stphplot, by(causeNUMERIC) scheme(michigan) // graphical test of PH assumption
+	
+	graph export ph.png, width(1000) replace
+	
+![Graphical Assessment of Proportional Hazards Assumptions](ph.png){width=50%}
 
 
 

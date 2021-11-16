@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}11 Nov 2021, 09:47:18
+ {txt}opened on:  {res}15 Nov 2021, 19:28:04
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}11 Nov 2021
+{res}15 Nov 2021
 {txt}
 {com}. //_2
 . clear all
@@ -66,6 +66,32 @@
 {col 20}{res}         1{col 32}       7{col 42}{txt}Unknown
 
 {com}. //_14
+. encode rise, generate(riseNUMERIC) // numeric version of cause of death
+{txt}
+{com}. //_15
+. codebook riseNUMERIC
+
+{txt}{hline}
+{res}riseNUMERIC{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}Type: Numeric ({res}long{txt})
+{ralign 22:Label}: {res:riseNUMERIC}
+
+{col 18}Range: [{res}1{txt},{res}8{txt}]{col 55}Units: {res}1
+{col 10}{txt}Unique values: {res}8{col 51}{txt}Missing .: {res}0{txt}/{res}68
+
+{txt}{col 13}Tabulation: Freq.   Numeric  Label
+{col 20}{res}         7{col 32}       1{col 42}{txt}Appointment by Army
+{col 20}{res}         4{col 32}       2{col 42}{txt}Appointment by Emperor
+{col 20}{res}         3{col 32}       3{col 42}{txt}Appointment by Praetorian Guard
+{col 20}{res}         7{col 32}       4{col 42}{txt}Appointment by Senate
+{col 20}{res}        35{col 32}       5{col 42}{txt}Birthright
+{col 20}{res}         1{col 32}       6{col 42}{txt}Election
+{col 20}{res}         1{col 32}       7{col 42}{txt}Purchase
+{col 20}{res}        10{col 32}       8{col 42}{txt}Seized Power
+
+{com}. //_16
 . stset age // stset the data
 
 {txt}Survival-time data settings
@@ -86,13 +112,13 @@
                                      {txt}Earliest observed entry t = {res}        0
                                           {txt}Last observed exit t = {res}       79
 {txt}
-{com}. //_15
+{com}. //_17
 . sts graph, scheme(michigan)
 
 {col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
 {col 3}Analysis time {bf:_t}: {res}age
 {txt}
-{com}. //_16
+{com}. //_18
 . graph export mysurvival0.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
@@ -102,13 +128,13 @@ PNG
 format
 {p_end}
 
-{com}. //_17
+{com}. //_19
 . sts graph, by(causeNUMERIC) scheme(michigan) // survival curve by cause of death
 
 {col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
 {col 3}Analysis time {bf:_t}: {res}age
 {txt}
-{com}. //_18
+{com}. //_20
 . graph export mysurvival1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
@@ -118,7 +144,7 @@ PNG
 format
 {p_end}
 
-{com}. //_19
+{com}. //_21
 . tabulate age causeNUMERIC if causeNUMERIC == 3
 
            {txt}{c |} causeNUMER
@@ -131,7 +157,7 @@ format
 {txt}{hline 11}{c +}{hline 11}{c +}{hline 10}
      Total {c |}{res}         4 {txt}{c |}{res}         4 
 {txt}
-{com}. //_20
+{com}. //_22
 . sts graph, by(causeNUMERIC) scheme(michigan) ///
 > legend(pos(6) col(2) order(1 "Assasination" 2 "Captivity" 3 "Died in Battle" /// 
 > 4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) // survival curve w better legend
@@ -139,7 +165,7 @@ format
 {col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
 {col 3}Analysis time {bf:_t}: {res}age
 {txt}
-{com}. //_21
+{com}. //_23
 . graph export mysurvival2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
@@ -149,45 +175,54 @@ PNG
 format
 {p_end}
 
-{com}. //_22
-. stcox ib5.causeNUMERIC // Cox model
+{com}. //_24
+. stcox ib5.causeNUMERIC ib5.riseNUMERIC // Cox model
 
 {col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
 {col 3}Analysis time {bf:_t}: {res}age
 
 {txt}Iteration 0:   log likelihood = {res}-194.21354
-{txt}Iteration 1:   log likelihood = {res}-190.65797
-{txt}Iteration 2:   log likelihood = {res}-190.29078
-{txt}Iteration 3:   log likelihood = {res}-190.28555
-{txt}Iteration 4:   log likelihood = {res}-190.28555
+{txt}Iteration 1:   log likelihood = {res}-183.48964
+{txt}Iteration 2:   log likelihood = {res}-183.01318
+{txt}Iteration 3:   log likelihood = {res}-183.00966
+{txt}Iteration 4:   log likelihood = {res}-183.00966
 {txt}Refining estimates:
-Iteration 0:   log likelihood = {res}-190.28555
+Iteration 0:   log likelihood = {res}-183.00966
 
 {txt}Cox regression with Breslow method for ties
 
 No. of subjects = {res}{ralign 5:61}{col 57}{txt}{lalign 13:Number of obs} = {res}{ralign 6:61}
 {txt}No. of failures = {res}{ralign 5:61}
 {txt}Time at risk    = {res}{ralign 5:2,984}
-{col 57}{txt}{lalign 13:LR chi2({res:6})} = {res}{ralign 6:7.86}
-{txt}Log likelihood = {res}-190.28555{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.2488}
+{col 57}{txt}{lalign 13:LR chi2({res:13})} = {res}{ralign 6:22.41}
+{txt}Log likelihood = {res}-183.00966{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0494}
 
-{txt}{hline 16}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}             _t{col 17}{c |} Haz. ratio{col 29}   Std. err.{col 41}      z{col 49}   P>|z|{col 57}     [95% con{col 70}f. interval]
-{hline 16}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 3}causeNUMERIC {c |}
-{space 1}Assassination  {c |}{col 17}{res}{space 2} 1.887601{col 29}{space 2} .6005266{col 40}{space 1}    2.00{col 49}{space 3}0.046{col 57}{space 4} 1.011828{col 70}{space 3} 3.521387
-{txt}{space 5}Captivity  {c |}{col 17}{res}{space 2} .5304672{col 29}{space 2} .5462988{col 40}{space 1}   -0.62{col 49}{space 3}0.538{col 57}{space 4} .0704779{col 70}{space 3} 3.992675
-{txt}Died in Battle  {c |}{col 17}{res}{space 2} 3.344775{col 29}{space 2} 1.901632{col 40}{space 1}    2.12{col 49}{space 3}0.034{col 57}{space 4} 1.097556{col 70}{space 3} 10.19313
-{txt}{space 5}Execution  {c |}{col 17}{res}{space 2} 1.506054{col 29}{space 2} .6319318{col 40}{space 1}    0.98{col 49}{space 3}0.329{col 57}{space 4} .6617307{col 70}{space 3} 3.427677
-{txt}{space 7}Suicide  {c |}{col 17}{res}{space 2} .9063985{col 29}{space 2} .5055625{col 40}{space 1}   -0.18{col 49}{space 3}0.860{col 57}{space 4} .3037693{col 70}{space 3} 2.704547
-{txt}{space 7}Unknown  {c |}{col 17}{res}{space 2}  1.33605{col 29}{space 2} 1.378549{col 40}{space 1}    0.28{col 49}{space 3}0.779{col 57}{space 4} .1768254{col 70}{space 3} 10.09487
-{txt}{hline 16}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 33}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}                              _t{col 34}{c |} Haz. ratio{col 46}   Std. err.{col 58}      z{col 66}   P>|z|{col 74}     [95% con{col 87}f. interval]
+{hline 33}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 20}causeNUMERIC {c |}
+{space 18}Assassination  {c |}{col 34}{res}{space 2} 2.903395{col 46}{space 2} 1.087888{col 57}{space 1}    2.84{col 66}{space 3}0.004{col 74}{space 4} 1.393044{col 87}{space 3} 6.051281
+{txt}{space 22}Captivity  {c |}{col 34}{res}{space 2} .6157704{col 46}{space 2} .7019255{col 57}{space 1}   -0.43{col 66}{space 3}0.671{col 74}{space 4} .0659359{col 87}{space 3} 5.750634
+{txt}{space 17}Died in Battle  {c |}{col 34}{res}{space 2} 3.190409{col 46}{space 2} 1.898109{col 57}{space 1}    1.95{col 66}{space 3}0.051{col 74}{space 4} .9941017{col 87}{space 3}  10.2391
+{txt}{space 22}Execution  {c |}{col 34}{res}{space 2} 1.262384{col 46}{space 2} .5780177{col 57}{space 1}    0.51{col 66}{space 3}0.611{col 74}{space 4} .5145707{col 87}{space 3} 3.096976
+{txt}{space 24}Suicide  {c |}{col 34}{res}{space 2} 1.420734{col 46}{space 2} .9364432{col 57}{space 1}    0.53{col 66}{space 3}0.594{col 74}{space 4} .3903581{col 87}{space 3} 5.170852
+{txt}{space 24}Unknown  {c |}{col 34}{res}{space 2} .9040191{col 46}{space 2} .9428808{col 57}{space 1}   -0.10{col 66}{space 3}0.923{col 74}{space 4} .1170536{col 87}{space 3} 6.981847
+{txt}{space 32} {c |}
+{space 21}riseNUMERIC {c |}
+{space 12}Appointment by Army  {c |}{col 34}{res}{space 2} .5067648{col 46}{space 2}  .252628{col 57}{space 1}   -1.36{col 66}{space 3}0.173{col 74}{space 4} .1907536{col 87}{space 3} 1.346295
+{txt}{space 9}Appointment by Emperor  {c |}{col 34}{res}{space 2} .7952664{col 46}{space 2} .5753412{col 57}{space 1}   -0.32{col 66}{space 3}0.752{col 74}{space 4} .1926215{col 87}{space 3} 3.283375
+{txt}Appointment by Praetorian Guard  {c |}{col 34}{res}{space 2} .2160533{col 46}{space 2} .1461524{col 57}{space 1}   -2.27{col 66}{space 3}0.024{col 74}{space 4}  .057379{col 87}{space 3} .8135208
+{txt}{space 10}Appointment by Senate  {c |}{col 34}{res}{space 2} .2247029{col 46}{space 2} .1196918{col 57}{space 1}   -2.80{col 66}{space 3}0.005{col 74}{space 4} .0791046{col 87}{space 3} .6382865
+{txt}{space 23}Election  {c |}{col 34}{res}{space 2}  1.07545{col 46}{space 2} 1.123459{col 57}{space 1}    0.07{col 66}{space 3}0.944{col 74}{space 4} .1388001{col 87}{space 3} 8.332792
+{txt}{space 23}Purchase  {c |}{col 34}{res}{space 2} .5483916{col 46}{space 2}  .596986{col 57}{space 1}   -0.55{col 66}{space 3}0.581{col 74}{space 4} .0649325{col 87}{space 3} 4.631477
+{txt}{space 19}Seized Power  {c |}{col 34}{res}{space 2} .4053515{col 46}{space 2} .1654931{col 57}{space 1}   -2.21{col 66}{space 3}0.027{col 74}{space 4} .1821005{col 87}{space 3} .9023027
+{txt}{hline 33}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_23
+{com}. //_25
 . stcurve, survival at(causeNUMERIC=(1(1)7)) ///
 > scheme(michigan) // basic survival curve by causeNUMERIC
 {res}{txt}
-{com}. //_24
+{com}. //_26
 . graph export mycox1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
@@ -197,7 +232,7 @@ PNG
 format
 {p_end}
 
-{com}. //_25
+{com}. //_27
 . stcurve, survival ///
 > at(causeNUMERIC=(1(1)7)) ///
 > caption("Roman Emperors Data") ///
@@ -205,11 +240,39 @@ format
 > 4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) ///
 > scheme(michigan) // more nicely formatted survival curve
 {res}{txt}
-{com}. //_26
+{com}. //_28
 . graph export mycox2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
 mycox2.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_29
+. estat phtest // formal test of PH assumption
+
+{txt}Test of proportional-hazards assumption
+
+Time function: Analysis time
+{hline 13}{c TT}{hline 34}
+             {c |}     chi2       df       Prob>chi2
+{hline 13}{c +}{hline 34}
+ Global test {c |}{res}{col 15}    21.90{col 28}   13{col 43}0.0569
+{txt}{hline 13}{c BT}{hline 34}
+
+{com}. //_30
+. stphplot, by(causeNUMERIC) scheme(michigan) // graphical test of PH assumption
+
+{col 9}{txt}Failure {bf:_d}: {res}1{txt} (meaning all fail)
+{col 3}Analysis time {bf:_t}: {res}age
+{txt}
+{com}. //_31
+. graph export ph.png, width(1000) replace
+{txt}{p 0 4 2}
+file {bf}
+ph.png{rm}
 saved as
 PNG
 format
@@ -220,7 +283,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}11 Nov 2021, 09:47:26
+ {txt}closed on:  {res}15 Nov 2021, 19:28:15
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

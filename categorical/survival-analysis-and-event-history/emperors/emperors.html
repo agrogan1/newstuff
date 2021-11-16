@@ -52,7 +52,7 @@ table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid bl
 <div id="header">
 <h1 class="title">Event History Analysis With Roman Emperor's Data</h1>
 <h2 class="author">Andy Grogan-Kaylor</h2>
-<h3 class="date">11 Nov 2021</h3>
+<h3 class="date">15 Nov 2021</h3>
 </div>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 <h1 id="introduction">Introduction</h1>
@@ -108,6 +108,30 @@ causeNUMERIC                                                                    
                            21         5  Natural Causes
                             5         6  Suicide
                             1         7  Unknown
+</pre>
+<pre class='stata'>. encode rise, generate(riseNUMERIC) // numeric version of cause of death
+</pre>
+<pre class='stata'>. codebook riseNUMERIC
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+riseNUMERIC                                                                                                                              (unlabeled)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+                  Type: Numeric (long)
+                 Label: riseNUMERIC
+
+                 Range: [1,8]                         Units: 1
+         Unique values: 8                         Missing .: 0/68
+
+            Tabulation: Freq.   Numeric  Label
+                            7         1  Appointment by Army
+                            4         2  Appointment by Emperor
+                            3         3  Appointment by Praetorian Guard
+                            7         4  Appointment by Senate
+                           35         5  Birthright
+                            1         6  Election
+                            1         7  Purchase
+                           10         8  Seized Power
 </pre>
 <h1 id="stset-the-data"><code>stset</code> The Data</h1>
 <p>We need to <code>stset</code> the data so that Stata knows that this is survival data with special characteristics. For those of you have used other commands, this is similar to using <code>svyset</code> or <code>xtset</code>.</p>
@@ -183,38 +207,47 @@ file mysurvival2.png saved as PNG format
 </pre>
 <p><img src="mysurvival2.png" alt="Survival Curve With Better Legend" />{width=50%}</p>
 <h1 id="cox-proportional-hazards-model">Cox Proportional Hazards Model</h1>
-<pre class='stata'>. stcox ib5.causeNUMERIC // Cox model
+<pre class='stata'>. stcox ib5.causeNUMERIC ib5.riseNUMERIC // Cox model
 
         Failure _d: 1 (meaning all fail)
   Analysis time _t: age
 
 Iteration 0:   log likelihood = -194.21354
-Iteration 1:   log likelihood = -190.65797
-Iteration 2:   log likelihood = -190.29078
-Iteration 3:   log likelihood = -190.28555
-Iteration 4:   log likelihood = -190.28555
+Iteration 1:   log likelihood = -183.48964
+Iteration 2:   log likelihood = -183.01318
+Iteration 3:   log likelihood = -183.00966
+Iteration 4:   log likelihood = -183.00966
 Refining estimates:
-Iteration 0:   log likelihood = -190.28555
+Iteration 0:   log likelihood = -183.00966
 
 Cox regression with Breslow method for ties
 
 No. of subjects =    61                                 Number of obs =     61
 No. of failures =    61
 Time at risk    = 2,984
-                                                        LR chi2(6)    =   7.86
-Log likelihood = -190.28555                             Prob > chi2   = 0.2488
+                                                        LR chi2(13)   =  22.41
+Log likelihood = -183.00966                             Prob > chi2   = 0.0494
 
-────────────────┬────────────────────────────────────────────────────────────────
-             _t │ Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
-────────────────┼────────────────────────────────────────────────────────────────
-   causeNUMERIC │
- Assassination  │   1.887601   .6005266     2.00   0.046     1.011828    3.521387
-     Captivity  │   .5304672   .5462988    -0.62   0.538     .0704779    3.992675
-Died in Battle  │   3.344775   1.901632     2.12   0.034     1.097556    10.19313
-     Execution  │   1.506054   .6319318     0.98   0.329     .6617307    3.427677
-       Suicide  │   .9063985   .5055625    -0.18   0.860     .3037693    2.704547
-       Unknown  │    1.33605   1.378549     0.28   0.779     .1768254    10.09487
-────────────────┴────────────────────────────────────────────────────────────────
+─────────────────────────────────┬────────────────────────────────────────────────────────────────
+                              _t │ Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+─────────────────────────────────┼────────────────────────────────────────────────────────────────
+                    causeNUMERIC │
+                  Assassination  │   2.903395   1.087888     2.84   0.004     1.393044    6.051281
+                      Captivity  │   .6157704   .7019255    -0.43   0.671     .0659359    5.750634
+                 Died in Battle  │   3.190409   1.898109     1.95   0.051     .9941017     10.2391
+                      Execution  │   1.262384   .5780177     0.51   0.611     .5145707    3.096976
+                        Suicide  │   1.420734   .9364432     0.53   0.594     .3903581    5.170852
+                        Unknown  │   .9040191   .9428808    -0.10   0.923     .1170536    6.981847
+                                 │
+                     riseNUMERIC │
+            Appointment by Army  │   .5067648    .252628    -1.36   0.173     .1907536    1.346295
+         Appointment by Emperor  │   .7952664   .5753412    -0.32   0.752     .1926215    3.283375
+Appointment by Praetorian Guard  │   .2160533   .1461524    -2.27   0.024      .057379    .8135208
+          Appointment by Senate  │   .2247029   .1196918    -2.80   0.005     .0791046    .6382865
+                       Election  │    1.07545   1.123459     0.07   0.944     .1388001    8.332792
+                       Purchase  │   .5483916    .596986    -0.55   0.581     .0649325    4.631477
+                   Seized Power  │   .4053515   .1654931    -2.21   0.027     .1821005    .9023027
+─────────────────────────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <pre class='stata'>. stcurve, survival at(causeNUMERIC=(1(1)7)) ///
 > scheme(michigan) // basic survival curve by causeNUMERIC
@@ -234,6 +267,27 @@ file mycox1.png saved as PNG format
 file mycox2.png saved as PNG format
 </pre>
 <p><img src="mycox2.png" alt="Survival Curve From Cox Model" />{width=50%}</p>
+<h1 id="proportional-hazards-assumption">Proportional Hazards Assumption</h1>
+<pre class='stata'>. estat phtest // formal test of PH assumption
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+─────────────┬──────────────────────────────────
+             │     chi2       df       Prob>chi2
+─────────────┼──────────────────────────────────
+ Global test │    21.90       13          0.0569
+─────────────┴──────────────────────────────────
+</pre>
+<pre class='stata'>. stphplot, by(causeNUMERIC) scheme(michigan) // graphical test of PH assumption
+
+        Failure _d: 1 (meaning all fail)
+  Analysis time _t: age
+</pre>
+<pre class='stata'>. graph export ph.png, width(1000) replace
+file ph.png saved as PNG format
+</pre>
+<p><img src="ph.png" alt="Graphical Assessment of Proportional Hazards Assumptions" />{width=50%}</p>
 <div class="footnotes">
 <hr />
 <ol>
