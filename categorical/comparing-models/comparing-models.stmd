@@ -53,7 +53,7 @@ In this example, we explore the predictors of the *count of Adverse Childhood Ex
 	
 ## Explore Some Models
 
-> Only some of the above listed models are relevant.  We use `quietly` to suppress model output at this stage.
+> Only some of the above listed models are relevant.  We estimate potentially relevant models. We use `quietly` to suppress model output at this stage.
 
     quietly: regress acecount sc_sex i.sc_race_r i.higrade // OLS
 	
@@ -73,8 +73,10 @@ In this example, we explore the predictors of the *count of Adverse Childhood Ex
 	
 ## Compare The Models Including Fit Measures
 
-    estimates table OLS ORDINAL POISSON NBREG, var(20) star stats(N ll aic bic) equations(1)
-	
+    estimates table OLS ORDINAL POISSON NBREG, var(25) star stats(N ll aic bic) equations(1)
+
+We note that the *signs* of coefficients (positive or negative) appear to be consistent across models. Generally, but not universally, patterns of the *statistical significance* of coefficients are consistent across models.
+
 In terms of *log-likelihood* a higher value indicates a better fit.  We can also use the *Akaike Information Criterion* (AIC) and the *Bayesian Information Criterion* (BIC) to compare models. For AIC and BIC, lower values indicate a better fit.
 
 Thus, on strictly statistical grounds, the *ordinal* model would appear to provide the best fit, followed by the *negative binomial* model, the *Poisson* model, and the *OLS* model. However, we should note that the differences in fit between the *ordinal*, *negative binomial* and *Poisson* models are not exceptionally large. We would also worry that any differences in fit that we do see might be due to overfitting in this particular sample, or to capitalizing upon chance.
@@ -83,7 +85,13 @@ Lastly, we'd worry that the ordinal model might not satisfy the *proportional ha
 
 We need to balance these differences in fit against the fact that theoretically, a count data model seems more appropriate.
 
-In this case, we would most likely choose to proceed with a count regression model.
+> In this case, we would most likely choose to proceed with a count regression model.
+
+# Visualization
+
+As a *postscript* we note that in choosing between models, it might be helpful to do some exploratory data visualization. For example, are the relationships between `x`'s and `y`'s *linear*, or *non-linear*? Is the distribution of our outcome variable *normal* or *non-normal*? While there are no strict rules of thumb here, visualization of the data might help us to make a theoretical or conceptual case for one model over the other.
+
+
 	
 	
 	

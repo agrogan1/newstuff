@@ -52,7 +52,7 @@ table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid bl
 <div id="header">
 <h1 class="title">Comparing Statistical Models</h1>
 <h2 class="author">Andy Grogan-Kaylor</h2>
-<h3 class="date">8 Nov 2021 11:38:47</h3>
+<h3 class="date">18 Nov 2021 12:56:17</h3>
 </div>
 <h1 id="introduction">Introduction</h1>
 <style>body {max-width: 90%;} h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;} tr:nth-child(even){background-color: #f2f2f2;} tr:hover {background-color: #ddd;} th{background-color: #FFCB05;}</style>
@@ -193,7 +193,7 @@ higrade         byte    %61.0g     higrade_lab
 </pre>
 <h2 id="explore-some-models">Explore Some Models</h2>
 <blockquote>
-<p>Only some of the above listed models are relevant. We use <code>quietly</code> to suppress model output at this stage.</p>
+<p>Only some of the above listed models are relevant. We estimate potentially relevant models. We use <code>quietly</code> to suppress model output at this stage.</p>
 </blockquote>
 <pre class='stata'>. quietly: regress acecount sc_sex i.sc_race_r i.higrade // OLS
 </pre>
@@ -212,51 +212,56 @@ higrade         byte    %61.0g     higrade_lab
 <pre class='stata'>. estimates store NBREG
 </pre>
 <h2 id="compare-the-models-including-fit-measures">Compare The Models Including Fit Measures</h2>
-<pre class='stata'>. estimates table OLS ORDINAL POISSON NBREG, var(20) star stats(N ll aic bic) equations(1)
+<pre class='stata'>. estimates table OLS ORDINAL POISSON NBREG, var(25) star stats(N ll aic bic) equations(1)
 
-─────────────────────┬────────────────────────────────────────────────────────────────
-            Variable │      OLS           ORDINAL         POISSON          NBREG      
-─────────────────────┼────────────────────────────────────────────────────────────────
-#1                   │
-              sc_sex │ -.01358634      -.02856135      -.01282301       -.0127557     
-                     │
-           sc_race_r │
-Black or African ..  │  .32583464***    .47967243***    .26627607***    .28235733***  
-American Indian o..  │  .88542522***    .88482406***    .59710627***    .62278046***  
-        Asian alone  │ -.46503425***   -.76002818***   -.62438214***   -.62012779***  
-Native Hawaiian a..  │   .2516065       .35416681       .20674094*      .21879323     
-Some Other Race a..  │  .07433855       .14197623*      .06755212*      .08062919     
-  Two or More Races  │  .33035205***    .39265187***    .28181254***    .28198179***  
-                     │
-             higrade │
-High school (inc..)  │  .10021068       .17111252*      .06324858*      .06584405     
-More than high sc..  │ -.45113751***   -.62649139***   -.37861085***   -.38098265***  
-                     │
-               _cons │   1.411494***                    .33994246***    .33915207***  
-─────────────────────┼────────────────────────────────────────────────────────────────
-               /cut1 │                 -.78624597***                                  
-               /cut2 │                  .65037457***                                  
-               /cut3 │                  1.5299647***                                  
-               /cut4 │                  2.2019291***                                  
-               /cut5 │                  2.8850071***                                  
-               /cut6 │                  3.6106908***                                  
-               /cut7 │                  4.4853373***                                  
-               /cut8 │                  5.9106719***                                  
-               /cut9 │                  7.5036903***                                  
-            /lnalpha │                                                 -.54430672***  
-─────────────────────┼────────────────────────────────────────────────────────────────
-Statistics           │                                                                
-                   N │      30530           30530           30530           30530     
-                  ll │ -52340.464      -42451.588      -44758.999      -42775.864     
-                 aic │  104700.93       84939.175       89537.999       85573.728     
-                 bic │  104784.19       85089.052       89621.263       85665.319     
-─────────────────────┴────────────────────────────────────────────────────────────────
-                                              Legend: * p&lt;0.05; ** p&lt;0.01; *** p&lt;0.001
+──────────────────────────┬────────────────────────────────────────────────────────────────
+                 Variable │      OLS           ORDINAL         POISSON          NBREG      
+──────────────────────────┼────────────────────────────────────────────────────────────────
+#1                        │
+                   sc_sex │ -.01358634      -.02856135      -.01282301       -.0127557     
+                          │
+                sc_race_r │
+Black or African Ameri..  │  .32583464***    .47967243***    .26627607***    .28235733***  
+American Indian or Ala..  │  .88542522***    .88482406***    .59710627***    .62278046***  
+             Asian alone  │ -.46503425***   -.76002818***   -.62438214***   -.62012779***  
+Native Hawaiian and Ot..  │   .2516065       .35416681       .20674094*      .21879323     
+   Some Other Race alone  │  .07433855       .14197623*      .06755212*      .08062919     
+       Two or More Races  │  .33035205***    .39265187***    .28181254***    .28198179***  
+                          │
+                  higrade │
+High school (includin..)  │  .10021068       .17111252*      .06324858*      .06584405     
+   More than high school  │ -.45113751***   -.62649139***   -.37861085***   -.38098265***  
+                          │
+                    _cons │   1.411494***                    .33994246***    .33915207***  
+──────────────────────────┼────────────────────────────────────────────────────────────────
+                    /cut1 │                 -.78624597***                                  
+                    /cut2 │                  .65037457***                                  
+                    /cut3 │                  1.5299647***                                  
+                    /cut4 │                  2.2019291***                                  
+                    /cut5 │                  2.8850071***                                  
+                    /cut6 │                  3.6106908***                                  
+                    /cut7 │                  4.4853373***                                  
+                    /cut8 │                  5.9106719***                                  
+                    /cut9 │                  7.5036903***                                  
+                 /lnalpha │                                                 -.54430672***  
+──────────────────────────┼────────────────────────────────────────────────────────────────
+Statistics                │                                                                
+                        N │      30530           30530           30530           30530     
+                       ll │ -52340.464      -42451.588      -44758.999      -42775.864     
+                      aic │  104700.93       84939.175       89537.999       85573.728     
+                      bic │  104784.19       85089.052       89621.263       85665.319     
+──────────────────────────┴────────────────────────────────────────────────────────────────
+                                                   Legend: * p&lt;0.05; ** p&lt;0.01; *** p&lt;0.001
 </pre>
+<p>We note that the <em>signs</em> of coefficients (positive or negative) appear to be consistent across models. Generally, but not universally, patterns of the <em>statistical significance</em> of coefficients are consistent across models.</p>
 <p>In terms of <em>log-likelihood</em> a higher value indicates a better fit. We can also use the <em>Akaike Information Criterion</em> (AIC) and the <em>Bayesian Information Criterion</em> (BIC) to compare models. For AIC and BIC, lower values indicate a better fit.</p>
 <p>Thus, on strictly statistical grounds, the <em>ordinal</em> model would appear to provide the best fit, followed by the <em>negative binomial</em> model, the <em>Poisson</em> model, and the <em>OLS</em> model. However, we should note that the differences in fit between the <em>ordinal</em>, <em>negative binomial</em> and <em>Poisson</em> models are not exceptionally large. We would also worry that any differences in fit that we do see might be due to overfitting in this particular sample, or to capitalizing upon chance.</p>
 <p>Lastly, we'd worry that the ordinal model might not satisfy the <em>proportional hazards</em> assumption, and should examine this with a <code>brant</code> test.</p>
 <p>We need to balance these differences in fit against the fact that theoretically, a count data model seems more appropriate.</p>
+<blockquote>
 <p>In this case, we would most likely choose to proceed with a count regression model.</p>
+</blockquote>
+<h1 id="visualization">Visualization</h1>
+<p>As a <em>postscript</em> we note that in choosing between models, it might be helpful to do some exploratory data visualization. For example, are the relationships between <code>x</code>'s and <code>y</code>'s <em>linear</em>, or <em>non-linear</em>? Is the distribution of our outcome variable <em>normal</em> or <em>non-normal</em>? While there are no strict rules of thumb here, visualization of the data might help us to make a theoretical or conceptual case for one model over the other.</p>
 </body>
 </html>

@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\comparing-models\comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 8 Nov 2021, 11:39:32
+ {txt}opened on:  {res}18 Nov 2021, 12:56:27
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 8 Nov 2021
+{res}18 Nov 2021
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}11:39:32
+{res}12:56:27
 {txt}
 {com}. //_3
 . clear all
@@ -61,53 +61,53 @@
 . estimates store NBREG
 {txt}
 {com}. //_15
-. estimates table OLS ORDINAL POISSON NBREG, var(20) star stats(N ll aic bic) equations(1)
+. estimates table OLS ORDINAL POISSON NBREG, var(25) star stats(N ll aic bic) equations(1)
 {res}
-{txt}{hline 20}{c -}{c TT}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{ralign 20:Variable} {c |} {center 13:OLS} {space 1} {center 13:ORDINAL} {space 1} {center 13:POISSON} {space 1} {center 13:NBREG} {space 1}
-{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{res}#1                   {txt}{c |}{res}
-{txt}{space 14}sc_sex {c |}{res} {ralign 10:-.01358634}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.02856135}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.01282301}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.0127557}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 20} {c |}
-{space 11}sc_race_r {c |}
-Black or African ..  {c |}{res} {ralign 10:.32583464}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.47967243}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.26627607}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.28235733}{lalign 3:***}{txt} {space 1}
-{res}{txt}American Indian o..  {c |}{res} {ralign 10:.88542522}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.88482406}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.59710627}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.62278046}{lalign 3:***}{txt} {space 1}
-{res}{txt}{space 8}Asian alone  {c |}{res} {ralign 10:-.46503425}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.76002818}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.62438214}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.62012779}{lalign 3:***}{txt} {space 1}
-{res}{txt}Native Hawaiian a..  {c |}{res} {ralign 10:.2516065}{lalign 3:}{txt} {space 1}{res} {ralign 10:.35416681}{lalign 3:}{txt} {space 1}{res} {ralign 10:.20674094}{lalign 3:*}{txt} {space 1}{res} {ralign 10:.21879323}{lalign 3:}{txt} {space 1}
-{res}{txt}Some Other Race a..  {c |}{res} {ralign 10:.07433855}{lalign 3:}{txt} {space 1}{res} {ralign 10:.14197623}{lalign 3:*}{txt} {space 1}{res} {ralign 10:.06755212}{lalign 3:*}{txt} {space 1}{res} {ralign 10:.08062919}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 2}Two or More Races  {c |}{res} {ralign 10:.33035205}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.39265187}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.28181254}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.28198179}{lalign 3:***}{txt} {space 1}
-{res}{txt}{space 20} {c |}
-{space 13}higrade {c |}
-High school (inc..)  {c |}{res} {ralign 10:.10021068}{lalign 3:}{txt} {space 1}{res} {ralign 10:.17111252}{lalign 3:*}{txt} {space 1}{res} {ralign 10:.06324858}{lalign 3:*}{txt} {space 1}{res} {ralign 10:.06584405}{lalign 3:}{txt} {space 1}
-{res}{txt}More than high sc..  {c |}{res} {ralign 10:-.45113751}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.62649139}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.37861085}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.38098265}{lalign 3:***}{txt} {space 1}
-{res}{txt}{space 20} {c |}
-{space 15}_cons {c |}{res} {ralign 10:1.411494}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.33994246}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.33915207}{lalign 3:***}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{txt}{space 15}/cut1 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.78624597}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut2 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.65037457}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut3 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:1.5299647}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut4 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.2019291}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut5 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.8850071}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut6 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:3.6106908}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut7 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:4.4853373}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut8 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:5.9106719}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 15}/cut9 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:7.5036903}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
-{res}{txt}{space 12}/lnalpha {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.54430672}{lalign 3:***}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{res}{lalign 20:Statistics}{txt} {c |} {center 13:} {space 1} {center 13:} {space 1} {center 13:} {space 1} {center 13:} {space 1}
-{res}{txt}{ralign 20:N} {c |}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}
-{res}{txt}{ralign 20:ll} {c |}{res} {ralign 10:-52340.464}{lalign 3:}{txt} {space 1}{res} {ralign 10:-42451.588}{lalign 3:}{txt} {space 1}{res} {ralign 10:-44758.999}{lalign 3:}{txt} {space 1}{res} {ralign 10:-42775.864}{lalign 3:}{txt} {space 1}
-{res}{txt}{ralign 20:aic} {c |}{res} {ralign 10:104700.93}{lalign 3:}{txt} {space 1}{res} {ralign 10:84939.175}{lalign 3:}{txt} {space 1}{res} {ralign 10:89537.999}{lalign 3:}{txt} {space 1}{res} {ralign 10:85573.728}{lalign 3:}{txt} {space 1}
-{res}{txt}{ralign 20:bic} {c |}{res} {ralign 10:104784.19}{lalign 3:}{txt} {space 1}{res} {ralign 10:85089.052}{lalign 3:}{txt} {space 1}{res} {ralign 10:89621.263}{lalign 3:}{txt} {space 1}{res} {ralign 10:85665.319}{lalign 3:}{txt} {space 1}
-{res}{txt}{hline 20}{c -}{c BT}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
-{ralign 86:Legend: * p<0.05; ** p<0.01; *** p<0.001}
+{txt}{hline 25}{c -}{c TT}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{ralign 25:Variable} {c |} {center 13:OLS} {space 1} {center 13:ORDINAL} {space 1} {center 13:POISSON} {space 1} {center 13:NBREG} {space 1}
+{hline 25}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{res}#1                        {txt}{c |}{res}
+{txt}{space 19}sc_sex {c |}{res} {ralign 10:-.01358634}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.02856135}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.01282301}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.0127557}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 25} {c |}
+{space 16}sc_race_r {c |}
+Black or African Ameri..  {c |}{res} {ralign 10:.32583464}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.47967243}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.26627607}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.28235733}{lalign 3:***}{txt} {space 1}
+{res}{txt}American Indian or Ala..  {c |}{res} {ralign 10:.88542522}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.88482406}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.59710627}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.62278046}{lalign 3:***}{txt} {space 1}
+{res}{txt}{space 13}Asian alone  {c |}{res} {ralign 10:-.46503425}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.76002818}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.62438214}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.62012779}{lalign 3:***}{txt} {space 1}
+{res}{txt}Native Hawaiian and Ot..  {c |}{res} {ralign 10:.2516065}{lalign 3:}{txt} {space 1}{res} {ralign 10:.35416681}{lalign 3:}{txt} {space 1}{res} {ralign 10:.20674094}{lalign 3:*}{txt} {space 1}{res} {ralign 10:.21879323}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 3}Some Other Race alone  {c |}{res} {ralign 10:.07433855}{lalign 3:}{txt} {space 1}{res} {ralign 10:.14197623}{lalign 3:*}{txt} {space 1}{res} {ralign 10:.06755212}{lalign 3:*}{txt} {space 1}{res} {ralign 10:.08062919}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 7}Two or More Races  {c |}{res} {ralign 10:.33035205}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.39265187}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.28181254}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.28198179}{lalign 3:***}{txt} {space 1}
+{res}{txt}{space 25} {c |}
+{space 18}higrade {c |}
+High school (includin..)  {c |}{res} {ralign 10:.10021068}{lalign 3:}{txt} {space 1}{res} {ralign 10:.17111252}{lalign 3:*}{txt} {space 1}{res} {ralign 10:.06324858}{lalign 3:*}{txt} {space 1}{res} {ralign 10:.06584405}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 3}More than high school  {c |}{res} {ralign 10:-.45113751}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.62649139}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.37861085}{lalign 3:***}{txt} {space 1}{res} {ralign 10:-.38098265}{lalign 3:***}{txt} {space 1}
+{res}{txt}{space 25} {c |}
+{space 20}_cons {c |}{res} {ralign 10:1.411494}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.33994246}{lalign 3:***}{txt} {space 1}{res} {ralign 10:.33915207}{lalign 3:***}{txt} {space 1}
+{res}{txt}{hline 25}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{txt}{space 20}/cut1 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.78624597}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 20}/cut2 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:.65037457}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 20}/cut3 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:1.5299647}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 20}/cut4 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.2019291}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 20}/cut5 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:2.8850071}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 20}/cut6 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:3.6106908}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 20}/cut7 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:4.4853373}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 20}/cut8 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:5.9106719}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 20}/cut9 {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:7.5036903}{lalign 3:***}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}
+{res}{txt}{space 17}/lnalpha {c |}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:}{lalign 3:}{txt} {space 1}{res} {ralign 10:-.54430672}{lalign 3:***}{txt} {space 1}
+{res}{txt}{hline 25}{c -}{c +}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{res}{lalign 25:Statistics}{txt} {c |} {center 13:} {space 1} {center 13:} {space 1} {center 13:} {space 1} {center 13:} {space 1}
+{res}{txt}{ralign 25:N} {c |}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}{res} {ralign 10:30530}{lalign 3:}{txt} {space 1}
+{res}{txt}{ralign 25:ll} {c |}{res} {ralign 10:-52340.464}{lalign 3:}{txt} {space 1}{res} {ralign 10:-42451.588}{lalign 3:}{txt} {space 1}{res} {ralign 10:-44758.999}{lalign 3:}{txt} {space 1}{res} {ralign 10:-42775.864}{lalign 3:}{txt} {space 1}
+{res}{txt}{ralign 25:aic} {c |}{res} {ralign 10:104700.93}{lalign 3:}{txt} {space 1}{res} {ralign 10:84939.175}{lalign 3:}{txt} {space 1}{res} {ralign 10:89537.999}{lalign 3:}{txt} {space 1}{res} {ralign 10:85573.728}{lalign 3:}{txt} {space 1}
+{res}{txt}{ralign 25:bic} {c |}{res} {ralign 10:104784.19}{lalign 3:}{txt} {space 1}{res} {ralign 10:85089.052}{lalign 3:}{txt} {space 1}{res} {ralign 10:89621.263}{lalign 3:}{txt} {space 1}{res} {ralign 10:85665.319}{lalign 3:}{txt} {space 1}
+{res}{txt}{hline 25}{c -}{c BT}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
+{ralign 91:Legend: * p<0.05; ** p<0.01; *** p<0.001}
 {res}{txt}
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\comparing-models\comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 8 Nov 2021, 11:39:36
+ {txt}closed on:  {res}18 Nov 2021, 12:56:32
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
