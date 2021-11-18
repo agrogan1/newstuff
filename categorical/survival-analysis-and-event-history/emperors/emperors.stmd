@@ -94,6 +94,24 @@ We can then work to make the legend more informative.
 
 # Cox Proportional Hazards Model
 
+## Formula for the Hazard <a id="hazard-formula"></a>
+
+$h(t)$ the rate of occurrence.
+
+$$
+    h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
+$$ 
+
+This definition per Johnson & Shih (2007). 
+
+$$
+    h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}
+$$
+
+> We don't directly estimate the hazard, but estimate the effect of covariates on the hazard.
+
+## Estimate the Cox Proportional Hazards Model
+
     stcox ib5.causeNUMERIC ib5.riseNUMERIC // Cox model
 
     stcurve, survival at(causeNUMERIC=(1(1)7)) ///
@@ -114,9 +132,9 @@ We can then work to make the legend more informative.
 
 ![Survival Curve From Cox Model](mycox2.png){width=50%}
 
-# Proportional Hazards Assumption
+## Proportional Hazards Assumption <a id="ph-assumption"></a>
 
-    estat phtest // formal test of PH assumption
+    estat phtest, detail // formal test of PH assumption
 
     stphplot, by(causeNUMERIC) scheme(michigan) // graphical test of PH assumption
 	
@@ -124,5 +142,15 @@ We can then work to make the legend more informative.
 	
 ![Graphical Assessment of Proportional Hazards Assumptions](ph.png){width=50%}
 
+## Correcting For Violations of the Proportional Hazards Assumption
+
+Had the proportional hazards assumption been violated, we could correct for this violation in one of two ways:
+
+1. Estimating an interaction of the time variable (in this case `age`) with the variable violating the assumption.
+2. Using the `, strata(varname)` option to stratify on the variable violating the assumption.
+
+# References
+
+Johnson, L. L., & Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin & F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4
 
 

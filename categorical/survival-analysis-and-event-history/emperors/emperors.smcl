@@ -1,20 +1,21 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}16 Nov 2021, 08:23:04
+ {txt}opened on:  {res}18 Nov 2021, 13:53:27
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}16 Nov 2021
+{res}18 Nov 2021
 {txt}
 {com}. //_2
 . clear all
 {res}{txt}
 {com}. //_3
 . import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
-{res}{text}(16 vars, 68 obs)
+{res}{txt}(encoding automatically selected: ISO-8859-1)
+{text}(16 vars, 68 obs)
 
 {com}. //_4
 . * we can't use the date() function 
@@ -121,7 +122,7 @@
 . graph export mysurvival0.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival0.png{rm}
+mysurvival0.png{rm}
 saved as
 PNG
 format
@@ -137,7 +138,7 @@ format
 . graph export mysurvival1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival1.png{rm}
+mysurvival1.png{rm}
 saved as
 PNG
 format
@@ -168,7 +169,7 @@ format
 . graph export mysurvival2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival2.png{rm}
+mysurvival2.png{rm}
 saved as
 PNG
 format
@@ -196,26 +197,26 @@ No. of subjects = {res}{ralign 5:61}{col 57}{txt}{lalign 13:Number of obs} = {re
 {col 57}{txt}{lalign 13:LR chi2({res:13})} = {res}{ralign 6:22.41}
 {txt}Log likelihood = {res}-183.00966{col 57}{txt}{lalign 13:Prob > chi2} = {res}{ralign 6:0.0494}
 
-{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{col 1}                 _t{col 21}{c |} Haz. ratio{col 33}   Std. err.{col 45}      z{col 53}   P>|z|{col 61}     [95% con{col 74}f. interval]
-{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-{space 7}causeNUMERIC {c |}
-{space 5}Assassination  {c |}{col 21}{res}{space 2} 2.903395{col 33}{space 2} 1.087888{col 44}{space 1}    2.84{col 53}{space 3}0.004{col 61}{space 4} 1.393044{col 74}{space 3} 6.051281
-{txt}{space 9}Captivity  {c |}{col 21}{res}{space 2} .6157704{col 33}{space 2} .7019255{col 44}{space 1}   -0.43{col 53}{space 3}0.671{col 61}{space 4} .0659359{col 74}{space 3} 5.750634
-{txt}{space 4}Died in Battle  {c |}{col 21}{res}{space 2} 3.190409{col 33}{space 2} 1.898109{col 44}{space 1}    1.95{col 53}{space 3}0.051{col 61}{space 4} .9941017{col 74}{space 3}  10.2391
-{txt}{space 9}Execution  {c |}{col 21}{res}{space 2} 1.262384{col 33}{space 2} .5780177{col 44}{space 1}    0.51{col 53}{space 3}0.611{col 61}{space 4} .5145707{col 74}{space 3} 3.096976
-{txt}{space 11}Suicide  {c |}{col 21}{res}{space 2} 1.420734{col 33}{space 2} .9364432{col 44}{space 1}    0.53{col 53}{space 3}0.594{col 61}{space 4} .3903581{col 74}{space 3} 5.170852
-{txt}{space 11}Unknown  {c |}{col 21}{res}{space 2} .9040191{col 33}{space 2} .9428808{col 44}{space 1}   -0.10{col 53}{space 3}0.923{col 61}{space 4} .1170536{col 74}{space 3} 6.981847
-{txt}{space 19} {c |}
-{space 8}riseNUMERIC {c |}
-Appointment by A..  {c |}{col 21}{res}{space 2} .5067648{col 33}{space 2}  .252628{col 44}{space 1}   -1.36{col 53}{space 3}0.173{col 61}{space 4} .1907536{col 74}{space 3} 1.346295
-{txt}Appointment by E..  {c |}{col 21}{res}{space 2} .7952664{col 33}{space 2} .5753412{col 44}{space 1}   -0.32{col 53}{space 3}0.752{col 61}{space 4} .1926215{col 74}{space 3} 3.283375
-{txt}Appointment by P..  {c |}{col 21}{res}{space 2} .2160533{col 33}{space 2} .1461524{col 44}{space 1}   -2.27{col 53}{space 3}0.024{col 61}{space 4}  .057379{col 74}{space 3} .8135208
-{txt}Appointment by S..  {c |}{col 21}{res}{space 2} .2247029{col 33}{space 2} .1196918{col 44}{space 1}   -2.80{col 53}{space 3}0.005{col 61}{space 4} .0791046{col 74}{space 3} .6382865
-{txt}{space 10}Election  {c |}{col 21}{res}{space 2}  1.07545{col 33}{space 2} 1.123459{col 44}{space 1}    0.07{col 53}{space 3}0.944{col 61}{space 4} .1388001{col 74}{space 3} 8.332792
-{txt}{space 10}Purchase  {c |}{col 21}{res}{space 2} .5483916{col 33}{space 2}  .596986{col 44}{space 1}   -0.55{col 53}{space 3}0.581{col 61}{space 4} .0649325{col 74}{space 3} 4.631477
-{txt}{space 6}Seized Power  {c |}{col 21}{res}{space 2} .4053515{col 33}{space 2} .1654931{col 44}{space 1}   -2.21{col 53}{space 3}0.027{col 61}{space 4} .1821005{col 74}{space 3} .9023027
-{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{txt}{hline 33}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}                              _t{col 34}{c |} Haz. ratio{col 46}   Std. err.{col 58}      z{col 66}   P>|z|{col 74}     [95% con{col 87}f. interval]
+{hline 33}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 20}causeNUMERIC {c |}
+{space 18}Assassination  {c |}{col 34}{res}{space 2} 2.903395{col 46}{space 2} 1.087888{col 57}{space 1}    2.84{col 66}{space 3}0.004{col 74}{space 4} 1.393044{col 87}{space 3} 6.051281
+{txt}{space 22}Captivity  {c |}{col 34}{res}{space 2} .6157704{col 46}{space 2} .7019255{col 57}{space 1}   -0.43{col 66}{space 3}0.671{col 74}{space 4} .0659359{col 87}{space 3} 5.750634
+{txt}{space 17}Died in Battle  {c |}{col 34}{res}{space 2} 3.190409{col 46}{space 2} 1.898109{col 57}{space 1}    1.95{col 66}{space 3}0.051{col 74}{space 4} .9941017{col 87}{space 3}  10.2391
+{txt}{space 22}Execution  {c |}{col 34}{res}{space 2} 1.262384{col 46}{space 2} .5780177{col 57}{space 1}    0.51{col 66}{space 3}0.611{col 74}{space 4} .5145707{col 87}{space 3} 3.096976
+{txt}{space 24}Suicide  {c |}{col 34}{res}{space 2} 1.420734{col 46}{space 2} .9364432{col 57}{space 1}    0.53{col 66}{space 3}0.594{col 74}{space 4} .3903581{col 87}{space 3} 5.170852
+{txt}{space 24}Unknown  {c |}{col 34}{res}{space 2} .9040191{col 46}{space 2} .9428808{col 57}{space 1}   -0.10{col 66}{space 3}0.923{col 74}{space 4} .1170536{col 87}{space 3} 6.981847
+{txt}{space 32} {c |}
+{space 21}riseNUMERIC {c |}
+{space 12}Appointment by Army  {c |}{col 34}{res}{space 2} .5067648{col 46}{space 2}  .252628{col 57}{space 1}   -1.36{col 66}{space 3}0.173{col 74}{space 4} .1907536{col 87}{space 3} 1.346295
+{txt}{space 9}Appointment by Emperor  {c |}{col 34}{res}{space 2} .7952664{col 46}{space 2} .5753412{col 57}{space 1}   -0.32{col 66}{space 3}0.752{col 74}{space 4} .1926215{col 87}{space 3} 3.283375
+{txt}Appointment by Praetorian Guard  {c |}{col 34}{res}{space 2} .2160533{col 46}{space 2} .1461524{col 57}{space 1}   -2.27{col 66}{space 3}0.024{col 74}{space 4}  .057379{col 87}{space 3} .8135208
+{txt}{space 10}Appointment by Senate  {c |}{col 34}{res}{space 2} .2247029{col 46}{space 2} .1196918{col 57}{space 1}   -2.80{col 66}{space 3}0.005{col 74}{space 4} .0791046{col 87}{space 3} .6382865
+{txt}{space 23}Election  {c |}{col 34}{res}{space 2}  1.07545{col 46}{space 2} 1.123459{col 57}{space 1}    0.07{col 66}{space 3}0.944{col 74}{space 4} .1388001{col 87}{space 3} 8.332792
+{txt}{space 23}Purchase  {c |}{col 34}{res}{space 2} .5483916{col 46}{space 2}  .596986{col 57}{space 1}   -0.55{col 66}{space 3}0.581{col 74}{space 4} .0649325{col 87}{space 3} 4.631477
+{txt}{space 19}Seized Power  {c |}{col 34}{res}{space 2} .4053515{col 46}{space 2} .1654931{col 57}{space 1}   -2.21{col 66}{space 3}0.027{col 74}{space 4} .1821005{col 87}{space 3} .9023027
+{txt}{hline 33}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
 {com}. //_25
 . stcurve, survival at(causeNUMERIC=(1(1)7)) ///
@@ -225,7 +226,7 @@ Appointment by A..  {c |}{col 21}{res}{space 2} .5067648{col 33}{space 2}  .2526
 . graph export mycox1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mycox1.png{rm}
+mycox1.png{rm}
 saved as
 PNG
 format
@@ -243,23 +244,39 @@ format
 . graph export mycox2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mycox2.png{rm}
+mycox2.png{rm}
 saved as
 PNG
 format
 {p_end}
 
 {com}. //_29
-. estat phtest // formal test of PH assumption
+. estat phtest, detail // formal test of PH assumption
 
 {txt}Test of proportional-hazards assumption
 
 Time function: Analysis time
-{hline 13}{c TT}{hline 34}
-             {c |}     chi2       df       Prob>chi2
-{hline 13}{c +}{hline 34}
- Global test {c |}{res}{col 15}    21.90{col 28}   13{col 43}0.0569
-{txt}{hline 13}{c BT}{hline 34}
+{hline 13}{c TT}{hline 42}
+             {c |}        rho     chi2       df    Prob>chi2
+{hline 13}{c +}{hline 42}
+{col 1}1.causeNUM~C{col 14}{c |}{res}{col 18}-0.04848{col 26}     0.17{col 39}    1{col 51}0.6819
+{txt}{col 1}2.causeNUM~C{col 14}{c |}{res}{col 18} 0.00996{col 26}     0.01{col 39}    1{col 51}0.9397
+{txt}{col 1}3.causeNUM~C{col 14}{c |}{res}{col 18} 0.01796{col 26}     0.02{col 39}    1{col 51}0.8869
+{txt}{col 1}4.causeNUM~C{col 14}{c |}{res}{col 18}-0.15154{col 26}     1.62{col 39}    1{col 51}0.2032
+{txt}{col 1}5b.causeNU~C{col 14}{c |}{res}{col 18}       .{col 26}        .{col 39}    1{col 51}    .
+{txt}{col 1}6.causeNUM~C{col 14}{c |}{res}{col 18}-0.31746{col 26}    10.60{col 39}    1{col 51}0.0011
+{txt}{col 1}7.causeNUM~C{col 14}{c |}{res}{col 18} 0.13799{col 26}     1.11{col 39}    1{col 51}0.2912
+{txt}{col 1}1.riseNUME~C{col 14}{c |}{res}{col 18} 0.18269{col 26}     2.18{col 39}    1{col 51}0.1399
+{txt}{col 1}2.riseNUME~C{col 14}{c |}{res}{col 18} 0.30901{col 26}     8.28{col 39}    1{col 51}0.0040
+{txt}{col 1}3.riseNUME~C{col 14}{c |}{res}{col 18} 0.10627{col 26}     0.77{col 39}    1{col 51}0.3790
+{txt}{col 1}4.riseNUME~C{col 14}{c |}{res}{col 18} 0.10649{col 26}     0.95{col 39}    1{col 51}0.3304
+{txt}{col 1}5b.riseNUM~C{col 14}{c |}{res}{col 18}       .{col 26}        .{col 39}    1{col 51}    .
+{txt}{col 1}6.riseNUME~C{col 14}{c |}{res}{col 18} 0.12455{col 26}     0.91{col 39}    1{col 51}0.3402
+{txt}{col 1}7.riseNUME~C{col 14}{c |}{res}{col 18} 0.18581{col 26}     2.10{col 39}    1{col 51}0.1477
+{txt}{col 1}8.riseNUME~C{col 14}{c |}{res}{col 18} 0.23405{col 26}     3.44{col 39}    1{col 51}0.0638
+{txt}{hline 13}{c +}{hline 42}
+ Global test {c |}{res}{col 26}    21.90{col 39}   13{col 51}0.0569
+{txt}{hline 13}{c BT}{hline 42}
 
 {com}. //_30
 . stphplot, by(causeNUMERIC) scheme(michigan) // graphical test of PH assumption
@@ -271,7 +288,7 @@ Time function: Analysis time
 . graph export ph.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/ph.png{rm}
+ph.png{rm}
 saved as
 PNG
 format
@@ -280,9 +297,9 @@ format
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}16 Nov 2021, 08:23:24
+ {txt}closed on:  {res}18 Nov 2021, 13:53:39
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

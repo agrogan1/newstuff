@@ -10,7 +10,7 @@ geometry: margin=1 in
 
 # Cox Proportional Hazards Model 
 
-# Formula
+# Formula for the Hazard
 
 $h(t)$ the rate of occurrence.
 
