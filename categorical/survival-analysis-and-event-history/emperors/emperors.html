@@ -1,16 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Andy Grogan-Kaylor" />
-  <title>Event History Analysis With Roman Emperor's Data</title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <style>
 /* CSS for Markstat 2.0 using Pandoc 2.0 */
-body{padding:14px 28px; max-width:45em;}
+body{padding:14px 28px;}
 body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
 h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
 h1 {font-size: 200%;}
@@ -38,34 +31,178 @@ p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
 /* Tables*/
 table { margin:auto; border-collapse:collapse; }
 table caption { margin-bottom:1ex;}
-td {padding:0 0 0 0} /* override */
-table:not([class]) th { padding:4px 6px } 
-table:not([class]) td { padding:4px 6px } 
-table:not([class]) thead tr:first-child th {border-top:1px solid black; padding-top:6px}
-table:not([class]) thead tr:last-child  th {padding-bottom:6px}
-table:not([class]) tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
-table:not([class]) tbody tr:last-child  td {padding-bottom:6px;}
-table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+th, td { padding:4px 6px;}
+thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+thead tr:last-child  th {padding-bottom:6px}
+tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+tbody tr:last-child  td {padding-bottom:6px;}
+table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 </style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Andy Grogan-Kaylor" />
+  <title>Event History Analysis With Roman Emperor’s Data</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-<div id="header">
-<h1 class="title">Event History Analysis With Roman Emperor's Data</h1>
-<h2 class="author">Andy Grogan-Kaylor</h2>
-<h3 class="date">18 Nov 2021</h3>
-</div>
+<header id="title-block-header">
+<h1 class="title">Event History Analysis With Roman Emperor’s Data</h1>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">19 Nov 2021</p>
+</header>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 <h1 id="introduction">Introduction</h1>
 <p>This example uses data on the ages of death of Roman Emperors. Source unclear.</p>
 <h1 id="get-data">Get Data</h1>
 <pre class='stata'>. clear all
 </pre>
-<pre class='stata'>. import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv
-> "
-(encoding automatically selected: ISO-8859-1)
+<pre class='stata'>. import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categor
+> ical/survival-analysis-and-event-history/emperors/emperors.csv"
 (16 vars, 68 obs)
 </pre>
-<h1 id="date-wrangling">Date Wrangling</h1>
+<h1 id="data-wrangling">Data Wrangling</h1>
 <pre class='stata'>. * we can't use the date() function 
 . * because it does not work
 . * with dates prior to 100AD
@@ -74,10 +211,12 @@ table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid bl
 </pre>
 <pre class='stata'>. * generate deathdate = date(death, "YMD")
 </pre>
-<pre class='stata'>. generate birthyear = real(substr(birth, 1, 4)) // convert first 4 characters to real number
+<pre class='stata'>. generate birthyear = real(substr(birth, 1, 4)) // convert first 4 characters to real
+>  number
 (5 missing values generated)
 </pre>
-<pre class='stata'>. generate deathyear = real(substr(death, 1, 4)) // convert first 4 characters to real number
+<pre class='stata'>. generate deathyear = real(substr(death, 1, 4)) // convert first 4 characters to real
+>  number
 </pre>
 <pre class='stata'>. * browse name name_full birth birthyear death deathyear
 </pre>
@@ -88,11 +227,12 @@ table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid bl
 </pre>
 <pre class='stata'>. encode cause, generate(causeNUMERIC) // numeric version of cause of death
 </pre>
-<pre class='stata'>. codebook causeNUMERIC if age != . // show values of causeNUMERIC for non missing ages
+<pre class='stata'>. codebook causeNUMERIC if age != . // show values of causeNUMERIC for non missing age
+> s
 
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-causeNUMERIC                                                                                                                             (unlabeled)
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────────
+causeNUMERIC                                                               (unlabeled)
+──────────────────────────────────────────────────────────────────────────────────────
 
                   Type: Numeric (long)
                  Label: causeNUMERIC
@@ -113,9 +253,9 @@ causeNUMERIC                                                                    
 </pre>
 <pre class='stata'>. codebook riseNUMERIC
 
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-riseNUMERIC                                                                                                                              (unlabeled)
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────────
+riseNUMERIC                                                                (unlabeled)
+──────────────────────────────────────────────────────────────────────────────────────
 
                   Type: Numeric (long)
                  Label: riseNUMERIC
@@ -135,7 +275,7 @@ riseNUMERIC                                                                     
 </pre>
 <h1 id="stset-the-data"><code>stset</code> The Data</h1>
 <p>We need to <code>stset</code> the data so that Stata knows that this is survival data with special characteristics. For those of you have used other commands, this is similar to using <code>svyset</code> or <code>xtset</code>.</p>
-<p>The most commonly used syntax is something like <code>stset timevar, failure(failvar) id(id)</code> <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>The most commonly used syntax is something like <code>stset timevar, failure(failvar) id(id)</code> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <blockquote>
 <p>There are many ways to specify <code>failvar</code>, we outline the most straightforward. Consult Stata help for your exact situation.</p>
 </blockquote>
@@ -168,9 +308,13 @@ Observed time interval: (0, age]
   Analysis time _t: age
 </pre>
 <pre class='stata'>. graph export mysurvival0.png, width(1000) replace
-file mysurvival0.png saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-h
+    > istory/emperors/mysurvival0.png saved as PNG format
 </pre>
-<p><img src="mysurvival0.png" alt="Survival Curve" />{width=50%}</p>
+<figure>
+<img src="mysurvival0.png" style="width:50.0%" alt="Survival Curve" /><figcaption aria-hidden="true">Survival Curve</figcaption>
+</figure>
 <h2 id="survival-function-by-cause-of-death">Survival Function by Cause of Death</h2>
 <pre class='stata'>. sts graph, by(causeNUMERIC) scheme(michigan) // survival curve by cause of death
 
@@ -178,9 +322,13 @@ file mysurvival0.png saved as PNG format
   Analysis time _t: age
 </pre>
 <pre class='stata'>. graph export mysurvival1.png, width(1000) replace
-file mysurvival1.png saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-h
+    > istory/emperors/mysurvival1.png saved as PNG format
 </pre>
-<p><img src="mysurvival1.png" alt="Survival Curve by Cause of Death" />{width=50%}</p>
+<figure>
+<img src="mysurvival1.png" style="width:50.0%" alt="Survival Curve by Cause of Death" /><figcaption aria-hidden="true">Survival Curve by Cause of Death</figcaption>
+</figure>
 <p>As an opportunity to take a closer look at the graph, we take a look at <em>cause of death</em> by age for those who <em>died in battle</em>.</p>
 <pre class='stata'>. tabulate age causeNUMERIC if causeNUMERIC == 3
 
@@ -197,17 +345,22 @@ file mysurvival1.png saved as PNG format
 <p>We can then work to make the legend more informative.</p>
 <pre class='stata'>. sts graph, by(causeNUMERIC) scheme(michigan) ///
 > legend(pos(6) col(2) order(1 "Assasination" 2 "Captivity" 3 "Died in Battle" /// 
-> 4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) // survival curve w better legend
+> 4 "Execution" 5 "Natural Causes" 6 "Suicide" 7 "Unknown")) // survival curve w bette
+> r legend
 
         Failure _d: 1 (meaning all fail)
   Analysis time _t: age
 </pre>
 <pre class='stata'>. graph export mysurvival2.png, width(1000) replace
-file mysurvival2.png saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-h
+    > istory/emperors/mysurvival2.png saved as PNG format
 </pre>
-<p><img src="mysurvival2.png" alt="Survival Curve With Better Legend" />{width=50%}</p>
+<figure>
+<img src="mysurvival2.png" style="width:50.0%" alt="Survival Curve With Better Legend" /><figcaption aria-hidden="true">Survival Curve With Better Legend</figcaption>
+</figure>
 <h1 id="cox-proportional-hazards-model">Cox Proportional Hazards Model</h1>
-<h2 id="formula-for-the-hazard">Formula for the Hazard <a id="hazard_formula"></a></h2>
+<h2 id="formula-for-the-hazard">Formula for the Hazard <a id="hazard-formula"></a></h2>
 <p><span class="math inline">\(h(t)\)</span> the rate of occurrence.</p>
 <p><span class="math display">\[
     h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
@@ -217,7 +370,7 @@ file mysurvival2.png saved as PNG format
     h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}
 \]</span></p>
 <blockquote>
-<p>We don't directly estimate the hazard, but estimate the effect of covariates on the hazard.</p>
+<p>We don’t directly estimate the hazard, but estimate the effect of covariates on the hazard.</p>
 </blockquote>
 <h2 id="estimate-the-cox-proportional-hazards-model">Estimate the Cox Proportional Hazards Model</h2>
 <pre class='stata'>. stcox ib5.causeNUMERIC ib5.riseNUMERIC // Cox model
@@ -241,34 +394,38 @@ Time at risk    = 2,984
                                                         LR chi2(13)   =  22.41
 Log likelihood = -183.00966                             Prob > chi2   = 0.0494
 
-─────────────────────────────────┬────────────────────────────────────────────────────────────────
-                              _t │ Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
-─────────────────────────────────┼────────────────────────────────────────────────────────────────
-                    causeNUMERIC │
-                  Assassination  │   2.903395   1.087888     2.84   0.004     1.393044    6.051281
-                      Captivity  │   .6157704   .7019255    -0.43   0.671     .0659359    5.750634
-                 Died in Battle  │   3.190409   1.898109     1.95   0.051     .9941017     10.2391
-                      Execution  │   1.262384   .5780177     0.51   0.611     .5145707    3.096976
-                        Suicide  │   1.420734   .9364432     0.53   0.594     .3903581    5.170852
-                        Unknown  │   .9040191   .9428808    -0.10   0.923     .1170536    6.981847
-                                 │
-                     riseNUMERIC │
-            Appointment by Army  │   .5067648    .252628    -1.36   0.173     .1907536    1.346295
-         Appointment by Emperor  │   .7952664   .5753412    -0.32   0.752     .1926215    3.283375
-Appointment by Praetorian Guard  │   .2160533   .1461524    -2.27   0.024      .057379    .8135208
-          Appointment by Senate  │   .2247029   .1196918    -2.80   0.005     .0791046    .6382865
-                       Election  │    1.07545   1.123459     0.07   0.944     .1388001    8.332792
-                       Purchase  │   .5483916    .596986    -0.55   0.581     .0649325    4.631477
-                   Seized Power  │   .4053515   .1654931    -2.21   0.027     .1821005    .9023027
-─────────────────────────────────┴────────────────────────────────────────────────────────────────
+────────────────────┬────────────────────────────────────────────────────────────────
+                 _t │ Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+────────────────────┼────────────────────────────────────────────────────────────────
+       causeNUMERIC │
+     Assassination  │   2.903395   1.087888     2.84   0.004     1.393044    6.051281
+         Captivity  │   .6157704   .7019255    -0.43   0.671     .0659359    5.750634
+    Died in Battle  │   3.190409   1.898109     1.95   0.051     .9941017     10.2391
+         Execution  │   1.262384   .5780177     0.51   0.611     .5145707    3.096976
+           Suicide  │   1.420734   .9364432     0.53   0.594     .3903581    5.170852
+           Unknown  │   .9040191   .9428808    -0.10   0.923     .1170536    6.981847
+                    │
+        riseNUMERIC │
+Appointment by A..  │   .5067648    .252628    -1.36   0.173     .1907536    1.346295
+Appointment by E..  │   .7952664   .5753412    -0.32   0.752     .1926215    3.283375
+Appointment by P..  │   .2160533   .1461524    -2.27   0.024      .057379    .8135208
+Appointment by S..  │   .2247029   .1196918    -2.80   0.005     .0791046    .6382865
+          Election  │    1.07545   1.123459     0.07   0.944     .1388001    8.332792
+          Purchase  │   .5483916    .596986    -0.55   0.581     .0649325    4.631477
+      Seized Power  │   .4053515   .1654931    -2.21   0.027     .1821005    .9023027
+────────────────────┴────────────────────────────────────────────────────────────────
 </pre>
 <pre class='stata'>. stcurve, survival at(causeNUMERIC=(1(1)7)) ///
 > scheme(michigan) // basic survival curve by causeNUMERIC
 </pre>
 <pre class='stata'>. graph export mycox1.png, width(1000) replace
-file mycox1.png saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-h
+    > istory/emperors/mycox1.png saved as PNG format
 </pre>
-<p><img src="mycox1.png" alt="Survival Curve From Cox Model" />{width=50%}</p>
+<figure>
+<img src="mycox1.png" style="width:50.0%" alt="Survival Curve From Cox Model" /><figcaption aria-hidden="true">Survival Curve From Cox Model</figcaption>
+</figure>
 <pre class='stata'>. stcurve, survival ///
 > at(causeNUMERIC=(1(1)7)) ///
 > caption("Roman Emperors Data") ///
@@ -277,10 +434,14 @@ file mycox1.png saved as PNG format
 > scheme(michigan) // more nicely formatted survival curve
 </pre>
 <pre class='stata'>. graph export mycox2.png, width(1000) replace
-file mycox2.png saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-h
+    > istory/emperors/mycox2.png saved as PNG format
 </pre>
-<p><img src="mycox2.png" alt="Survival Curve From Cox Model" />{width=50%}</p>
-<h2 id="proportional-hazards-assumption">Proportional Hazards Assumption <a id="ph_assumption"></a></h2>
+<figure>
+<img src="mycox2.png" style="width:50.0%" alt="Survival Curve From Cox Model" /><figcaption aria-hidden="true">Survival Curve From Cox Model</figcaption>
+</figure>
+<h2 id="proportional-hazards-assumption">Proportional Hazards Assumption <a id="ph-assumption"></a></h2>
 <pre class='stata'>. estat phtest, detail // formal test of PH assumption
 
 Test of proportional-hazards assumption
@@ -314,22 +475,98 @@ Time function: Analysis time
   Analysis time _t: age
 </pre>
 <pre class='stata'>. graph export ph.png, width(1000) replace
-file ph.png saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-h
+    > istory/emperors/ph.png saved as PNG format
 </pre>
-<p><img src="ph.png" alt="Graphical Assessment of Proportional Hazards Assumptions" />{width=50%}</p>
+<figure>
+<img src="ph.png" style="width:50.0%" alt="Graphical Assessment of Proportional Hazards Assumptions" /><figcaption aria-hidden="true">Graphical Assessment of Proportional Hazards Assumptions</figcaption>
+</figure>
 <h2 id="correcting-for-violations-of-the-proportional-hazards-assumption">Correcting For Violations of the Proportional Hazards Assumption</h2>
 <p>Had the proportional hazards assumption been violated, we could correct for this violation in one of two ways:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>Estimating an interaction of the time variable (in this case <code>age</code>) with the variable violating the assumption.</li>
-<li>Using the <code>, strata(varname)</code> option to stratify on the variable violating the assumption.</li>
 </ol>
+<p>e.g. <code>stcox ib5.causeNUMERIC age#ib5.riseNUMERIC</code>.</p>
+<blockquote>
+<p>Note: In this relatively small sample this command fails to converge, perhaps because of sample size; or perhaps because there is no underlying violation of the proportional hazards assumption.</p>
+</blockquote>
+<ol start="2" type="1">
+<li>Using the <code>, strata(varname)</code> option to <em>stratify</em> on the variable violating the assumption.</li>
+</ol>
+<blockquote>
+<p>Note that the command below provides results, but does not provide parameter estimates for the variable on which we are stratifying, <code>riseNUMERIC</code>.</p>
+</blockquote>
+<pre class='stata'>. stcox ib5.causeNUMERIC, strata(riseNUMERIC)
+
+        Failure _d: 1 (meaning all fail)
+  Analysis time _t: age
+
+Iteration 0:   log likelihood = -110.21173
+Iteration 1:   log likelihood = -106.78694
+Iteration 2:   log likelihood = -106.44767
+Iteration 3:   log likelihood = -106.33876
+Iteration 4:   log likelihood = -106.30024
+Iteration 5:   log likelihood = -106.28627
+Iteration 6:   log likelihood = -106.28115
+Iteration 7:   log likelihood = -106.27928
+Iteration 8:   log likelihood = -106.27859
+Iteration 9:   log likelihood = -106.27833
+Iteration 10:  log likelihood = -106.27824
+Iteration 11:  log likelihood = -106.27821
+Iteration 12:  log likelihood = -106.27819
+Iteration 13:  log likelihood = -106.27819
+Iteration 14:  log likelihood = -106.27819
+Iteration 15:  log likelihood = -106.27819
+Iteration 16:  log likelihood = -106.27819
+Iteration 17:  log likelihood = -106.27819
+Iteration 18:  log likelihood = -106.27819
+Iteration 19:  log likelihood = -106.27819
+Refining estimates:
+Iteration 0:   log likelihood = -106.27819
+Iteration 1:   log likelihood = -106.27819
+Iteration 2:   log likelihood = -106.27819
+Iteration 3:   log likelihood = -106.27819
+Iteration 4:   log likelihood = -106.27819
+Iteration 5:   log likelihood = -106.27819
+Iteration 6:   log likelihood = -106.27819
+Iteration 7:   log likelihood = -106.27819
+Iteration 8:   log likelihood = -106.27819
+Iteration 9:   log likelihood = -106.27819
+Iteration 10:  log likelihood = -106.27819
+Iteration 11:  log likelihood = -106.27819
+Iteration 12:  log likelihood = -106.27819
+Iteration 13:  log likelihood = -106.27819
+Iteration 14:  log likelihood = -106.27819
+
+Stratified Cox regression with Breslow method for ties
+Strata variable: riseNUMERIC
+
+No. of subjects =    61                                 Number of obs =     61
+No. of failures =    61
+Time at risk    = 2,984
+                                                        LR chi2(6)    =   7.87
+Log likelihood = -106.27819                             Prob > chi2   = 0.2480
+
+────────────────┬────────────────────────────────────────────────────────────────
+             _t │ Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+────────────────┼────────────────────────────────────────────────────────────────
+   causeNUMERIC │
+ Assassination  │   2.055452   .7768999     1.91   0.057     .9798928    4.311578
+     Captivity  │   2.30e-15   4.51e-08    -0.00   1.000            0           .
+Died in Battle  │   1.888973   1.130025     1.06   0.288     .5848147    6.101451
+     Execution  │   1.581336   .7416243     0.98   0.328        .6307     3.96484
+       Suicide  │   1.130873    .808074     0.17   0.863     .2787286    4.588243
+       Unknown  │   .8796497   .9202359    -0.12   0.902     .1131969    6.835731
+────────────────┴────────────────────────────────────────────────────────────────
+</pre>
 <h1 id="references">References</h1>
 <p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4</p>
-<div class="footnotes">
+<section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p><code>failvair</code> is often something like <code>died</code>.<a href="#fnref1">↩</a></p></li>
+<li id="fn1" role="doc-endnote"><p><code>failvair</code> is often something like <code>died</code>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</div>
+</section>
 </body>
 </html>

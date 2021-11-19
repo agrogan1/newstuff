@@ -18,7 +18,7 @@ This example uses data on the ages of death of Roman Emperors. Source unclear.
 
     import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
 
-# Date Wrangling
+# Data Wrangling
 
     * we can't use the date() function 
     * because it does not work
@@ -147,7 +147,16 @@ $$
 Had the proportional hazards assumption been violated, we could correct for this violation in one of two ways:
 
 1. Estimating an interaction of the time variable (in this case `age`) with the variable violating the assumption.
-2. Using the `, strata(varname)` option to stratify on the variable violating the assumption.
+
+e.g. `stcox ib5.causeNUMERIC age#ib5.riseNUMERIC`. 
+
+> Note: In this relatively small sample this command fails to converge, perhaps because of sample size; or perhaps because there is no underlying violation of the proportional hazards assumption.
+
+2. Using the `, strata(varname)` option to *stratify* on the variable violating the assumption.
+
+> Note that the command below provides results, but does not provide parameter estimates for the variable on which we are stratifying, `riseNUMERIC`. 
+
+    stcox ib5.causeNUMERIC, strata(riseNUMERIC)
 
 # References
 
