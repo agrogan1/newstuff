@@ -30,7 +30,6 @@ markstat using "Cox-proportional-hazards-model.stmd", pdf // PDF
 
 graph close _all
 
-
 * SIMULATED SURVIVAL DATA
 
 doedit "simulated-survival-data.stmd"
