@@ -1,13 +1,13 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}25 Nov 2020, 10:30:07
+ {txt}opened on:  {res} 5 Dec 2021, 16:07:17
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}25 Nov 2020
+{res} 5 Dec 2021
 {txt}
 {com}. //_2
 . clear all
@@ -29,7 +29,7 @@
 {com}. //_5
 . * initialize to longest time
 . //_6
-. * censored observations will have this value
+. * censored observations will have the value of the longest possible event time
 . //_7
 . generate event_time = 3
 {txt}
@@ -37,7 +37,7 @@
 . * change event time to 2 if status2 == 2
 . * change event time to 1 if status1 == 1
 . //_9
-. * notice that I am doing this in reverse order
+. * notice that I am doing this in *reverse* order
 . * to capture the earliest event time
 . //_10
 . replace event_time = 2 if status2 == 1 // event time is 2 if status 2 is 1
@@ -54,10 +54,12 @@
 . generate failure = 0 // initialize
 {txt}
 {com}. //_14
-. replace failure = 1 if status1 == 1 | status2 == 1 | status3 == 1 // change failure to 1 if any status variable == 1
+. * change failure to 1 if any status variable == 1
+. //_15
+. replace failure = 1 if status1 == 1 | status2 == 1 | status3 == 1 
 {txt}(2 real changes made)
 
-{com}. //_15
+{com}. //_16
 . list, abbreviate(10) // list out the data
 {txt}
      {c TLC}{hline 4}{c -}{hline 9}{c -}{hline 9}{c -}{hline 9}{c -}{hline 12}{c -}{hline 9}{c TRC}
@@ -68,40 +70,48 @@
   3. {c |} {res} 3         0         0         1            3         1 {txt}{c |}
      {c BLC}{hline 4}{c -}{hline 9}{c -}{hline 9}{c -}{hline 9}{c -}{hline 12}{c -}{hline 9}{c BRC}
 
-{com}. //_16
+{com}. //_17
 . stset event_time, failure(failure == 1)
 
-     {txt}failure event:  {res}failure == 1
-{txt}obs. time interval:  {res}(0, event_time]
-{txt} exit on or before:  {res}failure
+{txt}Survival-time data settings
 
-{txt}{hline 78}
+{col 10}Failure event: {res}failure==1
+{col 1}{txt}Observed time interval: {res}(0, event_time]
+{col 6}{txt}Exit on or before: {res}failure
+
+{txt}{hline 74}
 {res}          3{txt}  total observations
 {res}          0{txt}  exclusions
-{hline 78}
+{hline 74}
 {res}          3{txt}  observations remaining, representing
 {res}          2{txt}  failures in single-record/single-failure data
 {res}          8{txt}  total analysis time at risk and under observation
-                                                at risk from t = {res}        0
-                                     {txt}earliest observed entry t = {res}        0
-                                          {txt}last observed exit t = {res}        3
-{txt}
-{com}. //_17
-. sts graph, scheme(michigan)
-
-         {txt}failure _d:  {res}failure == 1
-   {txt}analysis time _t:  {res}event_time
+                                                At risk from t = {res}        0
+                                     {txt}Earliest observed entry t = {res}        0
+                                          {txt}Last observed exit t = {res}        3
 {txt}
 {com}. //_18
+. sts graph, scheme(michigan)
+
+{col 9}{txt}Failure {bf:_d}: {res}failure==1
+{col 3}{txt}Analysis time {bf:_t}: {res}event_time
+{txt}
+{com}. //_19
 . graph export simulated-survival-data.png, width(1000) replace
-{txt}(file simulated-survival-data.png written in PNG format)
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}25 Nov 2020, 10:30:09
+ {txt}closed on:  {res} 5 Dec 2021, 16:07:19
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

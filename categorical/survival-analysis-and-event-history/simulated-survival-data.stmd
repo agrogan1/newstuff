@@ -6,11 +6,11 @@
 geometry: margin=1 in
 ---
 
-<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 
 # Introduction
 
-Below you will find a simulated data set that might help you think about constructing a data set for survival analysis, or event history analysis.   
+Below you will find a *simulated* data set that might help you think about constructing a data set for survival analysis, or event history analysis.   
 
 > These simulated data represent a common situation in which a *categorical status* (like a diagnosis of depression or PTSD) is observed at different time points.
 
@@ -40,7 +40,7 @@ Below you will find a simulated data set that might help you think about constru
 
 First, we want to make sure that it is appropriate to conceptualize this data set of individuals as a data set for whom the event has not yet occurred. 
 
-Second, we want to create an *event time* out of these *status changes*.
+Second, we want to create an **event time** out of these **status changes**.
 
 Our code might look something as follows.
 
@@ -50,14 +50,14 @@ Our code might look something as follows.
 
     * initialize to longest time
 	
-    * censored observations will have this value
+    * censored observations will have the value of the longest possible event time
 
     generate event_time = 3
 	
 	* change event time to 2 if status2 == 2
 	* change event time to 1 if status1 == 1
 	
-	* notice that I am doing this in reverse order
+	* notice that I am doing this in *reverse* order
 	* to capture the earliest event time
 	
 	replace event_time = 2 if status2 == 1 // event time is 2 if status 2 is 1
@@ -71,7 +71,9 @@ Our code might look something as follows.
 
     generate failure = 0 // initialize
 	
-	replace failure = 1 if status1 == 1 | status2 == 1 | status3 == 1 // change failure to 1 if any status variable == 1
+	* change failure to 1 if any status variable == 1
+	
+	replace failure = 1 if status1 == 1 | status2 == 1 | status3 == 1 
 	
 You can see that our data now have an event time, and a censoring status.
 
@@ -90,6 +92,8 @@ Inspection of the results from the stset command indicates that the data appears
 	graph export simulated-survival-data.png, width(1000) replace
 
 ![Kaplan-Meier Survivor Function](simulated-survival-data.png){width=50%}
+
+> Notice how the graph makes intuitive sense if we consider the combination of `event_time` and `failure` for each observation.
 	
 	
 	
