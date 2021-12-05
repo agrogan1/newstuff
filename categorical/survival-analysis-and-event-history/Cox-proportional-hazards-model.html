@@ -190,11 +190,11 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Cox Proportional Hazards Model</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">18 Jun 2021</p>
+<p class="date">5 Dec 2021</p>
 </header>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
 <h1 id="cox-proportional-hazards-model">Cox Proportional Hazards Model</h1>
-<h1 id="formula">Formula</h1>
+<h1 id="formula-for-the-hazard">Formula for the Hazard</h1>
 <p><span class="math inline">\(h(t)\)</span> the rate of occurrence.</p>
 <p><span class="math display">\[
     h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
@@ -244,10 +244,10 @@ Observed time interval: (0, studytime]
 Contains data from https://www.stata-press.com/data/r17/drugtr.dta
  Observations:            48                  Patient survival in drug trial
     Variables:             8                  3 Mar 2020 02:12
-────────────────────────────────────────────────────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────────────────────────────────────────
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
-────────────────────────────────────────────────────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────────────────────────────────────────
 studytime       byte    %8.0g                 Months to death or end of exp.
 died            byte    %8.0g                 1 if patient died
 drug            byte    %8.0g                 Drug type (0=placebo)
@@ -256,7 +256,7 @@ _st             byte    %8.0g                 1 if record is to be used; 0 other
 _d              byte    %8.0g                 1 if failure; 0 if censored
 _t              byte    %10.0g                Analysis time when record ends
 _t0             byte    %10.0g                Analysis time when record begins
-────────────────────────────────────────────────────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
 <h2 id="kaplan-meier-survivor-function-per-gabriela-ortiz-stata">Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)</h2>
@@ -269,8 +269,9 @@ Sorted by:
   Analysis time _t: studytime
 </pre>
 <pre class='stata'>. graph export survival0.png, width(1000) replace
-file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival0.png
-    saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/surviv
+    > al0.png saved as PNG format
 </pre>
 <figure>
 <img src="survival0.png" style="width:50.0%" alt="Kaplan-Meier Survivor Function" /><figcaption aria-hidden="true">Kaplan-Meier Survivor Function</figcaption>
@@ -307,8 +308,9 @@ Log likelihood = -83.323546                             Prob > chi2   = 0.0000
 <pre class='stata'>. stcurve, survival scheme(michigan) // survival curve
 </pre>
 <pre class='stata'>. graph export survival1.png, width(1000) replace
-file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival1.png
-    saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/surviv
+    > al1.png saved as PNG format
 </pre>
 <figure>
 <img src="survival1.png" style="width:50.0%" alt="Survival Curve" /><figcaption aria-hidden="true">Survival Curve</figcaption>
@@ -316,8 +318,9 @@ file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-his
 <pre class='stata'>. stcurve, survival at1(drug=0) at2(drug=1) scheme(michigan) // survival curve by group
 </pre>
 <pre class='stata'>. graph export survival2.png, width(1000) replace
-file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival2.png
-    saved as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/surviv
+    > al2.png saved as PNG format
 </pre>
 <figure>
 <img src="survival2.png" style="width:50.0%" alt="Survival Curve by Drug Group" /><figcaption aria-hidden="true">Survival Curve by Drug Group</figcaption>
@@ -340,8 +343,9 @@ Time function: Analysis time
   Analysis time _t: studytime
 </pre>
 <pre class='stata'>. graph export ph.png, width(1000) replace
-file /Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/ph.png saved
-    as PNG format
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/ph.png
+    saved as PNG format
 </pre>
 <figure>
 <img src="ph.png" style="width:50.0%" alt="Graphical Assessment of Proportional Hazards Assumptions" /><figcaption aria-hidden="true">Graphical Assessment of Proportional Hazards Assumptions</figcaption>

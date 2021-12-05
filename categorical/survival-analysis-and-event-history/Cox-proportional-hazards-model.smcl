@@ -1,13 +1,13 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}18 Jun 2021, 14:49:19
+ {txt}opened on:  {res} 5 Dec 2021, 16:07:50
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}18 Jun 2021
+{res} 5 Dec 2021
 {txt}
 {com}. //_2
 . clear all
@@ -68,7 +68,7 @@ Sorted by:
 . graph export survival0.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival0.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/survival0.png{rm}
 saved as
 PNG
 format
@@ -109,7 +109,7 @@ No. of subjects = {res}{ralign 3:48}{col 57}{txt}{lalign 13:Number of obs} = {re
 . graph export survival1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival1.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/survival1.png{rm}
 saved as
 PNG
 format
@@ -122,7 +122,7 @@ format
 . graph export survival2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/survival2.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/survival2.png{rm}
 saved as
 PNG
 format
@@ -150,7 +150,7 @@ Time function: Analysis time
 . graph export ph.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/ph.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/ph.png{rm}
 saved as
 PNG
 format
@@ -159,9 +159,9 @@ format
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}18 Jun 2021, 14:49:26
+ {txt}closed on:  {res} 5 Dec 2021, 16:07:57
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
