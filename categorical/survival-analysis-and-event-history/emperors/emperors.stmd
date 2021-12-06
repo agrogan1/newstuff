@@ -10,7 +10,7 @@ geometry: margin=1 in
 
 # Introduction
 
-This example uses data on the ages of death of Roman Emperors. Source unclear.
+This example uses data on the ages of death of Roman Emperors. Sources for this data are unclear, but it appears that the original source is [http://www.roman-emperors.org/](http://www.roman-emperors.org/).
 
 # Get Data
 
@@ -19,6 +19,8 @@ This example uses data on the ages of death of Roman Emperors. Source unclear.
     import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
 
 # Data Wrangling
+
+Remember that Stata works with dates by converting them to the *number of days since January 1, 1960*.
 
     * we can't use the date() function 
     * because it does not work
@@ -46,9 +48,9 @@ This example uses data on the ages of death of Roman Emperors. Source unclear.
 	
 	codebook riseNUMERIC
 
-# `stset` The Data
+# `stset` The Data <a id="stset"></a>
 
-We need to `stset` the data so that Stata knows that this is survival data with special characteristics. For those of you have used other commands, this is similar to using `svyset` or `xtset`.
+We need to `stset` the data so that Stata knows that this is survival data with special characteristics relevant to survival analysis. For those of you have used other commands that attach special characteristics to the data, this is similar to using `svyset` for complex survey data, `xtset` for panel data, or even to the `mi` suite of commands for multiple imputation.
 
 The most commonly used syntax is something like `stset timevar, failure(failvar) id(id)` [^failvar]
 
