@@ -12,9 +12,9 @@ geometry: margin=1 in
 
 Below you will find a *simulated* data set that might help you think about constructing a data set for survival analysis, or event history analysis.   
 
-> These simulated data represent a common situation in which a *categorical status* (like a diagnosis of depression or PTSD) is observed at different time points.
+> These simulated data represent a common situation in which a **categorical status** (like a diagnosis of depression or PTSD) is observed at different time points.
 
-> An *event* is defined as a (relatively sudden) change from a status of 0 to a status of 1.
+> An **event** is defined as a (relatively sudden) change from a status of 0 to a status of 1.
 
 ## Get The Data
 
@@ -22,7 +22,7 @@ Below you will find a *simulated* data set that might help you think about const
 	
 	use "simulated-survival-data.dta", clear
 
-> In this example, we are going to think about how to take a data set of *statuses* and turn it into a data set of *events*.
+> In this example, we are going to think about how to take a data set of **statuses** and turn it into a data set of **events**.
 
 ## Look At The Data
 
@@ -54,13 +54,13 @@ Our code might look something as follows.
 
     generate event_time = 3
 	
-	* change event time to 2 if status2 == 2
-	* change event time to 1 if status1 == 1
+    * change event time to 2 if status2 == 2
+    * change event time to 1 if status1 == 1
 	
-	* notice that I am doing this in *reverse* order
-	* to capture the earliest event time
+    * notice that I am doing this in *reverse* order
+    * to capture the earliest event time
 	
-	replace event_time = 2 if status2 == 1 // event time is 2 if status 2 is 1
+    replace event_time = 2 if status2 == 1 // event time is 2 if status 2 is 1
 
     replace event_time = 1 if status1 == 1 // event time is 1 if status 1 is 1
 
@@ -71,9 +71,9 @@ Our code might look something as follows.
 
     generate failure = 0 // initialize
 	
-	* change failure to 1 if any status variable == 1
+    * change failure to 1 if any status variable == 1
 	
-	replace failure = 1 if status1 == 1 | status2 == 1 | status3 == 1 
+    replace failure = 1 if status1 == 1 | status2 == 1 | status3 == 1 
 	
 You can see that our data now have an event time, and a censoring status.
 
@@ -89,7 +89,7 @@ Inspection of the results from the stset command indicates that the data appears
 
     sts graph, scheme(michigan)
 	
-	graph export simulated-survival-data.png, width(1000) replace
+    graph export simulated-survival-data.png, width(1000) replace
 
 ![Kaplan-Meier Survivor Function](simulated-survival-data.png){width=50%}
 

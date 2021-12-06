@@ -1,13 +1,13 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\simulated-survival-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 5 Dec 2021, 16:07:17
+ {txt}opened on:  {res} 6 Dec 2021, 15:46:20
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 5 Dec 2021
+{res} 6 Dec 2021
 {txt}
 {com}. //_2
 . clear all
@@ -100,7 +100,7 @@
 . graph export simulated-survival-data.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.png{rm}
+simulated-survival-data.png{rm}
 saved as
 PNG
 format
@@ -109,9 +109,9 @@ format
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
+       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\simulated-survival-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 5 Dec 2021, 16:07:19
+ {txt}closed on:  {res} 6 Dec 2021, 15:46:22
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
