@@ -1,21 +1,20 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 6 Dec 2021, 18:30:06
+ {txt}opened on:  {res} 7 Dec 2021, 11:23:26
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 6 Dec 2021
+{res} 7 Dec 2021
 {txt}
 {com}. //_2
 . clear all
 {res}{txt}
 {com}. //_3
 . import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
-{res}{txt}(encoding automatically selected: ISO-8859-1)
-{text}(16 vars, 68 obs)
+{res}{text}(16 vars, 68 obs)
 
 {com}. //_4
 . * we can't use the date() function 
@@ -122,7 +121,7 @@
 . graph export mysurvival0.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mysurvival0.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival0.png{rm}
 saved as
 PNG
 format
@@ -138,7 +137,7 @@ format
 . graph export mysurvival1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mysurvival1.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival1.png{rm}
 saved as
 PNG
 format
@@ -169,7 +168,7 @@ format
 . graph export mysurvival2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mysurvival2.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mysurvival2.png{rm}
 saved as
 PNG
 format
@@ -226,7 +225,7 @@ No. of subjects = {res}{ralign 5:61}{col 57}{txt}{lalign 13:Number of obs} = {re
 . graph export mycox1.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mycox1.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mycox1.png{rm}
 saved as
 PNG
 format
@@ -244,7 +243,7 @@ format
 . graph export mycox2.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-mycox2.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/mycox2.png{rm}
 saved as
 PNG
 format
@@ -288,7 +287,7 @@ Time function: Analysis time
 . graph export ph.png, width(1000) replace
 {txt}{p 0 4 2}
 file {bf}
-ph.png{rm}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/ph.png{rm}
 saved as
 PNG
 format
@@ -336,8 +335,6 @@ Iteration 0:   log likelihood = {res}-106.27819
 {txt}Iteration 12:  log likelihood = {res}-106.27819
 {txt}Iteration 13:  log likelihood = {res}-106.27819
 {txt}Iteration 14:  log likelihood = {res}-106.27819
-{txt}Iteration 15:  log likelihood = {res}-106.27819
-{txt}Iteration 16:  log likelihood = {res}-106.27819
 
 {txt}Stratified Cox regression with Breslow method for ties
 Strata variable: {res:riseNUMERIC}
@@ -353,7 +350,7 @@ No. of subjects = {res}{ralign 5:61}{col 57}{txt}{lalign 13:Number of obs} = {re
 {hline 16}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {space 3}causeNUMERIC {c |}
 {space 1}Assassination  {c |}{col 17}{res}{space 2} 2.055452{col 29}{space 2} .7768999{col 40}{space 1}    1.91{col 49}{space 3}0.057{col 57}{space 4} .9798928{col 70}{space 3} 4.311578
-{txt}{space 5}Captivity  {c |}{col 17}{res}{space 2} 6.98e-16{col 29}{space 2} 2.32e-08{col 40}{space 1}   -0.00{col 49}{space 3}1.000{col 57}{space 4}        0{col 70}{space 3}        .
+{txt}{space 5}Captivity  {c |}{col 17}{res}{space 2} 2.30e-15{col 29}{space 2} 4.51e-08{col 40}{space 1}   -0.00{col 49}{space 3}1.000{col 57}{space 4}        0{col 70}{space 3}        .
 {txt}Died in Battle  {c |}{col 17}{res}{space 2} 1.888973{col 29}{space 2} 1.130025{col 40}{space 1}    1.06{col 49}{space 3}0.288{col 57}{space 4} .5848147{col 70}{space 3} 6.101451
 {txt}{space 5}Execution  {c |}{col 17}{res}{space 2} 1.581336{col 29}{space 2} .7416243{col 40}{space 1}    0.98{col 49}{space 3}0.328{col 57}{space 4}    .6307{col 70}{space 3}  3.96484
 {txt}{space 7}Suicide  {c |}{col 17}{res}{space 2} 1.130873{col 29}{space 2}  .808074{col 40}{space 1}    0.17{col 49}{space 3}0.863{col 57}{space 4} .2787286{col 70}{space 3} 4.588243
@@ -363,9 +360,9 @@ No. of subjects = {res}{ralign 5:61}{col 57}{txt}{lalign 13:Number of obs} = {re
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\Github\newstuff\categorical\survival-analysis-and-event-history\emperors\emperors.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 6 Dec 2021, 18:30:18
+ {txt}closed on:  {res} 7 Dec 2021, 11:23:48
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
