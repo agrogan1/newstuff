@@ -44,6 +44,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
     + [Times, Events And Censoring](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/times-events-and-censoring.html)
     + [Reformatting Longitudinal Data As Survival Data](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.html)
     + [Cox Proportional Hazards Model](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.pdf)]
+    + [Survival Analysis With Roman Emperors Data](https://agrogan1.github.io/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.html)
     + [Cox Proportional Hazards Model With Time Varying Covariates](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.pdf)]
     + [More on the Cox Proportional Hazards Model](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.pdf)]
 
