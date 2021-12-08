@@ -189,7 +189,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Reformatting Longitudinal Data As Survival Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">7 Dec 2021</p>
+<p class="date">8 Dec 2021</p>
 </header>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 <h1 id="introduction">Introduction</h1>
@@ -236,6 +236,11 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <p>I am assuming in the code below that waves are 1 year apart, and you might want to adjust your code accordingly if waves are differentially spaced.</p>
 </blockquote>
 <h2 id="generate-an-event-time">Generate an Event Time</h2>
+<pre class='stata'>. * possibly... only keep observations with nonmissing statuses
+</pre>
+<pre class='stata'>. keep if status1 != . &amp; status2 != .
+(0 observations deleted)
+</pre>
 <pre class='stata'>. * initialize to longest time
 </pre>
 <pre class='stata'>. * censored observations will have the value of the longest possible event time

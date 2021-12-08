@@ -48,7 +48,11 @@ Our code might look something as follows.
 
 ## Generate an Event Time
 
-    * initialize to longest time
+    * possibly... only keep observations with nonmissing statuses
+	
+	keep if status1 != . & status2 != .
+	
+	* initialize to longest time
 	
     * censored observations will have the value of the longest possible event time
 
