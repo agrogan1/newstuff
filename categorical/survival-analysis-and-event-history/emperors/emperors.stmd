@@ -10,7 +10,7 @@ geometry: margin=1 in
 
 # Introduction
 
-This example uses data on the ages of death of Roman Emperors. Sources for this data are unclear, but it appears that the original source is [http://www.roman-emperors.org/](http://www.roman-emperors.org/).
+This example uses data on the ages of death of Roman Emperors. Sources for this data are unclear, but it appears that the original source is [http://www.roman-emperors.org/](http://www.roman-emperors.org/) via [https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13).
 
 # Get Data
 
