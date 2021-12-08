@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 7 Dec 2021, 11:23:26
+ {txt}opened on:  {res} 8 Dec 2021, 09:37:02
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 7 Dec 2021
+{res} 8 Dec 2021
 {txt}
 {com}. //_2
 . clear all
@@ -362,7 +362,7 @@ No. of subjects = {res}{ralign 5:61}{col 57}{txt}{lalign 13:Number of obs} = {re
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/emperors/emperors.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 7 Dec 2021, 11:23:48
+ {txt}closed on:  {res} 8 Dec 2021, 09:37:24
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
