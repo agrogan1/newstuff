@@ -171,9 +171,10 @@ pre code {
 <h1>Very Large OR’s or RR’s or IRR’s</h1>
 <p>One sometimes sees <em>extremely large</em> OR’s or RR’s or IRR’s.</p>
 <ol style="list-style-type: decimal">
-<li>Is this due to very low base rates of one category of the outcome? Those can inflate RR’s and OR’s.</li>
-<li>What are the units of the independent variables? For example if your independent variable is a percentage expressed on a 0 to 1.0 scale, that can radically inflate your estimates. Rescaling the independent variable sometimes helps.</li>
-<li>Is this an issue of complete, or near complete separation? i.e. one variable almost perfectly predicts the outcome? That too can lead to very large OR’s or RR’s.</li>
+<li>Is this due to very low <em>base rates</em> of one category of the outcome? Those can inflate RR’s and OR’s.</li>
+<li>What are the <em>units of the independent variables</em>? For example if your independent variable is a percentage expressed on a 0 to 1.0 scale, that can radically inflate your estimates. Rescaling the independent variable sometimes helps.</li>
+<li>Is this an issue of <em>complete, or near complete separation</em>? i.e. one variable almost perfectly predicts the outcome? That too can lead to very large OR’s or RR’s.</li>
+<li>Are there <em>very small cell (subsample) sizes</em>? Small sample sizes (cell sizes) can create anomalous estimates i.e. estimates from small samples (small table cells) can be very <em>noisy</em> estimates.</li>
 </ol>
 <p>There may be other possibilities, but if one of the above strategies does not solve the problem, I would suggest deleting the variable from your model if possible.</p>
 </div>
