@@ -1,0 +1,119 @@
+---
+title: "Adding Non-Linearity To The Right Hand Side An Equation for Categorical Data"
+description: |
+  Categorical Data Analysis
+author:
+  - name: Andy Grogan-Kaylor 
+    url: https://agrogan1.github.io/
+    affiliation: University of Michigan
+    affiliation_url: https://www.umich.edu
+date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    highlight: haddock
+    toc: yes
+    fig_height: 1.5
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+```{css, echo=FALSE}
+
+d-article blockquote {
+  color: black;
+  border-left: 2px solid gold; 
+  padding: 0.5em 10px;
+  }
+  
+```
+
+# Introduction
+
+It is plausible to think about adding non-linear functions of the covariates--e.g. $\ln(x)$, $x^2$--to the right hand side of our logistic regression equation.
+
+# Consider The Equation For Logistic Regression
+
+Logistic regression models the *log odds* of an outcome as a function of a set of covariates:
+
+$$\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2$$
+
+Here $p(\text{outcome})$ is the probability of the outcome.
+
+$\frac{p(\text{outcome})}{1-p(\text{outcome})}$ is the *odds* of the outcome.
+
+Hence, $\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)$ is the *log odds*.
+
+> Thus, a logistic regression is **already** a **non-linear** model because of the transformed y variable.
+
+> A logistic regression creates a **non-linear** model by being a **linear** model of the log-odds.
+
+# Visual Considerations
+
+Plotting a logistic regression curve helps us to see the non-linearity of the equation.
+
+```{r}
+
+library(ggplot2)
+
+x <- seq(-10, 10, 1)
+
+y <- exp(x)/(1 + exp(x))
+
+mydata <- tibble::tibble(x,y)
+
+p1 <- ggplot(mydata,
+             aes(x = x,
+                 y = y,
+                 color = y)) +
+  geom_point() +
+  
+  theme_minimal() +
+  labs(title = "Logistic Regression Curve",
+       y = "probability",
+       x = "x") +
+  scale_color_viridis_c(name = "probability")
+
+p1
+
+```
+
+It may sometimes appear that the plotted curve is linear.
+
+```{r}
+
+p1 + xlim(0,2) + geom_line(color = "red")
+
+```
+
+But this is only a result of the fact that we are only using a portion of the logistic regression curve for a particular analysis.
+
+```{r}
+
+x2 <- seq(0,2,.1)
+
+y2 <- exp(x2)/(1 + exp(x2))
+
+mydata2 <- tibble::tibble(x2,y2)
+
+p1 + 
+  geom_point(aes(x = x2, y = y2), 
+             color = "red")
+
+```
+
+# Conclusion
+
+The basic logistic regression equation is:
+
+$$\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2$$
+
+The model is already *non-linear* because of the *transformed y variable*. We can certainly add non-linear terms to the right hand side of the model (e.g. $x^2$) but this will add non-linearity **on top of the already existing non-linearity** that is due to the *transformed dependent variable*.
+
+We may indeed find that these non-linear terms on the right hand side of the equation are statistically significant, but will need to think carefully about the conceptual and substantive implications of the model given the potentially multiple layers of non-linearity.
+
+
+
