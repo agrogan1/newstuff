@@ -41,23 +41,24 @@ d-article blockquote {
 
 # Introduction
 
-It is plausible to think about adding non-linear functions of the covariates--e.g. $\ln(x)$, $x^2$--to the right hand side of our logistic regression equation.
-
-# Consider The Equation For Logistic Regression
-
 Logistic regression models the *log odds* of an outcome as a function of a set of covariates:
 
 $$\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2$$
-
 Here $p(\text{outcome})$ is the probability of the outcome.
 
 $\frac{p(\text{outcome})}{1-p(\text{outcome})}$ is the *odds* of the outcome.
 
 Hence, $\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)$ is the *log odds*.
 
-> Thus, a logistic regression is **already** a **non-linear** model because of the transformed y variable.
+> It is plausible to think about adding non-linear functions of the covariates--e.g. $\ln(x)$, $x^2$--to the right hand side of our logistic regression equation.
 
-> A logistic regression creates a **non-linear** model by being a **linear** model of the log-odds.
+# Consider Again The Equation For Logistic Regression
+
+$$\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2$$
+
+> A logistic regression is **already** a **non-linear** model because of the transformed y variable.
+
+> A logistic regression creates a **non-linear** model of probabilities by being a **linear** model of the log-odds.
 
 # Visual Considerations
 
@@ -121,7 +122,7 @@ $$\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta
 
 The model is already *non-linear* because of the *transformed y variable*. We can certainly add non-linear terms to the right hand side of the model (e.g. $x^2$) but this will add non-linearity **on top of the already existing non-linearity** that is due to the *transformed dependent variable*.
 
-We may indeed find that these non-linear terms on the right hand side of the equation are statistically significant, but will need to think carefully about the conceptual and substantive implications of the model given the potentially multiple layers of non-linearity.
+We may indeed find that these non-linear terms on the right hand side of the equation are statistically significant, but will need to think carefully about the conceptual and substantive implications of the model given the *potentially multiple layers of non-linearity*.
 
 
 

@@ -107,7 +107,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Adding Non-Linearity To The Right Hand Side Of An Equation for Categorical Data"]},{"type":"character","attributes":{},"value":["Categorical Data Analysis\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Andy Grogan-Kaylor"]},{"type":"character","attributes":{},"value":["https://agrogan1.github.io/"]},{"type":"character","attributes":{},"value":["University of Michigan"]},{"type":"character","attributes":{},"value":["https://www.umich.edu"]}]}]},{"type":"character","attributes":{},"value":["2021-12-16"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["highlight","toc","fig_height"]}},"value":[{"type":"character","attributes":{},"value":["haddock"]},{"type":"logical","attributes":{},"value":[true]},{"type":"double","attributes":{},"value":[1.5]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","mainfont"]}},"value":[{"type":"character","attributes":{},"value":["Adding Non-Linearity To The Right Hand Side Of An Equation for Categorical Data"]},{"type":"character","attributes":{},"value":["Categorical Data Analysis\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Andy Grogan-Kaylor"]},{"type":"character","attributes":{},"value":["https://agrogan1.github.io/"]},{"type":"character","attributes":{},"value":["University of Michigan"]},{"type":"character","attributes":{},"value":["https://www.umich.edu"]}]}]},{"type":"character","attributes":{},"value":["2021-12-16"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article","pdf_document"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["highlight","toc","fig_height"]}},"value":[{"type":"character","attributes":{},"value":["haddock"]},{"type":"logical","attributes":{},"value":[true]},{"type":"double","attributes":{},"value":[1.5]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","fig_height","number_sections","latex_engine"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"double","attributes":{},"value":[1.5]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["xelatex"]}]}]},{"type":"character","attributes":{},"value":["Arial"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1482,7 +1482,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
 <h3>Contents</h3>
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#consider-the-equation-for-logistic-regression">Consider The Equation For Logistic Regression</a></li>
+<li><a href="#consider-again-the-equation-for-logistic-regression">Consider Again The Equation For Logistic Regression</a></li>
 <li><a href="#visual-considerations">Visual Considerations</a></li>
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
@@ -1500,18 +1500,20 @@ d-article blockquote {
 </style>
 </div>
 <h1 id="introduction">Introduction</h1>
-<p>It is plausible to think about adding non-linear functions of the covariates–e.g. <span class="math inline">\(\ln(x)\)</span>, <span class="math inline">\(x^2\)</span>–to the right hand side of our logistic regression equation.</p>
-<h1 id="consider-the-equation-for-logistic-regression">Consider The Equation For Logistic Regression</h1>
 <p>Logistic regression models the <em>log odds</em> of an outcome as a function of a set of covariates:</p>
-<p><span class="math display">\[\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2\]</span></p>
-<p>Here <span class="math inline">\(p(\text{outcome})\)</span> is the probability of the outcome.</p>
+<p><span class="math display">\[\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2\]</span> Here <span class="math inline">\(p(\text{outcome})\)</span> is the probability of the outcome.</p>
 <p><span class="math inline">\(\frac{p(\text{outcome})}{1-p(\text{outcome})}\)</span> is the <em>odds</em> of the outcome.</p>
 <p>Hence, <span class="math inline">\(\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)\)</span> is the <em>log odds</em>.</p>
 <blockquote>
-<p>Thus, a logistic regression is <strong>already</strong> a <strong>non-linear</strong> model because of the transformed y variable.</p>
+<p>It is plausible to think about adding non-linear functions of the covariates–e.g. <span class="math inline">\(\ln(x)\)</span>, <span class="math inline">\(x^2\)</span>–to the right hand side of our logistic regression equation.</p>
+</blockquote>
+<h1 id="consider-again-the-equation-for-logistic-regression">Consider Again The Equation For Logistic Regression</h1>
+<p><span class="math display">\[\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2\]</span></p>
+<blockquote>
+<p>A logistic regression is <strong>already</strong> a <strong>non-linear</strong> model because of the transformed y variable.</p>
 </blockquote>
 <blockquote>
-<p>A logistic regression creates a <strong>non-linear</strong> model by being a <strong>linear</strong> model of the log-odds.</p>
+<p>A logistic regression creates a <strong>non-linear</strong> model of probabilities by being a <strong>linear</strong> model of the log-odds.</p>
 </blockquote>
 <h1 id="visual-considerations">Visual Considerations</h1>
 <p>Plotting a logistic regression curve helps us to see the non-linearity of the equation.</p>
@@ -1530,7 +1532,7 @@ d-article blockquote {
 <p>The basic logistic regression equation is:</p>
 <p><span class="math display">\[\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta_1 x_1 + \beta_2 x_2\]</span></p>
 <p>The model is already <em>non-linear</em> because of the <em>transformed y variable</em>. We can certainly add non-linear terms to the right hand side of the model (e.g. <span class="math inline">\(x^2\)</span>) but this will add non-linearity <strong>on top of the already existing non-linearity</strong> that is due to the <em>transformed dependent variable</em>.</p>
-<p>We may indeed find that these non-linear terms on the right hand side of the equation are statistically significant, but will need to think carefully about the conceptual and substantive implications of the model given the potentially multiple layers of non-linearity.</p>
+<p>We may indeed find that these non-linear terms on the right hand side of the equation are statistically significant, but will need to think carefully about the conceptual and substantive implications of the model given the <em>potentially multiple layers of non-linearity</em>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
