@@ -46,7 +46,7 @@ Remember that Stata works with dates by converting them to the *number of days s
 	
 	encode rise, generate(riseNUMERIC) // numeric version of cause of death
 	
-	codebook riseNUMERIC
+	codebook riseNUMERIC // show values of riseNUMERIC
 
 # `stset` The Data <a id="stset"></a>
 
@@ -66,7 +66,7 @@ The most commonly used syntax is something like `stset timevar, failure(failvar)
 
 $$S(t)=Pr(T>t)$$
 
-    sts graph, scheme(michigan)
+    sts graph, scheme(michigan) ci // survival graph with CI's
 	
 	graph export mysurvival0.png, width(1000) replace
 
