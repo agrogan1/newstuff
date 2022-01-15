@@ -4,6 +4,11 @@ subtitle: "<mark>A Conceptual & Imagistic Tour</mark>"
 author: "<mark>Andy Grogan-Kaylor</mark>"
 date: '<mark>`r format(Sys.Date(), format="%B %d, %Y")`</mark>'
 output:
+  slidy_presentation: 
+    fig_caption: yes
+    incremental: true
+    highlight: haddock
+    slide_level: 2
   revealjs::revealjs_presentation:
     fig_height: 4
     highlight: haddock
@@ -28,6 +33,18 @@ library(DiagrammeR)
 library(ggplot2)
 
 library(plotly)
+
+```
+
+```{css, echo=FALSE}
+
+.slide.titlepage {
+  font-size: 100%;
+  font-weight: bold;
+  background-color: #00274C; 
+  background-image: url("IMG_0520.jpg");
+  background-size: cover;
+}
 
 ```
 
