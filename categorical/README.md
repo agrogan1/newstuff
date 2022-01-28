@@ -11,7 +11,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
 > **Not everything below is covered in the course itself, but the list below serves as a rough *roadmap* guide to the course.**
 
 * [A Review of Descriptive Statistics, OLS and an Introduction to Stata](https://agrogan1.github.io/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.pdf)]
-* [Data Visualization With Stata](https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/data-visualization-with-Stata/data-visualization-with-Stata.pdf)]
+* [Data Visualization With Stata](https://agrogan1.github.io/Stata/data-visualization-with-Stata/data-visualization-with-Stata-slidy.html) [[PDF](https://agrogan1.github.io/Stata/data-visualization-with-Stata/data-visualization-with-Stata.pdf)]
 * [Contingency Tables](https://agrogan1.github.io/newstuff/categorical/contingency-tables/contingency-tables-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/contingency-tables/contingency-tables.pdf)]
     + [Risks and Odds](https://agrogan1.github.io/newstuff/categorical/risks-and-odds/risks-and-odds.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/risks-and-odds/risks-and-odds.pdf)] [[Interactive Version](https://agrogan1.github.io/newstuff/categorical/risks-and-odds-2/risks-and-odds-2.html)]
     + [Describing Odds Ratios](https://agrogan1.github.io/newstuff/categorical/describing-odds-ratios/describing-odds-ratios.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/describing-odds-ratios/describing-odds-ratios.pdf)]
