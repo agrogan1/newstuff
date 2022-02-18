@@ -20,7 +20,7 @@ There are some differences in *mental health* status in the data and an interest
 
 The data can be used *independently* of the PDF handout and are *free to use and share* for other classes.
 
-For example, you may wish to visualize these data using software like Excel, Google Sheets, or Tableau. See [*How To Choose A Chart: An Intuitive Guide*](https://agrogan1.github.io/newstuff/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.pdf)
+For example, you may wish to visualize these data using software like Excel, Google Sheets, or Tableau. See [*How To Choose A Chart: An Intuitive Guide*](https://agrogan1.github.io/dataviz/how-to-choose-a-chart-intuitive/how-to-choose-a-chart-intuitive.pdf)
 
 ## Data Explorer
 
