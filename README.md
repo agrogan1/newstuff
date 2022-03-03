@@ -14,7 +14,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 ### Introductory Statistics
 
-* [Differences In The Means Of Two Groups](https://agrogan1.github.io/newstuff/differences-in-2-means/differences-in-2-means.html)
+* [Differences In The Means Of Two Groups](https://agrogan1.github.io/teaching/differences-in-2-means/differences-in-2-means.html) 
 
 ### Bayesian Statistics
 
@@ -29,7 +29,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 ### Causal Modeling
 
-* [Multiple Approaches to Causal Modeling Using Black Spruce Data](https://agrogan1.github.io/newstuff/spruce/spruce-slidy.html)
+* [Multiple Approaches to Causal Modeling Using Black Spruce Data](https://agrogan1.github.io/teaching/spruce/spruce-slidy.html)
 
 ### Multilevel Modeling
 
@@ -38,7 +38,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 ### Simpson's Paradox
 
-* [Demonstration of Simpson's Paradox With Palmer Penguin Data](https://agrogan1.github.io/newstuff/simpsons-paradox-palmer-penguins/simpsons-paradox-palmer-penguins.html)
+* [Demonstration of Simpson's Paradox With Palmer Penguin Data](https://agrogan1.github.io/teaching/simpsons-paradox-palmer-penguins/simpsons-paradox-palmer-penguins.html)
 
 ## Simulated Data
 
@@ -50,7 +50,7 @@ New stuff that is going to get moved somewhere else at some point.
 
 ## RMarkdown
 
-* [Xaringan Slide Show Themes](./xaringan-themes)
+* [Xaringan Slide Show Themes](https://agrogan1.github.io/R/xaringan-themes)
 
 
 
