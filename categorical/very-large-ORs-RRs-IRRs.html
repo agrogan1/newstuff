@@ -172,7 +172,12 @@ pre code {
 <p>One sometimes sees <em>extremely large</em> OR’s or RR’s or IRR’s.</p>
 <ol style="list-style-type: decimal">
 <li>Is this due to very low <em>base rates</em> of one category of the outcome? Those can inflate RR’s and OR’s.</li>
-<li>What are the <em>units of the independent variables</em>? For example if your independent variable is a percentage expressed on a 0 to 1.0 scale, that can radically inflate your estimates. Rescaling the independent variable sometimes helps.</li>
+<li>What are the <em>units of the independent variables</em>? For example if your independent variable is a percentage expressed on a 0.0 to 1.0 scale, that can radically inflate your estimates. Rescaling the independent variable sometimes helps.</li>
+<li>Should some of your <em>independent variables be centered</em>?
+<ul>
+<li>Remember that the <span class="math inline">\(\beta_0\)</span> term is the mean outcome for an individual with a score of 0 on all of the independent variables. This may sometimes provide reasonable estimates, but it may sometimes be necessary to center some or all of your independent variables.</li>
+<li>Are there interactions (e.g. <span class="math inline">\(x*z\)</span>) in your model? Remember that when there is an interaction (e.g. <span class="math inline">\(x*z\)</span>) in a model, the coefficient for the main effect (e.g. <span class="math inline">\(\beta x\)</span>) represents the coefficient for individuals for whom <span class="math inline">\(z\)</span> is 0. Perhaps <span class="math inline">\(z\)</span> should be centered? (Remember also that interactions in nonlinear models are <em>complicated</em> and require <em>special consideration</em>, an issue discussed elsewhere on this site.)</li>
+</ul></li>
 <li>Is this an issue of <em>complete, or near complete separation</em>? i.e. one variable almost perfectly predicts the outcome? That too can lead to very large OR’s or RR’s.</li>
 <li>Are there <em>very small cell (subsample) sizes</em>? Small sample sizes (cell sizes) can create anomalous estimates i.e. estimates from small samples (small table cells) can be very <em>noisy</em> estimates.</li>
 </ol>
