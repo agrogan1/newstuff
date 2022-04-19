@@ -36,10 +36,11 @@ ggplot(FrenchSkiiers,
                color = "grey") +
   geom_label(stat = "stratum", # textual labels
              aes(label = after_stat(stratum))) +
-  theme_minimal() + # minimal theme
   labs(title = "Fewer Colds Among Those Recieving Ascorbic Acid") +
-  scale_fill_manual(values = michigancolors()) # Michigan graph colors
-
+  scale_fill_manual(values = michigancolors()) + # Michigan graph colors
+  theme_minimal() + # minimal theme
+  theme(axis.text.x = element_blank()) 
+  
 ggsave("./categorical/visualizing-categorical-data/myalluvial.png")
 
 
