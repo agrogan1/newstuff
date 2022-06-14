@@ -2,9 +2,7 @@
 
 clear all
 
-cd "C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\visualizing-categorical-data" // Windows
-
-cd "/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data" // Mac
+cd "/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data" // bilingual :-)
 
 doedit "visualizing-categorical-data.stmd"
 
