@@ -2,6 +2,8 @@
 
 library(ggplot2) # beautiful graphs
 
+library(gganimate) # animations
+
 library(geomtextpath) # text that follows paths
 
 # define a function to return probabilities
@@ -19,7 +21,7 @@ y2 <- my_logistic_function(0.2231436, x) # OR of 1.25
 
 mydata <- data.frame(x, y1, y2) # dataframe
 
-ggplot(mydata,
+p0 <- ggplot(mydata,
        aes(x = x)) +
   geom_textpath(aes(x = 0, #reference line
                     y = y1, 
@@ -89,9 +91,27 @@ ggplot(mydata,
                        "\nhttps://agrogan1.github.io/")) +
   scale_x_continuous(breaks = seq(-10, 10, by = 1)) +
   theme_minimal() +
-  theme(panel.grid.minor.x = element_blank())
-  
-ggsave("./categorical/visualizing-odds-and-risks/visualizing-odds-and-risks.pdf")
+  theme(panel.grid.minor.x = element_blank()) 
+
+p0 # replay
+
+# save to PDF
+
+ggsave("./categorical/visualizing-odds-and-risks/visualizing-odds-and-risks.pdf",
+       p0)
+
+p1 <- p0 + # animated version
+  transition_layers(layer_length = 1, 
+                    transition_length = 2) +
+  enter_fly(x_loc =  -10,
+            y_loc = .5)
+
+animate(p1, renderer = gifski_renderer(loop = FALSE)) # animate
+
+# save animation
+
+anim_save("./categorical/visualizing-odds-and-risks/visualizing-odds-and-risks.gif", 
+          animation = last_animation())
 
 
 
