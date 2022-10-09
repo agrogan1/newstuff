@@ -106,7 +106,11 @@ p1 <- p0 + # animated version
   enter_fly(x_loc =  -10,
             y_loc = .5)
 
-animate(p1, renderer = gifski_renderer(loop = FALSE)) # animate
+animate(p1, 
+        res = 150,
+        width = 1000,
+        height = 1000,
+        renderer = gifski_renderer(loop = FALSE)) # animate
 
 # save animation
 
