@@ -1,6 +1,6 @@
 * logistic-interactions-2
 
-cd "/Users/agrogan/Desktop/Github/newstuff/categorical/logistic-interactions-2" // Mac
+cd "/Users/agrogan/Desktop/Github/newstuff/categorical/logistic-interactions-2" // bilingual!
 
 doedit "logistic-interactions-2.stmd"
 

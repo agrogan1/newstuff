@@ -202,7 +202,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
 <header id="title-block-header">
 <h1 class="title">Interactions in Logistic Regression</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">28 Jun 2022 14:59:32</p>
+<p class="date">1 Nov 2022 08:08:02</p>
 </header>
 <style>body {max-width: 90%;} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 <h1 id="background">Background</h1>
@@ -215,7 +215,7 @@ relationships.</p>
 logistic regression:</p>
 <p><span class="math display">\[
     \ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 +
-\beta_2 x_2 + \beta_3 x_1 * x_2
+\beta_2 x_2 + \beta_3 x_1 \times x_2
 \]</span></p>
 <blockquote>
 <p>In the above formula, the sign, and statistical significance, of
@@ -227,9 +227,9 @@ characterize the underlying relationship.</p>
 <p><span id="dots">…</span></p>
 <p><span id="more">Imagine a linear model: <span
 class="math display">\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3
-x_1 * x_2 + e_i\]</span> Here (following Ai and Norton (2003)): <span
-class="math display">\[\frac{\partial y}{\partial x_1 \partial x_2} =
-\beta_3\]</span> We use <span
+x_1 \times x_2 + e_i\]</span> Here (following Ai and Norton (2003)):
+<span class="math display">\[\frac{\partial y}{\partial x_1 \partial
+x_2} = \beta_3\]</span> We use <span
 class="math inline">\(\text{logit}\)</span> to describe: <span
 class="math display">\[\ln\left(\frac{P(y)}{1 - P(y)}\right)\]</span> In
 the logistic model, the quantity: <span
