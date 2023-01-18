@@ -13,7 +13,8 @@ range(-10 10) ///
 lcolor("0 39 76") /// blue
 lwidth(vthick) ///
 title("Logistic Regression") ///
-ytitle("What is the probability" "of the outcome?") ///
+subtitle("What is the probability of the outcome?") ///
+ytitle("Probability") ///
 name(logit, replace) 
 
 * ordinal logistic regression
@@ -23,7 +24,8 @@ range(-10 10) ///
 lcolor("255 203 5") /// maize
 lwidth(vthick) ///
 title("Ordinal Logistic Regression") ///
-ytitle("What is the probability of a" "higher value" "rather than a lower value?") ///
+subtitle("What is the probability of a" "higher value rather than a lower value?") ///
+ytitle("Probability") ///
 name(ologit, replace)
 
 * multinomial logistic regression
@@ -32,14 +34,14 @@ twoway function y = exp(x)/(1 + exp(x)), ///
 range(-10 10) ///
 lcolor("154 51 36") /// Tappan red
 lwidth(vthick) ///
-ytitle("What is the probability of outcome 2" "rather than outcome 1?") ///
+ytitle("Probability of outcome 2" "rather than outcome 1?") ///
 name(mlogit2, replace)
 
 twoway function y = exp(x)/(1 + exp(x)), ///
 range(-10 10) ///
 lcolor("216 96 24") /// Ross orange
 lwidth(vthick) ///
-ytitle("What is the probability of outcome 3" "rather than outcome 1?") ///
+ytitle("Probability of outcome 3" "rather than outcome 1?") ///
 name(mlogit3, replace)
 
 graph combine mlogit2 mlogit3, ///
@@ -75,7 +77,7 @@ name(poisson, replace)
 twoway (function y = -1 * x^2, range(0 10) lcolor("0 178 169") lwidth(vthick)) /// Taubman teal
 (function y =  -.5 *x^2, range(0 10) lcolor("47 101 167") lwidth(vthick)), /// Arboretum blue
 title("Survival Function") ///
-xtitle("Time") ytitle("Survival Curve") ylabel(none) ///
+xtitle("Time") ytitle("Survival") ylabel(none) ///
 legend(order(1 "Group 1" 2 "Group 2") rows(2) position(7) ring(0)) ///
 name(survival, replace)
 
@@ -98,7 +100,7 @@ name(eventhistory, replace)
 * v1
 
 graph combine logit ologit mlogit poisson eventhistory, ///
-rows(2) iscale(.75) ysize(2) ///
+rows(2) iscale(.75) xsize(5) ysize(2) ///
 /* title("Models Discussed In This Course") */ ///
 scheme(michigan) ///
 name(overall, replace)
@@ -106,7 +108,7 @@ name(overall, replace)
 graph export "categorical-overview.png", replace
 
 graph combine logit ologit mlogit poisson eventhistory, ///
-rows(1) iscale(.7) xsize(4) ysize(1) ///
+rows(1) iscale(1.0) xsize(7) ysize(1) ///
 /* title("Models Discussed In This Course") */ ///
 scheme(michigan) ///
 name(banner, replace)
