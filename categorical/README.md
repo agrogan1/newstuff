@@ -1,5 +1,5 @@
 ---
-title: Categorical Data Analysis
+title: "Categorical Data Analysis"
 ---
 
 ![Models Discussed In This Course](categorical-overview.png)
