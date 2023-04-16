@@ -51,17 +51,21 @@ library(rayshader) # rayshading
 
 ```{r}
 
-x <- seq(-10, 10, by = 0.25)
+N <- 10000
 
-y <- exp(x)/(1 + exp(x))
+x1 <- runif(N, -10, 10)
+
+x2 <- runif(N, -10, 10)
+
+y <- exp(x1 + x2)/(1 + exp(x1 + x2))
 
 myprobability <- round(y, digits = 5)
 
 # foundational logistic curve
 
 p0 <- ggplot(data = NULL,
-             aes(x = x,
-             y = myprobability,
+             aes(x = x1,
+             y = x2,
              color = myprobability)) + 
   geom_point() +
   scale_color_viridis_c(name = "probability") +
@@ -79,26 +83,53 @@ p1 <- p0 +
 
 # ggplotly(p1)
 
-ggsave(p1 + 
-         theme(title = element_text(size = rel(.5)),
-               axis.text.y = element_text(size = rel(.5))), 
-       filename = "logistic.png", 
-       height = 1.25)
-
-ggsave(p1 + 
-         theme(aspect.ratio = 1),
-       filename = "logistic-square.png")
+# ggsave(p1 + 
+#          theme(title = element_text(size = rel(.5)),
+#                axis.text.y = element_text(size = rel(.5))), 
+#        filename = "logistic.png", 
+#        height = 1.25)
+# 
+# ggsave(p1 + 
+#          theme(aspect.ratio = 1),
+#        filename = "logistic-square.png")
   
 ```
 
 
-```{r, fig.cap="Manipulable Diagram of Logistic Curve"}
+```{r, fig.cap="Manipulable Diagram of Logistic Surface"}
 
-knit_hooks$set(webgl = hook_webgl)
+# knit_hooks$set(webgl = hook_webgl)
 
-rayshader::plot_gg(p1, zoom = .8) 
+# rayshader::plot_gg(p1, zoom = .8) 
 
-rglwidget()
+# rgl::plot3d(x = x1, y = x2, 
+#             z = myprobability,
+#             zlab = "probability",
+#             col = myprobability + 1)
+
+
+plotly::plot_ly(x =~x1, 
+                y = ~x2, 
+                z = ~myprobability, 
+                type="scatter3d", 
+                mode= "markers",
+                marker = list(color = ~myprobability, 
+                          colorbar = list(title = "probability"),
+                          colorscale='Viridis',
+                          showscale = TRUE),
+                hovertemplate = paste('x1: %{x}',
+                                  'x2: %{y}',
+                                  'probability: %{z}',
+                                  sep = "\n")) %>% 
+  layout(scene = list(xaxis = list(title = 'x1'),
+                      yaxis = list(title = 'x2'),
+                      zaxis = list(title = 'probability'),
+                      camera = list(eye = list(x = 1.5, 
+                                               y = -1.5, 
+                                               z = .5))))
+
+
+# rglwidget()
  
 ```
 
