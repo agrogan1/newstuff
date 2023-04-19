@@ -91,7 +91,7 @@ We use the `margins` command to estimate predicted probabilities at different va
 	plot1opts(lcolor(navy)) /// line for first group is navy
 	plot2opts(lcolor(gold)) // line for second group is gold
 	
-    graph export mymarginsplot.png, width(1000) replace
+    graph export mymarginsplot.png, width(1500) replace
 	
 ![Margins Plot](mymarginsplot.png){ width=75% } 	
 
