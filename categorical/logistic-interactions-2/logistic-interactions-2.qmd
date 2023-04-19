@@ -9,6 +9,11 @@ format:
     theme:
       light: cosmo
       dark: vapor
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    colorlinks: true
 ---
 
 # Background
@@ -39,17 +44,8 @@ $$\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + 
 
 > In the above formula, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
 
-::: {.panel-tabset}
 
-## Main Argument
-
-```{r, echo=FALSE}
-
-emo::ji("down_arrow")
-
-```
-
-
+::: {.callout-tip collapse="true"}
 ## Some Calculus (Not Essential To The Discussion)
 
 Imagine a linear model: 
@@ -69,7 +65,6 @@ In the logistic model, the quantity:
 $$\frac{\partial \text{logit} (y)}{\partial x_1 \partial x_2}$$ 
 
 does not have such a straightforward solution, and--importantly for this discussion--is not simply equal to $\beta_3$.
-
 :::
 
 # Get The Data
