@@ -1,8 +1,14 @@
 * logistic-interactions-2
 
+* setup
+
 cd "/Users/agrogan/Desktop/Github/newstuff/categorical/logistic-interactions-2" // bilingual!
 
+* edit
+
 doedit "logistic-interactions-2.stmd"
+
+* render
 
 markstat using "logistic-interactions-2.stmd", mathjax // HTML
 
