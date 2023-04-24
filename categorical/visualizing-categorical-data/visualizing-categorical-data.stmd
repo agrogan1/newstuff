@@ -6,7 +6,7 @@
 geometry: margin=1 in
 ---
 
-<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} p {font-size: 110%;} pre.stata {font-size: 110%;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {font-size: 110%; color: red;}</style>
 
 # Background
 
@@ -20,7 +20,7 @@ The general useage of these commands is hopefully fairly simple, and is as follo
 * `graph bar, over(y) by(x)`
 * `graph pie, over(y) by (x)`
 
-Our graphing task is made a little bit more complicated because we have *weighted* data where every row of data represents multiple observations, so we need to include `[fweight = Count]` in order to let Stata know that we have weighted data.
+Our graphing task is made a little bit more complicated--in this particular example--because this example uses *weighted* data where every row of data represents *multiple* observations, so we need to include `[fweight = Count]` in order to let Stata know that we have weighted data.
 
 We also add options to various graphs to make them more informative.
 
@@ -30,6 +30,12 @@ We use the *French Skiiers* data.
 
 ```s
     use "FrenchSkiiers.dta", clear
+```
+
+# List Out The Data
+
+```s
+    list
 ```
 	
 # 2 X 2 Table
@@ -49,7 +55,7 @@ A *Spineplot*, more often called a *Mosaic Plot* is illustrative of these 2 X 2 
 ```s
     spineplot Outcome Tx [fweight=Count]
 
-	graph export myspineplot1.png, width(1000) replace
+	graph export myspineplot1.png, width(1500) replace
 ```
 
 ![Spine Plot or Mosaic Plot](myspineplot1.png){width=50%}
@@ -70,7 +76,7 @@ Observe especially that we have added `note()`'s to the graph to clarify the mea
 	text(Count, mlabcolor(black)) /// add Count variable to boxes
 	scheme(michigan) // Michigan graph scheme
 	
-    graph export myspineplot2.png, width(1000) replace
+    graph export myspineplot2.png, width(1500) replace
 ```
 
 ![Spine Plot or Mosaic Plot](myspineplot2.png){width=75%}
@@ -91,7 +97,7 @@ We try a bar graph.
 	by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
 	scheme(michigan) // Michigan graph scheme
 	
-    graph export mybargraph1.png, width(1000) replace
+    graph export mybargraph1.png, width(1500) replace
 ```
 
 ![Bar Graph](mybargraph1.png){width=50%}
@@ -107,7 +113,7 @@ We try a bar graph.
 	plabel(2 percent, place(0)) /// label with percentages; placed in center of slice
 	scheme(michigan) // Michigan graph scheme
 
-    graph export mypie2.png, width(1000) replace
+    graph export mypie2.png, width(1500) replace
 ```
 ![Pie Chart](mypie2.png){width=50%}
 	

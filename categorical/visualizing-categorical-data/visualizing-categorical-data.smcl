@@ -1,0 +1,140 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}24 Apr 2023, 17:22:20
+{txt}
+{com}. //_1
+. display c(current_date)
+{res}24 Apr 2023
+{txt}
+{com}. //_2
+. display c(current_time)
+{res}17:22:20
+{txt}
+{com}. //_3
+. use "FrenchSkiiers.dta", clear
+{txt}
+{com}. //_4
+. list
+{txt}
+     {c TLC}{hline 15}{c -}{hline 9}{c -}{hline 7}{c TRC}
+     {c |} {res}           Tx   Outcome   Count {txt}{c |}
+     {c LT}{hline 15}{c -}{hline 9}{c -}{hline 7}{c RT}
+  1. {c |} {res}Ascorbic Acid      Cold      17 {txt}{c |}
+  2. {c |} {res}Ascorbic Acid   No Cold     122 {txt}{c |}
+  3. {c |} {res}      Placebo      Cold      31 {txt}{c |}
+  4. {c |} {res}      Placebo   No Cold     109 {txt}{c |}
+     {c BLC}{hline 15}{c -}{hline 9}{c -}{hline 7}{c BRC}
+
+{com}. //_5
+. tabulate Outcome Tx [fweight=Count], row col
+{txt}
+{c TLC}{hline 19}{c TRC}
+{c |} Key{col 21}{c |}
+{c LT}{hline 19}{c RT}
+{c |}{space 5}{it:frequency}{col 21}{c |}
+{c |}{space 2}{it:row percentage}{col 21}{c |}
+{c |}{space 1}{it:column percentage}{col 21}{c |}
+{c BLC}{hline 19}{c BRC}
+
+           {c |}          Tx
+   Outcome {c |}   Placebo  Ascorbic  {c |}     Total
+{hline 11}{c +}{hline 22}{c +}{hline 10}
+   No Cold {c |}{res}       109        122 {txt}{c |}{res}       231 
+           {txt}{c |}{res}     47.19      52.81 {txt}{c |}{res}    100.00 
+           {txt}{c |}{res}     77.86      87.77 {txt}{c |}{res}     82.80 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+      Cold {c |}{res}        31         17 {txt}{c |}{res}        48 
+           {txt}{c |}{res}     64.58      35.42 {txt}{c |}{res}    100.00 
+           {txt}{c |}{res}     22.14      12.23 {txt}{c |}{res}     17.20 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+     Total {c |}{res}       140        139 {txt}{c |}{res}       279 
+           {txt}{c |}{res}     50.18      49.82 {txt}{c |}{res}    100.00 
+           {txt}{c |}{res}    100.00     100.00 {txt}{c |}{res}    100.00 
+{txt}
+{com}. //_6
+. spineplot Outcome Tx [fweight=Count]
+{res}{txt}
+{com}. 
+. graph export myspineplot1.png, width(1500) replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspineplot1.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_7
+. spineplot Outcome Tx [fweight=Count], ///
+> bar2(fintensity(%100)) /// set intensity for bar 2
+> title("Fewer Colds Among Those Recieving Ascorbic Acid") /// title
+> note("Allocation to Treament vs. Placebo is Roughly Equal" ///
+> "Fewer Colds Among Those Recieving Treatment") /// note
+> xtitle("Treatment Allocation", axis(2)) /// xtitle on axis(2)
+> xtitle(" ", axis(1)) /// blank x title on axis(1)
+> ytitle("Outcome", axis(2)) /// ytitle on axis(2)
+> text(Count, mlabcolor(black)) /// add Count variable to boxes
+> scheme(michigan) // Michigan graph scheme
+{p 0 4 2}
+{txt}(note:  named style
+% 100 not found in class
+intensity,  default attributes used)
+{p_end}
+{res}{txt}
+{com}.     
+. graph export myspineplot2.png, width(1500) replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspineplot2.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_8
+. graph bar [fweight = Count], over(Outcome) /// 
+> asyvars /// different colors for bars
+> blabel(bar, format(%9.4g) size(medium)) /// bars labelled with bar height
+> yscale(range(0 100)) /// y scale from 0 to 100
+> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
+> scheme(michigan) // Michigan graph scheme
+{res}{txt}
+{com}.     
+. graph export mybargraph1.png, width(1500) replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mybargraph1.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_9
+. graph pie [fweight = Count], over(Outcome) ///
+> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
+> plabel(1 percent, place(0) color(white)) /// label with percentages; placed in center of slice
+> plabel(2 percent, place(0)) /// label with percentages; placed in center of slice
+> scheme(michigan) // Michigan graph scheme
+{res}{txt}
+{com}. 
+. graph export mypie2.png, width(1500) replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mypie2.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_^
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}24 Apr 2023, 17:22:32
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
