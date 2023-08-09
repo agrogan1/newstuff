@@ -1,28 +1,33 @@
 ---
-title: "Categorical Data Analysis"
-description: |
-  Materials for a course on categorical data analysis.
-author:
-  - name: Andy Grogan-Kaylor 
-    url: https://agrogan1.github.io/
-    affiliation: University of Michigan
-    affiliation_url: https://umich.edu/
-date: "`r Sys.Date()`"
-output:
-  distill::distill_article:
-    highlight: haddock
-    toc: yes
+title: "Non-Linear Models for Categorical Data Analysis"
+subtitle: "Materials for a course on categorical data analysis."
+author: 
+  name: Andy Grogan-Kaylor 
+  url: https://agrogan1.github.io/
+  affiliation: 
+    - name: University of Michigan
+      url: https://umich.edu/
+date: "today"
+format:
+  html: 
+    toc: true
+    number-sections: true
+    theme:
+      light: cosmo
+      dark: vapor
 ---
 
 ```{r setup, include=FALSE}
 
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
 
 ```
 
 ```{css, echo=FALSE}
 
-d-article blockquote {
+blockquote {
   color: black;
   border-left: 2px solid gold; 
   padding: 0.5em 10px;
@@ -261,27 +266,29 @@ save(x, y, myprobability, y2, y3, x3,
 
 > <span style="background-color:yellow">Instruction will be conducted in Stata, so basic knowledge of descriptive statistics and OLS in Stata is a prerequisite.</span>
 
-<aside>
+::: {.column-margin}
 Our organizing question: "What is the chance that bad thing *x* will happen? What is the chance that good thing *y* will happen?
-</aside>
+:::
 
 > Lecture slides and handouts are [here](./README.html), and are free to share and download as long as you cite their source.
 
-<aside>
+::: {.column-margin}
 Because so many of the outcomes we study are so important--and are often unequally allocated--we want to make sure our answers are as precise, and as close to correct, as we can make them.
-</aside>
+:::
 
-Researchers are most commonly aware of methods that are suitable for continuous dependent variables (e.g. mental health scores), such as the use of ordinary least squares regression. However, many outcomes of interest to social workers, and other social researchers, are decidedly not continuous, but are dichotomous or binary in nature, often representing important life events: born; died; entered the program; left the program; received a particular mental or physical health diagnosis; maltreatment or adverse event occurred; voted for a particular candidate or position; conflict or protest began; conflict or protest ended[^discuss]. These outcomes are often unequally allocated, represent disparities, are important policy or intervention outcomes, or some combination of all of these. Many researchers are familiar with the basics of logistic regression, yet do not have a grounding in some of the intricacies of logistic regression, such as generating predicted probabilities, visualizing these predicted probabilities, or using interaction terms in a categorical model, which can lead to clearer and more accurate reporting of results. Thus, proper use of these models may have substantive implications for research on disparities and inequalities as well as research on the outcomes of intervention or policy.
-
-<aside>
-```{r, fig.cap="The Nautilus Shell: Simple seeming questions contain hidden complexities."}
+```{r}
+#| fig-cap: "The Nautilus Shell: Simple seeming questions contain hidden complexities."
+#| column: margin
 
 knitr::include_graphics("nautilus-new.png")
 
 ```
 
+::: {.column-margin}
 Failure to understand some of these hidden complexities may lead to providing *very* wrong answers.
-</aside>
+:::
+
+Researchers are most commonly aware of methods that are suitable for continuous dependent variables (e.g. mental health scores), such as the use of ordinary least squares regression. However, many outcomes of interest to social workers, and other social researchers, are decidedly not continuous, but are dichotomous or binary in nature, often representing important life events: born; died; entered the program; left the program; received a particular mental or physical health diagnosis; maltreatment or adverse event occurred; voted for a particular candidate or position; conflict or protest began; conflict or protest ended[^discuss]. These outcomes are often unequally allocated, represent disparities, are important policy or intervention outcomes, or some combination of all of these. Many researchers are familiar with the basics of logistic regression, yet do not have a grounding in some of the intricacies of logistic regression, such as generating predicted probabilities, visualizing these predicted probabilities, or using interaction terms in a categorical model, which can lead to clearer and more accurate reporting of results. Thus, proper use of these models may have substantive implications for research on disparities and inequalities as well as research on the outcomes of intervention or policy.
 
 > In this course I try to thread the needle between exploring the statistical intricacies of these models, and discussing how a better understanding of categorical data analysis can help us make more accurate conclusions about the substantive issues that we care about.
 
