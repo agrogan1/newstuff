@@ -266,6 +266,8 @@ save(x, y, myprobability, y2, y3, x3,
 
 > <span style="background-color:yellow">Instruction will be conducted in Stata, so basic knowledge of descriptive statistics and OLS in Stata is a prerequisite.</span>
 
+> <span style="background-color: #FFFF00">Stata will be the statistical software employed in this course, and students will need access to Stata to participate. You will need to already have Stata, to purchase Stata from [https://www.stata.com/](https://www.stata.com/), or to use [https://its.umich.edu/computing/computers-software/virtual-sites](https://its.umich.edu/computing/computers-software/virtual-sites) to access Stata.</mark>
+
 ::: {.column-margin}
 Our organizing question: "What is the chance that bad thing *x* will happen? What is the chance that good thing *y* will happen?
 :::
