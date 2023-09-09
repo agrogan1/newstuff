@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}11 Sep 2021, 14:54:26
+ {txt}opened on:  {res} 9 Sep 2023, 15:21:10
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}11 Sep 2021
+{res} 9 Sep 2023
 {txt}
 {com}. //_2
 . clear all
@@ -458,7 +458,7 @@ Ascorbic Acid {c |}{res}       122         17 {txt}{c |}{res}       139
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/contingency-tables/contingency-tables.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}11 Sep 2021, 14:54:44
+ {txt}closed on:  {res} 9 Sep 2023, 15:21:30
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
