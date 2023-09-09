@@ -32,7 +32,7 @@ graph close _all
 
 * slidy 
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" "/Users/agrogan/Desktop/Github/newstuff/categorical/contingency-tables/contingency-tables.html" -o "/Users/agrogan/Desktop/Github/newstuff/categorical/contingency-tables/contingency-tables-slidy.html" 
+! /Applications/quarto/bin/tools/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" "/Users/agrogan/Desktop/Github/newstuff/categorical/contingency-tables/contingency-tables.html" -o "/Users/agrogan/Desktop/Github/newstuff/categorical/contingency-tables/contingency-tables-slidy.html" 
 
 doedit "../MathJax-CDN.txt"
 
