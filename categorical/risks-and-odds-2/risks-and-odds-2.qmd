@@ -1,16 +1,11 @@
 ---
 title: "Risks and Odds (2)"
 author: "Andy Grogan-Kaylor"
-date: "`r Sys.Date()`"
-output:
-  html_document: 
-    toc: yes
-    toc_float: no
-    highlight: haddock
-    theme: readable
-  distill::distill_article:
-    highlight: haddock
-    toc: yes
+date: "today"
+format: 
+  html:
+    toc: true
+    number-sections: true
 ---
 
 ```{r setup, include=FALSE}
@@ -84,6 +79,7 @@ Imagine an *Event X*. This event could be entering a program, exiting a program,
 Click on the table below and/or hover over the graph below to explore various scenarios.
 
 ```{r}
+#| column: screen
 
 hk <- highlight_key(mydata)
 
