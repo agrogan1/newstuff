@@ -44,6 +44,20 @@ $$\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + 
 
 > In the above formula, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
 
+```{stata, echo=FALSE, message = FALSE}
+
+twoway (function y = exp(x) / (1 + exp(x)), range(-10 10)) ///
+  (function y = exp(x + 1) / (1 + exp(x + 1)), range(-10 10)), ///
+  legend(order(1 "group 1" 2 "group 2")) ///
+  title("Demonstration of Interactive Relationships") ///
+  subtitle("In Logistic Regression") ///
+  caption("No single parameter can capture the difference slopes between the two groups") 
+
+graph export "demograph.png", replace
+
+```
+
+![Demonstration of Interactive Relationships](demograph.png){ width=75% }
 
 ::: {.callout-tip collapse="true"}
 ## Some Calculus (Not Essential To The Discussion)
@@ -115,18 +129,14 @@ margins sex, at(age = (20 30 40 50 60))
 
 # Plotting Margins
 
-`margins` provides a lot of results, which can be difficult to understand. Therefore, we use `marginsplot` to *plot* these `margins` results. The key command is `marginsplot`, which could be used on its own. I have simply added the [Michigan graph scheme](https://agrogan1.github.io/Stata/), as well as some options to improve the graphic design of the plot.
+`margins` provides a lot of results, which can be difficult to understand. Therefore, we use `marginsplot` to *plot* these `margins` results. 
 
 > There certainly seems to be some kind of interaction of `sex` and `age`.
 
 ```{stata}
 
-marginsplot, ///
-scheme(michigan) /// michigan graph scheme
-plotopts(msize(vlarge)) /// larger plotting symbols
-plot1opts(lcolor(navy)) /// line for first group is navy
-plot2opts(lcolor(gold)) // line for second group is gold
-	
+marginsplot
+
 graph export mymarginsplot.png, width(1000) replace
 	
 ```
