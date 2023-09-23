@@ -57,7 +57,7 @@ For the sake of teaching and exposition, I re-arrange the numbers slightly.
 | Ascorbic Acid   | 17 (a)            | 122 (b)                  |
 | Placebo         | 31 (c)            | 109 (d)                  |
 
-## Risk and Risk Differences
+## Risk ($R$) and Risk Differences ($RD$)
 
 $R = \frac{a}{a+b}$ (in Exposed)
 
@@ -71,7 +71,7 @@ $(17/139) - (31/140) =$
 
 $-.09912641$ 
 
-## Odds Ratios 
+## Odds Ratios ($OR$)
 
 |             | Develop Outcome   | Do Not Develop Outcome   |
 |-------------|:-----------------:|:------------------------:|
