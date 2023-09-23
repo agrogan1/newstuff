@@ -1,0 +1,121 @@
+---
+title: "From Contingency Table To Logistic Regression"
+subtitle: "With the French Skiiers Data"
+author: "Andy Grogan-Kaylor"
+date: "today"
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme:
+      light: cosmo
+      dark: vapor
+    css: styles.css
+  pdf:
+    include-in-header:
+      - text: | 
+          \usepackage[sfdefault]{roboto}
+    toc: true
+    number-sections: true
+---
+
+# The Data
+
+We use the French Skiiers data that we have used in other examples.
+
+```{r}
+#| echo: false
+#| output: false
+
+library(Statamarkdown)
+
+```
+
+```{stata, collectcode=TRUE}
+
+use "FrenchSkiiers.dta"
+
+```
+
+# Contingency Table
+
+```{stata}
+
+tabulate Tx Outcome [fweight = Count]
+
+```
+
+For the sake of teaching and exposition, I re-arrange the numbers slightly.
+
+|             | Develop Outcome   | Do Not Develop Outcome   |
+|-------------|:-----------------:|:------------------------:|
+| Exposed     | a                 | b                        |
+| Not Exposed | c                 | d                        |
+
+|                 | Cold              | No Cold                  |
+|-----------------|:-----------------:|:------------------------:|
+| Ascorbic Acid   | 17 (a)            | 122 (b)                  |
+| Placebo         | 31 (c)            | 109 (d)                  |
+
+## Risk and Risk Differences
+
+$R = \frac{a}{a+b}$ (in Exposed)
+
+$RD =$
+
+$\text{risk in exposed} - \text{risk in not exposed} =$
+
+$a/(a+b) - c/(c+d) =$ 
+
+$(17/139) - (31/140) =$ 
+
+$-.09912641$ 
+
+## Odds Ratios 
+
+|             | Develop Outcome   | Do Not Develop Outcome   |
+|-------------|:-----------------:|:------------------------:|
+| Exposed     | a                 | b                        |
+| Not Exposed | c                 | d                        |
+
+$OR =$ 
+
+$\frac{\text{odds that exposed person develops outcome}}{\text{odds that unexposed person develops outcome}} =$ 
+
+$\frac{\frac{a}{a+b} / \frac{b}{a+b}}{\frac{c}{c+d} / \frac{d}{c+d}} =$
+
+$\frac{a/b}{c/d} =$
+
+$\frac{ad}{bc} =$ 
+
+$(17 * 109)/(122 * 31) =$
+
+$.4899526$
+
+# Logistic Regression
+
+As discussed, the formula for logistic regression is: 
+
+$$\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta_1 x$$
+
+Here $p(\text{outcome})$ is the probability of the outcome.
+
+$\frac{p(\text{outcome})}{1-p(\text{outcome})}$ is the *odds* of the outcome.
+
+Hence, $\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)$ is the *log odds* of the outcome.
+
+Logistic regression returns a $\beta$ coefficient for each independent variable $x$.
+
+These $\beta$ coefficients can then be *exponentiated* to obtain *odds ratios*: $OR = e^{\beta}$ 
+
+> We see that the odds ratio given by logistic regression, `.4899526`, is the exact same as that given by manually calculating the odds ratio from a contingency table.
+
+> An advantage of logistic regression is that it can be extended to multiple independent variables. 
+
+```{stata}
+
+logit Outcome Tx [fweight = Count], or
+
+```
+
+
