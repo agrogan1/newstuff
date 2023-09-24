@@ -9,6 +9,12 @@ format:
     theme:
       light: cosmo
       dark: vapor
+  pdf:
+    include-in-header:
+      - text: | 
+          \usepackage[sfdefault]{roboto}
+    toc: true
+    number-sections: true      
 editor: source
 ---
 
