@@ -6,6 +6,8 @@ title: "Categorical Data Analysis"
 
 New stuff for a course on *Categorical Data Analysis* that is going to get moved somewhere else at some point.
 
+[Paper Template](https://agrogan1.github.io/newstuff/categorical/paper-template/categorical.html)
+
 > These slides and handouts are free to share and download as long as you cite their source.
 
 > **Not everything below is covered in the course itself, but the list below serves as a rough *roadmap* guide to the course.**
