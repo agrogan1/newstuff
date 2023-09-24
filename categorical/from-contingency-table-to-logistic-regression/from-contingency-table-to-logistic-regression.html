@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andy Grogan-Kaylor">
-<meta name="dcterms.date" content="2023-09-23">
+<meta name="dcterms.date" content="2023-09-24">
 
 <title>From Contingency Table To Logistic Regression</title>
 <style>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 23, 2023</p>
+      <p class="date">September 24, 2023</p>
     </div>
   </div>
   
@@ -245,8 +245,28 @@ Ascorbic Acid |       122         17 |       139
 <p>Here <span class="math inline">\(p(\text{outcome})\)</span> is the probability of the outcome.</p>
 <p><span class="math inline">\(\frac{p(\text{outcome})}{1-p(\text{outcome})}\)</span> is the <em>odds</em> of the outcome.</p>
 <p>Hence, <span class="math inline">\(\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)\)</span> is the <em>log odds</em> of the outcome.</p>
+<p>As discussed, the logistic regression equation has the desired functional form to reflect changes in the probability of an outcome that can be either 1 or 0.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="from-contingency-table-to-logistic-regression_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 <p>Logistic regression returns a <span class="math inline">\(\beta\)</span> coefficient for each independent variable <span class="math inline">\(x\)</span>.</p>
 <p>These <span class="math inline">\(\beta\)</span> coefficients can then be <em>exponentiated</em> to obtain <em>odds ratios</em>: <span class="math inline">\(OR = e^{\beta}\)</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exponentiation “undoes” the logarithmic transformation.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <span class="math inline">\(\ln(y) = x\)</span>, then <span class="math inline">\(y = e^x\)</span></p>
+<p>So, if … <span class="math inline">\(\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})}\Big) = \beta_0 + \beta_1 x\)</span> then <span class="math inline">\(\frac{p(\text{outcome})}{1-p(\text{outcome})} = e^{\beta_0 + \beta_1 x} = e^{\beta_0} \times e^{\beta_1 x}\)</span></p>
+</div>
+</div>
 <blockquote class="blockquote">
 <p>We see that the odds ratio given by logistic regression, <code>.4899526</code>, is the exact same as that given by manually calculating the odds ratio from a contingency table.</p>
 </blockquote>

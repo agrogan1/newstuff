@@ -104,9 +104,38 @@ $\frac{p(\text{outcome})}{1-p(\text{outcome})}$ is the *odds* of the outcome.
 
 Hence, $\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)$ is the *log odds* of the outcome.
 
+As discussed, the logistic regression equation has the desired functional form to reflect changes in the probability of an outcome that can be either 1 or 0.
+
+```{r}
+#| echo: false
+#| fig-height: 3
+
+x <- seq(-10, 10, .1)
+
+p <- exp(x)/(1 + exp(x))
+
+plot(x, p,
+     main = "Logistic Curve",
+     type = "l",
+     col = "red",
+     lwd = 2,
+     xlab = "x",
+     ylab = "probability")
+
+```
+
+
 Logistic regression returns a $\beta$ coefficient for each independent variable $x$.
 
 These $\beta$ coefficients can then be *exponentiated* to obtain *odds ratios*: $OR = e^{\beta}$ 
+
+::: {.callout-tip}
+## Exponentiation "undoes" the logarithmic transformation.
+
+If $\ln(y) = x$, then $y = e^x$
+
+So, if ... $\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})}\Big) = \beta_0 + \beta_1 x$ then $\frac{p(\text{outcome})}{1-p(\text{outcome})} = e^{\beta_0 + \beta_1 x} = e^{\beta_0} \times e^{\beta_1 x}$
+:::
 
 > We see that the odds ratio given by logistic regression, `.4899526`, is the exact same as that given by manually calculating the odds ratio from a contingency table.
 
