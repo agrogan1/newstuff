@@ -104,26 +104,23 @@ $\frac{p(\text{outcome})}{1-p(\text{outcome})}$ is the *odds* of the outcome.
 
 Hence, $\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)$ is the *log odds* of the outcome.
 
-As discussed, the logistic regression equation has the desired functional form to reflect changes in the probability of an outcome that can be either 1 or 0.
+::: {.callout-tip}
+## The logistic regression equation has the desired functional form.
 
-```{r}
+The logistic regression equation is appropriate to reflect changes in the probability of an outcome that can be either 1 or 0.
+
+```{stata}
 #| echo: false
-#| fig-height: 3
+#| output: false
 
-x <- seq(-10, 10, .1)
+twoway function y = exp(x)/(1 + exp(x)), range(-10 10) lwidth(thick) title("Logistic Curve") ytitle("probability")
 
-p <- exp(x)/(1 + exp(x))
-
-plot(x, p,
-     main = "Logistic Curve",
-     type = "l",
-     col = "red",
-     lwd = 2,
-     xlab = "x",
-     ylab = "probability")
+graph export "logistic.png", replace
 
 ```
 
+![Logistic Curve](logistic.png){width=50%}
+:::
 
 Logistic regression returns a $\beta$ coefficient for each independent variable $x$.
 

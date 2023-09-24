@@ -245,10 +245,23 @@ Ascorbic Acid |       122         17 |       139
 <p>Here <span class="math inline">\(p(\text{outcome})\)</span> is the probability of the outcome.</p>
 <p><span class="math inline">\(\frac{p(\text{outcome})}{1-p(\text{outcome})}\)</span> is the <em>odds</em> of the outcome.</p>
 <p>Hence, <span class="math inline">\(\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)\)</span> is the <em>log odds</em> of the outcome.</p>
-<p>As discussed, the logistic regression equation has the desired functional form to reflect changes in the probability of an outcome that can be either 1 or 0.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="from-contingency-table-to-logistic-regression_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The logistic regression equation has the desired functional form.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The logistic regression equation is appropriate to reflect changes in the probability of an outcome that can be either 1 or 0.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="logistic.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Logistic Curve</figcaption>
+</figure>
+</div>
 </div>
 </div>
 <p>Logistic regression returns a <span class="math inline">\(\beta\)</span> coefficient for each independent variable <span class="math inline">\(x\)</span>.</p>
