@@ -122,6 +122,8 @@ graph export "logistic.png", replace
 ![Logistic Curve](logistic.png){width=50%}
 :::
 
+{{< pagebreak >}}
+
 Logistic regression returns a $\beta$ coefficient for each independent variable $x$.
 
 These $\beta$ coefficients can then be *exponentiated* to obtain *odds ratios*: $OR = e^{\beta}$ 
