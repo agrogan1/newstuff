@@ -17,6 +17,7 @@ format:
           \usepackage[sfdefault]{roboto}
     toc: true
     number-sections: true
+    geometry: margin=.5in
 ---
 
 # The Data
@@ -71,6 +72,8 @@ $(17/139) - (31/140) =$
 
 $-.09912641$ 
 
+> How do we talk about this *risk difference*?
+
 ## Odds Ratios ($OR$)
 
 |             | Develop Outcome   | Do Not Develop Outcome   |
@@ -92,6 +95,8 @@ $(17 * 109)/(122 * 31) =$
 
 $.4899526$
 
+> How do we talk about this *odds ratio*?
+
 # Logistic Regression
 
 As discussed, the formula for logistic regression is: 
@@ -102,7 +107,9 @@ Here $p(\text{outcome})$ is the probability of the outcome.
 
 $\frac{p(\text{outcome})}{1-p(\text{outcome})}$ is the *odds* of the outcome.
 
-Hence, $\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)$ is the *log odds* of the outcome.
+Hence, $\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)$[^TDV] is the *log odds* of the outcome.
+
+[^TDV]: It is sometimes useful to think of the *log odds* as a *transformed dependent variable*. We have transformed the dependent variable so that it can be expressed as a linear function of the independent variables, e.g.: $\beta_0 + \beta_1 x$
 
 ::: {.callout-tip}
 ## The logistic regression equation has the desired functional form.
@@ -121,8 +128,6 @@ graph export "logistic.png", replace
 
 ![Logistic Curve](logistic.png){width=50%}
 :::
-
-{{< pagebreak >}}
 
 Logistic regression returns a $\beta$ coefficient for each independent variable $x$.
 
@@ -146,4 +151,4 @@ logit Outcome Tx [fweight = Count], or
 
 ```
 
-
+> How do we talk about this *odds ratio*? How would we talk about it if it was $> 1.0$? $> 2.0$

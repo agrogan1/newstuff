@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andy Grogan-Kaylor">
-<meta name="dcterms.date" content="2023-09-24">
+<meta name="dcterms.date" content="2023-09-26">
 
 <title>From Contingency Table To Logistic Regression</title>
 <style>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 24, 2023</p>
+      <p class="date">September 26, 2023</p>
     </div>
   </div>
   
@@ -205,6 +205,9 @@ Ascorbic Acid |       122         17 |       139
 <p><span class="math inline">\(a/(a+b) - c/(c+d) =\)</span></p>
 <p><span class="math inline">\((17/139) - (31/140) =\)</span></p>
 <p><span class="math inline">\(-.09912641\)</span></p>
+<blockquote class="blockquote">
+<p>How do we talk about this <em>risk difference</em>?</p>
+</blockquote>
 </section>
 <section id="odds-ratios-or" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="odds-ratios-or"><span class="header-section-number">2.2</span> Odds Ratios (<span class="math inline">\(OR\)</span>)</h2>
@@ -236,6 +239,9 @@ Ascorbic Acid |       122         17 |       139
 <p><span class="math inline">\(\frac{ad}{bc} =\)</span></p>
 <p><span class="math inline">\((17 * 109)/(122 * 31) =\)</span></p>
 <p><span class="math inline">\(.4899526\)</span></p>
+<blockquote class="blockquote">
+<p>How do we talk about this <em>odds ratio</em>?</p>
+</blockquote>
 </section>
 </section>
 <section id="logistic-regression" class="level1" data-number="3">
@@ -244,7 +250,7 @@ Ascorbic Acid |       122         17 |       139
 <p><span class="math display">\[\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta_1 x\]</span></p>
 <p>Here <span class="math inline">\(p(\text{outcome})\)</span> is the probability of the outcome.</p>
 <p><span class="math inline">\(\frac{p(\text{outcome})}{1-p(\text{outcome})}\)</span> is the <em>odds</em> of the outcome.</p>
-<p>Hence, <span class="math inline">\(\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)\)</span> is the <em>log odds</em> of the outcome.</p>
+<p>Hence, <span class="math inline">\(\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)\)</span><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is the <em>log odds</em> of the outcome.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -264,7 +270,6 @@ The logistic regression equation has the desired functional form.
 </div>
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 <p>Logistic regression returns a <span class="math inline">\(\beta\)</span> coefficient for each independent variable <span class="math inline">\(x\)</span>.</p>
 <p>These <span class="math inline">\(\beta\)</span> coefficients can then be <em>exponentiated</em> to obtain <em>odds ratios</em>: <span class="math inline">\(OR = e^{\beta}\)</span></p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -310,9 +315,18 @@ Log likelihood = -125.6561                              Pseudo R2     = 0.0190
 Note: _cons estimates baseline odds.</code></pre>
 </div>
 </div>
+<blockquote class="blockquote">
+<p>How do we talk about this <em>odds ratio</em>? How would we talk about it if it was <span class="math inline">\(&gt; 1.0\)</span>? <span class="math inline">\(&gt; 2.0\)</span></p>
+</blockquote>
 </section>
 
-</main>
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>It is sometimes useful to think of the <em>log odds</em> as a <em>transformed dependent variable</em>. We have transformed the dependent variable so that it can be expressed as a linear function of the independent variables, e.g.: <span class="math inline">\(\beta_0 + \beta_1 x\)</span><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
