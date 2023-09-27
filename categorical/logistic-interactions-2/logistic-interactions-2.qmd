@@ -44,20 +44,31 @@ $$\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + 
 
 > In the above formula, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
 
-```{stata, echo=FALSE, message = FALSE}
+```{stata, echo=FALSE, message=FALSE, output=FALSE}
 
-twoway (function y = exp(x) / (1 + exp(x)), range(-10 10)) ///
-  (function y = exp(x + 1) / (1 + exp(x + 1)), range(-10 10)), ///
-  legend(order(1 "group 1" 2 "group 2")) ///
-  title("Demonstration of Interactive Relationships") ///
-  subtitle("In Logistic Regression") ///
-  caption("No single parameter can capture the difference slopes between the two groups") 
+twoway (function y = .5*x, range(-10 10) lwidth(2)) ///
+(function y = 2*x + 1, range(-10 10) lwidth(2)), ///
+legend(order(1 "group 1" 2 "group 2")) ///
+title("Demonstration of Interactive Relationships") ///
+subtitle("In Linear Regression") ///
+caption("A single parameter can capture the difference in slopes between the two groups") ///
+name(linear, replace)
 
-graph export "demograph.png", replace
+twoway (function y = exp(.5*x) / (1 + exp(.5*x)), range(-10 10) lwidth(2)) ///
+(function y = exp(2*x + 1) / (1 + exp(2*x + 1)), range(-10 10) lwidth(2)), ///
+legend(order(1 "group 1" 2 "group 2")) ///
+title("Demonstration of Interactive Relationships") ///
+subtitle("In Logistic Regression") ///
+caption("No single parameter can capture the difference in slopes between the two groups") ///
+name(logistic, replace)
+
+graph combine linear logistic, rows(1) ysize(3) name(combined, replace)
+
+graph export "combined.png", as(png) width(2000) name("combined") replace
 
 ```
 
-![Demonstration of Interactive Relationships](demograph.png){ width=75% }
+![Demonstration of Interactive Relationships](combined.png){ width=90% }
 
 ::: {.callout-tip collapse="true"}
 ## Some Calculus (Not Essential To The Discussion)
