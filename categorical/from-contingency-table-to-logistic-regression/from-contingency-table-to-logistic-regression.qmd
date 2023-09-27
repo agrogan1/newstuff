@@ -7,6 +7,7 @@ format:
   html:
     toc: true
     number-sections: true
+    anchor-sections: true
     theme:
       light: cosmo
       dark: vapor
@@ -134,7 +135,7 @@ Logistic regression returns a $\beta$ coefficient for each independent variable 
 These $\beta$ coefficients can then be *exponentiated* to obtain *odds ratios*: $OR = e^{\beta}$ 
 
 ::: {.callout-tip}
-## Exponentiation "undoes" the logarithmic transformation.
+## Exponentiation "undoes" the logarithmic transformation. 
 
 If $\ln(y) = x$, then $y = e^x$
 
