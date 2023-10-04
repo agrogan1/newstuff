@@ -118,23 +118,23 @@ describe
 
 # Estimate Logistic Regression
 
-We then run a logistic regression model in which `outcome` is the dependent variable. `sex`, `age` and `group` are the independent variables. We estimate an interaction of `sex` and `age`. 
+We then run a logistic regression model in which `outcome` is the dependent variable. `age` and `group` are the independent variables. We estimate an interaction of `group` and `age`. 
 
 > We note that the regression coefficient for the interaction term is not statistically significant. 
 
 ```{stata, collectcode = TRUE}
 
-logit outcome sex##c.age i.group
+logit outcome c.age##i.group
 
 ```
 
 # Margins
 
-We use the `margins` command to estimate predicted probabilities at different values of `sex` and `age`. 
+We use the `margins` command to estimate predicted probabilities at different values of `group` and `age`. 
 
 ```{stata, collectcode = TRUE}
 
-margins sex, at(age = (20 30 40 50 60))
+margins group, at(age = (20 30 40 50 60))
 
 ```
 
@@ -160,7 +160,7 @@ We again employ the `margins` command, this time using the `post` option so that
 
 ```{stata, collectcode = TRUE}
 
-margins sex, at(age = (20 30 40 50 60)) post
+margins group, at(age = (20 30 40 50 60)) post
 
 ```
 
@@ -176,28 +176,18 @@ margins, coeflegend
 
 # Testing Margins Against Each Other
 
-Lastly, we test the margins at age 20 for men and women, and again at ages 50 and 60 for men and women. 
+Lastly, we test the margins at age 20 across some of the groups, and again at ages 50 and 60 for some of the groups. 
 
-> We note that the original regression parameter for the interaction term was not statistically significant. Indeed, the margins at age 20 are not statistically significantly different by sex. However, at ages 50 & 60, there is a statistically significant difference by sex. 
-
-```{stata}
-
-test _b[1bn._at#0bn.sex] = _b[1bn._at#1.sex] // male and female at age 20
-	
-test _b[4._at#0bn.sex] = _b[4._at#1.sex] // male and female at age 50
-
-test _b[5._at#0bn.sex] =  _b[5._at#1.sex] // male and female at age 60
-
-```
-        
-> There is some suggestion that the *difference of the differences* is statistically significant. This statistical significance is only marginal [pun intended] at age 60, but truly statistically significant at age 50.
+> We note that the original regression parameter for the interaction term was not statistically significant. Indeed, the margins at age 20 are not statistically significantly different by group. However, at ages 50 & 60, there is a statistically significant difference by group. 
 
 ```{stata}
 
-test _b[1bn._at#1.sex] - _b[1bn._at#0bn.sex] = _b[5._at#1.sex] - _b[5._at#0bn.sex] // test equivalence of the differences
+test _b[1bn._at#0bn.group] = _b[1bn._at#1.group] // groups 1 & 2 at age 20
 	
-test _b[1bn._at#1.sex] - _b[1bn._at#0bn.sex] = _b[4._at#1.sex] - _b[4._at#0bn.sex] // test equivalence of the differences
-        
+test _b[4._at#0bn.group] = _b[4._at#1.group] // groups 1 & 2 at age 50
+
+test _b[5._at#0bn.group] =  _b[5._at#1.group] // groups 1 & 2 at age 60
+
 ```
 
 # References

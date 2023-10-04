@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Andy Grogan-Kaylor">
+<meta name="dcterms.date" content="2023-10-04">
+
+<title>Interactions in Logistic Regression</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="logistic-interactions-3_files/libs/clipboard/clipboard.min.js"></script>
+<script src="logistic-interactions-3_files/libs/quarto-html/quarto.js"></script>
+<script src="logistic-interactions-3_files/libs/quarto-html/popper.min.js"></script>
+<script src="logistic-interactions-3_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="logistic-interactions-3_files/libs/quarto-html/anchor.min.js"></script>
+<link href="logistic-interactions-3_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="logistic-interactions-3_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="logistic-interactions-3_files/libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="logistic-interactions-3_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="logistic-interactions-3_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="logistic-interactions-3_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="logistic-interactions-3_files/libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">1</span> Background</a></li>
+  <li><a href="#get-the-data" id="toc-get-the-data" class="nav-link" data-scroll-target="#get-the-data"><span class="header-section-number">2</span> Get The Data</a></li>
+  <li><a href="#describe-the-data" id="toc-describe-the-data" class="nav-link" data-scroll-target="#describe-the-data"><span class="header-section-number">3</span> Describe The Data</a></li>
+  <li><a href="#estimate-logistic-regression" id="toc-estimate-logistic-regression" class="nav-link" data-scroll-target="#estimate-logistic-regression"><span class="header-section-number">4</span> Estimate Logistic Regression</a></li>
+  <li><a href="#margins" id="toc-margins" class="nav-link" data-scroll-target="#margins"><span class="header-section-number">5</span> Margins</a></li>
+  <li><a href="#plotting-margins" id="toc-plotting-margins" class="nav-link" data-scroll-target="#plotting-margins"><span class="header-section-number">6</span> Plotting Margins</a></li>
+  <li><a href="#rerun-margins-posting-results" id="toc-rerun-margins-posting-results" class="nav-link" data-scroll-target="#rerun-margins-posting-results"><span class="header-section-number">7</span> Rerun <code>margins</code>, Posting Results</a></li>
+  <li><a href="#margins-with-coeflegend" id="toc-margins-with-coeflegend" class="nav-link" data-scroll-target="#margins-with-coeflegend"><span class="header-section-number">8</span> <code>margins</code> with <code>coeflegend</code></a></li>
+  <li><a href="#testing-margins-against-each-other" id="toc-testing-margins-against-each-other" class="nav-link" data-scroll-target="#testing-margins-against-each-other"><span class="header-section-number">9</span> Testing Margins Against Each Other</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">10</span> References</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="logistic-interactions-3.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Interactions in Logistic Regression</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Andy Grogan-Kaylor </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 4, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="background" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Background</h1>
+<div class="cell">
+<style type="text/css">
+
+blockquote {
+  color: black;
+  border-left: 2px solid #FFCB05; 
+  padding: 0.5em 10px;
+}
+  
+</style>
+</div>
+<p>The purpose of this tutorial is to illustrate the idea that in <em>logistic regression</em>, the <span class="math inline">\(\beta\)</span> parameter for an interaction term may not accurately characterize the underlying interactive relationships.</p>
+<p>This idea may be easier to describe if we recall the formula for a logistic regression:</p>
+<p><span class="math display">\[\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2\]</span></p>
+<blockquote class="blockquote">
+<p>In the above formula, the sign, and statistical significance, of <span class="math inline">\(\beta_3\)</span> may not accurately characterize the underlying relationship.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="combined.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption class="figure-caption">Demonstration of Interactive Relationships</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Some Calculus (Not Essential To The Discussion)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Imagine a linear model:</p>
+<p><span class="math display">\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2 + e_i\]</span></p>
+<p>Here (following Ai and Norton (2003)):</p>
+<p><span class="math display">\[\frac{\partial y}{\partial x_1 \partial x_2} = \beta_3\]</span></p>
+<p>We use <span class="math inline">\(\text{logit}\)</span> to describe:</p>
+<p><span class="math display">\[\ln\left(\frac{P(y)}{1 - P(y)}\right)\]</span></p>
+<p>In the logistic model, the quantity:</p>
+<p><span class="math display">\[\frac{\partial \text{logit} (y)}{\partial x_1 \partial x_2}\]</span></p>
+<p>does not have such a straightforward solution, and–importantly for this discussion–is not simply equal to <span class="math inline">\(\beta_3\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="get-the-data" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Get The Data</h1>
+<p>We start by obtaining <em>simulated data</em> from StataCorp.</p>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">clear</span> <span class="ot">all</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">close</span> <span class="dt">_all</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> http:<span class="co">//www.stata-press.com/data/r15/margex, clear</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Artificial data for margins)</code></pre>
+</div>
+</div>
+</section>
+<section id="describe-the-data" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Describe The Data</h1>
+<p>The variables are as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Contains data from http://www.stata-press.com/data/r15/margex.dta
+ Observations:         3,000                  Artificial data for margins
+    Variables:            11                  27 Nov 2016 14:27
+------------------------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+------------------------------------------------------------------------------------------------
+y               float   %6.1f                 
+outcome         byte    %2.0f                 
+sex             byte    %6.0f      sexlbl     
+group           byte    %2.0f                 
+age             float   %3.0f                 
+distance        float   %6.2f                 
+ycn             float   %6.1f                 
+yc              float   %6.1f                 
+treatment       byte    %2.0f                 
+agegroup        byte    %8.0g      agelab     
+arm             byte    %8.0g                 
+------------------------------------------------------------------------------------------------
+Sorted by: group</code></pre>
+</div>
+</div>
+</section>
+<section id="estimate-logistic-regression" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Estimate Logistic Regression</h1>
+<p>We then run a logistic regression model in which <code>outcome</code> is the dependent variable. <code>age</code> and <code>group</code> are the independent variables. We estimate an interaction of <code>group</code> and <code>age</code>.</p>
+<blockquote class="blockquote">
+<p>We note that the regression coefficient for the interaction term is not statistically significant.</p>
+</blockquote>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> outcome c.age##i.<span class="fu">group</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Iteration 0:  Log likelihood = -1366.0718  
+Iteration 1:  Log likelihood = -1125.2149  
+Iteration 2:  Log likelihood =  -1077.539  
+Iteration 3:  Log likelihood = -1074.8422  
+Iteration 4:  Log likelihood = -1074.7864  
+Iteration 5:  Log likelihood = -1074.7863  
+
+Logistic regression                                     Number of obs =  3,000
+                                                        LR chi2(5)    = 582.57
+                                                        Prob &gt; chi2   = 0.0000
+Log likelihood = -1074.7863                             Pseudo R2     = 0.2132
+
+------------------------------------------------------------------------------
+     outcome | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |    .091183   .0084697    10.77   0.000     .0745827    .1077834
+             |
+       group |
+          2  |  -.8272665   .6648279    -1.24   0.213    -2.130305    .4757722
+          3  |  -1.085445   1.044802    -1.04   0.299    -3.133219    .9623292
+             |
+ group#c.age |
+          2  |   .0013522   .0139747     0.10   0.923    -.0260378    .0287421
+          3  |  -.0164596   .0259182    -0.64   0.525    -.0672584    .0343392
+             |
+       _cons |  -5.184398   .4274964   -12.13   0.000    -6.022275    -4.34652
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</section>
+<section id="margins" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Margins</h1>
+<p>We use the <code>margins</code> command to estimate predicted probabilities at different values of <code>group</code> and <code>age</code>.</p>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>margins <span class="fu">group</span>, <span class="fu">at</span>(age = (20 30 40 50 60))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adjusted predictions                                     Number of obs = 3,000
+Model VCE: OIM
+
+Expression: Pr(outcome), predict()
+1._at: age = 20
+2._at: age = 30
+3._at: age = 40
+4._at: age = 50
+5._at: age = 60
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |     Margin   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+   _at#group |
+        1 1  |   .0335453   .0084761     3.96   0.000     .0169325    .0501582
+        1 2  |   .0153532   .0044572     3.44   0.001     .0066173    .0240891
+        1 3  |   .0083644   .0041378     2.02   0.043     .0002545    .0164742
+        2 1  |   .0795185   .0132311     6.01   0.000     .0535861     .105451
+        2 2  |   .0378475   .0070835     5.34   0.000      .023964    .0517309
+        2 3  |   .0174959   .0054051     3.24   0.001     .0069021    .0280896
+        3 1  |   .1769607   .0155126    11.41   0.000     .1465565    .2073649
+        3 2  |   .0902771   .0095282     9.47   0.000     .0716022     .108952
+        3 3  |   .0362321   .0091647     3.95   0.000     .0182697    .0541945
+        4 1  |   .3485893   .0149941    23.25   0.000     .3192014    .3779772
+        4 2  |   .2002224   .0188064    10.65   0.000     .1633625    .2370823
+        4 3  |   .0735312   .0271556     2.71   0.007     .0203072    .1267553
+        5 1  |   .5711598   .0265203    21.54   0.000     .5191809    .6231386
+        5 2  |   .3870919   .0467552     8.28   0.000     .2954535    .4787304
+        5 3  |   .1435103   .0746567     1.92   0.055    -.0028141    .2898347
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</section>
+<section id="plotting-margins" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Plotting Margins</h1>
+<p><code>margins</code> provides a lot of results, which can be difficult to understand. Therefore, we use <code>marginsplot</code> to <em>plot</em> these <code>margins</code> results.</p>
+<blockquote class="blockquote">
+<p>There certainly seems to be some kind of interaction of <code>sex</code> and <code>age</code>.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>marginsplot</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> mymarginsplot.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Variables that uniquely identify margins: age group
+
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/mymarginsplot.p
+    &gt; ng saved as PNG format</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mymarginsplot.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption class="figure-caption">Margins Plot</figcaption>
+</figure>
+</div>
+</section>
+<section id="rerun-margins-posting-results" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Rerun <code>margins</code>, Posting Results</h1>
+<p>We again employ the <code>margins</code> command, this time using the <code>post</code> option so that the results of the margins command are <em>posted</em> as an estimation result. This will allow us to employ the <code>test</code> command to statistically test different margins against each other.</p>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>margins <span class="fu">group</span>, <span class="fu">at</span>(age = (20 30 40 50 60)) <span class="kw">post</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adjusted predictions                                     Number of obs = 3,000
+Model VCE: OIM
+
+Expression: Pr(outcome), predict()
+1._at: age = 20
+2._at: age = 30
+3._at: age = 40
+4._at: age = 50
+5._at: age = 60
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |     Margin   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+   _at#group |
+        1 1  |   .0335453   .0084761     3.96   0.000     .0169325    .0501582
+        1 2  |   .0153532   .0044572     3.44   0.001     .0066173    .0240891
+        1 3  |   .0083644   .0041378     2.02   0.043     .0002545    .0164742
+        2 1  |   .0795185   .0132311     6.01   0.000     .0535861     .105451
+        2 2  |   .0378475   .0070835     5.34   0.000      .023964    .0517309
+        2 3  |   .0174959   .0054051     3.24   0.001     .0069021    .0280896
+        3 1  |   .1769607   .0155126    11.41   0.000     .1465565    .2073649
+        3 2  |   .0902771   .0095282     9.47   0.000     .0716022     .108952
+        3 3  |   .0362321   .0091647     3.95   0.000     .0182697    .0541945
+        4 1  |   .3485893   .0149941    23.25   0.000     .3192014    .3779772
+        4 2  |   .2002224   .0188064    10.65   0.000     .1633625    .2370823
+        4 3  |   .0735312   .0271556     2.71   0.007     .0203072    .1267553
+        5 1  |   .5711598   .0265203    21.54   0.000     .5191809    .6231386
+        5 2  |   .3870919   .0467552     8.28   0.000     .2954535    .4787304
+        5 3  |   .1435103   .0746567     1.92   0.055    -.0028141    .2898347
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</section>
+<section id="margins-with-coeflegend" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> <code>margins</code> with <code>coeflegend</code></h1>
+<p>We follow up by using the <code>margins</code> command with the <code>coeflegend</code> option to see the way in which Stata has labeled the different margins.</p>
+<div class="cell" data-collectcode="true">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>margins, coeflegend</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adjusted predictions                                     Number of obs = 3,000
+Model VCE: OIM
+
+Expression: Pr(outcome), predict()
+1._at: age = 20
+2._at: age = 30
+3._at: age = 40
+4._at: age = 50
+5._at: age = 60
+
+------------------------------------------------------------------------------
+             |     Margin   Legend
+-------------+----------------------------------------------------------------
+   _at#group |
+        1 1  |   .0335453  _b[1bn._at#1bn.group]
+        1 2  |   .0153532  _b[1bn._at#2.group]
+        1 3  |   .0083644  _b[1bn._at#3.group]
+        2 1  |   .0795185  _b[2._at#1bn.group]
+        2 2  |   .0378475  _b[2._at#2.group]
+        2 3  |   .0174959  _b[2._at#3.group]
+        3 1  |   .1769607  _b[3._at#1bn.group]
+        3 2  |   .0902771  _b[3._at#2.group]
+        3 3  |   .0362321  _b[3._at#3.group]
+        4 1  |   .3485893  _b[4._at#1bn.group]
+        4 2  |   .2002224  _b[4._at#2.group]
+        4 3  |   .0735312  _b[4._at#3.group]
+        5 1  |   .5711598  _b[5._at#1bn.group]
+        5 2  |   .3870919  _b[5._at#2.group]
+        5 3  |   .1435103  _b[5._at#3.group]
+------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</section>
+<section id="testing-margins-against-each-other" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Testing Margins Against Each Other</h1>
+<p>Lastly, we test the margins at age 20 across some of the groups, and again at ages 50 and 60 for some of the groups.</p>
+<blockquote class="blockquote">
+<p>We note that the original regression parameter for the interaction term was not statistically significant. Indeed, the margins at age 20 are not statistically significantly different by group. However, at ages 50 &amp; 60, there is a statistically significant difference by group.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[1bn._at#0bn.<span class="fu">group</span>] = _b[1bn._at#1.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 20</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[4._at#0bn.<span class="fu">group</span>] = _b[4._at#1.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 50</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[5._at#0bn.<span class="fu">group</span>] =  _b[5._at#1.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 60</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1bn._at#0bn.group] not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+</div>
+</div>
+</section>
+<section id="references" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> References</h1>
+<p>Ai, C., &amp; Norton, E. C. (2003). Interaction terms in logit and probit models. <em>Economics Letters</em>. <a href="https://doi.org/10.1016/S0165-1765(03)00032-6">https://doi.org/10.1016/S0165-1765(03)00032-6</a></p>
+<p>Karaca-Mandic, P., Norton, E. C., &amp; Dowd, B. (2012). Interaction terms in nonlinear models. <em>Health Services Research</em>. <a href="https://doi.org/10.1111/j.1475-6773.2011.01314.x">https://doi.org/10.1111/j.1475-6773.2011.01314.x</a></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
