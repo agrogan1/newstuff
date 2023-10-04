@@ -1,5 +1,6 @@
 ---
 title: "Interactions in Logistic Regression"
+subtitle: "New Version"
 author: "Andy Grogan-Kaylor"
 date: "today"
 format:
