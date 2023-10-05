@@ -3,15 +3,15 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}24 Apr 2023, 17:22:20
+ {txt}opened on:  {res} 5 Oct 2023, 18:28:46
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}24 Apr 2023
+{res} 5 Oct 2023
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}17:22:20
+{res}18:28:46
 {txt}
 {com}. //_3
 . use "FrenchSkiiers.dta", clear
@@ -95,6 +95,20 @@ format
 {p_end}
 
 {com}. //_8
+. graph bar [fweight = Count], over(Outcome) by(Tx)
+{res}{txt}
+{com}.     
+. graph export mybargraph0.png, width(1500) replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mybargraph0.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. //_9
 . graph bar [fweight = Count], over(Outcome) /// 
 > asyvars /// different colors for bars
 > blabel(bar, format(%9.4g) size(medium)) /// bars labelled with bar height
@@ -112,7 +126,20 @@ PNG
 format
 {p_end}
 
-{com}. //_9
+{com}. //_10
+. graph pie [fweight = Count], over(Outcome) by(Tx)
+{res}{txt}
+{com}. 
+. graph export mypie1.png, width(1500) replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mypie1.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. //_11
 . graph pie [fweight = Count], over(Outcome) ///
 > by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
 > plabel(1 percent, place(0) color(white)) /// label with percentages; placed in center of slice
@@ -134,7 +161,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}24 Apr 2023, 17:22:32
+ {txt}closed on:  {res} 5 Oct 2023, 18:29:00
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

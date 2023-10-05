@@ -8,9 +8,6 @@
   <title>Visualizing Categorical Data With French Skiiers Data</title>
   <style>
     html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
     }
@@ -29,13 +26,16 @@
     @media (max-width: 600px) {
       body {
         font-size: 0.9em;
-        padding: 1em;
+        padding: 12px;
       }
       h1 {
         font-size: 1.8em;
       }
     }
     @media print {
+      html {
+        background-color: white;
+      }
       body {
         background-color: transparent;
         color: black;
@@ -85,9 +85,10 @@
       color: #606060;
     }
     code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
+      hyphens: manual;
     }
     pre {
       margin: 1em 0;
@@ -207,7 +208,7 @@ table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid bl
 <h1 class="title">Visualizing Categorical Data With French Skiiers
 Data</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">24 Apr 2023 17:22:08</p>
+<p class="date">5 Oct 2023 18:28:14</p>
 </header>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} p {font-size: 110%;} pre.stata {font-size: 110%;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {font-size: 110%; color: red;}</style>
 <h1 id="background">Background</h1>
@@ -222,7 +223,7 @@ is as follows:</p>
 <ul>
 <li><code>spineplot y x</code></li>
 <li><code>graph bar, over(y) by(x)</code></li>
-<li><code>graph pie, over(y) by (x)</code></li>
+<li><code>graph pie, over(y) by(x)</code></li>
 </ul>
 <p>Our graphing task is made a little bit more complicated–in this
 particular example–because this example uses <em>weighted</em> data
@@ -289,8 +290,8 @@ as it might be.</p>
 . 
 . graph export myspineplot1.png, width(1500) replace
 file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mysp
-    > ineplot1.png saved as PNG format
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspineplo
+    > t1.png saved as PNG format
 </pre>
 <figure>
 <img src="myspineplot1.png" style="width:50.0%"
@@ -319,8 +320,8 @@ graph to clarify the meaning of the spineplot.</p>
 .     
 . graph export myspineplot2.png, width(1500) replace
 file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mysp
-    > ineplot2.png saved as PNG format
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myspineplo
+    > t2.png saved as PNG format
 </pre>
 <figure>
 <img src="myspineplot2.png" style="width:75.0%"
@@ -339,19 +340,34 @@ placebo.</p>
 </blockquote>
 <h1 id="bar-graph">Bar Graph</h1>
 <p>We try a bar graph.</p>
+<p>First with some simpler syntax:</p>
+<pre class='stata'>. graph bar [fweight = Count], over(Outcome) by(Tx)
+
+.     
+. graph export mybargraph0.png, width(1500) replace
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mybargraph
+    > 0.png saved as PNG format
+
+. 
+</pre>
+<figure>
+<img src="mybargraph0.png" style="width:50.0%" alt="Bar Graph" />
+<figcaption aria-hidden="true">Bar Graph</figcaption>
+</figure>
+<p>Then with some more complex graphing options:</p>
 <pre class='stata'>. graph bar [fweight = Count], over(Outcome) /// 
 > asyvars /// different colors for bars
 > blabel(bar, format(%9.4g) size(medium)) /// bars labelled with bar height
 > yscale(range(0 100)) /// y scale from 0 to 100
-> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by co
-> mmand)
+> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
 > scheme(michigan) // Michigan graph scheme
 
 .     
 . graph export mybargraph1.png, width(1500) replace
 file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/myba
-    > rgraph1.png saved as PNG format
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mybargraph
+    > 1.png saved as PNG format
 </pre>
 <figure>
 <img src="mybargraph1.png" style="width:50.0%" alt="Bar Graph" />
@@ -365,19 +381,29 @@ percentage was allocated to control, which might be an important part of
 our story.</p>
 </blockquote>
 <h1 id="pie-chart">Pie Chart</h1>
+<pre class='stata'>. graph pie [fweight = Count], over(Outcome) by(Tx)
+
+. 
+. graph export mypie1.png, width(1500) replace
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mypie1.png
+    saved as PNG format
+</pre>
+<figure>
+<img src="mypie1.png" style="width:50.0%" alt="Pie Chart" />
+<figcaption aria-hidden="true">Pie Chart</figcaption>
+</figure>
 <pre class='stata'>. graph pie [fweight = Count], over(Outcome) ///
-> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by co
-> mmand)
-> plabel(1 percent, place(0) color(white)) /// label with percentages; placed in center of
->  slice
+> by(Tx, title("Fewer Colds Among Those Recieving Ascorbic Acid")) /// title (inside by command)
+> plabel(1 percent, place(0) color(white)) /// label with percentages; placed in center of slice
 > plabel(2 percent, place(0)) /// label with percentages; placed in center of slice
 > scheme(michigan) // Michigan graph scheme
 
 . 
 . graph export mypie2.png, width(1500) replace
 file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mypi
-    > e2.png saved as PNG format
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/visualizing-categorical-data/mypie2.png
+    saved as PNG format
 </pre>
 <figure>
 <img src="mypie2.png" style="width:50.0%" alt="Pie Chart" />

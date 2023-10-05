@@ -18,7 +18,7 @@ The general useage of these commands is hopefully fairly simple, and is as follo
 
 * `spineplot y x`
 * `graph bar, over(y) by(x)`
-* `graph pie, over(y) by (x)`
+* `graph pie, over(y) by(x)`
 
 Our graphing task is made a little bit more complicated--in this particular example--because this example uses *weighted* data where every row of data represents *multiple* observations, so we need to include `[fweight = Count]` in order to let Stata know that we have weighted data.
 
@@ -89,6 +89,19 @@ Observe especially that we have added `note()`'s to the graph to clarify the mea
 
 We try a bar graph. 
 
+First with some simpler syntax:
+
+```s
+    graph bar [fweight = Count], over(Outcome) by(Tx)
+	
+	graph export mybargraph0.png, width(1500) replace
+
+```
+
+![Bar Graph](mybargraph0.png){width=50%}
+
+Then with some more complex graphing options:
+
 ```s
     graph bar [fweight = Count], over(Outcome) /// 
 	asyvars /// different colors for bars
@@ -105,6 +118,15 @@ We try a bar graph.
 > The bar graph tells a *very* clear story about *outcomes*. However, this version of a bar graph *does not* make clear what percentage was allocated to treatment and what percentage was allocated to control, which might be an important part of our story.
 
 # Pie Chart
+
+```s
+    graph pie [fweight = Count], over(Outcome) by(Tx)
+
+    graph export mypie1.png, width(1500) replace
+```
+
+![Pie Chart](mypie1.png){width=50%}
+
 
 ```s
     graph pie [fweight = Count], over(Outcome) ///
