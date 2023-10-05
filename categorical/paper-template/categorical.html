@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="A Student">
-<meta name="dcterms.date" content="2023-09-24">
+<meta name="dcterms.date" content="2023-10-05">
 
 <title>Categorical Model Paper Template</title>
 <style>
@@ -66,7 +66,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7</span> Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="categorical.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="categorical.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
 </div>
 <main class="content page-columns page-full" id="quarto-document-content">
 
@@ -89,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 24, 2023</p>
+      <p class="date">October 5, 2023</p>
     </div>
   </div>
   
@@ -178,119 +178,61 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p>A hypothetical example. If my variables are continuous, it’s appropriate to show means. If some of my variables are categorical, it’s more appropriate to show frequency distributions.</p>
-<p>In order to format my results nicely, I could copy them into Excel first, format them, and then copy them into Word. There are also some newer ways to make nicely formatted tables in Stata.</p>
+<p>In order to format my results more nicely–<strong>which I should do for an actual paper</strong>–I could copy them into Excel first, format them, and then copy them into Word. There are also some newer ways to make nicely formatted tables in Stata.</p>
 <p>In the graphs, note that I’ve tried to pay some attention to meaningful titles and axis labels.</p>
 <p>Note also you can make use of one of Stata’s <code>scheme</code>s to make your graphs visually interesting.</p>
 <p>It’s also worth trying out the <code>lean1</code> and <code>lean2</code> schemes (type <code>findit lean2</code> to install).</p>
 <p>And the daring are welcome to try my “Michigan” graph scheme, available <a href="https://agrogan1.github.io/Stata/michigan-graph-scheme/">here</a>, <em>caveat emptor</em>.</p>
 </div></div><div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 15%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 20%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">variable</th>
-<th style="text-align: center;">mean</th>
-<th style="text-align: center;">sd</th>
-<th style="text-align: center;">minimum</th>
-<th style="text-align: center;">maximum</th>
-<th style="text-align: center;">counts</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">z</td>
-<td style="text-align: center;">NA</td>
-<td style="text-align: center;">NA</td>
-<td style="text-align: center;">NA</td>
-<td style="text-align: center;">NA</td>
-<td style="text-align: center;">0: 56, 1: 44</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">x</td>
-<td style="text-align: center;">100.6</td>
-<td style="text-align: center;">10.48</td>
-<td style="text-align: center;">77.16</td>
-<td style="text-align: center;">121.8</td>
-<td style="text-align: center;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">y</td>
-<td style="text-align: center;">0.45</td>
-<td style="text-align: center;">0.5</td>
-<td style="text-align: center;">0</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">NA</td>
-</tr>
-</tbody>
-</table>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+           x |        100     101.835     9.78087   77.12247   127.1258
+           y |        100         .37    .4852366          0          1
+
+          z |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |         59       59.00       59.00
+          1 |         41       41.00      100.00
+------------+-----------------------------------
+      Total |        100      100.00</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
+<div style="page-break-after: always;"></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="categorical_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">A Sample Univariate Graph</figcaption>
+<p><img src="myhistogram.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Histogram</figcaption>
 </figure>
 </div>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="categorical_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="mymarginsplot.png" class="img-fluid figure-img" style="width:50.0%"></p>
 <figcaption class="figure-caption">A Sample Bivariate Graph</figcaption>
 </figure>
 </div>
-</div>
-</div>
 <p>What is the influence of each predictor variable in your relationship in terms of <span class="math inline">\(\beta\)</span> and p value?</p>
-<div class="cell">
-<div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
-<td colspan="4" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">y</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
-<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
-<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
-<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Statistic</td>
-<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">p</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">x</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.61</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-4.35</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">z [1]</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.41</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.11</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.43</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.666</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
-<td colspan="4" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">100</td>
-</tr>
-</tbody>
-</table>
+<div class="cell" data-collectcode="true">
+<div class="cell-output cell-output-stdout">
+<pre><code>Iteration 0:  Log likelihood = -65.895568  
+Iteration 1:  Log likelihood = -39.320874  
+Iteration 2:  Log likelihood = -38.328268  
+Iteration 3:  Log likelihood = -38.319828  
+Iteration 4:  Log likelihood = -38.319821  
+Iteration 5:  Log likelihood = -38.319821  
 
+Logistic regression                                     Number of obs =    100
+                                                        LR chi2(1)    =  55.15
+                                                        Prob &gt; chi2   = 0.0000
+Log likelihood = -38.319821                             Pseudo R2     = 0.4185
 
+------------------------------------------------------------------------------
+           y | Odds ratio   Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+           x |   .7701591   .0422098    -4.77   0.000     .6917178    .8574957
+       _cons |   1.39e+11   7.63e+11     4.69   0.000      3070825    6.33e+15
+------------------------------------------------------------------------------
+Note: _cons estimates baseline odds.</code></pre>
 </div>
 </div>
 </section>

@@ -9,12 +9,10 @@ format:
     theme:
       light: cosmo
       dark: vapor
-  pdf:
-    include-in-header:
-      - text: | 
-          \usepackage[sfdefault]{roboto}
+  docx:
     toc: true
-    number-sections: true      
+    number-sections: true  
+    reference-doc: markstat.docx    
 editor: source
 ---
 
@@ -39,6 +37,10 @@ library(pander) # nice tables
 library(lme4) # MLM's
 
 library(sjPlot) # nice tables for MLM
+
+library(haven) # read and write to Stata
+
+library(Statamarkdown) # use Stata :-) !!!
 
 ```
 
@@ -119,7 +121,7 @@ Tell me in words how your variables are distributed in your sample and include a
 ::: column-margin
 A hypothetical example. If my variables are continuous, it's appropriate to show means. If some of my variables are categorical, it's more appropriate to show frequency distributions.
 
-In order to format my results nicely, I could copy them into Excel first, format them, and then copy them into Word. There are also some newer ways to make nicely formatted tables in Stata.
+In order to format my results more nicely--**which I should do for an actual paper**--I could copy them into Excel first, format them, and then copy them into Word. There are also some newer ways to make nicely formatted tables in Stata.
 
 In the graphs, note that I've tried to pay some attention to meaningful titles and axis labels.
 
@@ -150,58 +152,43 @@ z <- factor(z)
 
 mydata <- data.frame(x, y, z)
 
-pander(skim(mydata) %>% 
-         rename(variable = skim_variable,
-                mean = numeric.mean,
-                sd = numeric.sd,
-                minimum = numeric.p0,
-                maximum = numeric.p100,
-                counts = factor.top_counts) %>%
-         select(variable,
-                mean,
-                sd,
-                minimum,
-                maximum,
-                counts))
+haven::write_dta(mydata, "mydata.dta")
 
 ```
 
-```{r, fig.cap="A Sample Univariate Graph"}
+```{stata}
 
-ggplot(data = mydata,
-       aes(x = x)) +
-  labs(title = "Distribution of x") +
-  geom_histogram() +
-  theme_stata()
+use mydata.dta, clear
+
+summarize x y
+
+tabulate z
+
+```
+
+{{< pagebreak >}}
+
+```{stata, output=FALSE}
+
+use mydata.dta
+
+histogram x
+
+graph export myhistogram.png, replace
 
 ```
 
-```{r, fig.cap="A Sample Bivariate Graph"}
+![Histogram](myhistogram.png){width=50%}
 
-ggplot(data = mydata,
-       aes(x = x,
-           y = y)) +
-  labs(title = "y as a Function of x") + 
-  geom_smooth(method = "glm", 
-              method.args = list(family = "binomial")) + 
-  theme_stata()
-
-```
+![A Sample Bivariate Graph](mymarginsplot.png){width=50%}
 
 What is the influence of each predictor variable in your relationship in terms of $\beta$ and p value? 
 
-```{r}
+```{stata, collectcode=TRUE}
 
-myfit <- glm(y ~ x + z, 
-             data = mydata,
-             family = "binomial")
+use mydata.dta
 
-sjPlot::tab_model(myfit,
-                  show.intercept = FALSE,
-                  show.se = TRUE,
-                  show.ci = FALSE,
-                  show.stat = TRUE,
-                  show.r2 = FALSE)
+logit y x, or
 
 ```
 
