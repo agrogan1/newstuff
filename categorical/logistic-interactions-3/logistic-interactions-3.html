@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andy Grogan-Kaylor">
-<meta name="dcterms.date" content="2023-10-04">
+<meta name="dcterms.date" content="2023-10-07">
 
 <title>Interactions in Logistic Regression</title>
 <style>
@@ -56,7 +56,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="logistic-interactions-3_files/libs/clipboard/clipboard.min.js"></script>
@@ -94,7 +113,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#rerun-margins-posting-results" id="toc-rerun-margins-posting-results" class="nav-link" data-scroll-target="#rerun-margins-posting-results"><span class="header-section-number">7</span> Rerun <code>margins</code>, Posting Results</a></li>
   <li><a href="#margins-with-coeflegend" id="toc-margins-with-coeflegend" class="nav-link" data-scroll-target="#margins-with-coeflegend"><span class="header-section-number">8</span> <code>margins</code> with <code>coeflegend</code></a></li>
   <li><a href="#testing-margins-against-each-other" id="toc-testing-margins-against-each-other" class="nav-link" data-scroll-target="#testing-margins-against-each-other"><span class="header-section-number">9</span> Testing Margins Against Each Other</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">10</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="logistic-interactions-3.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -120,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 4, 2023</p>
+      <p class="date">October 7, 2023</p>
     </div>
   </div>
   
@@ -169,7 +187,7 @@ Some Calculus (Not Essential To The Discussion)
 <div class="callout-body-container callout-body">
 <p>Imagine a linear model:</p>
 <p><span class="math display">\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2 + e_i\]</span></p>
-<p>Here (following Ai and Norton (2003)):</p>
+<p>Here (following <span class="citation" data-cites="Ai2003">Ai and Norton (<a href="#ref-Ai2003" role="doc-biblioref">2003</a>)</span>):</p>
 <p><span class="math display">\[\frac{\partial y}{\partial x_1 \partial x_2} = \beta_3\]</span></p>
 <p>We use <span class="math inline">\(\text{logit}\)</span> to describe:</p>
 <p><span class="math display">\[\ln\left(\frac{P(y)}{1 - P(y)}\right)\]</span></p>
@@ -202,13 +220,16 @@ Some Calculus (Not Essential To The Discussion)
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Contains data from http://www.stata-press.com/data/r15/margex.dta
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
+
+Contains data from http://www.stata-press.com/data/r15/margex.dta
  Observations:         3,000                  Artificial data for margins
     Variables:            11                  27 Nov 2016 14:27
-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 y               float   %6.1f                 
 outcome         byte    %2.0f                 
 sex             byte    %6.0f      sexlbl     
@@ -220,7 +241,7 @@ yc              float   %6.1f
 treatment       byte    %2.0f                 
 agegroup        byte    %8.0g      agelab     
 arm             byte    %8.0g                 
-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Sorted by: group</code></pre>
 </div>
 </div>
@@ -229,13 +250,16 @@ Sorted by: group</code></pre>
 <h1 data-number="4"><span class="header-section-number">4</span> Estimate Logistic Regression</h1>
 <p>We then run a logistic regression model in which <code>outcome</code> is the dependent variable. <code>age</code> and <code>group</code> are the independent variables. We estimate an interaction of <code>group</code> and <code>age</code>.</p>
 <blockquote class="blockquote">
-<p>We note that the regression coefficient for the interaction term is not statistically significant.</p>
+<p>We note that the regression coefficient for the interaction terms are not statistically significant.</p>
 </blockquote>
 <div class="cell" data-collectcode="true">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> outcome c.age##i.<span class="fu">group</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Iteration 0:  Log likelihood = -1366.0718  
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
+
+Iteration 0:  Log likelihood = -1366.0718  
 Iteration 1:  Log likelihood = -1125.2149  
 Iteration 2:  Log likelihood =  -1077.539  
 Iteration 3:  Log likelihood = -1074.8422  
@@ -272,7 +296,10 @@ Log likelihood = -1074.7863                             Pseudo R2     = 0.2132
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>margins <span class="fu">group</span>, <span class="fu">at</span>(age = (20 30 40 50 60))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Adjusted predictions                                     Number of obs = 3,000
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
+
+Adjusted predictions                                     Number of obs = 3,000
 Model VCE: OIM
 
 Expression: Pr(outcome), predict()
@@ -319,11 +346,12 @@ Expression: Pr(outcome), predict()
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> mymarginsplot.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Variables that uniquely identify margins: age group
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
 
-file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/mymarginsplot.p
-    &gt; ng saved as PNG format</code></pre>
+Variables that uniquely identify margins: age group
+
+file mymarginsplot.png saved as PNG format</code></pre>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -340,7 +368,10 @@ file
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>margins <span class="fu">group</span>, <span class="fu">at</span>(age = (20 30 40 50 60)) <span class="kw">post</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Adjusted predictions                                     Number of obs = 3,000
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
+
+Adjusted predictions                                     Number of obs = 3,000
 Model VCE: OIM
 
 Expression: Pr(outcome), predict()
@@ -381,7 +412,10 @@ Expression: Pr(outcome), predict()
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>margins, coeflegend</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Adjusted predictions                                     Number of obs = 3,000
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
+
+Adjusted predictions                                     Number of obs = 3,000
 Model VCE: OIM
 
 Expression: Pr(outcome), predict()
@@ -418,31 +452,48 @@ Expression: Pr(outcome), predict()
 <h1 data-number="9"><span class="header-section-number">9</span> Testing Margins Against Each Other</h1>
 <p>Lastly, we test the margins at age 20 across some of the groups, and again at ages 50 and 60 for some of the groups.</p>
 <blockquote class="blockquote">
-<p>We note that the original regression parameter for the interaction term was not statistically significant. Indeed, the margins at age 20 are not statistically significantly different by group. However, at ages 50 &amp; 60, there is a statistically significant difference by group.</p>
+<p>We note that the original regression parameter for the interaction term was not statistically significant. Indeed, the margins at age 20 are not statistically significantly different by group (1 vs.&nbsp;2), though they are close to being significantly different. However, at ages 50 &amp; 60, there is a statistically significant difference by group (1 vs.&nbsp;2).</p>
 </blockquote>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[1bn._at#0bn.<span class="fu">group</span>] = _b[1bn._at#1.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 20</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[1bn._at#1bn.<span class="fu">group</span>] = _b[1bn._at#2.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 20</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[4._at#0bn.<span class="fu">group</span>] = _b[4._at#1.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 50</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[4._at#1bn.<span class="fu">group</span>] = _b[4._at#2.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 50</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[5._at#0bn.<span class="fu">group</span>] =  _b[5._at#1.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 60</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[5._at#1bn.<span class="fu">group</span>] =  _b[5._at#2.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 60</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1bn._at#0bn.group] not found
-r(111);
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
 
-end of do-file
-r(111);</code></pre>
+ ( 1)  1bn._at#1bn.group - 1bn._at#2.group = 0
+
+           chi2(  1) =    3.61
+         Prob &gt; chi2 =    0.0575
+
+
+ ( 1)  4._at#1bn.group - 4._at#2.group = 0
+
+           chi2(  1) =   38.05
+         Prob &gt; chi2 =    0.0000
+
+
+ ( 1)  5._at#1bn.group - 5._at#2.group = 0
+
+           chi2(  1) =   11.73
+         Prob &gt; chi2 =    0.0006</code></pre>
 </div>
 </div>
-</section>
-<section id="references" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> References</h1>
-<p>Ai, C., &amp; Norton, E. C. (2003). Interaction terms in logit and probit models. <em>Economics Letters</em>. <a href="https://doi.org/10.1016/S0165-1765(03)00032-6">https://doi.org/10.1016/S0165-1765(03)00032-6</a></p>
-<p>Karaca-Mandic, P., Norton, E. C., &amp; Dowd, B. (2012). Interaction terms in nonlinear models. <em>Health Services Research</em>. <a href="https://doi.org/10.1111/j.1475-6773.2011.01314.x">https://doi.org/10.1111/j.1475-6773.2011.01314.x</a></p>
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Ai2003" class="csl-entry" role="listitem">
+Ai, Chunrong, and Edward C. Norton. 2003. <span>“Interaction Terms in Logit and Probit Models.”</span> <em>Economics Letters</em>. <a href="https://doi.org/10.1016/S0165-1765(03)00032-6">https://doi.org/10.1016/S0165-1765(03)00032-6</a>.
+</div>
+<div id="ref-KaracaMandic2012" class="csl-entry" role="listitem">
+Karaca-Mandic, Pinar, Edward C. Norton, and Bryan Dowd. 2012. <span>“Interaction Terms in Nonlinear Models.”</span> <em>Health Services Research</em>. <a href="https://doi.org/10.1111/j.1475-6773.2011.01314.x">https://doi.org/10.1111/j.1475-6773.2011.01314.x</a>.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

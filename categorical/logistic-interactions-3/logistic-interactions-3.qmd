@@ -15,6 +15,9 @@ format:
     toc-depth: 3
     number-sections: true
     colorlinks: true
+bibliography: logistic-interactions-3.bib
+nocite: |
+  @KaracaMandic2012
 ---
 
 # Background
@@ -78,7 +81,7 @@ Imagine a linear model:
 
 $$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2 + e_i$$
 
-Here (following Ai and Norton (2003)): 
+Here (following @Ai2003): 
 
 $$\frac{\partial y}{\partial x_1 \partial x_2} = \beta_3$$ 
 
@@ -121,7 +124,7 @@ describe
 
 We then run a logistic regression model in which `outcome` is the dependent variable. `age` and `group` are the independent variables. We estimate an interaction of `group` and `age`. 
 
-> We note that the regression coefficient for the interaction term is not statistically significant. 
+> We note that the regression coefficient for the interaction terms are not statistically significant. 
 
 ```{stata, collectcode = TRUE}
 
@@ -179,26 +182,17 @@ margins, coeflegend
 
 Lastly, we test the margins at age 20 across some of the groups, and again at ages 50 and 60 for some of the groups. 
 
-> We note that the original regression parameter for the interaction term was not statistically significant. Indeed, the margins at age 20 are not statistically significantly different by group. However, at ages 50 & 60, there is a statistically significant difference by group. 
+> We note that the original regression parameter for the interaction term was not statistically significant. Indeed, the margins at age 20 are not statistically significantly different by group (1 vs. 2), though they are close to being significantly different. However, at ages 50 & 60, there is a statistically significant difference by group (1 vs. 2). 
 
 ```{stata}
 
-test _b[1bn._at#0bn.group] = _b[1bn._at#1.group] // groups 1 & 2 at age 20
+test _b[1bn._at#1bn.group] = _b[1bn._at#2.group] // groups 1 & 2 at age 20
 	
-test _b[4._at#0bn.group] = _b[4._at#1.group] // groups 1 & 2 at age 50
+test _b[4._at#1bn.group] = _b[4._at#2.group] // groups 1 & 2 at age 50
 
-test _b[5._at#0bn.group] =  _b[5._at#1.group] // groups 1 & 2 at age 60
+test _b[5._at#1bn.group] =  _b[5._at#2.group] // groups 1 & 2 at age 60
 
 ```
-
-# References
-
-Ai, C., & Norton, E. C. (2003). Interaction terms in logit and probit models. *Economics Letters*. [https://doi.org/10.1016/S0165-1765(03)00032-6](https://doi.org/10.1016/S0165-1765(03)00032-6)
-
-Karaca-Mandic, P., Norton, E. C., & Dowd, B. (2012). Interaction terms in nonlinear models. *Health Services Research*. [https://doi.org/10.1111/j.1475-6773.2011.01314.x](https://doi.org/10.1111/j.1475-6773.2011.01314.x)
-
-
-
 
 
 
