@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="A Student">
-<meta name="dcterms.date" content="2023-10-05">
+<meta name="dcterms.date" content="2023-10-07">
 
 <title>Categorical Model Paper Template</title>
 <style>
@@ -66,7 +66,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7</span> Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="categorical.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="categorical.docx"><i class="bi bi-file-word"></i>MS Word</a></li><li><a href="categorical.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
 <main class="content page-columns page-full" id="quarto-document-content">
 
@@ -89,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 5, 2023</p>
+      <p class="date">October 7, 2023</p>
     </div>
   </div>
   
@@ -187,13 +187,13 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell-output cell-output-stdout">
 <pre><code>    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
-           x |        100     101.835     9.78087   77.12247   127.1258
-           y |        100         .37    .4852366          0          1
+           x |        100    100.1932    9.825669   70.41612   126.4855
+           y |        100         .46    .5009083          0          1
 
           z |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          0 |         59       59.00       59.00
-          1 |         41       41.00      100.00
+          0 |         51       51.00       51.00
+          1 |         49       49.00      100.00
 ------------+-----------------------------------
       Total |        100      100.00</code></pre>
 </div>
@@ -214,23 +214,23 @@ ul.task-list li input[type="checkbox"] {
 <p>What is the influence of each predictor variable in your relationship in terms of <span class="math inline">\(\beta\)</span> and p value?</p>
 <div class="cell" data-collectcode="true">
 <div class="cell-output cell-output-stdout">
-<pre><code>Iteration 0:  Log likelihood = -65.895568  
-Iteration 1:  Log likelihood = -39.320874  
-Iteration 2:  Log likelihood = -38.328268  
-Iteration 3:  Log likelihood = -38.319828  
-Iteration 4:  Log likelihood = -38.319821  
-Iteration 5:  Log likelihood = -38.319821  
+<pre><code>Iteration 0:  Log likelihood = -68.994376  
+Iteration 1:  Log likelihood = -34.164554  
+Iteration 2:  Log likelihood = -33.806398  
+Iteration 3:  Log likelihood = -33.786451  
+Iteration 4:  Log likelihood = -33.786416  
+Iteration 5:  Log likelihood = -33.786416  
 
 Logistic regression                                     Number of obs =    100
-                                                        LR chi2(1)    =  55.15
+                                                        LR chi2(1)    =  70.42
                                                         Prob &gt; chi2   = 0.0000
-Log likelihood = -38.319821                             Pseudo R2     = 0.4185
+Log likelihood = -33.786416                             Pseudo R2     = 0.5103
 
 ------------------------------------------------------------------------------
            y | Odds ratio   Std. err.      z    P&gt;|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-           x |   .7701591   .0422098    -4.77   0.000     .6917178    .8574957
-       _cons |   1.39e+11   7.63e+11     4.69   0.000      3070825    6.33e+15
+           x |   .7082538   .0490387    -4.98   0.000      .618376    .8111949
+       _cons |   8.42e+14   5.83e+15     4.96   0.000     1.07e+09    6.64e+20
 ------------------------------------------------------------------------------
 Note: _cons estimates baseline odds.</code></pre>
 </div>
