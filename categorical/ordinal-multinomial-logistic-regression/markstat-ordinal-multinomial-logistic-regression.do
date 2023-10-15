@@ -30,7 +30,7 @@ graph close _all
 
 * pandoc
 
-! /Applications/RStudio.app/Contents/MacOS/pandoc/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" "/Users/agrogan/Desktop/Github/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.html" -o "/Users/agrogan/Desktop/Github/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression-slidy.html" 
+! /Applications/quarto/bin/tools/pandoc -s --mathjax -i -t slidy --css "../UMslidy.css" "/Users/agrogan/Desktop/Github/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.html" -o "/Users/agrogan/Desktop/Github/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression-slidy.html" 
 
 doedit "../MathJax-CDN.txt"
 
