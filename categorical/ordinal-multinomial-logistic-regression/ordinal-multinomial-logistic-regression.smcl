@@ -1,13 +1,13 @@
 {smcl}
-{txt}{sf}{ul off}{.-}
+{com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}11 Oct 2021, 10:51:38
+ {txt}opened on:  {res}15 Oct 2023, 12:40:44
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}11 Oct 2021
+{res}15 Oct 2023
 {txt}
 {com}. //_2
 . clear all
@@ -35,18 +35,18 @@ saved
 
 {txt}Contains data from {res}GSSsmall.dta
 {txt} Observations:{res}        64,814                  
-{txt}    Variables:{res}             7                  11 Oct 2021 10:51
+{txt}    Variables:{res}             7                  15 Oct 2023 12:40
 {txt}{hline}
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
 {hline}
-{p 0 48}{res}{bind:age            }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:AGE      }{bind:  }{res}{res}age of respondent{p_end}
-{p 0 48}{bind:paeduc         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:LABK     }{bind:  }{res}{res}highest year school completed, father{p_end}
-{p 0 48}{bind:maeduc         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:LABK     }{bind:  }{res}{res}highest year school completed, mother{p_end}
-{p 0 48}{bind:degree         }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:LABL     }{bind:  }{res}{res}r's highest degree{p_end}
-{p 0 48}{bind:sex            }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:SEX      }{bind:  }{res}{res}respondents sex{p_end}
-{p 0 48}{bind:polviews       }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:POLVIEWS }{bind:  }{res}{res}think of self as liberal or conservative{p_end}
-{p 0 48}{bind:coninc         }{txt}{bind: double  }{bind:{txt}%12.0g    }{space 1}{bind:LABIH    }{bind:  }{res}{res}family income in constant dollars{p_end}
+{p 0 48}{res}{bind:age            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:AGE      }{bind:  }{res}{res}age of respondent{p_end}
+{p 0 48}{bind:paeduc         }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:LABK     }{bind:  }{res}{res}highest year school completed, father{p_end}
+{p 0 48}{bind:maeduc         }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:LABK     }{bind:  }{res}{res}highest year school completed, mother{p_end}
+{p 0 48}{bind:degree         }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:LABL     }{bind:  }{res}{res}r's highest degree{p_end}
+{p 0 48}{bind:sex            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:SEX      }{bind:  }{res}{res}respondents sex{p_end}
+{p 0 48}{bind:polviews       }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:POLVIEWS }{bind:  }{res}{res}think of self as liberal or conservative{p_end}
+{p 0 48}{bind:coninc         }{txt}{bind: double  }{bind:%12.0g    }{space 1}{bind:LABIH    }{bind:  }{res}{res}family income in constant dollars{p_end}
 {txt}{hline}
 Sorted by: 
 
@@ -84,10 +84,10 @@ Sorted by:
 {com}. //_10
 . ologit polviews sex age degree coninc
 
-{res}{txt}Iteration 0:{space 3}log likelihood = {res:-83895.058}  
-Iteration 1:{space 3}log likelihood = {res:-83369.429}  
-Iteration 2:{space 3}log likelihood = {res:-83368.485}  
-Iteration 3:{space 3}log likelihood = {res:-83368.485}  
+{res}{txt}Iteration 0:{space 2}Log likelihood = {res:-83895.058}  
+Iteration 1:{space 2}Log likelihood = {res:-83369.429}  
+Iteration 2:{space 2}Log likelihood = {res:-83368.485}  
+Iteration 3:{space 2}Log likelihood = {res:-83368.485}  
 {res}
 {txt}{col 1}Ordered logistic regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:50,049}
 {txt}{col 56}{lalign 13:LR chi2({res:4})}{col 69} = {res}{ralign 7:1053.15}
@@ -102,21 +102,21 @@ Iteration 3:{space 3}log likelihood = {res:-83368.485}
 {txt}{space 6}degree {c |}{col 14}{res}{space 2}-.1062661{col 26}{space 2} .0076242{col 37}{space 1}  -13.94{col 46}{space 3}0.000{col 54}{space 4}-.1212093{col 67}{space 3} -.091323
 {txt}{space 6}coninc {c |}{col 14}{res}{space 2} 3.99e-06{col 26}{space 2} 2.42e-07{col 37}{space 1}   16.52{col 46}{space 3}0.000{col 54}{space 4} 3.52e-06{col 67}{space 3} 4.46e-06
 {txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-       /cut1 {c |}{col 14}{res}{space 2}-3.116098{col 26}{space 2} .0440989{col 54}{space 4}-3.202531{col 67}{space 3}-3.029666
-{txt}       /cut2 {c |}{col 14}{res}{space 2}-1.389623{col 26}{space 2} .0379027{col 54}{space 4}-1.463911{col 67}{space 3}-1.315335
-{txt}       /cut3 {c |}{col 14}{res}{space 2}-.5941761{col 26}{space 2} .0372164{col 54}{space 4}-.6671188{col 67}{space 3}-.5212333
-{txt}       /cut4 {c |}{col 14}{res}{space 2} 1.050951{col 26}{space 2}  .037438{col 54}{space 4} .9775742{col 67}{space 3} 1.124329
-{txt}       /cut5 {c |}{col 14}{res}{space 2} 1.916652{col 26}{space 2}   .03824{col 54}{space 4} 1.841703{col 67}{space 3} 1.991601
-{txt}       /cut6 {c |}{col 14}{res}{space 2} 3.826484{col 26}{space 2} .0447146{col 54}{space 4} 3.738845{col 67}{space 3} 3.914123
+{space 7}/cut1 {c |}{col 14}{res}{space 2}-3.116098{col 26}{space 2} .0440989{col 54}{space 4}-3.202531{col 67}{space 3}-3.029666
+{txt}{space 7}/cut2 {c |}{col 14}{res}{space 2}-1.389623{col 26}{space 2} .0379027{col 54}{space 4}-1.463911{col 67}{space 3}-1.315335
+{txt}{space 7}/cut3 {c |}{col 14}{res}{space 2}-.5941761{col 26}{space 2} .0372164{col 54}{space 4}-.6671188{col 67}{space 3}-.5212333
+{txt}{space 7}/cut4 {c |}{col 14}{res}{space 2} 1.050951{col 26}{space 2}  .037438{col 54}{space 4} .9775742{col 67}{space 3} 1.124329
+{txt}{space 7}/cut5 {c |}{col 14}{res}{space 2} 1.916652{col 26}{space 2}   .03824{col 54}{space 4} 1.841703{col 67}{space 3} 1.991601
+{txt}{space 7}/cut6 {c |}{col 14}{res}{space 2} 3.826484{col 26}{space 2} .0447146{col 54}{space 4} 3.738845{col 67}{space 3} 3.914123
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
 {com}. //_11
 . ologit polviews sex age degree coninc, or
 
-{res}{txt}Iteration 0:{space 3}log likelihood = {res:-83895.058}  
-Iteration 1:{space 3}log likelihood = {res:-83369.429}  
-Iteration 2:{space 3}log likelihood = {res:-83368.485}  
-Iteration 3:{space 3}log likelihood = {res:-83368.485}  
+{res}{txt}Iteration 0:{space 2}Log likelihood = {res:-83895.058}  
+Iteration 1:{space 2}Log likelihood = {res:-83369.429}  
+Iteration 2:{space 2}Log likelihood = {res:-83368.485}  
+Iteration 3:{space 2}Log likelihood = {res:-83368.485}  
 {res}
 {txt}{col 1}Ordered logistic regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:50,049}
 {txt}{col 56}{lalign 13:LR chi2({res:4})}{col 69} = {res}{ralign 7:1053.15}
@@ -131,29 +131,28 @@ Iteration 3:{space 3}log likelihood = {res:-83368.485}
 {txt}{space 6}degree {c |}{col 14}{res}{space 2} .8991853{col 26}{space 2} .0068555{col 37}{space 1}  -13.94{col 46}{space 3}0.000{col 54}{space 4} .8858486{col 67}{space 3} .9127228
 {txt}{space 6}coninc {c |}{col 14}{res}{space 2} 1.000004{col 26}{space 2} 2.42e-07{col 37}{space 1}   16.52{col 46}{space 3}0.000{col 54}{space 4} 1.000004{col 67}{space 3} 1.000004
 {txt}{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
-       /cut1 {c |}{col 14}{res}{space 2}-3.116098{col 26}{space 2} .0440989{col 54}{space 4}-3.202531{col 67}{space 3}-3.029666
-{txt}       /cut2 {c |}{col 14}{res}{space 2}-1.389623{col 26}{space 2} .0379027{col 54}{space 4}-1.463911{col 67}{space 3}-1.315335
-{txt}       /cut3 {c |}{col 14}{res}{space 2}-.5941761{col 26}{space 2} .0372164{col 54}{space 4}-.6671188{col 67}{space 3}-.5212333
-{txt}       /cut4 {c |}{col 14}{res}{space 2} 1.050951{col 26}{space 2}  .037438{col 54}{space 4} .9775742{col 67}{space 3} 1.124329
-{txt}       /cut5 {c |}{col 14}{res}{space 2} 1.916652{col 26}{space 2}   .03824{col 54}{space 4} 1.841703{col 67}{space 3} 1.991601
-{txt}       /cut6 {c |}{col 14}{res}{space 2} 3.826484{col 26}{space 2} .0447146{col 54}{space 4} 3.738845{col 67}{space 3} 3.914123
+{space 7}/cut1 {c |}{col 14}{res}{space 2}-3.116098{col 26}{space 2} .0440989{col 54}{space 4}-3.202531{col 67}{space 3}-3.029666
+{txt}{space 7}/cut2 {c |}{col 14}{res}{space 2}-1.389623{col 26}{space 2} .0379027{col 54}{space 4}-1.463911{col 67}{space 3}-1.315335
+{txt}{space 7}/cut3 {c |}{col 14}{res}{space 2}-.5941761{col 26}{space 2} .0372164{col 54}{space 4}-.6671188{col 67}{space 3}-.5212333
+{txt}{space 7}/cut4 {c |}{col 14}{res}{space 2} 1.050951{col 26}{space 2}  .037438{col 54}{space 4} .9775742{col 67}{space 3} 1.124329
+{txt}{space 7}/cut5 {c |}{col 14}{res}{space 2} 1.916652{col 26}{space 2}   .03824{col 54}{space 4} 1.841703{col 67}{space 3} 1.991601
+{txt}{space 7}/cut6 {c |}{col 14}{res}{space 2} 3.826484{col 26}{space 2} .0447146{col 54}{space 4} 3.738845{col 67}{space 3} 3.914123
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 2}Note: {help eform_option:Estimates are transformed} only in the first equation to odds ratios.{p_end}
 
 {com}. //_12
 . brant
+{res}
+{txt}{p 0 0 2}Brant test of parallel regression assumption{p_end}
 
-{txt}Brant Test of Parallel Regression Assumption
-
-    Variable {c |}      chi2   p>chi2    df
-{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c +}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
-         All {c |}{res}   1456.60    0.000    20
-{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c +}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
-         sex{col 14}{c |}{res}    108.03    0.000     5
-         {txt}age{col 14}{c |}{res}    120.63    0.000     5
-      {txt}degree{col 14}{c |}{res}    835.27    0.000     5
-      {txt}coninc{col 14}{c |}{res}     67.79    0.000     5
-{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c BT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+{space 1}{space 0}{ralign 12:}{space 1}{c |}{space 1}{ralign 10:chi2}{space 1}{space 1}{ralign 9:p>chi2}{space 1}{space 1}{ralign 6:df}{space 0}
+{space 1}{hline 13}{c   +}{hline 12}{hline 11}{hline 7}
+{space 1}{space 0}{ralign 12:All}{space 1}{c |}{space 1}{ralign 10:{res:{sf:   1456.59}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:    20}}}{space 0}
+{space 1}{hline 13}{c   +}{hline 12}{hline 11}{hline 7}
+{space 1}{space 0}{ralign 12:sex}{space 1}{c |}{space 1}{ralign 10:{res:{sf:    108.03}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
+{space 1}{space 0}{ralign 12:age}{space 1}{c |}{space 1}{ralign 10:{res:{sf:    120.63}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
+{space 1}{space 0}{ralign 12:degree}{space 1}{c |}{space 1}{ralign 10:{res:{sf:    835.26}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
+{space 1}{space 0}{ralign 12:coninc}{space 1}{c |}{space 1}{ralign 10:{res:{sf:     67.78}}}{space 1}{space 1}{ralign 9:{res:{sf:    0.000}}}{space 1}{space 1}{ralign 6:{res:{sf:     5}}}{space 0}
 
 A significant test statistic provides evidence that the parallel
 regression assumption has been violated.
@@ -161,10 +160,10 @@ regression assumption has been violated.
 {com}. //_13
 . mlogit polviews i.sex age degree coninc
 
-{res}{txt}Iteration 0:{space 3}log likelihood = {res:-83895.058}  
-Iteration 1:{space 3}log likelihood = {res:-82700.548}  
-Iteration 2:{space 3}log likelihood = {res:-82694.595}  
-Iteration 3:{space 3}log likelihood = {res:-82694.594}  
+{res}{txt}Iteration 0:{space 2}Log likelihood = {res:-83895.058}  
+Iteration 1:{space 2}Log likelihood = {res:-82700.548}  
+Iteration 2:{space 2}Log likelihood = {res:-82694.595}  
+Iteration 3:{space 2}Log likelihood = {res:-82694.594}  
 {res}
 {txt}{col 1}Multinomial logistic regression{col 56}{lalign 13:Number of obs}{col 69} = {res}{ralign 7:50,049}
 {txt}{col 56}{lalign 13:LR chi2({res:24})}{col 69} = {res}{ralign 7:2400.93}
@@ -312,7 +311,7 @@ Iteration 3:{space 3}log likelihood = {res:-82694.594}
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/ordinal-multinomial-logistic-regression/ordinal-multinomial-logistic-regression.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}11 Oct 2021, 10:51:48
+ {txt}closed on:  {res}15 Oct 2023, 12:40:57
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
