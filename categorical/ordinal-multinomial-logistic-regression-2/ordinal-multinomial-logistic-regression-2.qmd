@@ -23,7 +23,7 @@ format:
 
 # The Data
 
-Data are simulated data on parent behaviors and child outcomes from  [*Multilevel Thinking*](https://agrogan1.github.io/multilevel-thinking/simulated-multi-country-data.html).
+> Data are simulated data on parent behaviors and child outcomes from  [*Multilevel Thinking*](https://agrogan1.github.io/multilevel-thinking/simulated-multi-country-data.html).
 
 ```{r, echo=FALSE, output=FALSE}
 
@@ -41,7 +41,7 @@ describe
 
 # Setup
 
-We need to create a categorical outcome variable for demonstration purposes.
+> We need to create a categorical outcome variable for demonstration purposes.
 
 ```{stata, collectcode=TRUE}
 
