@@ -1,0 +1,106 @@
+---
+title: "Ordinal and Multinomial Logistic Regression"
+subtitle: "A New Example Using Data From *Multilevel Thinking*"
+author: "Andy Grogan-Kaylor"
+date: "today"
+format:
+  html:
+    toc: true
+    number-sections: true
+    anchor-sections: true
+    theme:
+      light: cosmo
+      dark: vapor
+    css: styles.css
+  pdf:
+    include-in-header:
+      - text: | 
+          \usepackage[sfdefault]{roboto}
+    toc: true
+    number-sections: true
+    geometry: margin=.5in
+---
+
+# The Data
+
+Data are simulated data on parent behaviors and child outcomes from  [*Multilevel Thinking*](https://agrogan1.github.io/multilevel-thinking/simulated-multi-country-data.html).
+
+```{r, echo=FALSE, output=FALSE}
+
+library(Statamarkdown)
+
+```
+
+```{stata, collectcode=TRUE}
+
+use "https://github.com/agrogan1/multilevel-thinking/raw/main/simulate-and-analyze-multilevel-data/simulated_multilevel_data.dta", clear
+
+describe
+
+```
+
+# Setup
+
+We need to create a categorical outcome variable for demonstration purposes.
+
+```{stata, collectcode=TRUE}
+
+* create an outcome_group variable
+
+egen outcome_group = cut(outcome), group(3) // divide outcome into groups
+
+label define outcome_group 0 "low" 1 "medium" 2 "high" // define value labels
+
+label values outcome_group outcome_group // attach value labels
+
+tabulate outcome_group
+
+```
+
+# Ordinal Logistic Regression
+
+> Because the data are clustered by countries, we will use the `, cluster(country)` option in each model. The `brant` command can be installed by typing `findit brant`, and installing the Long & Freese `spost` utilities.
+
+```{stata}
+
+ologit outcome_group physical_punishment warmth HDI i.group, or cluster(country) // ordinal logit
+
+brant // brant test
+
+margins, at(warmth = (1(1)7)) // margins at different values of warmth
+
+marginsplot, title("Predicted Probabilities From Ordinal Logit") /// 
+plot(_outcome, labels("low" "medium" "high")) // graph w/ manual labels
+
+graph export myologit.png, replace
+
+```
+
+![`marginsplot` from `ologit`](myologit.png){width=50%}
+
+# Multinomial Logistic Regression
+
+> Because the *Brant* test was insignificant, the results below are likely to look similar. Imagine, however, if the *Brant* test were statistically significant, suggesting that we should estimate separate regression coefficients for each value of the outcome. Imagine, in addition, if we were estimating an outcome that were truly multinomial in nature, such as *post-secondary* education pursued: *none*, *vocational*, *university*. For heuristic purposes, we will relabel the outcome accordingly.
+
+```{stata}
+
+label define outcome_group2 0 "none" 1 "vocational" 2 "university" // define value labels
+
+label values outcome_group outcome_group2 // attach NEW value labels
+
+tabulate outcome_group
+
+mlogit outcome_group physical_punishment warmth HDI i.group, rr cluster(country)
+
+margins, at(warmth = (1(1)7)) // margins at different values of warmth
+
+marginsplot, title("Predicted Probabilities From Multinomial Logit") ///
+plot(_outcome, labels("none" "vocational" "university")) // graph w/ manual labels
+
+graph export mymlogit.png, replace
+
+```
+
+![`marginsplot` from `mlogit`](mymlogit.png){width=50%}
+
+
