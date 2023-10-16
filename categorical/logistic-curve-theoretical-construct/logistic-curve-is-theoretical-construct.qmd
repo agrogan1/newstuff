@@ -1,0 +1,77 @@
+---
+title: "The Logistic Curve Is A Theoretical Construct"
+author: "Andrew Grogan-Kaylor"
+date: "today"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-summary: "Show the code"
+    number-sections: true
+    anchor-sections: true
+    theme:
+      light: cosmo
+      dark: vapor
+    css: styles.css
+  pdf:
+    include-in-header:
+      - text: | 
+          \usepackage[sfdefault]{roboto}
+    toc: true
+    number-sections: true
+    geometry: margin=.5in
+editor: source
+---
+
+# The Logistic Curve
+
+```{r}
+
+library(Statamarkdown)
+
+```
+
+```{stata}
+
+twoway ///
+(function y = exp(x)/(1 + exp(x)), range(-10 10) lwidth(thick) lpattern(dash)), ///
+title("The Logistic Curve") ///
+ytitle("Probablity") ///
+scheme(stcolor)
+
+graph export logistic.png, width(2000) replace
+
+```
+
+![The Logistic Curve](logistic.png){width=75%}
+
+# The Logistic Curve is a *Theoretical Construct*
+
+```{stata}
+
+twoway ///
+(function y = exp(x)/(1 + exp(x)), range(-10 10) lwidth(thick) lpattern(dash)) ///
+(function y = exp(x)/(1 + exp(x)), range(2 5) lwidth(vvthick)) ///
+(function y = exp(x)/(1 + exp(x)), range(-1 1) lwidth(vvthick)) ///
+(function y = exp(x)/(1 + exp(x)), range(-3 -2) lwidth(vvthick) lcolor(orange)), ///
+title("Any Given Data Set") ///
+ytitle("Probablity") ///
+subtitle("Usually Maps To Only Part Of The Full Logistic Curve") ///
+legend(order(1 "full logistic curve" 2 "sample data set" 3 "sample data set" 4 "sample data set") pos(3)) ///
+scheme(stcolor)
+
+graph export logistic2.png, width(2000) replace
+
+```
+
+![The Logistic Curve Is A Theoretical Construct](logistic2.png){width=75%}
+
+
+
+
+
+
+
+
+
+
