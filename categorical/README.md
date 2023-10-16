@@ -22,6 +22,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
 * [Logistic Regression](https://agrogan1.github.io/newstuff/categorical/logistic-regression/logistic-regression-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/logistic-regression/logistic-regression.pdf)]
     + [Exploring Logistic Regression](https://agrogan.shinyapps.io/exploring_logistic_regression/)
     + [From Contingency Table To Logistic Regression](https://agrogan1.github.io/newstuff/categorical/from-contingency-table-to-logistic-regression/from-contingency-table-to-logistic-regression.html)
+    + [The Logistic Curve Is A Theoretical Construct](https://agrogan1.github.io/newstuff/categorical/logistic-curve-theoretical-construct/logistic-curve-theoretical-construct.html)
     + [Some Stuff About Logarithms](https://agrogan1.github.io/newstuff/categorical/logarithms-some-stuff/logarithms-some-stuff.html)
     + [A Diagram Of Some Basic "Intuitions" About The Logistic Curve](https://agrogan1.github.io/newstuff/categorical/logistic-curve-intuitions.pdf)
     + [Logistic Regression: The Basics](https://agrogan1.github.io/newstuff/categorical/logistic-regression-the-basics/logistic-regression-the-basics.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/logistic-regression-the-basics/logistic-regression-the-basics.pdf)]
