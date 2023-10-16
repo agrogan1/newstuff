@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andy Grogan-Kaylor">
-<meta name="dcterms.date" content="2023-10-15">
+<meta name="dcterms.date" content="2023-10-16">
 
 <title>Ordinal and Multinomial Logistic Regression</title>
 <style>
@@ -72,6 +72,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="ordinal-multinomial-logistic-regression-2_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="ordinal-multinomial-logistic-regression-2_files/libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -84,10 +86,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-data" id="toc-the-data" class="nav-link active" data-scroll-target="#the-data"><span class="header-section-number">1</span> The Data</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">2</span> Setup</a></li>
-  <li><a href="#ordinal-logistic-regression" id="toc-ordinal-logistic-regression" class="nav-link" data-scroll-target="#ordinal-logistic-regression"><span class="header-section-number">3</span> Ordinal Logistic Regression</a></li>
-  <li><a href="#multinomial-logistic-regression" id="toc-multinomial-logistic-regression" class="nav-link" data-scroll-target="#multinomial-logistic-regression"><span class="header-section-number">4</span> Multinomial Logistic Regression</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">1</span> Background</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data"><span class="header-section-number">2</span> The Data</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">3</span> Setup</a></li>
+  <li><a href="#ordinal-logistic-regression" id="toc-ordinal-logistic-regression" class="nav-link" data-scroll-target="#ordinal-logistic-regression"><span class="header-section-number">4</span> Ordinal Logistic Regression</a></li>
+  <li><a href="#multinomial-logistic-regression" id="toc-multinomial-logistic-regression" class="nav-link" data-scroll-target="#multinomial-logistic-regression"><span class="header-section-number">5</span> Multinomial Logistic Regression</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ordinal-multinomial-logistic-regression-2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -113,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 15, 2023</p>
+      <p class="date">October 16, 2023</p>
     </div>
   </div>
   
@@ -123,25 +126,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="the-data" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> The Data</h1>
+<section id="background" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Background</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="twitter-ordinal-annotated.PNG" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption class="figure-caption">A Tweet</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-data" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> The Data</h1>
 <blockquote class="blockquote">
 <p>Data are simulated data on parent behaviors and child outcomes from <a href="https://agrogan1.github.io/multilevel-thinking/simulated-multi-country-data.html"><em>Multilevel Thinking</em></a>.</p>
 </blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="world.png" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption class="figure-caption">Simulated Data on Countries of the World</figcaption>
+</figure>
+</div>
 <div class="cell" data-collectcode="true">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"https://github.com/agrogan1/multilevel-thinking/raw/main/simulate-and-analyze-multilevel-data/simulated_multilevel_data.dta"</span>, <span class="kw">clear</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Contains data from https://github.com/agrogan1/multilevel-thinking/raw/main/simulate-and-analyze
-&gt; -multilevel-data/simulated_multilevel_data.dta
+<pre><code>note:
+      https://github.com/agrogan1/multilevel-thinking/raw/main/simulate-and-a
+      &gt; nalyze-multilevel-data/simulated_multilevel_data.dta redirected to
+      https://raw.githubusercontent.com/agrogan1/multilevel-thinking/main/sim
+      &gt; ulate-and-analyze-multilevel-data/simulated_multilevel_data.dta
+
+
+Contains data from https://github.com/agrogan1/multilevel-thinking/raw/main/sim
+&gt; ulate-and-analyze-multilevel-data/simulated_multilevel_data.dta
  Observations:         3,000                  
     Variables:             8                  21 Apr 2023 12:38
-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 country         float   %9.0g                 country id
 HDI             float   %9.0g                 Human Development Index
 family          float   %9.0g                 family id
@@ -150,13 +175,13 @@ group           float   %9.0g                 arbitrary group variable
 physical_puni~t float   %9.0g                 physical punishment in past week
 warmth          float   %9.0g                 parental warmth in past week
 outcome         float   %9.0g                 beneficial outcome
-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Sorted by: country  family</code></pre>
 </div>
 </div>
 </section>
-<section id="setup" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Setup</h1>
+<section id="setup" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Setup</h1>
 <blockquote class="blockquote">
 <p>We need to create a categorical outcome variable for demonstration purposes.</p>
 </blockquote>
@@ -172,7 +197,13 @@ Sorted by: country  family</code></pre>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">tabulate</span> outcome_group</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>outcome_gro |
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\ordinal-multinomia
+&gt; l-logistic-regression-2\profile.do . 
+
+
+
+
+outcome_gro |
          up |      Freq.     Percent        Cum.
 ------------+-----------------------------------
         low |      1,000       33.33       33.33
@@ -183,8 +214,9 @@ Sorted by: country  family</code></pre>
 </div>
 </div>
 </section>
-<section id="ordinal-logistic-regression" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Ordinal Logistic Regression</h1>
+<section id="ordinal-logistic-regression" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Ordinal Logistic Regression</h1>
+<p><span class="math display">\[\ln \left( \frac{p(y \le k)}{p(y &gt; k)} \right) = \beta_0 + \beta_1 x_1 + ... \]</span></p>
 <blockquote class="blockquote">
 <p>Because the data are clustered by countries, we will use the <code>, cluster(country)</code> option in each model. The <code>brant</code> command can be installed by typing <code>findit brant</code>, and installing the Long &amp; Freese <code>spost</code> utilities.</p>
 </blockquote>
@@ -201,7 +233,10 @@ Sorted by: country  family</code></pre>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> myologit.png, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Iteration 0:  Log pseudolikelihood = -3295.8369  
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\ordinal-multinomia
+&gt; l-logistic-regression-2\profile.do . 
+
+Iteration 0:  Log pseudolikelihood = -3295.8369  
 Iteration 1:  Log pseudolikelihood = -3157.4676  
 Iteration 2:  Log pseudolikelihood = -3157.0335  
 Iteration 3:  Log pseudolikelihood = -3157.0333  
@@ -211,19 +246,19 @@ Ordered logistic regression                             Number of obs =  3,000
                                                         Prob &gt; chi2   = 0.0000
 Log pseudolikelihood = -3157.0333                       Pseudo R2     = 0.0421
 
-                                      (Std. err. adjusted for 30 clusters in country)
--------------------------------------------------------------------------------------
-                    |               Robust
-      outcome_group | Odds ratio   std. err.      z    P&gt;|z|     [95% conf. interval]
---------------------+----------------------------------------------------------------
-physical_punishment |   .7962002   .0197074    -9.21   0.000     .7584964    .8357781
-             warmth |   1.282995    .026044    12.28   0.000     1.232951    1.335069
-                HDI |    1.00389   .0058436     0.67   0.505     .9925017    1.015409
-            2.group |   1.322192   .0754851     4.89   0.000     1.182221    1.478735
---------------------+----------------------------------------------------------------
-              /cut1 |    -.04647   .4096606                       -.84939    .7564499
-              /cut2 |   1.446814    .426558                       .610776    2.282853
--------------------------------------------------------------------------------------
+                               (Std. err. adjusted for 30 clusters in country)
+------------------------------------------------------------------------------
+             |               Robust
+outcome_gr~p | Odds ratio   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+physical_p~t |   .7962002   .0197074    -9.21   0.000     .7584964    .8357781
+      warmth |   1.282995    .026044    12.28   0.000     1.232951    1.335069
+         HDI |    1.00389   .0058436     0.67   0.505     .9925017    1.015409
+     2.group |   1.322192   .0754851     4.89   0.000     1.182221    1.478735
+-------------+----------------------------------------------------------------
+       /cut1 |    -.04647   .4096606                       -.84939    .7564499
+       /cut2 |   1.446814    .426558                       .610776    2.282853
+------------------------------------------------------------------------------
 Note: Estimates are transformed only in the first equation to odds ratios.
 
 
@@ -288,9 +323,7 @@ _predict#_at |
 
 Variables that uniquely identify margins: warmth
 
-file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/ordinal-multinomial-logistic-regression
-    &gt; -2/myologit.png saved as PNG format</code></pre>
+file myologit.png saved as PNG format</code></pre>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -300,8 +333,12 @@ file
 </figure>
 </div>
 </section>
-<section id="multinomial-logistic-regression" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Multinomial Logistic Regression</h1>
+<section id="multinomial-logistic-regression" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Multinomial Logistic Regression</h1>
+<p><span class="math display">\[\ln \left( \frac{P(y = y_2)}{P(y = y_1)} \right) = \ln \left( \frac{P(y = \text{something else})}{P(y = \text{something})} \right)\]</span></p>
+<p><span class="math display">\[= \beta_0 + \beta_1 x_1 + ...\]</span></p>
+<p><span class="math display">\[\ln \left( \frac{P(y = y_3)}{P(y = y_1)} \right) = \ln \left( \frac{P(y = \text{something else altogether})}{P(y = \text{something})} \right)\]</span></p>
+<p><span class="math display">\[= \beta_0 + \beta_1 x_1 + ...\]</span></p>
 <blockquote class="blockquote">
 <p>Because the <em>Brant</em> test was insignificant, the results below are likely to look similar. Imagine, however, if the <em>Brant</em> test were statistically significant, suggesting that we should estimate separate regression coefficients for each value of the outcome. Imagine, in addition, if we were estimating an outcome that were truly multinomial in nature, such as <em>post-secondary</em> education pursued: <em>none</em>, <em>vocational</em>, <em>university</em>. For heuristic purposes, we will relabel the outcome accordingly.</p>
 </blockquote>
@@ -322,7 +359,12 @@ file
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> mymlogit.png, <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>outcome_gro |
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\ordinal-multinomia
+&gt; l-logistic-regression-2\profile.do . 
+
+
+
+outcome_gro |
          up |      Freq.     Percent        Cum.
 ------------+-----------------------------------
        none |      1,000       33.33       33.33
@@ -343,27 +385,27 @@ Multinomial logistic regression                         Number of obs =  3,000
                                                         Prob &gt; chi2   = 0.0000
 Log pseudolikelihood = -3157.2532                       Pseudo R2     = 0.0420
 
-                                      (Std. err. adjusted for 30 clusters in country)
--------------------------------------------------------------------------------------
-                    |               Robust
-      outcome_group |        RRR   std. err.      z    P&gt;|z|     [95% conf. interval]
---------------------+----------------------------------------------------------------
-none                |  (base outcome)
---------------------+----------------------------------------------------------------
-vocational          |
-physical_punishment |   .8284144   .0268834    -5.80   0.000     .7773647    .8828166
-             warmth |   1.172042   .0323704     5.75   0.000     1.110284    1.237235
-                HDI |   1.003045   .0039244     0.78   0.437     .9953822    1.010766
-            2.group |   1.244621   .1034633     2.63   0.008     1.057495     1.46486
-              _cons |   .7248303   .2045156    -1.14   0.254     .4169312     1.26011
---------------------+----------------------------------------------------------------
-university          |
-physical_punishment |    .733425   .0260105    -8.74   0.000     .6841767    .7862183
-             warmth |   1.402776   .0404291    11.74   0.000     1.325733    1.484296
-                HDI |   1.005061   .0080327     0.63   0.528     .9894402    1.020929
-            2.group |   1.454744   .1119325     4.87   0.000     1.251102    1.691534
-              _cons |   .3950266    .227379    -1.61   0.107     .1278413    1.220623
--------------------------------------------------------------------------------------
+                               (Std. err. adjusted for 30 clusters in country)
+------------------------------------------------------------------------------
+             |               Robust
+outcome_gr~p |        RRR   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+none         |  (base outcome)
+-------------+----------------------------------------------------------------
+vocational   |
+physical_p~t |   .8284144   .0268834    -5.80   0.000     .7773647    .8828166
+      warmth |   1.172042   .0323704     5.75   0.000     1.110284    1.237235
+         HDI |   1.003045   .0039244     0.78   0.437     .9953822    1.010766
+     2.group |   1.244621   .1034633     2.63   0.008     1.057495     1.46486
+       _cons |   .7248303   .2045156    -1.14   0.254     .4169312     1.26011
+-------------+----------------------------------------------------------------
+university   |
+physical_p~t |    .733425   .0260105    -8.74   0.000     .6841767    .7862183
+      warmth |   1.402776   .0404291    11.74   0.000     1.325733    1.484296
+         HDI |   1.005061   .0080327     0.63   0.528     .9894402    1.020929
+     2.group |   1.454744   .1119325     4.87   0.000     1.251102    1.691534
+       _cons |   .3950266    .227379    -1.61   0.107     .1278413    1.220623
+------------------------------------------------------------------------------
 Note: _cons estimates baseline relative risk for each outcome.
 
 
@@ -413,9 +455,7 @@ _predict#_at |
 
 Variables that uniquely identify margins: warmth
 
-file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/ordinal-multinomial-logistic-regression
-    &gt; -2/mymlogit.png saved as PNG format</code></pre>
+file mymlogit.png saved as PNG format</code></pre>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">

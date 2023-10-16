@@ -21,6 +21,10 @@ format:
     geometry: margin=.5in
 ---
 
+# Background
+
+![A Tweet](twitter-ordinal-annotated.PNG){width=30%}
+
 # The Data
 
 > Data are simulated data on parent behaviors and child outcomes from  [*Multilevel Thinking*](https://agrogan1.github.io/multilevel-thinking/simulated-multi-country-data.html).
@@ -30,6 +34,8 @@ format:
 library(Statamarkdown)
 
 ```
+
+![Simulated Data on Countries of the World](world.png){width=30%}
 
 ```{stata, collectcode=TRUE}
 
@@ -59,6 +65,8 @@ tabulate outcome_group
 
 # Ordinal Logistic Regression
 
+$$\ln \left( \frac{p(y \le k)}{p(y > k)} \right) = \beta_0 + \beta_1 x_1 + ... $$
+
 > Because the data are clustered by countries, we will use the `, cluster(country)` option in each model. The `brant` command can be installed by typing `findit brant`, and installing the Long & Freese `spost` utilities.
 
 ```{stata}
@@ -79,6 +87,14 @@ graph export myologit.png, replace
 ![`marginsplot` from `ologit`](myologit.png){width=50%}
 
 # Multinomial Logistic Regression
+
+$$\ln \left( \frac{P(y = y_2)}{P(y = y_1)} \right) = \ln \left( \frac{P(y = \text{something else})}{P(y = \text{something})} \right)$$ 
+
+$$= \beta_0 + \beta_1 x_1 + ...$$
+
+$$\ln \left( \frac{P(y = y_3)}{P(y = y_1)} \right) = \ln \left( \frac{P(y = \text{something else altogether})}{P(y = \text{something})} \right)$$ 
+
+$$= \beta_0 + \beta_1 x_1 + ...$$
 
 > Because the *Brant* test was insignificant, the results below are likely to look similar. Imagine, however, if the *Brant* test were statistically significant, suggesting that we should estimate separate regression coefficients for each value of the outcome. Imagine, in addition, if we were estimating an outcome that were truly multinomial in nature, such as *post-secondary* education pursued: *none*, *vocational*, *university*. For heuristic purposes, we will relabel the outcome accordingly.
 
