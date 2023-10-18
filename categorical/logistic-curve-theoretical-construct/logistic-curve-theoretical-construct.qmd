@@ -25,13 +25,13 @@ editor: source
 
 # The Logistic Curve
 
-```{r}
+```{r, output=FALSE}
 
 library(Statamarkdown)
 
 ```
 
-```{stata}
+```{stata, output=FALSE}
 
 twoway ///
 (function y = exp(x)/(1 + exp(x)), range(-10 10) lwidth(thick) lpattern(dash)), ///
@@ -47,7 +47,7 @@ graph export logistic.png, width(2000) replace
 
 # The Logistic Curve is a *Theoretical Construct*
 
-```{stata}
+```{stata, output=FALSE}
 
 twoway ///
 (function y = exp(x)/(1 + exp(x)), range(-10 10) lwidth(thick) lpattern(dash)) ///

@@ -127,28 +127,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Stata found at C:/Program Files/Stata18/StataSE-64.exe</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The 'stata' engine is ready to use.</code></pre>
-</div>
 </div>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">twoway</span> <span class="co">///</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span> <span class="fu">y</span> = <span class="fu">exp</span>(x)/(1 + <span class="fu">exp</span>(x)), <span class="kw">range</span>(-10 10) lwidth(thick) lpattern(<span class="kw">dash</span>)), <span class="co">///</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bn">title</span>(<span class="st">"The Logistic Curve"</span>) <span class="co">///</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bn">ytitle</span>(<span class="st">"Probablity"</span>) <span class="co">///</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dv">scheme</span>(stcolor)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> <span class="kw">logistic</span>.png, <span class="kw">width</span>(2000) <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">twoway</span> <span class="co">///</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span> <span class="fu">y</span> = <span class="fu">exp</span>(x)/(1 + <span class="fu">exp</span>(x)), <span class="kw">range</span>(-10 10) lwidth(thick) lpattern(<span class="kw">dash</span>)), <span class="co">///</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bn">title</span>(<span class="st">"The Logistic Curve"</span>) <span class="co">///</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bn">ytitle</span>(<span class="st">"Probablity"</span>) <span class="co">///</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dv">scheme</span>(stcolor)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> <span class="kw">logistic</span>.png, <span class="kw">width</span>(2000) <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>file logistic.png saved as PNG format</code></pre>
-</div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -162,23 +153,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">twoway</span> <span class="co">///</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span> <span class="fu">y</span> = <span class="fu">exp</span>(x)/(1 + <span class="fu">exp</span>(x)), <span class="kw">range</span>(-10 10) lwidth(thick) lpattern(<span class="kw">dash</span>)) <span class="co">///</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span> <span class="fu">y</span> = <span class="fu">exp</span>(x)/(1 + <span class="fu">exp</span>(x)), <span class="kw">range</span>(2 5) lwidth(vvthick)) <span class="co">///</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span> <span class="fu">y</span> = <span class="fu">exp</span>(x)/(1 + <span class="fu">exp</span>(x)), <span class="kw">range</span>(-1 1) lwidth(vvthick)) <span class="co">///</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span> <span class="fu">y</span> = <span class="fu">exp</span>(x)/(1 + <span class="fu">exp</span>(x)), <span class="kw">range</span>(-3 -2) lwidth(vvthick) lcolor(<span class="bn">orange</span>)), <span class="co">///</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bn">title</span>(<span class="st">"Any Given Data Set"</span>) <span class="co">///</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bn">ytitle</span>(<span class="st">"Probablity"</span>) <span class="co">///</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bn">subtitle</span>(<span class="st">"Usually Maps To Only Part Of The Full Logistic Curve"</span>) <span class="co">///</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bn">legend</span>(<span class="kw">order</span>(1 <span class="st">"full logistic curve"</span> 2 <span class="st">"sample data set"</span> 3 <span class="st">"sample data set"</span> 4 <span class="st">"sample data set"</span>) pos(3)) <span class="co">///</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="dv">scheme</span>(stcolor)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> logistic2.png, <span class="kw">width</span>(2000) <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">twoway</span> <span class="co">///</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span> <span class="fu">y</span> = <span class="fu">exp</span>(x)/(1 + <span class="fu">exp</span>(x)), <span class="kw">range</span>(-10 10) lwidth(thick) lpattern(<span class="kw">dash</span>)) <span class="co">///</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span> <span class="fu">y</span> = <span class="fu">exp</span>(x)/(1 + <span class="fu">exp</span>(x)), <span class="kw">range</span>(2 5) lwidth(vvthick)) <span class="co">///</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span> <span class="fu">y</span> = <span class="fu">exp</span>(x)/(1 + <span class="fu">exp</span>(x)), <span class="kw">range</span>(-1 1) lwidth(vvthick)) <span class="co">///</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>(<span class="kw">function</span> <span class="fu">y</span> = <span class="fu">exp</span>(x)/(1 + <span class="fu">exp</span>(x)), <span class="kw">range</span>(-3 -2) lwidth(vvthick) lcolor(<span class="bn">orange</span>)), <span class="co">///</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bn">title</span>(<span class="st">"Any Given Data Set"</span>) <span class="co">///</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bn">ytitle</span>(<span class="st">"Probablity"</span>) <span class="co">///</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bn">subtitle</span>(<span class="st">"Usually Maps To Only Part Of The Full Logistic Curve"</span>) <span class="co">///</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bn">legend</span>(<span class="kw">order</span>(1 <span class="st">"full logistic curve"</span> 2 <span class="st">"sample data set"</span> 3 <span class="st">"sample data set"</span> 4 <span class="st">"sample data set"</span>) pos(3)) <span class="co">///</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dv">scheme</span>(stcolor)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> logistic2.png, <span class="kw">width</span>(2000) <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>file logistic2.png saved as PNG format</code></pre>
-</div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

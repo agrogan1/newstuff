@@ -196,7 +196,7 @@
 
 \begin{document}
 \maketitle
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, sharp corners, breakable, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, sharp corners, interior hidden, boxrule=0pt, breakable, enhanced, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -213,14 +213,6 @@
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Stata found at C:/Program Files/Stata18/StataSE-64.exe
-\end{verbatim}
-
-\begin{verbatim}
-The 'stata' engine is ready to use.
-\end{verbatim}
-
 \begin{Shaded}
 \begin{Highlighting}[]
 
@@ -233,10 +225,6 @@ The 'stata' engine is ready to use.
 \KeywordTok{graph} \KeywordTok{export} \KeywordTok{logistic}\NormalTok{.png, }\KeywordTok{width}\NormalTok{(2000) }\KeywordTok{replace}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-file logistic.png saved as PNG format
-\end{verbatim}
 
 \begin{figure}
 
@@ -269,10 +257,6 @@ Construct}}{The Logistic Curve is a Theoretical Construct}}\label{the-logistic-c
 \KeywordTok{graph} \KeywordTok{export}\NormalTok{ logistic2.png, }\KeywordTok{width}\NormalTok{(2000) }\KeywordTok{replace}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-file logistic2.png saved as PNG format
-\end{verbatim}
 
 \begin{figure}
 
