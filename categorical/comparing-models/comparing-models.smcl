@@ -1,17 +1,17 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\comparing-models\comparing-models.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/comparing-models/comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}18 Nov 2021, 12:56:27
+ {txt}opened on:  {res}22 Oct 2023, 10:48:53
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}18 Nov 2021
+{res}22 Oct 2023
 {txt}
 {com}. //_2
 . display c(current_time)
-{res}12:56:27
+{res}10:48:53
 {txt}
 {com}. //_3
 . clear all
@@ -28,12 +28,12 @@
 {txt}Variable      Storage   Display    Value
     name         type    format    label      Variable label
 {hline}
-{p 0 48}{res}{bind:acecount       }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R ace10R == 1{p_end}
-{p 0 48}{bind:sc_sex         }{txt}{bind: byte    }{bind:{txt}%30.0g    }{space 1}{txt}sc_sex_lab{p_end}
+{p 0 48}{res}{bind:acecount       }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R ace10R == 1{p_end}
+{p 0 48}{bind:sc_sex         }{txt}{bind: byte    }{bind:%30.0g    }{space 1}{txt}sc_sex_lab{p_end}
 {p 0 48}{space 44}{bind:  }{res}{res}Sex of Selected Child{p_end}
-{p 0 48}{bind:sc_race_r      }{txt}{bind: byte    }{bind:{txt}%48.0g    }{space 1}{txt}sc_race_r_lab{p_end}
+{p 0 48}{bind:sc_race_r      }{txt}{bind: byte    }{bind:%48.0g    }{space 1}{txt}sc_race_r_lab{p_end}
 {p 0 48}{space 44}{bind:  }{res}{res}Race of Selected Child, Detailed{p_end}
-{p 0 48}{bind:higrade        }{txt}{bind: byte    }{bind:{txt}%61.0g    }{space 1}{txt}higrade_lab{p_end}
+{p 0 48}{bind:higrade        }{txt}{bind: byte    }{bind:%61.0g    }{space 1}{txt}higrade_lab{p_end}
 {p 0 48}{space 44}{bind:  }{res}{res}Highest Level of Education among Reported Adults{p_end}
 {txt}
 {com}. //_7
@@ -105,9 +105,9 @@ High school (includin..)  {c |}{res} {ralign 10:.10021068}{lalign 3:}{txt} {spac
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\comparing-models\comparing-models.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/comparing-models/comparing-models.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}18 Nov 2021, 12:56:32
+ {txt}closed on:  {res}22 Oct 2023, 10:49:00
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

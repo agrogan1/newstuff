@@ -2,9 +2,7 @@
 
 clear all
 
-cd "/Users/agrogan/Desktop/Github/newstuff/categorical/comparing-models" // Mac
-
-cd "C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\comparing-models" // Windows
+cd "/Users/agrogan/Desktop/Github/newstuff/categorical/comparing-models" // bilingual
 
 doedit "comparing-models.stmd"
 

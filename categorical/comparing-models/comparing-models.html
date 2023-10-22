@@ -1,13 +1,172 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Andy Grogan-Kaylor" />
   <title>Comparing Statistical Models</title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 <style>
 /* CSS for Markstat 2.0 using Pandoc 2.0 */
 body{padding:14px 28px; max-width:45em;}
@@ -49,128 +208,178 @@ table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid bl
 </style>
 </head>
 <body>
-<div id="header">
+<header id="title-block-header">
 <h1 class="title">Comparing Statistical Models</h1>
-<h2 class="author">Andy Grogan-Kaylor</h2>
-<h3 class="date">18 Nov 2021 12:56:17</h3>
-</div>
+<p class="author">Andy Grogan-Kaylor</p>
+<p class="date">22 Oct 2023 10:48:33</p>
+</header>
 <h1 id="introduction">Introduction</h1>
 <style>body {max-width: 90%;} h1 {color: #00274C;} h2 {color: #2F65A7} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;} .slide code {color: red;} tr:nth-child(even){background-color: #f2f2f2;} tr:hover {background-color: #ddd;} th{background-color: #FFCB05;}</style>
-<p>In this example, we explore the predictors of the <em>count of Adverse Childhood Experiences</em> (ACES) that children experience. Using the <em>general linear model</em> framework, we could conceivably compare different statistical models on several grounds.</p>
-<ol style="list-style-type: decimal">
+<p>In this example, we explore the predictors of the <em>count of
+Adverse Childhood Experiences</em> (ACES) that children experience.
+Using the <em>general linear model</em> framework, we could conceivably
+compare different statistical models on several grounds.</p>
+<ol type="1">
 <li>Theoretical plausibility</li>
 <li>Functional form of the dependent variable</li>
 <li>Functional form of the entire model</li>
 <li>Statistical criteria of fit.</li>
 </ol>
 <blockquote>
-<p>Frequently, there is no one correct way to analyze data, and different statistical approaches need to be weighed on multiple criteria to ascertain which approach(es) is / are appropriate.</p>
+<p>Frequently, there is no one correct way to analyze data, and
+different statistical approaches need to be weighed on multiple criteria
+to ascertain which approach(es) is / are appropriate.</p>
 </blockquote>
-<h1 id="theoretical-and-functional-concerns">Theoretical and Functional Concerns</h1>
+<h1 id="theoretical-and-functional-concerns">Theoretical and Functional
+Concerns</h1>
 <table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 13%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th align="left">Statistical Model</th>
-<th align="left">Stata Command</th>
-<th align="left">Theoretical Rationale</th>
-<th align="left">Functional Form of Dependent Variable</th>
-<th align="left">Functional Form of Model</th>
-<th align="left">Coefficients Imply</th>
+<th style="text-align: left;">Statistical Model</th>
+<th style="text-align: left;">Stata Command</th>
+<th style="text-align: left;">Theoretical Rationale</th>
+<th style="text-align: left;">Functional Form of Dependent Variable</th>
+<th style="text-align: left;">Functional Form of Model</th>
+<th style="text-align: left;">Coefficients Imply</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">OLS</td>
-<td align="left"><code>regress</code></td>
-<td align="left">Continuous dependent variable</td>
-<td align="left"><span class="math inline">\(-\infty &lt; y &lt; \infty\)</span></td>
-<td align="left">y is a linear function of the x's</td>
-<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in y</td>
+<td style="text-align: left;">OLS</td>
+<td style="text-align: left;"><code>regress</code></td>
+<td style="text-align: left;">Continuous dependent variable</td>
+<td style="text-align: left;"><span class="math inline">\(-\infty &lt; y
+&lt; \infty\)</span></td>
+<td style="text-align: left;">y is a linear function of the x’s</td>
+<td style="text-align: left;">A 1 unit change in x is associated with a
+<span class="math inline">\(\beta\)</span> change in y</td>
 </tr>
 <tr class="even">
-<td align="left">Logistic Regression</td>
-<td align="left"><code>logit</code></td>
-<td align="left">Binary dependent variable</td>
-<td align="left"><span class="math inline">\(y = 0 \text{ or } 1\)</span></td>
-<td align="left"><span class="math inline">\(\ln \big( \frac{p(y)}{1-p(y)} \big)\)</span> is a linear function of x's</td>
-<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in the log odds of y</td>
+<td style="text-align: left;">Logistic Regression</td>
+<td style="text-align: left;"><code>logit</code></td>
+<td style="text-align: left;">Binary dependent variable</td>
+<td style="text-align: left;"><span class="math inline">\(y = 0 \text{
+or } 1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\ln \big(
+\frac{p(y)}{1-p(y)} \big)\)</span> is a linear function of x’s</td>
+<td style="text-align: left;">A 1 unit change in x is associated with a
+<span class="math inline">\(\beta\)</span> change in the log odds of
+y</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left"><code>logit, or</code></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(e^{\beta}\)</span> change in the OR</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>logit, or</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">A 1 unit change in x is associated with a
+<span class="math inline">\(e^{\beta}\)</span> change in the OR</td>
 </tr>
 <tr class="even">
-<td align="left">Ordinal logistic regression</td>
-<td align="left"><code>ologit</code></td>
-<td align="left">Ordered dependent variable where distance between categories does not matter</td>
-<td align="left"><span class="math inline">\(-\infty &lt; y &lt; \infty\)</span></td>
-<td align="left"><span class="math inline">\(\ln \big( \frac{p(y \text{ this level of the outcome})}{p(y \text{ not this level of the outcome})} \big)\)</span> is a linear function of x's</td>
-<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in the log odds of y</td>
+<td style="text-align: left;">Ordinal logistic regression</td>
+<td style="text-align: left;"><code>ologit</code></td>
+<td style="text-align: left;">Ordered dependent variable where distance
+between categories does not matter</td>
+<td style="text-align: left;"><span class="math inline">\(-\infty &lt; y
+&lt; \infty\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\ln \big(
+\frac{p(y \text{ this level of the outcome})}{p(y \text{ not this level
+of the outcome})} \big)\)</span> is a linear function of x’s</td>
+<td style="text-align: left;">A 1 unit change in x is associated with a
+<span class="math inline">\(\beta\)</span> change in the log odds of
+y</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left"><code>ologit, or</code></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(e^{\beta}\)</span> change in the OR</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>ologit, or</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">A 1 unit change in x is associated with a
+<span class="math inline">\(e^{\beta}\)</span> change in the OR</td>
 </tr>
 <tr class="even">
-<td align="left">Multinomial Logistic Regression</td>
-<td align="left"><code>mlogit</code></td>
-<td align="left">Dependent variable with multiple unordered categories</td>
-<td align="left"><span class="math inline">\(-\infty &lt; y &lt; \infty\)</span></td>
-<td align="left"><span class="math inline">\(\ln \big( \frac{p(y \text{ another category})}{p(y \text{ reference category})} \big)\)</span> is a linear function of x's</td>
-<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in the log risk ratio of y</td>
+<td style="text-align: left;">Multinomial Logistic Regression</td>
+<td style="text-align: left;"><code>mlogit</code></td>
+<td style="text-align: left;">Dependent variable with multiple unordered
+categories</td>
+<td style="text-align: left;"><span class="math inline">\(-\infty &lt; y
+&lt; \infty\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\ln \big(
+\frac{p(y \text{ another category})}{p(y \text{ reference category})}
+\big)\)</span> is a linear function of x’s</td>
+<td style="text-align: left;">A 1 unit change in x is associated with a
+<span class="math inline">\(\beta\)</span> change in the log risk ratio
+of y</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left"><code>mlogit, rr</code></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(e^{\beta}\)</span> change in the RR</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>mlogit, rr</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">A 1 unit change in x is associated with a
+<span class="math inline">\(e^{\beta}\)</span> change in the RR</td>
 </tr>
 <tr class="even">
-<td align="left">Poisson Regression</td>
-<td align="left"><code>poisson</code></td>
-<td align="left">Dependent variable representing a count</td>
-<td align="left"><span class="math inline">\(y \text{ is integer} \geq 0\)</span></td>
-<td align="left"><span class="math inline">\(\ln(y_\text{count})\)</span> is a linear function of x's</td>
-<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in the log count of y</td>
+<td style="text-align: left;">Poisson Regression</td>
+<td style="text-align: left;"><code>poisson</code></td>
+<td style="text-align: left;">Dependent variable representing a
+count</td>
+<td style="text-align: left;"><span class="math inline">\(y \text{ is
+integer} \geq 0\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(\ln(y_\text{count})\)</span> is a linear function
+of x’s</td>
+<td style="text-align: left;">A 1 unit change in x is associated with a
+<span class="math inline">\(\beta\)</span> change in the log count of
+y</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left"><code>poisson, irr</code></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(e^{\beta}\)</span> change in the IRR</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>poisson, irr</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">A 1 unit change in x is associated with a
+<span class="math inline">\(e^{\beta}\)</span> change in the IRR</td>
 </tr>
 <tr class="even">
-<td align="left">Negative Binomial Regression</td>
-<td align="left"><code>nbreg</code></td>
-<td align="left">Dependent variable representing a count</td>
-<td align="left"><span class="math inline">\(y \text{ is integer} \geq 0\)</span></td>
-<td align="left"><span class="math inline">\(\ln(y_\text{count})\)</span> is a linear function of x's</td>
-<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(\beta\)</span> change in the log count of y</td>
+<td style="text-align: left;">Negative Binomial Regression</td>
+<td style="text-align: left;"><code>nbreg</code></td>
+<td style="text-align: left;">Dependent variable representing a
+count</td>
+<td style="text-align: left;"><span class="math inline">\(y \text{ is
+integer} \geq 0\)</span></td>
+<td style="text-align: left;"><span
+class="math inline">\(\ln(y_\text{count})\)</span> is a linear function
+of x’s</td>
+<td style="text-align: left;">A 1 unit change in x is associated with a
+<span class="math inline">\(\beta\)</span> change in the log count of
+y</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left"><code>nbreg, irr</code></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">A 1 unit change in x is associated with a <span class="math inline">\(e^{\beta}\)</span> change in the IRR</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><code>nbreg, irr</code></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">A 1 unit change in x is associated with a
+<span class="math inline">\(e^{\beta}\)</span> change in the IRR</td>
 </tr>
 </tbody>
 </table>
 <h1 id="assessing-model-fit">Assessing Model Fit</h1>
-<h2 id="get-data-and-create-count-of-aces">Get Data And Create Count of ACEs</h2>
+<h2 id="get-data-and-create-count-of-aces">Get Data And Create Count of
+ACEs</h2>
 <pre class='stata'>. clear all
 </pre>
 <pre class='stata'>. use "NSCH_ACES.dta", clear
@@ -182,8 +391,9 @@ table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid bl
 
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-acecount        byte    %8.0g                 ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R ace10R == 1
+────────────────────────────────────────────────────────────────────────────────────────────────
+acecount        byte    %8.0g                 ace1R ace3R ace4R ace5R ace6R ace7R ace8R ace9R
+                                                ace10R == 1
 sc_sex          byte    %30.0g     sc_sex_lab
                                               Sex of Selected Child
 sc_race_r       byte    %48.0g     sc_race_r_lab
@@ -193,7 +403,9 @@ higrade         byte    %61.0g     higrade_lab
 </pre>
 <h2 id="explore-some-models">Explore Some Models</h2>
 <blockquote>
-<p>Only some of the above listed models are relevant. We estimate potentially relevant models. We use <code>quietly</code> to suppress model output at this stage.</p>
+<p>Only some of the above listed models are relevant. We estimate
+potentially relevant models. We use <code>quietly</code> to suppress
+model output at this stage.</p>
 </blockquote>
 <pre class='stata'>. quietly: regress acecount sc_sex i.sc_race_r i.higrade // OLS
 </pre>
@@ -211,7 +423,8 @@ higrade         byte    %61.0g     higrade_lab
 </pre>
 <pre class='stata'>. estimates store NBREG
 </pre>
-<h2 id="compare-the-models-including-fit-measures">Compare The Models Including Fit Measures</h2>
+<h2 id="compare-the-models-including-fit-measures">Compare The Models
+Including Fit Measures</h2>
 <pre class='stata'>. estimates table OLS ORDINAL POISSON NBREG, var(25) star stats(N ll aic bic) equations(1)
 
 ──────────────────────────┬────────────────────────────────────────────────────────────────
@@ -253,15 +466,39 @@ Statistics                │
 ──────────────────────────┴────────────────────────────────────────────────────────────────
                                                    Legend: * p&lt;0.05; ** p&lt;0.01; *** p&lt;0.001
 </pre>
-<p>We note that the <em>signs</em> of coefficients (positive or negative) appear to be consistent across models. Generally, but not universally, patterns of the <em>statistical significance</em> of coefficients are consistent across models.</p>
-<p>In terms of <em>log-likelihood</em> a higher value indicates a better fit. We can also use the <em>Akaike Information Criterion</em> (AIC) and the <em>Bayesian Information Criterion</em> (BIC) to compare models. For AIC and BIC, lower values indicate a better fit.</p>
-<p>Thus, on strictly statistical grounds, the <em>ordinal</em> model would appear to provide the best fit, followed by the <em>negative binomial</em> model, the <em>Poisson</em> model, and the <em>OLS</em> model. However, we should note that the differences in fit between the <em>ordinal</em>, <em>negative binomial</em> and <em>Poisson</em> models are not exceptionally large. We would also worry that any differences in fit that we do see might be due to overfitting in this particular sample, or to capitalizing upon chance.</p>
-<p>Lastly, we'd worry that the ordinal model might not satisfy the <em>proportional hazards</em> assumption, and should examine this with a <code>brant</code> test.</p>
-<p>We need to balance these differences in fit against the fact that theoretically, a count data model seems more appropriate.</p>
+<p>We note that the <em>signs</em> of coefficients (positive or
+negative) appear to be consistent across models. Generally, but not
+universally, patterns of the <em>statistical significance</em> of
+coefficients are consistent across models.</p>
+<p>In terms of <em>log-likelihood</em> a higher value indicates a better
+fit. We can also use the <em>Akaike Information Criterion</em> (AIC) and
+the <em>Bayesian Information Criterion</em> (BIC) to compare models. For
+AIC and BIC, lower values indicate a better fit.</p>
+<p>Thus, on strictly statistical grounds, the <em>ordinal</em> model
+would appear to provide the best fit, followed by the <em>negative
+binomial</em> model, the <em>Poisson</em> model, and the <em>OLS</em>
+model. However, we should note that the differences in fit between the
+<em>ordinal</em>, <em>negative binomial</em> and <em>Poisson</em> models
+are not exceptionally large. We would also worry that any differences in
+fit that we do see might be due to overfitting in this particular
+sample, or to capitalizing upon chance.</p>
+<p>Lastly, we’d worry that the ordinal model might not satisfy the
+<em>proportional hazards</em> assumption, and should examine this with a
+<code>brant</code> test.</p>
+<p>We need to balance these differences in fit against the fact that
+theoretically, a count data model seems more appropriate.</p>
 <blockquote>
-<p>In this case, we would most likely choose to proceed with a count regression model.</p>
+<p>In this case, we would most likely choose to proceed with a count
+regression model.</p>
 </blockquote>
 <h1 id="visualization">Visualization</h1>
-<p>As a <em>postscript</em> we note that in choosing between models, it might be helpful to do some exploratory data visualization. For example, are the relationships between <code>x</code>'s and <code>y</code>'s <em>linear</em>, or <em>non-linear</em>? Is the distribution of our outcome variable <em>normal</em> or <em>non-normal</em>? While there are no strict rules of thumb here, visualization of the data might help us to make a theoretical or conceptual case for one model over the other.</p>
+<p>As a <em>postscript</em> we note that in choosing between models, it
+might be helpful to do some exploratory data visualization. For example,
+are the relationships between <code>x</code>’s and <code>y</code>’s
+<em>linear</em>, or <em>non-linear</em>? Is the distribution of our
+outcome variable <em>normal</em> or <em>non-normal</em>? While there are
+no strict rules of thumb here, visualization of the data might help us
+to make a theoretical or conceptual case for one model over the
+other.</p>
 </body>
 </html>
