@@ -25,11 +25,41 @@ editor: source
 
 # The Logistic Curve
 
-```{r, output=FALSE}
+```{r, output=FALSE, echo=FALSE}
 
 library(Statamarkdown)
 
 ```
+
+::: {.callout-tip collapse="true"}
+## Equations
+
+The equation for the curve below comes from the logistic regression equation: 
+
+$$\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})}\Big) = \beta_0 + \beta_1 x_1$$ 
+
+We exponentiate both sides of the equation:
+
+$$\frac{p(\text{outcome})}{1-p(\text{outcome})} = e^{\beta_0 + \beta_1 x_1}$$
+
+We multiply both sides by the denominator of the fraction that is on the left hand side of the equation:
+
+$$p(\text{outcome}) = e^{\beta_0 + \beta_1 x_1}(1-p(\text{outcome}))$$
+
+Then:
+
+$$p(\text{outcome}) = e^{\beta_0 + \beta_1 x_1} - e^{\beta_0 + \beta_1 x_1} * p(\text{outcome})$$ Then:
+
+$$p(\text{outcome}) + e^{\beta_0 + \beta_1 x_1} * p(\text{outcome}) = e^{\beta_0 + \beta_1 x_1}$$
+
+Then:
+
+$$(1 + e^{\beta_0 + \beta_1 x_1}) * p(\text{outcome}) = e^{\beta_0 + \beta_1 x_1}$$
+
+And, finally:
+
+$$p(\text{outcome}) = \frac{e^{\beta_0 + \beta_1 x_1}}{1 +e^{\beta_0 + \beta_1 x_1}}$$
+:::
 
 ```{stata, output=FALSE}
 
