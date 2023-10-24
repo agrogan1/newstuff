@@ -80,10 +80,10 @@ graph export logistic.png, width(2000) replace
 ```{stata, output=FALSE}
 
 twoway ///
-(function y = exp(x)/(1 + exp(x)), range(-10 10) lwidth(thick) lpattern(dash)) ///
-(function y = exp(x)/(1 + exp(x)), range(2 5) lwidth(vvthick)) ///
-(function y = exp(x)/(1 + exp(x)), range(-1 1) lwidth(vvthick)) ///
-(function y = exp(x)/(1 + exp(x)), range(-3 -2) lwidth(vvthick) lcolor(orange)), ///
+(function y = exp(x)/(1 + exp(x)), range(-10 10) lwidth(thick) lpattern(dash)) /// full logistic curve
+(function y = exp(x)/(1 + exp(x)), range(2 5) lwidth(vvthick)) /// sample data set
+(function y = exp(x)/(1 + exp(x)), range(-1 1) lwidth(vvthick)) /// sample data set
+(function y = exp(x)/(1 + exp(x)), range(-3 -2) lwidth(vvthick) lcolor(orange)), /// sample data set
 title("Any Given Data Set") ///
 ytitle("Probablity") ///
 subtitle("Usually Maps To Only Part Of The Full Logistic Curve") ///
