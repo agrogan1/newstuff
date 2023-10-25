@@ -1,6 +1,8 @@
-library(waffle)
+# make a waffle plot
 
-library(michigancolors)
+library(waffle) # waffle plots
+
+library(michigancolors) # UM colors
 
 names <- c("Placebo; No Cold", 
            "Placebo; Cold",
@@ -9,7 +11,7 @@ names <- c("Placebo; No Cold",
 
 vals <- c(109, 31, 122, 17)
 
-parts <- data.frame(names, vals)
+parts <- data.frame(names, vals) # make a data set of names and values
 
 waffle(parts, colors = c(michigancolors("blue"),
                          michigancolors("maize"),
