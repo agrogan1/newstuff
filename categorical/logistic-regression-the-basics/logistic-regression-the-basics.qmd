@@ -1,0 +1,95 @@
+% Logistic Regression The Basics
+% Andy Grogan-Kaylor
+% `s c(current_date)` `s c(current_time)`
+
+---
+geometry: margin=1 in
+---
+
+<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
+
+# Logistic Regression
+
+Basic handout on logistic regression for a binary dependent variable.
+
+# Get The Data
+
+We start by obtaining *simulated data* from StataCorp. 
+
+    clear all
+
+    graph close _all
+
+    use http://www.stata-press.com/data/r15/margex, clear
+	
+# Describe The Data
+	
+The variables are as follows: 
+
+    describe
+
+# The Equation
+
+$$\ln \Big(\frac{p(outcome)}{1-p(outcome)} \Big) = \beta_0 + \beta_1 x_1$$ 
+
+Here $p(outcome)$ is the probability of the outcome. 
+
+$\frac{p(outcome)}{1-p(outcome)}$ is the *odds* of the outcome.
+
+Hence, $\ln \Big(\frac{p(outcome)}{1-p(outcome)} \Big)$ is the *log odds*.
+
+Logistic regression returns a $\beta$ coefficient for each independent variable $x$.
+
+These $\beta$ coefficients can then be *exponentiated* to obtain *odds ratios*:  $OR = e^{\beta}$
+
+# Estimate Logistic Regression (`logit y x`)
+
+We then run a logistic regression model in which `outcome` is the dependent variable. `sex`, `age` and `group` are the independent variables. 
+
+    logit outcome i.sex c.age i.group
+	
+# Odds Ratios (`logit y x, or`)
+
+We re-run the model with exponentiated coefficients ($e^{\beta}$ to obtain odds ratios.
+
+    logit outcome i.sex c.age i.group, or
+	
+# $\beta$ Coefficients and Odds Ratios
+
+--------------------------------------------------
+Substantively    $\beta$     OR
+--------------   ---------- ----------
+x is              $>0.0$        $>1.0$
+associated
+with an 
+increase
+in y
+
+no                $0.0$         $1.0$
+association
+
+x is              $<0.0$        $<1.0$
+associated
+with a
+descrease
+in y
+--------------------------------------------------
+
+# Coefficients, Standard Errors, p values, and Confidence Intervals
+
+* z statistic: $z = \frac{\beta}{se}$.
+* p value if $z_{\text{observed}} > 1.96$ then $p <.05$.
+* $\text{CI} = \beta \pm 1.96 * se$
+
+> Hence for the coefficient for `sex`, the confidence interval is:
+
+$$.4991622 \pm (1.959964 * .1347463) = (.2350643, .7632601)$$
+
+> Confidence intervals for *odds ratios* ($e^\beta$) are obtained by exponentiating the confidence interval for the $\beta$ coefficients. As a result of this non-linear transformation, confidence intervals for odds ratios are not symmetric.
+
+
+
+
+
+
+
