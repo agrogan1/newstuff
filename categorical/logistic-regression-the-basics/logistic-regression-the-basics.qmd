@@ -1,14 +1,31 @@
-% Logistic Regression The Basics
-% Andy Grogan-Kaylor
-% `s c(current_date)` `s c(current_time)`
-
 ---
-geometry: margin=1 in
+title: "Logistic Regression The Basics"
+author: "Andy Grogan-Kaylor"
+date: "today"
+format:
+  html:
+    toc: true
+    number-sections: true
+    anchor-sections: true
+    theme:
+      light: cosmo
+      dark: vapor
+  pdf:
+    toc: true
+    number-sections: true
+    geometry: margin=1in
+prefer-html: true    
+editor: source
 ---
-
-<style>h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 
 # Logistic Regression
+
+```{r, output=FALSE, echo=FALSE}
+
+library(Statamarkdown)
+
+```
+
 
 Basic handout on logistic regression for a binary dependent variable.
 
@@ -16,17 +33,25 @@ Basic handout on logistic regression for a binary dependent variable.
 
 We start by obtaining *simulated data* from StataCorp. 
 
-    clear all
+```{stata, collectcode=TRUE}
 
-    graph close _all
+clear all
 
-    use http://www.stata-press.com/data/r15/margex, clear
+graph close _all
+
+use http://www.stata-press.com/data/r15/margex, clear
+    
+```
 	
 # Describe The Data
 	
 The variables are as follows: 
 
-    describe
+```{stata}
+
+describe
+
+```
 
 # The Equation
 
@@ -40,19 +65,29 @@ Hence, $\ln \Big(\frac{p(outcome)}{1-p(outcome)} \Big)$ is the *log odds*.
 
 Logistic regression returns a $\beta$ coefficient for each independent variable $x$.
 
-These $\beta$ coefficients can then be *exponentiated* to obtain *odds ratios*:  $OR = e^{\beta}$
+These $\beta$ coefficients can then be *exponentiated* to obtain *odds ratios*:  
+
+$$\text{OR} = e^{\beta}$$
 
 # Estimate Logistic Regression (`logit y x`)
 
 We then run a logistic regression model in which `outcome` is the dependent variable. `sex`, `age` and `group` are the independent variables. 
 
-    logit outcome i.sex c.age i.group
+```{stata}
+
+logit outcome i.sex c.age i.group
+
+```
 	
 # Odds Ratios (`logit y x, or`)
 
 We re-run the model with exponentiated coefficients ($e^{\beta}$ to obtain odds ratios.
 
-    logit outcome i.sex c.age i.group, or
+```{stata}
+
+logit outcome i.sex c.age i.group, or
+
+```
 	
 # $\beta$ Coefficients and Odds Ratios
 
