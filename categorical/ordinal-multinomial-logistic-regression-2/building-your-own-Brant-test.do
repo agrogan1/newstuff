@@ -4,6 +4,26 @@
 
 * builds upon (hopefully correctly) ideas in https://www3.nd.edu/~rwilliam/stats3/Ologit01.pdf
 
+/*
+. codebook outcome_group
+
+---------------------------------------------------------------------------------------------------------------------------
+outcome_group                                                                                                   (unlabeled)
+---------------------------------------------------------------------------------------------------------------------------
+
+                  Type: Numeric (float)
+                 Label: outcome_group
+
+                 Range: [0,2]                         Units: 1
+         Unique values: 3                         Missing .: 0/3,000
+
+            Tabulation: Freq.   Numeric  Label
+                        1,000         0  low
+                        1,000         1  medium
+                        1,000         2  high
+*/
+
+
 * for this example, we have k=3 categories, so we need 2 (k-1) new outcome variables
 
 * create two new outcome variables
