@@ -4,6 +4,11 @@
 
 * builds upon (hopefully correctly) ideas in https://www3.nd.edu/~rwilliam/stats3/Ologit01.pdf
 
+* Say we have a 3 category outcome variable.
+* We want to understand if `ologit outcome x` produces the same results 
+* as we would get if we ran `logit outcome_gt_0 x` (outcome 0 vs. higher) 
+* and `logit outcome_gt_1 x` (outcome 1 vs. higher)
+
 /*
 . codebook outcome_group
 
