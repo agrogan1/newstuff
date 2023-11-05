@@ -1,0 +1,138 @@
+---
+title: "Some Stuff About Logarithms"
+author: "Andy Grogan-Kaylor"
+date: "today"
+execute:
+  echo: false
+  message: false
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme:
+      light: united
+      dark: vapor
+  pdf:
+    toc: true
+    number-sections: true
+---
+
+# Introduction
+
+```{r}
+#| echo: false
+#| output: false
+
+library(Statamarkdown)
+
+```
+
+
+We consider the logarithm. One very simple way to present the logarithm is to use the constant $e$.
+
+Let's first consider the exponential function with base $e$, $y = e^x$[^definition_e].
+
+[^definition_e]: One definition of $e$ is $\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e$
+
+```{stata}
+#| echo: true
+#| output: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+twoway function y = exp(x), lwidth(thick) title("Exponential Function") range(-10 10) 
+
+graph export exponential.png, replace
+
+```
+![Graph of exponential function](exponential.png){width=50%}
+
+If $$y = e^x$$ then $$\ln(y) = x$$.
+
+# Graphing Logarithmic Function
+
+Note that in the equation above, we are taking the logarithm of $y$. To get some quick sense of how the logarithm behaves, we are going to graph $y = \ln(x)$.
+
+```{stata}
+#| echo: true
+#| output: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+twoway function y = ln(x), lwidth(thick) title("Logarithmic Function") range(-10 10)
+
+graph export logarithmic.png, replace
+
+```
+
+![Graph of logarithmic function](logarithmic.png){width=50%}
+
+
+# Categorical Data Analysis
+
+In categorical data analysis--in general--we are often thinking about some equation like $\ln(y) = \beta x$. This is equivalent to $y = e^{\beta x}$ so many models--particularly later in the course--will have us thinking about *exponential* relationships.
+
+```{stata}
+#| echo: true
+#| output: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+twoway function y = exp(x), lwidth(thick) title("Exponential Function") range(-10 10) 
+
+graph export exponential2.png, replace
+
+```
+
+![Graph of exponential function](exponential2.png){width=50%}
+
+# Logistic Regression
+
+In logistic regression, which we are discussing in more detail in this course, we in particular focus on the *odds* of our outcome: 
+
+$$\frac{p(y)}{1-p(y)}$$
+
+We will be working with the *log odds*:
+
+$$\ln(\frac{p(y)}{1-p(y)}) = x$$
+
+To graph these *log odds*, we need to solve for $p(y)$:
+
+$$p(y) = \frac{e^x}{1 + e^x}$$
+
+```{stata}
+#| echo: true
+#| output: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+twoway function y = exp(x)/(1 + exp(x)), ///
+lwidth(thick) title("Logistic Function") range(-10 10)
+
+graph export logistic.png, replace
+
+
+```
+
+![Logistic curve](logistic.png){width=50%}
+
+# Logarithmic Spiral
+
+An interesting sidenote is that the logarithm forms the basis of the logarithmic spiral. The equation for a logarithmic spiral in polar coordinates is: $r = ae^{b \theta}$, where $\theta$ is the angle, $r$ is the radius, and $a$ and $b$ are constants. 
+
+![Desmos Graph Logarithmic Spiral](desmos-graph.png){width=30%}
+
+Logarithmic spirals can be found in nature in the *nautilus shell*, and in *sunflowers*.
+
+![Nautilus Shell, Courtesy Wikipedia](NautilusCutawayLogarithmicSpiral.jpg){width=30%}
+
+![Sunflower, Courtesy Wikipedia](Sunflower_sky_backdrop.jpg){width=30%}
+
+
+
+
+
+
+
+
+
