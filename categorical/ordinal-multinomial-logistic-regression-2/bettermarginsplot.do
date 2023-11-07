@@ -14,6 +14,9 @@ marginsplot // traditional marginsplot
 
 use mymargins.dta, clear 
 
+* saved margins have a somewhat non-intuitive structure so you should `browse` the contents
+* generally, margins are stored similarly across data files
+
 browse // look at the structure of this data file
 
 * some graph ideas
