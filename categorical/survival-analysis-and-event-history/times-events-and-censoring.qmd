@@ -110,7 +110,7 @@ library(plotly)
 
 Individuals in the animation below who have not yet experienced an event are indicated by a <span style="font-size: 150%">&#x25CF;</span>. 
 
-When an event occurs for an individual, the symbol changes to a <span style="font-size: 150%">&times;</span>.
+When an event occurs for an individual, the symbol changes to a <span style="font-size: 150%">&#10005;</span>.
 
 In this simulation, we imagine that the study period ends after time 7, so observations for which the event occurs after time 7 are considered to be *censored*: i.e. a failure is not observed. 
 
