@@ -181,6 +181,7 @@ ggsurvplot(fit,
 ```
 
 ```{stata}
+#| code-summary: "Show the code"
 
 use "event-history-single-record.dta"
 
