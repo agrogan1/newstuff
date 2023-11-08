@@ -155,31 +155,7 @@ p2 # replay
 
 ::: {.panel-tabset .nav-pills}
 
-## Simple Event History Data
-
-```{r}
-
-library(DT)
-
-```
-
-```{r}
-
-datatable(mydata2, caption = "Simple Event History Data")
-
-```
-
-## Data in Multiple Record Form
-
-Notice how every row in this particular data set is a *person timepoint*, **not** simply a *person*.  Every *person* in this data has *multiple rows*.
-
-```{r}
-
-datatable(mydata, caption = "Data in Multiple Record Form")
-
-```
-
-## `stset` the Data and Survival Curve
+## **stset** the Data and Survival Curve
 
 ```{r, echo=FALSE, eval=FALSE}
 
@@ -217,6 +193,31 @@ graph export survival.png, replace
 ```
 
 ![Survival Graph](survival.png)
+
+## Simple Event History Data
+
+```{r}
+
+library(DT)
+
+```
+
+```{r}
+
+datatable(mydata2, caption = "Simple Event History Data")
+
+```
+
+## Data in Multiple Record Form
+
+Notice how every row in this particular data set is a *person timepoint*, **not** simply a *person*.  Every *person* in this data has *multiple rows*.
+
+```{r}
+
+datatable(mydata, caption = "Data in Multiple Record Form")
+
+```
+
 :::
 
 
