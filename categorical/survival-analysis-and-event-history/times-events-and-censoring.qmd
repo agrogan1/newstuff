@@ -1,17 +1,17 @@
 ---
 title: "Times, Events, and Censoring"
 author: "Andy Grogan-Kaylor"
-date: "`r format(Sys.Date())`"
-output:
-  html_document: 
-    code_folding: hide
-    highlight: haddock
-    number_sections: yes
-    toc: yes
-    toc_float:
-      collapsed: yes
-      smooth_scroll: yes
-    css: ../UM.css
+date: "today"
+format: 
+  html:
+    toc: true
+    number-sections: true
+    anchor-sections: true
+    theme:
+      light: cosmo
+      dark: vapor
+    code-fold: true
+    code-summary: "Show the code"
 ---
 
 ```{r setup, include=FALSE}
@@ -32,7 +32,7 @@ library(tibble)
 
 library(dplyr)
 
-library(foreign)
+library(haven)
 
 library(pander)
 
@@ -92,9 +92,9 @@ mydata2 <- mydata %>%
 
 ```{r}
 
-write.dta(mydata, file = "event-history-multiple-records.dta")
+write_dta(mydata, "event-history-multiple-records.dta")
 
-write.dta(mydata2, file = "event-history-single-record.dta")
+write_dta(mydata2, "event-history-single-record.dta")
 
 ```
 
@@ -135,7 +135,7 @@ p2 <- plot_ly(data = mydata, # use mydata
               symbol = ~as.numeric(event), # symbol is event (occurred / not occurred)
               symbols = c('circle', # event not occurred
                           'x'), # event
-              marker = list(size = 10)) %>% # marker size
+              marker = list(size = 15)) %>% # marker size
   layout(title = 'Hypothetical Timing of Events \nCensored at Time 7',
          shapes = list(type='line', # censoring line
                        x0 = 7, 
@@ -151,16 +151,17 @@ p2 # replay
 
 ```
 
-# What These Data Look Like {.tabset .tabset-fade .tabset-pills}
+# What These Data Look Like
 
+::: {.panel-tabset .nav-pills}
+
+## Simple Event History Data
 
 ```{r}
 
 library(DT)
 
 ```
-
-## Simple Event History Data
 
 ```{r}
 
@@ -178,7 +179,7 @@ datatable(mydata, caption = "Data in Multiple Record Form")
 
 ```
 
-## Survival Curve
+## `stset` the Data and Survival Curve
 
 ```{r, echo=FALSE, eval=FALSE}
 
@@ -216,6 +217,7 @@ graph export survival.png, replace
 ```
 
 ![Survival Graph](survival.png)
+:::
 
 
 
