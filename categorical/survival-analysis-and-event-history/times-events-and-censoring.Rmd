@@ -22,6 +22,8 @@ knitr::opts_chunk$set(echo = TRUE,
 
 library(fontawesome)
 
+library(Statamarkdown)
+
 ```
 
 ```{r}
@@ -140,7 +142,9 @@ p2 <- plot_ly(data = mydata, # use mydata
                        x1 = 7, 
                        y0 = 0, 
                        y1 = 10, 
-                       line=list(dash='dot', width=1))) %>%
+                       line=list(dash='dot', 
+                                 width=1, 
+                                 color = "red"))) %>%
   animation_opts(3000) 
 
 p2 # replay
@@ -176,7 +180,7 @@ datatable(mydata, caption = "Data in Multiple Record Form")
 
 ## Survival Curve
 
-```{r}
+```{r, echo=FALSE, eval=FALSE}
 
 library("survival")
 
@@ -184,7 +188,7 @@ library("survminer")
 
 ```
 
-```{r}
+```{r, echo=FALSE, eval=FALSE}
 
 fit <- survfit(Surv(event_time, censored == "Not Censored") ~ 1, 
                data = mydata2)
@@ -198,5 +202,21 @@ ggsurvplot(fit,
   labs(title = "Survival Curve") 
 
 ```
+
+```{stata}
+
+use "event-history-single-record.dta"
+
+stset event_time, failure(censored == 1) // set event time and failvar
+
+sts graph, xline(7, lcolor("red")) // survival curve w line at 7
+
+graph export survival.png, replace
+
+```
+
+![Survival Graph](survival.png)
+
+
 
 
