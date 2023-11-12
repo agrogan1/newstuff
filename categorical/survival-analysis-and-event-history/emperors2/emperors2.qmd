@@ -34,7 +34,8 @@ This example uses data on the ages of death of Roman Emperors. Sources for this 
 
 clear all
 
-import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
+import delimited ///
+"https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
 
 list in 3 // list out an observation
 
@@ -77,7 +78,7 @@ $$
 This definition per Johnson & Shih (2007). 
 
 $$
-    h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}
+    h(t) = h_0(t)e^{\beta_1 x_1 + \beta_2 x_2 + etc.}
 $$
 
 > We don't directly estimate the hazard, but estimate the effect of covariates on the hazard.
