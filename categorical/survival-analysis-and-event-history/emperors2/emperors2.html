@@ -290,7 +290,7 @@ Appointment by Se..  |   .0745311   .0434844    -4.45   0.000     .0237527    .2
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="survival.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="survival.png" class="img-fluid figure-img" style="width:75.0%"></p>
 <figcaption class="figure-caption">Survival Plot</figcaption>
 </figure>
 </div>
@@ -299,22 +299,66 @@ Appointment by Se..  |   .0745311   .0434844    -4.45   0.000     .0237527    .2
 <h2 data-number="3.4" class="anchored" data-anchor-id="proportional-hazards-assumption"><span class="header-section-number">3.4</span> Proportional Hazards Assumption <a id="ph-assumption" href=""></a></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> phtest, <span class="kw">detail</span> <span class="co">// formal test of PH assumption</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> emperors2.dta, <span class="kw">clear</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">stphplot</span>, <span class="kw">by</span>(causeNUMERIC) <span class="dv">scheme</span>(michigan) <span class="co">// graphical test of PH assumption</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> ph.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">stset</span> agereign <span class="co">// stset the data</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span>: <span class="kw">stcox</span> ib5.riseNUMERIC <span class="co">// Cox model</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> phtest, <span class="kw">detail</span> <span class="co">// formal test of PH assumption</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">stphplot</span>, <span class="kw">by</span>(riseNUMERIC) <span class="dv">scheme</span>(michigan) <span class="co">// graphical test of PH assumption</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> ph.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>last estimates not found
-r(301);
+<pre><code>Survival-time data settings
 
-end of do-file
-r(301);</code></pre>
+         Failure event: (assumed to fail at time=agereign)
+Observed time interval: (0, agereign]
+     Exit on or before: failure
+
+--------------------------------------------------------------------------
+         66  total observations
+          5  event time missing (agereign&gt;=.)               PROBABLE ERROR
+--------------------------------------------------------------------------
+         61  observations remaining, representing
+         61  failures in single-record/single-failure data
+      2,470  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =         0
+                                          Last observed exit t =        79
+
+
+
+Test of proportional-hazards assumption
+
+Time function: Analysis time
+--------------------------------------------------------
+             |        rho     chi2       df    Prob&gt;chi2
+-------------+------------------------------------------
+1.riseNUME~C |    0.22588     2.76        1       0.0969
+2.riseNUME~C |    0.15586     1.37        1       0.2414
+3.riseNUME~C |    0.03204     0.05        1       0.8209
+4.riseNUME~C |   -0.04249     0.11        1       0.7352
+5b.riseNUM~C |          .        .        1           .
+6.riseNUME~C |    0.11688     0.78        1       0.3765
+7.riseNUME~C |    0.09609     0.47        1       0.4944
+8.riseNUME~C |    0.16179     1.47        1       0.2251
+-------------+------------------------------------------
+ Global test |                5.91        7       0.5504
+--------------------------------------------------------
+
+        Failure _d: 1 (meaning all fail)
+  Analysis time _t: agereign
+
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-hi
+    &gt; story/emperors2/ph.png saved as PNG format</code></pre>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ph.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="ph.png" class="img-fluid figure-img" style="width:75.0%"></p>
 <figcaption class="figure-caption">Graphical Assessment of Proportional Hazards Assumptions</figcaption>
 </figure>
 </div>

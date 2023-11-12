@@ -98,21 +98,27 @@ stcox ib5.riseNUMERIC // Cox model
 
 ```
 
-![Survival Plot](survival.png){width=50%}
+![Survival Plot](survival.png){width=75%}
 
 ## Proportional Hazards Assumption <a id="ph-assumption"></a>
 
 ```{stata}
 
+use emperors2.dta, clear
+
+stset agereign // stset the data
+
+quietly: stcox ib5.riseNUMERIC // Cox model
+
 estat phtest, detail // formal test of PH assumption
 
-stphplot, by(causeNUMERIC) scheme(michigan) // graphical test of PH assumption
+stphplot, by(riseNUMERIC) scheme(michigan) // graphical test of PH assumption
 	
 graph export ph.png, width(1000) replace
 
 ```
 	
-![Graphical Assessment of Proportional Hazards Assumptions](ph.png){width=50%}
+![Graphical Assessment of Proportional Hazards Assumptions](ph.png){width=75%}
 
 ## Correcting For Violations of the Proportional Hazards Assumption
 
