@@ -1,0 +1,142 @@
+---
+title: "Event History Analysis With Roman Emperor's Data"
+author: "Andy Grogan-Kaylor"
+date: "today"
+format:
+  html:
+    toc: true
+    number-sections: true
+    anchor-sections: true
+    theme:
+      light: cosmo
+      dark: vapor
+    css: styles.css
+  pdf:
+    toc: true
+    number-sections: true
+---
+
+# Introduction
+
+```{r}
+#| echo: false
+#| output: false
+
+library(Statamarkdown)
+
+```
+
+This example uses data on the ages of death of Roman Emperors. Sources for this data are unclear, but it appears that the original source is [http://www.roman-emperors.org/](http://www.roman-emperors.org/) via [https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13).
+
+# Get Data
+
+```{stata,collectcode = TRUE}
+
+clear all
+
+import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
+
+```
+
+# Data Wrangling
+
+```{stata,collectcode = TRUE}
+
+generate birthyear = real(substr(birth, 1, 4)) // convert first 4 characters to real number
+
+generate deathyear = real(substr(death, 1, 4)) // convert first 4 characters to real number
+
+generate age = deathyear - birthyear
+
+generate reignyear = real(substr(reign_start, 1, 4)) // convert first 4 characters to real number
+
+generate agereign = reignyear - birthyear
+
+drop if agereign <0
+
+histogram agereign
+
+encode rise, generate(riseNUMERIC) // numeric version of rise to power
+
+```
+
+
+# Cox Proportional Hazards Model
+
+## `stset` the Data
+
+We need to `stset` the data so that Stata knows that this is survival data with special characteristics relevant to survival analysis. For those of you have used other commands that attach special characteristics to the data, this is similar to using `svyset` for complex survey data, `xtset` for panel data, or even to the `mi` suite of commands for multiple imputation.
+
+The most commonly used syntax is something like `stset timevar, failure(failvar) id(id)` [^failvar]
+
+[^failvar]: `failvair` is often something like `died`.
+
+> There are many ways to specify `failvar`, we outline the most straightforward. Consult Stata help for your exact situation.
+
+## Formula for the Hazard <a id="hazard-formula"></a>
+
+$h(t)$ the rate of occurrence.
+
+$$
+    h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
+$$ 
+
+This definition per Johnson & Shih (2007). 
+
+$$
+    h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}
+$$
+
+> We don't directly estimate the hazard, but estimate the effect of covariates on the hazard.
+
+## Estimate the Cox Proportional Hazards Model
+
+```{stata, collectcode = TRUE}
+
+stset agereign // stset the data
+
+sts graph, by(riseNUMERIC) // survival curve by cause of death
+
+graph export survival.png, width(1000) replace
+
+stcox ib5.riseNUMERIC // Cox model
+
+```
+
+![Survival Plot](survival.png){width=50%}
+
+## Proportional Hazards Assumption <a id="ph-assumption"></a>
+
+```{stata}
+
+estat phtest, detail // formal test of PH assumption
+
+stphplot, by(causeNUMERIC) scheme(michigan) // graphical test of PH assumption
+	
+graph export ph.png, width(1000) replace
+
+```
+	
+![Graphical Assessment of Proportional Hazards Assumptions](ph.png){width=50%}
+
+## Correcting For Violations of the Proportional Hazards Assumption
+
+Had the proportional hazards assumption been violated, we could correct for this violation in one of two ways:
+
+1. Estimating an interaction of the time variable (in this case `age`) with the variable violating the assumption.
+
+e.g. `stcox age#ib5.riseNUMERIC`. 
+
+> Note: In this relatively small sample this command fails to converge, perhaps because of sample size; or perhaps because there is no underlying violation of the proportional hazards assumption.
+
+2. Using the `, strata(varname)` option to *stratify* on the variable violating the assumption.
+
+> Note that the command below provides results, but does not provide parameter estimates for the variable on which we are stratifying, `riseNUMERIC`. 
+
+    stcox, strata(riseNUMERIC)
+
+# References
+
+Johnson, L. L., & Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin & F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4
+
+
