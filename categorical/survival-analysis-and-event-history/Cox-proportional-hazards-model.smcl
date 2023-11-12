@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 5 Dec 2021, 16:07:50
+ {txt}opened on:  {res}12 Nov 2023, 10:59:51
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 5 Dec 2021
+{res}12 Nov 2023
 {txt}
 {com}. //_2
 . clear all
@@ -40,21 +40,21 @@ Survival-time data settings
 {com}. //_5
 . describe // show variables in data
 
-{txt}Contains data from {res}https://www.stata-press.com/data/r17/drugtr.dta
+{txt}Contains data from {res}https://www.stata-press.com/data/r18/drugtr.dta
 {txt} Observations:{res}            48                  Patient survival in drug trial
-{txt}    Variables:{res}             8                  3 Mar 2020 02:12
+{txt}    Variables:{res}             8                  3 Mar 2022 02:12
 {txt}{hline}
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
 {hline}
-{p 0 48}{res}{bind:studytime      }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}Months to death or end of exp.{p_end}
-{p 0 48}{bind:died           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}1 if patient died{p_end}
-{p 0 48}{bind:drug           }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}Drug type (0=placebo){p_end}
-{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}Patient's age at start of exp.{p_end}
-{p 0 48}{bind:_st            }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}1 if record is to be used; 0 otherwise{p_end}
-{p 0 48}{bind:_d             }{txt}{bind: byte    }{bind:{txt}%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}1 if failure; 0 if censored{p_end}
-{p 0 48}{bind:_t             }{txt}{bind: byte    }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Analysis time when record ends{p_end}
-{p 0 48}{bind:_t0            }{txt}{bind: byte    }{bind:{txt}%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Analysis time when record begins{p_end}
+{p 0 48}{res}{bind:studytime      }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}Months to death or end of exp.{p_end}
+{p 0 48}{bind:died           }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}1 if patient died{p_end}
+{p 0 48}{bind:drug           }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}Drug type (0=placebo){p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}Patient's age at start of exp.{p_end}
+{p 0 48}{bind:_st            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}1 if record is to be used; 0 otherwise{p_end}
+{p 0 48}{bind:_d             }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:         }{bind:  }{res}{res}1 if failure; 0 if censored{p_end}
+{p 0 48}{bind:_t             }{txt}{bind: byte    }{bind:%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Analysis time when record ends{p_end}
+{p 0 48}{bind:_t0            }{txt}{bind: byte    }{bind:%10.0g    }{space 1}{bind:         }{bind:  }{res}{res}Analysis time when record begins{p_end}
 {txt}{hline}
 Sorted by: 
 
@@ -80,12 +80,12 @@ format
 {col 9}{txt}Failure {bf:_d}: {res}died
 {col 3}{txt}Analysis time {bf:_t}: {res}studytime
 
-{txt}Iteration 0:   log likelihood = {res}-99.911448
-{txt}Iteration 1:   log likelihood = {res}-83.551879
-{txt}Iteration 2:   log likelihood = {res}-83.324009
-{txt}Iteration 3:   log likelihood = {res}-83.323546
+{txt}Iteration 0:  Log likelihood = {res}-99.911448
+{txt}Iteration 1:  Log likelihood = {res}-83.551879
+{txt}Iteration 2:  Log likelihood = {res}-83.324009
+{txt}Iteration 3:  Log likelihood = {res}-83.323546
 {txt}Refining estimates:
-Iteration 0:   log likelihood = {res}-83.323546
+Iteration 0:  Log likelihood = {res}-83.323546
 
 {txt}Cox regression with Breslow method for ties
 
@@ -104,6 +104,7 @@ No. of subjects = {res}{ralign 3:48}{col 57}{txt}{lalign 13:Number of obs} = {re
 
 {com}. //_9
 . stcurve, survival scheme(michigan) // survival curve
+{txt}note: function evaluated at overall means of covariates.
 {res}{txt}
 {com}. //_10
 . graph export survival1.png, width(1000) replace
@@ -117,6 +118,7 @@ format
 
 {com}. //_11
 . stcurve, survival at1(drug=0) at2(drug=1) scheme(michigan) // survival curve by group
+{txt}{p 0 6 2}note: function evaluated at specified values of selected covariates and overall means of other covariates (if any).{p_end}
 {res}{txt}
 {com}. //_12
 . graph export survival2.png, width(1000) replace
@@ -161,7 +163,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/Cox-proportional-hazards-model.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 5 Dec 2021, 16:07:57
+ {txt}closed on:  {res}12 Nov 2023, 10:59:58
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

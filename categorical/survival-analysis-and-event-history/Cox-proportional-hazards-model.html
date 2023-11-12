@@ -1,43 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-<style>
-/* CSS for Markstat 2.0 using Pandoc 2.0 */
-body{padding:14px 28px;}
-body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
-h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
-h1 {font-size: 200%;}
-h2 {font-size: 150%;}
-h3 {font-size: 120%;}
-h4 {font-size: 100%; font-weight:bold}
-img.center {display:block; margin-left:auto; margin-right:auto}
-.small{font-size:8pt;}
-a {color: black;}
-a:visited {color: #808080;}
-a.plain {text-decoration:none;}
-a.plain:hover {text-decoration:underline;}
-.em {font-weight:bold;}
-pre, code {font-family: "lucida console", monospace;}
-pre.stata {font-size:13px; line-height:13px;}
-pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
-code {color:#3366cc; background-color:#fafafa;}
-pre code { color:black; background-color:white}
-/* Added for Pandoc */
-figure > img, div.figure > img {display:block; margin:auto}
-figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
-h1.title {text-align:center; margin-bottom:0}
-p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
-p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
-/* Tables*/
-table { margin:auto; border-collapse:collapse; }
-table caption { margin-bottom:1ex;}
-th, td { padding:4px 6px;}
-thead tr:first-child th {border-top:1px solid black; padding-top:6px}
-thead tr:last-child  th {padding-bottom:6px}
-tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
-tbody tr:last-child  td {padding-bottom:6px;}
-table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
-</style>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -45,9 +8,6 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
   <title>Cox Proportional Hazards Model</title>
   <style>
     html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
     }
@@ -59,17 +19,23 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
       padding-top: 50px;
       padding-bottom: 50px;
       hyphens: auto;
-      word-wrap: break-word;
+      overflow-wrap: break-word;
       text-rendering: optimizeLegibility;
       font-kerning: normal;
     }
     @media (max-width: 600px) {
       body {
         font-size: 0.9em;
-        padding: 1em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
       }
     }
     @media print {
+      html {
+        background-color: white;
+      }
       body {
         background-color: transparent;
         color: black;
@@ -119,9 +85,10 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
       color: #606060;
     }
     code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
+      hyphens: manual;
     }
     pre {
       margin: 1em 0;
@@ -130,6 +97,7 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
     pre code {
       padding: 0;
       overflow: visible;
+      overflow-wrap: normal;
     }
     .sourceCode {
      background-color: transparent;
@@ -171,47 +139,124 @@ table tbody:last-child tr:last-child td {border-bottom:1px solid black;}
     #TOC li {
       list-style: none;
     }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
     #TOC a:not(:hover) {
       text-decoration: none;
     }
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+<style>
+/* CSS for Markstat 2.0 using Pandoc 2.0 */
+body{padding:14px 28px; max-width:45em;}
+body, table {font-family: Helvetica, Arial, Sans-serif; font-size: 14px;}
+h1, h2, h3, h4 {font-weight: normal; color: #3366cc}
+h1 {font-size: 200%;}
+h2 {font-size: 150%;}
+h3 {font-size: 120%;}
+h4 {font-size: 100%; font-weight:bold}
+img.center {display:block; margin-left:auto; margin-right:auto}
+.small{font-size:8pt;}
+a {color: black;}
+a:visited {color: #808080;}
+a.plain {text-decoration:none;}
+a.plain:hover {text-decoration:underline;}
+.em {font-weight:bold;}
+pre, code {font-family: "lucida console", monospace;}
+pre.stata {font-size:13px; line-height:13px;}
+pre {padding:8px; border:1px solid #c0c0c0; border-radius:8px; background-color:#fdfdfd;}
+code {color:#3366cc; background-color:#fafafa;}
+pre code { color:black; background-color:white}
+/* Added for Pandoc */
+figure > img, div.figure > img {display:block; margin:auto}
+figcaption, p.caption {text-align:center; font-weight:bold; color:#3366cc;}
+h1.title {text-align:center; margin-bottom:0}
+p.author, h2.author {font-style:italic; text-align:center;margin-top:4px;margin-bottom:0}
+p.date, h3.date {text-align:center;margin-top:4px; margin-bottom:0}
+/* Tables*/
+table { margin:auto; border-collapse:collapse; }
+table caption { margin-bottom:1ex;}
+td {padding:0 0 0 0} /* override */
+table:not([class]) th { padding:4px 6px } 
+table:not([class]) td { padding:4px 6px } 
+table:not([class]) thead tr:first-child th {border-top:1px solid black; padding-top:6px}
+table:not([class]) thead tr:last-child  th {padding-bottom:6px}
+table:not([class]) tbody tr:first-child td {border-top:1px solid black; padding-top:6px}
+table:not([class]) tbody tr:last-child  td {padding-bottom:6px;}
+table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid black;}
+</style>
 </head>
 <body>
 <header id="title-block-header">
 <h1 class="title">Cox Proportional Hazards Model</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">5 Dec 2021</p>
+<p class="date">12 Nov 2023</p>
 </header>
-<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
-<h1 id="cox-proportional-hazards-model">Cox Proportional Hazards Model</h1>
+<h1 id="introduction">Introduction</h1>
+<blockquote>
+<p>“Survival analysis is a key technique in data-driven decision-making,
+which is now central to public interest because of COVID-19. Applying
+the correct technique for the specific question at hand is crucial for
+credible public health inferences. If you are interested in assessing
+how a risk factor or a potential treatment affects the progression of a
+disease—such as how long a patient takes to recover—then survival
+analysis techniques come into play. Survival analysis deeply respects
+the ultimate source of its data, often the disease experience or even
+the life and death of human patients. It seeks to exploit every last
+drop of information that this experience can render for saving lives—in
+particular, not only whether patients survived, but how long, and why.
+And it strives to do so with minimal assumptions, so that the data are
+truly driving the decision.”</p>
+</blockquote>
+<p>—SAS Corporation</p>
+<style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} p {font-size: 110%;} pre.stata {font-size: 110%;  line-height: 115%;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;}</style>
+<h1 id="cox-proportional-hazards-model">Cox Proportional Hazards
+Model</h1>
 <h1 id="formula-for-the-hazard">Formula for the Hazard</h1>
 <p><span class="math inline">\(h(t)\)</span> the rate of occurrence.</p>
 <p><span class="math display">\[
-    h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an event before time } t + \delta}{\delta}
+    h(t) = \lim_{\delta\to\infty} \frac{\text{probability of having an
+event before time } t + \delta}{\delta}
 \]</span></p>
 <p>This definition per Johnson &amp; Shih (2007).</p>
 <p><span class="math display">\[
     h(t) = h_0(t)e^{\beta_1 x1 + \beta_2 x_2 + etc.}
 \]</span></p>
 <blockquote>
-<p>We don’t directly estimate the hazard, but estimate the effect of covariates on the hazard.</p>
+<p>We don’t directly estimate the hazard, but estimate the effect of
+covariates on the hazard.</p>
 </blockquote>
 <blockquote>
-<p>The event (birth, death, program entry, program departure) is coded as 1, so we are estimating the association of the covariates with event occurrence.</p>
+<p>The event (birth, death, program entry, program departure) is coded
+as 1, so we are estimating the association of the covariates with event
+occurrence.</p>
 </blockquote>
-<h1 id="cox-proportional-hazards-model-in-stata">Cox Proportional Hazards Model in Stata</h1>
+<h1 id="cox-proportional-hazards-model-in-stata">Cox Proportional
+Hazards Model in Stata</h1>
 <blockquote>
-<p>Using a data set referenced frequently in Stata <code>help</code> and Stata YouTube Videos</p>
+<p>Using a data set referenced frequently in Stata <code>help</code> and
+Stata YouTube Videos</p>
 </blockquote>
 <pre class='stata'>. clear all
 </pre>
@@ -241,13 +286,13 @@ Observed time interval: (0, studytime]
 </pre>
 <pre class='stata'>. describe // show variables in data
 
-Contains data from https://www.stata-press.com/data/r17/drugtr.dta
+Contains data from https://www.stata-press.com/data/r18/drugtr.dta
  Observations:            48                  Patient survival in drug trial
-    Variables:             8                  3 Mar 2020 02:12
-───────────────────────────────────────────────────────────────────────────────────────────────────
+    Variables:             8                  3 Mar 2022 02:12
+───────────────────────────────────────────────────────────────────────────────────────
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
-───────────────────────────────────────────────────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────────────────────────────
 studytime       byte    %8.0g                 Months to death or end of exp.
 died            byte    %8.0g                 1 if patient died
 drug            byte    %8.0g                 Drug type (0=placebo)
@@ -256,10 +301,12 @@ _st             byte    %8.0g                 1 if record is to be used; 0 other
 _d              byte    %8.0g                 1 if failure; 0 if censored
 _t              byte    %10.0g                Analysis time when record ends
 _t0             byte    %10.0g                Analysis time when record begins
-───────────────────────────────────────────────────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────────────────────────────
 Sorted by: 
 </pre>
-<h2 id="kaplan-meier-survivor-function-per-gabriela-ortiz-stata">Kaplan-Meier Survivor Function (per Gabriela Ortiz, Stata)</h2>
+<h2
+id="kaplan-meier-survivor-function-per-gabriela-ortiz-stata">Kaplan-Meier
+Survivor Function (per Gabriela Ortiz, Stata)</h2>
 <p><span class="math display">\[
     S(t)=Pr(T&gt;t)
 \]</span></p>
@@ -270,24 +317,28 @@ Sorted by:
 </pre>
 <pre class='stata'>. graph export survival0.png, width(1000) replace
 file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/surviv
-    > al0.png saved as PNG format
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-hi
+    > story/survival0.png saved as PNG format
 </pre>
 <figure>
-<img src="survival0.png" style="width:50.0%" alt="Kaplan-Meier Survivor Function" /><figcaption aria-hidden="true">Kaplan-Meier Survivor Function</figcaption>
+<img src="survival0.png" style="width:50.0%"
+alt="Kaplan-Meier Survivor Function" />
+<figcaption aria-hidden="true">Kaplan-Meier Survivor
+Function</figcaption>
 </figure>
-<h2 id="cox-proportional-hazards-model-1">Cox Proportional Hazards Model</h2>
+<h2 id="cox-proportional-hazards-model-1">Cox Proportional Hazards
+Model</h2>
 <pre class='stata'>. stcox age drug // run Cox Proportional Hazards Model
 
         Failure _d: died
   Analysis time _t: studytime
 
-Iteration 0:   log likelihood = -99.911448
-Iteration 1:   log likelihood = -83.551879
-Iteration 2:   log likelihood = -83.324009
-Iteration 3:   log likelihood = -83.323546
+Iteration 0:  Log likelihood = -99.911448
+Iteration 1:  Log likelihood = -83.551879
+Iteration 2:  Log likelihood = -83.324009
+Iteration 3:  Log likelihood = -83.323546
 Refining estimates:
-Iteration 0:   log likelihood = -83.323546
+Iteration 0:  Log likelihood = -83.323546
 
 Cox regression with Breslow method for ties
 
@@ -306,26 +357,33 @@ Log likelihood = -83.323546                             Prob > chi2   = 0.0000
 </pre>
 <h2 id="graph-survival-curves">Graph Survival Curves</h2>
 <pre class='stata'>. stcurve, survival scheme(michigan) // survival curve
+note: function evaluated at overall means of covariates.
 </pre>
 <pre class='stata'>. graph export survival1.png, width(1000) replace
 file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/surviv
-    > al1.png saved as PNG format
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-hi
+    > story/survival1.png saved as PNG format
 </pre>
 <figure>
-<img src="survival1.png" style="width:50.0%" alt="Survival Curve" /><figcaption aria-hidden="true">Survival Curve</figcaption>
+<img src="survival1.png" style="width:50.0%" alt="Survival Curve" />
+<figcaption aria-hidden="true">Survival Curve</figcaption>
 </figure>
 <pre class='stata'>. stcurve, survival at1(drug=0) at2(drug=1) scheme(michigan) // survival curve by group
+note: function evaluated at specified values of selected covariates and overall means
+      of other covariates (if any).
 </pre>
 <pre class='stata'>. graph export survival2.png, width(1000) replace
 file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/surviv
-    > al2.png saved as PNG format
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-hi
+    > story/survival2.png saved as PNG format
 </pre>
 <figure>
-<img src="survival2.png" style="width:50.0%" alt="Survival Curve by Drug Group" /><figcaption aria-hidden="true">Survival Curve by Drug Group</figcaption>
+<img src="survival2.png" style="width:50.0%"
+alt="Survival Curve by Drug Group" />
+<figcaption aria-hidden="true">Survival Curve by Drug Group</figcaption>
 </figure>
-<h1 id="proportional-hazards-assumption">Proportional Hazards Assumption</h1>
+<h1 id="proportional-hazards-assumption">Proportional Hazards
+Assumption</h1>
 <pre class='stata'>. estat phtest // formal test of PH assumption
 
 Test of proportional-hazards assumption
@@ -344,14 +402,22 @@ Time function: Analysis time
 </pre>
 <pre class='stata'>. graph export ph.png, width(1000) replace
 file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/ph.png
-    saved as PNG format
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-hi
+    > story/ph.png saved as PNG format
 </pre>
 <figure>
-<img src="ph.png" style="width:50.0%" alt="Graphical Assessment of Proportional Hazards Assumptions" /><figcaption aria-hidden="true">Graphical Assessment of Proportional Hazards Assumptions</figcaption>
+<img src="ph.png" style="width:50.0%"
+alt="Graphical Assessment of Proportional Hazards Assumptions" />
+<figcaption aria-hidden="true">Graphical Assessment of Proportional
+Hazards Assumptions</figcaption>
 </figure>
 <h1 id="references">References</h1>
-<p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene, eds.). https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4</p>
-<p>Ragnar Frisch Centre for Economic Research (2020). Event History Analysis, Survival Analysis, Duration Analysis ,Transition Data Analysis, Hazard Rate Analysis. Oslo, Norway.</p>
+<p>Johnson, L. L., &amp; Shih, J. H. (2007). CHAPTER 20 - An
+Introduction to Survival Analysis (J. I. Gallin &amp; F. P. Ognibene,
+eds.).
+https://doi.org/https://doi.org/10.1016/B978-012369440-9/50024-4</p>
+<p>Ragnar Frisch Centre for Economic Research (2020). Event History
+Analysis, Survival Analysis, Duration Analysis ,Transition Data
+Analysis, Hazard Rate Analysis. Oslo, Norway.</p>
 </body>
 </html>
