@@ -28,38 +28,31 @@ library(Statamarkdown)
 
 This example uses data on the ages of death of Roman Emperors. Sources for this data are unclear, but it appears that the original source is [http://www.roman-emperors.org/](http://www.roman-emperors.org/) via [https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13).
 
-# Get Data
+# Get Data and Data Wrangling
 
-```{stata,collectcode = TRUE}
+```{stata, collectcode=TRUE}
 
 clear all
 
 import delimited "https://raw.githubusercontent.com/agrogan1/newstuff/master/categorical/survival-analysis-and-event-history/emperors/emperors.csv"
 
-```
-
-# Data Wrangling
-
-```{stata,collectcode = TRUE}
+list in 3 // list out an observation
 
 generate birthyear = real(substr(birth, 1, 4)) // convert first 4 characters to real number
-
-generate deathyear = real(substr(death, 1, 4)) // convert first 4 characters to real number
-
-generate age = deathyear - birthyear
 
 generate reignyear = real(substr(reign_start, 1, 4)) // convert first 4 characters to real number
 
 generate agereign = reignyear - birthyear
 
-drop if agereign <0
+drop if agereign <0 // drop negative ages at rise to power
 
 histogram agereign
 
 encode rise, generate(riseNUMERIC) // numeric version of rise to power
 
-```
+save emperors2.dta, replace
 
+```
 
 # Cox Proportional Hazards Model
 
@@ -92,6 +85,8 @@ $$
 ## Estimate the Cox Proportional Hazards Model
 
 ```{stata, collectcode = TRUE}
+
+use emperors2.dta, clear
 
 stset agereign // stset the data
 
