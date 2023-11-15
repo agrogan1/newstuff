@@ -95,7 +95,7 @@ sts graph, by(riseNUMERIC) // survival curve by cause of death
 
 graph export survival.png, width(1000) replace
 
-stcox ib5.riseNUMERIC // Cox model
+stcox ib5.riseNUMERIC // Cox model w BIRTHRIGHT (5) as reference cat.
 
 ```
 
