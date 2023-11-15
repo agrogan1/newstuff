@@ -9,6 +9,8 @@ margins, at(warmth = (1(1)7)) saving("mymargins.dta", replace)
 
 marginsplot // traditional marginsplot
 
+graph export 
+
 * Use the data on your margins
 * NOTE this will REPLACE your current data!!!
 
@@ -24,6 +26,12 @@ browse // look at the structure of this data file
 
 graph bar _margin, by(_predict) over(_at) // bar graph
 
+graph export myologit2.png, replace
+
 graph hbar _margin, over(_predict) over(_at) asyvars // horizontal bar graph
 
+graph export myologit3.png, replace
+
 graph hbar _margin, over(_predict) over(_at) asyvars stack // horizontal stacked bar graph
+
+graph export myologit4.png, replace
