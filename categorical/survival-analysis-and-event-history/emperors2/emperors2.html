@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andy Grogan-Kaylor">
-<meta name="dcterms.date" content="2023-11-15">
+<meta name="dcterms.date" content="2023-11-19">
 
 <title>Event History Analysis With Roman Emperor’s Data</title>
 <style>
@@ -95,6 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#estimate-the-cox-proportional-hazards-model" id="toc-estimate-the-cox-proportional-hazards-model" class="nav-link" data-scroll-target="#estimate-the-cox-proportional-hazards-model"><span class="header-section-number">3.3</span> Estimate the Cox Proportional Hazards Model</a></li>
   <li><a href="#proportional-hazards-assumption" id="toc-proportional-hazards-assumption" class="nav-link" data-scroll-target="#proportional-hazards-assumption"><span class="header-section-number">3.4</span> Proportional Hazards Assumption </a><a id="ph-assumption" class="nav-link" data-scroll-target="undefined" href=""></a></li>
   <li><a href="#correcting-for-violations-of-the-proportional-hazards-assumption" id="toc-correcting-for-violations-of-the-proportional-hazards-assumption" class="nav-link" data-scroll-target="#correcting-for-violations-of-the-proportional-hazards-assumption"><span class="header-section-number">3.5</span> Correcting For Violations of the Proportional Hazards Assumption</a></li>
+  <li><a href="#plot-curve-accounting-for-covariates" id="toc-plot-curve-accounting-for-covariates" class="nav-link" data-scroll-target="#plot-curve-accounting-for-covariates"><span class="header-section-number">3.6</span> Plot Curve Accounting for Covariates</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">4</span> References</a></li>
   </ul>
@@ -121,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 15, 2023</p>
+      <p class="date">November 19, 2023</p>
     </div>
   </div>
   
@@ -133,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>This example uses data on the ages of death of Roman Emperors. Sources for this data are unclear, but it appears that the original source is <a href="http://www.roman-emperors.org/">http://www.roman-emperors.org/</a> via <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13">https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13</a>.</p>
+<p>This example uses data on the ages at which Roman Emperors <strong>began their reign</strong>. Sources for this data are unclear, but it appears that the original source is <a href="http://www.roman-emperors.org/">http://www.roman-emperors.org/</a> via <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13">https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13</a>.</p>
 </section>
 <section id="get-data-and-data-wrangling" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Get Data and Data Wrangling</h1>
@@ -302,36 +303,17 @@ Appointment by Se..  |   .0745311   .0434844    -4.45   0.000     .0237527    .2
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> emperors2.dta, <span class="kw">clear</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">stset</span> agereign <span class="co">// stset the data</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span>: <span class="kw">stset</span> agereign <span class="co">// stset the data</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span>: <span class="kw">stcox</span> ib5.riseNUMERIC <span class="co">// Cox model</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> phtest, <span class="kw">detail</span> <span class="co">// formal test of PH assumption</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">stphplot</span>, <span class="kw">by</span>(riseNUMERIC) <span class="dv">scheme</span>(michigan) <span class="co">// graphical test of PH assumption</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">stphplot</span>, <span class="kw">by</span>(riseNUMERIC) <span class="dv">scheme</span>(michigan) <span class="bn">legend</span>(pos(6)) <span class="co">// graphical test of PH assumption</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> ph.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Survival-time data settings
-
-         Failure event: (assumed to fail at time=agereign)
-Observed time interval: (0, agereign]
-     Exit on or before: failure
-
---------------------------------------------------------------------------
-         66  total observations
-          5  event time missing (agereign&gt;=.)               PROBABLE ERROR
---------------------------------------------------------------------------
-         61  observations remaining, representing
-         61  failures in single-record/single-failure data
-      2,470  total analysis time at risk and under observation
-                                                At risk from t =         0
-                                     Earliest observed entry t =         0
-                                          Last observed exit t =        79
-
-
-
-Test of proportional-hazards assumption
+<pre><code>Test of proportional-hazards assumption
 
 Time function: Analysis time
 --------------------------------------------------------
@@ -381,6 +363,43 @@ file
 <p>Note that the command below provides results, but does not provide parameter estimates for the variable on which we are stratifying, <code>riseNUMERIC</code>.</p>
 </blockquote>
 <pre><code>stcox, strata(riseNUMERIC)</code></pre>
+</section>
+<section id="plot-curve-accounting-for-covariates" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="plot-curve-accounting-for-covariates"><span class="header-section-number">3.6</span> Plot Curve Accounting for Covariates</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> emperors2.dta, <span class="kw">clear</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span>: <span class="kw">stset</span> agereign <span class="co">// stset the data</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span>: <span class="kw">stcox</span> ib5.riseNUMERIC <span class="co">// Cox model</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> <span class="fu">s</span>, basesurv <span class="co">// predict baseline survival curve, accounting for covariates</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> <span class="fu">s</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">line</span> <span class="fu">s</span> _t, <span class="kw">sort</span> c(<span class="fu">J</span>) <span class="co">// graph of survival curve</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> survival2.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(5 missing values generated)
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+           s |         61    .3165069    .3181272          0   .9734189
+
+
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-hi
+    &gt; story/emperors2/survival2.png saved as PNG format</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="survival2.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption class="figure-caption">Survival Curve Accounting for Covariates</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="references" class="level1" data-number="4">

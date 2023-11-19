@@ -26,7 +26,7 @@ library(Statamarkdown)
 
 ```
 
-This example uses data on the ages of death of Roman Emperors. Sources for this data are unclear, but it appears that the original source is [http://www.roman-emperors.org/](http://www.roman-emperors.org/) via [https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13).
+This example uses data on the ages at which Roman Emperors **began their reign**. Sources for this data are unclear, but it appears that the original source is [http://www.roman-emperors.org/](http://www.roman-emperors.org/) via [https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-08-13).
 
 # Get Data and Data Wrangling
 
@@ -107,13 +107,13 @@ stcox ib5.riseNUMERIC // Cox model w BIRTHRIGHT (5) as reference cat.
 
 use emperors2.dta, clear
 
-stset agereign // stset the data
+quietly: stset agereign // stset the data
 
 quietly: stcox ib5.riseNUMERIC // Cox model
 
 estat phtest, detail // formal test of PH assumption
 
-stphplot, by(riseNUMERIC) scheme(michigan) // graphical test of PH assumption
+stphplot, by(riseNUMERIC) scheme(michigan) legend(pos(6)) // graphical test of PH assumption
 	
 graph export ph.png, width(1000) replace
 
@@ -136,6 +136,28 @@ e.g. `stcox age#ib5.riseNUMERIC`.
 > Note that the command below provides results, but does not provide parameter estimates for the variable on which we are stratifying, `riseNUMERIC`. 
 
     stcox, strata(riseNUMERIC)
+
+## Plot Curve Accounting for Covariates
+
+```{stata}
+
+use emperors2.dta, clear
+
+quietly: stset agereign // stset the data
+
+quietly: stcox ib5.riseNUMERIC // Cox model
+
+predict s, basesurv // predict baseline survival curve, accounting for covariates
+
+summarize s
+
+line s _t, sort c(J) // graph of survival curve
+
+graph export survival2.png, width(1000) replace
+
+```
+
+![Survival Curve Accounting for Covariates](survival2.png){ width=75% }
 
 # References
 
