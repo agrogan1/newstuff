@@ -114,7 +114,9 @@ When an event occurs for an individual, the symbol changes to a <span style="fon
 
 In this simulation, we imagine that the study period ends after time 7, so observations for which the event occurs after time 7 are considered to be *censored*: i.e. a failure is not observed. 
 
-Censored observations (*failure not observed*) are **maize** <span style="color: #FFCB05">&#x2B24;</span>, and non-censored observations (*failure observed*) are **blue** <span style="color: #00274C">&#x2B24;</span> .
+Censored observations (*failure not observed*) are **maize** <span style="color: #FFCB05">&#x2B24;</span>, and non-censored observations (*failure observed*) are **blue** <span style="color: #00274C">&#x2B24;</span>.[^language]
+
+[^language]: Note that the language of survival analysis comes from medical studies of time until death, and engineering studies of mechanical failure. So *surviving* refers to *surviving* until the event of interest occurs, and *failure* means that the event of interest is observed during the study period. *Censored* means that the event of interest is **not** observed during the study period.
 
 ```{r}
 
@@ -179,6 +181,8 @@ ggsurvplot(fit,
   labs(title = "Survival Curve") 
 
 ```
+
+The general format for the `stset` command is `stset t, failure(f)`. Here `t` is the time variable, and `f` is an indicator of *failure*, i.e. the event of interest happened before the study concluded.
 
 ```{stata}
 #| code-summary: "Show the code"
