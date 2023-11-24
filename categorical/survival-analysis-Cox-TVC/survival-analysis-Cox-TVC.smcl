@@ -1,13 +1,13 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}20 Jun 2021, 14:46:57
+ {txt}opened on:  {res}24 Nov 2023, 12:30:36
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}20 Jun 2021
+{res}24 Nov 2023
 {txt}
 {com}. //_2
 . use https://www.stata-press.com/data/r17/drugtr2, clear // simulated drug data
@@ -38,13 +38,13 @@
 {col 9}{txt}Failure {bf:_d}: {res}cured
 {col 3}{txt}Analysis time {bf:_t}: {res}time
 
-{txt}Iteration 0:   log likelihood = {res}-116.54385
-{txt}Iteration 1:   log likelihood = {res}-102.77311
-{txt}Iteration 2:   log likelihood = {res}-101.92794
-{txt}Iteration 3:   log likelihood = {res}-101.92504
-{txt}Iteration 4:   log likelihood = {res}-101.92504
+{txt}Iteration 0:  Log likelihood = {res}-116.54385
+{txt}Iteration 1:  Log likelihood = {res}-102.77311
+{txt}Iteration 2:  Log likelihood = {res}-101.92794
+{txt}Iteration 3:  Log likelihood = {res}-101.92504
+{txt}Iteration 4:  Log likelihood = {res}-101.92504
 {txt}Refining estimates:
-Iteration 0:   log likelihood = {res}-101.92504
+Iteration 0:  Log likelihood = {res}-101.92504
 
 {txt}Cox regression with Breslow method for ties
 
@@ -71,13 +71,13 @@ No. of subjects = {res}{ralign 5:45}{col 57}{txt}{lalign 13:Number of obs} = {re
 {col 9}{txt}Failure {bf:_d}: {res}cured
 {col 3}{txt}Analysis time {bf:_t}: {res}time
 
-{txt}Iteration 0:   log likelihood = {res}-116.54385
-{txt}Iteration 1:   log likelihood = {res}-104.50191
-{txt}Iteration 2:   log likelihood = {res}-103.87961
-{txt}Iteration 3:   log likelihood = {res}-103.87525
-{txt}Iteration 4:   log likelihood = {res}-103.87525
+{txt}Iteration 0:  Log likelihood = {res}-116.54385
+{txt}Iteration 1:  Log likelihood = {res}-104.50191
+{txt}Iteration 2:  Log likelihood = {res}-103.87961
+{txt}Iteration 3:  Log likelihood = {res}-103.87525
+{txt}Iteration 4:  Log likelihood = {res}-103.87525
 {txt}Refining estimates:
-Iteration 0:   log likelihood = {res}-103.87525
+Iteration 0:  Log likelihood = {res}-103.87525
 
 {txt}Cox regression with Breslow method for ties
 
@@ -146,13 +146,13 @@ Survival-time data settings
 {col 3}{txt}Analysis time {bf:_t}: {res}time
 {col 8}{txt}ID variable: {res}id
 
-{txt}Iteration 0:   log likelihood = {res}-116.54385
-{txt}Iteration 1:   log likelihood = {res}-104.50191
-{txt}Iteration 2:   log likelihood = {res}-103.87961
-{txt}Iteration 3:   log likelihood = {res}-103.87525
-{txt}Iteration 4:   log likelihood = {res}-103.87525
+{txt}Iteration 0:  Log likelihood = {res}-116.54385
+{txt}Iteration 1:  Log likelihood = {res}-104.50191
+{txt}Iteration 2:  Log likelihood = {res}-103.87961
+{txt}Iteration 3:  Log likelihood = {res}-103.87525
+{txt}Iteration 4:  Log likelihood = {res}-103.87525
 {txt}Refining estimates:
-Iteration 0:   log likelihood = {res}-103.87525
+Iteration 0:  Log likelihood = {res}-103.87525
 
 {txt}Cox regression with Breslow method for ties
 
@@ -195,9 +195,9 @@ No. of subjects = {res}{ralign 5:45}{col 57}{txt}{lalign 13:Number of obs} = {re
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}20 Jun 2021, 14:46:58
+ {txt}closed on:  {res}24 Nov 2023, 12:30:36
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

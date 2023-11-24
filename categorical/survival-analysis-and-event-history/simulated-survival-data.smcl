@@ -3,7 +3,7 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}24 Nov 2023, 12:19:40
+ {txt}opened on:  {res}24 Nov 2023, 12:31:22
 {txt}
 {com}. //_1
 . display c(current_date)
@@ -117,7 +117,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}24 Nov 2023, 12:19:43
+ {txt}closed on:  {res}24 Nov 2023, 12:31:24
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
