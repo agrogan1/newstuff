@@ -16,6 +16,8 @@ Below you will find a *simulated* data set that might help you think about const
 
 > An **event** is defined as a (relatively sudden) change from a status of 0 to a status of 1.
 
+> These data are in *wide format*. We will need to think differently if data are in *long format*. 
+
 ## Get The Data
 
     clear all

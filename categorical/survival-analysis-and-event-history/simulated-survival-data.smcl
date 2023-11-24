@@ -1,13 +1,13 @@
 {smcl}
-{txt}{sf}{ul off}{.-}
+{com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res} 8 Dec 2021, 13:05:27
+ {txt}opened on:  {res}24 Nov 2023, 12:19:40
 {txt}
 {com}. //_1
 . display c(current_date)
-{res} 8 Dec 2021
+{res}24 Nov 2023
 {txt}
 {com}. //_2
 . clear all
@@ -117,7 +117,7 @@ format
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-and-event-history/simulated-survival-data.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res} 8 Dec 2021, 13:05:29
+ {txt}closed on:  {res}24 Nov 2023, 12:19:43
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
