@@ -10,7 +10,7 @@ format:
     toc: true
     number-sections: true
     theme:
-      light: united
+      light: cosmo
       dark: vapor
   pdf:
     toc: true
@@ -30,9 +30,9 @@ library(Statamarkdown)
 
 We consider the logarithm. One very simple way to present the logarithm is to use the constant $e$.
 
-Let's first consider the exponential function with base $e$, $y = e^x$[^definition_e].
+Let's first consider the exponential function with base $e$, $y = e^x$.[^definition_e]
 
-[^definition_e]: One definition of $e$ is $\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e$
+[^definition_e]: $e$ is a kind of fundamental mathematical constant, like $\pi$, but without the easy geometric definition that $\pi$ has. (For any $\bigcirc$, $\pi = \frac{\text{circumference}}{\text{diameter}}$.) One definition of $e$ is $$\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e$$
 
 ```{stata}
 #| echo: true
@@ -46,6 +46,8 @@ graph export exponential.png, replace
 
 ```
 ![Graph of exponential function](exponential.png){width=50%}
+
+# A Definition of the Natural Logarithm
 
 If $$y = e^x$$ then $$\ln(y) = x$$.
 
@@ -88,7 +90,7 @@ graph export exponential2.png, replace
 
 # Logistic Regression
 
-In logistic regression, which we are discussing in more detail in this course, we in particular focus on the *odds* of our outcome: 
+Early on in this course, we will think about logistic regression. In logistic regression, we start by thinking about the on the *odds* of our outcome: 
 
 $$\frac{p(y)}{1-p(y)}$$
 
@@ -96,7 +98,7 @@ We will be working with the *log odds*:
 
 $$\ln(\frac{p(y)}{1-p(y)}) = x$$
 
-To graph these *log odds*, we need to solve for $p(y)$:
+To *graph* these *log odds*, we need to solve for $p(y)$:
 
 $$p(y) = \frac{e^x}{1 + e^x}$$
 
