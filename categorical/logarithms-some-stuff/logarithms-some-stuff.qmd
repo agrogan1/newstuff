@@ -17,7 +17,7 @@ format:
     number-sections: true
 ---
 
-# Introduction
+# Introduction (The Exponential Function)
 
 ```{r}
 #| echo: false
@@ -27,12 +27,59 @@ library(Statamarkdown)
 
 ```
 
+We begin with the exponential function: 
 
-We consider the logarithm. One very simple way to present the logarithm is to use the constant $e$.
+$$y = \text{base}^{\text{exponent}}$$
 
-Let's first consider the exponential function with base $e$, $y = e^x$.[^definition_e]
+The *exponent* tells us how many times to multiply the base by itself to get the result. For example: $2^3 = 8$ because $2 \times 2 \times 2 = 8$
 
-[^definition_e]: $e$ is a kind of fundamental mathematical constant, like $\pi$, but without the easy geometric definition that $\pi$ has. (For any $\bigcirc$, $\pi = \frac{\text{circumference}}{\text{diameter}}$.) One definition of $e$ is $$\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e$$
+```{stata}
+#| echo: true
+#| output: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+twoway function y = 2^x, lwidth(thick) title("Exponential Function") subtitle("With Base 2") range(-10 10) 
+
+graph export exponential0.png, replace
+
+```
+
+![Graph of exponential function](exponential0.png){width=50%}
+
+# A Definition of the Logarithm
+
+We then consider the logarithm. 
+
+If $$y = b^x$$ then $$\log_b(y) = x$$.
+
+In words: If $\text{number} = \text{base}^{\text{exponent}}$ then $\log_{\text{base}}(\text{number}) = \text{exponent}$. For example, $2^3 = 8$, therefore $log_2 8 = 3$. 
+
+The logarithm answers the question: *What is the power to which we have to raise the number to get the result?* 
+
+The logarithm may also be thought of as *the inverse of the exponential function*. 
+
+```{stata}
+#| echo: true
+#| output: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+twoway function y = ln(x)/ln(2), lwidth(thick) title("Logarithmic Function") subtitle("Base 2") range(-10 10)
+
+graph export logarithmic0.png, replace
+
+```
+
+![Graph of logarithmic function with base 2](logarithmic0.png){width=50%}
+
+# A Definition of the Natural Logarithm
+
+For deep mathematical reasons, it is often useful to use logarithms with base $e$ which is often termed the *natural logarithm*, written $\ln$
+
+$e$ is a kind of fundamental mathematical constant, like $\pi$, but without the easy geometric definition that $\pi$ has. (For any $\bigcirc$, $\pi = \frac{\text{circumference}}{\text{diameter}}$.) $e$ is approximately equal to 2.71828....
+
+If $$y = e^x$$ then $$\ln(y) = x$$.
 
 ```{stata}
 #| echo: true
@@ -45,15 +92,8 @@ twoway function y = exp(x), lwidth(thick) title("Exponential Function") range(-1
 graph export exponential.png, replace
 
 ```
+
 ![Graph of exponential function](exponential.png){width=50%}
-
-# A Definition of the Natural Logarithm
-
-If $$y = e^x$$ then $$\ln(y) = x$$.
-
-# Graphing Logarithmic Function
-
-Note that in the equation above, we are taking the logarithm of $y$. To get some quick sense of how the logarithm behaves, we are going to graph $y = \ln(x)$.
 
 ```{stata}
 #| echo: true
@@ -68,7 +108,6 @@ graph export logarithmic.png, replace
 ```
 
 ![Graph of logarithmic function](logarithmic.png){width=50%}
-
 
 # Categorical Data Analysis
 
