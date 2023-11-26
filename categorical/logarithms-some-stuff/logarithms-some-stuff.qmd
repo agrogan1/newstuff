@@ -31,7 +31,9 @@ We begin with the exponential function:
 
 $$y = \text{base}^{\text{exponent}}$$
 
-The *exponent* tells us how many times to multiply the base by itself to get the result. For example: $2^3 = 8$ because $2 \times 2 \times 2 = 8$
+The *exponent* tells us how many times to multiply the base by itself to get the result. 
+
+For example: $2^3 = 8$ because $2 \times 2 \times 2 = 8$
 
 ```{stata}
 #| echo: true
@@ -39,13 +41,15 @@ The *exponent* tells us how many times to multiply the base by itself to get the
 #| code-fold: true
 #| code-summary: "Show the code"
 
-twoway function y = 2^x, lwidth(thick) title("Exponential Function") subtitle("With Base 2") range(-10 10) 
+twoway function y = 2^x, lwidth(thick) ///
+title("Exponential Function") subtitle("With Base 2") ///
+range(-10 10) 
 
 graph export exponential0.png, replace
 
 ```
 
-![Graph of exponential function](exponential0.png){width=50%}
+![Graph of exponential function with base 2](exponential0.png){width=50%}
 
 # A Definition of the Logarithm
 
@@ -53,7 +57,9 @@ We then consider the logarithm.
 
 If $$y = b^x$$ then $$\log_b(y) = x$$.
 
-In words: If $\text{number} = \text{base}^{\text{exponent}}$ then $\log_{\text{base}}(\text{number}) = \text{exponent}$. For example, $2^3 = 8$, therefore $log_2 8 = 3$. 
+In words: If $\text{number} = \text{base}^{\text{exponent}}$ then $\log_{\text{base}}(\text{number}) = \text{exponent}$. 
+
+For example, $2^3 = 8$, therefore $log_2 8 = 3$. 
 
 The logarithm answers the question: *What is the power to which we have to raise the number to get the result?* 
 
@@ -65,7 +71,9 @@ The logarithm may also be thought of as *the inverse of the exponential function
 #| code-fold: true
 #| code-summary: "Show the code"
 
-twoway function y = ln(x)/ln(2), lwidth(thick) title("Logarithmic Function") subtitle("Base 2") range(-10 10)
+twoway function y = ln(x)/ln(2), lwidth(thick) ///
+title("Logarithmic Function") subtitle("Base 2") ///
+range(-10 10)
 
 graph export logarithmic0.png, replace
 
@@ -77,7 +85,9 @@ graph export logarithmic0.png, replace
 
 For deep mathematical reasons, it is often useful to use logarithms with base $e$ which is often termed the *natural logarithm*, written $\ln$
 
-$e$ is a kind of fundamental mathematical constant, like $\pi$, but without the easy geometric definition that $\pi$ has. (For any $\bigcirc$, $\pi = \frac{\text{circumference}}{\text{diameter}}$.) $e$ is approximately equal to 2.71828....
+$e$ is a kind of fundamental mathematical constant, like $\pi$, but without the easy geometric definition that $\pi$ has. (For any $\bigcirc$, $\pi = \frac{\text{circumference}}{\text{diameter}}$.) 
+
+$e$ is approximately equal to 2.71828....
 
 If $$y = e^x$$ then $$\ln(y) = x$$.
 
@@ -87,13 +97,15 @@ If $$y = e^x$$ then $$\ln(y) = x$$.
 #| code-fold: true
 #| code-summary: "Show the code"
 
-twoway function y = exp(x), lwidth(thick) title("Exponential Function") range(-10 10) 
+twoway function y = exp(x), lwidth(thick) ///
+title("Exponential Function") subtitle("Base e") ///
+range(-10 10) 
 
 graph export exponential.png, replace
 
 ```
 
-![Graph of exponential function](exponential.png){width=50%}
+![Graph of exponential function with base e](exponential.png){width=50%}
 
 ```{stata}
 #| echo: true
@@ -101,31 +113,19 @@ graph export exponential.png, replace
 #| code-fold: true
 #| code-summary: "Show the code"
 
-twoway function y = ln(x), lwidth(thick) title("Logarithmic Function") range(-10 10)
+twoway function y = ln(x), lwidth(thick) ///
+title("Logarithmic Function") subtitle("Base e") ///
+range(-10 10)
 
 graph export logarithmic.png, replace
 
 ```
 
-![Graph of logarithmic function](logarithmic.png){width=50%}
+![Graph of logarithmic function with base e](logarithmic.png){width=50%}
 
-# Categorical Data Analysis
+# Exponential Regression
 
-In categorical data analysis--in general--we are often thinking about some equation like $\ln(y) = \beta x$. This is equivalent to $y = e^{\beta x}$ so many models--particularly later in the course--will have us thinking about *exponential* relationships.
-
-```{stata}
-#| echo: true
-#| output: false
-#| code-fold: true
-#| code-summary: "Show the code"
-
-twoway function y = exp(x), lwidth(thick) title("Exponential Function") range(-10 10) 
-
-graph export exponential2.png, replace
-
-```
-
-![Graph of exponential function](exponential2.png){width=50%}
+In categorical data analysis--especially later in the course--we are often thinking about some equation like $\ln(y) = \beta x$. This is equivalent to $y = e^{\beta x}$ so many models--particularly later in the course--will have us thinking about *exponential* relationships.
 
 # Logistic Regression
 
@@ -147,8 +147,9 @@ $$p(y) = \frac{e^x}{1 + e^x}$$
 #| code-fold: true
 #| code-summary: "Show the code"
 
-twoway function y = exp(x)/(1 + exp(x)), ///
-lwidth(thick) title("Logistic Function") range(-10 10)
+twoway function y = exp(x)/(1 + exp(x)), lwidth(thick) /// 
+title("Logistic Function") ///
+range(-10 10)
 
 graph export logistic.png, replace
 
