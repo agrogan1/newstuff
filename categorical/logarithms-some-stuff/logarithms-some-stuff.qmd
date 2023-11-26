@@ -12,6 +12,7 @@ format:
     theme:
       light: cosmo
       dark: vapor
+    css: styles.css
   pdf:
     toc: true
     number-sections: true
@@ -63,7 +64,7 @@ For example, $2^3 = 8$, therefore $log_2 8 = 3$.
 
 The logarithm answers the question: *What is the power to which we have to raise the number to get the result?* 
 
-The logarithm may also be thought of as *the inverse of the exponential function*. 
+> The logarithm may thus be thought of as *the inverse of the exponential function*. 
 
 ```{stata}
 #| echo: true
