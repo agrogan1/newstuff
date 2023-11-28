@@ -209,7 +209,12 @@ library(DT)
 
 ```{r}
 
-datatable(mydata2, caption = "Simple Event History Data")
+datatable(mydata2, 
+          extensions = 'Buttons', 
+          options = list(
+            dom = 'Bfrtip',
+            buttons = c('copy', 'csv', 'excel')),
+          caption = "Simple Event History Data")
 
 ```
 
@@ -219,7 +224,12 @@ Notice how every row in this particular data set is a *person timepoint*, **not*
 
 ```{r}
 
-datatable(mydata, caption = "Data in Multiple Record Form")
+datatable(mydata, 
+          extensions = 'Buttons', 
+          options = list(
+            dom = 'Bfrtip',
+            buttons = c('copy', 'csv', 'excel')),
+          caption = "Data in Multiple Record Form")
 
 ```
 
