@@ -54,6 +54,8 @@ T <- 10 # number of timepoints
 
 id <- rep(seq(1, N), each = T) # id's 1 to N
 
+x <- rep(rbinom(N, 1, .5), each = T) # random time invariant covariate
+
 t <- rep(seq(1, T), N) # timepoints 1 to T
 
 # random event times
@@ -82,11 +84,11 @@ censored <- factor(censored,
 
 # data required for animation
 
-mydata <- tibble::tibble(id, t, event_time, event, censored)
+mydata <- tibble::tibble(id, x, t, event_time, event, censored)
 
 mydata2 <- mydata %>%
   filter(t == 1) %>%
-  select(id, event_time, censored)
+  select(id, x, event_time, censored)
 
 mydata3 <- mydata %>% 
   filter(t <= event_time)
