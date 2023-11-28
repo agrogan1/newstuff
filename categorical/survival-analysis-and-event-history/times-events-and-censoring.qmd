@@ -88,11 +88,14 @@ mydata2 <- mydata %>%
   filter(t == 1) %>%
   select(id, event_time, censored)
 
+mydata3 <- mydata %>% 
+  filter(t <= event_time)
+
 ```
 
 ```{r}
 
-write_dta(mydata, "event-history-multiple-records.dta")
+write_dta(mydata3, "event-history-multiple-records.dta")
 
 write_dta(mydata2, "event-history-single-record.dta")
 
@@ -224,7 +227,7 @@ Notice how every row in this particular data set is a *person timepoint*, **not*
 
 ```{r}
 
-datatable(mydata, 
+datatable(mydata3, 
           extensions = 'Buttons', 
           options = list(
             dom = 'Bfrtip',
