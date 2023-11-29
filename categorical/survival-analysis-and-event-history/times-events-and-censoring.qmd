@@ -36,6 +36,8 @@ library(haven)
 
 library(pander)
 
+library(DT)
+
 ```
 
 # Introduction
@@ -162,7 +164,7 @@ p2 # replay
 
 ::: {.panel-tabset .nav-pills}
 
-## **stset** the Data and Survival Curve
+## The Basic Idea of **stset** and the Survival Curve
 
 ```{r, echo=FALSE, eval=FALSE}
 
@@ -208,18 +210,21 @@ graph export survival.png, replace
 
 ```{r}
 
-library(DT)
-
-```
-
-```{r}
-
 datatable(mydata2, 
           extensions = 'Buttons', 
           options = list(
             dom = 'Bfrtip',
             buttons = c('copy', 'csv', 'excel')),
           caption = "Simple Event History Data")
+
+```
+
+```{stata}
+#| code-summary: "Show the code"
+
+use "event-history-single-record.dta"
+
+stset event_time, failure(censored == 1) // set event time and failvar
 
 ```
 
@@ -235,6 +240,14 @@ datatable(mydata3,
             dom = 'Bfrtip',
             buttons = c('copy', 'csv', 'excel')),
           caption = "Data in Multiple Record Form")
+
+```
+
+```{stata}
+
+use "event-history-multiple-records.dta"
+
+stset t, failure(event == 2) id(id) // stset
 
 ```
 
