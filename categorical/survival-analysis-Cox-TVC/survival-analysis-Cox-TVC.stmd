@@ -34,13 +34,15 @@ Per the Stata documentation:
 
 # Model 2: Drugs Are *Time Varying Covariates*
 
+> Option `tvc` allows us to model time varying covariates. By including `, tvc(drug1 drug2)` in the `stcox` command below, we allowing `drug1` and `drug2` to have a linear interaction with time. We can calculate more complex interactions of time varying covariates with time. See `help stcox` for information.
+
     stcox age, tvc(drug1 drug2) // Cox model
 
     est store M2 // store estimates
 
 # Model 3: Drugs Are *Time Varying Covariates* (*Manually Specified*)
 
-    generate id=_n // multiple record data needs an id
+    generate id = _n // multiple record data needs an id
 
     streset, id(id) // `streset` the data
 

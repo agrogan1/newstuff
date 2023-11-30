@@ -207,7 +207,7 @@ table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid bl
 <header id="title-block-header">
 <h1 class="title">Cox Model With Time Varying Covariates</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">24 Nov 2023</p>
+<p class="date">30 Nov 2023</p>
 </header>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} p {font-size: 110%;} pre.stata {font-size: 110%; line-height: 115%;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 <h1 id="introduction">Introduction</h1>
@@ -286,6 +286,14 @@ Log likelihood = -101.92504                             Prob > chi2   = 0.0000
 </pre>
 <h1 id="model-2-drugs-are-time-varying-covariates">Model 2: Drugs Are
 <em>Time Varying Covariates</em></h1>
+<blockquote>
+<p>Option <code>tvc</code> allows us to model time varying covariates.
+By including <code>, tvc(drug1 drug2)</code> in the <code>stcox</code>
+command below, we allowing <code>drug1</code> and <code>drug2</code> to
+have a linear interaction with time. We can calculate more complex
+interactions of time varying covariates with time. See
+<code>help stcox</code> for information.</p>
+</blockquote>
 <pre class='stata'>. stcox age, tvc(drug1 drug2) // Cox model
 
         Failure _d: cured
@@ -325,7 +333,7 @@ Note: Variables in tvc equation interacted with _t.
 id="model-3-drugs-are-time-varying-covariates-manually-specified">Model
 3: Drugs Are <em>Time Varying Covariates</em> (<em>Manually
 Specified</em>)</h1>
-<pre class='stata'>. generate id=_n // multiple record data needs an id
+<pre class='stata'>. generate id = _n // multiple record data needs an id
 </pre>
 <pre class='stata'>. streset, id(id) // `streset` the data
 -> stset time, id(id) failure(cured)

@@ -3,11 +3,11 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}24 Nov 2023, 12:30:36
+ {txt}opened on:  {res}30 Nov 2023, 11:53:32
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}24 Nov 2023
+{res}30 Nov 2023
 {txt}
 {com}. //_2
 . use https://www.stata-press.com/data/r17/drugtr2, clear // simulated drug data
@@ -103,7 +103,7 @@ No. of subjects = {res}{ralign 5:45}{col 57}{txt}{lalign 13:Number of obs} = {re
 . est store M2 // store estimates
 {txt}
 {com}. //_8
-. generate id=_n // multiple record data needs an id
+. generate id = _n // multiple record data needs an id
 {txt}
 {com}. //_9
 . streset, id(id) // `streset` the data
@@ -197,7 +197,7 @@ No. of subjects = {res}{ralign 5:45}{col 57}{txt}{lalign 13:Number of obs} = {re
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}24 Nov 2023, 12:30:36
+ {txt}closed on:  {res}30 Nov 2023, 11:53:32
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}

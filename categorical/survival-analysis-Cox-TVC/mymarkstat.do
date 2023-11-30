@@ -4,7 +4,7 @@
 
 clear all
 
-cd "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-Cox-TVC"
+cd "/Users/agrogan/Desktop/newstuff/categorical/survival-analysis-Cox-TVC/"
 
 * edit and render
 
