@@ -22,6 +22,12 @@ Per the Stata documentation:
 
 > "Consider a dataset consisting of 45 observations on recovery time from walking pneumonia. Recovery time (in days) is recorded in the variable time, and there are measurements on the covariates age, drug1, and drug2, where drug1 and drug2 interact a choice of treatment with initial dosage level. The study was terminated after 30 days, so those who had not recovered by that time were censored (cured = 0)."
 
+# Look At The Data
+
+It may be useful to take a quick look at the data.
+
+    list in 1/10
+
 # `stset` The Data
 
     stset time, failure(cured) // set up data for survival analysis
@@ -34,7 +40,7 @@ Per the Stata documentation:
 
 # Model 2: Drugs Are *Time Varying Covariates*
 
-> Option `tvc` allows us to model time varying covariates. By including `, tvc(drug1 drug2)` in the `stcox` command below, we allowing `drug1` and `drug2` to have a linear interaction with time. We can calculate more complex interactions of time varying covariates with time. See `help stcox` for information.
+> Option `tvc` allows us to model time varying covariates. By including `, tvc(drug1 drug2)` in the `stcox` command below, we allowing `drug1` and `drug2` to have a *linear* interaction with time. Essentially, we are providng a *formula* for how the association of these variables with the hazard changes over time. We can estimate more complex interactions of time varying covariates with time. See `help stcox` for information.
 
     stcox age, tvc(drug1 drug2) // Cox model
 

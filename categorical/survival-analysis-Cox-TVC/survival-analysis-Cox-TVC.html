@@ -207,7 +207,7 @@ table:not([class]) tbody:last-child tr:last-child td {border-bottom:1px solid bl
 <header id="title-block-header">
 <h1 class="title">Cox Model With Time Varying Covariates</h1>
 <p class="author">Andy Grogan-Kaylor</p>
-<p class="date">30 Nov 2023</p>
+<p class="date">1 Dec 2023</p>
 </header>
 <style>body {max-width: 90%} h1 {color: #00274C;} h2 {color: #2F65A7;} p {font-size: 110%;} pre.stata {font-size: 110%; line-height: 115%;} blockquote {border-left: 5px solid #ffcb05; margin: 1.5em 10px; padding: 0.5em 10px;} code {color: red;}</style>
 <h1 id="introduction">Introduction</h1>
@@ -231,6 +231,26 @@ and drug2, where drug1 and drug2 interact a choice of treatment with
 initial dosage level. The study was terminated after 30 days, so those
 who had not recovered by that time were censored (cured = 0).”</p>
 </blockquote>
+<h1 id="look-at-the-data">Look At The Data</h1>
+<p>It may be useful to take a quick look at the data.</p>
+<pre class='stata'>. list in 1/10
+
+     ┌─────────────────────────────────────────────────────────────────┐
+     │ age   drug1   drug2   time   cured   _st   _d          _t   _t0 │
+     ├─────────────────────────────────────────────────────────────────┤
+  1. │  36       0      50   20.6       1     1    1        20.6     0 │
+  2. │  14       0      50    6.8       1     1    1   6.8000002     0 │
+  3. │  43       0     125    8.6       1     1    1   8.6000004     0 │
+  4. │  25     100       0     10       1     1    1          10     0 │
+  5. │  50     100       0     30       0     1    0          30     0 │
+     ├─────────────────────────────────────────────────────────────────┤
+  6. │  26       0     100   13.6       1     1    1        13.6     0 │
+  7. │  21     150       0    5.4       1     1    1   5.4000001     0 │
+  8. │  25       0     100   15.4       1     1    1        15.4     0 │
+  9. │  32     125       0    8.6       1     1    1   8.6000004     0 │
+ 10. │  28     150       0    8.5       1     1    1         8.5     0 │
+     └─────────────────────────────────────────────────────────────────┘
+</pre>
 <h1 id="stset-the-data"><code>stset</code> The Data</h1>
 <pre class='stata'>. stset time, failure(cured) // set up data for survival analysis
 
@@ -290,7 +310,9 @@ Log likelihood = -101.92504                             Prob > chi2   = 0.0000
 <p>Option <code>tvc</code> allows us to model time varying covariates.
 By including <code>, tvc(drug1 drug2)</code> in the <code>stcox</code>
 command below, we allowing <code>drug1</code> and <code>drug2</code> to
-have a linear interaction with time. We can calculate more complex
+have a <em>linear</em> interaction with time. Essentially, we are
+providng a <em>formula</em> for how the association of these variables
+with the hazard changes over time. We can estimate more complex
 interactions of time varying covariates with time. See
 <code>help stcox</code> for information.</p>
 </blockquote>

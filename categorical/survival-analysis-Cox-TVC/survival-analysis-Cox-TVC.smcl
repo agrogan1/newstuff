@@ -3,16 +3,35 @@
       name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}30 Nov 2023, 11:53:32
+ {txt}opened on:  {res} 1 Dec 2023, 13:22:46
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}30 Nov 2023
+{res} 1 Dec 2023
 {txt}
 {com}. //_2
 . use https://www.stata-press.com/data/r17/drugtr2, clear // simulated drug data
 {txt}
 {com}. //_3
+. list in 1/10
+{txt}
+     {c TLC}{hline 5}{c -}{hline 7}{c -}{hline 7}{c -}{hline 6}{c -}{hline 7}{c -}{hline 5}{c -}{hline 4}{c -}{hline 11}{c -}{hline 5}{c TRC}
+     {c |} {res}age   drug1   drug2   time   cured   _st   _d          _t   _t0 {txt}{c |}
+     {c LT}{hline 5}{c -}{hline 7}{c -}{hline 7}{c -}{hline 6}{c -}{hline 7}{c -}{hline 5}{c -}{hline 4}{c -}{hline 11}{c -}{hline 5}{c RT}
+  1. {c |} {res} 36       0      50   20.6       1     1    1        20.6     0 {txt}{c |}
+  2. {c |} {res} 14       0      50    6.8       1     1    1   6.8000002     0 {txt}{c |}
+  3. {c |} {res} 43       0     125    8.6       1     1    1   8.6000004     0 {txt}{c |}
+  4. {c |} {res} 25     100       0     10       1     1    1          10     0 {txt}{c |}
+  5. {c |} {res} 50     100       0     30       0     1    0          30     0 {txt}{c |}
+     {c LT}{hline 5}{c -}{hline 7}{c -}{hline 7}{c -}{hline 6}{c -}{hline 7}{c -}{hline 5}{c -}{hline 4}{c -}{hline 11}{c -}{hline 5}{c RT}
+  6. {c |} {res} 26       0     100   13.6       1     1    1        13.6     0 {txt}{c |}
+  7. {c |} {res} 21     150       0    5.4       1     1    1   5.4000001     0 {txt}{c |}
+  8. {c |} {res} 25       0     100   15.4       1     1    1        15.4     0 {txt}{c |}
+  9. {c |} {res} 32     125       0    8.6       1     1    1   8.6000004     0 {txt}{c |}
+ 10. {c |} {res} 28     150       0    8.5       1     1    1         8.5     0 {txt}{c |}
+     {c BLC}{hline 5}{c -}{hline 7}{c -}{hline 7}{c -}{hline 6}{c -}{hline 7}{c -}{hline 5}{c -}{hline 4}{c -}{hline 11}{c -}{hline 5}{c BRC}
+
+{com}. //_4
 . stset time, failure(cured) // set up data for survival analysis
 
 {txt}Survival-time data settings
@@ -32,7 +51,7 @@
                                      {txt}Earliest observed entry t = {res}        0
                                           {txt}Last observed exit t = {res}       30
 {txt}
-{com}. //_4
+{com}. //_5
 . stcox age drug1 drug2 // Cox model
 
 {col 9}{txt}Failure {bf:_d}: {res}cured
@@ -62,10 +81,10 @@ No. of subjects = {res}{ralign 5:45}{col 57}{txt}{lalign 13:Number of obs} = {re
 {txt}{space 7}drug2 {c |}{col 14}{res}{space 2}  1.00189{col 26}{space 2} .0047971{col 37}{space 1}    0.39{col 46}{space 3}0.693{col 54}{space 4} .9925323{col 67}{space 3} 1.011337
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_5
+{com}. //_6
 . est store M1 // store estimates
 {txt}
-{com}. //_6
+{com}. //_7
 . stcox age, tvc(drug1 drug2) // Cox model
 
 {col 9}{txt}Failure {bf:_d}: {res}cured
@@ -99,13 +118,13 @@ No. of subjects = {res}{ralign 5:45}{col 57}{txt}{lalign 13:Number of obs} = {re
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 {p 0 6 0 78}Note: Variables in {bf:tvc}{txt} equation interacted with {bf:_t}.{p_end}
 
-{com}. //_7
+{com}. //_8
 . est store M2 // store estimates
 {txt}
-{com}. //_8
+{com}. //_9
 . generate id = _n // multiple record data needs an id
 {txt}
-{com}. //_9
+{com}. //_10
 . streset, id(id) // `streset` the data
 {txt}-> stset time, id(id) failure(cured)
 
@@ -128,18 +147,18 @@ Survival-time data settings
                                      {txt}Earliest observed entry t = {res}        0
                                           {txt}Last observed exit t = {res}       30
 {txt}
-{com}. //_10
+{com}. //_11
 . stsplit, at(failures) // split data at each recovery time
 {txt}(31 failure times)
 (812 observations (episodes) created)
 
-{com}. //_11
+{com}. //_12
 . generate drug1emt = drug1 * _t // manual interaction of drug1 and time
 {txt}
-{com}. //_12
+{com}. //_13
 . generate drug2emt = drug2 * _t // manual interaction of drug2 and time
 {txt}
-{com}. //_13
+{com}. //_14
 . stcox age drug1emt drug2emt // Cox model
 
 {col 9}{txt}Failure {bf:_d}: {res}cured
@@ -170,10 +189,10 @@ No. of subjects = {res}{ralign 5:45}{col 57}{txt}{lalign 13:Number of obs} = {re
 {txt}{space 4}drug2emt {c |}{col 14}{res}{space 2} .9998618{col 26}{space 2}  .000364{col 37}{space 1}   -0.38{col 46}{space 3}0.704{col 54}{space 4} .9991486{col 67}{space 3} 1.000576
 {txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
 
-{com}. //_14
+{com}. //_15
 . est store M3 // store estimates
 {txt}
-{com}. //_15
+{com}. //_16
 . est table M1 M2 M3, star equations(1)
 {res}
 {txt}{hline 12}{c -}{c TT}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}{c -}{hline 13}{c -}{c -}
@@ -197,7 +216,7 @@ No. of subjects = {res}{ralign 5:45}{col 57}{txt}{lalign 13:Number of obs} = {re
       {txt}name:  {res}<unnamed>
        {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}30 Nov 2023, 11:53:32
+ {txt}closed on:  {res} 1 Dec 2023, 13:22:46
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
