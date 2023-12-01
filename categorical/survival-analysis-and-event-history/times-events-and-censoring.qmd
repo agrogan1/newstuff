@@ -27,6 +27,7 @@ library(Statamarkdown)
 ```
 
 ```{r}
+#| code-summary: "Show the code"
 
 library(tibble)
 
@@ -47,6 +48,7 @@ Think about a hypothetical event: e.g. *birth*, *death*, *partnering*, *marriage
 # Simulate Data
 
 ```{r}
+#| code-summary: "Show the code"
 
 set.seed(2779) # random seed
 
@@ -98,6 +100,7 @@ mydata3 <- mydata %>%
 ```
 
 ```{r}
+#| code-summary: "Show the code"
 
 write_dta(mydata3, "event-history-multiple-records.dta")
 
@@ -114,6 +117,7 @@ datatable(mydata2, options = list(pageLength = 3))
 # Animated Graph
 
 ```{r}
+#| code-summary: "Show the code"
 
 library(ggplot2)
 
@@ -132,6 +136,7 @@ Censored observations (*failure not observed*) are **maize** <span style="color:
 [^language]: Note that the language of survival analysis comes from medical studies of time until death, and engineering studies of mechanical failure. So *surviving* refers to *surviving* until the event of interest occurs, and *failure* means that the event of interest is observed during the study period. *Censored* means that the event of interest is **not** observed during the study period.
 
 ```{r}
+#| code-summary: "Show the code"
 
 pal <- c("#00274C", "#FFCB05") # color palette
 
@@ -215,6 +220,7 @@ graph export survival.png, replace
 ## Simple Event History Data
 
 ```{r}
+#| code-summary: "Show the code"
 
 datatable(mydata2, 
           extensions = 'Buttons',
@@ -239,6 +245,7 @@ stset event_time, failure(censored == 1) // set event time and failvar
 Notice how every row in this particular data set is a *person timepoint*, **not** simply a *person*.  Every *person* in this data has *multiple rows*.
 
 ```{r}
+#| code-summary: "Show the code"
 
 datatable(mydata3, 
           extensions = 'Buttons',
@@ -249,7 +256,19 @@ datatable(mydata3,
 
 ```
 
+In our `stset` command, we use the time changing variable `event` to construct our `failure` indicator. 
+
 ```{stata}
+#| code-summary: "Show the code"
+
+use "event-history-multiple-records.dta"
+
+codebook event
+
+```
+
+```{stata}
+#| code-summary: "Show the code"
 
 use "event-history-multiple-records.dta"
 
