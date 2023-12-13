@@ -177,7 +177,9 @@ p2 # replay
 
 ## The Basic Idea of **stset** and the Survival Curve
 
-```{r, echo=FALSE, eval=FALSE}
+```{r}
+#| echo: false
+#| eval: false
 
 library("survival")
 
@@ -185,7 +187,9 @@ library("survminer")
 
 ```
 
-```{r, echo=FALSE, eval=FALSE}
+```{r}
+#| echo: false
+#| eval: false
 
 fit <- survfit(Surv(event_time, censored == "Not Censored") ~ 1, 
                data = mydata2)
@@ -215,7 +219,7 @@ graph export survival.png, replace
 
 ```
 
-![Survival Graph](survival.png){#fig-survival}
+![Survival Curve](survival.png){#fig-survival}
 
 ## Simple Event History Data
 
@@ -275,6 +279,25 @@ use "event-history-multiple-records.dta"
 stset t, failure(event == 2) id(id) // stset
 
 ```
+
+## "Failure" Curve
+
+```{stata}
+#| output: false
+
+use "event-history-single-record.dta"
+
+stset event_time, failure(censored == 1) // set event time and failvar
+
+sts graph, failure // FAILURE curve 
+
+graph export failure.png, replace
+
+```
+
+While it is conventional to display a *survival* curve, it may sometimes be more intuitive to display the inverse of this curve, a *failure* curve.
+
+![Failure Curve](failure.png){#fig-failure}
 
 :::
 
