@@ -6,7 +6,6 @@ format:
   html:
     toc: true
     number-sections: true
-    anchor-sections: true
     theme:
       light: cosmo
       dark: vapor
@@ -16,6 +15,7 @@ format:
 # New Schedule
 
 ```{r}
+#| output: false
 
 library(gt)
 
@@ -32,7 +32,7 @@ topic <- c("Introduction",
            "Contingency Tables",
            "Linear Probability Model and Logistic Regression",
            "LPM and Logistic 2",
-           "Lab Day",
+           "Lab Day 1",
            "Interactions",
            "Ordered and Multinomial Logit",
            "Count Models",
