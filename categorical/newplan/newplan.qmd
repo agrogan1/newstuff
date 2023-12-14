@@ -5,7 +5,7 @@ date: "today"
 format: 
   html:
     toc: true
-    number-sections: true
+    number-sections: false
     theme:
       light: cosmo
       dark: vapor
@@ -33,12 +33,12 @@ topic <- c("Introduction",
            "Linear Probability Model and Logistic Regression",
            "LPM and Logistic 2",
            "Lab Day 1",
-           "Interactions",
+           "Interactions in Logistic Regression",
            "Ordered and Multinomial Logit",
            "Count Models",
            "Lab Day 2",
            "Multilevel Categorical Models for Longitudinal Data",
-           "Visualizing Categorical Results & Prediction (NEW)",
+           "TBD",
            "Lab Day 3")
 
 myschedule <- data.frame(week, topic)
@@ -46,4 +46,16 @@ myschedule <- data.frame(week, topic)
 pander(myschedule)
 
 ```
+
+Possible topics for *TBD* include:
+
+1. Causal Modeling
+    + Fixed Effects Regression 
+    + Propensity Scores
+2. Visualizing Categorical Results 
+3. Prediction (NEW)
+
+
+
+
 
