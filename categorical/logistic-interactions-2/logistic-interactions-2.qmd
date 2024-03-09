@@ -70,6 +70,10 @@ graph export "combined.png", as(png) width(2000) name("combined") replace
 
 ![Demonstration of Interactive Relationships](combined.png){ width=90% }
 
+::: {.callout-tip collapse="false"}
+In a *linear* model, a single parameter can capture the difference in slopes between the two groups. In a *non-linear* model, no single parameter can capture the difference in slopes between the two groups.
+:::
+
 ::: {.callout-tip collapse="true"}
 ## Some Calculus (Not Essential To The Discussion)
 
