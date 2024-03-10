@@ -78,6 +78,8 @@ graph export logistic.png, width(2000) replace
 # The Logistic Curve is a *Theoretical Construct*
 
 ::: {.callout-tip collapse="false"}
+## Key Idea
+
 Any given data set usually maps to only part of the full logistic curve.
 :::
 
