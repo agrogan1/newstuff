@@ -19,7 +19,7 @@ format:
           \usepackage[sfdefault]{roboto}
     toc: true
     number-sections: true
-    geometry: margin=.5in
+    geometry: margin=1.0in
 editor: source
 ---
 
