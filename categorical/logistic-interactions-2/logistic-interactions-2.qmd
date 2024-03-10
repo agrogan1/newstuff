@@ -42,7 +42,9 @@ This idea may be easier to describe if we recall the formula for a logistic regr
 
 $$\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2$$ 
 
-> In the above formula, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
+::: {.callout-warning collapse="false"}
+In the above formula, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
+:::
 
 ```{stata, echo=FALSE, message=FALSE, output=FALSE}
 
@@ -71,6 +73,8 @@ graph export "combined.png", as(png) width(2000) name("combined") replace
 ![Demonstration of Interactive Relationships](combined.png){ width=90% }
 
 ::: {.callout-tip collapse="false"}
+## Key Idea
+
 In a *linear* model, a single parameter can capture the difference in slopes between the two groups. In a *non-linear* model, no single parameter can capture the difference in slopes between the two groups.
 :::
 
@@ -158,7 +162,7 @@ graph export mymarginsplot.png, width(1000) replace
 
 ![Margins Plot](mymarginsplot.png){ width=75% } 	
 
-# Rerun `margins`, Posting Results
+# Rerun `margins`, `post`ing Results
 
 We again employ the `margins` command, this time using the `post` option so that the results of the margins command are *posted* as an estimation result. This will allow us to employ the `test` command to statistically test different margins against each other. 
 

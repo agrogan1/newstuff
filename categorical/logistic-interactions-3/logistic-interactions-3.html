@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andy Grogan-Kaylor">
-<meta name="dcterms.date" content="2023-10-07">
+<meta name="dcterms.date" content="2024-03-09">
 
 <title>Interactions in Logistic Regression</title>
 <style>
@@ -24,7 +24,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -60,6 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -93,6 +94,33 @@ div.csl-indent {
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -138,7 +166,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 7, 2023</p>
+      <p class="date">March 9, 2024</p>
     </div>
   </div>
   
@@ -146,7 +174,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <section id="background" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Background</h1>
@@ -164,17 +194,46 @@ blockquote {
 <p>The purpose of this tutorial is to illustrate the idea that in <em>logistic regression</em>, the <span class="math inline">\(\beta\)</span> parameter for an interaction term may not accurately characterize the underlying interactive relationships.</p>
 <p>This idea may be easier to describe if we recall the formula for a logistic regression:</p>
 <p><span class="math display">\[\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2\]</span></p>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
 <p>In the above formula, the sign, and statistical significance, of <span class="math inline">\(\beta_3\)</span> may not accurately characterize the underlying relationship.</p>
-</blockquote>
+</div>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="combined.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption class="figure-caption">Demonstration of Interactive Relationships</figcaption>
+<figcaption>Demonstration of Interactive Relationships</figcaption>
 </figure>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Idea
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>In a <em>linear</em> model, a single parameter can capture the difference in slopes between the two groups. In a <em>non-linear</em> model, no single parameter can capture the difference in slopes between the two groups.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -183,7 +242,7 @@ Some Calculus (Not Essential To The Discussion)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Imagine a linear model:</p>
 <p><span class="math display">\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2 + e_i\]</span></p>
@@ -220,29 +279,10 @@ Some Calculus (Not Essential To The Discussion)
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
-&gt; ons-3\profile.do . 
-
-Contains data from http://www.stata-press.com/data/r15/margex.dta
- Observations:         3,000                  Artificial data for margins
-    Variables:            11                  27 Nov 2016 14:27
--------------------------------------------------------------------------------
-Variable      Storage   Display    Value
-    name         type    format    label      Variable label
--------------------------------------------------------------------------------
-y               float   %6.1f                 
-outcome         byte    %2.0f                 
-sex             byte    %6.0f      sexlbl     
-group           byte    %2.0f                 
-age             float   %3.0f                 
-distance        float   %6.2f                 
-ycn             float   %6.1f                 
-yc              float   %6.1f                 
-treatment       byte    %2.0f                 
-agegroup        byte    %8.0g      agelab     
-arm             byte    %8.0g                 
--------------------------------------------------------------------------------
-Sorted by: group</code></pre>
+<pre><code>Contains data
+ Observations:             0                  
+    Variables:             0                  
+Sorted by: </code></pre>
 </div>
 </div>
 </section>
@@ -256,36 +296,11 @@ Sorted by: group</code></pre>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> outcome c.age##i.<span class="fu">group</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
-&gt; ons-3\profile.do . 
+<pre><code>no variables defined
+r(111);
 
-Iteration 0:  Log likelihood = -1366.0718  
-Iteration 1:  Log likelihood = -1125.2149  
-Iteration 2:  Log likelihood =  -1077.539  
-Iteration 3:  Log likelihood = -1074.8422  
-Iteration 4:  Log likelihood = -1074.7864  
-Iteration 5:  Log likelihood = -1074.7863  
-
-Logistic regression                                     Number of obs =  3,000
-                                                        LR chi2(5)    = 582.57
-                                                        Prob &gt; chi2   = 0.0000
-Log likelihood = -1074.7863                             Pseudo R2     = 0.2132
-
-------------------------------------------------------------------------------
-     outcome | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
--------------+----------------------------------------------------------------
-         age |    .091183   .0084697    10.77   0.000     .0745827    .1077834
-             |
-       group |
-          2  |  -.8272665   .6648279    -1.24   0.213    -2.130305    .4757722
-          3  |  -1.085445   1.044802    -1.04   0.299    -3.133219    .9623292
-             |
- group#c.age |
-          2  |   .0013522   .0139747     0.10   0.923    -.0260378    .0287421
-          3  |  -.0164596   .0259182    -0.64   0.525    -.0672584    .0343392
-             |
-       _cons |  -5.184398   .4274964   -12.13   0.000    -6.022275    -4.34652
-------------------------------------------------------------------------------</code></pre>
+end of do-file
+r(111);</code></pre>
 </div>
 </div>
 </section>
@@ -296,40 +311,11 @@ Log likelihood = -1074.7863                             Pseudo R2     = 0.2132
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>margins <span class="fu">group</span>, <span class="fu">at</span>(age = (20 30 40 50 60))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
-&gt; ons-3\profile.do . 
+<pre><code>last estimates not found
+r(301);
 
-Adjusted predictions                                     Number of obs = 3,000
-Model VCE: OIM
-
-Expression: Pr(outcome), predict()
-1._at: age = 20
-2._at: age = 30
-3._at: age = 40
-4._at: age = 50
-5._at: age = 60
-
-------------------------------------------------------------------------------
-             |            Delta-method
-             |     Margin   std. err.      z    P&gt;|z|     [95% conf. interval]
--------------+----------------------------------------------------------------
-   _at#group |
-        1 1  |   .0335453   .0084761     3.96   0.000     .0169325    .0501582
-        1 2  |   .0153532   .0044572     3.44   0.001     .0066173    .0240891
-        1 3  |   .0083644   .0041378     2.02   0.043     .0002545    .0164742
-        2 1  |   .0795185   .0132311     6.01   0.000     .0535861     .105451
-        2 2  |   .0378475   .0070835     5.34   0.000      .023964    .0517309
-        2 3  |   .0174959   .0054051     3.24   0.001     .0069021    .0280896
-        3 1  |   .1769607   .0155126    11.41   0.000     .1465565    .2073649
-        3 2  |   .0902771   .0095282     9.47   0.000     .0716022     .108952
-        3 3  |   .0362321   .0091647     3.95   0.000     .0182697    .0541945
-        4 1  |   .3485893   .0149941    23.25   0.000     .3192014    .3779772
-        4 2  |   .2002224   .0188064    10.65   0.000     .1633625    .2370823
-        4 3  |   .0735312   .0271556     2.71   0.007     .0203072    .1267553
-        5 1  |   .5711598   .0265203    21.54   0.000     .5191809    .6231386
-        5 2  |   .3870919   .0467552     8.28   0.000     .2954535    .4787304
-        5 3  |   .1435103   .0746567     1.92   0.055    -.0028141    .2898347
-------------------------------------------------------------------------------</code></pre>
+end of do-file
+r(301);</code></pre>
 </div>
 </div>
 </section>
@@ -346,18 +332,17 @@ Expression: Pr(outcome), predict()
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> mymarginsplot.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
-&gt; ons-3\profile.do . 
+<pre><code>previous command was not margins
+r(301);
 
-Variables that uniquely identify margins: age group
-
-file mymarginsplot.png saved as PNG format</code></pre>
+end of do-file
+r(301);</code></pre>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="mymarginsplot.png" class="img-fluid figure-img" style="width:75.0%"></p>
-<figcaption class="figure-caption">Margins Plot</figcaption>
+<figcaption>Margins Plot</figcaption>
 </figure>
 </div>
 </section>
@@ -368,40 +353,11 @@ file mymarginsplot.png saved as PNG format</code></pre>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>margins <span class="fu">group</span>, <span class="fu">at</span>(age = (20 30 40 50 60)) <span class="kw">post</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
-&gt; ons-3\profile.do . 
+<pre><code>last estimates not found
+r(301);
 
-Adjusted predictions                                     Number of obs = 3,000
-Model VCE: OIM
-
-Expression: Pr(outcome), predict()
-1._at: age = 20
-2._at: age = 30
-3._at: age = 40
-4._at: age = 50
-5._at: age = 60
-
-------------------------------------------------------------------------------
-             |            Delta-method
-             |     Margin   std. err.      z    P&gt;|z|     [95% conf. interval]
--------------+----------------------------------------------------------------
-   _at#group |
-        1 1  |   .0335453   .0084761     3.96   0.000     .0169325    .0501582
-        1 2  |   .0153532   .0044572     3.44   0.001     .0066173    .0240891
-        1 3  |   .0083644   .0041378     2.02   0.043     .0002545    .0164742
-        2 1  |   .0795185   .0132311     6.01   0.000     .0535861     .105451
-        2 2  |   .0378475   .0070835     5.34   0.000      .023964    .0517309
-        2 3  |   .0174959   .0054051     3.24   0.001     .0069021    .0280896
-        3 1  |   .1769607   .0155126    11.41   0.000     .1465565    .2073649
-        3 2  |   .0902771   .0095282     9.47   0.000     .0716022     .108952
-        3 3  |   .0362321   .0091647     3.95   0.000     .0182697    .0541945
-        4 1  |   .3485893   .0149941    23.25   0.000     .3192014    .3779772
-        4 2  |   .2002224   .0188064    10.65   0.000     .1633625    .2370823
-        4 3  |   .0735312   .0271556     2.71   0.007     .0203072    .1267553
-        5 1  |   .5711598   .0265203    21.54   0.000     .5191809    .6231386
-        5 2  |   .3870919   .0467552     8.28   0.000     .2954535    .4787304
-        5 3  |   .1435103   .0746567     1.92   0.055    -.0028141    .2898347
-------------------------------------------------------------------------------</code></pre>
+end of do-file
+r(301);</code></pre>
 </div>
 </div>
 </section>
@@ -412,39 +368,11 @@ Expression: Pr(outcome), predict()
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>margins, coeflegend</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
-&gt; ons-3\profile.do . 
+<pre><code>last estimates not found
+r(301);
 
-Adjusted predictions                                     Number of obs = 3,000
-Model VCE: OIM
-
-Expression: Pr(outcome), predict()
-1._at: age = 20
-2._at: age = 30
-3._at: age = 40
-4._at: age = 50
-5._at: age = 60
-
-------------------------------------------------------------------------------
-             |     Margin   Legend
--------------+----------------------------------------------------------------
-   _at#group |
-        1 1  |   .0335453  _b[1bn._at#1bn.group]
-        1 2  |   .0153532  _b[1bn._at#2.group]
-        1 3  |   .0083644  _b[1bn._at#3.group]
-        2 1  |   .0795185  _b[2._at#1bn.group]
-        2 2  |   .0378475  _b[2._at#2.group]
-        2 3  |   .0174959  _b[2._at#3.group]
-        3 1  |   .1769607  _b[3._at#1bn.group]
-        3 2  |   .0902771  _b[3._at#2.group]
-        3 3  |   .0362321  _b[3._at#3.group]
-        4 1  |   .3485893  _b[4._at#1bn.group]
-        4 2  |   .2002224  _b[4._at#2.group]
-        4 3  |   .0735312  _b[4._at#3.group]
-        5 1  |   .5711598  _b[5._at#1bn.group]
-        5 2  |   .3870919  _b[5._at#2.group]
-        5 3  |   .1435103  _b[5._at#3.group]
-------------------------------------------------------------------------------</code></pre>
+end of do-file
+r(301);</code></pre>
 </div>
 </div>
 </section>
@@ -462,31 +390,17 @@ Expression: Pr(outcome), predict()
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[5._at#1bn.<span class="fu">group</span>] =  _b[5._at#2.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 60</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
-&gt; ons-3\profile.do . 
+<pre><code>last estimates not found
+r(301);
 
- ( 1)  1bn._at#1bn.group - 1bn._at#2.group = 0
-
-           chi2(  1) =    3.61
-         Prob &gt; chi2 =    0.0575
-
-
- ( 1)  4._at#1bn.group - 4._at#2.group = 0
-
-           chi2(  1) =   38.05
-         Prob &gt; chi2 =    0.0000
-
-
- ( 1)  5._at#1bn.group - 5._at#2.group = 0
-
-           chi2(  1) =   11.73
-         Prob &gt; chi2 =    0.0006</code></pre>
+end of do-file
+r(301);</code></pre>
 </div>
 </div>
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-Ai2003" class="csl-entry" role="listitem">
 Ai, Chunrong, and Edward C. Norton. 2003. <span>“Interaction Terms in Logit and Probit Models.”</span> <em>Economics Letters</em>. <a href="https://doi.org/10.1016/S0165-1765(03)00032-6">https://doi.org/10.1016/S0165-1765(03)00032-6</a>.
 </div>
@@ -536,6 +450,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -604,13 +545,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -689,10 +632,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -702,8 +644,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -716,6 +667,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -759,6 +829,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -784,6 +855,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -844,6 +941,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
