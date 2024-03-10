@@ -167,7 +167,7 @@ graph export mymarginsplot.png, width(1000) replace
 
 ![Margins Plot](mymarginsplot.png){ width=75% } 	
 
-# Rerun `margins`, Posting Results
+# Rerun `margins`, `post`ing Results
 
 We again employ the `margins` command, this time using the `post` option so that the results of the margins command are *posted* as an estimation result. This will allow us to employ the `test` command to statistically test different margins against each other. 
 

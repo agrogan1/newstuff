@@ -138,7 +138,7 @@ window.Quarto = {
   <li><a href="#estimate-logistic-regression" id="toc-estimate-logistic-regression" class="nav-link" data-scroll-target="#estimate-logistic-regression"><span class="header-section-number">4</span> Estimate Logistic Regression</a></li>
   <li><a href="#margins" id="toc-margins" class="nav-link" data-scroll-target="#margins"><span class="header-section-number">5</span> Margins</a></li>
   <li><a href="#plotting-margins" id="toc-plotting-margins" class="nav-link" data-scroll-target="#plotting-margins"><span class="header-section-number">6</span> Plotting Margins</a></li>
-  <li><a href="#rerun-margins-posting-results" id="toc-rerun-margins-posting-results" class="nav-link" data-scroll-target="#rerun-margins-posting-results"><span class="header-section-number">7</span> Rerun <code>margins</code>, Posting Results</a></li>
+  <li><a href="#rerun-margins-posting-results" id="toc-rerun-margins-posting-results" class="nav-link" data-scroll-target="#rerun-margins-posting-results"><span class="header-section-number">7</span> Rerun <code>margins</code>, <code>post</code>ing Results</a></li>
   <li><a href="#margins-with-coeflegend" id="toc-margins-with-coeflegend" class="nav-link" data-scroll-target="#margins-with-coeflegend"><span class="header-section-number">8</span> <code>margins</code> with <code>coeflegend</code></a></li>
   <li><a href="#testing-margins-against-each-other" id="toc-testing-margins-against-each-other" class="nav-link" data-scroll-target="#testing-margins-against-each-other"><span class="header-section-number">9</span> Testing Margins Against Each Other</a></li>
   </ul>
@@ -279,10 +279,32 @@ Some Calculus (Not Essential To The Discussion)
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Contains data
- Observations:             0                  
-    Variables:             0                  
-Sorted by: </code></pre>
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
+
+&gt; ile.do ...
+
+
+
+Contains data from http://www.stata-press.com/data/r15/margex.dta
+ Observations:         3,000                  Artificial data for margins
+    Variables:            11                  27 Nov 2016 14:27
+---------------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+---------------------------------------------------------------------------------------
+y               float   %6.1f                 
+outcome         byte    %2.0f                 
+sex             byte    %6.0f      sexlbl     
+group           byte    %2.0f                 
+age             float   %3.0f                 
+distance        float   %6.2f                 
+ycn             float   %6.1f                 
+yc              float   %6.1f                 
+treatment       byte    %2.0f                 
+agegroup        byte    %8.0g      agelab     
+arm             byte    %8.0g                 
+---------------------------------------------------------------------------------------
+Sorted by: group</code></pre>
 </div>
 </div>
 </section>
@@ -296,11 +318,39 @@ Sorted by: </code></pre>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> outcome c.age##i.<span class="fu">group</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>no variables defined
-r(111);
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
 
-end of do-file
-r(111);</code></pre>
+&gt; ile.do ...
+
+
+
+Iteration 0:  Log likelihood = -1366.0718  
+Iteration 1:  Log likelihood = -1125.2149  
+Iteration 2:  Log likelihood =  -1077.539  
+Iteration 3:  Log likelihood = -1074.8422  
+Iteration 4:  Log likelihood = -1074.7864  
+Iteration 5:  Log likelihood = -1074.7863  
+
+Logistic regression                                     Number of obs =  3,000
+                                                        LR chi2(5)    = 582.57
+                                                        Prob &gt; chi2   = 0.0000
+Log likelihood = -1074.7863                             Pseudo R2     = 0.2132
+
+------------------------------------------------------------------------------
+     outcome | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+         age |    .091183   .0084697    10.77   0.000     .0745827    .1077834
+             |
+       group |
+          2  |  -.8272665   .6648279    -1.24   0.213    -2.130305    .4757722
+          3  |  -1.085445   1.044802    -1.04   0.299    -3.133219    .9623292
+             |
+ group#c.age |
+          2  |   .0013522   .0139747     0.10   0.923    -.0260378    .0287421
+          3  |  -.0164596   .0259182    -0.64   0.525    -.0672584    .0343392
+             |
+       _cons |  -5.184398   .4274964   -12.13   0.000    -6.022275    -4.34652
+------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 </section>
@@ -311,11 +361,43 @@ r(111);</code></pre>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>margins <span class="fu">group</span>, <span class="fu">at</span>(age = (20 30 40 50 60))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>last estimates not found
-r(301);
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
 
-end of do-file
-r(301);</code></pre>
+&gt; ile.do ...
+
+
+
+Adjusted predictions                                     Number of obs = 3,000
+Model VCE: OIM
+
+Expression: Pr(outcome), predict()
+1._at: age = 20
+2._at: age = 30
+3._at: age = 40
+4._at: age = 50
+5._at: age = 60
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |     Margin   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+   _at#group |
+        1 1  |   .0335453   .0084761     3.96   0.000     .0169325    .0501582
+        1 2  |   .0153532   .0044572     3.44   0.001     .0066173    .0240891
+        1 3  |   .0083644   .0041378     2.02   0.043     .0002545    .0164742
+        2 1  |   .0795185   .0132311     6.01   0.000     .0535861     .105451
+        2 2  |   .0378475   .0070835     5.34   0.000      .023964    .0517309
+        2 3  |   .0174959   .0054051     3.24   0.001     .0069021    .0280896
+        3 1  |   .1769607   .0155126    11.41   0.000     .1465565    .2073649
+        3 2  |   .0902771   .0095282     9.47   0.000     .0716022     .108952
+        3 3  |   .0362321   .0091647     3.95   0.000     .0182697    .0541945
+        4 1  |   .3485893   .0149941    23.25   0.000     .3192014    .3779772
+        4 2  |   .2002224   .0188064    10.65   0.000     .1633625    .2370823
+        4 3  |   .0735312   .0271556     2.71   0.007     .0203072    .1267553
+        5 1  |   .5711598   .0265203    21.54   0.000     .5191809    .6231386
+        5 2  |   .3870919   .0467552     8.28   0.000     .2954535    .4787304
+        5 3  |   .1435103   .0746567     1.92   0.055    -.0028141    .2898347
+------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 </section>
@@ -332,11 +414,17 @@ r(301);</code></pre>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> mymarginsplot.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>previous command was not margins
-r(301);
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
 
-end of do-file
-r(301);</code></pre>
+&gt; ile.do ...
+
+
+
+Variables that uniquely identify margins: age group
+
+file
+    /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/mymarg
+    &gt; insplot.png saved as PNG format</code></pre>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -347,17 +435,49 @@ r(301);</code></pre>
 </div>
 </section>
 <section id="rerun-margins-posting-results" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Rerun <code>margins</code>, Posting Results</h1>
+<h1 data-number="7"><span class="header-section-number">7</span> Rerun <code>margins</code>, <code>post</code>ing Results</h1>
 <p>We again employ the <code>margins</code> command, this time using the <code>post</code> option so that the results of the margins command are <em>posted</em> as an estimation result. This will allow us to employ the <code>test</code> command to statistically test different margins against each other.</p>
 <div class="cell" data-collectcode="true">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>margins <span class="fu">group</span>, <span class="fu">at</span>(age = (20 30 40 50 60)) <span class="kw">post</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>last estimates not found
-r(301);
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
 
-end of do-file
-r(301);</code></pre>
+&gt; ile.do ...
+
+
+
+Adjusted predictions                                     Number of obs = 3,000
+Model VCE: OIM
+
+Expression: Pr(outcome), predict()
+1._at: age = 20
+2._at: age = 30
+3._at: age = 40
+4._at: age = 50
+5._at: age = 60
+
+------------------------------------------------------------------------------
+             |            Delta-method
+             |     Margin   std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+   _at#group |
+        1 1  |   .0335453   .0084761     3.96   0.000     .0169325    .0501582
+        1 2  |   .0153532   .0044572     3.44   0.001     .0066173    .0240891
+        1 3  |   .0083644   .0041378     2.02   0.043     .0002545    .0164742
+        2 1  |   .0795185   .0132311     6.01   0.000     .0535861     .105451
+        2 2  |   .0378475   .0070835     5.34   0.000      .023964    .0517309
+        2 3  |   .0174959   .0054051     3.24   0.001     .0069021    .0280896
+        3 1  |   .1769607   .0155126    11.41   0.000     .1465565    .2073649
+        3 2  |   .0902771   .0095282     9.47   0.000     .0716022     .108952
+        3 3  |   .0362321   .0091647     3.95   0.000     .0182697    .0541945
+        4 1  |   .3485893   .0149941    23.25   0.000     .3192014    .3779772
+        4 2  |   .2002224   .0188064    10.65   0.000     .1633625    .2370823
+        4 3  |   .0735312   .0271556     2.71   0.007     .0203072    .1267553
+        5 1  |   .5711598   .0265203    21.54   0.000     .5191809    .6231386
+        5 2  |   .3870919   .0467552     8.28   0.000     .2954535    .4787304
+        5 3  |   .1435103   .0746567     1.92   0.055    -.0028141    .2898347
+------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 </section>
@@ -368,11 +488,42 @@ r(301);</code></pre>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>margins, coeflegend</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>last estimates not found
-r(301);
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
 
-end of do-file
-r(301);</code></pre>
+&gt; ile.do ...
+
+
+
+Adjusted predictions                                     Number of obs = 3,000
+Model VCE: OIM
+
+Expression: Pr(outcome), predict()
+1._at: age = 20
+2._at: age = 30
+3._at: age = 40
+4._at: age = 50
+5._at: age = 60
+
+------------------------------------------------------------------------------
+             |     Margin   Legend
+-------------+----------------------------------------------------------------
+   _at#group |
+        1 1  |   .0335453  _b[1bn._at#1bn.group]
+        1 2  |   .0153532  _b[1bn._at#2.group]
+        1 3  |   .0083644  _b[1bn._at#3.group]
+        2 1  |   .0795185  _b[2._at#1bn.group]
+        2 2  |   .0378475  _b[2._at#2.group]
+        2 3  |   .0174959  _b[2._at#3.group]
+        3 1  |   .1769607  _b[3._at#1bn.group]
+        3 2  |   .0902771  _b[3._at#2.group]
+        3 3  |   .0362321  _b[3._at#3.group]
+        4 1  |   .3485893  _b[4._at#1bn.group]
+        4 2  |   .2002224  _b[4._at#2.group]
+        4 3  |   .0735312  _b[4._at#3.group]
+        5 1  |   .5711598  _b[5._at#1bn.group]
+        5 2  |   .3870919  _b[5._at#2.group]
+        5 3  |   .1435103  _b[5._at#3.group]
+------------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 </section>
@@ -390,11 +541,28 @@ r(301);</code></pre>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[5._at#1bn.<span class="fu">group</span>] =  _b[5._at#2.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 60</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>last estimates not found
-r(301);
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
 
-end of do-file
-r(301);</code></pre>
+&gt; ile.do ...
+
+
+
+ ( 1)  1bn._at#1bn.group - 1bn._at#2.group = 0
+
+           chi2(  1) =    3.61
+         Prob &gt; chi2 =    0.0575
+
+
+ ( 1)  4._at#1bn.group - 4._at#2.group = 0
+
+           chi2(  1) =   38.05
+         Prob &gt; chi2 =    0.0000
+
+
+ ( 1)  5._at#1bn.group - 5._at#2.group = 0
+
+           chi2(  1) =   11.73
+         Prob &gt; chi2 =    0.0006</code></pre>
 </div>
 </div>
 
