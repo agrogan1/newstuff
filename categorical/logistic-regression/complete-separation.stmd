@@ -16,13 +16,13 @@ geometry: margin=1 in
 	
 	graph export scatter1.png, width(1500) replace
 	
-![y by x1](scatter1.png){width=80%}
+![y by x1](scatter1.png){width=50%}
 
     twoway scatter y x2, scheme(michigan)
 	
 	graph export scatter2.png, width(1500) replace
 	
-![y by x2](scatter2.png){width=80%}
+![y by x2](scatter2.png){width=50%}
 
 From IDRE:
 
