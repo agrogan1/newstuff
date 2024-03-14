@@ -1,13 +1,13 @@
 {smcl}
 {com}{sf}{ul off}{txt}{.-}
       name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/complete-separation.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-regression/complete-separation.smcl
   {txt}log type:  {res}smcl
- {txt}opened on:  {res}31 Jul 2020, 11:32:33
+ {txt}opened on:  {res}14 Mar 2024, 08:33:46
 {txt}
 {com}. //_1
 . display c(current_date)
-{res}31 Jul 2020
+{res}14 Mar 2024
 {txt}
 {com}. //_2
 . use complete-separation.dta, clear
@@ -16,27 +16,39 @@
 . twoway scatter y x1, scheme(michigan)
 {res}{txt}
 {com}. //_4
-. graph export scatter1.png, width(500) replace
-{txt}(file scatter1.png written in PNG format)
+. graph export scatter1.png, width(1500) replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-regression/scatter1.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_5
 . twoway scatter y x2, scheme(michigan)
 {res}{txt}
 {com}. //_6
-. graph export scatter2.png, width(500) replace
-{txt}(file scatter2.png written in PNG format)
+. graph export scatter2.png, width(1500) replace
+{txt}{p 0 4 2}
+file {bf}
+/Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-regression/scatter2.png{rm}
+saved as
+PNG
+format
+{p_end}
 
 {com}. //_7
 . capture noisily logit y x1 x2
 
-{txt}outcome = x1 > 3 predicts data perfectly
+{txt}outcome = {bf:x1} > 3 predicts data perfectly
 
 {com}. //_^
 . log close
       {txt}name:  {res}<unnamed>
-       {txt}log:  {res}/Users/agrogan/Desktop/newstuff/categorical/logistic-regression/complete-separation.smcl
+       {txt}log:  {res}/Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-regression/complete-separation.smcl
   {txt}log type:  {res}smcl
- {txt}closed on:  {res}31 Jul 2020, 11:32:35
+ {txt}closed on:  {res}14 Mar 2024, 08:33:49
 {txt}{.-}
 {smcl}
 {txt}{sf}{ul off}
