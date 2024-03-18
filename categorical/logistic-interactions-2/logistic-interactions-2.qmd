@@ -9,11 +9,15 @@ format:
     theme:
       light: cosmo
       dark: vapor
+    lightbox: true
   pdf:
     toc: true
     toc-depth: 3
     number-sections: true
     colorlinks: true
+bibliography: logistic-interactions-2.bib
+nocite: |
+  Ai2003, @KaracaMandic2012
 ---
 
 # Background
@@ -85,7 +89,7 @@ Imagine a linear model:
 
 $$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2 + e_i$$
 
-Here (following Ai and Norton (2003)): 
+Here (following [@Ai2003]): 
 
 $$\frac{\partial y}{\partial x_1 \partial x_2} = \beta_3$$ 
 
@@ -207,12 +211,6 @@ test _b[1bn._at#1.sex] - _b[1bn._at#0bn.sex] = _b[5._at#1.sex] - _b[5._at#0bn.se
 test _b[1bn._at#1.sex] - _b[1bn._at#0bn.sex] = _b[4._at#1.sex] - _b[4._at#0bn.sex] // test equivalence of the differences
         
 ```
-
-# References
-
-Ai, C., & Norton, E. C. (2003). Interaction terms in logit and probit models. *Economics Letters*. [https://doi.org/10.1016/S0165-1765(03)00032-6](https://doi.org/10.1016/S0165-1765(03)00032-6)
-
-Karaca-Mandic, P., Norton, E. C., & Dowd, B. (2012). Interaction terms in nonlinear models. *Health Services Research*. [https://doi.org/10.1111/j.1475-6773.2011.01314.x](https://doi.org/10.1111/j.1475-6773.2011.01314.x)
 
 
 
