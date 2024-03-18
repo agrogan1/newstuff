@@ -10,6 +10,7 @@ format:
     theme:
       light: cosmo
       dark: vapor
+    lightbox: true
   pdf:
     toc: true
     toc-depth: 3
@@ -17,7 +18,7 @@ format:
     colorlinks: true
 bibliography: logistic-interactions-3.bib
 nocite: |
-  @KaracaMandic2012
+  Ai2003, @KaracaMandic2012
 ---
 
 # Background
