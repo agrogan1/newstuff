@@ -44,7 +44,7 @@ The purpose of this tutorial is to illustrate the idea that in *logistic regress
 
 This idea may be easier to describe if we recall the formula for a logistic regression: 
 
-$$\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2$$ 
+$$\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2$$ {#eq-logistic}
 
 ::: {.callout-warning collapse="false"}
 In the above formula, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.

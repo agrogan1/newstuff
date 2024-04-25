@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andy Grogan-Kaylor">
-<meta name="dcterms.date" content="2024-03-18">
+<meta name="dcterms.date" content="2024-04-25">
 
 <title>Interactions in Logistic Regression</title>
 <style>
@@ -169,7 +169,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 18, 2024</p>
+      <p class="date">April 25, 2024</p>
     </div>
   </div>
   
@@ -196,7 +196,7 @@ blockquote {
 </div>
 <p>The purpose of this tutorial is to illustrate the idea that in <em>logistic regression</em>, the <span class="math inline">\(\beta\)</span> parameter for an interaction term may not accurately characterize the underlying interactive relationships.</p>
 <p>This idea may be easier to describe if we recall the formula for a logistic regression:</p>
-<p><span class="math display">\[\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2\]</span></p>
+<p><span id="eq-logistic"><span class="math display">\[\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2 \tag{1}\]</span></span></p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -215,7 +215,7 @@ Warning
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="combined.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="Demonstration of Interactive Relationships"><img src="combined.png" class="img-fluid figure-img" style="width:90.0%" alt="Demonstration of Interactive Relationships"></a></p>
+<p><a href="combined.png" class="lightbox" data-glightbox="description: .lightbox-desc-1" data-gallery="quarto-lightbox-gallery-1" title="Demonstration of Interactive Relationships"><img src="combined.png" class="img-fluid figure-img" style="width:90.0%" alt="Demonstration of Interactive Relationships"></a></p>
 <figcaption>Demonstration of Interactive Relationships</figcaption>
 </figure>
 </div>
@@ -282,19 +282,16 @@ Some Calculus (Not Essential To The Discussion)
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
-
-&gt; ile.do ...
-
-
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
 
 Contains data from http://www.stata-press.com/data/r15/margex.dta
  Observations:         3,000                  Artificial data for margins
     Variables:            11                  27 Nov 2016 14:27
----------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
----------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 y               float   %6.1f                 
 outcome         byte    %2.0f                 
 sex             byte    %6.0f      sexlbl     
@@ -306,7 +303,7 @@ yc              float   %6.1f
 treatment       byte    %2.0f                 
 agegroup        byte    %8.0g      agelab     
 arm             byte    %8.0g                 
----------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 Sorted by: group</code></pre>
 </div>
 </div>
@@ -321,11 +318,8 @@ Sorted by: group</code></pre>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> outcome c.age##i.<span class="fu">group</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
-
-&gt; ile.do ...
-
-
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
 
 Iteration 0:  Log likelihood = -1366.0718  
 Iteration 1:  Log likelihood = -1125.2149  
@@ -364,11 +358,8 @@ Log likelihood = -1074.7863                             Pseudo R2     = 0.2132
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>margins <span class="fu">group</span>, <span class="fu">at</span>(age = (20 30 40 50 60))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
-
-&gt; ile.do ...
-
-
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
 
 Adjusted predictions                                     Number of obs = 3,000
 Model VCE: OIM
@@ -417,22 +408,17 @@ Expression: Pr(outcome), predict()
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">graph</span> <span class="kw">export</span> mymarginsplot.png, <span class="kw">width</span>(1000) <span class="kw">replace</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
-
-&gt; ile.do ...
-
-
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
 
 Variables that uniquely identify margins: age group
 
-file
-    /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/mymarg
-    &gt; insplot.png saved as PNG format</code></pre>
+file mymarginsplot.png saved as PNG format</code></pre>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="mymarginsplot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="Margins Plot"><img src="mymarginsplot.png" class="img-fluid figure-img" style="width:75.0%" alt="Margins Plot"></a></p>
+<p><a href="mymarginsplot.png" class="lightbox" data-glightbox="description: .lightbox-desc-2" data-gallery="quarto-lightbox-gallery-2" title="Margins Plot"><img src="mymarginsplot.png" class="img-fluid figure-img" style="width:75.0%" alt="Margins Plot"></a></p>
 <figcaption>Margins Plot</figcaption>
 </figure>
 </div>
@@ -444,11 +430,8 @@ file
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>margins <span class="fu">group</span>, <span class="fu">at</span>(age = (20 30 40 50 60)) <span class="kw">post</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
-
-&gt; ile.do ...
-
-
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
 
 Adjusted predictions                                     Number of obs = 3,000
 Model VCE: OIM
@@ -491,11 +474,8 @@ Expression: Pr(outcome), predict()
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>margins, coeflegend</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
-
-&gt; ile.do ...
-
-
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
 
 Adjusted predictions                                     Number of obs = 3,000
 Model VCE: OIM
@@ -544,11 +524,8 @@ Expression: Pr(outcome), predict()
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[5._at#1bn.<span class="fu">group</span>] =  _b[5._at#2.<span class="fu">group</span>] <span class="co">// groups 1 &amp; 2 at age 60</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-3/prof
-
-&gt; ile.do ...
-
-
+<pre><code>Running C:\Users\agrogan\Desktop\GitHub\newstuff\categorical\logistic-interacti
+&gt; ons-3\profile.do . 
 
  ( 1)  1bn._at#1bn.group - 1bn._at#2.group = 0
 
@@ -807,6 +784,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -841,7 +836,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1116,7 +1115,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"closeEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
