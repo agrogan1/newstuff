@@ -1,0 +1,139 @@
+---
+title: "Logistic Regression - More Complicated Margins Plots"
+subtitle: "Some Ideas for Plotting More Complicated Margins Plots"
+author: "Andy Grogan-Kaylor"
+date: "today"
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme:
+      light: cosmo
+      dark: vapor
+    css: styles.css  
+    lightbox: true
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    colorlinks: true
+editor: source
+---
+
+::: {.callout-tip collapse="false"}
+This tutorial builds off of some of the ideas first presented in [this tutorial on interactions](https://agrogan1.github.io/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.html).
+:::
+
+# Get Data
+
+```{r}
+#| output: false
+
+library(Statamarkdown)
+
+```
+
+We start by obtaining *simulated data* from StataCorp. 
+
+```{stata, collectcode=TRUE}
+
+clear all
+
+use http://www.stata-press.com/data/r15/margex, clear
+
+```
+
+
+# `describe` The Data
+	
+The variables are as follows:
+
+```{stata}
+
+describe
+
+```
+
+# Estimate `logit`
+
+We then run a logistic regression model in which `outcome` is the dependent variable. `sex`, `age` and `group` are the independent variables. We estimate an interaction of `sex` and `age`. 
+
+> We note that the regression coefficient for the interaction term is not statistically significant. 
+
+```{stata, collectcode = TRUE}
+
+logit outcome sex##c.age i.group
+
+```
+
+# `margins`
+
+I use the `margins` command to estimate predicted probabilities at different values of `sex` and `age`. 
+
+I use the `pwcompare` option to get pairwise comparisons. This gives us **a lot** of output, which I have made *scrollable* to improve readability.
+
+I'm not going to want to graph all of this output, so I'm saving these margins to a data file from which I can make a customized graph.
+
+```{stata, collectcode = TRUE}
+#| class: output
+
+margins sex, at(age = (20 30 40 50 60)) pwcompare saving(marginsdemo.dta, replace)
+
+```
+
+# `use` Data File With `margins`
+
+Now I'm going to use the data file with margins. It's worth taking a look at.
+
+```{stata, collectcode = TRUE}
+
+use marginsdemo.dta, clear
+
+describe
+
+```
+
+# Make The Graph!
+
+I'm going to want to graph the `_margin` against values of the `_at2` variable. I also want to graph the confidence interval: `_ci_lb` and `_ci_ub`.
+
+Because there is so much output, I only want to do this for specific values of the `_pw` variable.
+
+```{stata}
+#| class: output
+
+label list _pw
+
+```
+
+::: {.callout-warning collapse="false"}
+Remember that `pwcompare` gives us *pairwise* comparisons, i.e the *difference* between the predicted probabilities for the two groups.
+:::
+
+```{stata}
+
+twoway (line _margin _at) /// line graph for margins
+(rcap _ci_lb _ci_ub _at, legend(off)) /// range plot w capped spikes for CIs
+if _pw == 1 | _pw == 18 | /// long complicated if statement
+_pw ==  31 | _pw == 40 | _pw == 45, /// broken into several lines
+title("Difference in Predicted Probabilities Between Male and Female") ///
+xtitle("age") ///
+ytitle("predicted probability")
+
+graph export mypwmarginsplot.png, width(1000) replace
+
+```
+
+![marginsplot of pairwise comparisons](mypwmarginsplot.png)
+
+
+
+
+
+
+
+
+
+
+
+

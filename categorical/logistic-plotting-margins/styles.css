@@ -1,0 +1,14 @@
+.output {
+max-height: 600px;
+overflow-y: scroll;
+}
+
+blockquote {
+  color: black;
+  border-left: 2px solid #FFCB05; 
+  padding: 0.5em 10px;
+}
+
+
+
+
