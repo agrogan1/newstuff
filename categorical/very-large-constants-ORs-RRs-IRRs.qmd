@@ -1,34 +1,44 @@
 ---
 title: "Very Large Constants, OR's or RR's or IRR's"
-description: |
-  Possible causes and solutions.
-author:
-  - name: Andy Grogan-Kaylor 
-    url: https://agrogan1.github.io/
-    affiliation: University of Michigan
-    affiliation_url: https://umich.edu/
-date: "`r Sys.Date()`"
-output:
-  distill::distill_article:
-    highlight: haddock
-    toc: yes
+subtitle: "Possible causes and solutions"
+author: "Andy Grogan-Kaylor"
+date: "today"
+format:
+  html:
+    toc: true
+    number-sections: true
+    anchor-sections: true
+    theme:
+      light: yeti
+      dark: vapor
+  pdf:
+    toc: true
+    number-sections: true
 ---
 
-```{r setup, include=FALSE}
+```{css}
+#| echo: false
 
-knitr::opts_chunk$set(echo = FALSE)
+blockquote {
+  background: #FFFFFF;
+  color: #000000;
+  border-left: 3px solid #FFCB05;
+}
 
 ```
 
 One sometimes sees *extremely large* OR's or RR's or IRR's.
 
 1. Is this due to very low *base rates* of one category of the outcome? Those can inflate RR's and OR's.
-2. What are the *units of the independent variables*? For example if your independent variable is a percentage expressed on a 0.0 to 1.0 scale, the scale of your indepdent variable can radically inflate your estimates for $\beta$. Rescaling the independent variable sometimes helps.
-3. Should some of your *independent variables be centered*? 
+2. What are the *units of the independent variables*? For example if your independent variable is a percentage expressed on a 0.0 to 1.0 scale, the scale of your independent variable can radically inflate your estimates for $\beta$. Re-scaling the independent variable sometimes helps.
+3. Should some of your *continuous independent variables be centered*? Should you *collapse categories for some of your categorical independent variables*? 
 
 > Remember that the $\beta_0$ term is the mean outcome for an individual with a score of 0 on all of the independent variables. This may sometimes provide reasonable estimates, but it may sometimes be necessary to center some or all of your independent variables. If independent variables are not centered, $\beta_0$ may represent the value of the outcome for a combination of independent variables well outside of the data range. See the figure below for an illustration of this idea.
     
 ```{r}
+#| echo: false
+
+library(michigancolors)
 
 # regression line
 
@@ -37,7 +47,8 @@ x <- seq(0, 10, .1) # random sequence of x's
 y <- -1 * x + 5 # generate y
 
 plot(x, y, 
-     col = "red", 
+     col = michigancolors("maize"),
+     lwd = 3,
      type = "l",
      main = expression(paste(beta[0], " is outside range of observed data")),
      xlab = "x", 
@@ -52,13 +63,13 @@ e <- rnorm(length(x2), 0, 1) # error term
 y2 <- -x2 + 5 + e # generate y2
 
 points(x2, y2, 
-       col = "purple", 
+       col = michigancolors("blue"), 
        pch = 19)
 
 ```
   
     
-4. Are there interactions (e.g. $x*z$) in your model? Remember that when there is an interaction (e.g. $x*z$) in a model, the coefficient for the main effect (e.g. $\beta x$) represents the coefficient for individuals for whom $z$ is 0. Perhaps $z$ should be centered? (Remember also that interactions in nonlinear models are *complicated* and require *special consideration*, an issue discussed elsewhere on this site.)
+4. Are there interactions (e.g. $x \times z$) in your model? Remember that when there is an interaction (e.g. $x \times z$) in a model, the coefficient for the main effect (e.g. $\beta x$) represents the coefficient for individuals for whom $z$ is 0. Perhaps $z$ should be centered? (Remember also that interactions in nonlinear models are *complicated* and require *special consideration*, an issue discussed elsewhere on this site.)
 5. Is this an issue of *complete, or near complete separation*? i.e. one variable almost perfectly predicts the outcome? That too can lead to very large OR's or RR's.
 6. Are there *very small cell (subsample) sizes*? Small sample sizes (cell sizes) can create anomalous estimates i.e. estimates from small samples (small table cells) can be very *noisy* estimates.
 
