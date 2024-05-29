@@ -1,0 +1,74 @@
+---
+title: "How Small Cell Sizes -> Large OR's"
+subtitle: "Simulating Some Hypothetical Data"
+author: "Andy Grogan-Kaylor"
+date: "today"
+format:
+  html:
+    toc: true
+    number-sections: true
+    anchor-sections: true
+    theme:
+      light: yeti
+      dark: vapor
+    code-fold: true
+    code-summary: "Show the code"
+  pdf:
+    toc: true
+    number-sections: true
+---
+
+# call library
+
+```{r}
+#| output: false
+
+library(dplyr) # data wrangling
+
+```
+
+# set up the initial data
+
+::: {.callout-important}
+Note that row 1 has a small cell size / very infrequent event.
+:::
+
+```{r}
+
+condition <- c("A", "B", "C")
+
+total_events <- c(100, 100, 100)
+
+event_happened <- c(1, 10, 19)
+
+mytable <- data.frame(condition, 
+                      total_events,
+                      event_happened)
+
+mytable # replay
+
+```
+
+# make some calculations
+
+```{r}
+
+mytable %>% 
+  mutate(risk = event_happened / total_events) %>%
+  mutate(risk_difference = risk - lag(risk)) %>%
+  mutate(event_didnt_happen = total_events - event_happened) %>%
+  mutate(odds = event_happened / event_didnt_happen) %>%
+  mutate(odds_ratio = odds / lag(odds)) %>% 
+  mutate(comment = case_when(row_number() == 1 ~ "odds ratio not defined", 
+                            row_number() == 2 ~"OR 2 vs. 1 is large",
+                            row_number() == 3 ~ "OR 3 vs. 2 is reasonable"))
+```
+
+
+
+
+
+
+
+
+
