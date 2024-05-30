@@ -1,0 +1,17 @@
+{
+  "hash": "301e0f46a541844eccce9753cf3d5bbc",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"How Small Cell Sizes -> Large OR's\"\nsubtitle: \"Simulating Some Hypothetical Data\"\nauthor: \"Andy Grogan-Kaylor\"\ndate: \"today\"\nformat:\n  html:\n    toc: true\n    number-sections: true\n    anchor-sections: true\n    theme:\n      light: yeti\n      dark: vapor\n    code-fold: true\n    code-summary: \"Show the code\"\n    df-print: default\n  pdf:\n    toc: true\n    number-sections: true\n---\n\n\n\n\n# call library\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(dplyr) # data wrangling\n```\n:::\n\n\n\n\n# set up the initial data\n\n::: {.callout-important}\nNote that row 1 has a small cell size / very infrequent event.\n:::\n\n\n\n\n::: {#tbl-data .cell tbl-cap='Table of Data'}\n\n```{.r .cell-code}\ncondition <- c(\"A\", \"B\", \"C\")\n\ntotal_events <- c(100, 100, 100)\n\nevent_happened <- c(1, 10, 19)\n\nmytable <- data.frame(condition, \n                      total_events,\n                      event_happened)\n\nmytable # replay\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n  condition total_events event_happened\n1         A          100              1\n2         B          100             10\n3         C          100             19\n```\n\n\n:::\n:::\n\n\n\n\n# make some calculations\n\n\n\n\n::: {#tbl-calculations .cell tbl-cap='Table of Calculations'}\n\n```{.r .cell-code}\nmytable %>% \n  mutate(risk = event_happened / total_events) %>%\n  mutate(risk_difference = risk - lag(risk)) %>%\n  mutate(event_didnt_happen = total_events - event_happened) %>%\n  mutate(odds = event_happened / event_didnt_happen) %>%\n  mutate(odds_ratio = odds / lag(odds)) %>% \n  mutate(comment = case_when(row_number() == 1 ~ \"odds ratio not defined\", \n                            row_number() == 2 ~\"OR 2 vs. 1 is large\",\n                            row_number() == 3 ~ \"OR 3 vs. 2 is reasonable\"))\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n  condition total_events event_happened risk risk_difference event_didnt_happen\n1         A          100              1 0.01              NA                 99\n2         B          100             10 0.10            0.09                 90\n3         C          100             19 0.19            0.09                 81\n        odds odds_ratio                  comment\n1 0.01010101         NA   odds ratio not defined\n2 0.11111111  11.000000      OR 2 vs. 1 is large\n3 0.23456790   2.111111 OR 3 vs. 2 is reasonable\n```\n\n\n:::\n:::\n",
+    "supporting": [
+      "bigORs_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}

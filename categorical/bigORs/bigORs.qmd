@@ -13,6 +13,7 @@ format:
       dark: vapor
     code-fold: true
     code-summary: "Show the code"
+    df-print: default
   pdf:
     toc: true
     number-sections: true
@@ -34,6 +35,8 @@ Note that row 1 has a small cell size / very infrequent event.
 :::
 
 ```{r}
+#| label: tbl-data
+#| tbl-cap: Table of Data
 
 condition <- c("A", "B", "C")
 
@@ -52,6 +55,8 @@ mytable # replay
 # make some calculations
 
 ```{r}
+#| label: tbl-calculations
+#| tbl-cap: Table of Calculations
 
 mytable %>% 
   mutate(risk = event_happened / total_events) %>%
