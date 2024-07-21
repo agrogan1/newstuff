@@ -8,7 +8,7 @@ format:
     number-sections: true
     anchor-sections: true
     theme:
-      light: cosmo
+      light: yeti
       dark: vapor
   pdf:
     toc: true
@@ -106,7 +106,7 @@ association
 x is              $<0.0$        $<1.0$
 associated
 with a
-descrease
+decrease
 in y
 --------------------------------------------------
 
