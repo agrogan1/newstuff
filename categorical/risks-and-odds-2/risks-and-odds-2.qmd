@@ -2,30 +2,19 @@
 title: "Risks and Odds (2)"
 author: "Andy Grogan-Kaylor"
 date: "today"
-format: 
+format:
   html:
     toc: true
     number-sections: true
+    anchor-sections: true
+    theme:
+      light: yeti
+      dark: vapor
 ---
 
-```{r setup, include=FALSE}
-
-knitr::opts_chunk$set(echo = FALSE,
-                      warning = FALSE,
-                      message = FALSE)
-
-```
-
-```{css}
-
-caption {
-  
-  color: red;
-  
-}
-```
-
 ```{r}
+#| message: false
+#| echo: false
 
 library(plotly)
 
@@ -39,6 +28,8 @@ library(shiny)
 
 
 ```{r}
+#| message: false
+#| echo: false
 
 events <- rep(100, 10)
 
@@ -79,13 +70,14 @@ Imagine an *Event X*. This event could be entering a program, exiting a program,
 Click on the table below and/or hover over the graph below to explore various scenarios.
 
 ```{r}
-#| column: screen
+#| message: false
+#| echo: false
 
 hk <- highlight_key(mydata)
 
 p1 <- plot_ly(hk,
-              marker = list(size = 10),
-              width = "55%") %>% 
+              marker = list(size = 15),
+              width = "70%") %>% 
   highlight() %>%
   add_trace(x = ~x_happens, 
             y = ~risk,
@@ -120,7 +112,7 @@ p1 <- plot_ly(hk,
 
 t1 <- DT::datatable(hk, 
                     class="compact",
-                    width = "100%",
+                    width = "70%",
                     rownames = FALSE,
                     caption = 'Risks and Odds',
                     colnames = c('Total Events', 
@@ -136,7 +128,32 @@ t1 <- DT::datatable(hk,
 #               column = ~x_happens,
 #               step = 10)
 
-bscols(t1, p1)
+# bscols(t1, p1)
+
+# t1
+# 
+# p1
 
 ```
+
+## Table
+
+```{r}
+#| message: false
+#| echo: false
+
+t1
+
+```
+
+## Visualization
+
+```{r}
+#| message: false
+#| echo: false
+
+p1
+
+```
+
 
