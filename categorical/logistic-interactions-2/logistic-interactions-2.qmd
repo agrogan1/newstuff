@@ -74,7 +74,7 @@ graph export "combined.png", as(png) width(2000) name("combined") replace
 
 ```
 
-![Demonstration of Interactive Relationships](combined.png){ width=90% }
+![Demonstration of Interactive Relationships](combined.png){ width=90% #fig-interactions}
 
 ::: {.callout-tip collapse="false"}
 ## Key Idea
@@ -115,6 +115,8 @@ clear all
 graph close _all
 
 use http://www.stata-press.com/data/r15/margex, clear
+
+set linesize 96 // more width for output
 
 ```
 
@@ -157,6 +159,7 @@ margins sex, at(age = (20 30 40 50 60))
 > There certainly seems to be some kind of interaction of `sex` and `age`.
 
 ```{stata}
+#| output: false
 
 marginsplot
 
