@@ -261,14 +261,6 @@ save(x, y, myprobability, y2, y3, x3,
 
 ```
 
-::: {.callout-important}
-Instruction will be conducted in Stata, so basic knowledge of descriptive statistics and OLS in Stata is a prerequisite.
-
-
-Students will need access to Stata to participate. You will need to already have Stata, to purchase Stata from [https://www.stata.com/](https://www.stata.com/), or to use [https://its.umich.edu/computing/computers-software/virtual-sites](https://its.umich.edu/computing/computers-software/virtual-sites) to access Stata.
-:::
-
-
 ::: {.column-margin}
 Our organizing question: "What is the chance that thing *x* will happen? What is the chance that thing *y* will happen?
 :::
@@ -295,6 +287,13 @@ Lecture slides and handouts are [here](./README.html), and are free to share and
 :::
 
 Researchers are most commonly aware of methods that are suitable for continuous dependent variables (e.g. mental health scores), such as the use of ordinary least squares regression. However, many outcomes of interest to social workers, and other social researchers, are decidedly not continuous, but are dichotomous or binary in nature, often representing important life events: born; died; entered the program; left the program; received a particular mental or physical health diagnosis; maltreatment or adverse event occurred; voted for a particular candidate or position; conflict or protest began; conflict or protest ended[^discuss]. These outcomes are often unequally allocated, represent disparities, are important policy or intervention outcomes, or some combination of all of these. Many researchers are familiar with the basics of logistic regression, yet do not have a grounding in some of the intricacies of logistic regression, such as generating predicted probabilities, visualizing these predicted probabilities, or using interaction terms in a categorical model, which can lead to clearer and more accurate reporting of results. Thus, proper use of these models may have substantive implications for research on disparities and inequalities as well as research on the outcomes of intervention or policy.
+
+::: {.callout-important}
+Instruction will be conducted in Stata, so basic knowledge of descriptive statistics and OLS in Stata is a prerequisite.
+
+
+Students will need access to Stata to participate. You will need to already have Stata, to purchase Stata from [https://www.stata.com/](https://www.stata.com/), or to use [https://its.umich.edu/computing/computers-software/virtual-sites](https://its.umich.edu/computing/computers-software/virtual-sites) to access Stata.
+:::
 
 ::: {.callout-tip}
 ## Threading the Needle
