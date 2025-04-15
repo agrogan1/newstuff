@@ -13,7 +13,7 @@ format:
     toc: true
     number-sections: true
     theme:
-      light: cosmo
+      light: yeti
       dark: vapor
     execute: 
       echo: false
@@ -44,7 +44,7 @@ library(plotly) # interactive graphs
 
 library(knitr) # Rmarkdown
 
-library(rgl) # 3d graphics
+# library(rgl) # 3d graphics
  
 library(rayshader) # rayshading
 
