@@ -30,6 +30,11 @@ blockquote {
   padding: 0.5em 10px;
   }
   
+mark {
+  background-color: yellow;
+  color: black;
+}
+  
 ```
 
 ```{r}
@@ -260,6 +265,10 @@ save(x, y, myprobability, y2, y3, x3,
      file = "glm.RData")
 
 ```
+
+::: {.column-margin}
+<mark>Stata will be the software we use in this course. Scroll down for more information on this.</mark>
+:::
 
 ::: {.column-margin}
 Our organizing question: "What is the chance that thing *x* will happen? What is the chance that thing *y* will happen?
