@@ -1,5 +1,5 @@
 ---
-title: "Very Large Constants, OR's or RR's or IRR's"
+title: "Very Large Constants, Coefficients, OR's or RR's or IRR's"
 subtitle: "Possible causes and solutions"
 author: "Andy Grogan-Kaylor"
 date: "today"
@@ -11,6 +11,7 @@ format:
     theme:
       light: yeti
       dark: vapor
+    lightbox: true
   pdf:
     toc: true
     number-sections: true
@@ -27,16 +28,23 @@ blockquote {
 
 ```
 
-One sometimes sees *extremely large* OR's or RR's or IRR's.
+One sometimes sees *extremely large* $\beta$ coefficients, OR's or RR's or IRR's.
 
-1. Is this due to very low *base rates* of one category of the outcome? Those can inflate RR's and OR's.
+1. Is this due to very low *base rates* of one category of the outcome? Those can inflate coefficients, RR's, OR's, and IRR's.
 2. What are the *units of the independent variables*? For example if your independent variable is a percentage expressed on a 0.0 to 1.0 scale, the scale of your independent variable can radically inflate your estimates for $\beta$. Re-scaling the independent variable sometimes helps.
 3. Should some of your *continuous independent variables be centered*? Should you *collapse categories for some of your categorical independent variables*? 
 
-> Remember that the $\beta_0$ term is the mean outcome for an individual with a score of 0 on all of the independent variables. This may sometimes provide reasonable estimates, but it may sometimes be necessary to center some or all of your independent variables. If independent variables are not centered, $\beta_0$ may represent the value of the outcome for a combination of independent variables well outside of the data range. See the figure below for an illustration of this idea.
+::: {.callout-tip}
+## What Does $\beta_0$ Mean?
+
+Remember that the $\beta_0$ term is the mean outcome for an individual with a score of 0 on all of the independent variables. This may sometimes provide reasonable estimates, but it may sometimes be necessary to center some or all of your independent variables. If independent variables are not centered, $\beta_0$ may represent the value of the outcome for a combination of independent variables well outside of the data range. See the figure below for an illustration of this idea.
+:::
     
 ```{r}
 #| echo: false
+#| label: fig-plot
+#| fig-cap: "intercept outside range of observed data"
+#| fig-height: 5
 
 library(michigancolors)
 
