@@ -12,13 +12,14 @@ format:
     theme:
       light: cosmo
       dark: vapor
+    lightbox: true
     css: styles.css
   pdf:
     toc: true
     number-sections: true
 ---
 
-# Introduction (The Exponential Function)
+# Introduction (The Linear Function)
 
 ```{r}
 #| echo: false
@@ -28,7 +29,31 @@ library(Statamarkdown)
 
 ```
 
-We begin with the exponential function: 
+We begin with the linear function:
+
+$$y = ax$$
+
+The coefficient *a* tells us how much *y* increases for a 1 unit increase in *x*.
+
+```{stata}
+#| echo: true
+#| output: false
+#| code-fold: true
+#| code-summary: "Show the code"
+
+twoway function y = 2 * x, lwidth(thick) ///
+title("Linear Function") subtitle("With Coefficient 2") ///
+range(-10 10) 
+
+graph export linear0.png, replace
+
+```
+
+![Graph of linear function with coefficient 2](linear0.png){width=50%}
+
+# The Exponential Function
+
+We then introduce the exponential function: 
 
 $$y = \text{base}^{\text{exponent}}$$
 
@@ -167,9 +192,13 @@ An interesting sidenote is that the logarithm forms the basis of the logarithmic
 
 Logarithmic spirals can be found in nature in the *nautilus shell*, and in *sunflowers*.
 
-![Nautilus Shell, Courtesy Wikipedia](NautilusCutawayLogarithmicSpiral.jpg){width=30%}
+::: {layout-ncol=2}
+![Nautilus Shell, Courtesy Wikipedia](NautilusCutawayLogarithmicSpiral.jpg)
 
-![Sunflower, Courtesy Wikipedia](Sunflower_sky_backdrop.jpg){width=30%}
+![Sunflower, Courtesy Wikipedia](Sunflower_sky_backdrop.jpg)
+
+Logarithmic Spirals
+:::
 
 
 
