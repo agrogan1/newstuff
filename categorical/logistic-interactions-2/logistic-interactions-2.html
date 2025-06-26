@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andy Grogan-Kaylor">
-<meta name="dcterms.date" content="2025-03-03">
+<meta name="dcterms.date" content="2025-06-26">
 
 <title>Interactions in Logistic Regression</title>
 <style>
@@ -144,6 +144,7 @@ window.Quarto = {
   <li><a href="#rerun-margins-posting-results" id="toc-rerun-margins-posting-results" class="nav-link" data-scroll-target="#rerun-margins-posting-results"><span class="header-section-number">7</span> Rerun <code>margins</code>, <code>post</code>ing Results</a></li>
   <li><a href="#margins-with-coeflegend" id="toc-margins-with-coeflegend" class="nav-link" data-scroll-target="#margins-with-coeflegend"><span class="header-section-number">8</span> <code>margins</code> with <code>coeflegend</code></a></li>
   <li><a href="#testing-margins-against-each-other" id="toc-testing-margins-against-each-other" class="nav-link" data-scroll-target="#testing-margins-against-each-other"><span class="header-section-number">9</span> Testing Margins Against Each Other</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">10</span> References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="logistic-interactions-2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -168,7 +169,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 3, 2025</p>
+      <p class="date">June 26, 2025</p>
     </div>
   </div>
   
@@ -287,7 +288,13 @@ Some Calculus (Not Essential To The Discussion)
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">describe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Contains data from http://www.stata-press.com/data/r15/margex.dta
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-2/pr
+
+&gt; ofile.do ...
+
+
+
+Contains data from http://www.stata-press.com/data/r15/margex.dta
  Observations:         3,000                  Artificial data for margins
     Variables:            11                  27 Nov 2016 14:27
 ------------------------------------------------------------------------------------------------
@@ -320,7 +327,13 @@ Sorted by: group</code></pre>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> outcome sex##c.age i.<span class="fu">group</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Iteration 0:  Log likelihood = -1366.0718  
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-2/pr
+
+&gt; ofile.do ...
+
+
+
+Iteration 0:  Log likelihood = -1366.0718  
 Iteration 1:  Log likelihood =  -1118.129  
 Iteration 2:  Log likelihood = -1070.8227  
 Iteration 3:  Log likelihood = -1068.0102  
@@ -358,7 +371,13 @@ Log likelihood = -1067.99                               Pseudo R2     = 0.2182
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>margins sex, <span class="fu">at</span>(age = (20 30 40 50 60))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Predictive margins                                       Number of obs = 3,000
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-2/pr
+
+&gt; ofile.do ...
+
+
+
+Predictive margins                                       Number of obs = 3,000
 Model VCE: OIM
 
 Expression: Pr(outcome), predict()
@@ -413,7 +432,13 @@ Expression: Pr(outcome), predict()
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>margins sex, <span class="fu">at</span>(age = (20 30 40 50 60)) <span class="kw">post</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Predictive margins                                       Number of obs = 3,000
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-2/pr
+
+&gt; ofile.do ...
+
+
+
+Predictive margins                                       Number of obs = 3,000
 Model VCE: OIM
 
 Expression: Pr(outcome), predict()
@@ -449,7 +474,13 @@ Expression: Pr(outcome), predict()
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>margins, coeflegend</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Predictive margins                                       Number of obs = 3,000
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-2/pr
+
+&gt; ofile.do ...
+
+
+
+Predictive margins                                       Number of obs = 3,000
 Model VCE: OIM
 
 Expression: Pr(outcome), predict()
@@ -491,7 +522,13 @@ Expression: Pr(outcome), predict()
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[5._at#0bn.sex] =  _b[5._at#1.sex] <span class="co">// male and female at age 60</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> ( 1)  1bn._at#0bn.sex - 1bn._at#1.sex = 0
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-2/pr
+
+&gt; ofile.do ...
+
+
+
+ ( 1)  1bn._at#0bn.sex - 1bn._at#1.sex = 0
 
            chi2(  1) =    1.99
          Prob &gt; chi2 =    0.1583
@@ -519,7 +556,13 @@ Expression: Pr(outcome), predict()
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">test</span> _b[1bn._at#1.sex] - _b[1bn._at#0bn.sex] = _b[4._at#1.sex] - _b[4._at#0bn.sex] <span class="co">// test equivalence of the differences</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> ( 1)  - 1bn._at#0bn.sex + 1bn._at#1.sex + 5._at#0bn.sex - 5._at#1.sex = 0
+<pre><code>Running /Users/agrogan/Desktop/GitHub/newstuff/categorical/logistic-interactions-2/pr
+
+&gt; ofile.do ...
+
+
+
+ ( 1)  - 1bn._at#0bn.sex + 1bn._at#1.sex + 5._at#0bn.sex - 5._at#1.sex = 0
 
            chi2(  1) =    3.62
          Prob &gt; chi2 =    0.0572
@@ -531,10 +574,13 @@ Expression: Pr(outcome), predict()
          Prob &gt; chi2 =    0.0018</code></pre>
 </div>
 </div>
+</section>
+<section id="references" class="level1 unnumbered" data-number="10">
+
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">10 References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-Ai2003" class="csl-entry" role="listitem">
 Ai, Chunrong, and Edward C. Norton. 2003. <span>“Interaction Terms in Logit and Probit Models.”</span> <em>Economics Letters</em>. <a href="https://doi.org/10.1016/S0165-1765(03)00032-6">https://doi.org/10.1016/S0165-1765(03)00032-6</a>.
 </div>
