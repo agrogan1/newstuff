@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andy Grogan-Kaylor">
-<meta name="dcterms.date" content="2025-06-26">
+<meta name="dcterms.date" content="2025-06-28">
 
 <title>Some Stuff About Logarithms</title>
 <style>
@@ -56,7 +56,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="logarithms-some-stuff_files/libs/clipboard/clipboard.min.js"></script>
@@ -124,7 +144,7 @@ window.Quarto = {
   <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression"><span class="header-section-number">6</span> Logistic Regression</a></li>
   <li><a href="#logarithmic-spiral" id="toc-logarithmic-spiral" class="nav-link" data-scroll-target="#logarithmic-spiral"><span class="header-section-number">7</span> Logarithmic Spiral</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="logarithms-some-stuff.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="logarithms-some-stuff.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -147,7 +167,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 26, 2025</p>
+      <p class="date">June 28, 2025</p>
     </div>
   </div>
   
@@ -202,6 +222,19 @@ window.Quarto = {
 <p><a href="exponential0.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Graph of exponential function with base 2"><img src="exponential0.png" class="img-fluid figure-img" style="width:50.0%" alt="Graph of exponential function with base 2"></a></p>
 <figcaption>Graph of exponential function with base 2</figcaption>
 </figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Applications of Exponential Functions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Exponential functions–and hence their inverses, logarithmic functions described below–have applications in the study of categorical data analysis, radioactive decay, disease spread, and population growth.</p>
+</div>
 </div>
 </section>
 <section id="a-definition-of-the-logarithm" class="level1" data-number="3">
@@ -308,13 +341,13 @@ window.Quarto = {
 <figcaption>Desmos Graph Logarithmic Spiral</figcaption>
 </figure>
 </div>
-<p>Logarithmic spirals can be found in nature in the <em>nautilus shell</em>, and in <em>sunflowers</em>.</p>
+<p>Logarithmic spirals can be found in nature in the <em>nautilus shell</em>, and in <em>sunflowers</em> and in the <em>flight of hawks</em>.</p>
 <div>
 
 </div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="NautilusCutawayLogarithmicSpiral.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Nautilus Shell, Courtesy Wikipedia"><img src="NautilusCutawayLogarithmicSpiral.jpg" class="img-fluid figure-img" alt="Nautilus Shell, Courtesy Wikipedia"></a></p>
@@ -322,7 +355,7 @@ window.Quarto = {
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="Sunflower_sky_backdrop.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Sunflower, Courtesy Wikipedia"><img src="Sunflower_sky_backdrop.jpg" class="img-fluid figure-img" alt="Sunflower, Courtesy Wikipedia"></a></p>
@@ -330,16 +363,29 @@ window.Quarto = {
 </figure>
 </div>
 </div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="hawk.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Spiral Flight of Hawk from @Livio2002"><img src="hawk.png" class="img-fluid figure-img" alt="Spiral Flight of Hawk from Livio (2002)"></a></p>
+<figcaption>Spiral Flight of Hawk from <span class="citation" data-cites="Livio2002">Livio (<a href="#ref-Livio2002" role="doc-biblioref">2002</a>)</span></figcaption>
+</figure>
+</div>
+</div>
 </div>
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <p>Logarithmic Spirals</p>
 </div>
 </div>
 </div>
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Livio2002" class="csl-entry" role="listitem">
+Livio, Mario. 2002. <em>The Golden Ratio: The Story of Phi, the World’s Most Astonishing Number</em>. <em>The Golden Ratio: The Story of Phi, the World’s Most Astonishing Number</em>. 1st ed. Broadway Books.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
