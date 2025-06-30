@@ -162,11 +162,11 @@ In categorical data analysis--especially later in the course--we are often think
 
 # Logistic Regression
 
-Early on in this course, we will think about logistic regression. In logistic regression, we start by thinking about the on the *odds* of our outcome: 
+Early on in this course, we will think about logistic regression. In logistic regression, we start by thinking about the *odds* of our outcome: 
 
 $$\frac{p(y)}{1-p(y)}$$
 
-We will be working with the *log odds*:
+We will ultimately be working with the *logarithm* of the odds, or the *log odds*:
 
 $$\ln(\frac{p(y)}{1-p(y)}) = x$$
 
