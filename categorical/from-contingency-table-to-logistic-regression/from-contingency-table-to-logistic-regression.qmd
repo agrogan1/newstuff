@@ -9,8 +9,9 @@ format:
     number-sections: true
     anchor-sections: true
     theme:
-      light: cosmo
+      light: yeti
       dark: vapor
+    lightbox: true
     css: styles.css
   pdf:
     include-in-header:
@@ -46,6 +47,8 @@ use "FrenchSkiiers.dta"
 tabulate Tx Outcome [fweight = Count]
 
 ```
+
+{{< pagebreak >}}
 
 For the sake of teaching and exposition, I re-arrange the numbers slightly.
 
