@@ -1,7 +1,9 @@
 ---
 title: "Very Large Constants, Coefficients, OR's or RR's or IRR's"
 subtitle: "Possible causes and solutions"
-author: "Andy Grogan-Kaylor"
+author: 
+  - name: "Andy Grogan-Kaylor"
+    url: https://agrogan1.github.io/
 date: "today"
 format:
   html:
@@ -28,7 +30,7 @@ blockquote {
 
 ```
 
-One sometimes sees *extremely large* $\beta$ coefficients, OR's or RR's or IRR's.
+One sometimes sees *extremely large* $\beta$ coefficients (e.g. $\beta_0$, $\beta_1$, etc.), OR's or RR's or IRR's.
 
 1. Is this due to very low *base rates* of one category of the outcome? Those can inflate coefficients, RR's, OR's, and IRR's.
 2. What are the *units of the independent variables*? For example if your independent variable is a percentage expressed on a 0.0 to 1.0 scale, the scale of your independent variable can radically inflate your estimates for $\beta$. Re-scaling the independent variable sometimes helps.
