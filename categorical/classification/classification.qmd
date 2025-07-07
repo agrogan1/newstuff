@@ -1,0 +1,19 @@
+---
+title: "Classification (Confusion) Matrices"
+author: "Andy Grogan-Kaylor"
+date: "today"
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme:
+      light: cosmo
+      dark: vapor
+    lightbox: true
+  pdf:
+    toc: true
+    number-sections: true
+bibliography: classification.bib
+---
+
+# 
