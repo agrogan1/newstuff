@@ -10,7 +10,7 @@ format:
     number-sections: true
     anchor-sections: true
     theme:
-      light: cosmo
+      light: yeti
       dark: vapor
     css: styles.css
   pdf:
@@ -75,10 +75,10 @@ graph export logistic.png, width(2000) replace
 
 ![The Logistic Curve](logistic.png){width=75%}
 
-# The Logistic Curve is a *Theoretical Construct*
+# Your Data And The Logistic Curve
 
-::: {.callout-tip collapse="false"}
-## Key Idea
+::: {.callout-tip collapse="true"}
+## Key Takeaway
 
 Any given data set usually maps to only part of the full logistic curve.
 :::
@@ -100,7 +100,7 @@ graph export logistic2.png, width(2000) replace
 
 ```
 
-![The Logistic Curve Is A Theoretical Construct](logistic2.png){width=75%}
+![Any Given Data Set Usually Maps To Only Part Of The Full Logistic Curve](logistic2.png){width=75%}
 
 
 

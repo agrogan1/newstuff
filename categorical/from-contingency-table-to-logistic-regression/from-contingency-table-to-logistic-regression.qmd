@@ -156,3 +156,14 @@ logit Outcome Tx [fweight = Count], or
 ```
 
 > How do we talk about this *odds ratio*? How would we talk about it if it was $> 1.0$? $> 2.0$
+
+
+# Measures of Effect Size
+
+::: {.callout-tip}
+## Effect Sizes
+
+Think about the *risk difference*, the *risk ratio*, and the *odds ratio*. What measure gives the most substantively accurate sense of the size of the effect? What measures may possibly overstate the effect.
+:::
+
+
