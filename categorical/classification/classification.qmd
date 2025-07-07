@@ -7,7 +7,7 @@ format:
     toc: true
     number-sections: true
     theme:
-      light: cosmo
+      light: yeti
       dark: vapor
     lightbox: true
   pdf:
@@ -16,4 +16,59 @@ format:
 bibliography: classification.bib
 ---
 
-# 
+# Introduction
+
+Logistic regression might be considered to be a *classification algorithm*, as logistic regression provides predicted probabilities of an outcome. An important part of using any classification algorithm is evaluating the strength of the classification.
+
+*Classification matrices*, sometimes (confusingly) called *confusion matrices*, provide a mechanism for evaluating many different statistical and machine learning methods.
+
+# Data
+
+We use data from @Hosmer2013 provided by Stata corporation.
+
+```{r}
+#| echo: false
+#| output: false
+
+library(Statamarkdown)
+
+```
+
+```{stata, collectcode=TRUE}
+
+use https://www.stata-press.com/data/r18/lbw
+
+```
+
+# Describe The Data
+
+```{stata}
+
+describe // describe the data
+
+```
+
+# Use Logistic Regression To Predict Low Birthweight
+
+```{stata, collectcode=TRUE}
+
+logit low age lwt i.race smoke ptl ht ui, or // logistic regression
+
+```
+
+# Classification Matrix
+
+The quantities of interest will often depend upon your discpline, and upon the specific research question. 
+
+However, the **overall accuracy (correctly classified)**, **sensitivity**, **specificity** and **positive predictive value** will often be of general interest.
+
+```{stata}
+
+estat classification // classification matrix
+
+```
+
+# References
+
+
+
