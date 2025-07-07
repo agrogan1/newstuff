@@ -58,7 +58,7 @@ logit low age lwt i.race smoke ptl ht ui, or // logistic regression
 
 # Classification Matrix
 
-The quantities of interest will often depend upon your discpline, and upon the specific research question. 
+The quantities of interest will often depend upon your discipline, and upon the specific research question. 
 
 However, the **overall accuracy (correctly classified)**, **sensitivity**, **specificity** and **positive predictive value** will often be of general interest.
 
