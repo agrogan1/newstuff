@@ -15,6 +15,7 @@ format:
     theme:
       light: yeti
       dark: vapor
+    lightbox: true
     execute: 
       echo: false
       warning: false
