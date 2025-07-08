@@ -7,8 +7,9 @@ format:
     toc: true
     number-sections: true
     theme:
-      light: cosmo
+      light: yeti
       dark: vapor
+    lightbox: true
   docx:
     toc: true
     number-sections: true  
@@ -124,7 +125,7 @@ Tell me in words how your variables are distributed in your sample and include a
 ::: column-margin
 A hypothetical example. If my variables are continuous, it's appropriate to show means. If some of my variables are categorical, it's more appropriate to show frequency distributions.
 
-In order to format my results more nicely--**which I should do for an actual paper**--I could copy them into Excel first, format them, and then copy them into Word. There are also some newer ways to make nicely formatted tables in Stata.
+In order to format my results more nicely--**which I should do for an actual paper**--I could copy them into Excel first, format them, and then copy them into Word. There are also some [newer ways to make nicely formatted regression tables in Stata](https://agrogan1.github.io/posts/tables-in-Stata/index.html).
 
 In the graphs, note that I've tried to pay some attention to meaningful titles and axis labels.
 
