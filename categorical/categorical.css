@@ -1,0 +1,38 @@
+/* css styles */
+
+blockquote {
+  color: black;
+  border-left: 3px solid #FFCB05; 
+  padding: 0.5em 10px;
+}
+.blockquote { 
+  color: black;
+}
+.navbar-brand{
+  font-weight: bold;
+  font-size: 95%;
+}
+.navbar-nav {
+  font-size: 75%;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+.navbar-nav .nav-link.active {
+  color: #FFCB05;
+  background-color: #00274C;
+}
+.navbar a:hover {
+  color: black;
+  background-color: #FFCB05;
+}
+.dropdown-item {
+  font-size: 75%;
+  font-weight: bold;
+}
+div.cell-output-display {
+  color: #00274C;
+}
+a {
+  color: #2F65A7;
+}
