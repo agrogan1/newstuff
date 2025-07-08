@@ -35,6 +35,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
     + [Interactions in Logistic Regression](https://agrogan1.github.io/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/logistic-interactions-2/logistic-interactions-2.pdf)] ([new version](https://agrogan1.github.io/newstuff/categorical/logistic-interactions-3/logistic-interactions-3.html))
     + [Plotting More Complicated Margins](https://agrogan1.github.io/newstuff/categorical/logistic-plotting-margins/logistic-plotting-margins.html)
     + [Logistic Regression Models Are Inherently Interactive](https://agrogan1.github.io/newstuff/categorical/logistic-inherently-interactive/logistic-inherently-interactive.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/logistic-inherently-interactive/logistic-inherently-interactive.pdf)]
+    + [Classification Matrices](https://agrogan1.github.io/newstuff/categorical/classification/classification.html)
     + [Generalized Linear Models](https://agrogan1.github.io/newstuff/categorical/glm/glm.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/glm/glm.pdf)] [[A Gallery of Distributions Used in GLM's](https://agrogan1.github.io/newstuff/categorical/glm/glm-gallery.html)]
     + [Coefficients in Logistic Regression Models](https://agrogan1.github.io/newstuff/categorical/logistic-and-covariates/logistic-and-covariates.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/logistic-and-covariates/logistic-and-covariates.pdf)]
     + [Complete Separation](https://agrogan1.github.io/newstuff/categorical/logistic-regression/complete-separation.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/logistic-regression/complete-separation.pdf)] 
@@ -58,7 +59,7 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
     + [Cox Proportional Hazards Model With Time Varying Covariates](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.pdf)]
     + [More on the Cox Proportional Hazards Model](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.pdf)]
 
-Andrew Grogan-Kaylor ([GitHub](https://agrogan1.github.io/), [New GitHub](https://agrogan1.github.io/newstuff)) | [agrogan@umich.edu](agrogan@umich.edu)
+Andrew Grogan-Kaylor ([GitHub](https://agrogan1.github.io/)) | [agrogan@umich.edu](agrogan@umich.edu)
 
 
 
