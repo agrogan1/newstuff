@@ -1,10 +1,30 @@
 ---
 title: "Categorical Data Analysis"
+author: 
+  name: Andy Grogan-Kaylor 
+  url: https://agrogan1.github.io/
+  affiliation: 
+    - name: University of Michigan
+      url: https://umich.edu/
+date: "today"
+format:
+  html: 
+    toc: true
+    number-sections: true
+    theme:
+      light: yeti
+      dark: vapor
+    css: categorical.css
+    lightbox: true
+    execute: 
+      echo: false
+      warning: false
+      message: false
 ---
 
 ![Models Discussed In This Course](categorical-overview.png)
 
-New stuff for a course on *Categorical Data Analysis* that is going to get moved somewhere else at some point.
+Materials for a course on *Categorical Data Analysis*.
 
 [Paper Template](https://agrogan1.github.io/newstuff/categorical/paper-template/categorical.html)
 
@@ -59,7 +79,6 @@ New stuff for a course on *Categorical Data Analysis* that is going to get moved
     + [Cox Proportional Hazards Model With Time Varying Covariates](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-analysis-Cox-TVC/survival-analysis-Cox-TVC.pdf)]
     + [More on the Cox Proportional Hazards Model](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/survival-more-on-Cox-model/survival-more-on-Cox-model.pdf)]
 
-Andrew Grogan-Kaylor ([GitHub](https://agrogan1.github.io/)) | [agrogan@umich.edu](agrogan@umich.edu)
 
 
 
