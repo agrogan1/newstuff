@@ -50,6 +50,8 @@ describe // describe the data
 
 # Use Logistic Regression To Predict Low Birthweight
 
+We are going to use *logistic regression* to predict low birthweight. We will then use a *classification matrix* to study the accuracy of these predictions. 
+
 ```{stata, collectcode=TRUE}
 
 logit low age lwt i.race smoke ptl ht ui, or // logistic regression
