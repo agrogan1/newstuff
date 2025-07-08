@@ -2,7 +2,7 @@
 
 # New Stuff
 
-Newer stuff that I was going to move somewhere else, but that will probably stay here.
+Newer stuff that I was going to move somewhere else, at one point in my life, but that for now will probably stay here.
 
 ## Categorical Data Analysis 
 
