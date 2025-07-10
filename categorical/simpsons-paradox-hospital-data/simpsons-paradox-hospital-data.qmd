@@ -1,0 +1,98 @@
+---
+title:  "Simulation of Simpson's Paradox With Hospital Data"
+authors: "Andy Grogan-Kaylor"
+date: "today"
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme:
+      light: yeti
+      dark: vapor
+    lightbox: true
+    css: styles.css
+    code-fold: true
+    code-summary: "Show the code"
+  pdf: 
+    toc: true
+    number-sections: true
+---
+
+# Background
+
+Simpson's paradox occurs when a bivariate association is reversed in a multivariate model. This example uses simulated data from hospitals (Wang et al., 2018). 
+
+# Setup
+
+```{r}
+#| output: false
+#| echo: false
+
+library(Statamarkdown)
+
+```
+
+```{stata, collectcode=TRUE}
+
+clear all
+
+use "hospitaldata.dta", clear
+	
+list
+
+```
+
+# Outcome By Hospital Type
+
+It appears as though patients do better at the *normal* hospital, as opposed to the *better* hospital.
+
+```{stata}
+	
+tabulate hospital outcome [fweight = count], row 
+	
+graph bar (count) [fweight = count], over(outcome) over(hospital) blabel(bar) title("Hospital Outcomes") scheme(michigan)
+		
+quietly: graph export bivariategraph.png, width(2000) replace
+
+```
+
+![Bivariate Relationships](bivariategraph.png){width=90%}
+	
+# Outcome By Hospital Type by Severity
+
+When we factor in the *severity* of the illness, we arrive at the reverse conclusion. Patients do better at the *better* hospital.
+
+```{stata}
+
+generate severity_hospital = severity + " " + hospital // concatenate severity + hospital type
+
+tabulate severity_hospital outcome [fweight=count], row 
+	
+graph bar [fweight = count] if severity == "less severe", ///
+title(Less Severe) ///
+over(outcome) ///
+blabel(bar) ///
+by(hospital) ////
+scheme(michigan) ///
+name(lesssevere, replace)
+	
+graph bar [fweight = count] if severity == "more severe", ///
+title(More Severe) ///
+over(outcome) ///
+blabel(bar) ///
+by(hospital) ///
+scheme(michigan) ///
+name(moresevere, replace)
+	
+graph combine lesssevere moresevere, title(Hospital Outcomes) scheme(michigan)
+
+quietly: graph export multivariategraph.png, width(2000) replace
+
+```
+
+![Multivariate Relationships](multivariategraph.png){width=90%}
+
+	
+# Reference
+
+Wang, B., Wu, P., Kwan, B., Tu, X. M., & Feng, C. (2018). Simpson’s Paradox: Examples. *Shanghai Archives of Psychiatry*, 30(2), 139–143. [https://doi.org/10.11919/j.issn.1002-0829.218026](https://doi.org/10.11919/j.issn.1002-0829.218026)
