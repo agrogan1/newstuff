@@ -7,7 +7,7 @@ format:
     toc: true
     number-sections: true
     theme:
-      light: cosmo
+      light: yeti
       dark: vapor
     lightbox: true
   pdf:
@@ -23,6 +23,10 @@ nocite: |
 # Background
 
 ```{css, echo=FALSE}
+
+a {
+  color: #2F65A7;
+}
 
 blockquote {
   color: black;
@@ -47,7 +51,7 @@ This idea may be easier to describe if we recall the formula for a logistic regr
 $$\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2$$ {#eq-logistic}
 
 ::: {.callout-warning collapse="false"}
-In the above formula, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
+In @eq-logistic, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
 :::
 
 ```{stata, echo=FALSE, message=FALSE, output=FALSE}
@@ -79,7 +83,7 @@ graph export "combined.png", as(png) width(2000) name("combined") replace
 ::: {.callout-tip collapse="false"}
 ## Key Idea
 
-In a *linear* model, a single parameter can capture the difference in slopes between the two groups. In a *non-linear* model, no single parameter can capture the difference in slopes between the two groups.
+As illustrated in @fig-interactions:  In a *linear* model, a single parameter can capture the difference in slopes between the two groups; In a *non-linear* model, no single parameter can capture the difference in slopes between the two groups.
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -92,6 +96,10 @@ $$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2 + e_i$$
 Here (following [@Ai2003]): 
 
 $$\frac{\partial y}{\partial x_1 \partial x_2} = \beta_3$$ 
+
+Now imagine a logistic regression model: 
+
+$$\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2 + e_i$$
 
 We use $\text{logit}$ to describe: 
 
