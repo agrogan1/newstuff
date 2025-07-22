@@ -99,7 +99,7 @@ $$\frac{\partial y}{\partial x_1 \partial x_2} = \beta_3$$
 
 Now imagine a logistic regression model: 
 
-$$\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2 + e_i$$
+$$\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2$$
 
 We use $\text{logit}$ to describe: 
 
