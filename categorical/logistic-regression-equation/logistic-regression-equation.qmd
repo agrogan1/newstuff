@@ -1,0 +1,97 @@
+---
+title: "Logistic Regression Equation"
+author: "Andy Grogan-Kaylor"
+date: "today"
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme:
+      light: yeti
+      dark: vapor
+    lightbox: true
+    code-fold: true
+    code-summary: "Show the code"
+  pdf:
+    toc: true
+    number-sections: true
+---
+
+# Logistic Regression 
+
+## Equation
+
+Logistic regression--written here with a single independent variable--models the log odds of an outcome as a function of a set of covariates:
+
+$$\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big) = \beta_0 + \beta_1 x_1$$ 
+
+Here $p(\text{outcome})$ is the probability of the outcome. 
+
+$\frac{p(\text{outcome})}{1-p(\text{outcome})}$ is the *odds* of the outcome.
+
+Hence, $\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})} \Big)$ is the *log odds*.
+
+Logistic regression returns a $\beta$ coefficient for each independent variable $x$.
+
+These $\beta$ coefficients can then be *exponentiated* to obtain *odds ratios*:  $OR = e^{\beta}$
+
+## Rewriting The Equation
+
+We can take the equation:
+
+$$\ln \Big(\frac{p(\text{outcome})}{1-p(\text{outcome})}\Big) = \beta_0 + \beta_1 x_1$$
+We exponentiate both sides of the equation:
+
+$$\frac{p(\text{outcome})}{1-p(\text{outcome})} = e^{\beta_0 + \beta_1 x_1}$$
+
+We multiply both sides by the denominator of the fraction that is on the left hand side of the equation:  
+
+$$p(\text{outcome}) = e^{\beta_0 + \beta_1 x_1}(1-p(\text{outcome}))$$
+
+Then: 
+
+$$p(\text{outcome}) = e^{\beta_0 + \beta_1 x_1} - e^{\beta_0 + \beta_1 x_1} * p(\text{outcome})$$
+Then:
+
+$$p(\text{outcome}) + e^{\beta_0 + \beta_1 x_1} * p(\text{outcome}) = e^{\beta_0 + \beta_1 x_1}$$
+
+Then: 
+
+$$(1 + e^{\beta_0 + \beta_1 x_1}) * p(\text{outcome}) = e^{\beta_0 + \beta_1 x_1}$$
+
+And, finally: 
+
+$$p(\text{outcome}) = \frac{e^{\beta_0 + \beta_1 x_1}}{1 +e^{\beta_0 + \beta_1 x_1}}$$
+
+We sometimes use a shorthand, and say 
+
+$$F(z)=\frac{e^z}{1+e^z}$$
+
+# Graph
+
+We graph a logistic distribution with $\beta_0$ set to 0, and $\beta_1$ set to 1.
+
+```{r}
+#| fig-height: 3
+
+N <- 100
+
+x <- runif(N, -10, 10)
+
+y <- exp(x)/(1 + exp(x))
+
+library(ggplot2)
+
+
+ggplot(data = NULL,
+       aes(x = x,
+           y = y,
+           color = y)) +
+  geom_point() + 
+  labs(title = "Logistic Function",
+       y = "Probability") +
+  scale_color_viridis_c(name = "probability") +
+  theme_minimal()
+
+```
+
