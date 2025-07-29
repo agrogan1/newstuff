@@ -17,7 +17,7 @@ format:
     colorlinks: true
 bibliography: logistic-interactions-2.bib
 nocite: |
-  Ai2003, @KaracaMandic2012
+  Ai2003, @KaracaMandic2012, @Mize2019
 ---
 
 # Background

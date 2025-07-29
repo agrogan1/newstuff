@@ -8,7 +8,7 @@ format:
     toc: true
     number-sections: true
     theme:
-      light: cosmo
+      light: yeti
       dark: vapor
     lightbox: true
   pdf:
@@ -18,7 +18,7 @@ format:
     colorlinks: true
 bibliography: logistic-interactions-3.bib
 nocite: |
-  Ai2003, @KaracaMandic2012
+  Ai2003, @KaracaMandic2012, @Mize2019
 ---
 
 # Background
@@ -48,7 +48,7 @@ This idea may be easier to describe if we recall the formula for a logistic regr
 $$\ln\left(\frac{P(y)}{1 - P(y)}\right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 \times x_2$$ {#eq-logistic}
 
 ::: {.callout-warning collapse="false"}
-In the above formula, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
+In @eq-logistic, the sign, and statistical significance, of $\beta_3$ may not accurately characterize the underlying relationship.
 :::
 
 
