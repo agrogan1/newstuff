@@ -122,7 +122,7 @@ $e$ is a kind of fundamental mathematical constant, like $\pi$, but without the 
 
 $e$ emerges in many contexts, including some aspects of compound growth processes [^e]. $e$ is approximately equal to 2.71828....
 
-[^e]: A common definition of $e$ is $$\lim_{n \to \infty} \left(1 + \frac{1}{n} \right)^n$$
+[^e]: A common definition of $e$ is $$e = \lim_{n \to \infty} \left(1 + \frac{1}{n} \right)^n$$
 
 If $$y = e^x$$ then $$\ln(y) = x$$.
 
