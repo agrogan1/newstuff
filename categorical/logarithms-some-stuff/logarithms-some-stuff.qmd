@@ -120,7 +120,9 @@ For deep mathematical reasons, it is often useful to use logarithms with base $e
 
 $e$ is a kind of fundamental mathematical constant, like $\pi$, but without the easy geometric definition that $\pi$ has. (For any $\bigcirc$, $\pi = \frac{\text{circumference}}{\text{diameter}}$.) 
 
-$e$ is approximately equal to 2.71828....
+$e$ emerges in many contexts, including some aspects of compound growth processes [^e]. $e$ is approximately equal to 2.71828....
+
+[^e]: A common definition of $e$ is $$\lim_{n \to \infty} \left(1 + \frac{1}{n} \right)^n$$
 
 If $$y = e^x$$ then $$\ln(y) = x$$.
 
@@ -190,6 +192,8 @@ graph export logistic.png, replace
 ```
 
 ![Logistic curve](logistic.png){width=50%}
+
+This function is sometimes called a *sigmoid*, and has the interesting property of mapping the interval $- \infty < x < \infty$ to $0 < y < 1$. (This is the first step in mapping a *continuous* predictor to a *categorical* outcome.) 
 
 # Logarithmic Spiral
 
