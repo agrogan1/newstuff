@@ -1,5 +1,6 @@
 ---
-title: "Risks and Odds (2)"
+title: "Risks and Odds (v2)"
+subtitle: "Risks and Odds Are Not The Same"
 author: "Andy Grogan-Kaylor"
 date: "today"
 format:
@@ -57,6 +58,8 @@ $$\text{risk} = P(\text{event happened}) = \frac{\text{number of events}}{\text{
 The odds are the probability that an event happened divided by the probability that it did not happen
 
 $$\text{odds} = \frac{P(\text{event happened})}{P(\text{event didn't happen})}$$
+
+which in turn is equivalent to
 
 $$= \frac{\frac{\text{number of events}}{\text{number of events} + \text{number of non-events}}}{\frac{\text{number of non-events}}{\text{number of events} + \text{number of non-events}}}$$
 
@@ -135,6 +138,18 @@ t1 <- DT::datatable(hk,
 
 ```
 
+## Visualization
+
+```{r}
+#| label: fig-risks-odds
+#| fig-cap: "Visualization of Risks and Odds"
+#| message: false
+#| echo: false
+
+p1
+
+```
+
 ## Table
 
 ```{r}
@@ -147,16 +162,8 @@ t1
 
 ```
 
-## Visualization
 
-```{r}
-#| label: fig-risks-odds
-#| fig-cap: "Visualization of Risks and Odds"
-#| message: false
-#| echo: false
 
-p1
 
-```
 
 
