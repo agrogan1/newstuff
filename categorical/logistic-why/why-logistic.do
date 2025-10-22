@@ -5,6 +5,7 @@ title("Comparing Linear and Logistic Models") ///
 ytitle("probability") ///
 note("In some cases the {bf:red} line and the {bf:blue} line may be {bf:close enough}, but they may not be!") ///
 legend(order(1 "If the true relationship in your data looks like this..." ///
-2 "... why model it with a curve that looks like this?") pos(6))
+2 "... why model it with a curve that looks like this?") pos(6)) ///
+aspect(1) scheme(stcolor)
 
 graph export "why-logistic.png", as(png) replace
