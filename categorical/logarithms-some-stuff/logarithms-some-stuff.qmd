@@ -88,7 +88,7 @@ Exponential functions--and hence their inverses, logarithmic functions described
 
 We then consider the logarithm. 
 
-If $$y = b^x$$ then $$\log_b(y) = x$$.
+If $$y = b^x$$ then $$\log_b(y) = x$$
 
 In words: If $\text{number} = \text{base}^{\text{exponent}}$ then $\log_{\text{base}}(\text{number}) = \text{exponent}$. 
 
@@ -124,7 +124,7 @@ $e$ emerges in many contexts, including some aspects of compound growth processe
 
 [^e]: A common definition of $e$ is $$e = \lim_{n \to \infty} \left(1 + \frac{1}{n} \right)^n$$
 
-If $$y = e^x$$ then $$\ln(y) = x$$.
+If $$y = e^x$$ then $$\ln(y) = x$$
 
 ```{stata}
 #| echo: true
