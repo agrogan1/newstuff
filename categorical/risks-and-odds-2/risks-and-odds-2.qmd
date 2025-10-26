@@ -96,7 +96,8 @@ p1 <- plot_ly(hk,
                           x_happens, 
                           "/100 = ", 
                           risk),
-            hoverinfo = 'text') %>%
+            hoverinfo = 'text',
+            name = "risk") %>%
   add_trace(x = ~x_happens, 
             y = ~odds, 
             text = ~paste("X Happens", 
@@ -109,12 +110,13 @@ p1 <- plot_ly(hk,
                           100 - x_happens, 
                           " = ", 
                           odds),
-            hoverinfo = 'text') %>%
+            hoverinfo = 'text',
+            name = "odds") %>%
   layout(xaxis = list(title='How many times does X happen?',
                       showspikes = TRUE),
          yaxis = list(title='Risk or Odds',
                       showspikes = TRUE),
-         showlegend = FALSE) 
+         showlegend = TRUE) 
 
 t1 <- DT::datatable(hk, 
                     class="compact",
