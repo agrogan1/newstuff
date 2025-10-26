@@ -1,20 +1,20 @@
 ---
 title: "Describing Odds Ratios"
-subtitle: "Draft: Comments Welcome"
+subtitle: "Comments Welcome"
 author: "Andy Grogan-Kaylor"
 date: "today"
 format:
   html:
-    toc: true
-    number-sections: true
-    theme:
-      light: yeti
-      dark: vapor
+    toc: false
+    number-sections: false
+    theme: yeti
     css: styles.css
     lightbox: true
   pdf:
-    toc: true
-    number-sections: true
+    toc: false
+    number-sections: false
+    header-includes:
+      - \usepackage{colortbl}\rowcolors{2}{lightgray!50}{white}
 ---
 
 # Describing Odds Ratios
@@ -31,7 +31,7 @@ Group
                           The odds of the outcome for Group A
                           were 75% lower than for the other 
                           group.
-                                    
+
 1.0                       The odds of the outcome for Group A
                           were equivalent to (the same as)
                           the odds for the other group.
