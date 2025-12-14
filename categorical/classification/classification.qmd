@@ -10,10 +10,12 @@ format:
       light: yeti
       dark: vapor
     lightbox: true
+    css: classification.css
   pdf:
     toc: true
     number-sections: true
 bibliography: classification.bib
+csl: apa.csl
 ---
 
 # Introduction
@@ -69,6 +71,22 @@ However, the **overall accuracy (correctly classified)**, **sensitivity**, **spe
 estat classification // classification matrix
 
 ```
+
+# Reciever Operating Characteristic (ROC) Analysis
+
+> "`lroc` graphs the ROC curve—a graph of sensitivity versus one minus specificity as the cutoff *c* is varied—and calculates the area under it. Sensitivity is the fraction of observed positive-outcome cases that are correctly classified; specificity is the fraction of observed negative-outcome cases that are correctly classified. When the purpose of the analysis is classification, you must choose a cutoff." [@StataCorp2025]
+
+> "The curve starts at (0, 0), corresponding to *c* = 1, and continues to (1, 1), corresponding to *c*  = 0. A model with no predictive power would be a $45^{\circ}$ line. The greater the predictive power, the more bowed the curve, and hence the area beneath the curve is often used as a measure of the predictive power. A model with no predictive power has area 0.5; a perfect model has area 1." [@StataCorp2025]
+
+```{stata}
+
+lroc // ROC curve
+
+graph export "ROC.png", width(1500) replace
+
+```
+
+![ROC curve](ROC.png)
 
 # References
 
