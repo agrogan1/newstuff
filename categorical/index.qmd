@@ -21,6 +21,8 @@ format:
       warning: false
       message: false
 bibliography: categorical.bib
+filters:
+  - highlight-text
 ---
 
 ```{css, echo=FALSE}
@@ -284,7 +286,9 @@ Because so many of the outcomes we study are so important--and are often unequal
 :::
 
 ::: {.column-margin}
+::: {fg="#FF0000"}
 Failure to understand some of these hidden complexities may lead to providing *very* wrong answers.
+:::
 :::
 
 ::: {.column-margin}
