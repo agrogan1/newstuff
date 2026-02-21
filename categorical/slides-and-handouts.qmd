@@ -43,7 +43,7 @@ These slides and handouts are free to share and download as long as you cite the
     + [Simpson's Paradox in Contingency Tables](https://agrogan1.github.io/newstuff/categorical/simpsons-paradox-hospital-data/simpsons-paradox-hospital-data.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/simpsons-paradox-hospital-data/simpsons-paradox-hospital-data.pdf)]
     + [Visualizing Categorical Data](https://agrogan1.github.io/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/visualizing-categorical-data/visualizing-categorical-data.pdf)]
 * [Logistic Regression](https://agrogan1.github.io/newstuff/categorical/logistic-regression/logistic-regression-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/logistic-regression/logistic-regression.pdf)]
-    + [Some Stuff About Logarithms](https://agrogan1.github.io/newstuff/categorical/logarithms-some-stuff/logarithms-some-stuff.html)
+    + [Some Stuff About Logarithms](https://agrogan1.github.io/newstuff/categorical/logarithms-some-stuff/logarithms-some-stuff.html) | [More Stuff](https://globalfamilies.quarto.pub/logarithms/)
     + [Why Logistic Regression?](https://agrogan1.github.io/newstuff/categorical/logistic-why/why-logistic.png)
     + [Exploring Logistic Regression](https://agrogan.shinyapps.io/exploring_logistic_regression/)
     + [From Contingency Table To Logistic Regression](https://agrogan1.github.io/newstuff/categorical/from-contingency-table-to-logistic-regression/from-contingency-table-to-logistic-regression.html)
