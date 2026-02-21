@@ -12,9 +12,7 @@ format:
   html: 
     toc: true
     number-sections: true
-    theme:
-      light: yeti
-      dark: vapor
+    theme: yeti
     lightbox: true
     execute: 
       echo: false
@@ -306,7 +304,7 @@ Students will need access to Stata to participate. You will need to already have
 
 ::: {.callout-note}
 ## Lecture Slides and Handouts
-Lecture slides and handouts are [here](./README.html), and are free to share and download as long as you cite their source.
+Lecture slides and handouts are [here](./slides-and-handouts.html), and are free to share and download as long as you cite their source.
 :::
 
 ::: {.callout-tip}
