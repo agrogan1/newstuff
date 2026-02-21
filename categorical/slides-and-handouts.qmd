@@ -1,5 +1,6 @@
 ---
 title: "Categorical Data Analysis"
+subtitle: "Slides and Handouts"
 author: 
   name: Andy Grogan-Kaylor 
   url: https://agrogan1.github.io/
@@ -11,9 +12,7 @@ format:
   html: 
     toc: true
     number-sections: true
-    theme:
-      light: yeti
-      dark: vapor
+    theme: yeti
     css: categorical.css
     lightbox: true
     execute: 
@@ -28,9 +27,13 @@ Materials for a course on *Categorical Data Analysis*.
 
 [Paper Template](https://agrogan1.github.io/newstuff/categorical/paper-template/categorical.html)
 
-> These slides and handouts are free to share and download as long as you cite their source.
+::: {.callout-note}
+These slides and handouts are free to share and download as long as you cite their source.
+:::
 
-> **Not everything below is covered in the course itself, but the list below serves as a rough *roadmap* guide to the course.**
+::: {.callout-note}
+**Not everything below is covered in the course itself, but the list below serves as a rough *roadmap* guide to the course.**
+:::
 
 * [A Review of Descriptive Statistics, OLS and an Introduction to Stata](https://agrogan1.github.io/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata-slidy.html) [[PDF](https://agrogan1.github.io/newstuff/categorical/review-stats-intro-stata/review-stats-intro-stata.pdf)]
 * [Data Visualization With Stata](https://agrogan1.github.io/Stata/data-visualization-with-Stata/data-visualization-with-Stata.html) [[PDF](https://agrogan1.github.io/Stata/data-visualization-with-Stata/data-visualization-with-Stata.pdf)]
