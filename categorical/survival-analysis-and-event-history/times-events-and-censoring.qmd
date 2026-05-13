@@ -7,9 +7,7 @@ format:
     toc: true
     number-sections: true
     anchor-sections: true
-    theme:
-      light: cosmo
-      dark: vapor
+    theme: yeti
     code-fold: true
     code-summary: "Show the code"
 ---
@@ -207,7 +205,7 @@ ggsurvplot(fit,
 The general format for the `stset` command is `stset t, failure(f)`. Here `t` is the time variable, and `f` is an indicator of *failure*, i.e. the event of interest happened before the study concluded.
 
 ```{stata}
-#| code-summary: "Show the code"
+*| code-summary: "Show the code"
 
 use "event-history-single-record.dta"
 
@@ -236,7 +234,7 @@ datatable(mydata2,
 ```
 
 ```{stata}
-#| code-summary: "Show the code"
+*| code-summary: "Show the code"
 
 use "event-history-single-record.dta"
 
@@ -263,7 +261,7 @@ datatable(mydata3,
 In our `stset` command, we use the time changing variable `event` to construct our `failure` indicator. 
 
 ```{stata}
-#| code-summary: "Show the code"
+*| code-summary: "Show the code"
 
 use "event-history-multiple-records.dta"
 
@@ -272,7 +270,7 @@ codebook event
 ```
 
 ```{stata}
-#| code-summary: "Show the code"
+*| code-summary: "Show the code"
 
 use "event-history-multiple-records.dta"
 
@@ -283,7 +281,7 @@ stset t, failure(event == 2) id(id) // stset
 ## "Failure" Curve
 
 ```{stata}
-#| output: false
+*| output: false
 
 use "event-history-single-record.dta"
 
