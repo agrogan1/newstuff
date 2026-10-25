@@ -2,15 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.9.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andy Grogan-Kaylor">
-<meta name="dcterms.date" content="2025-10-26">
+<meta name="dcterms.date" content="2026-10-25">
 
 <title>Risks and Odds (v2)</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -32,30 +35,26 @@ ul.task-list li input[type="checkbox"] {
 <script src="risks-and-odds-2_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="risks-and-odds-2_files/libs/quarto-html/anchor.min.js"></script>
 <link href="risks-and-odds-2_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="risks-and-odds-2_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="risks-and-odds-2_files/libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="risks-and-odds-2_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="risks-and-odds-2_files/libs/quarto-html/quarto-syntax-highlighting-b6a8276bf55561bdbc268162d41bd1f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="risks-and-odds-2_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="risks-and-odds-2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="risks-and-odds-2_files/libs/bootstrap/bootstrap-4eeb5248cdde89baaa6ac4eccee2427e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="risks-and-odds-2_files/libs/bootstrap/bootstrap-dark-cdb661367bbe43659b48a824b1254678.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="risks-and-odds-2_files/libs/bootstrap/bootstrap-4eeb5248cdde89baaa6ac4eccee2427e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="risks-and-odds-2_files/libs/bootstrap/bootstrap-19216fa8bb71272e13fc45993650fab3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="risks-and-odds-2_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="risks-and-odds-2_files/libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="risks-and-odds-2_files/libs/plotly-binding-4.12.0/plotly.js"></script>
 <script src="risks-and-odds-2_files/libs/typedarray-0.1/typedarray.min.js"></script>
 <script src="risks-and-odds-2_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="risks-and-odds-2_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
-<script src="risks-and-odds-2_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<link href="risks-and-odds-2_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="risks-and-odds-2_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="risks-and-odds-2_files/libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="risks-and-odds-2_files/libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="risks-and-odds-2_files/libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="risks-and-odds-2_files/libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 <link href="risks-and-odds-2_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="risks-and-odds-2_files/libs/datatables-binding-0.33/datatables.js"></script>
+<script src="risks-and-odds-2_files/libs/datatables-binding-0.34.0/datatables.js"></script>
 <link href="risks-and-odds-2_files/libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="risks-and-odds-2_files/libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="risks-and-odds-2_files/libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -68,7 +67,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -86,169 +85,7 @@ window.Quarto = {
 
 </head>
 
-<body class="quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -256,18 +93,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#risk" id="toc-risk" class="nav-link active" data-scroll-target="#risk"><span class="header-section-number">1</span> Risk</a></li>
-  <li><a href="#odds" id="toc-odds" class="nav-link" data-scroll-target="#odds"><span class="header-section-number">2</span> Odds</a></li>
-  <li><a href="#visualize-the-risk-and-odds" id="toc-visualize-the-risk-and-odds" class="nav-link" data-scroll-target="#visualize-the-risk-and-odds"><span class="header-section-number">3</span> Visualize The Risk And Odds</a>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background"><span class="header-section-number">1</span> Background</a></li>
+  <li><a href="#risk" id="toc-risk" class="nav-link" data-scroll-target="#risk"><span class="header-section-number">2</span> Risk</a></li>
+  <li><a href="#odds" id="toc-odds" class="nav-link" data-scroll-target="#odds"><span class="header-section-number">3</span> Odds</a></li>
+  <li><a href="#visualize-the-risk-and-odds" id="toc-visualize-the-risk-and-odds" class="nav-link" data-scroll-target="#visualize-the-risk-and-odds"><span class="header-section-number">4</span> Visualize The Risk And Odds</a>
   <ul class="collapse">
-  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"><span class="header-section-number">3.1</span> Visualization</a></li>
-  <li><a href="#table" id="toc-table" class="nav-link" data-scroll-target="#table"><span class="header-section-number">3.2</span> Table</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"><span class="header-section-number">4.1</span> Visualization</a></li>
+  <li><a href="#table" id="toc-table" class="nav-link" data-scroll-target="#table"><span class="header-section-number">4.2</span> Table</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="risks-and-odds-2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content">
-
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -289,7 +126,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 26, 2025</p>
+      <p class="date">October 25, 2026</p>
     </div>
   </div>
   
@@ -301,13 +138,17 @@ window.Quarto = {
 </header>
 
 
-<section id="risk" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Risk</h1>
+<section id="background" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Background</h1>
+<p><em>Risks</em> and <em>Odds</em> are different but related quantities. It it important to understand how each is mathematically defined and to understand what each quantity implies. In some cases, the <em>odds</em> may overstate the <em>risk</em>.</p>
+</section>
+<section id="risk" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Risk</h1>
 <p>Let’s think about risk:</p>
 <p><span class="math display">\[\text{risk} = P(\text{event happened}) = \frac{\text{number of events}}{\text{number of events} + \text{number of non-events}}\]</span></p>
 </section>
-<section id="odds" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Odds</h1>
+<section id="odds" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Odds</h1>
 <p>The odds are the probability that an event happened divided by the probability that it did not happen</p>
 <p><span class="math display">\[\text{odds} = \frac{P(\text{event happened})}{P(\text{event didn't happen})}\]</span></p>
 <p>which in turn is equivalent to</p>
@@ -315,18 +156,18 @@ window.Quarto = {
 <p>which incidentally reduces to</p>
 <p><span class="math display">\[= \frac{\text{number of events}}{\text{number of non-events}}\]</span></p>
 </section>
-<section id="visualize-the-risk-and-odds" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Visualize The Risk And Odds</h1>
+<section id="visualize-the-risk-and-odds" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Visualize The Risk And Odds</h1>
 <p>Imagine an <em>Event X</em>. This event could be entering a program, exiting a program, or getting a diagnosis of a mental health or physical health condition.</p>
 <p>Click on the table below and/or hover over the graph below to explore various scenarios.</p>
-<section id="visualization" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="visualization"><span class="header-section-number">3.1</span> Visualization</h2>
+<section id="visualization" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="visualization"><span class="header-section-number">4.1</span> Visualization</h2>
 <div class="cell">
 <div id="fig-risks-odds" class="cell-output-display quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-risks-odds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="htmlwidget-b2a8e82f954a953a63fb" style="width:70%;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b2a8e82f954a953a63fb">{"x":{"visdat":{"13e5795ecdcd":["function () ","plotlyVisDat"]},"cur_data":"13e5795ecdcd","attrs":{"13e5795ecdcd":{"marker":{"size":15},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"text":{},"hoverinfo":"text","name":"risk","inherit":true},"13e5795ecdcd.1":{"marker":{"size":15},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"text":{},"hoverinfo":"text","name":"odds","inherit":true}},"layout":{"width":"70%","margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"How many times does X happen?","showspikes":true},"yaxis":{"domain":[0,1],"automargin":true,"title":"Risk or Odds","showspikes":true},"showlegend":true,"dragmode":"zoom","hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"highlight":{"on":"plotly_click","off":"plotly_doubleclick","persistent":false,"dynamic":false,"color":null,"selectize":false,"defaultValues":null,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0,"ctGroups":["SharedData3747528e"]},"data":[{"marker":{"color":"rgba(31,119,180,1)","size":15,"line":{"color":"rgba(31,119,180,1)"}},"x":[10,20,30,40,50,60,70,80,90,100],"y":[0.10000000000000001,0.20000000000000001,0.29999999999999999,0.40000000000000002,0.5,0.59999999999999998,0.69999999999999996,0.80000000000000004,0.90000000000000002,1],"text":["X Happens 10 times <br /> Risk =  10 /100 =  0.1","X Happens 20 times <br /> Risk =  20 /100 =  0.2","X Happens 30 times <br /> Risk =  30 /100 =  0.3","X Happens 40 times <br /> Risk =  40 /100 =  0.4","X Happens 50 times <br /> Risk =  50 /100 =  0.5","X Happens 60 times <br /> Risk =  60 /100 =  0.6","X Happens 70 times <br /> Risk =  70 /100 =  0.7","X Happens 80 times <br /> Risk =  80 /100 =  0.8","X Happens 90 times <br /> Risk =  90 /100 =  0.9","X Happens 100 times <br /> Risk =  100 /100 =  1"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text"],"name":"risk","type":"scatter","mode":"markers","key":["1","2","3","4","5","6","7","8","9","10"],"set":"SharedData3747528e","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","_isNestedKey":false,"frame":null},{"marker":{"color":"rgba(255,127,14,1)","size":15,"line":{"color":"rgba(255,127,14,1)"}},"x":[10,20,30,40,50,60,70,80,90,100],"y":[0.11,0.25,0.42999999999999999,0.67000000000000004,1,1.5,2.3300000000000001,4,9,null],"text":["X Happens 10 times <br /> Odds =  10 / 90  =  0.11","X Happens 20 times <br /> Odds =  20 / 80  =  0.25","X Happens 30 times <br /> Odds =  30 / 70  =  0.43","X Happens 40 times <br /> Odds =  40 / 60  =  0.67","X Happens 50 times <br /> Odds =  50 / 50  =  1","X Happens 60 times <br /> Odds =  60 / 40  =  1.5","X Happens 70 times <br /> Odds =  70 / 30  =  2.33","X Happens 80 times <br /> Odds =  80 / 20  =  4","X Happens 90 times <br /> Odds =  90 / 10  =  9","X Happens 100 times <br /> Odds =  100 / 0  =  Inf"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text"],"name":"odds","type":"scatter","mode":"markers","key":["1","2","3","4","5","6","7","8","9","10"],"set":"SharedData3747528e","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","_isNestedKey":false,"frame":null}],"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-14207a2fbdd8c91bb7b2" style="width:70%;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-14207a2fbdd8c91bb7b2">{"x":{"visdat":{"678b2e5ab7e6":["function () ","plotlyVisDat"]},"cur_data":"678b2e5ab7e6","attrs":{"678b2e5ab7e6":{"marker":{"size":15},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"text":{},"hoverinfo":"text","name":"risk","inherit":true},"678b2e5ab7e6.1":{"marker":{"size":15},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"text":{},"hoverinfo":"text","name":"odds","inherit":true}},"layout":{"width":"70%","margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"How many times does X happen?","showspikes":true},"yaxis":{"domain":[0,1],"automargin":true,"title":"Risk or Odds","showspikes":true},"showlegend":true,"dragmode":"zoom","hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"highlight":{"on":"plotly_click","off":"plotly_doubleclick","persistent":false,"dynamic":false,"color":null,"selectize":false,"defaultValues":null,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0,"ctGroups":["SharedData75da2a52"]},"data":[{"marker":{"color":"rgba(31,119,180,1)","size":15,"line":{"color":"rgba(31,119,180,1)"}},"x":[10,20,30,40,50,60,70,80,90,100],"y":[0.10000000000000001,0.20000000000000001,0.29999999999999999,0.40000000000000002,0.5,0.59999999999999998,0.69999999999999996,0.80000000000000004,0.90000000000000002,1],"text":["X Happens 10 times <br /> Risk =  10 /100 =  0.1","X Happens 20 times <br /> Risk =  20 /100 =  0.2","X Happens 30 times <br /> Risk =  30 /100 =  0.3","X Happens 40 times <br /> Risk =  40 /100 =  0.4","X Happens 50 times <br /> Risk =  50 /100 =  0.5","X Happens 60 times <br /> Risk =  60 /100 =  0.6","X Happens 70 times <br /> Risk =  70 /100 =  0.7","X Happens 80 times <br /> Risk =  80 /100 =  0.8","X Happens 90 times <br /> Risk =  90 /100 =  0.9","X Happens 100 times <br /> Risk =  100 /100 =  1"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text"],"name":"risk","type":"scatter","mode":"markers","key":["1","2","3","4","5","6","7","8","9","10"],"set":"SharedData75da2a52","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","_isNestedKey":false,"frame":null},{"marker":{"color":"rgba(255,127,14,1)","size":15,"line":{"color":"rgba(255,127,14,1)"}},"x":[10,20,30,40,50,60,70,80,90,100],"y":[0.11,0.25,0.42999999999999999,0.67000000000000004,1,1.5,2.3300000000000001,4,9,null],"text":["X Happens 10 times <br /> Odds =  10 / 90  =  0.11","X Happens 20 times <br /> Odds =  20 / 80  =  0.25","X Happens 30 times <br /> Odds =  30 / 70  =  0.43","X Happens 40 times <br /> Odds =  40 / 60  =  0.67","X Happens 50 times <br /> Odds =  50 / 50  =  1","X Happens 60 times <br /> Odds =  60 / 40  =  1.5","X Happens 70 times <br /> Odds =  70 / 30  =  2.33","X Happens 80 times <br /> Odds =  80 / 20  =  4","X Happens 90 times <br /> Odds =  90 / 10  =  9","X Happens 100 times <br /> Odds =  100 / 0  =  Inf"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text"],"name":"odds","type":"scatter","mode":"markers","key":["1","2","3","4","5","6","7","8","9","10"],"set":"SharedData75da2a52","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","_isNestedKey":false,"frame":null}],"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-risks-odds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Visualization of Risks and Odds
@@ -335,8 +176,8 @@ Figure&nbsp;1: Visualization of Risks and Odds
 </div>
 </div>
 </section>
-<section id="table" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="table"><span class="header-section-number">3.2</span> Table</h2>
+<section id="table" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="table"><span class="header-section-number">4.2</span> Table</h2>
 <div class="cell">
 <div id="tbl-risks-odds" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -345,8 +186,8 @@ Table&nbsp;1: Table of Risks and Odds
 </figcaption>
 <div aria-describedby="tbl-risks-odds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="htmlwidget-1af45bdb3640970d96dd" style="width:70%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1af45bdb3640970d96dd">{"x":{"crosstalkOptions":{"key":["1","2","3","4","5","6","7","8","9","10"],"group":"SharedData3747528e"},"filter":"none","vertical":false,"data":[[100,100,100,100,100,100,100,100,100,100],[10,20,30,40,50,60,70,80,90,100],[0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],[0.11,0.25,0.43,0.67,1,1.5,2.33,4,9,null]],"container":"<table class=\"compact\">\n  <thead>\n    <tr>\n      <th>Total Events<\/th>\n      <th>How Many Times Does X Happen?<\/th>\n      <th>Risk<\/th>\n      <th>Odds<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":true,"columnDefs":[{"className":"dt-right","targets":[0,1,2,3]},{"name":"events","targets":0},{"name":"x_happens","targets":1},{"name":"risk","targets":2},{"name":"odds","targets":3}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d4c74c6f5d4daf733b23" style="width:70%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d4c74c6f5d4daf733b23">{"x":{"crosstalkOptions":{"key":["1","2","3","4","5","6","7","8","9","10"],"group":"SharedData75da2a52"},"filter":"none","vertical":false,"data":[[100,100,100,100,100,100,100,100,100,100],[10,20,30,40,50,60,70,80,90,100],[0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],[0.11,0.25,0.43,0.67,1,1.5,2.33,4,9,null]],"container":"<table class=\"compact\">\n  <thead>\n    <tr>\n      <th>Total Events<\/th>\n      <th>How Many Times Does X Happen?<\/th>\n      <th>Risk<\/th>\n      <th>Odds<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","scrollX":true,"columnDefs":[{"className":"dt-right","targets":[0,1,2,3]},{"name":"events","targets":0},{"name":"x_happens","targets":1},{"name":"risk","targets":2},{"name":"odds","targets":3}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row","selectable":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </figure>
@@ -359,19 +200,6 @@ Table&nbsp;1: Table of Risks and Odds
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
-    }
-    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -421,13 +249,14 @@ Table&nbsp;1: Table of Risks and Odds
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

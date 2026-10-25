@@ -8,9 +8,7 @@ format:
     toc: true
     number-sections: true
     anchor-sections: true
-    theme:
-      light: yeti
-      dark: vapor
+    theme: yeti
     lightbox: true
   pdf: 
     toc: true
@@ -49,6 +47,10 @@ odds <- round(odds, 2)
 mydata <- data.frame(events, x_happens, risk, odds)
 
 ```
+
+# Background
+
+*Risks* and *Odds* are different but related quantities. It it important to understand how each is mathematically defined and to understand what each quantity implies. In some cases, the *odds* may overstate the *risk*.
 
 # Risk
 
